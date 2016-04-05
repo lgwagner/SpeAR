@@ -49,12 +49,11 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 
 	private StringFieldEditor remoteUrlFieldEditor;
 
-	private static final String[][] SOLVERS =  
+	private static final String[][] SOLVERS = 
 		   {{ PreferenceConstants.SOLVER_SMTINTERPOL, PreferenceConstants.SOLVER_SMTINTERPOL },
-			{ PreferenceConstants.SOLVER_YICES, PreferenceConstants.SOLVER_YICES },
 			{ PreferenceConstants.SOLVER_Z3, PreferenceConstants.SOLVER_Z3 },
-			{ PreferenceConstants.SOLVER_CVC4, PreferenceConstants.SOLVER_CVC4 },
 			{ PreferenceConstants.SOLVER_YICES2, PreferenceConstants.SOLVER_YICES2 },
+			{ PreferenceConstants.SOLVER_CVC4, PreferenceConstants.SOLVER_CVC4 },
 			{ PreferenceConstants.SOLVER_MATHSAT, PreferenceConstants.SOLVER_MATHSAT }};
 
 	private ComboFieldEditor solverFieldEditor;
@@ -74,7 +73,6 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 
 	/* Spear specific preferences */
 	private BooleanFieldEditor debugFieldEditor;
-	private BooleanFieldEditor spearDebugFilesFieldEditor;
 
 	@Override
 	public void createFieldEditors() {
@@ -113,10 +111,6 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 		reduceSupportFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_REDUCE_IVC,
 				"Reduce support (expensive)", getFieldEditorParent());
 		addField(reduceSupportFieldEditor);
-
-		spearDebugFilesFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_GENERATE_SPEAR_DEBUG_FILES,
-				"Generate SpeAR debug files", getFieldEditorParent());
-		addField(spearDebugFilesFieldEditor);
 
 		BooleanFieldEditor spearFinalLustreFileFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_GENERATE_FINAL_LUSTRE_FILE,
 				"Generate final Lustre file", getFieldEditorParent());

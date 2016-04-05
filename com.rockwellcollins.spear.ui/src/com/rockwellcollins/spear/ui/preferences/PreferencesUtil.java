@@ -24,11 +24,6 @@ public class PreferencesUtil {
 		return prefs.getInt(PreferenceConstants.PREF_SPEAR_CONSISTENCY_DEPTH);
 	}
 	
-	public static boolean getSpearDebugOption() {
-		IPreferenceStore prefs = getPreferenceStore();
-		return prefs.getBoolean(PreferenceConstants.PREF_GENERATE_SPEAR_DEBUG_FILES);
-	}
-	
 	public static boolean getFinalLustreFileOption() {
 		IPreferenceStore prefs = getPreferenceStore();
 		return prefs.getBoolean(PreferenceConstants.PREF_GENERATE_FINAL_LUSTRE_FILE);		
