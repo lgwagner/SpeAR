@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.rockwellcollins.spear.File;
-import com.rockwellcollins.spear.translate.lustre.PLTL;
 import com.rockwellcollins.spear.translate.naming.NameMap;
 import com.rockwellcollins.spear.translate.transformations.SpearDocument;
+import com.rockwellcollins.spear.utilities.PLTL;
 
 import jkind.lustre.Node;
 import jkind.lustre.Program;

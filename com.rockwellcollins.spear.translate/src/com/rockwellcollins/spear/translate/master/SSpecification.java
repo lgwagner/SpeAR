@@ -6,8 +6,8 @@ import java.util.List;
 
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.actions.SpearRuntimeOptions;
-import com.rockwellcollins.spear.translate.lustre.PLTL;
 import com.rockwellcollins.spear.translate.naming.NameMap;
+import com.rockwellcollins.spear.utilities.PLTL;
 
 import jkind.lustre.BinaryExpr;
 import jkind.lustre.BinaryOp;

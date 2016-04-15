@@ -10,8 +10,8 @@ import org.eclipse.xtext.util.SimpleAttributeResolver;
 
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.SpecificationCall;
-import com.rockwellcollins.spear.translate.lustre.LustreUtilities;
 import com.rockwellcollins.spear.util.SpearSwitch;
+import com.rockwellcollins.spear.utilities.LustreUtilities;
 
 public class RemoveLustreKeywords extends SpearSwitch<EObject> {
 
@@ -34,7 +34,8 @@ public class RemoveLustreKeywords extends SpearSwitch<EObject> {
 	
 	private boolean checkForConflict(String name) {
 		for(String keyword : keywords) {
-			if(name.startsWith(keyword)) {
+			//this used to be name.startsWith
+			if(name.equals(keyword)) {
 				return true;
 			}
 		}

@@ -1,4 +1,4 @@
-package com.rockwellcollins.spear.translate.lustre;
+package com.rockwellcollins.spear.utilities;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
