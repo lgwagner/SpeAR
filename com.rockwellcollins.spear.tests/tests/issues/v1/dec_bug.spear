@@ -1,0 +1,29 @@
+Specification dec_bug
+
+Constants:
+	CONST_1 is a real = 0.2
+	CONST_2 is a real = 1.0
+	CONST_3 is a real = 1.2
+
+Inputs:
+
+Outputs:
+	out1 is a real
+	out2 is a real
+	out3 is a real
+
+Assumptions:
+
+
+DerivedRequirements:
+	dr_val_1 = out1 equal to CONST_1
+	dr_val_2 = out2 equal to CONST_2
+	dr_val_3 = out3 equal to CONST_3 
+
+//this section is mandatory
+Requirements:
+	r1 = out1 greater than 0.0
+	r2 = out2 greater than 0.0
+	r3 = out3 greater than 0.0
+	
+

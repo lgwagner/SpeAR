@@ -1,0 +1,47 @@
+Specification after_before
+
+Constants:
+	TOP_VAL is a real = 3.0
+	INIT_VAL is a real = 0.0
+
+Inputs:
+	in_value is a real
+
+Outputs:
+	out_bnd_value is a real
+	over_sig is a bool
+
+Macros:
+	next_val is a real = in_value + previous out_bnd_value with initial value INIT_VAL
+	
+	bnd_val is a real = if next_val < 0.0 then 0.0
+						else if next_val > TOP_VAL then TOP_VAL
+						else next_val
+
+Assumptions:
+	a01a = in_value greater than or equal to 0.0
+//	a01b = in_value greater than 0.0
+	
+	a02a = in_value less than or equal to 0.2
+//	a02b = in_value less than or equal to 1.0
+//	a02c = in_value less than or equal to 1.2
+
+DerivedRequirements:
+	dr_after = after next_val greater than TOP_VAL implies over_sig equal to TRUE
+		
+	dr_before = before next_val greater than TOP_VAL implies over_sig equal to FALSE
+	
+	dr_init = initially out_bnd_value equal to 0.0
+	
+	dr_output = out_bnd_value equal to bnd_val
+
+
+Requirements:
+	/* Counter-examples should both fail */
+	r_CE_01 = not over_sig
+	r_CE_02 = over_sig 
+	
+//	r_CE_03 = in_value greater than 0.0
+	canary = false
+	
+
