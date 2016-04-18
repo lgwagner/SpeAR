@@ -121,7 +121,6 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 				}
 				return null;
 			}
-
 		});
 	}
 
@@ -166,12 +165,10 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 	}
 
 	@Override
-	public void selectionChanged(IAction arg0, ISelection arg1) {
-	}
+	public void selectionChanged(IAction arg0, ISelection arg1) {}
 
 	@Override
-	public void dispose() {
-	}
+	public void dispose() {}
 
 	@Override
 	public void init(IWorkbenchWindow arg0) {

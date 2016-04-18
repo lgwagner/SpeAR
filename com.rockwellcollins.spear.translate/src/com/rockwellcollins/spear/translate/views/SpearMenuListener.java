@@ -80,7 +80,7 @@ public class SpearMenuListener implements IMenuListener {
 	
 	private void addViewSupport(IMenuManager manager, PropertyResult result) {
 		final Set<String> support = getSupport(result);
-		if (support == null) {
+		if (support == null || support.size() == 0) {
 			return;
 		}
 

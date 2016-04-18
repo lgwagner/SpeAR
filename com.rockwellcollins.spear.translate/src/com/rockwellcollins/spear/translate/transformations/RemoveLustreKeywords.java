@@ -55,7 +55,6 @@ public class RemoveLustreKeywords {
 					String uniqueName = makeNameUnique(name);
 					e.eSet(resolver.getAttribute(e), uniqueName);
 					renamed.put(uniqueName,name);
-					System.out.println("Variable " + name + " has been renamed to " + uniqueName + " for analysis.");
 				}
 			}
 		}

@@ -3,6 +3,8 @@ package com.rockwellcollins.spear.translate.actions;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IResource;
@@ -20,7 +22,6 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.XtextEditor;
@@ -46,8 +47,8 @@ import com.rockwellcollins.ui.internal.SpearActivator;
 import jkind.api.JKindApi;
 import jkind.api.results.JKindResult;
 import jkind.api.results.MapRenaming;
-import jkind.api.results.Renaming;
 import jkind.api.results.MapRenaming.Mode;
+import jkind.api.results.Renaming;
 import jkind.lustre.Program;
 import jkind.results.layout.Layout;
 
@@ -105,7 +106,11 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 				api.setIvcReduction();
 				
 				Renaming renaming = new MapRenaming(renamed.get(workingCopy.getMain()), Mode.IDENTITY);
-				JKindResult result = new JKindResult("result",p.getMainNode().properties, renaming);
+				List<Boolean> invert = new ArrayList<>();
+				for(@SuppressWarnings("unused") String prop : p.getMainNode().properties) {
+					invert.add(true);
+				}
+				JKindResult result = new JKindResult("result",p.getMainNode().properties, invert, renaming);
 
 				IProgressMonitor monitor = new NullProgressMonitor();
 				showView(result, new SpearLayout(specification));
@@ -164,10 +169,10 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 	}
 
 	@Override
-	public void selectionChanged(IAction arg0, ISelection arg1) { }
+	public void selectionChanged(IAction arg0, ISelection arg1) {}
 
 	@Override
-	public void dispose() {	}
+	public void dispose() {}
 
 	@Override
 	public void init(IWorkbenchWindow arg0) {
