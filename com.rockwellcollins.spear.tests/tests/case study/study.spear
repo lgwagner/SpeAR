@@ -1,4 +1,4 @@
-Specification fuzzing
+Specification study
 
 Types: 
 	sequence_enumeration : enum {START, MIDDLE, END, NONE}
