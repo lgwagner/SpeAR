@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.rockwellcollins.spear.Constraint;
+import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.Variable;
@@ -26,42 +27,51 @@ public class SpearLayout implements Layout {
 	
 	public static final String[] CATEGORIES = {INPUTS, OUTPUTS, STATE, MACROS, ASSUMPTIONS, DERIVED_REQUIREMENTS, REQUIREMENTS};
 	
-	public SpearLayout(Specification s) {
+	public SpearLayout(Specification s, Map<File, Map<String, String>> renamed) {
 		if(s == null) {
 			throw new IllegalArgumentException("Unable to create layout for null specification.");
 		}
 		
 		this.map=new HashMap<>();
+		Map<String,String> nameMapping = renamed.get(s);
 		
 		for(Variable v : s.getInputs()) {
-			map.put(v.getName(), INPUTS);
+			map.put(getName(v.getName(),nameMapping), INPUTS);
 		}
 		
 		for(Variable v : s.getOutputs()) {
-			map.put(v.getName(), OUTPUTS);
+			map.put(getName(v.getName(),nameMapping), OUTPUTS);
 		}
 		
 		for(Variable v : s.getState()) {
-			map.put(v.getName(), STATE);
+			map.put(getName(v.getName(),nameMapping), STATE);
 		}
 		
 		for(Macro m : s.getMacros()) {
-			map.put(m.getName(), MACROS);
+			map.put(getName(m.getName(),nameMapping), MACROS);
 		}
 		
 		for(Constraint c : s.getAssumptions()) {
-			map.put(c.getName(), ASSUMPTIONS);
+			map.put(getName(c.getName(),nameMapping), ASSUMPTIONS);
 		}
 		
 		for(Constraint c : s.getRequirements()) {
-			map.put(c.getName(), DERIVED_REQUIREMENTS);
+			map.put(getName(c.getName(),nameMapping), DERIVED_REQUIREMENTS);
 		}
 		
 		for(Constraint c : s.getBehaviors()) {
-			map.put(c.getName(), REQUIREMENTS);
+			map.put(getName(c.getName(),nameMapping), REQUIREMENTS);
 		}
 	}
 
+	public String getName(String name, Map<String,String> nameMap) {
+		if(nameMap.containsKey(name)) {
+			return nameMap.get(name);
+		} else {
+			return name;
+		}
+	}
+	
 	@Override
 	public List<String> getCategories() {
 		return Arrays.asList(CATEGORIES);

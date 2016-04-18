@@ -3,6 +3,7 @@ package com.rockwellcollins.spear.translate.actions;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Map;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
@@ -19,6 +20,7 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.XtextEditor;
@@ -31,6 +33,7 @@ import org.eclipse.xtext.validation.Issue;
 
 import com.google.inject.Injector;
 import com.rockwellcollins.SpearInjectorUtil;
+import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.layout.SpearLayout;
 import com.rockwellcollins.spear.translate.master.SProgram;
@@ -78,7 +81,7 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 				SpearRuntimeOptions.setRuntimeOptions();
 				
 				SpearDocument workingCopy = new SpearDocument(specification); 
-				PerformTransforms.apply(workingCopy);
+				Map<File,Map<String,String>> renamed = PerformTransforms.apply(workingCopy);
 				SProgram program = SProgram.build(workingCopy);
 				
 				// translate to Lustre
@@ -103,7 +106,7 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 					result.addProperty(prop,true);
 				}
 				IProgressMonitor monitor = new NullProgressMonitor();
-				showView(result, new SpearLayout(workingCopy.getMain()));
+				showView(result, new SpearLayout(workingCopy.getMain(), renamed));
 
 				try {
 					api.execute(p, result, monitor);

@@ -32,7 +32,6 @@ import com.rockwellcollins.spear.utilities.ConstantChecker;
 							  SpecificationsAcyclicValidator.class, 
 							  ConstantsAcyclicValidator.class,
 							  MacrosAcyclicValidator.class,
-							  IdentifyLustreKeywords.class,
 							  VariablesAreUsedValidator.class,
 							  IllegalAnalysisValidations.class,
 							  TypeCheckingValidator.class})

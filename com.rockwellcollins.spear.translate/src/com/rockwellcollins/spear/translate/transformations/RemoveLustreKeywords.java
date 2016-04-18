@@ -1,7 +1,7 @@
 package com.rockwellcollins.spear.translate.transformations;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
@@ -9,23 +9,23 @@ import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.util.SimpleAttributeResolver;
 
 import com.rockwellcollins.spear.File;
-import com.rockwellcollins.spear.SpecificationCall;
-import com.rockwellcollins.spear.util.SpearSwitch;
 import com.rockwellcollins.spear.utilities.LustreUtilities;
 
-public class RemoveLustreKeywords extends SpearSwitch<EObject> {
+public class RemoveLustreKeywords {
 
-	public static void transform(SpearDocument p) {
+	public static Map<File,Map<String,String>> transform(SpearDocument p) {
+		Map<File,Map<String,String>> filemap = new HashMap<>();
 		for(File f : p.files) {
-			transform(f);
+			filemap.put(f, transform(f));
 		}
-	}
-
-	private static File transform(File f) {
-		new RemoveLustreKeywords().doSwitch(f);
-		return f;
+		return filemap;
 	}
 	
+	public static Map<String,String> transform(File f) {
+		RemoveLustreKeywords rlk = new RemoveLustreKeywords();
+		return rlk.processNames(f);
+	}
+
 	private final Set<String> keywords;
 	
 	public RemoveLustreKeywords() {
@@ -34,8 +34,7 @@ public class RemoveLustreKeywords extends SpearSwitch<EObject> {
 	
 	private boolean checkForConflict(String name) {
 		for(String keyword : keywords) {
-			//this used to be name.startsWith
-			if(name.equals(keyword)) {
+			if(name.startsWith(keyword)) {
 				return true;
 			}
 		}
@@ -46,34 +45,20 @@ public class RemoveLustreKeywords extends SpearSwitch<EObject> {
 		return original + "_";
 	}
 	
-	private List<String> processNames(EObject root) {
-		List<String> renamed = new ArrayList<>();
-		
+	private Map<String,String> processNames(EObject root) {
+		Map<String,String> renamed = new HashMap<>();
 		SimpleAttributeResolver<EObject, String> resolver = SimpleAttributeResolver.newResolver(String.class,"name");
 		for (EObject e : EcoreUtil2.getAllContentsOfType(root, EObject.class)) {
 			String name = resolver.apply(e);
 			if (name != null) {
 				if (checkForConflict(name)) {
 					String uniqueName = makeNameUnique(name);
-					renamed.add(uniqueName);
 					e.eSet(resolver.getAttribute(e), uniqueName);
+					renamed.put(name,uniqueName);
+					System.out.println("Variable " + name + " has been renamed to " + uniqueName + " for analysis.");
 				}
 			}
 		}
 		return renamed;
-	}
-	
-	@Override
-	public File caseFile(File f) {
-		this.processNames(f);
-		for(SpecificationCall sc : EcoreUtil2.getAllContentsOfType(f, SpecificationCall.class)) {
-			this.processNames(sc.getSpec());
-		}
-		return f;
-	}
-	
-	@Override
-	public EObject defaultCase(EObject o) {
-		throw new RuntimeException("Expected a specification but received a " + o);
 	}
 }

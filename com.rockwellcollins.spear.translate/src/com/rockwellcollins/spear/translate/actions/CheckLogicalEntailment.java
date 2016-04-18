@@ -3,6 +3,7 @@ package com.rockwellcollins.spear.translate.actions;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Map;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
@@ -32,6 +33,7 @@ import org.eclipse.xtext.validation.Issue;
 
 import com.google.inject.Injector;
 import com.rockwellcollins.SpearInjectorUtil;
+import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.layout.SpearLayout;
 import com.rockwellcollins.spear.translate.master.SProgram;
@@ -84,9 +86,8 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 				//Set the runtime options
 				SpearRuntimeOptions.setRuntimeOptions();
 				
-				Specification copy = EcoreUtil2.copy(specification);
-				SpearDocument workingCopy = new SpearDocument(copy);
-				PerformTransforms.apply(workingCopy);
+				SpearDocument workingCopy = new SpearDocument(specification);
+				Map<File,Map<String,String>> renamed = PerformTransforms.apply(workingCopy);
 				SProgram program = SProgram.build(workingCopy);
 
 				Program p = program.getLogicalEntailment();
@@ -109,7 +110,7 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 				}
 
 				IProgressMonitor monitor = new NullProgressMonitor();
-				showView(result, new SpearLayout(copy));
+				showView(result, new SpearLayout(workingCopy.getMain(),renamed));
 
 				try {
 					api.execute(p, result, monitor);
