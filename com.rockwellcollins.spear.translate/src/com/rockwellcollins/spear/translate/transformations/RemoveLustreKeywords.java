@@ -34,7 +34,7 @@ public class RemoveLustreKeywords {
 	
 	private boolean checkForConflict(String name) {
 		for(String keyword : keywords) {
-			if(name.startsWith(keyword)) {
+			if(name.equals(keyword)) {
 				return true;
 			}
 		}
@@ -54,7 +54,7 @@ public class RemoveLustreKeywords {
 				if (checkForConflict(name)) {
 					String uniqueName = makeNameUnique(name);
 					e.eSet(resolver.getAttribute(e), uniqueName);
-					renamed.put(name,uniqueName);
+					renamed.put(uniqueName,name);
 					System.out.println("Variable " + name + " has been renamed to " + uniqueName + " for analysis.");
 				}
 			}

@@ -45,6 +45,9 @@ import com.rockwellcollins.ui.internal.SpearActivator;
 
 import jkind.api.JKindApi;
 import jkind.api.results.JKindResult;
+import jkind.api.results.MapRenaming;
+import jkind.api.results.Renaming;
+import jkind.api.results.MapRenaming.Mode;
 import jkind.lustre.Program;
 import jkind.results.layout.Layout;
 
@@ -101,12 +104,11 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 				JKindApi api = (JKindApi) PreferencesUtil.getKindApi();
 				api.setIvcReduction();
 				
-				JKindResult result = new JKindResult("result");
-				for(String prop : p.getMainNode().properties) {
-					result.addProperty(prop,true);
-				}
+				Renaming renaming = new MapRenaming(renamed.get(workingCopy.getMain()), Mode.IDENTITY);
+				JKindResult result = new JKindResult("result",p.getMainNode().properties, renaming);
+
 				IProgressMonitor monitor = new NullProgressMonitor();
-				showView(result, new SpearLayout(workingCopy.getMain(), renamed));
+				showView(result, new SpearLayout(specification));
 
 				try {
 					api.execute(p, result, monitor);

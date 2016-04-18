@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.rockwellcollins.spear.Constraint;
-import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.Variable;
@@ -27,48 +26,39 @@ public class SpearLayout implements Layout {
 	
 	public static final String[] CATEGORIES = {INPUTS, OUTPUTS, STATE, MACROS, ASSUMPTIONS, DERIVED_REQUIREMENTS, REQUIREMENTS};
 	
-	public SpearLayout(Specification s, Map<File, Map<String, String>> renamed) {
+	public SpearLayout(Specification s) {
 		if(s == null) {
 			throw new IllegalArgumentException("Unable to create layout for null specification.");
 		}
 		
 		this.map=new HashMap<>();
-		Map<String,String> nameMapping = renamed.get(s);
 		
 		for(Variable v : s.getInputs()) {
-			map.put(getName(v.getName(),nameMapping), INPUTS);
+			map.put(v.getName(), INPUTS);
 		}
 		
 		for(Variable v : s.getOutputs()) {
-			map.put(getName(v.getName(),nameMapping), OUTPUTS);
+			map.put(v.getName(), OUTPUTS);
 		}
 		
 		for(Variable v : s.getState()) {
-			map.put(getName(v.getName(),nameMapping), STATE);
+			map.put(v.getName(), STATE);
 		}
 		
 		for(Macro m : s.getMacros()) {
-			map.put(getName(m.getName(),nameMapping), MACROS);
+			map.put(m.getName(), MACROS);
 		}
 		
 		for(Constraint c : s.getAssumptions()) {
-			map.put(getName(c.getName(),nameMapping), ASSUMPTIONS);
+			map.put(c.getName(), ASSUMPTIONS);
 		}
 		
 		for(Constraint c : s.getRequirements()) {
-			map.put(getName(c.getName(),nameMapping), DERIVED_REQUIREMENTS);
+			map.put(c.getName(), DERIVED_REQUIREMENTS);
 		}
 		
 		for(Constraint c : s.getBehaviors()) {
-			map.put(getName(c.getName(),nameMapping), REQUIREMENTS);
-		}
-	}
-
-	public String getName(String name, Map<String,String> nameMap) {
-		if(nameMap.containsKey(name)) {
-			return nameMap.get(name);
-		} else {
-			return name;
+			map.put(c.getName(), REQUIREMENTS);
 		}
 	}
 	
