@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
 
@@ -43,31 +44,31 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 		
 		for(Constant c : s.getConstants()) {
 			if(!used.contains(c.getName())) {
-				warning(errorMessage(c),c,SpearPackage.Literals.ID_REF__NAME);
+				unusedWarning(errorMessage(c),c,SpearPackage.Literals.ID_REF__NAME);
 			}
 		}
 		
 		for(Macro m : s.getMacros()) {
 			if(!used.contains(m.getName())) {
-				warning(errorMessage(m),m,SpearPackage.Literals.ID_REF__NAME);
+				unusedWarning(errorMessage(m),m,SpearPackage.Literals.ID_REF__NAME);
 			}
 		}
 		
 		for(Variable v : s.getInputs()) {
 			if(!used.contains(v.getName())) {
-				warning(errorMessage(v),v,SpearPackage.Literals.ID_REF__NAME);
+				unusedWarning(errorMessage(v),v,SpearPackage.Literals.ID_REF__NAME);
 			}
 		}
 		
 		for(Variable v : s.getOutputs()) {
 			if(!used.contains(v.getName())) {
-				warning(errorMessage(v),v,SpearPackage.Literals.ID_REF__NAME);
+				unusedWarning(errorMessage(v),v,SpearPackage.Literals.ID_REF__NAME);
 			}
 		}
 		
 		for(Variable v : s.getState()) {
 			if(!used.contains(v.getName())) {
-				warning(errorMessage(v),v,SpearPackage.Literals.ID_REF__NAME);
+				unusedWarning(errorMessage(v),v,SpearPackage.Literals.ID_REF__NAME);
 			}
 		}
 	}
@@ -97,7 +98,7 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 		
 		for(TypeDef td : s.getTypedefs()) {
 			if(!used.contains(td.getName())) {
-				warning(errorMessage(td),td,SpearPackage.Literals.TYPE_DEF__NAME);
+				unusedWarning(errorMessage(td),td,SpearPackage.Literals.TYPE_DEF__NAME);
 			}
 		}
 	}
@@ -117,7 +118,7 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 		
 		for(UnitDef ud : s.getUnits()) {
 			if(!used.contains(ud.getName())) {
-				warning(errorMessage(ud),ud,SpearPackage.Literals.UNIT_DEF__NAME);
+				unusedWarning(errorMessage(ud),ud,SpearPackage.Literals.UNIT_DEF__NAME);
 			}
 		}
 	}
@@ -131,7 +132,7 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 		
 		for(Pattern p : s.getPatterns()) {
 			if(!used.contains(p.getName())) {
-				warning(errorMessage(p),p,SpearPackage.Literals.PATTERN__NAME);
+				unusedWarning(errorMessage(p),p,SpearPackage.Literals.PATTERN__NAME);
 			}
 		}
 	}
@@ -151,21 +152,24 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 		
 		for(Variable v : p.getInputs()) {
 			if(!used.contains(v.getName())) {
-				warning(errorMessage(v),v,SpearPackage.Literals.ID_REF__NAME);
+				unusedWarning(errorMessage(v),v,SpearPackage.Literals.ID_REF__NAME);
 			}
 		}
 		
 		for(Variable v : p.getOutputs()) {
 			if(!used.contains(v.getName())) {
-				warning(errorMessage(v),v,SpearPackage.Literals.ID_REF__NAME);
+				unusedWarning(errorMessage(v),v,SpearPackage.Literals.ID_REF__NAME);
 			}
 		}
 
 		for(Variable v : p.getLocals()) {
 			if(!used.contains(v.getName())) {
-				warning(errorMessage(v),v,SpearPackage.Literals.ID_REF__NAME);
+				unusedWarning(errorMessage(v),v,SpearPackage.Literals.ID_REF__NAME);
 			}
 		}
 	}
-
+	
+	private void unusedWarning(String message, EObject source, EStructuralFeature feature) {
+			warning(message,source,feature);
+	}
 }
