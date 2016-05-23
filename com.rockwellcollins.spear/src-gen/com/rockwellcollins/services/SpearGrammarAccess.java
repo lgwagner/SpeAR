@@ -2337,7 +2337,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	public class MultiplyExprElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.rockwellcollins.Spear.MultiplyExpr");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cPrefixExprParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cArrowExprParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Group cGroup_1_0 = (Group)cGroup_1.eContents().get(0);
 		private final Group cGroup_1_0_0 = (Group)cGroup_1_0.eContents().get(0);
@@ -2351,14 +2351,14 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRightMultiplyExprParserRuleCall_1_1_0 = (RuleCall)cRightAssignment_1_1.eContents().get(0);
 		
 		//MultiplyExpr Expr:
-		//	PrefixExpr (=> ({BinaryExpr.left=current} op=('*' | '/' | 'mod')) right=MultiplyExpr)?
+		//	ArrowExpr (=> ({BinaryExpr.left=current} op=('*' | '/' | 'mod')) right=MultiplyExpr)?
 		@Override public ParserRule getRule() { return rule; }
 
-		//PrefixExpr (=> ({BinaryExpr.left=current} op=('*' | '/' | 'mod')) right=MultiplyExpr)?
+		//ArrowExpr (=> ({BinaryExpr.left=current} op=('*' | '/' | 'mod')) right=MultiplyExpr)?
 		public Group getGroup() { return cGroup; }
 
-		//PrefixExpr
-		public RuleCall getPrefixExprParserRuleCall_0() { return cPrefixExprParserRuleCall_0; }
+		//ArrowExpr
+		public RuleCall getArrowExprParserRuleCall_0() { return cArrowExprParserRuleCall_0; }
 
 		//(=> ({BinaryExpr.left=current} op=('*' | '/' | 'mod')) right=MultiplyExpr)?
 		public Group getGroup_1() { return cGroup_1; }
@@ -2392,6 +2392,62 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 
 		//MultiplyExpr
 		public RuleCall getRightMultiplyExprParserRuleCall_1_1_0() { return cRightMultiplyExprParserRuleCall_1_1_0; }
+	}
+
+	public class ArrowExprElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.rockwellcollins.Spear.ArrowExpr");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cPrefixExprParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Group cGroup_1_0 = (Group)cGroup_1.eContents().get(0);
+		private final Group cGroup_1_0_0 = (Group)cGroup_1_0.eContents().get(0);
+		private final Action cBinaryExprLeftAction_1_0_0_0 = (Action)cGroup_1_0_0.eContents().get(0);
+		private final Assignment cOpAssignment_1_0_0_1 = (Assignment)cGroup_1_0_0.eContents().get(1);
+		private final Alternatives cOpAlternatives_1_0_0_1_0 = (Alternatives)cOpAssignment_1_0_0_1.eContents().get(0);
+		private final Keyword cOpHyphenMinusGreaterThanSignKeyword_1_0_0_1_0_0 = (Keyword)cOpAlternatives_1_0_0_1_0.eContents().get(0);
+		private final Keyword cOpArrowKeyword_1_0_0_1_0_1 = (Keyword)cOpAlternatives_1_0_0_1_0.eContents().get(1);
+		private final Assignment cRightAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cRightArrowExprParserRuleCall_1_1_0 = (RuleCall)cRightAssignment_1_1.eContents().get(0);
+		
+		//ArrowExpr Expr:
+		//	PrefixExpr (=> ({BinaryExpr.left=current} op=('->' | 'arrow')) right=ArrowExpr)?
+		@Override public ParserRule getRule() { return rule; }
+
+		//PrefixExpr (=> ({BinaryExpr.left=current} op=('->' | 'arrow')) right=ArrowExpr)?
+		public Group getGroup() { return cGroup; }
+
+		//PrefixExpr
+		public RuleCall getPrefixExprParserRuleCall_0() { return cPrefixExprParserRuleCall_0; }
+
+		//(=> ({BinaryExpr.left=current} op=('->' | 'arrow')) right=ArrowExpr)?
+		public Group getGroup_1() { return cGroup_1; }
+
+		//=> ({BinaryExpr.left=current} op=('->' | 'arrow'))
+		public Group getGroup_1_0() { return cGroup_1_0; }
+
+		//({BinaryExpr.left=current} op=('->' | 'arrow'))
+		public Group getGroup_1_0_0() { return cGroup_1_0_0; }
+
+		//{BinaryExpr.left=current}
+		public Action getBinaryExprLeftAction_1_0_0_0() { return cBinaryExprLeftAction_1_0_0_0; }
+
+		//op=('->' | 'arrow')
+		public Assignment getOpAssignment_1_0_0_1() { return cOpAssignment_1_0_0_1; }
+
+		//('->' | 'arrow')
+		public Alternatives getOpAlternatives_1_0_0_1_0() { return cOpAlternatives_1_0_0_1_0; }
+
+		//'->'
+		public Keyword getOpHyphenMinusGreaterThanSignKeyword_1_0_0_1_0_0() { return cOpHyphenMinusGreaterThanSignKeyword_1_0_0_1_0_0; }
+
+		//'arrow'
+		public Keyword getOpArrowKeyword_1_0_0_1_0_1() { return cOpArrowKeyword_1_0_0_1_0_1; }
+
+		//right=ArrowExpr
+		public Assignment getRightAssignment_1_1() { return cRightAssignment_1_1; }
+
+		//ArrowExpr
+		public RuleCall getRightArrowExprParserRuleCall_1_1_0() { return cRightArrowExprParserRuleCall_1_1_0; }
 	}
 
 	public class PrefixExprElements extends AbstractParserRuleElementFinder {
@@ -3486,6 +3542,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	private final RelationalOpElements pRelationalOp;
 	private final PlusExprElements pPlusExpr;
 	private final MultiplyExprElements pMultiplyExpr;
+	private final ArrowExprElements pArrowExpr;
 	private final PrefixExprElements pPrefixExpr;
 	private final AccessExprElements pAccessExpr;
 	private final AtomicExprElements pAtomicExpr;
@@ -3547,6 +3604,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		this.pRelationalOp = new RelationalOpElements();
 		this.pPlusExpr = new PlusExprElements();
 		this.pMultiplyExpr = new MultiplyExprElements();
+		this.pArrowExpr = new ArrowExprElements();
 		this.pPrefixExpr = new PrefixExprElements();
 		this.pAccessExpr = new AccessExprElements();
 		this.pAtomicExpr = new AtomicExprElements();
@@ -4007,13 +4065,23 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//MultiplyExpr Expr:
-	//	PrefixExpr (=> ({BinaryExpr.left=current} op=('*' | '/' | 'mod')) right=MultiplyExpr)?
+	//	ArrowExpr (=> ({BinaryExpr.left=current} op=('*' | '/' | 'mod')) right=MultiplyExpr)?
 	public MultiplyExprElements getMultiplyExprAccess() {
 		return pMultiplyExpr;
 	}
 	
 	public ParserRule getMultiplyExprRule() {
 		return getMultiplyExprAccess().getRule();
+	}
+
+	//ArrowExpr Expr:
+	//	PrefixExpr (=> ({BinaryExpr.left=current} op=('->' | 'arrow')) right=ArrowExpr)?
+	public ArrowExprElements getArrowExprAccess() {
+		return pArrowExpr;
+	}
+	
+	public ParserRule getArrowExprRule() {
+		return getArrowExprAccess().getRule();
 	}
 
 	//PrefixExpr Expr:

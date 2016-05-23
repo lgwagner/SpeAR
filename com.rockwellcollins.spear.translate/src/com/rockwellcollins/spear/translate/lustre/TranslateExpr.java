@@ -59,6 +59,7 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 		Expr right = doSwitch(binary.getRight());
 		
 		switch (binary.getOp()) {
+			case "->":
 			case "and":
 			case "or":
 			case "xor":

@@ -173,7 +173,10 @@ PlusExpr returns Expr:
 	MultiplyExpr (=> ({BinaryExpr.left=current} op=('+' | '-')) right=PlusExpr)?;
 
 MultiplyExpr returns Expr:
-	PrefixExpr (=> ({BinaryExpr.left=current} op=('*' | '/' | 'mod')) right=MultiplyExpr)?;
+	ArrowExpr (=> ({BinaryExpr.left=current} op=('*' | '/' | 'mod')) right=MultiplyExpr)?;
+
+ArrowExpr returns Expr:
+	PrefixExpr (=> ({BinaryExpr.left=current} op=('->' | 'arrow')) right=ArrowExpr)?;
 
 PrefixExpr returns Expr:
 	{UnaryExpr} op=('-' | 'not') expr=PrefixExpr

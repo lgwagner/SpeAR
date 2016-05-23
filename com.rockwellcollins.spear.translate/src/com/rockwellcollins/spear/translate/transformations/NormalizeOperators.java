@@ -73,6 +73,10 @@ public class NormalizeOperators {
 				case CreateExpr.ALT_NOT_EQUAL_TO:
 					be.setOp(CreateExpr.NOT_EQUAL_TO);
 					break;
+					
+				case CreateExpr.ALT_ARROW:
+					be.setOp(CreateExpr.ARROW);
+					break;
 			}
 		}
 		

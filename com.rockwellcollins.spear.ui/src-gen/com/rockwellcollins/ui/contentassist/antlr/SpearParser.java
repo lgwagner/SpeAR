@@ -60,6 +60,7 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRelationalOpAccess().getAlternatives(), "rule__RelationalOp__Alternatives");
 					put(grammarAccess.getPlusExprAccess().getOpAlternatives_1_0_0_1_0(), "rule__PlusExpr__OpAlternatives_1_0_0_1_0");
 					put(grammarAccess.getMultiplyExprAccess().getOpAlternatives_1_0_0_1_0(), "rule__MultiplyExpr__OpAlternatives_1_0_0_1_0");
+					put(grammarAccess.getArrowExprAccess().getOpAlternatives_1_0_0_1_0(), "rule__ArrowExpr__OpAlternatives_1_0_0_1_0");
 					put(grammarAccess.getPrefixExprAccess().getAlternatives(), "rule__PrefixExpr__Alternatives");
 					put(grammarAccess.getPrefixExprAccess().getOpAlternatives_0_1_0(), "rule__PrefixExpr__OpAlternatives_0_1_0");
 					put(grammarAccess.getAccessExprAccess().getAlternatives_1(), "rule__AccessExpr__Alternatives_1");
@@ -168,6 +169,10 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMultiplyExprAccess().getGroup_1(), "rule__MultiplyExpr__Group_1__0");
 					put(grammarAccess.getMultiplyExprAccess().getGroup_1_0(), "rule__MultiplyExpr__Group_1_0__0");
 					put(grammarAccess.getMultiplyExprAccess().getGroup_1_0_0(), "rule__MultiplyExpr__Group_1_0_0__0");
+					put(grammarAccess.getArrowExprAccess().getGroup(), "rule__ArrowExpr__Group__0");
+					put(grammarAccess.getArrowExprAccess().getGroup_1(), "rule__ArrowExpr__Group_1__0");
+					put(grammarAccess.getArrowExprAccess().getGroup_1_0(), "rule__ArrowExpr__Group_1_0__0");
+					put(grammarAccess.getArrowExprAccess().getGroup_1_0_0(), "rule__ArrowExpr__Group_1_0_0__0");
 					put(grammarAccess.getPrefixExprAccess().getGroup_0(), "rule__PrefixExpr__Group_0__0");
 					put(grammarAccess.getPrefixExprAccess().getGroup_1(), "rule__PrefixExpr__Group_1__0");
 					put(grammarAccess.getPrefixExprAccess().getGroup_1_3(), "rule__PrefixExpr__Group_1_3__0");
@@ -307,6 +312,8 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPlusExprAccess().getRightAssignment_1_1(), "rule__PlusExpr__RightAssignment_1_1");
 					put(grammarAccess.getMultiplyExprAccess().getOpAssignment_1_0_0_1(), "rule__MultiplyExpr__OpAssignment_1_0_0_1");
 					put(grammarAccess.getMultiplyExprAccess().getRightAssignment_1_1(), "rule__MultiplyExpr__RightAssignment_1_1");
+					put(grammarAccess.getArrowExprAccess().getOpAssignment_1_0_0_1(), "rule__ArrowExpr__OpAssignment_1_0_0_1");
+					put(grammarAccess.getArrowExprAccess().getRightAssignment_1_1(), "rule__ArrowExpr__RightAssignment_1_1");
 					put(grammarAccess.getPrefixExprAccess().getOpAssignment_0_1(), "rule__PrefixExpr__OpAssignment_0_1");
 					put(grammarAccess.getPrefixExprAccess().getExprAssignment_0_2(), "rule__PrefixExpr__ExprAssignment_0_2");
 					put(grammarAccess.getPrefixExprAccess().getVarAssignment_1_2(), "rule__PrefixExpr__VarAssignment_1_2");

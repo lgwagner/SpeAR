@@ -204,6 +204,11 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		}
 
 		switch (be.getOp()) {
+		case "->":
+			if (left.equals(right)) {
+				return left;
+			}
+		
 		case "+":
 		case "-":
 		case "*":

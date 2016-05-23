@@ -6,10 +6,12 @@ package com.rockwellcollins.validation;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.ComposedChecks;
 
+import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Constraint;
 import com.rockwellcollins.spear.Expr;
@@ -20,6 +22,7 @@ import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.utilities.ConstantChecker;
+import com.rockwellcollins.spear.utilities.Utilities;
 
 /**
  * This class contains custom validation rules.
@@ -100,20 +103,16 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 		}
 	}
 	
-//	@Check
-//	public void checkDefinitionsDoNotImportSpecifications(Definitions d) {
-//		for(Import i : d.getImports()) {
-//			System.out.println(i);
-//		}
-//	}
-	
-	/*
-	 * It is desired that patterns not appear inside of Specifications.
-	 */
-//	@Check
-//	public void checkSpecificationContainsPatterns(Specification s) {
-//		if(s.getPatterns().size() > 0) {
-//			error("Specification should not define patterns.",s,SpearPackage.Literals.FILE__PATTERNS);
-//		}
-//	}
+	@Check
+	public void checkForIllegalArrows(Specification s) {
+		for(BinaryExpr be : EcoreUtil2.getAllContentsOfType(s, BinaryExpr.class)) {
+			if(be.getOp().equals("->")) {
+				EObject container = Utilities.getTopContainer(be);
+				if(container instanceof Specification) {
+					error("Arrow operators are meant for use inside of patterns only.",be,SpearPackage.Literals.BINARY_EXPR__OP);
+				}
+			}
+		}
+	}
+
 }

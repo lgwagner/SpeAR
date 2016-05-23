@@ -3778,11 +3778,11 @@ ruleMultiplyExpr returns [EObject current=null]
     @after { leaveRule(); }:
 (
     { 
-        newCompositeNode(grammarAccess.getMultiplyExprAccess().getPrefixExprParserRuleCall_0()); 
+        newCompositeNode(grammarAccess.getMultiplyExprAccess().getArrowExprParserRuleCall_0()); 
     }
-    this_PrefixExpr_0=rulePrefixExpr
+    this_ArrowExpr_0=ruleArrowExpr
     { 
-        $current = $this_PrefixExpr_0.current; 
+        $current = $this_ArrowExpr_0.current; 
         afterParserOrEnumRuleCall();
     }
 (((((
@@ -3863,6 +3863,103 @@ ruleMultiplyExpr returns [EObject current=null]
        			"right",
         		lv_right_3_0, 
         		"com.rockwellcollins.Spear.MultiplyExpr");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))?)
+;
+
+
+
+
+
+// Entry rule entryRuleArrowExpr
+entryRuleArrowExpr returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getArrowExprRule()); }
+	 iv_ruleArrowExpr=ruleArrowExpr 
+	 { $current=$iv_ruleArrowExpr.current; } 
+	 EOF 
+;
+
+// Rule ArrowExpr
+ruleArrowExpr returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+    { 
+        newCompositeNode(grammarAccess.getArrowExprAccess().getPrefixExprParserRuleCall_0()); 
+    }
+    this_PrefixExpr_0=rulePrefixExpr
+    { 
+        $current = $this_PrefixExpr_0.current; 
+        afterParserOrEnumRuleCall();
+    }
+(((((
+)(
+(
+(
+	'->' 
+ 
+
+    |			'arrow' 
+ 
+
+)
+
+)
+)))=>((
+    {
+        $current = forceCreateModelElementAndSet(
+            grammarAccess.getArrowExprAccess().getBinaryExprLeftAction_1_0_0_0(),
+            $current);
+    }
+)(
+(
+(
+		lv_op_2_1=	'->' 
+    {
+        newLeafNode(lv_op_2_1, grammarAccess.getArrowExprAccess().getOpHyphenMinusGreaterThanSignKeyword_1_0_0_1_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getArrowExprRule());
+	        }
+       		setWithLastConsumed($current, "op", lv_op_2_1, null);
+	    }
+
+    |		lv_op_2_2=	'arrow' 
+    {
+        newLeafNode(lv_op_2_2, grammarAccess.getArrowExprAccess().getOpArrowKeyword_1_0_0_1_0_1());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getArrowExprRule());
+	        }
+       		setWithLastConsumed($current, "op", lv_op_2_2, null);
+	    }
+
+)
+
+)
+)))(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getArrowExprAccess().getRightArrowExprParserRuleCall_1_1_0()); 
+	    }
+		lv_right_3_0=ruleArrowExpr		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getArrowExprRule());
+	        }
+       		set(
+       			$current, 
+       			"right",
+        		lv_right_3_0, 
+        		"com.rockwellcollins.Spear.ArrowExpr");
 	        afterParserOrEnumRuleCall();
 	    }
 

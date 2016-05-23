@@ -98,7 +98,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				sequence_UnitDef(context, (BaseUnit) semanticObject); 
 				return; 
 			case SpearPackage.BINARY_EXPR:
-				sequence_AndExpr_ImpliesExpr_MultiplyExpr_OrExpr_PlusExpr_RelationalExpr_SinceExpr_TriggersExpr(context, (BinaryExpr) semanticObject); 
+				sequence_AndExpr_ArrowExpr_ImpliesExpr_MultiplyExpr_OrExpr_PlusExpr_RelationalExpr_SinceExpr_TriggersExpr(context, (BinaryExpr) semanticObject); 
 				return; 
 			case SpearPackage.BINARY_UNIT_EXPR:
 				sequence_DivisionUnitExpr_ProductUnitExpr(context, (BinaryUnitExpr) semanticObject); 
@@ -250,6 +250,8 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     PlusExpr.BinaryExpr_1_0_0_0 returns ArrayAccessExpr
 	 *     MultiplyExpr returns ArrayAccessExpr
 	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns ArrayAccessExpr
+	 *     ArrowExpr returns ArrayAccessExpr
+	 *     ArrowExpr.BinaryExpr_1_0_0_0 returns ArrayAccessExpr
 	 *     PrefixExpr returns ArrayAccessExpr
 	 *     AccessExpr returns ArrayAccessExpr
 	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns ArrayAccessExpr
@@ -297,6 +299,8 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     PlusExpr.BinaryExpr_1_0_0_0 returns ArrayUpdateExpr
 	 *     MultiplyExpr returns ArrayUpdateExpr
 	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns ArrayUpdateExpr
+	 *     ArrowExpr returns ArrayUpdateExpr
+	 *     ArrowExpr.BinaryExpr_1_0_0_0 returns ArrayUpdateExpr
 	 *     PrefixExpr returns ArrayUpdateExpr
 	 *     AccessExpr returns ArrayUpdateExpr
 	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns ArrayUpdateExpr
@@ -343,6 +347,8 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     PlusExpr.BinaryExpr_1_0_0_0 returns RecordAccessExpr
 	 *     MultiplyExpr returns RecordAccessExpr
 	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns RecordAccessExpr
+	 *     ArrowExpr returns RecordAccessExpr
+	 *     ArrowExpr.BinaryExpr_1_0_0_0 returns RecordAccessExpr
 	 *     PrefixExpr returns RecordAccessExpr
 	 *     AccessExpr returns RecordAccessExpr
 	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns RecordAccessExpr
@@ -389,6 +395,8 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     PlusExpr.BinaryExpr_1_0_0_0 returns RecordUpdateExpr
 	 *     MultiplyExpr returns RecordUpdateExpr
 	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns RecordUpdateExpr
+	 *     ArrowExpr returns RecordUpdateExpr
+	 *     ArrowExpr.BinaryExpr_1_0_0_0 returns RecordUpdateExpr
 	 *     PrefixExpr returns RecordUpdateExpr
 	 *     AccessExpr returns RecordUpdateExpr
 	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns RecordUpdateExpr
@@ -438,6 +446,8 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     PlusExpr.BinaryExpr_1_0_0_0 returns AfterUntilExpr
 	 *     MultiplyExpr returns AfterUntilExpr
 	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns AfterUntilExpr
+	 *     ArrowExpr returns AfterUntilExpr
+	 *     ArrowExpr.BinaryExpr_1_0_0_0 returns AfterUntilExpr
 	 *     PrefixExpr returns AfterUntilExpr
 	 *     AccessExpr returns AfterUntilExpr
 	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns AfterUntilExpr
@@ -475,6 +485,8 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     PlusExpr.BinaryExpr_1_0_0_0 returns BinaryExpr
 	 *     MultiplyExpr returns BinaryExpr
 	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns BinaryExpr
+	 *     ArrowExpr returns BinaryExpr
+	 *     ArrowExpr.BinaryExpr_1_0_0_0 returns BinaryExpr
 	 *     PrefixExpr returns BinaryExpr
 	 *     AccessExpr returns BinaryExpr
 	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns BinaryExpr
@@ -491,10 +503,11 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (left=SinceExpr_BinaryExpr_1_0_0_0 (op='S' | op='since') right=SinceExpr) | 
 	 *         (left=RelationalExpr_BinaryExpr_1_0_0_0 op=RelationalOp right=RelationalExpr) | 
 	 *         (left=PlusExpr_BinaryExpr_1_0_0_0 (op='+' | op='-') right=PlusExpr) | 
-	 *         (left=MultiplyExpr_BinaryExpr_1_0_0_0 (op='*' | op='/' | op='mod') right=MultiplyExpr)
+	 *         (left=MultiplyExpr_BinaryExpr_1_0_0_0 (op='*' | op='/' | op='mod') right=MultiplyExpr) | 
+	 *         (left=ArrowExpr_BinaryExpr_1_0_0_0 (op='->' | op='arrow') right=ArrowExpr)
 	 *     )
 	 */
-	protected void sequence_AndExpr_ImpliesExpr_MultiplyExpr_OrExpr_PlusExpr_RelationalExpr_SinceExpr_TriggersExpr(ISerializationContext context, BinaryExpr semanticObject) {
+	protected void sequence_AndExpr_ArrowExpr_ImpliesExpr_MultiplyExpr_OrExpr_PlusExpr_RelationalExpr_SinceExpr_TriggersExpr(ISerializationContext context, BinaryExpr semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -521,6 +534,8 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     PlusExpr.BinaryExpr_1_0_0_0 returns ArrayExpr
 	 *     MultiplyExpr returns ArrayExpr
 	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns ArrayExpr
+	 *     ArrowExpr returns ArrayExpr
+	 *     ArrowExpr.BinaryExpr_1_0_0_0 returns ArrayExpr
 	 *     PrefixExpr returns ArrayExpr
 	 *     AccessExpr returns ArrayExpr
 	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns ArrayExpr
@@ -558,6 +573,8 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     PlusExpr.BinaryExpr_1_0_0_0 returns FieldlessRecordExpr
 	 *     MultiplyExpr returns FieldlessRecordExpr
 	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns FieldlessRecordExpr
+	 *     ArrowExpr returns FieldlessRecordExpr
+	 *     ArrowExpr.BinaryExpr_1_0_0_0 returns FieldlessRecordExpr
 	 *     PrefixExpr returns FieldlessRecordExpr
 	 *     AccessExpr returns FieldlessRecordExpr
 	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns FieldlessRecordExpr
@@ -595,6 +612,8 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     PlusExpr.BinaryExpr_1_0_0_0 returns IdExpr
 	 *     MultiplyExpr returns IdExpr
 	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns IdExpr
+	 *     ArrowExpr returns IdExpr
+	 *     ArrowExpr.BinaryExpr_1_0_0_0 returns IdExpr
 	 *     PrefixExpr returns IdExpr
 	 *     AccessExpr returns IdExpr
 	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns IdExpr
@@ -638,6 +657,8 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     PlusExpr.BinaryExpr_1_0_0_0 returns IfThenElseExpr
 	 *     MultiplyExpr returns IfThenElseExpr
 	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns IfThenElseExpr
+	 *     ArrowExpr returns IfThenElseExpr
+	 *     ArrowExpr.BinaryExpr_1_0_0_0 returns IfThenElseExpr
 	 *     PrefixExpr returns IfThenElseExpr
 	 *     AccessExpr returns IfThenElseExpr
 	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns IfThenElseExpr
@@ -675,6 +696,8 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     PlusExpr.BinaryExpr_1_0_0_0 returns MultipleIdExpr
 	 *     MultiplyExpr returns MultipleIdExpr
 	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns MultipleIdExpr
+	 *     ArrowExpr returns MultipleIdExpr
+	 *     ArrowExpr.BinaryExpr_1_0_0_0 returns MultipleIdExpr
 	 *     PrefixExpr returns MultipleIdExpr
 	 *     AccessExpr returns MultipleIdExpr
 	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns MultipleIdExpr
@@ -712,6 +735,8 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     PlusExpr.BinaryExpr_1_0_0_0 returns PatternCall
 	 *     MultiplyExpr returns PatternCall
 	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns PatternCall
+	 *     ArrowExpr returns PatternCall
+	 *     ArrowExpr.BinaryExpr_1_0_0_0 returns PatternCall
 	 *     PrefixExpr returns PatternCall
 	 *     AccessExpr returns PatternCall
 	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns PatternCall
@@ -749,6 +774,8 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     PlusExpr.BinaryExpr_1_0_0_0 returns RecordExpr
 	 *     MultiplyExpr returns RecordExpr
 	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns RecordExpr
+	 *     ArrowExpr returns RecordExpr
+	 *     ArrowExpr.BinaryExpr_1_0_0_0 returns RecordExpr
 	 *     PrefixExpr returns RecordExpr
 	 *     AccessExpr returns RecordExpr
 	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns RecordExpr
@@ -786,6 +813,8 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     PlusExpr.BinaryExpr_1_0_0_0 returns SpecificationCall
 	 *     MultiplyExpr returns SpecificationCall
 	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns SpecificationCall
+	 *     ArrowExpr returns SpecificationCall
+	 *     ArrowExpr.BinaryExpr_1_0_0_0 returns SpecificationCall
 	 *     PrefixExpr returns SpecificationCall
 	 *     AccessExpr returns SpecificationCall
 	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns SpecificationCall
@@ -1013,6 +1042,8 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     PlusExpr.BinaryExpr_1_0_0_0 returns BoolLiteral
 	 *     MultiplyExpr returns BoolLiteral
 	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns BoolLiteral
+	 *     ArrowExpr returns BoolLiteral
+	 *     ArrowExpr.BinaryExpr_1_0_0_0 returns BoolLiteral
 	 *     PrefixExpr returns BoolLiteral
 	 *     AccessExpr returns BoolLiteral
 	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns BoolLiteral
@@ -1057,6 +1088,8 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     PlusExpr.BinaryExpr_1_0_0_0 returns IntLiteral
 	 *     MultiplyExpr returns IntLiteral
 	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns IntLiteral
+	 *     ArrowExpr returns IntLiteral
+	 *     ArrowExpr.BinaryExpr_1_0_0_0 returns IntLiteral
 	 *     PrefixExpr returns IntLiteral
 	 *     AccessExpr returns IntLiteral
 	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns IntLiteral
@@ -1095,6 +1128,8 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     PlusExpr.BinaryExpr_1_0_0_0 returns RealLiteral
 	 *     MultiplyExpr returns RealLiteral
 	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns RealLiteral
+	 *     ArrowExpr returns RealLiteral
+	 *     ArrowExpr.BinaryExpr_1_0_0_0 returns RealLiteral
 	 *     PrefixExpr returns RealLiteral
 	 *     AccessExpr returns RealLiteral
 	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns RealLiteral
@@ -1214,6 +1249,8 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     PlusExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
 	 *     MultiplyExpr returns PreviousExpr
 	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
+	 *     ArrowExpr returns PreviousExpr
+	 *     ArrowExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
 	 *     PrefixExpr returns PreviousExpr
 	 *     AccessExpr returns PreviousExpr
 	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns PreviousExpr
@@ -1251,6 +1288,8 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     PlusExpr.BinaryExpr_1_0_0_0 returns UnaryExpr
 	 *     MultiplyExpr returns UnaryExpr
 	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns UnaryExpr
+	 *     ArrowExpr returns UnaryExpr
+	 *     ArrowExpr.BinaryExpr_1_0_0_0 returns UnaryExpr
 	 *     PrefixExpr returns UnaryExpr
 	 *     AccessExpr returns UnaryExpr
 	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns UnaryExpr
@@ -1467,6 +1506,8 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     PlusExpr.BinaryExpr_1_0_0_0 returns NormalizedCall
 	 *     MultiplyExpr returns NormalizedCall
 	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns NormalizedCall
+	 *     ArrowExpr returns NormalizedCall
+	 *     ArrowExpr.BinaryExpr_1_0_0_0 returns NormalizedCall
 	 *     PrefixExpr returns NormalizedCall
 	 *     AccessExpr returns NormalizedCall
 	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns NormalizedCall
@@ -1527,6 +1568,8 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     PlusExpr.BinaryExpr_1_0_0_0 returns WhileExpr
 	 *     MultiplyExpr returns WhileExpr
 	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns WhileExpr
+	 *     ArrowExpr returns WhileExpr
+	 *     ArrowExpr.BinaryExpr_1_0_0_0 returns WhileExpr
 	 *     PrefixExpr returns WhileExpr
 	 *     AccessExpr returns WhileExpr
 	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns WhileExpr

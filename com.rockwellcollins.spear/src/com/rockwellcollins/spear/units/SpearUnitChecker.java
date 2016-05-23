@@ -242,6 +242,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		switch (be.getOp()) {
 		case "+":
 		case "-":
+		case "->":
 			if (left.equals(right)) {
 				return left;
 			}

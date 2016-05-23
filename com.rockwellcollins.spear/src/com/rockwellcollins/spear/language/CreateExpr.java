@@ -24,6 +24,7 @@ public class CreateExpr {
 	public static final String GREATER_THAN_OR_EQUAL_TO = ">=";
 	public static final String EQUAL_TO = "==";
 	public static final String NOT_EQUAL_TO = "<>";
+	public static final String ARROW = "->";
 	
 	// these are constants to represent the alternative versions. 
 	// These will be transformed into the default operators for simpler processing
@@ -38,6 +39,7 @@ public class CreateExpr {
 	public static final String ALT_GREATER_THAN_OR_EQUAL_TO = "greater than or equal to";
 	public static final String ALT_EQUAL_TO = "equal to";
 	public static final String ALT_NOT_EQUAL_TO = "not equal to";
+	public static final String ALT_ARROW = "arrow";
 	
 	private static UnaryExpr createUnaryExpr(String operator, Expr sub) {
 		UnaryExpr ue = f.createUnaryExpr();
