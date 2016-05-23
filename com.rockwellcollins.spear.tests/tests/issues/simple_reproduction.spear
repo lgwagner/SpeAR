@@ -17,7 +17,7 @@ Outputs:
 State:
 	
 Assumptions:
-	a0 = in1 > 0 m
+	a0: in1 > 0 m
 	
 
 DerivedRequirements:

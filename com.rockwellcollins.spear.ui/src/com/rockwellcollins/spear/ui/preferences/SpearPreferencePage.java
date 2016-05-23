@@ -67,6 +67,8 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 	private BooleanFieldEditor reduceSupportFieldEditor;
 	private BooleanFieldEditor smoothCexFieldEditor;
 	private BooleanFieldEditor intervalGenFieldEditor;
+	private BooleanFieldEditor unusedValidationFieldEditor;
+	private BooleanFieldEditor spearFinalLustreFileFieldEditor;
 	private NonNegativeIntegerFieldEditor depthFieldEditor;
 	private NonNegativeIntegerFieldEditor timeoutFieldEditor;
 	private NonNegativeIntegerFieldEditor consistencyFieldEditor;
@@ -112,9 +114,13 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 				"Reduce support (expensive)", getFieldEditorParent());
 		addField(reduceSupportFieldEditor);
 
-		BooleanFieldEditor spearFinalLustreFileFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_GENERATE_FINAL_LUSTRE_FILE,
+		spearFinalLustreFileFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_GENERATE_FINAL_LUSTRE_FILE,
 				"Generate final Lustre file", getFieldEditorParent());
 		addField(spearFinalLustreFileFieldEditor);
+		
+		unusedValidationFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_DISABLE_UNUSED_VALIDATIONS,
+				"Disable unused variable validations", getFieldEditorParent());
+		addField(unusedValidationFieldEditor);
 
 		smoothCexFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_SMOOTH_COUNTEREXAMPLES,
 				"Generate smooth counterexamples (minimal number of input value changes)", getFieldEditorParent());

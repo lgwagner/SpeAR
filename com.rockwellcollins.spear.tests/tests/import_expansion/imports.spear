@@ -21,12 +21,12 @@ Macros:
 	m1 : real = c1 + c2
 
 Assumptions:
-	a0 = a > 0.0
-	a1 = b <= 0.0
+	a0: a > 0.0
+	a1: b <= 0.0
 
 DerivedRequirements:
-	qr0 = q == a + b
-	zr0 = z == a + b + c1 + m1 
+	qr0: q == a + b
+	zr0: z == a + b + c1 + m1 
 	
 Requirements:
-	p0 = z - q > 0.0
+	p0: z - q > 0.0

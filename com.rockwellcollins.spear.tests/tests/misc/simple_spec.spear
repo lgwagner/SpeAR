@@ -14,13 +14,13 @@ Macros:
 	q_positive : bool = q > 0.0
 
 Assumptions:
-	a0 = a > 0.0
-	a1 = b <= 0.0
+	a0: a > 0.0
+	a1: b <= 0.0
 
 DerivedRequirements:
-	dr0 = z == (a + b)
-	dr1 = z > 0.0 implies q_positive
+	dr0: z == (a + b)
+	dr1: z > 0.0 implies q_positive
 	
 Requirements:
-	p0 = z == a + b
+	p0: z == a + b
 	

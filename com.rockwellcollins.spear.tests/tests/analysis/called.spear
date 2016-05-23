@@ -1,0 +1,19 @@
+Specification called
+
+Inputs:
+	in : int
+	
+Outputs:
+	out : int
+
+State:
+
+Assumptions:
+	a0: in > 0
+
+DerivedRequirements:
+	dr0: out == in + 1
+
+Requirements:
+	dr1: out > in
+

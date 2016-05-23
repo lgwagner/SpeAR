@@ -1,0 +1,28 @@
+Specification procedural
+
+Imports:
+	import "deps.spear"
+
+Types:
+	type1 : type2
+	type2 : type3
+
+Constants:
+
+Patterns:
+
+Inputs:
+
+Outputs:
+
+State:
+
+Macros:
+
+Assumptions:
+
+Requirements:
+
+Guarantees:
+
+

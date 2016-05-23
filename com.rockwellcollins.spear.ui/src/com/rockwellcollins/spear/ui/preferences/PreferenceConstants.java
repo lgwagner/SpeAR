@@ -8,6 +8,7 @@ public class PreferenceConstants {
 	/*Spear specifics */
 	public static final String PREF_SPEAR_CONSISTENCY_DEPTH = "consistency depth";
 	public static final String PREF_GENERATE_FINAL_LUSTRE_FILE = "final lustre file";
+	public static final String PREF_DISABLE_UNUSED_VALIDATIONS = "disable unused validations";
 	
 	public static final String PREF_BOUNDED_MODEL_CHECKING = "boundedModelChecking";
 	public static final String PREF_K_INDUCTION = "kInduction";

@@ -1,0 +1,24 @@
+Specification top
+
+Imports:
+	import "called.spear"
+
+Inputs:
+	a : int
+
+Outputs:
+	x : int
+
+State:
+
+Macros:
+
+Assumptions:
+	a0: a > 0
+
+DerivedRequirements:
+	dr0: x == spec called(a) 
+
+Requirements:
+	r0: x > a
+

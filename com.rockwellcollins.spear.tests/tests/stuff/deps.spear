@@ -1,0 +1,18 @@
+Definitions new_file
+
+Imports:
+	import "procedural.spear"
+
+//this section is optional
+Units:
+
+//this section is optional
+Types:
+	type3 : type1
+
+//this section is optional
+Constants:
+
+//this section is optional
+Patterns:
+

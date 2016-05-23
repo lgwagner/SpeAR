@@ -16,4 +16,4 @@ Outputs:
 DerivedRequirements:
 
 Requirements:
-	r00 = out1 greater than or equal to in1	
+	r00: out1 greater than or equal to in1	

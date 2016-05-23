@@ -23,25 +23,25 @@ Assumptions:
 //this section is mandatory
 DerivedRequirements:
 	
-	init = initially(left == 0 and middle == 0)
+	init: initially(left == 0 and middle == 0)
 	
-	dr0 = (input == KP0) implies ((right == 0) and (middle == previous_right) and (left == previous_middle))
-	dr1 = (input == KP1) implies ((right == 1) and (middle == previous_right) and (left == previous_middle))
-	dr2 = (input == KP2) implies ((right == 2) and (middle == previous_right) and (left == previous_middle))
-	dr3 = (input == KP3) implies ((right == 3) and (middle == previous_right) and (left == previous_middle))
-	dr4 = (input == KP4) implies ((right == 4) and (middle == previous_right) and (left == previous_middle))
-	dr5 = (input == KP5) implies ((right == 5) and (middle == previous_right) and (left == previous_middle))
-	dr6 = (input == KP6) implies ((right == 6) and (middle == previous_right) and (left == previous_middle))
-	dr7 = (input == KP7) implies ((right == 7) and (middle == previous_right) and (left == previous_middle))
-	dr8 = (input == KP8) implies ((right == 8) and (middle == previous_right) and (left == previous_middle))
-	dr9 = (input == KP9) implies ((right == 9) and (middle == previous_right) and (left == previous_middle))
-	dr10 = (input == CLEAR) implies ((right == 0) and (middle == 0) and (left == 0))
-	dr11 = ((input == NULL) or (input == START)) implies ((right == previous_right) and (middle == previous_middle) and (left == previous_left))
+	dr0: (input == KP0) implies ((right == 0) and (middle == previous_right) and (left == previous_middle))
+	dr1: (input == KP1) implies ((right == 1) and (middle == previous_right) and (left == previous_middle))
+	dr2: (input == KP2) implies ((right == 2) and (middle == previous_right) and (left == previous_middle))
+	dr3: (input == KP3) implies ((right == 3) and (middle == previous_right) and (left == previous_middle))
+	dr4: (input == KP4) implies ((right == 4) and (middle == previous_right) and (left == previous_middle))
+	dr5: (input == KP5) implies ((right == 5) and (middle == previous_right) and (left == previous_middle))
+	dr6: (input == KP6) implies ((right == 6) and (middle == previous_right) and (left == previous_middle))
+	dr7: (input == KP7) implies ((right == 7) and (middle == previous_right) and (left == previous_middle))
+	dr8: (input == KP8) implies ((right == 8) and (middle == previous_right) and (left == previous_middle))
+	dr9: (input == KP9) implies ((right == 9) and (middle == previous_right) and (left == previous_middle))
+	dr10: (input == CLEAR) implies ((right == 0) and (middle == 0) and (left == 0))
+	dr11: ((input == NULL) or (input == START)) implies ((right == previous_right) and (middle == previous_middle) and (left == previous_left))
 	
 
 //this section is mandatory
 Requirements:
-	r0 = 0 <= left and left <= 9
-	r1 = 0 <= middle and middle <= 9
-	r2 = 0 <= right and right <= 9
+	r0: 0 <= left and left <= 9
+	r1: 0 <= middle and middle <= 9
+	r2: 0 <= right and right <= 9
 

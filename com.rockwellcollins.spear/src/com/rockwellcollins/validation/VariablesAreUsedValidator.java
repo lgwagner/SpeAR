@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
 
+import com.google.inject.Inject;
 import com.rockwellcollins.spear.ArrayExpr;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.EnumTypeDef;
@@ -29,6 +30,9 @@ import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.utilities.Utilities;
 
 public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
+	
+	@Inject
+	protected IValidatorAdvisor options;
 	
 	private String errorMessage(EObject o) {
 		String name = Utilities.getName(o);
@@ -170,6 +174,8 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 	}
 	
 	private void unusedWarning(String message, EObject source, EStructuralFeature feature) {
-			warning(message,source,feature);
+		if(options.isUnusedValidationsDisabled()) {
+			warning(message,source,feature);	
+		}
 	}
 }

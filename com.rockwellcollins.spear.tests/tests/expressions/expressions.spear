@@ -1,0 +1,23 @@
+Specification expressions
+
+
+Inputs:
+	a : bool
+	b : bool
+
+Outputs:
+	counter : int
+
+State:
+
+Macros:
+	pre_counter : int = previous counter with initial value 0
+
+Assumptions:
+
+Requirements:
+	r0: counter > pre_counter	
+
+Guarantees:
+	g0: counter < 50 
+ 

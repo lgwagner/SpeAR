@@ -19,15 +19,15 @@ Macros:
 	right : int = remainder
 
 Assumptions:
-	a0 = 0 <= time and time <= 639
+	a0: 0 <= time and time <= 639
 
 DerivedRequirements:
-	dr0 = l == left
-	dr1 = m == middle
-	dr2 = r == right
+	dr0: l == left
+	dr1: m == middle
+	dr2: r == right
 
 Requirements:
-	p0 = 0 <= l and l <= 9
-	p1 = 0 <= m and m <= 9
-	p2 = 0 <= r and r <= 9
+	p0: 0 <= l and l <= 9
+	p1: 0 <= m and m <= 9
+	p2: 0 <= r and r <= 9
 

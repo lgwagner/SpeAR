@@ -1,0 +1,30 @@
+Specification arrays
+
+Types:
+	int_array : int[5]
+	
+
+Constants:
+
+Inputs:
+	a : int_array
+	b : int_array
+
+Outputs:
+	y : int_array
+	z : int_array
+
+State:
+
+Macros:
+
+Assumptions:
+
+Requirements:
+	r0: z[0] == a[0] + b[1]
+	r1: y == a[0 := 5]
+
+Guarantees:
+	g1: y[0] == 5
+	g2: y[1] > 5
+

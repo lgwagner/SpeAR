@@ -1,4 +1,4 @@
-Specification study
+Specification fuzzing
 
 Types: 
 	sequence_enumeration : enum {START, MIDDLE, END, NONE}
@@ -22,18 +22,18 @@ Macros:
 	pre_packet_size : int = previous packet_size with initial value INITIAL_PACKET_SIZE
 
 Assumptions:
-	a0 = initially seq == START 
-	a1 = pre_seq == START implies seq == START or seq == MIDDLE
-	a2 = pre_seq == MIDDLE implies seq == MIDDLE or seq == END
-	a3 = pre_seq == END implies seq == START or seq == NONE
-	a4 = pre_seq == NONE implies seq == NONE
-	a5 = 0 <= frame_size and frame_size <= 120
+	a0: initially seq == START 
+	a1: pre_seq == START implies seq == START or seq == MIDDLE
+	a2: pre_seq == MIDDLE implies seq == MIDDLE or seq == END
+	a3: pre_seq == END implies seq == START or seq == NONE
+	a4: pre_seq == NONE implies seq == NONE
+	a5: 0 <= frame_size and frame_size <= 120
 
 DerivedRequirements:
-	dr1 = seq == START implies (packet_size == frame_size)
-	dr2 = (seq == MIDDLE or seq == END) implies (packet_size == pre_packet_size + frame_size) 
-	dr3 = seq == NONE implies (packet_size == pre_packet_size)
-	dr4 = committed == pre_seq == END
+	dr1: seq == START implies (packet_size == frame_size)
+	dr2: (seq == MIDDLE or seq == END) implies (packet_size == pre_packet_size + frame_size) 
+	dr3: seq == NONE implies (packet_size == pre_packet_size)
+	dr4: committed == pre_seq == END
 
 Requirements:
-	r0 = packet_size <= MAX_PACKET_SIZE
+	r0: packet_size <= MAX_PACKET_SIZE

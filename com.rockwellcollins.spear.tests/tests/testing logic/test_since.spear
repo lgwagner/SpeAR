@@ -1,0 +1,22 @@
+Specification test_since
+
+Inputs:
+	a : bool
+	b : bool
+
+Outputs:
+	x : bool
+
+State:
+
+Macros:
+
+Assumptions:
+	a0: a since b
+
+DerivedRequirements:
+	dr0: x since a
+	
+Requirements:
+	r0: x implies once a
+

@@ -34,14 +34,14 @@ Outputs:
 	y : int
 
 Assumptions:
-	a0 = gteq0(a)
-	a1 = gt_0(b)
-
-DerivedRequirements:
-	dr0 = x >= a + 1
-	dr1 = y >= b + 1
+	a0: gteq0(a)
+	a1: gt_0(b)
 
 Requirements:
-	p0 = x >= 1
-	p1 = y > 1
+	dr0: x >= a + 1
+	dr1: y >= b + 1
+
+Guarantees:
+	p0: x >= 1
+	p1: y > 1
 

@@ -1,0 +1,20 @@
+Specification specB
+
+Inputs:
+	in : int
+
+Outputs:
+	out : int
+
+State:
+	local : int
+
+Assumptions:
+
+Requirements:
+	r0: local > in
+	r1: out > local
+
+Properties:
+	p0: out > in
+

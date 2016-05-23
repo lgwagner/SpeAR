@@ -29,6 +29,12 @@ public class PreferencesUtil {
 		return prefs.getBoolean(PreferenceConstants.PREF_GENERATE_FINAL_LUSTRE_FILE);		
 	}
 	
+	public static boolean getDisabledUnusedValidations() {
+		IPreferenceStore prefs = getPreferenceStore();
+		return prefs.getBoolean(PreferenceConstants.PREF_DISABLE_UNUSED_VALIDATIONS);		
+	}
+	
+	
 	public static KindApi getKindApi() {
 		IPreferenceStore prefs = getPreferenceStore();
 		String modelChecker = prefs.getString(PreferenceConstants.PREF_MODEL_CHECKER);

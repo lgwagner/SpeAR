@@ -27,33 +27,33 @@ Macros:
 	pre_seconds_remaining : int = previous seconds_remaining with initial value 0
 	
 Assumptions:
-	a0 = seconds_to_cook >= 0
+	a0: seconds_to_cook >= 0
 	
-DerivedRequirements:
-	r0 = initially(microwave_mode == SETUP)
+Requirements:
+	r0: initially(microwave_mode == SETUP)
 	
-	r1 = if microwave_mode == SETUP 
+	r1: if microwave_mode == SETUP 
 		 then seconds_remaining == seconds_to_cook 
 		 else if microwave_mode == SUSPENDED
 		 then seconds_remaining == pre_seconds_remaining
 		 else seconds_remaining == pre_seconds_remaining - 1
 		 
-	r2 = (pre_mode_is_setup and (not start or clear or not seconds_to_cook_positive)) implies microwave_mode == SETUP
-	r3 = (pre_mode_is_setup and (start and not clear and door_closed) and seconds_to_cook_positive) implies (microwave_mode == COOKING)
-	r4 = (pre_mode_is_setup and (start and not clear and not door_closed) and seconds_to_cook_positive) implies (microwave_mode == SUSPENDED)
+	r2: (pre_mode_is_setup and (not start or clear or not seconds_to_cook_positive)) implies microwave_mode == SETUP
+	r3: (pre_mode_is_setup and (start and not clear and door_closed) and seconds_to_cook_positive) implies (microwave_mode == COOKING)
+	r4: (pre_mode_is_setup and (start and not clear and not door_closed) and seconds_to_cook_positive) implies (microwave_mode == SUSPENDED)
 	
-	r5 = pre_mode_is_cooking and not seconds_remaining_positive implies microwave_mode == SETUP
-	r6 = pre_mode_is_cooking and (not door_closed or clear) implies microwave_mode == SUSPENDED
-	r7 = pre_mode_is_cooking and (door_closed and not clear and seconds_to_cook_positive) implies microwave_mode == COOKING
+	r5: pre_mode_is_cooking and not seconds_remaining_positive implies microwave_mode == SETUP
+	r6: pre_mode_is_cooking and (not door_closed or clear) implies microwave_mode == SUSPENDED
+	r7: pre_mode_is_cooking and (door_closed and not clear and seconds_to_cook_positive) implies microwave_mode == COOKING
 		  
-	r8 = pre_mode_is_suspended and (not door_closed and not clear) implies microwave_mode == SUSPENDED
-	r9 = pre_mode_is_suspended and (door_closed and start and not clear) implies microwave_mode == COOKING
-	r10 = pre_mode_is_suspended and clear implies microwave_mode == SETUP
+	r8: pre_mode_is_suspended and (not door_closed and not clear) implies microwave_mode == SUSPENDED
+	r9: pre_mode_is_suspended and (door_closed and start and not clear) implies microwave_mode == COOKING
+	r10: pre_mode_is_suspended and clear implies microwave_mode == SETUP
 
-Requirements:
-	p1 = (microwave_mode == COOKING) => door_closed
-	p2 = (microwave_mode == COOKING) => (seconds_remaining < pre_seconds_remaining)
-	p3 = (microwave_mode == SUSPENDED) => (seconds_remaining <= pre_seconds_remaining)
-	p4 = before start implies microwave_mode == SETUP
+Guarantees:
+	p1: (microwave_mode == COOKING) => door_closed
+	p2: (microwave_mode == COOKING) => (seconds_remaining < pre_seconds_remaining)
+	p3: (microwave_mode == SUSPENDED) => (seconds_remaining == pre_seconds_remaining)
+	p4: before start implies microwave_mode == SETUP
 	
 	

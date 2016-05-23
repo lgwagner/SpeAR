@@ -7,6 +7,6 @@ Outputs:
 	z : int
 
 DerivedRequirements:
-	dr0 = z == a
+	dr0: z == a
 
 Requirements:

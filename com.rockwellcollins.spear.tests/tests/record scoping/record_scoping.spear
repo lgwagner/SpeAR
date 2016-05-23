@@ -35,12 +35,12 @@ Macros:
 	m5 : bool = t.a 
 
 Assumptions:
-	a0 = m1 > 0
-	a1 = m2 > 0.0
+	a0: m1 > 0
+	a1: m2 > 0.0
 
 DerivedRequirements:
-	dr0 = x equal to m1 + a.b
-	dr1 = y equal to m2 + b.b
+	dr0: x equal to m1 + a.b
+	dr1: y equal to m2 + b.b
 	
 Requirements:
-	p0 = (x > 0) and (y > 0.0)
+	p0: (x > 0) and (y > 0.0)

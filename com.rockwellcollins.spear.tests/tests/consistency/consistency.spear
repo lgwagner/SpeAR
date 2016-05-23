@@ -7,14 +7,14 @@ Outputs:
 	y : int
 
 Assumptions:
-	a = x > 0
+	a: x > 0
 		
 DerivedRequirements:
-	dr1 = y < 0
-	dr2 = y > x
-	dr3 = y < 0
-	dr4 = y < 0
-	dr0 = y < 0
+	dr1: y < 0
+	dr2: y > x
+	dr3: y < 0
+	dr4: y < 0
+	dr0: y < 0
 	
 Requirements:
-	p0 = y <= 0
+	p0: y <= 0

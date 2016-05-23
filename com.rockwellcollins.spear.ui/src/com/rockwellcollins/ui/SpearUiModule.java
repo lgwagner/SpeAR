@@ -7,8 +7,10 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.documentation.IEObjectDocumentationProvider;
 import org.eclipse.xtext.ui.editor.hover.IEObjectHoverProvider;
 
+import com.rockwellcollins.spear.ui.validation.PreferenceBasedValidatorAdvisor;
 import com.rockwellcollins.ui.contentassist.SpearEObjectDocumentationProvider;
 import com.rockwellcollins.ui.contentassist.SpearEObjectHoverProvider;
+import com.rockwellcollins.validation.IValidatorAdvisor;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -26,5 +28,9 @@ public class SpearUiModule extends com.rockwellcollins.ui.AbstractSpearUiModule 
 	public Class<? extends IEObjectDocumentationProvider> bindIEObjectDocumentationProvider() {
 		return SpearEObjectDocumentationProvider.class;
 		// return MultiLineCommentDocumentationProvider.class;
+	}
+
+	public Class<? extends IValidatorAdvisor> bindIValidatorAdvisor() {
+		return PreferenceBasedValidatorAdvisor.class;
 	}
 }
