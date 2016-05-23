@@ -16,9 +16,21 @@ Specification:
 	'Outputs:' outputs+=Variable*
 	('State:' state+=Variable*)?
 	('Macros:' macros+=Macro*)?
-	('Assumptions:' assumptions+=Constraint*)?
-	'DerivedRequirements:' requirements+=Constraint*
-	('Requirements:' behaviors+=Constraint*)?;
+	(AssumptionsHeader ':' assumptions+=Constraint*)?
+	RequirementsHeader ':' requirements+=Constraint*
+	(PropertiesHeader ':' behaviors+=Constraint*)?;
+
+AssumptionsHeader:
+	'Assumptions' | 'Environment'
+;
+
+RequirementsHeader:
+	'DerivedRequirements' | 'Requirements' | 'Low-Level Requirements' | 'LLRs' | 'Implementation' | 'Design'
+;
+
+PropertiesHeader:
+	'Requirements' | 'Properties' | 'Guarantees' | 'High-level Requirements' | 'HLRs'
+;
 
 Import:
 	'import' importURI=STRING;

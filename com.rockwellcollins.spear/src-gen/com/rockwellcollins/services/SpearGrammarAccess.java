@@ -79,30 +79,34 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cMacrosAssignment_12_1 = (Assignment)cGroup_12.eContents().get(1);
 		private final RuleCall cMacrosMacroParserRuleCall_12_1_0 = (RuleCall)cMacrosAssignment_12_1.eContents().get(0);
 		private final Group cGroup_13 = (Group)cGroup.eContents().get(13);
-		private final Keyword cAssumptionsKeyword_13_0 = (Keyword)cGroup_13.eContents().get(0);
-		private final Assignment cAssumptionsAssignment_13_1 = (Assignment)cGroup_13.eContents().get(1);
-		private final RuleCall cAssumptionsConstraintParserRuleCall_13_1_0 = (RuleCall)cAssumptionsAssignment_13_1.eContents().get(0);
-		private final Keyword cDerivedRequirementsKeyword_14 = (Keyword)cGroup.eContents().get(14);
-		private final Assignment cRequirementsAssignment_15 = (Assignment)cGroup.eContents().get(15);
-		private final RuleCall cRequirementsConstraintParserRuleCall_15_0 = (RuleCall)cRequirementsAssignment_15.eContents().get(0);
-		private final Group cGroup_16 = (Group)cGroup.eContents().get(16);
-		private final Keyword cRequirementsKeyword_16_0 = (Keyword)cGroup_16.eContents().get(0);
-		private final Assignment cBehaviorsAssignment_16_1 = (Assignment)cGroup_16.eContents().get(1);
-		private final RuleCall cBehaviorsConstraintParserRuleCall_16_1_0 = (RuleCall)cBehaviorsAssignment_16_1.eContents().get(0);
+		private final RuleCall cAssumptionsHeaderParserRuleCall_13_0 = (RuleCall)cGroup_13.eContents().get(0);
+		private final Keyword cColonKeyword_13_1 = (Keyword)cGroup_13.eContents().get(1);
+		private final Assignment cAssumptionsAssignment_13_2 = (Assignment)cGroup_13.eContents().get(2);
+		private final RuleCall cAssumptionsConstraintParserRuleCall_13_2_0 = (RuleCall)cAssumptionsAssignment_13_2.eContents().get(0);
+		private final RuleCall cRequirementsHeaderParserRuleCall_14 = (RuleCall)cGroup.eContents().get(14);
+		private final Keyword cColonKeyword_15 = (Keyword)cGroup.eContents().get(15);
+		private final Assignment cRequirementsAssignment_16 = (Assignment)cGroup.eContents().get(16);
+		private final RuleCall cRequirementsConstraintParserRuleCall_16_0 = (RuleCall)cRequirementsAssignment_16.eContents().get(0);
+		private final Group cGroup_17 = (Group)cGroup.eContents().get(17);
+		private final RuleCall cPropertiesHeaderParserRuleCall_17_0 = (RuleCall)cGroup_17.eContents().get(0);
+		private final Keyword cColonKeyword_17_1 = (Keyword)cGroup_17.eContents().get(1);
+		private final Assignment cBehaviorsAssignment_17_2 = (Assignment)cGroup_17.eContents().get(2);
+		private final RuleCall cBehaviorsConstraintParserRuleCall_17_2_0 = (RuleCall)cBehaviorsAssignment_17_2.eContents().get(0);
 		
 		//Specification:
 		//	'Specification' name=ID ('Imports:' imports+=Import*)? ('Units:' units+=UnitDef*)? ('Types:' typedefs+=TypeDef*)?
 		//	('Constants:' constants+=Constant*)? ('Patterns:' patterns+=Pattern*)?
 		//	'Inputs:' inputs+=Variable*
-		//	'Outputs:' outputs+=Variable* ('State:' state+=Variable*)? ('Macros:' macros+=Macro*)? ('Assumptions:'
+		//	'Outputs:' outputs+=Variable* ('State:' state+=Variable*)? ('Macros:' macros+=Macro*)? (AssumptionsHeader ':'
 		//	assumptions+=Constraint*)?
-		//	'DerivedRequirements:' requirements+=Constraint* ('Requirements:' behaviors+=Constraint*)?;
+		//	RequirementsHeader ':' requirements+=Constraint* (PropertiesHeader ':' behaviors+=Constraint*)?;
 		@Override public ParserRule getRule() { return rule; }
 
 		//'Specification' name=ID ('Imports:' imports+=Import*)? ('Units:' units+=UnitDef*)? ('Types:' typedefs+=TypeDef*)?
 		//('Constants:' constants+=Constant*)? ('Patterns:' patterns+=Pattern*)? 'Inputs:' inputs+=Variable* 'Outputs:'
-		//outputs+=Variable* ('State:' state+=Variable*)? ('Macros:' macros+=Macro*)? ('Assumptions:' assumptions+=Constraint*)?
-		//'DerivedRequirements:' requirements+=Constraint* ('Requirements:' behaviors+=Constraint*)?
+		//outputs+=Variable* ('State:' state+=Variable*)? ('Macros:' macros+=Macro*)? (AssumptionsHeader ':'
+		//assumptions+=Constraint*)? RequirementsHeader ':' requirements+=Constraint* (PropertiesHeader ':'
+		//behaviors+=Constraint*)?
 		public Group getGroup() { return cGroup; }
 
 		//'Specification'
@@ -216,38 +220,135 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//Macro
 		public RuleCall getMacrosMacroParserRuleCall_12_1_0() { return cMacrosMacroParserRuleCall_12_1_0; }
 
-		//('Assumptions:' assumptions+=Constraint*)?
+		//(AssumptionsHeader ':' assumptions+=Constraint*)?
 		public Group getGroup_13() { return cGroup_13; }
 
-		//'Assumptions:'
-		public Keyword getAssumptionsKeyword_13_0() { return cAssumptionsKeyword_13_0; }
+		//AssumptionsHeader
+		public RuleCall getAssumptionsHeaderParserRuleCall_13_0() { return cAssumptionsHeaderParserRuleCall_13_0; }
+
+		//':'
+		public Keyword getColonKeyword_13_1() { return cColonKeyword_13_1; }
 
 		//assumptions+=Constraint*
-		public Assignment getAssumptionsAssignment_13_1() { return cAssumptionsAssignment_13_1; }
+		public Assignment getAssumptionsAssignment_13_2() { return cAssumptionsAssignment_13_2; }
 
 		//Constraint
-		public RuleCall getAssumptionsConstraintParserRuleCall_13_1_0() { return cAssumptionsConstraintParserRuleCall_13_1_0; }
+		public RuleCall getAssumptionsConstraintParserRuleCall_13_2_0() { return cAssumptionsConstraintParserRuleCall_13_2_0; }
 
-		//'DerivedRequirements:'
-		public Keyword getDerivedRequirementsKeyword_14() { return cDerivedRequirementsKeyword_14; }
+		//RequirementsHeader
+		public RuleCall getRequirementsHeaderParserRuleCall_14() { return cRequirementsHeaderParserRuleCall_14; }
+
+		//':'
+		public Keyword getColonKeyword_15() { return cColonKeyword_15; }
 
 		//requirements+=Constraint*
-		public Assignment getRequirementsAssignment_15() { return cRequirementsAssignment_15; }
+		public Assignment getRequirementsAssignment_16() { return cRequirementsAssignment_16; }
 
 		//Constraint
-		public RuleCall getRequirementsConstraintParserRuleCall_15_0() { return cRequirementsConstraintParserRuleCall_15_0; }
+		public RuleCall getRequirementsConstraintParserRuleCall_16_0() { return cRequirementsConstraintParserRuleCall_16_0; }
 
-		//('Requirements:' behaviors+=Constraint*)?
-		public Group getGroup_16() { return cGroup_16; }
+		//(PropertiesHeader ':' behaviors+=Constraint*)?
+		public Group getGroup_17() { return cGroup_17; }
 
-		//'Requirements:'
-		public Keyword getRequirementsKeyword_16_0() { return cRequirementsKeyword_16_0; }
+		//PropertiesHeader
+		public RuleCall getPropertiesHeaderParserRuleCall_17_0() { return cPropertiesHeaderParserRuleCall_17_0; }
+
+		//':'
+		public Keyword getColonKeyword_17_1() { return cColonKeyword_17_1; }
 
 		//behaviors+=Constraint*
-		public Assignment getBehaviorsAssignment_16_1() { return cBehaviorsAssignment_16_1; }
+		public Assignment getBehaviorsAssignment_17_2() { return cBehaviorsAssignment_17_2; }
 
 		//Constraint
-		public RuleCall getBehaviorsConstraintParserRuleCall_16_1_0() { return cBehaviorsConstraintParserRuleCall_16_1_0; }
+		public RuleCall getBehaviorsConstraintParserRuleCall_17_2_0() { return cBehaviorsConstraintParserRuleCall_17_2_0; }
+	}
+
+	public class AssumptionsHeaderElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.rockwellcollins.Spear.AssumptionsHeader");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Keyword cAssumptionsKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cEnvironmentKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		
+		//AssumptionsHeader:
+		//	'Assumptions' | 'Environment';
+		@Override public ParserRule getRule() { return rule; }
+
+		//'Assumptions' | 'Environment'
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//'Assumptions'
+		public Keyword getAssumptionsKeyword_0() { return cAssumptionsKeyword_0; }
+
+		//'Environment'
+		public Keyword getEnvironmentKeyword_1() { return cEnvironmentKeyword_1; }
+	}
+
+	public class RequirementsHeaderElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.rockwellcollins.Spear.RequirementsHeader");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Keyword cDerivedRequirementsKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cRequirementsKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cLowLevelRequirementsKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+		private final Keyword cLLRsKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
+		private final Keyword cImplementationKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
+		private final Keyword cDesignKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
+		
+		//RequirementsHeader:
+		//	'DerivedRequirements' | 'Requirements' | 'Low-Level Requirements' | 'LLRs' | 'Implementation' | 'Design';
+		@Override public ParserRule getRule() { return rule; }
+
+		//'DerivedRequirements' | 'Requirements' | 'Low-Level Requirements' | 'LLRs' | 'Implementation' | 'Design'
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//'DerivedRequirements'
+		public Keyword getDerivedRequirementsKeyword_0() { return cDerivedRequirementsKeyword_0; }
+
+		//'Requirements'
+		public Keyword getRequirementsKeyword_1() { return cRequirementsKeyword_1; }
+
+		//'Low-Level Requirements'
+		public Keyword getLowLevelRequirementsKeyword_2() { return cLowLevelRequirementsKeyword_2; }
+
+		//'LLRs'
+		public Keyword getLLRsKeyword_3() { return cLLRsKeyword_3; }
+
+		//'Implementation'
+		public Keyword getImplementationKeyword_4() { return cImplementationKeyword_4; }
+
+		//'Design'
+		public Keyword getDesignKeyword_5() { return cDesignKeyword_5; }
+	}
+
+	public class PropertiesHeaderElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.rockwellcollins.Spear.PropertiesHeader");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Keyword cRequirementsKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cPropertiesKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cGuaranteesKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+		private final Keyword cHighLevelRequirementsKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
+		private final Keyword cHLRsKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
+		
+		//PropertiesHeader:
+		//	'Requirements' | 'Properties' | 'Guarantees' | 'High-level Requirements' | 'HLRs';
+		@Override public ParserRule getRule() { return rule; }
+
+		//'Requirements' | 'Properties' | 'Guarantees' | 'High-level Requirements' | 'HLRs'
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//'Requirements'
+		public Keyword getRequirementsKeyword_0() { return cRequirementsKeyword_0; }
+
+		//'Properties'
+		public Keyword getPropertiesKeyword_1() { return cPropertiesKeyword_1; }
+
+		//'Guarantees'
+		public Keyword getGuaranteesKeyword_2() { return cGuaranteesKeyword_2; }
+
+		//'High-level Requirements'
+		public Keyword getHighLevelRequirementsKeyword_3() { return cHighLevelRequirementsKeyword_3; }
+
+		//'HLRs'
+		public Keyword getHLRsKeyword_4() { return cHLRsKeyword_4; }
 	}
 
 	public class ImportElements extends AbstractParserRuleElementFinder {
@@ -3347,6 +3448,9 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	
 	private final FileElements pFile;
 	private final SpecificationElements pSpecification;
+	private final AssumptionsHeaderElements pAssumptionsHeader;
+	private final RequirementsHeaderElements pRequirementsHeader;
+	private final PropertiesHeaderElements pPropertiesHeader;
 	private final ImportElements pImport;
 	private final DefinitionsElements pDefinitions;
 	private final PatternElements pPattern;
@@ -3405,6 +3509,9 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		this.gaTerminals = gaTerminals;
 		this.pFile = new FileElements();
 		this.pSpecification = new SpecificationElements();
+		this.pAssumptionsHeader = new AssumptionsHeaderElements();
+		this.pRequirementsHeader = new RequirementsHeaderElements();
+		this.pPropertiesHeader = new PropertiesHeaderElements();
 		this.pImport = new ImportElements();
 		this.pDefinitions = new DefinitionsElements();
 		this.pPattern = new PatternElements();
@@ -3494,15 +3601,45 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	//	'Specification' name=ID ('Imports:' imports+=Import*)? ('Units:' units+=UnitDef*)? ('Types:' typedefs+=TypeDef*)?
 	//	('Constants:' constants+=Constant*)? ('Patterns:' patterns+=Pattern*)?
 	//	'Inputs:' inputs+=Variable*
-	//	'Outputs:' outputs+=Variable* ('State:' state+=Variable*)? ('Macros:' macros+=Macro*)? ('Assumptions:'
+	//	'Outputs:' outputs+=Variable* ('State:' state+=Variable*)? ('Macros:' macros+=Macro*)? (AssumptionsHeader ':'
 	//	assumptions+=Constraint*)?
-	//	'DerivedRequirements:' requirements+=Constraint* ('Requirements:' behaviors+=Constraint*)?;
+	//	RequirementsHeader ':' requirements+=Constraint* (PropertiesHeader ':' behaviors+=Constraint*)?;
 	public SpecificationElements getSpecificationAccess() {
 		return pSpecification;
 	}
 	
 	public ParserRule getSpecificationRule() {
 		return getSpecificationAccess().getRule();
+	}
+
+	//AssumptionsHeader:
+	//	'Assumptions' | 'Environment';
+	public AssumptionsHeaderElements getAssumptionsHeaderAccess() {
+		return pAssumptionsHeader;
+	}
+	
+	public ParserRule getAssumptionsHeaderRule() {
+		return getAssumptionsHeaderAccess().getRule();
+	}
+
+	//RequirementsHeader:
+	//	'DerivedRequirements' | 'Requirements' | 'Low-Level Requirements' | 'LLRs' | 'Implementation' | 'Design';
+	public RequirementsHeaderElements getRequirementsHeaderAccess() {
+		return pRequirementsHeader;
+	}
+	
+	public ParserRule getRequirementsHeaderRule() {
+		return getRequirementsHeaderAccess().getRule();
+	}
+
+	//PropertiesHeader:
+	//	'Requirements' | 'Properties' | 'Guarantees' | 'High-level Requirements' | 'HLRs';
+	public PropertiesHeaderElements getPropertiesHeaderAccess() {
+		return pPropertiesHeader;
+	}
+	
+	public ParserRule getPropertiesHeaderRule() {
+		return getPropertiesHeaderAccess().getRule();
 	}
 
 	//Import:

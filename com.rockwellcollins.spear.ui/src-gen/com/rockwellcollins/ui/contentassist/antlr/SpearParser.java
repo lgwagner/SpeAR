@@ -38,6 +38,9 @@ public class SpearParser extends AbstractContentAssistParser {
 				private static final long serialVersionUID = 1L;
 				{
 					put(grammarAccess.getFileAccess().getAlternatives(), "rule__File__Alternatives");
+					put(grammarAccess.getAssumptionsHeaderAccess().getAlternatives(), "rule__AssumptionsHeader__Alternatives");
+					put(grammarAccess.getRequirementsHeaderAccess().getAlternatives(), "rule__RequirementsHeader__Alternatives");
+					put(grammarAccess.getPropertiesHeaderAccess().getAlternatives(), "rule__PropertiesHeader__Alternatives");
 					put(grammarAccess.getPatternAccess().getAlternatives_13(), "rule__Pattern__Alternatives_13");
 					put(grammarAccess.getLustreEquationAccess().getAlternatives(), "rule__LustreEquation__Alternatives");
 					put(grammarAccess.getUnitDefAccess().getAlternatives(), "rule__UnitDef__Alternatives");
@@ -75,7 +78,7 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSpecificationAccess().getGroup_11(), "rule__Specification__Group_11__0");
 					put(grammarAccess.getSpecificationAccess().getGroup_12(), "rule__Specification__Group_12__0");
 					put(grammarAccess.getSpecificationAccess().getGroup_13(), "rule__Specification__Group_13__0");
-					put(grammarAccess.getSpecificationAccess().getGroup_16(), "rule__Specification__Group_16__0");
+					put(grammarAccess.getSpecificationAccess().getGroup_17(), "rule__Specification__Group_17__0");
 					put(grammarAccess.getImportAccess().getGroup(), "rule__Import__Group__0");
 					put(grammarAccess.getDefinitionsAccess().getGroup(), "rule__Definitions__Group__0");
 					put(grammarAccess.getDefinitionsAccess().getGroup_2(), "rule__Definitions__Group_2__0");
@@ -215,9 +218,9 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSpecificationAccess().getOutputsAssignment_10(), "rule__Specification__OutputsAssignment_10");
 					put(grammarAccess.getSpecificationAccess().getStateAssignment_11_1(), "rule__Specification__StateAssignment_11_1");
 					put(grammarAccess.getSpecificationAccess().getMacrosAssignment_12_1(), "rule__Specification__MacrosAssignment_12_1");
-					put(grammarAccess.getSpecificationAccess().getAssumptionsAssignment_13_1(), "rule__Specification__AssumptionsAssignment_13_1");
-					put(grammarAccess.getSpecificationAccess().getRequirementsAssignment_15(), "rule__Specification__RequirementsAssignment_15");
-					put(grammarAccess.getSpecificationAccess().getBehaviorsAssignment_16_1(), "rule__Specification__BehaviorsAssignment_16_1");
+					put(grammarAccess.getSpecificationAccess().getAssumptionsAssignment_13_2(), "rule__Specification__AssumptionsAssignment_13_2");
+					put(grammarAccess.getSpecificationAccess().getRequirementsAssignment_16(), "rule__Specification__RequirementsAssignment_16");
+					put(grammarAccess.getSpecificationAccess().getBehaviorsAssignment_17_2(), "rule__Specification__BehaviorsAssignment_17_2");
 					put(grammarAccess.getImportAccess().getImportURIAssignment_1(), "rule__Import__ImportURIAssignment_1");
 					put(grammarAccess.getDefinitionsAccess().getNameAssignment_1(), "rule__Definitions__NameAssignment_1");
 					put(grammarAccess.getDefinitionsAccess().getImportsAssignment_2_1(), "rule__Definitions__ImportsAssignment_2_1");

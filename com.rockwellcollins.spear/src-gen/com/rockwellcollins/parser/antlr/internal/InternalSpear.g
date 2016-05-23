@@ -337,67 +337,91 @@ ruleSpecification returns [EObject current=null]
 	    }
 
 )
-)*)?(	otherlv_20='Assumptions:' 
+)*)?(
+    { 
+        newCompositeNode(grammarAccess.getSpecificationAccess().getAssumptionsHeaderParserRuleCall_13_0()); 
+    }
+ruleAssumptionsHeader
+    { 
+        afterParserOrEnumRuleCall();
+    }
+	otherlv_21=':' 
     {
-    	newLeafNode(otherlv_20, grammarAccess.getSpecificationAccess().getAssumptionsKeyword_13_0());
+    	newLeafNode(otherlv_21, grammarAccess.getSpecificationAccess().getColonKeyword_13_1());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getSpecificationAccess().getAssumptionsConstraintParserRuleCall_13_1_0()); 
+	        newCompositeNode(grammarAccess.getSpecificationAccess().getAssumptionsConstraintParserRuleCall_13_2_0()); 
 	    }
-		lv_assumptions_21_0=ruleConstraint		{
+		lv_assumptions_22_0=ruleConstraint		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getSpecificationRule());
 	        }
        		add(
        			$current, 
        			"assumptions",
-        		lv_assumptions_21_0, 
+        		lv_assumptions_22_0, 
         		"com.rockwellcollins.Spear.Constraint");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)*)?	otherlv_22='DerivedRequirements:' 
+)*)?
+    { 
+        newCompositeNode(grammarAccess.getSpecificationAccess().getRequirementsHeaderParserRuleCall_14()); 
+    }
+ruleRequirementsHeader
+    { 
+        afterParserOrEnumRuleCall();
+    }
+	otherlv_24=':' 
     {
-    	newLeafNode(otherlv_22, grammarAccess.getSpecificationAccess().getDerivedRequirementsKeyword_14());
+    	newLeafNode(otherlv_24, grammarAccess.getSpecificationAccess().getColonKeyword_15());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getSpecificationAccess().getRequirementsConstraintParserRuleCall_15_0()); 
+	        newCompositeNode(grammarAccess.getSpecificationAccess().getRequirementsConstraintParserRuleCall_16_0()); 
 	    }
-		lv_requirements_23_0=ruleConstraint		{
+		lv_requirements_25_0=ruleConstraint		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getSpecificationRule());
 	        }
        		add(
        			$current, 
        			"requirements",
-        		lv_requirements_23_0, 
+        		lv_requirements_25_0, 
         		"com.rockwellcollins.Spear.Constraint");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)*(	otherlv_24='Requirements:' 
+)*(
+    { 
+        newCompositeNode(grammarAccess.getSpecificationAccess().getPropertiesHeaderParserRuleCall_17_0()); 
+    }
+rulePropertiesHeader
+    { 
+        afterParserOrEnumRuleCall();
+    }
+	otherlv_27=':' 
     {
-    	newLeafNode(otherlv_24, grammarAccess.getSpecificationAccess().getRequirementsKeyword_16_0());
+    	newLeafNode(otherlv_27, grammarAccess.getSpecificationAccess().getColonKeyword_17_1());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getSpecificationAccess().getBehaviorsConstraintParserRuleCall_16_1_0()); 
+	        newCompositeNode(grammarAccess.getSpecificationAccess().getBehaviorsConstraintParserRuleCall_17_2_0()); 
 	    }
-		lv_behaviors_25_0=ruleConstraint		{
+		lv_behaviors_28_0=ruleConstraint		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getSpecificationRule());
 	        }
        		add(
        			$current, 
        			"behaviors",
-        		lv_behaviors_25_0, 
+        		lv_behaviors_28_0, 
         		"com.rockwellcollins.Spear.Constraint");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -405,6 +429,157 @@ ruleSpecification returns [EObject current=null]
 )
 )*)?)
 ;
+
+
+
+
+
+// Entry rule entryRuleAssumptionsHeader
+entryRuleAssumptionsHeader returns [String current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getAssumptionsHeaderRule()); } 
+	 iv_ruleAssumptionsHeader=ruleAssumptionsHeader 
+	 { $current=$iv_ruleAssumptionsHeader.current.getText(); }  
+	 EOF 
+;
+
+// Rule AssumptionsHeader
+ruleAssumptionsHeader returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+	kw='Assumptions' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getAssumptionsHeaderAccess().getAssumptionsKeyword_0()); 
+    }
+
+    |
+	kw='Environment' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getAssumptionsHeaderAccess().getEnvironmentKeyword_1()); 
+    }
+)
+    ;
+
+
+
+
+
+// Entry rule entryRuleRequirementsHeader
+entryRuleRequirementsHeader returns [String current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getRequirementsHeaderRule()); } 
+	 iv_ruleRequirementsHeader=ruleRequirementsHeader 
+	 { $current=$iv_ruleRequirementsHeader.current.getText(); }  
+	 EOF 
+;
+
+// Rule RequirementsHeader
+ruleRequirementsHeader returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+	kw='DerivedRequirements' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRequirementsHeaderAccess().getDerivedRequirementsKeyword_0()); 
+    }
+
+    |
+	kw='Requirements' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRequirementsHeaderAccess().getRequirementsKeyword_1()); 
+    }
+
+    |
+	kw='Low-Level Requirements' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRequirementsHeaderAccess().getLowLevelRequirementsKeyword_2()); 
+    }
+
+    |
+	kw='LLRs' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRequirementsHeaderAccess().getLLRsKeyword_3()); 
+    }
+
+    |
+	kw='Implementation' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRequirementsHeaderAccess().getImplementationKeyword_4()); 
+    }
+
+    |
+	kw='Design' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRequirementsHeaderAccess().getDesignKeyword_5()); 
+    }
+)
+    ;
+
+
+
+
+
+// Entry rule entryRulePropertiesHeader
+entryRulePropertiesHeader returns [String current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getPropertiesHeaderRule()); } 
+	 iv_rulePropertiesHeader=rulePropertiesHeader 
+	 { $current=$iv_rulePropertiesHeader.current.getText(); }  
+	 EOF 
+;
+
+// Rule PropertiesHeader
+rulePropertiesHeader returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+	kw='Requirements' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getPropertiesHeaderAccess().getRequirementsKeyword_0()); 
+    }
+
+    |
+	kw='Properties' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getPropertiesHeaderAccess().getPropertiesKeyword_1()); 
+    }
+
+    |
+	kw='Guarantees' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getPropertiesHeaderAccess().getGuaranteesKeyword_2()); 
+    }
+
+    |
+	kw='High-level Requirements' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getPropertiesHeaderAccess().getHighLevelRequirementsKeyword_3()); 
+    }
+
+    |
+	kw='HLRs' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getPropertiesHeaderAccess().getHLRsKeyword_4()); 
+    }
+)
+    ;
 
 
 
