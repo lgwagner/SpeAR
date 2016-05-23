@@ -120,10 +120,10 @@ Constraint:
 	FormalConstraint | EnglishConstraint;
 
 FormalConstraint:
-	name=ID '=' expr=Expr ('text' '=' descriptor=STRING)?;
+	name=ID ':' expr=Expr ('text' '=' descriptor=STRING)?;
 
 EnglishConstraint:
-	name=ID '=' text=STRING;
+	name=ID ':' text=STRING;
 
 /* Begin Expr Language */
 Expr:

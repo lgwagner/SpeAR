@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.xtext.EcoreUtil2;
+
+import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.actions.SpearRuntimeOptions;
 import com.rockwellcollins.spear.translate.naming.NameMap;
@@ -42,14 +45,15 @@ public class SSpecification extends SFile {
 	public List<SConstraint> assumptions = new ArrayList<>();
 	public List<SConstraint> requirements = new ArrayList<>();
 	public List<SConstraint> behaviors = new ArrayList<>();
-
+	public List<SCall> calls = new ArrayList<>();
+	
 	public SSpecification(Specification s, NameMap map) {
 		// this initializes the map to include an entry for this object
 		map.addFile(s, this);
-
+	
 		// set the name
 		this.name = map.getName(s);
-
+		
 		this.typedefs.addAll(STypeDef.build(s.getTypedefs(), map));
 		this.constants.addAll(SConstant.build(s.getConstants(), map));
 		this.patterns.addAll(SPattern.build(s.getPatterns(), map));
@@ -61,6 +65,8 @@ public class SSpecification extends SFile {
 		this.requirements.addAll(SConstraint.build(s.getRequirements(), map));
 		this.behaviors.addAll(SConstraint.build(s.getBehaviors(), map));
 
+		this.calls.addAll(SCall.build(EcoreUtil2.getAllContentsOfType(s, NormalizedCall.class)));		
+		
 		this.assertionName = map.getName(s, ASSERTION);
 		this.counterName = map.getName(s, COUNTER);
 		this.consistencyName = map.getName(s, CONSISTENCY);

@@ -2488,9 +2488,9 @@ ruleFormalConstraint returns [EObject current=null]
 	    }
 
 )
-)	otherlv_1='=' 
+)	otherlv_1=':' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getFormalConstraintAccess().getEqualsSignKeyword_1());
+    	newLeafNode(otherlv_1, grammarAccess.getFormalConstraintAccess().getColonKeyword_1());
     }
 (
 (
@@ -2575,9 +2575,9 @@ ruleEnglishConstraint returns [EObject current=null]
 	    }
 
 )
-)	otherlv_1='=' 
+)	otherlv_1=':' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getEnglishConstraintAccess().getEqualsSignKeyword_1());
+    	newLeafNode(otherlv_1, grammarAccess.getEnglishConstraintAccess().getColonKeyword_1());
     }
 (
 (

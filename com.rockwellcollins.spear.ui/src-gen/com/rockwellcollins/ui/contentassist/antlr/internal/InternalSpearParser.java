@@ -5802,7 +5802,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             if ( (LA12_0==RULE_ID) ) {
                 int LA12_1 = input.LA(2);
 
-                if ( (LA12_1==78) ) {
+                if ( (LA12_1==23) ) {
                     int LA12_2 = input.LA(3);
 
                     if ( ((LA12_2>=RULE_INT && LA12_2<=RULE_ID)||(LA12_2>=34 && LA12_2<=40)||LA12_2==48||(LA12_2>=52 && LA12_2<=56)||LA12_2==70||LA12_2==77||LA12_2==91||LA12_2==93||LA12_2==100||LA12_2==106||(LA12_2>=108 && LA12_2<=110)) ) {
@@ -24290,7 +24290,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             // InternalSpear.g:8290:1: ( rule__FormalConstraint__Group__0__Impl rule__FormalConstraint__Group__1 )
             // InternalSpear.g:8291:2: rule__FormalConstraint__Group__0__Impl rule__FormalConstraint__Group__1
             {
-            pushFollow(FOLLOW_24);
+            pushFollow(FOLLOW_8);
             rule__FormalConstraint__Group__0__Impl();
 
             state._fsp--;
@@ -24408,24 +24408,24 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FormalConstraint__Group__1__Impl"
-    // InternalSpear.g:8327:1: rule__FormalConstraint__Group__1__Impl : ( '=' ) ;
+    // InternalSpear.g:8327:1: rule__FormalConstraint__Group__1__Impl : ( ':' ) ;
     public final void rule__FormalConstraint__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:8331:1: ( ( '=' ) )
-            // InternalSpear.g:8332:1: ( '=' )
+            // InternalSpear.g:8331:1: ( ( ':' ) )
+            // InternalSpear.g:8332:1: ( ':' )
             {
-            // InternalSpear.g:8332:1: ( '=' )
-            // InternalSpear.g:8333:1: '='
+            // InternalSpear.g:8332:1: ( ':' )
+            // InternalSpear.g:8333:1: ':'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFormalConstraintAccess().getEqualsSignKeyword_1()); 
+               before(grammarAccess.getFormalConstraintAccess().getColonKeyword_1()); 
             }
-            match(input,78,FOLLOW_2); if (state.failed) return ;
+            match(input,23,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFormalConstraintAccess().getEqualsSignKeyword_1()); 
+               after(grammarAccess.getFormalConstraintAccess().getColonKeyword_1()); 
             }
 
             }
@@ -24884,7 +24884,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             // InternalSpear.g:8511:1: ( rule__EnglishConstraint__Group__0__Impl rule__EnglishConstraint__Group__1 )
             // InternalSpear.g:8512:2: rule__EnglishConstraint__Group__0__Impl rule__EnglishConstraint__Group__1
             {
-            pushFollow(FOLLOW_24);
+            pushFollow(FOLLOW_8);
             rule__EnglishConstraint__Group__0__Impl();
 
             state._fsp--;
@@ -25002,24 +25002,24 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EnglishConstraint__Group__1__Impl"
-    // InternalSpear.g:8548:1: rule__EnglishConstraint__Group__1__Impl : ( '=' ) ;
+    // InternalSpear.g:8548:1: rule__EnglishConstraint__Group__1__Impl : ( ':' ) ;
     public final void rule__EnglishConstraint__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:8552:1: ( ( '=' ) )
-            // InternalSpear.g:8553:1: ( '=' )
+            // InternalSpear.g:8552:1: ( ( ':' ) )
+            // InternalSpear.g:8553:1: ( ':' )
             {
-            // InternalSpear.g:8553:1: ( '=' )
-            // InternalSpear.g:8554:1: '='
+            // InternalSpear.g:8553:1: ( ':' )
+            // InternalSpear.g:8554:1: ':'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEnglishConstraintAccess().getEqualsSignKeyword_1()); 
+               before(grammarAccess.getEnglishConstraintAccess().getColonKeyword_1()); 
             }
-            match(input,78,FOLLOW_2); if (state.failed) return ;
+            match(input,23,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEnglishConstraintAccess().getEqualsSignKeyword_1()); 
+               after(grammarAccess.getEnglishConstraintAccess().getColonKeyword_1()); 
             }
 
             }

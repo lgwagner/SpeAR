@@ -8330,11 +8330,11 @@ rule__FormalConstraint__Group__1__Impl
     }
 :
 (
-{ before(grammarAccess.getFormalConstraintAccess().getEqualsSignKeyword_1()); }
+{ before(grammarAccess.getFormalConstraintAccess().getColonKeyword_1()); }
 
-	'=' 
+	':' 
 
-{ after(grammarAccess.getFormalConstraintAccess().getEqualsSignKeyword_1()); }
+{ after(grammarAccess.getFormalConstraintAccess().getColonKeyword_1()); }
 )
 
 ;
@@ -8551,11 +8551,11 @@ rule__EnglishConstraint__Group__1__Impl
     }
 :
 (
-{ before(grammarAccess.getEnglishConstraintAccess().getEqualsSignKeyword_1()); }
+{ before(grammarAccess.getEnglishConstraintAccess().getColonKeyword_1()); }
 
-	'=' 
+	':' 
 
-{ after(grammarAccess.getEnglishConstraintAccess().getEqualsSignKeyword_1()); }
+{ after(grammarAccess.getEnglishConstraintAccess().getColonKeyword_1()); }
 )
 
 ;
