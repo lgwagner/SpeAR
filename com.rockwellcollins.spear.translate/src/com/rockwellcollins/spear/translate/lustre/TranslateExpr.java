@@ -15,9 +15,10 @@ import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.Variable;
+import com.rockwellcollins.spear.translate.master.SCall;
 import com.rockwellcollins.spear.translate.naming.NameMap;
-import com.rockwellcollins.spear.typing.Type;
 import com.rockwellcollins.spear.typing.SpearTypeChecker;
+import com.rockwellcollins.spear.typing.Type;
 import com.rockwellcollins.spear.util.SpearSwitch;
 import com.rockwellcollins.spear.utilities.Utilities;
 
@@ -38,6 +39,7 @@ import jkind.lustre.RecordExpr;
 import jkind.lustre.RecordUpdateExpr;
 import jkind.lustre.UnaryExpr;
 import jkind.lustre.UnaryOp;
+import jkind.lustre.VarDecl;
 
 public class TranslateExpr extends SpearSwitch<Expr> {
 
@@ -196,6 +198,13 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 		for(IdRef idr : call.getIds()) {
 			args.add(this.doSwitch(idr));
 		}
+
+		SCall scall = map.callMapping.get(call);
+		//TODO : won't work for embedded calls
+		for(VarDecl vd : scall.getNDLocals(map)) {
+			args.add(new IdExpr(vd.id));
+		}
+		
 		String name = map.fileMapping.get(call.getSpec()).name;
 		return new NodeCallExpr(name,args);
 	}

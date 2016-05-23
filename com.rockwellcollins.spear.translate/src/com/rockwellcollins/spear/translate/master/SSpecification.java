@@ -53,7 +53,6 @@ public class SSpecification extends SFile {
 	
 		// set the name
 		this.name = map.getName(s);
-		
 		this.typedefs.addAll(STypeDef.build(s.getTypedefs(), map));
 		this.constants.addAll(SConstant.build(s.getConstants(), map));
 		this.patterns.addAll(SPattern.build(s.getPatterns(), map));
@@ -64,14 +63,23 @@ public class SSpecification extends SFile {
 		this.assumptions.addAll(SConstraint.build(s.getAssumptions(), map));
 		this.requirements.addAll(SConstraint.build(s.getRequirements(), map));
 		this.behaviors.addAll(SConstraint.build(s.getBehaviors(), map));
-
-		this.calls.addAll(SCall.build(EcoreUtil2.getAllContentsOfType(s, NormalizedCall.class)));		
+		this.calls.addAll(SCall.build(EcoreUtil2.getAllContentsOfType(s, NormalizedCall.class),map));		
 		
 		this.assertionName = map.getName(s, ASSERTION);
 		this.counterName = map.getName(s, COUNTER);
 		this.consistencyName = map.getName(s, CONSISTENCY);
 	}
 
+	public List<VarDecl> getAllCalledStateVariables(NameMap map) {
+		List<VarDecl> list = new ArrayList<>();
+		for(SCall call : this.calls) {
+			list.addAll(call.getNDLocals(map));
+			SSpecification s = (SSpecification) map.fileMapping.get(call.called);
+			list.addAll(s.getAllCalledStateVariables(map));
+		}
+		return list;
+	}
+	
 	public Node toBaseLustre(NameMap map) {
 		NodeBuilder builder = new NodeBuilder(name);
 
@@ -82,11 +90,12 @@ public class SSpecification extends SFile {
 		 * shadow args
 		 */
 		builder.addInputs(SVariable.toVarDecl(inputs, map));
-		builder.addInputs(SVariable.toVarDecl(state, map));
 		builder.addInputs(SVariable.toVarDecl(outputs, map));
+		builder.addInputs(SVariable.toVarDecl(state, map));
+		builder.addInputs(this.getAllCalledStateVariables(map));
 
 		/*
-		 * We must add 2. locals for the macros 2. locals for the assumptions 3.
+		 * We must add 1. locals for the macros 2. locals for the assumptions 3.
 		 * locals for the requirements 4. locals for the behaviors
 		 */
 		builder.addLocals(SMacro.toVarDecls(macros, map));
@@ -233,5 +242,4 @@ public class SSpecification extends SFile {
 		}
 		return new Equation(new IdExpr(this.assertionName), RHS);
 	}
-
 }

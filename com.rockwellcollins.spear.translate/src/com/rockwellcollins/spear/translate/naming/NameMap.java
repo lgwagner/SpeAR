@@ -6,8 +6,10 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 
 import com.rockwellcollins.spear.File;
+import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.Variable;
+import com.rockwellcollins.spear.translate.master.SCall;
 import com.rockwellcollins.spear.translate.master.SFile;
 import com.rockwellcollins.spear.translate.master.SPattern;
 import com.rockwellcollins.spear.utilities.Utilities;
@@ -19,6 +21,7 @@ public class NameMap {
 	
 	public Map<File,SFile> fileMapping = new LinkedHashMap<>();
 	public Map<Pattern,SPattern> patternMapping = new LinkedHashMap<>();
+	public Map<NormalizedCall,SCall> callMapping = new LinkedHashMap<>();
 	
 	public void addFile(File file, SFile sfile) {
 		fileMapping.put(file, sfile);
@@ -28,6 +31,10 @@ public class NameMap {
 	public void addPattern(Pattern pattern, SPattern spattern) {
 		patternMapping.put(pattern, spattern);
 		patternMap.put(pattern,new PatternMap());
+	}
+	
+	public void addCall(NormalizedCall call, SCall scall) {
+		callMapping.put(call, scall);
 	}
 	
 	/* these three methods are used for getting unique names*/

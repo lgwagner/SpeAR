@@ -174,7 +174,7 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 	}
 	
 	private void unusedWarning(String message, EObject source, EStructuralFeature feature) {
-		if(options.isUnusedValidationsDisabled()) {
+		if(!options.isUnusedValidationsDisabled()) {
 			warning(message,source,feature);	
 		}
 	}
