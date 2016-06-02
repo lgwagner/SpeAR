@@ -3,6 +3,7 @@ package com.rockwellcollins.spear.translate.master;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.Type;
@@ -29,8 +30,10 @@ public class SLocalFromCall {
 	public Specification caller;
 	public Specification called;
 	
-	public SLocalFromCall(NormalizedCall call, Variable v, NameMap map) {
-		this.name = v.getName() + "_" + call.hashCode();
+	public SLocalFromCall(NormalizedCall call, Variable v, NameMap map) { 
+		String proposed = v.getName() + "_" + call.hashCode();
+		File root = Utilities.getRoot(call);
+		this.name=map.getName(root, proposed);
 		this.type=v.getType();
 		this.caller=(Specification) Utilities.getRoot(call);
 		this.called=(Specification) Utilities.getRoot(v);
