@@ -201,10 +201,7 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 		}
 
 		SCall scall = map.callMapping.get(call);
-		//TODO : won't work for embedded calls
-		for(VarDecl vd : scall.getNDLocals(map)) {
-			args.add(new IdExpr(vd.id));
-		}
+		args.addAll(scall.getCallsArgs(map));
 		
 		String name = map.fileMapping.get(call.getSpec()).name;
 		return new NodeCallExpr(name,args);

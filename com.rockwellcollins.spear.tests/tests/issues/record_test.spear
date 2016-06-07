@@ -27,16 +27,16 @@ Macros:
 	in2_b : bool = in2.b
 
 Assumptions:
-	a0 = in1.a > 0 and in1.c > 0.0
-	a1 = in2.a > 0.0 and in2.c > 0
-	a2 = not (in1.b and in2.b) and (in1.b or in2.b)
+	a0: in1.a > 0 and in1.c > 0.0
+	a1: in2.a > 0.0 and in2.c > 0
+	a2: not (in1.b and in2.b) and (in1.b or in2.b)
 
 	
 DerivedRequirements:
-	dr0 = out2 == in2{b := in2.b}{c := 5}
-	dr1 = out1 == in1{a := in1_a}{b := in2_b}
+	dr0: out2 == in2{b := in2.b}{c := 5}
+	dr1: out1 == in1{a := in1_a}{b := in2_b}
 	
 Requirements:
-	r0 = out1.a > 0
-	r1 = out2.c > 0
-	r2 = not (out1.b and out2.b)
+	r0: out1.a > 0
+	r1: out2.c > 0
+	r2: not (out1.b and out2.b)

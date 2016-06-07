@@ -7,7 +7,7 @@ Inputs:
 	a : int
 
 Outputs:
-	z : int
+	y : int
 
 State:
 
@@ -15,8 +15,8 @@ Assumptions:
 	a0: a > 0
 
 Requirements:
-	r0: z == spec specB(a)
+	r0: y == spec specB(a)
 
 Properties:
-	p0: z > 0
+	p0: y > 0
 

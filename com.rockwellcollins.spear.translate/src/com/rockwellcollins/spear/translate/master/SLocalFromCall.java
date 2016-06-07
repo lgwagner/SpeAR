@@ -12,6 +12,7 @@ import com.rockwellcollins.spear.translate.lustre.TranslateType;
 import com.rockwellcollins.spear.translate.naming.NameMap;
 import com.rockwellcollins.spear.utilities.Utilities;
 
+import jkind.lustre.IdExpr;
 import jkind.lustre.VarDecl;
 
 public class SLocalFromCall {
@@ -24,23 +25,35 @@ public class SLocalFromCall {
 		return list;
 	}
 	
+	public static List<IdExpr> getArgIds(List<SLocalFromCall> locals, NameMap map) {
+		List<IdExpr> names = new ArrayList<>();
+		for(SLocalFromCall local : locals) {
+			names.add(local.getName());
+		}
+		return names;
+	}
+	
 	public String name;
 	public Type type;
-	
 	public Specification caller;
 	public Specification called;
 	
-	public SLocalFromCall(NormalizedCall call, Variable v, NameMap map) { 
-		String proposed = v.getName() + "_" + call.hashCode();
+	public SLocalFromCall(NormalizedCall call, SCall scall, Variable v, NameMap map) { 
+		this.caller=(Specification) Utilities.getRoot(call);
+		this.called=(Specification) Utilities.getRoot(v);
+		String proposed = caller.getName() + "_calls_" + called.getName() + "_" + v.getName() + "_" + scall.localKey;
 		File root = Utilities.getRoot(call);
 		this.name=map.getName(root, proposed);
 		this.type=v.getType();
-		this.caller=(Specification) Utilities.getRoot(call);
-		this.called=(Specification) Utilities.getRoot(v);
+
 	}
 	
 	public VarDecl getVarDecl(NameMap map) {
 		return new VarDecl(name,TranslateType.translate(this.type, map));
+	}
+	
+	public IdExpr getName() {
+		return new IdExpr(name);
 	}
 }
 
