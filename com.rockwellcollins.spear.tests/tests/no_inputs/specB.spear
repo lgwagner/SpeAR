@@ -1,0 +1,18 @@
+Specification specB
+
+Inputs:
+	
+Outputs:
+	z : int
+
+State:
+
+Macros:
+
+Assumptions:
+
+DerivedRequirements:
+	r0: z == 0
+
+Requirements:
+

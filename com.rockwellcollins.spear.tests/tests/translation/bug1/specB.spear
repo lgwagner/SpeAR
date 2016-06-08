@@ -11,9 +11,10 @@ Outputs:
 	
 State:
 	local : int
+	not_so_local : int
 
 Macros:
-	m1 : int = local + in
+	m1 : int = local + in + not_so_local
 
 Assumptions:
 
