@@ -72,9 +72,9 @@ public class SSpecification extends SFile {
 
 	public List<VarDecl> getAllCalledStateVariables(NameMap map) {
 		List<VarDecl> list = new ArrayList<>();
-		for(SCall call : this.calls) {
-			list.addAll(call.getNDLocals(map));
-			SSpecification s = (SSpecification) map.fileMapping.get(call.called);
+		for(SCall thisCall : this.calls) {
+			list.addAll(thisCall.getNDLocals(map));
+			SSpecification s = (SSpecification) map.fileMapping.get(thisCall.call.getSpec());
 			list.addAll(s.getAllCalledStateVariables(map));
 		}
 		return list;

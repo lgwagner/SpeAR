@@ -549,7 +549,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		}
 
 		if (then != SCALAR) {
-			error("Then expression smust have scalar units.", wh.getThen(), null);
+			error("Then expression must have scalar units.", wh.getThen(), null);
 			return ERROR;
 		}
 		return SCALAR;

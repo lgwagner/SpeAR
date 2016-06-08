@@ -20,20 +20,20 @@ Macros:
 
 Assumptions:
 //	a01a = in_value greater than or equal to 0.0
-	a01b = intruder greater than 0.0
+	a01b: intruder greater than 0.0
 	
-	a02a = intruder less than or equal to 0.2
+	a02a: intruder less than or equal to 0.2
 //	a02b = in_value less than or equal to 1.0
 //	a02c = in_value less than or equal to 1.2
 
 DerivedRequirements:
-	dr_after = after next_val greater than TOP_VAL implies over_sig equal to TRUE
+	dr_after: after next_val greater than TOP_VAL implies over_sig equal to TRUE
 		
-	dr_before = before next_val greater than TOP_VAL implies over_sig equal to FALSE
+	dr_before: before next_val greater than TOP_VAL implies over_sig equal to FALSE
 	
 //	dr_init = initially out_bnd_value equal to 0.0
 	
-	dr_output = out_bnd_value equal to bnd_val
+	dr_output: out_bnd_value equal to bnd_val
 
 
 Requirements:
@@ -41,7 +41,7 @@ Requirements:
 //	r_CE_01 = not over_sig
 //	r_CE_02 = over_sig 
 	
-	r_03 = intruder greater than 0.0
-	canary = false
+	r_03: intruder greater than 0.0
+	canary: false
 	
 

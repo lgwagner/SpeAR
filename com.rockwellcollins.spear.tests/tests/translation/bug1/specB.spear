@@ -1,20 +1,27 @@
 Specification specB
 
+Imports:
+	import "specC.spear"
+
 Inputs:
 	in : int
 
 Outputs:
 	out : int
-
+	
 State:
 	local : int
+	not_so_local : int
+
+Macros:
+	m1 : int = local + in + not_so_local
 
 Assumptions:
 
 Requirements:
-	r0: local > in
-	r1: out > local
+	r0: local == spec specC(0)
+	r1: out == spec specC(m1)
 
 Properties:
-	p0: out > in
+	p0: out >= 0
 

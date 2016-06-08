@@ -1,0 +1,21 @@
+Specification toyB
+
+Inputs:
+	q : int
+
+Outputs:
+	r : int
+State:
+
+Macros:
+
+
+Assumptions:
+	a0: q > 0
+
+Requirements:
+	r0: r == q + 1
+
+Properties:
+	p0: r > q
+

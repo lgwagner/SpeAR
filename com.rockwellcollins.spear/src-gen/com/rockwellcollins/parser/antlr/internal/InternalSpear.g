@@ -4768,10 +4768,10 @@ ruleAtomicExpr returns [EObject current=null]
     {
     	newLeafNode(otherlv_50, grammarAccess.getAtomicExprAccess().getLeftParenthesisKeyword_8_3());
     }
-(
+((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getAtomicExprAccess().getArgsExprParserRuleCall_8_4_0()); 
+	        newCompositeNode(grammarAccess.getAtomicExprAccess().getArgsExprParserRuleCall_8_4_0_0()); 
 	    }
 		lv_args_51_0=ruleExpr		{
 	        if ($current==null) {
@@ -4788,12 +4788,12 @@ ruleAtomicExpr returns [EObject current=null]
 )
 )(	otherlv_52=',' 
     {
-    	newLeafNode(otherlv_52, grammarAccess.getAtomicExprAccess().getCommaKeyword_8_5_0());
+    	newLeafNode(otherlv_52, grammarAccess.getAtomicExprAccess().getCommaKeyword_8_4_1_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getAtomicExprAccess().getArgsExprParserRuleCall_8_5_1_0()); 
+	        newCompositeNode(grammarAccess.getAtomicExprAccess().getArgsExprParserRuleCall_8_4_1_1_0()); 
 	    }
 		lv_args_53_0=ruleExpr		{
 	        if ($current==null) {
@@ -4808,9 +4808,9 @@ ruleAtomicExpr returns [EObject current=null]
 	    }
 
 )
-))*	otherlv_54=')' 
+))*)?	otherlv_54=')' 
     {
-    	newLeafNode(otherlv_54, grammarAccess.getAtomicExprAccess().getRightParenthesisKeyword_8_6());
+    	newLeafNode(otherlv_54, grammarAccess.getAtomicExprAccess().getRightParenthesisKeyword_8_5());
     }
 )
     |

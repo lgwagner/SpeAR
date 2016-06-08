@@ -38,7 +38,7 @@ Macros:
 
 Assumptions:
 
-DerivedRequirements:
+Requirements:
 	r0: |microwave_mode,seconds_remaining| == spec mode_logic(clear, start, door_closed, seconds_to_cook)
 	r2: |left_SETUP,middle_SETUP,right_SETUP| == spec keypad_processing(user_input)
 	r3: |left_RUNNING,middle_RUNNING,right_RUNNING| == spec reverse_time(seconds_remaining)
@@ -51,7 +51,7 @@ DerivedRequirements:
 	
 	r_s2c: if microwave_mode==SETUP then seconds_to_cook == s2c_SETUP else seconds_to_cook == s2c_RUNNING 
 	
-Requirements: 
+Properties: 
 	p_init: initially(microwave_mode == SETUP)
 	p0: microwave_mode == COOKING => door_closed
 	p1: before start implies microwave_mode == SETUP
