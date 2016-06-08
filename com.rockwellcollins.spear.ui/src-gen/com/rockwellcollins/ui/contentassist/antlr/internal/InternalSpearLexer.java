@@ -2283,10 +2283,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSpear.g:18111:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // InternalSpear.g:18111:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalSpear.g:18141:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // InternalSpear.g:18141:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // InternalSpear.g:18111:11: ( '^' )?
+            // InternalSpear.g:18141:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -2295,7 +2295,7 @@ public class InternalSpearLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // InternalSpear.g:18111:11: '^'
+                    // InternalSpear.g:18141:11: '^'
                     {
                     match('^'); 
 
@@ -2313,7 +2313,7 @@ public class InternalSpearLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // InternalSpear.g:18111:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalSpear.g:18141:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -2362,10 +2362,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSpear.g:18113:10: ( ( '0' .. '9' )+ )
-            // InternalSpear.g:18113:12: ( '0' .. '9' )+
+            // InternalSpear.g:18143:10: ( ( '0' .. '9' )+ )
+            // InternalSpear.g:18143:12: ( '0' .. '9' )+
             {
-            // InternalSpear.g:18113:12: ( '0' .. '9' )+
+            // InternalSpear.g:18143:12: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -2379,7 +2379,7 @@ public class InternalSpearLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // InternalSpear.g:18113:13: '0' .. '9'
+            	    // InternalSpear.g:18143:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -2411,10 +2411,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSpear.g:18115:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // InternalSpear.g:18115:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalSpear.g:18145:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // InternalSpear.g:18145:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // InternalSpear.g:18115:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalSpear.g:18145:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -2432,10 +2432,10 @@ public class InternalSpearLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // InternalSpear.g:18115:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // InternalSpear.g:18145:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // InternalSpear.g:18115:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // InternalSpear.g:18145:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -2451,7 +2451,7 @@ public class InternalSpearLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // InternalSpear.g:18115:21: '\\\\' .
+                    	    // InternalSpear.g:18145:21: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -2459,7 +2459,7 @@ public class InternalSpearLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalSpear.g:18115:28: ~ ( ( '\\\\' | '\"' ) )
+                    	    // InternalSpear.g:18145:28: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -2484,10 +2484,10 @@ public class InternalSpearLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // InternalSpear.g:18115:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // InternalSpear.g:18145:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // InternalSpear.g:18115:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // InternalSpear.g:18145:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop5:
                     do {
                         int alt5=3;
@@ -2503,7 +2503,7 @@ public class InternalSpearLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // InternalSpear.g:18115:54: '\\\\' .
+                    	    // InternalSpear.g:18145:54: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -2511,7 +2511,7 @@ public class InternalSpearLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalSpear.g:18115:61: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // InternalSpear.g:18145:61: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -2554,12 +2554,12 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSpear.g:18117:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // InternalSpear.g:18117:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // InternalSpear.g:18147:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // InternalSpear.g:18147:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // InternalSpear.g:18117:24: ( options {greedy=false; } : . )*
+            // InternalSpear.g:18147:24: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -2584,7 +2584,7 @@ public class InternalSpearLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // InternalSpear.g:18117:52: .
+            	    // InternalSpear.g:18147:52: .
             	    {
             	    matchAny(); 
 
@@ -2614,12 +2614,12 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSpear.g:18119:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // InternalSpear.g:18119:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // InternalSpear.g:18149:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // InternalSpear.g:18149:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // InternalSpear.g:18119:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // InternalSpear.g:18149:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -2632,7 +2632,7 @@ public class InternalSpearLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // InternalSpear.g:18119:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // InternalSpear.g:18149:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2652,7 +2652,7 @@ public class InternalSpearLexer extends Lexer {
                 }
             } while (true);
 
-            // InternalSpear.g:18119:40: ( ( '\\r' )? '\\n' )?
+            // InternalSpear.g:18149:40: ( ( '\\r' )? '\\n' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -2661,9 +2661,9 @@ public class InternalSpearLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // InternalSpear.g:18119:41: ( '\\r' )? '\\n'
+                    // InternalSpear.g:18149:41: ( '\\r' )? '\\n'
                     {
-                    // InternalSpear.g:18119:41: ( '\\r' )?
+                    // InternalSpear.g:18149:41: ( '\\r' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -2672,7 +2672,7 @@ public class InternalSpearLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // InternalSpear.g:18119:41: '\\r'
+                            // InternalSpear.g:18149:41: '\\r'
                             {
                             match('\r'); 
 
@@ -2704,10 +2704,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSpear.g:18121:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // InternalSpear.g:18121:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalSpear.g:18151:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // InternalSpear.g:18151:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // InternalSpear.g:18121:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalSpear.g:18151:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt11=0;
             loop11:
             do {
@@ -2761,8 +2761,8 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSpear.g:18123:16: ( . )
-            // InternalSpear.g:18123:18: .
+            // InternalSpear.g:18153:16: ( . )
+            // InternalSpear.g:18153:18: .
             {
             matchAny(); 
 

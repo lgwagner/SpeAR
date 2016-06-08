@@ -823,7 +823,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     AtomicExpr returns SpecificationCall
 	 *
 	 * Constraint:
-	 *     (spec=[Specification|ID] args+=Expr args+=Expr*)
+	 *     (spec=[Specification|ID] (args+=Expr args+=Expr*)?)
 	 */
 	protected void sequence_AtomicExpr(ISerializationContext context, SpecificationCall semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

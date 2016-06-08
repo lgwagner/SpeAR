@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="SpeAR" uid="spear.product" id="com.rockwellcollins.spear.spear_product" application="org.eclipse.ui.ide.workbench" version="2.0-rc5" useFeatures="false" includeLaunchers="true">
+<product name="SpeAR" uid="spear.product" id="com.rockwellcollins.spear.spear_product" application="org.eclipse.ui.ide.workbench" version="2.0-rc6" useFeatures="false" includeLaunchers="true">
 
    <aboutInfo>
       <image path="/com.rockwellcollins.spear/branding/1429142344_weapons_spear-128.png"/>
@@ -225,7 +225,7 @@ IS APPROVED FOR PUBLIC RELEASE. CASE NUMBER: 88ABW-2016-1658
       <plugin id="org.eclipse.emf.mwe2.launch.ui"/>
       <plugin id="org.eclipse.emf.mwe2.lib"/>
       <plugin id="org.eclipse.emf.mwe2.runtime"/>
-      <plugin id="org.eclipse.epp.logging.aeri.ide" fragment="true"/>
+      <plugin id="org.eclipse.epp.logging.aeri.ide"/>
       <plugin id="org.eclipse.epp.logging.aeri.ui"/>
       <plugin id="org.eclipse.epp.mpc.core"/>
       <plugin id="org.eclipse.epp.mpc.help.ui"/>
