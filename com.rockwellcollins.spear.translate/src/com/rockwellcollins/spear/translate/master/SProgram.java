@@ -24,6 +24,8 @@ public class SProgram {
 	public SProgram(SpearDocument document) {
 		//initialize the map
 		map = new NameMap();
+		//initialize the call unique identifier
+		SCall.uniqueKey = 0;
 		
 		//copy the files from the SpeAR document
 		List<File> files = new ArrayList<>(document.files);
