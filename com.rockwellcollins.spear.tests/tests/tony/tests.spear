@@ -1,0 +1,35 @@
+Specification tests
+
+Types:
+  state is an enum {A, B, C}
+
+Inputs:
+  
+Outputs:
+
+State:
+  s is a state
+  t is an int
+  p_t is an int
+
+Requirements:
+  i1: p_t equal to previous t with initial value 0
+  r4: t equal to p_t + 1
+
+  r1: while t <  5 then s equal to A
+  r2: while t == 5 then s equal to B
+  r3: while t >  5 then s equal to C
+  
+Properties:
+  p1: before (t > 5) implies once (s equal to A)
+  p2: once t == 5 implies once s equal to B
+  p3: once t == 5 implies once s equal to A
+  
+  p4: after t==5 implies once (s equal to B)
+  p5: after t==5 until t==6 implies (s equal to B)
+  p6: after t>5 implies not ((s equal to A) or (s equal to B))
+  
+  p7: after t>=5 implies once (s equal to B) and once (s equal to A)
+  p8: after t>5 implies once (s equal to B) and once (s equal to A) and (s equal to C)
+  
+  p9: once (s == A)

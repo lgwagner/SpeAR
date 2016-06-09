@@ -1,0 +1,33 @@
+Specification temporal
+
+Types:
+	state_type : enum {A,B,Y,Z}
+
+Inputs:
+	a : bool
+
+Outputs:
+	state : state_type
+
+State:
+
+Macros:
+	pre_state : state_type = previous state with initial value A
+
+Assumptions:
+
+Requirements:
+	r0: initially (state == A)
+	r1: (pre_state == A) and a implies (state == B)
+	r2: (pre_state == B) and a implies (state == Y)
+	r3: (pre_state == Y) and a implies (state == Z)
+	r4: (pre_state == Z) implies (state == Z)
+	r5: not a implies (state == pre_state)
+
+Properties:
+	p0: once (state == B) implies (state <> A)
+	p1: once (state == Y) implies (state <> A) and (state <> B)
+	p2: once (state == Z) implies (state <> A) and (state <> B) and (state <> Y)
+	p3: never (state == Z)
+
+

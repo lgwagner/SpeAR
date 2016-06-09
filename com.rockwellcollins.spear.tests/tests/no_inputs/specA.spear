@@ -23,5 +23,6 @@ Requirements:
 	r1: z == spec specB()
 
 Properties:
-	p0: y > z
+	p0: y < z
+	p1: historically (z == 0)
 

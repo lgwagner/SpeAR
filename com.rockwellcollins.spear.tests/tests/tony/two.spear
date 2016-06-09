@@ -1,0 +1,23 @@
+Specification two
+
+Imports:
+  import "types.spear"
+
+Inputs:
+  s is a state
+
+Outputs:
+  out_s is a state
+
+State:
+  init_s is a state
+
+Requirements:
+  i01: init_s equal to previous init_s with initial value s
+  
+  o01: out_s equal to init_s
+
+Properties:
+//  p01: init_s not equal to A
+//  p02: init_s not equal to C
+//  p03: init_s == B

@@ -196,7 +196,7 @@ AtomicExpr returns Expr:
 	| {RecordExpr} 'new' type=[RecordTypeDef] '{' fieldExprs+=FieldExpr (',' fieldExprs+=FieldExpr)* '}'
 	| {FieldlessRecordExpr} 'new' type=[RecordTypeDef] '{' exprs+=Expr (',' exprs+=Expr)* '}'
 	| {ArrayExpr} 'new' type=[ArrayTypeDef] '[' exprs+=Expr (',' exprs+=Expr)* ']'
-	| {PatternCall} pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')'
+	| {PatternCall} pattern=[Pattern] '(' ( args+=Expr (',' args+=Expr)* )? ')'
 	| {SpecificationCall} 'spec' spec=[Specification] '(' ( args+=Expr (',' args+=Expr)* )? ')'
 	| UnusedExpr
 	| '(' Expr ')'
