@@ -11,16 +11,13 @@ Outputs:
 	
 State:
 	local : int
-	not_so_local : int
-
-Macros:
-	m1 : int = local + in + not_so_local
 
 Assumptions:
+	a : in > 0
 
 Requirements:
-	r0: local == spec specC(0)
-	r1: out == spec specC(m1)
+	r0: local == spec specC(in)
+	r1: out == spec specC(local)
 
 Properties:
 	p0: out >= 0
