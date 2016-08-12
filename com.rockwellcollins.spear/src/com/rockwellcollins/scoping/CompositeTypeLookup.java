@@ -9,6 +9,7 @@ import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.EnumTypeDef;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FieldExpr;
+import com.rockwellcollins.spear.FieldType;
 import com.rockwellcollins.spear.FieldlessRecordExpr;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.IfThenElseExpr;
@@ -47,6 +48,11 @@ public class CompositeTypeLookup extends SpearSwitch<TypeDef> {
 	@Override
 	public EnumTypeDef caseEnumTypeDef(EnumTypeDef etd) {
 		return etd;
+	}
+	
+	@Override
+	public TypeDef caseFieldType(FieldType ft) {
+		return doSwitch(ft.getType());
 	}
 	
 	@Override
