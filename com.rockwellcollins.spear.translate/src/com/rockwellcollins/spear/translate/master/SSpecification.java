@@ -137,8 +137,8 @@ public class SSpecification extends SFile {
 		builder.addOutput(this.getAssertionVarDecl());
 		builder.addEquation(this.getAssertionCalledEquation(requirements));
 
-		builder.addProperties(SConstraint.toPropertyIds(assumptions, map));
-		builder.addProperties(SConstraint.toPropertyIds(behaviors, map));
+//		builder.addProperties(SConstraint.toPropertyIds(assumptions, map));
+//		builder.addProperties(SConstraint.toPropertyIds(behaviors, map));
 
 		return builder.build();
 	}
@@ -172,8 +172,8 @@ public class SSpecification extends SFile {
 		 * The nodes have only a single output, the assertions to be passed up
 		 * the chain.
 		 */
-		builder.addOutput(this.getAssertionVarDecl());
-		builder.addEquation(this.getAssertionCalledEquation(requirements));
+//		builder.addOutput(this.getAssertionVarDecl());
+//		builder.addEquation(this.getAssertionCalledEquation(requirements));
 		return builder.build();		
 	}
 
