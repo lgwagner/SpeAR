@@ -172,8 +172,8 @@ public class SSpecification extends SFile {
 		 * The nodes have only a single output, the assertions to be passed up
 		 * the chain.
 		 */
-//		builder.addOutput(this.getAssertionVarDecl());
-//		builder.addEquation(this.getAssertionCalledEquation(requirements));
+		builder.addOutput(this.getAssertionVarDecl());
+		builder.addEquation(this.getAssertionCalledEquation(requirements));
 		return builder.build();		
 	}
 
