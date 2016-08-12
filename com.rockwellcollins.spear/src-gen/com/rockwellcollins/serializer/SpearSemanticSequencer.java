@@ -745,7 +745,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     AtomicExpr returns PatternCall
 	 *
 	 * Constraint:
-	 *     (pattern=[Pattern|ID] args+=Expr args+=Expr*)
+	 *     (pattern=[Pattern|ID] (args+=Expr args+=Expr*)?)
 	 */
 	protected void sequence_AtomicExpr(ISerializationContext context, PatternCall semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

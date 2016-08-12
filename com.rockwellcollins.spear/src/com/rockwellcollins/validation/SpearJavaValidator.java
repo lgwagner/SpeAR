@@ -71,7 +71,7 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 				if (ide.getId() instanceof Variable) {
 					Variable var = (Variable) ide.getId();
 					if (invalids.contains(var.getName())) {
-						error("Assumptions may not reference computed (locals or outputs) variables.", ide,
+						warning("Assumption references computed (locals or outputs) variables.", ide,
 								SpearPackage.Literals.ID_EXPR__ID, INVALID_ASSUMPTION_REF,
 								valids.toArray(new String[valids.size()]));
 					}

@@ -1,0 +1,4 @@
+Definitions types
+
+Types:
+  state is an enum {A, B, C, E}

@@ -1,0 +1,36 @@
+Specification one
+
+Imports:
+  import "types.spear"
+  
+  import "two.spear"
+
+Inputs:
+
+Outputs:
+
+State:
+  s is a state
+  sub_s is a state
+  t is an int
+  p_t is an int
+
+Requirements:
+  i1: p_t equal to previous t with initial value 0
+  i2: initially s equal to A
+  i3: initially sub_s equal to E
+
+  time1: t equal to p_t + 1
+
+  r1: while t <  5 then s equal to A
+  r2: while t == 5 then s equal to B
+  r3: while t >  5 then s equal to C
+  
+  r4: while t > 4 then sub_s equal to spec two(s)
+  r5: while t <= 4 then sub_s equal to E
+        
+  r6: while t < 5 then sub_s equal to C
+
+Properties:
+  p01: sub_s not equal to A
+  p02: sub_s not equal to E

@@ -2773,13 +2773,14 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cPatternPatternCrossReference_7_1_0 = (CrossReference)cPatternAssignment_7_1.eContents().get(0);
 		private final RuleCall cPatternPatternIDTerminalRuleCall_7_1_0_1 = (RuleCall)cPatternPatternCrossReference_7_1_0.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_7_2 = (Keyword)cGroup_7.eContents().get(2);
-		private final Assignment cArgsAssignment_7_3 = (Assignment)cGroup_7.eContents().get(3);
-		private final RuleCall cArgsExprParserRuleCall_7_3_0 = (RuleCall)cArgsAssignment_7_3.eContents().get(0);
-		private final Group cGroup_7_4 = (Group)cGroup_7.eContents().get(4);
-		private final Keyword cCommaKeyword_7_4_0 = (Keyword)cGroup_7_4.eContents().get(0);
-		private final Assignment cArgsAssignment_7_4_1 = (Assignment)cGroup_7_4.eContents().get(1);
-		private final RuleCall cArgsExprParserRuleCall_7_4_1_0 = (RuleCall)cArgsAssignment_7_4_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_7_5 = (Keyword)cGroup_7.eContents().get(5);
+		private final Group cGroup_7_3 = (Group)cGroup_7.eContents().get(3);
+		private final Assignment cArgsAssignment_7_3_0 = (Assignment)cGroup_7_3.eContents().get(0);
+		private final RuleCall cArgsExprParserRuleCall_7_3_0_0 = (RuleCall)cArgsAssignment_7_3_0.eContents().get(0);
+		private final Group cGroup_7_3_1 = (Group)cGroup_7_3.eContents().get(1);
+		private final Keyword cCommaKeyword_7_3_1_0 = (Keyword)cGroup_7_3_1.eContents().get(0);
+		private final Assignment cArgsAssignment_7_3_1_1 = (Assignment)cGroup_7_3_1.eContents().get(1);
+		private final RuleCall cArgsExprParserRuleCall_7_3_1_1_0 = (RuleCall)cArgsAssignment_7_3_1_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_7_4 = (Keyword)cGroup_7.eContents().get(4);
 		private final Group cGroup_8 = (Group)cAlternatives.eContents().get(8);
 		private final Action cSpecificationCallAction_8_0 = (Action)cGroup_8.eContents().get(0);
 		private final Keyword cSpecKeyword_8_1 = (Keyword)cGroup_8.eContents().get(1);
@@ -2806,7 +2807,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//	cond=Expr 'then' then=Expr (=> 'else' else=Expr)? | {RecordExpr} 'new' type=[RecordTypeDef] '{' fieldExprs+=FieldExpr
 		//	(',' fieldExprs+=FieldExpr)* '}' | {FieldlessRecordExpr} 'new' type=[RecordTypeDef] '{' exprs+=Expr (','
 		//	exprs+=Expr)* '}' | {ArrayExpr} 'new' type=[ArrayTypeDef] '[' exprs+=Expr (',' exprs+=Expr)* ']' | {PatternCall}
-		//	pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')' | {SpecificationCall} 'spec' spec=[Specification] '('
+		//	pattern=[Pattern] '(' (args+=Expr (',' args+=Expr)*)? ')' | {SpecificationCall} 'spec' spec=[Specification] '('
 		//	(args+=Expr (',' args+=Expr)*)? ')' | UnusedExpr | '(' Expr ')'
 		@Override public ParserRule getRule() { return rule; }
 
@@ -2814,7 +2815,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//cond=Expr 'then' then=Expr (=> 'else' else=Expr)? | {RecordExpr} 'new' type=[RecordTypeDef] '{' fieldExprs+=FieldExpr
 		//(',' fieldExprs+=FieldExpr)* '}' | {FieldlessRecordExpr} 'new' type=[RecordTypeDef] '{' exprs+=Expr (',' exprs+=Expr)*
 		//'}' | {ArrayExpr} 'new' type=[ArrayTypeDef] '[' exprs+=Expr (',' exprs+=Expr)* ']' | {PatternCall} pattern=[Pattern]
-		//'(' args+=Expr (',' args+=Expr)* ')' | {SpecificationCall} 'spec' spec=[Specification] '(' (args+=Expr (','
+		//'(' (args+=Expr (',' args+=Expr)*)? ')' | {SpecificationCall} 'spec' spec=[Specification] '(' (args+=Expr (','
 		//args+=Expr)*)? ')' | UnusedExpr | '(' Expr ')'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
@@ -3034,7 +3035,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//']'
 		public Keyword getRightSquareBracketKeyword_6_6() { return cRightSquareBracketKeyword_6_6; }
 
-		//{PatternCall} pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')'
+		//{PatternCall} pattern=[Pattern] '(' (args+=Expr (',' args+=Expr)*)? ')'
 		public Group getGroup_7() { return cGroup_7; }
 
 		//{PatternCall}
@@ -3052,26 +3053,29 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_7_2() { return cLeftParenthesisKeyword_7_2; }
 
+		//(args+=Expr (',' args+=Expr)*)?
+		public Group getGroup_7_3() { return cGroup_7_3; }
+
 		//args+=Expr
-		public Assignment getArgsAssignment_7_3() { return cArgsAssignment_7_3; }
+		public Assignment getArgsAssignment_7_3_0() { return cArgsAssignment_7_3_0; }
 
 		//Expr
-		public RuleCall getArgsExprParserRuleCall_7_3_0() { return cArgsExprParserRuleCall_7_3_0; }
+		public RuleCall getArgsExprParserRuleCall_7_3_0_0() { return cArgsExprParserRuleCall_7_3_0_0; }
 
 		//(',' args+=Expr)*
-		public Group getGroup_7_4() { return cGroup_7_4; }
+		public Group getGroup_7_3_1() { return cGroup_7_3_1; }
 
 		//','
-		public Keyword getCommaKeyword_7_4_0() { return cCommaKeyword_7_4_0; }
+		public Keyword getCommaKeyword_7_3_1_0() { return cCommaKeyword_7_3_1_0; }
 
 		//args+=Expr
-		public Assignment getArgsAssignment_7_4_1() { return cArgsAssignment_7_4_1; }
+		public Assignment getArgsAssignment_7_3_1_1() { return cArgsAssignment_7_3_1_1; }
 
 		//Expr
-		public RuleCall getArgsExprParserRuleCall_7_4_1_0() { return cArgsExprParserRuleCall_7_4_1_0; }
+		public RuleCall getArgsExprParserRuleCall_7_3_1_1_0() { return cArgsExprParserRuleCall_7_3_1_1_0; }
 
 		//')'
-		public Keyword getRightParenthesisKeyword_7_5() { return cRightParenthesisKeyword_7_5; }
+		public Keyword getRightParenthesisKeyword_7_4() { return cRightParenthesisKeyword_7_4; }
 
 		//{SpecificationCall} 'spec' spec=[Specification] '(' (args+=Expr (',' args+=Expr)*)? ')'
 		public Group getGroup_8() { return cGroup_8; }
@@ -4070,7 +4074,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	//	cond=Expr 'then' then=Expr (=> 'else' else=Expr)? | {RecordExpr} 'new' type=[RecordTypeDef] '{' fieldExprs+=FieldExpr
 	//	(',' fieldExprs+=FieldExpr)* '}' | {FieldlessRecordExpr} 'new' type=[RecordTypeDef] '{' exprs+=Expr (','
 	//	exprs+=Expr)* '}' | {ArrayExpr} 'new' type=[ArrayTypeDef] '[' exprs+=Expr (',' exprs+=Expr)* ']' | {PatternCall}
-	//	pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')' | {SpecificationCall} 'spec' spec=[Specification] '('
+	//	pattern=[Pattern] '(' (args+=Expr (',' args+=Expr)*)? ')' | {SpecificationCall} 'spec' spec=[Specification] '('
 	//	(args+=Expr (',' args+=Expr)*)? ')' | UnusedExpr | '(' Expr ')'
 	public AtomicExprElements getAtomicExprAccess() {
 		return pAtomicExpr;

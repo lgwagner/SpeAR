@@ -17,9 +17,6 @@ Types:
 	mass1 : real kg
 	mass2 : real g
 	
-	type1 : type2
-	type2 : type1
-	
 	type3 : type4
 	type4 : type5
 	type5 : int
@@ -36,9 +33,6 @@ Constants:
 	c2 : int = 200 + c1
 	c3 : int = c2 * 1000
 	B_type : enum1 = B
-	
-	c4 : int = c5
-	c5 : int = c4
 
 Inputs:
 	a : real
