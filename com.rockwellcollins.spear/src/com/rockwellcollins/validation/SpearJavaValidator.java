@@ -99,7 +99,7 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 	@Check
 	public void checkPreviousExpressionsAreGuarded(PreviousExpr pe) {
 		if(pe.getInit() == null) {
-			error("The initial value must be specified for previous expressions.",pe,null);
+			warning("No initial value was specified. Analysis will consider all possible values for the initial state.",pe,null);
 		}
 	}
 	
@@ -114,5 +114,4 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 			}
 		}
 	}
-
 }

@@ -139,7 +139,6 @@ public class SSpecification extends SFile {
 
 //		builder.addProperties(SConstraint.toPropertyIds(assumptions, map));
 //		builder.addProperties(SConstraint.toPropertyIds(behaviors, map));
-
 		return builder.build();
 	}
 

@@ -39,7 +39,6 @@ import jkind.lustre.RecordExpr;
 import jkind.lustre.RecordUpdateExpr;
 import jkind.lustre.UnaryExpr;
 import jkind.lustre.UnaryOp;
-import jkind.lustre.VarDecl;
 
 public class TranslateExpr extends SpearSwitch<Expr> {
 
@@ -147,7 +146,12 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	
 	@Override
 	public Expr casePreviousExpr(com.rockwellcollins.spear.PreviousExpr prev) {
-		return new BinaryExpr(doSwitch(prev.getInit()), BinaryOp.ARROW, new UnaryExpr(UnaryOp.PRE, doSwitch(prev.getVar())));
+		Expr pre = new UnaryExpr(UnaryOp.PRE, doSwitch(prev.getVar()));
+		if(prev.getInit() == null) {
+			return pre;
+		} else {
+			return new BinaryExpr(doSwitch(prev.getInit()), BinaryOp.ARROW, pre);	
+		}
 	}
 	
 	@Override
