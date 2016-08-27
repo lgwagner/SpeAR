@@ -1214,10 +1214,8 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 * Constraint:
 	 *     (
 	 *         name=ID 
-	 *         inputs+=Variable 
-	 *         inputs+=Variable* 
-	 *         outputs+=Variable 
-	 *         outputs+=Variable* 
+	 *         (inputs+=Variable inputs+=Variable*)? 
+	 *         (outputs+=Variable outputs+=Variable*)? 
 	 *         locals+=Variable* 
 	 *         (equations+=LustreEquation | properties+=LustreProperty | assertions+=LustreAssertion)*
 	 *     )

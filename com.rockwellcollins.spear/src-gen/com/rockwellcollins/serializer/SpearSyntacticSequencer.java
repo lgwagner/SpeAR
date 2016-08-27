@@ -30,7 +30,7 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_Definitions_PatternsKeyword_6_0_q;
 	protected AbstractElementAlias match_Definitions_TypesKeyword_4_0_q;
 	protected AbstractElementAlias match_Definitions_UnitsKeyword_3_0_q;
-	protected AbstractElementAlias match_Pattern_VarKeyword_11_0_q;
+	protected AbstractElementAlias match_Pattern_VarKeyword_9_0_q;
 	protected AbstractElementAlias match_Specification_ConstantsKeyword_5_0_q;
 	protected AbstractElementAlias match_Specification_ImportsKeyword_2_0_q;
 	protected AbstractElementAlias match_Specification_MacrosKeyword_12_0_q;
@@ -53,7 +53,7 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_Definitions_PatternsKeyword_6_0_q = new TokenAlias(false, true, grammarAccess.getDefinitionsAccess().getPatternsKeyword_6_0());
 		match_Definitions_TypesKeyword_4_0_q = new TokenAlias(false, true, grammarAccess.getDefinitionsAccess().getTypesKeyword_4_0());
 		match_Definitions_UnitsKeyword_3_0_q = new TokenAlias(false, true, grammarAccess.getDefinitionsAccess().getUnitsKeyword_3_0());
-		match_Pattern_VarKeyword_11_0_q = new TokenAlias(false, true, grammarAccess.getPatternAccess().getVarKeyword_11_0());
+		match_Pattern_VarKeyword_9_0_q = new TokenAlias(false, true, grammarAccess.getPatternAccess().getVarKeyword_9_0());
 		match_Specification_ConstantsKeyword_5_0_q = new TokenAlias(false, true, grammarAccess.getSpecificationAccess().getConstantsKeyword_5_0());
 		match_Specification_ImportsKeyword_2_0_q = new TokenAlias(false, true, grammarAccess.getSpecificationAccess().getImportsKeyword_2_0());
 		match_Specification_MacrosKeyword_12_0_q = new TokenAlias(false, true, grammarAccess.getSpecificationAccess().getMacrosKeyword_12_0());
@@ -147,8 +147,8 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_Definitions_TypesKeyword_4_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Definitions_UnitsKeyword_3_0_q.equals(syntax))
 				emit_Definitions_UnitsKeyword_3_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Pattern_VarKeyword_11_0_q.equals(syntax))
-				emit_Pattern_VarKeyword_11_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Pattern_VarKeyword_9_0_q.equals(syntax))
+				emit_Pattern_VarKeyword_9_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Specification_ConstantsKeyword_5_0_q.equals(syntax))
 				emit_Specification_ConstantsKeyword_5_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Specification_ImportsKeyword_2_0_q.equals(syntax))
@@ -349,12 +349,20 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'var'?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     inputs+=Variable ')' 'returns' '(' ')' (ambiguity) 'let' 'tel' (rule end)
+	 *     inputs+=Variable ')' 'returns' '(' ')' (ambiguity) 'let' assertions+=LustreAssertion
+	 *     inputs+=Variable ')' 'returns' '(' ')' (ambiguity) 'let' equations+=LustreEquation
+	 *     inputs+=Variable ')' 'returns' '(' ')' (ambiguity) 'let' properties+=LustreProperty
+	 *     name=ID '(' ')' 'returns' '(' ')' (ambiguity) 'let' 'tel' (rule end)
+	 *     name=ID '(' ')' 'returns' '(' ')' (ambiguity) 'let' assertions+=LustreAssertion
+	 *     name=ID '(' ')' 'returns' '(' ')' (ambiguity) 'let' equations+=LustreEquation
+	 *     name=ID '(' ')' 'returns' '(' ')' (ambiguity) 'let' properties+=LustreProperty
 	 *     outputs+=Variable ')' (ambiguity) 'let' 'tel' (rule end)
 	 *     outputs+=Variable ')' (ambiguity) 'let' assertions+=LustreAssertion
 	 *     outputs+=Variable ')' (ambiguity) 'let' equations+=LustreEquation
 	 *     outputs+=Variable ')' (ambiguity) 'let' properties+=LustreProperty
 	 */
-	protected void emit_Pattern_VarKeyword_11_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Pattern_VarKeyword_9_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

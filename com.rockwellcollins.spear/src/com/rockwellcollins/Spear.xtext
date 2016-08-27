@@ -44,7 +44,7 @@ Definitions:
 	('Patterns:' patterns+=Pattern*)?;
 
 Pattern:
-	'pattern' (name=ID) '(' inputs+=Variable (',' inputs+=Variable)* ')' 'returns' '(' outputs+=Variable (',' outputs+=Variable)* ')'
+	'pattern' (name=ID) '(' (inputs+=Variable (',' inputs+=Variable)*)? ')' 'returns' '(' (outputs+=Variable (',' outputs+=Variable)*)? ')'
 	 ('var' (locals+=Variable)* )?
 	 'let' 
 	 	( equations+=LustreEquation

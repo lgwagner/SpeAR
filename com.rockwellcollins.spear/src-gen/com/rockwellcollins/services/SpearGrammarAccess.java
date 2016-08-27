@@ -487,44 +487,46 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cInputsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cInputsVariableParserRuleCall_3_0 = (RuleCall)cInputsAssignment_3.eContents().get(0);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Keyword cCommaKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Assignment cInputsAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cInputsVariableParserRuleCall_4_1_0 = (RuleCall)cInputsAssignment_4_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Keyword cReturnsKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Keyword cLeftParenthesisKeyword_7 = (Keyword)cGroup.eContents().get(7);
-		private final Assignment cOutputsAssignment_8 = (Assignment)cGroup.eContents().get(8);
-		private final RuleCall cOutputsVariableParserRuleCall_8_0 = (RuleCall)cOutputsAssignment_8.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Assignment cInputsAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
+		private final RuleCall cInputsVariableParserRuleCall_3_0_0 = (RuleCall)cInputsAssignment_3_0.eContents().get(0);
+		private final Group cGroup_3_1 = (Group)cGroup_3.eContents().get(1);
+		private final Keyword cCommaKeyword_3_1_0 = (Keyword)cGroup_3_1.eContents().get(0);
+		private final Assignment cInputsAssignment_3_1_1 = (Assignment)cGroup_3_1.eContents().get(1);
+		private final RuleCall cInputsVariableParserRuleCall_3_1_1_0 = (RuleCall)cInputsAssignment_3_1_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cReturnsKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cLeftParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
+		private final Assignment cOutputsAssignment_7_0 = (Assignment)cGroup_7.eContents().get(0);
+		private final RuleCall cOutputsVariableParserRuleCall_7_0_0 = (RuleCall)cOutputsAssignment_7_0.eContents().get(0);
+		private final Group cGroup_7_1 = (Group)cGroup_7.eContents().get(1);
+		private final Keyword cCommaKeyword_7_1_0 = (Keyword)cGroup_7_1.eContents().get(0);
+		private final Assignment cOutputsAssignment_7_1_1 = (Assignment)cGroup_7_1.eContents().get(1);
+		private final RuleCall cOutputsVariableParserRuleCall_7_1_1_0 = (RuleCall)cOutputsAssignment_7_1_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		private final Group cGroup_9 = (Group)cGroup.eContents().get(9);
-		private final Keyword cCommaKeyword_9_0 = (Keyword)cGroup_9.eContents().get(0);
-		private final Assignment cOutputsAssignment_9_1 = (Assignment)cGroup_9.eContents().get(1);
-		private final RuleCall cOutputsVariableParserRuleCall_9_1_0 = (RuleCall)cOutputsAssignment_9_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_10 = (Keyword)cGroup.eContents().get(10);
-		private final Group cGroup_11 = (Group)cGroup.eContents().get(11);
-		private final Keyword cVarKeyword_11_0 = (Keyword)cGroup_11.eContents().get(0);
-		private final Assignment cLocalsAssignment_11_1 = (Assignment)cGroup_11.eContents().get(1);
-		private final RuleCall cLocalsVariableParserRuleCall_11_1_0 = (RuleCall)cLocalsAssignment_11_1.eContents().get(0);
-		private final Keyword cLetKeyword_12 = (Keyword)cGroup.eContents().get(12);
-		private final Alternatives cAlternatives_13 = (Alternatives)cGroup.eContents().get(13);
-		private final Assignment cEquationsAssignment_13_0 = (Assignment)cAlternatives_13.eContents().get(0);
-		private final RuleCall cEquationsLustreEquationParserRuleCall_13_0_0 = (RuleCall)cEquationsAssignment_13_0.eContents().get(0);
-		private final Assignment cPropertiesAssignment_13_1 = (Assignment)cAlternatives_13.eContents().get(1);
-		private final RuleCall cPropertiesLustrePropertyParserRuleCall_13_1_0 = (RuleCall)cPropertiesAssignment_13_1.eContents().get(0);
-		private final Assignment cAssertionsAssignment_13_2 = (Assignment)cAlternatives_13.eContents().get(2);
-		private final RuleCall cAssertionsLustreAssertionParserRuleCall_13_2_0 = (RuleCall)cAssertionsAssignment_13_2.eContents().get(0);
-		private final Keyword cTelKeyword_14 = (Keyword)cGroup.eContents().get(14);
+		private final Keyword cVarKeyword_9_0 = (Keyword)cGroup_9.eContents().get(0);
+		private final Assignment cLocalsAssignment_9_1 = (Assignment)cGroup_9.eContents().get(1);
+		private final RuleCall cLocalsVariableParserRuleCall_9_1_0 = (RuleCall)cLocalsAssignment_9_1.eContents().get(0);
+		private final Keyword cLetKeyword_10 = (Keyword)cGroup.eContents().get(10);
+		private final Alternatives cAlternatives_11 = (Alternatives)cGroup.eContents().get(11);
+		private final Assignment cEquationsAssignment_11_0 = (Assignment)cAlternatives_11.eContents().get(0);
+		private final RuleCall cEquationsLustreEquationParserRuleCall_11_0_0 = (RuleCall)cEquationsAssignment_11_0.eContents().get(0);
+		private final Assignment cPropertiesAssignment_11_1 = (Assignment)cAlternatives_11.eContents().get(1);
+		private final RuleCall cPropertiesLustrePropertyParserRuleCall_11_1_0 = (RuleCall)cPropertiesAssignment_11_1.eContents().get(0);
+		private final Assignment cAssertionsAssignment_11_2 = (Assignment)cAlternatives_11.eContents().get(2);
+		private final RuleCall cAssertionsLustreAssertionParserRuleCall_11_2_0 = (RuleCall)cAssertionsAssignment_11_2.eContents().get(0);
+		private final Keyword cTelKeyword_12 = (Keyword)cGroup.eContents().get(12);
 		
 		//Pattern:
-		//	'pattern' name=ID '(' inputs+=Variable (',' inputs+=Variable)* ')' 'returns' '(' outputs+=Variable (','
-		//	outputs+=Variable)* ')' ('var' locals+=Variable*)? 'let' (equations+=LustreEquation | properties+=LustreProperty |
+		//	'pattern' name=ID '(' (inputs+=Variable (',' inputs+=Variable)*)? ')' 'returns' '(' (outputs+=Variable (','
+		//	outputs+=Variable)*)? ')' ('var' locals+=Variable*)? 'let' (equations+=LustreEquation | properties+=LustreProperty |
 		//	assertions+=LustreAssertion)* 'tel';
 		@Override public ParserRule getRule() { return rule; }
 
-		//'pattern' name=ID '(' inputs+=Variable (',' inputs+=Variable)* ')' 'returns' '(' outputs+=Variable (','
-		//outputs+=Variable)* ')' ('var' locals+=Variable*)? 'let' (equations+=LustreEquation | properties+=LustreProperty |
+		//'pattern' name=ID '(' (inputs+=Variable (',' inputs+=Variable)*)? ')' 'returns' '(' (outputs+=Variable (','
+		//outputs+=Variable)*)? ')' ('var' locals+=Variable*)? 'let' (equations+=LustreEquation | properties+=LustreProperty |
 		//assertions+=LustreAssertion)* 'tel'
 		public Group getGroup() { return cGroup; }
 
@@ -540,92 +542,98 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
 
+		//(inputs+=Variable (',' inputs+=Variable)*)?
+		public Group getGroup_3() { return cGroup_3; }
+
 		//inputs+=Variable
-		public Assignment getInputsAssignment_3() { return cInputsAssignment_3; }
+		public Assignment getInputsAssignment_3_0() { return cInputsAssignment_3_0; }
 
 		//Variable
-		public RuleCall getInputsVariableParserRuleCall_3_0() { return cInputsVariableParserRuleCall_3_0; }
+		public RuleCall getInputsVariableParserRuleCall_3_0_0() { return cInputsVariableParserRuleCall_3_0_0; }
 
 		//(',' inputs+=Variable)*
-		public Group getGroup_4() { return cGroup_4; }
+		public Group getGroup_3_1() { return cGroup_3_1; }
 
 		//','
-		public Keyword getCommaKeyword_4_0() { return cCommaKeyword_4_0; }
+		public Keyword getCommaKeyword_3_1_0() { return cCommaKeyword_3_1_0; }
 
 		//inputs+=Variable
-		public Assignment getInputsAssignment_4_1() { return cInputsAssignment_4_1; }
+		public Assignment getInputsAssignment_3_1_1() { return cInputsAssignment_3_1_1; }
 
 		//Variable
-		public RuleCall getInputsVariableParserRuleCall_4_1_0() { return cInputsVariableParserRuleCall_4_1_0; }
+		public RuleCall getInputsVariableParserRuleCall_3_1_1_0() { return cInputsVariableParserRuleCall_3_1_1_0; }
 
 		//')'
-		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
+		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
 
 		//'returns'
-		public Keyword getReturnsKeyword_6() { return cReturnsKeyword_6; }
+		public Keyword getReturnsKeyword_5() { return cReturnsKeyword_5; }
 
 		//'('
-		public Keyword getLeftParenthesisKeyword_7() { return cLeftParenthesisKeyword_7; }
+		public Keyword getLeftParenthesisKeyword_6() { return cLeftParenthesisKeyword_6; }
+
+		//(outputs+=Variable (',' outputs+=Variable)*)?
+		public Group getGroup_7() { return cGroup_7; }
 
 		//outputs+=Variable
-		public Assignment getOutputsAssignment_8() { return cOutputsAssignment_8; }
+		public Assignment getOutputsAssignment_7_0() { return cOutputsAssignment_7_0; }
 
 		//Variable
-		public RuleCall getOutputsVariableParserRuleCall_8_0() { return cOutputsVariableParserRuleCall_8_0; }
+		public RuleCall getOutputsVariableParserRuleCall_7_0_0() { return cOutputsVariableParserRuleCall_7_0_0; }
 
 		//(',' outputs+=Variable)*
-		public Group getGroup_9() { return cGroup_9; }
+		public Group getGroup_7_1() { return cGroup_7_1; }
 
 		//','
-		public Keyword getCommaKeyword_9_0() { return cCommaKeyword_9_0; }
+		public Keyword getCommaKeyword_7_1_0() { return cCommaKeyword_7_1_0; }
 
 		//outputs+=Variable
-		public Assignment getOutputsAssignment_9_1() { return cOutputsAssignment_9_1; }
+		public Assignment getOutputsAssignment_7_1_1() { return cOutputsAssignment_7_1_1; }
 
 		//Variable
-		public RuleCall getOutputsVariableParserRuleCall_9_1_0() { return cOutputsVariableParserRuleCall_9_1_0; }
+		public RuleCall getOutputsVariableParserRuleCall_7_1_1_0() { return cOutputsVariableParserRuleCall_7_1_1_0; }
 
 		//')'
-		public Keyword getRightParenthesisKeyword_10() { return cRightParenthesisKeyword_10; }
+		public Keyword getRightParenthesisKeyword_8() { return cRightParenthesisKeyword_8; }
 
 		//('var' locals+=Variable*)?
-		public Group getGroup_11() { return cGroup_11; }
+		public Group getGroup_9() { return cGroup_9; }
 
 		//'var'
-		public Keyword getVarKeyword_11_0() { return cVarKeyword_11_0; }
+		public Keyword getVarKeyword_9_0() { return cVarKeyword_9_0; }
 
 		//locals+=Variable*
-		public Assignment getLocalsAssignment_11_1() { return cLocalsAssignment_11_1; }
+		public Assignment getLocalsAssignment_9_1() { return cLocalsAssignment_9_1; }
 
 		//Variable
-		public RuleCall getLocalsVariableParserRuleCall_11_1_0() { return cLocalsVariableParserRuleCall_11_1_0; }
+		public RuleCall getLocalsVariableParserRuleCall_9_1_0() { return cLocalsVariableParserRuleCall_9_1_0; }
 
 		//'let'
-		public Keyword getLetKeyword_12() { return cLetKeyword_12; }
+		public Keyword getLetKeyword_10() { return cLetKeyword_10; }
 
 		//(equations+=LustreEquation | properties+=LustreProperty | assertions+=LustreAssertion)*
-		public Alternatives getAlternatives_13() { return cAlternatives_13; }
+		public Alternatives getAlternatives_11() { return cAlternatives_11; }
 
 		//equations+=LustreEquation
-		public Assignment getEquationsAssignment_13_0() { return cEquationsAssignment_13_0; }
+		public Assignment getEquationsAssignment_11_0() { return cEquationsAssignment_11_0; }
 
 		//LustreEquation
-		public RuleCall getEquationsLustreEquationParserRuleCall_13_0_0() { return cEquationsLustreEquationParserRuleCall_13_0_0; }
+		public RuleCall getEquationsLustreEquationParserRuleCall_11_0_0() { return cEquationsLustreEquationParserRuleCall_11_0_0; }
 
 		//properties+=LustreProperty
-		public Assignment getPropertiesAssignment_13_1() { return cPropertiesAssignment_13_1; }
+		public Assignment getPropertiesAssignment_11_1() { return cPropertiesAssignment_11_1; }
 
 		//LustreProperty
-		public RuleCall getPropertiesLustrePropertyParserRuleCall_13_1_0() { return cPropertiesLustrePropertyParserRuleCall_13_1_0; }
+		public RuleCall getPropertiesLustrePropertyParserRuleCall_11_1_0() { return cPropertiesLustrePropertyParserRuleCall_11_1_0; }
 
 		//assertions+=LustreAssertion
-		public Assignment getAssertionsAssignment_13_2() { return cAssertionsAssignment_13_2; }
+		public Assignment getAssertionsAssignment_11_2() { return cAssertionsAssignment_11_2; }
 
 		//LustreAssertion
-		public RuleCall getAssertionsLustreAssertionParserRuleCall_13_2_0() { return cAssertionsLustreAssertionParserRuleCall_13_2_0; }
+		public RuleCall getAssertionsLustreAssertionParserRuleCall_11_2_0() { return cAssertionsLustreAssertionParserRuleCall_11_2_0; }
 
 		//'tel'
-		public Keyword getTelKeyword_14() { return cTelKeyword_14; }
+		public Keyword getTelKeyword_12() { return cTelKeyword_12; }
 	}
 
 	public class LustreEquationElements extends AbstractParserRuleElementFinder {
@@ -3701,8 +3709,8 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Pattern:
-	//	'pattern' name=ID '(' inputs+=Variable (',' inputs+=Variable)* ')' 'returns' '(' outputs+=Variable (','
-	//	outputs+=Variable)* ')' ('var' locals+=Variable*)? 'let' (equations+=LustreEquation | properties+=LustreProperty |
+	//	'pattern' name=ID '(' (inputs+=Variable (',' inputs+=Variable)*)? ')' 'returns' '(' (outputs+=Variable (','
+	//	outputs+=Variable)*)? ')' ('var' locals+=Variable*)? 'let' (equations+=LustreEquation | properties+=LustreProperty |
 	//	assertions+=LustreAssertion)* 'tel';
 	public PatternElements getPatternAccess() {
 		return pPattern;
