@@ -523,6 +523,13 @@ ruleRequirementsHeader returns [AntlrDatatypeRuleToken current=new AntlrDatatype
         $current.merge(kw);
         newLeafNode(kw, grammarAccess.getRequirementsHeaderAccess().getDesignKeyword_5()); 
     }
+
+    |
+	kw='Constraints' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRequirementsHeaderAccess().getConstraintsKeyword_6()); 
+    }
 )
     ;
 

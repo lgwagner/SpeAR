@@ -291,12 +291,14 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLLRsKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
 		private final Keyword cImplementationKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
 		private final Keyword cDesignKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
+		private final Keyword cConstraintsKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
 		
 		//RequirementsHeader:
-		//	'DerivedRequirements' | 'Requirements' | 'Low-Level Requirements' | 'LLRs' | 'Implementation' | 'Design';
+		//	'DerivedRequirements' | 'Requirements' | 'Low-Level Requirements' | 'LLRs' | 'Implementation' | 'Design' |
+		//	'Constraints';
 		@Override public ParserRule getRule() { return rule; }
 
-		//'DerivedRequirements' | 'Requirements' | 'Low-Level Requirements' | 'LLRs' | 'Implementation' | 'Design'
+		//'DerivedRequirements' | 'Requirements' | 'Low-Level Requirements' | 'LLRs' | 'Implementation' | 'Design' | 'Constraints'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//'DerivedRequirements'
@@ -316,6 +318,9 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 
 		//'Design'
 		public Keyword getDesignKeyword_5() { return cDesignKeyword_5; }
+
+		//'Constraints'
+		public Keyword getConstraintsKeyword_6() { return cConstraintsKeyword_6; }
 	}
 
 	public class PropertiesHeaderElements extends AbstractParserRuleElementFinder {
@@ -3668,7 +3673,8 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//RequirementsHeader:
-	//	'DerivedRequirements' | 'Requirements' | 'Low-Level Requirements' | 'LLRs' | 'Implementation' | 'Design';
+	//	'DerivedRequirements' | 'Requirements' | 'Low-Level Requirements' | 'LLRs' | 'Implementation' | 'Design' |
+	//	'Constraints';
 	public RequirementsHeaderElements getRequirementsHeaderAccess() {
 		return pRequirementsHeader;
 	}

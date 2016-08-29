@@ -1589,6 +1589,14 @@ rule__RequirementsHeader__Alternatives
 { after(grammarAccess.getRequirementsHeaderAccess().getDesignKeyword_5()); }
 )
 
+    |(
+{ before(grammarAccess.getRequirementsHeaderAccess().getConstraintsKeyword_6()); }
+
+	'Constraints' 
+
+{ after(grammarAccess.getRequirementsHeaderAccess().getConstraintsKeyword_6()); }
+)
+
 ;
 finally {
 	restoreStackSize(stackSize);

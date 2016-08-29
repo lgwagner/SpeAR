@@ -114,7 +114,7 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * RequirementsHeader:
-	 * 	'DerivedRequirements' | 'Requirements' | 'Low-Level Requirements' | 'LLRs' | 'Implementation' | 'Design'
+	 * 	'DerivedRequirements' | 'Requirements' | 'Low-Level Requirements' | 'LLRs' | 'Implementation' | 'Design' | 'Constraints'
 	 * ;
 	 */
 	protected String getRequirementsHeaderToken(EObject semanticObject, RuleCall ruleCall, INode node) {
