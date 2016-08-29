@@ -5,6 +5,10 @@ import java.util.List;
 
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.translate.naming.PNameMap;
+import com.rockwellcollins.spear.utilities.PLTL;
+
+import jkind.lustre.Program;
+import jkind.lustre.builders.ProgramBuilder;
 
 public class SProgram {
 
@@ -22,6 +26,9 @@ public class SProgram {
 	public SProgram(SpearDocument document) {
 		//initialize the program's global map
 		map = PNameMap.newMap();
+		
+		//add the PLTL node names to the program
+		PNameMap.addPLTL(map);
 
 		//get the names of the typedefs, constants and process them
 		typedefs.addAll(STypeDef.build(document.typedefs, map));
@@ -36,57 +43,45 @@ public class SProgram {
 		
 		patterns.addAll(SPattern.build(document.patterns, map));
 		specifications.addAll(SSpecification.build(document.specifications, map));
+		
+		this.main = map.lookupOriginal(document.mainName);
 	}
 	
-//	public Program getLogicalEntailment() {
-//		ProgramBuilder program = new ProgramBuilder();
-//		
-//		for(Node n : PLTL.getPLTL()) {
-//			program.addNode(n);
-//		}
-//		
-//		for(SFile sf : map.fileMapping.values()) {
-//			program.addTypes(STypeDef.toLustre(sf.typedefs, map));
-//			program.addConstants(SConstant.toLustre(sf.constants, map));
-//			program.addNodes(SPattern.toLustre(sf.patterns, map));
-//			
-//			if (sf instanceof SSpecification) {
-//				SSpecification spec = (SSpecification) sf;
-//				
-//				if(this.main.equals(spec)) {
-//					program.addNode(spec.getLogicalEntailmentMain(map));	
-//				} else {
-//					program.addNode(spec.getLogicalEntailmentCalled(map));
-//				}
-//			}
-//		}
-//		program.setMain(main.name);
-//		return program.build();
-//	}
-//	
-//	public Program getLogicalConsistency() {
-//		ProgramBuilder program = new ProgramBuilder();
-//		
-//		for(Node n : PLTL.getPLTL()) {
-//			program.addNode(n);
-//		}
-//		
-//		for(SFile sf : map.fileMapping.values()) {
-//			program.addTypes(STypeDef.toLustre(sf.typedefs, map));
-//			program.addConstants(SConstant.toLustre(sf.constants, map));
-//			program.addNodes(SPattern.toLustre(sf.patterns, map));
-//			
-//			if (sf instanceof SSpecification) {
-//				SSpecification spec = (SSpecification) sf;
-//				
-//				if(this.main.equals(spec)) {
-//					program.addNode(spec.getLogicalConsistencyMain(map));	
-//				} else {
-//					program.addNode(spec.getLogicalConsistencyCalled(map));
-//				}
-//			}
-//		}
-//		program.setMain(main.name);
-//		return program.build();
-//	}
+	public Program getBaseProgram() {
+		ProgramBuilder program = new ProgramBuilder();
+		
+		//add the PLTL nodes
+		program.addNodes(PLTL.getPLTL());
+		
+		program.addConstants(SConstant.toLustre(constants, map));
+		program.addTypes(STypeDef.toLustre(typedefs, map));
+		program.addNodes(SPattern.toLustre(patterns));
+		return program.build();
+	}
+	
+	public Program getLogicalEntailment() {
+		ProgramBuilder program = new ProgramBuilder(this.getBaseProgram());
+	
+		for(SSpecification spec : specifications) {
+			if(spec.name.equals(this.main)) {
+				program.addNode(spec.getLogicalEntailmentMain());
+			}
+			//TODO add an else case for the called nodes
+		}
+		program.setMain(this.main);
+		return program.build();
+	}
+	
+	public Program getLogicalConsistency() {
+		ProgramBuilder program = new ProgramBuilder(this.getBaseProgram());
+		
+		for(SSpecification spec : specifications) {
+			if(spec.name.equals(this.main)) {
+				program.addNode(spec.getLogicalConsistencyMain());
+			}
+			//TODO add an else case for the called nodes
+		}
+		program.setMain(this.main);
+		return program.build();
+	}
 }

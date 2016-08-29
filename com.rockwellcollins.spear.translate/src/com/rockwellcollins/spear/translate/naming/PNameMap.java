@@ -2,6 +2,10 @@ package com.rockwellcollins.spear.translate.naming;
 
 import org.apache.commons.collections4.bidimap.DualHashBidiMap;
 
+import com.rockwellcollins.spear.utilities.PLTL;
+
+import jkind.lustre.Node;
+
 public class PNameMap {
 
 	public static PNameMap newMap() {
@@ -12,6 +16,12 @@ public class PNameMap {
 	public static PNameMap copy(PNameMap map) {
 		PNameMap copied = new PNameMap(map);
 		return copied;
+	}
+	
+	public static void addPLTL(PNameMap map) {
+		for(Node n : PLTL.getPLTL()) {
+			map.getName(n.id);
+		}
 	}
 	
 	private DualHashBidiMap<String,String> map;
