@@ -13,7 +13,7 @@ import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.Variable;
-import com.rockwellcollins.spear.translate.naming.PNameMap;
+import com.rockwellcollins.spear.translate.naming.Renaming;
 import com.rockwellcollins.spear.typing.SpearTypeChecker;
 import com.rockwellcollins.spear.typing.Type;
 import com.rockwellcollins.spear.util.SpearSwitch;
@@ -38,13 +38,13 @@ import jkind.lustre.UnaryOp;
 
 public class TranslateExpr extends SpearSwitch<Expr> {
 
-	public static Expr translate(com.rockwellcollins.spear.Expr e, PNameMap map) {
+	public static Expr translate(com.rockwellcollins.spear.Expr e, Renaming map) {
 		return new TranslateExpr(map).doSwitch(e);
 	}
 
-	private PNameMap map;
+	private Renaming map;
 
-	public TranslateExpr(PNameMap map) {
+	public TranslateExpr(Renaming map) {
 		this.map=map;
 	}
 	

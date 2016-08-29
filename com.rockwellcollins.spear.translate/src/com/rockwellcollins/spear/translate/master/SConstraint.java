@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.EObject;
 import com.rockwellcollins.spear.Constraint;
 import com.rockwellcollins.spear.EnglishConstraint;
 import com.rockwellcollins.spear.FormalConstraint;
-import com.rockwellcollins.spear.translate.naming.PNameMap;
+import com.rockwellcollins.spear.translate.naming.Renaming;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 import jkind.lustre.Equation;
@@ -17,7 +17,7 @@ import jkind.lustre.VarDecl;
 public abstract class SConstraint {
 
 	public static final String PROPERTY_SUFFIX = "_property";
-	public static List<SConstraint> build(List<Constraint> list, PNameMap map) {
+	public static List<SConstraint> build(List<Constraint> list, Renaming map) {
 		List<SConstraint> built = new ArrayList<>();
 		for(Constraint c : list) {
 			built.add(SConstraint.build(c, map));
@@ -25,7 +25,7 @@ public abstract class SConstraint {
 		return built;
 	}
 	
-	public static List<VarDecl> toVarDecl(List<SConstraint> list, PNameMap map) {
+	public static List<VarDecl> toVarDecl(List<SConstraint> list, Renaming map) {
 		List<VarDecl> decls = new ArrayList<>();
 		for(SConstraint c : list) {
 			decls.add(c.toVarDecl(map));
@@ -33,7 +33,7 @@ public abstract class SConstraint {
 		return decls;
 	}
 
-	public static List<Equation> toEquation(List<SConstraint> list, PNameMap map) {
+	public static List<Equation> toEquation(List<SConstraint> list, Renaming map) {
 		List<Equation> equations = new ArrayList<>();
 		for(SConstraint c : list) {
 			equations.add(c.toEquation(map));
@@ -41,7 +41,7 @@ public abstract class SConstraint {
 		return equations;
 	}
 	
-	public static List<Equation> toPropertyEquations(List<SConstraint> list, String name, PNameMap map) {
+	public static List<Equation> toPropertyEquations(List<SConstraint> list, String name, Renaming map) {
 		List<Equation> equations = new ArrayList<>();
 		for(SConstraint sc : list) {
 			equations.add(sc.getPropertyEquation(name,map));
@@ -49,7 +49,7 @@ public abstract class SConstraint {
 		return equations;
 	}
 	
-	public static List<String> toPropertyIds(List<SConstraint> list, PNameMap map) {
+	public static List<String> toPropertyIds(List<SConstraint> list, Renaming map) {
 		List<String> strings = new ArrayList<>();
 		for(SConstraint sc : list) {
 			strings.add(sc.name);
@@ -57,21 +57,21 @@ public abstract class SConstraint {
 		return strings;
 	}
 	
-	public static SConstraint build(Constraint c, PNameMap map) {
+	public static SConstraint build(Constraint c, Renaming map) {
 		SConstraintBuilder builder = new SConstraintBuilder(map);
 		return builder.doSwitch(c);
 	}
 	
 	public String name;
-	public abstract jkind.lustre.VarDecl toVarDecl(PNameMap map);
-	public abstract jkind.lustre.Equation toEquation(PNameMap map);
-	public abstract jkind.lustre.Equation getPropertyEquation(String assertion, PNameMap map);
+	public abstract jkind.lustre.VarDecl toVarDecl(Renaming map);
+	public abstract jkind.lustre.Equation toEquation(Renaming map);
+	public abstract jkind.lustre.Equation getPropertyEquation(String assertion, Renaming map);
 	
 	private static class SConstraintBuilder extends SpearSwitch<SConstraint> {
 		
-		private PNameMap map;
+		private Renaming map;
 		
-		private SConstraintBuilder(PNameMap map) {
+		private SConstraintBuilder(Renaming map) {
 			this.map=map;
 		}
 		

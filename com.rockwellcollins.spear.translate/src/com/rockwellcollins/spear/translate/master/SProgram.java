@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
-import com.rockwellcollins.spear.translate.naming.PNameMap;
+import com.rockwellcollins.spear.translate.naming.Renaming;
 import com.rockwellcollins.spear.utilities.PLTL;
 
 import jkind.lustre.Program;
@@ -16,7 +16,7 @@ public class SProgram {
 		return new SProgram(doc);
 	}
 	
-	public PNameMap map;
+	public Renaming map;
 	public String main;
 	public List<STypeDef> typedefs = new ArrayList<>();
 	public List<SConstant> constants = new ArrayList<>();
@@ -25,10 +25,10 @@ public class SProgram {
 	
 	public SProgram(SpearDocument document) {
 		//initialize the program's global map
-		map = PNameMap.newMap();
+		map = Renaming.newMap();
 		
 		//add the PLTL node names to the program
-		PNameMap.addPLTL(map);
+		Renaming.addPLTL(map);
 
 		//get the names of the typedefs, constants and process them
 		typedefs.addAll(STypeDef.build(document.typedefs, map));

@@ -8,12 +8,12 @@ import com.rockwellcollins.spear.EnumTypeDef;
 import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.RecordTypeDef;
 import com.rockwellcollins.spear.TypeDef;
-import com.rockwellcollins.spear.translate.naming.PNameMap;
+import com.rockwellcollins.spear.translate.naming.Renaming;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 public abstract class STypeDef {
 
-	public static List<STypeDef> build(List<TypeDef> list, PNameMap map) {
+	public static List<STypeDef> build(List<TypeDef> list, Renaming map) {
 		List<STypeDef> processed = new ArrayList<>();
 		for(TypeDef td : list) {
 			processed.add(STypeDef.build(td, map));
@@ -21,7 +21,7 @@ public abstract class STypeDef {
 		return processed;
 	}
 	
-	public static List<jkind.lustre.TypeDef> toLustre(List<STypeDef> list, PNameMap map) {
+	public static List<jkind.lustre.TypeDef> toLustre(List<STypeDef> list, Renaming map) {
 		List<jkind.lustre.TypeDef> lustre = new ArrayList<>();
 		for(STypeDef std : list) {
 			lustre.add(std.toLustre(map));
@@ -29,18 +29,18 @@ public abstract class STypeDef {
 		return lustre;
 	}
 	
-	public static STypeDef build(TypeDef td, PNameMap map) {
+	public static STypeDef build(TypeDef td, Renaming map) {
 		STypeDefBuilder builder = new STypeDefBuilder(map);
 		return builder.doSwitch(td);
 	}
 	
 	public String name;
-	public abstract jkind.lustre.TypeDef toLustre(PNameMap map);
+	public abstract jkind.lustre.TypeDef toLustre(Renaming map);
 	
 	private static class STypeDefBuilder extends SpearSwitch<STypeDef> {
-		private PNameMap map;
+		private Renaming map;
 		
-		private STypeDefBuilder(PNameMap map) {
+		private STypeDefBuilder(Renaming map) {
 			this.map=map;
 		}
 		

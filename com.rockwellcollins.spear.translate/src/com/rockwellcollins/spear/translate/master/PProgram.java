@@ -3,7 +3,7 @@ package com.rockwellcollins.spear.translate.master;
 import java.util.List;
 
 import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
-import com.rockwellcollins.spear.translate.naming.PNameMap;
+import com.rockwellcollins.spear.translate.naming.Renaming;
 
 import jkind.lustre.Program;
 import jkind.lustre.builders.ProgramBuilder;
@@ -15,11 +15,11 @@ public class PProgram {
 	public List<SConstant> constants;
 	public List<SPattern> patterns;
 	
-	public PNameMap map;
+	public Renaming map;
 
 	public PProgram(PatternDocument doc) {
 		//create the map
-		map = PNameMap.newMap();
+		map = Renaming.newMap();
 		
 		//not going to rename the main name. it will be first in, no conflicts.
 		this.main = doc.mainName;

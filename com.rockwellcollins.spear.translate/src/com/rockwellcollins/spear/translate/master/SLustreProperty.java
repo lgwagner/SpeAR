@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.rockwellcollins.spear.LustreProperty;
-import com.rockwellcollins.spear.translate.naming.PNameMap;
+import com.rockwellcollins.spear.translate.naming.Renaming;
 
 public class SLustreProperty {
 
-	public static List<SLustreProperty> build(List<LustreProperty> list, PNameMap map) {
+	public static List<SLustreProperty> build(List<LustreProperty> list, Renaming map) {
 		List<SLustreProperty> built = new ArrayList<>();
 		for(LustreProperty lp : list) {
 			built.add(SLustreProperty.build(lp,map));
@@ -24,13 +24,13 @@ public class SLustreProperty {
 		return lustre;
 	}
 	
-	public static SLustreProperty build(LustreProperty lp, PNameMap map) {
+	public static SLustreProperty build(LustreProperty lp, Renaming map) {
 		return new SLustreProperty(lp,map);
 	}
 	
 	private String propertyId;
 
-	public SLustreProperty(LustreProperty lp, PNameMap map) {
+	public SLustreProperty(LustreProperty lp, Renaming map) {
 		this.propertyId = map.lookupOriginal(lp.getPropertyId().getName());
 	}
 	

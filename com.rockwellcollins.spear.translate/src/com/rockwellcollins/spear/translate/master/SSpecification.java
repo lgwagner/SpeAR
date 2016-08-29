@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.actions.SpearRuntimeOptions;
-import com.rockwellcollins.spear.translate.naming.PNameMap;
+import com.rockwellcollins.spear.translate.naming.Renaming;
 import com.rockwellcollins.spear.utilities.PLTL;
 
 import jkind.lustre.BinaryExpr;
@@ -26,7 +26,7 @@ import jkind.lustre.builders.NodeBuilder;
 
 public class SSpecification {
 
-	public static List<String> addNames(List<Specification> list, PNameMap global) {
+	public static List<String> addNames(List<Specification> list, Renaming global) {
 		List<String> renamed = new ArrayList<>();
 		for(Specification  s : list) {
 			renamed.add(SSpecification.addName(s, global));
@@ -34,11 +34,11 @@ public class SSpecification {
 		return renamed;
 	}
 	
-	public static String addName(Specification s, PNameMap global) {
+	public static String addName(Specification s, Renaming global) {
 		return global.getName(s.getName());
 	}
 	
-	public static List<SSpecification> build(List<Specification> list, PNameMap global) {
+	public static List<SSpecification> build(List<Specification> list, Renaming global) {
 		List<SSpecification> converted = new ArrayList<>();
 		for(Specification  s : list) {
 			converted.add(SSpecification.build(s, global));
@@ -46,7 +46,7 @@ public class SSpecification {
 		return converted;
 	}
 	
-	public static SSpecification build(Specification s, PNameMap global) {
+	public static SSpecification build(Specification s, Renaming global) {
 		return new SSpecification(s,global);
 	}
 	
@@ -59,7 +59,7 @@ public class SSpecification {
 	private String consistencyName;
 	private static final String CONSISTENCY = "consistent";
 	
-	public PNameMap local;
+	public Renaming local;
 	
 	public String name;
 	public List<SMacro> macros = new ArrayList<>();
@@ -71,12 +71,12 @@ public class SSpecification {
 	public List<SConstraint> behaviors = new ArrayList<>();
 //	public List<SCall> calls = new ArrayList<>();
 	
-	public SSpecification(Specification s, PNameMap global) {
+	public SSpecification(Specification s, Renaming global) {
 		//get the name from the global map
 		this.name = global.lookupOriginal(s.getName());
 		
 		//copy the global map as the local
-		this.local = PNameMap.copy(global);
+		this.local = Renaming.copy(global);
 		
 		// set the name
 		this.inputs.addAll(SVariable.build(s.getInputs(), local));

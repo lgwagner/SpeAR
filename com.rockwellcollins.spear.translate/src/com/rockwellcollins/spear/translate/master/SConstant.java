@@ -8,15 +8,15 @@ import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.Type;
 import com.rockwellcollins.spear.translate.lustre.TranslateExpr;
 import com.rockwellcollins.spear.translate.lustre.TranslateType;
-import com.rockwellcollins.spear.translate.naming.PNameMap;
+import com.rockwellcollins.spear.translate.naming.Renaming;
 
 public class SConstant {
 	
-	public static SConstant build(Constant c, PNameMap map) {
+	public static SConstant build(Constant c, Renaming map) {
 		return new SConstant(c,map);
 	}
 	
-	public static List<SConstant> build(List<Constant> list, PNameMap map) {
+	public static List<SConstant> build(List<Constant> list, Renaming map) {
 		List<SConstant> built = new ArrayList<>();
 		for(Constant c : list) {
 			built.add(SConstant.build(c, map));
@@ -24,7 +24,7 @@ public class SConstant {
 		return built;
 	}
 	
-	public static List<jkind.lustre.Constant> toLustre(List<SConstant> list, PNameMap map) {
+	public static List<jkind.lustre.Constant> toLustre(List<SConstant> list, Renaming map) {
 		List<jkind.lustre.Constant> lustre = new ArrayList<>();
 		for(SConstant sc : list) {
 			lustre.add(sc.toLustre(map));
@@ -36,13 +36,13 @@ public class SConstant {
 	public Type type;
 	public Expr expr;
 	
-	public SConstant(Constant c, PNameMap map) {
+	public SConstant(Constant c, Renaming map) {
 		this.name=map.getName(c.getName());
 		this.type=c.getType();
 		this.expr=c.getExpr();
 	}
 	
-	public jkind.lustre.Constant toLustre(PNameMap map) {
+	public jkind.lustre.Constant toLustre(Renaming map) {
 		jkind.lustre.Type type = TranslateType.translate(this.type, map);
 		jkind.lustre.Expr expression = TranslateExpr.translate(this.expr,map);
 		return new jkind.lustre.Constant(this.name,type,expression);

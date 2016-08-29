@@ -6,13 +6,13 @@ import java.util.List;
 import com.rockwellcollins.spear.Type;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.translate.lustre.TranslateType;
-import com.rockwellcollins.spear.translate.naming.PNameMap;
+import com.rockwellcollins.spear.translate.naming.Renaming;
 
 import jkind.lustre.VarDecl;
 
 public class SVariable {
 
-	public static List<SVariable> build(List<Variable> list, PNameMap map) {
+	public static List<SVariable> build(List<Variable> list, Renaming map) {
 		List<SVariable> processed = new ArrayList<>();
 		for(Variable v : list) {
 			processed.add(SVariable.build(v, map));
@@ -20,7 +20,7 @@ public class SVariable {
 		return processed;
 	}
 	
-	public static List<VarDecl> toVarDecl(List<SVariable> list, PNameMap map) {
+	public static List<VarDecl> toVarDecl(List<SVariable> list, Renaming map) {
 		List<VarDecl> lustre = new ArrayList<>();
 		for(SVariable svar : list) {
 			lustre.add(svar.toLustre(map));
@@ -28,19 +28,19 @@ public class SVariable {
 		return lustre;
 	}
 	
-	public static SVariable build(Variable v, PNameMap map) {
+	public static SVariable build(Variable v, Renaming map) {
 		return new SVariable(v,map);
 	}
 	
 	public String name;
 	public Type type;
 	
-	public SVariable(Variable v, PNameMap map) {
+	public SVariable(Variable v, Renaming map) {
 		this.name=map.getName(v.getName());
 		this.type=v.getType();
 	}
 	
-	public jkind.lustre.VarDecl toLustre(PNameMap nameMap) {
+	public jkind.lustre.VarDecl toLustre(Renaming nameMap) {
 		jkind.lustre.Type type = TranslateType.translate(this.type, nameMap);
 		return new jkind.lustre.VarDecl(this.name,type);
 	}

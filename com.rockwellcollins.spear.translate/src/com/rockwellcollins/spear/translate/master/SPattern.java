@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.rockwellcollins.spear.Pattern;
-import com.rockwellcollins.spear.translate.naming.PNameMap;
+import com.rockwellcollins.spear.translate.naming.Renaming;
 
 import jkind.lustre.Node;
 import jkind.lustre.builders.NodeBuilder;
 
 public class SPattern {
 
-	public static List<String> addNames(List<Pattern> list, PNameMap global) {
+	public static List<String> addNames(List<Pattern> list, Renaming global) {
 		List<String> renamed = new ArrayList<>();
 		for(Pattern p : list) {
 			renamed.add(SPattern.addName(p, global));
@@ -19,11 +19,11 @@ public class SPattern {
 		return renamed;
 	}
 	
-	public static String addName(Pattern p, PNameMap global) {
+	public static String addName(Pattern p, Renaming global) {
 		return global.getName(p.getName());
 	}
 	
-	public static List<SPattern> build(List<Pattern> list, PNameMap global) {
+	public static List<SPattern> build(List<Pattern> list, Renaming global) {
 		List<SPattern> built = new ArrayList<>();
 		for(Pattern p : list) {
 			built.add(SPattern.build(p, global));
@@ -39,11 +39,11 @@ public class SPattern {
 		return lustre;
 	}
 	
-	public static SPattern build(Pattern p, PNameMap map) {
+	public static SPattern build(Pattern p, Renaming map) {
 		return new SPattern(p,map);
 	}
 	
-	public PNameMap local;
+	public Renaming local;
 	public String name;
 	public List<SPVariable> inputs;
 	public List<SPVariable> outputs;
@@ -52,12 +52,12 @@ public class SPattern {
 	public List<SLustreProperty> properties;
 	public List<SLustreAssertion> assertions;
 	
-	public SPattern(Pattern p, PNameMap global) {
+	public SPattern(Pattern p, Renaming global) {
 		//we already added these names to the global map
 		this.name = global.lookupOriginal(p.getName());
 		
 		//copy the global name map for the basis of the local
-		this.local = PNameMap.copy(global);
+		this.local = Renaming.copy(global);
 		
 		//process everything
 		this.inputs = SPVariable.build(p.getInputs(), local);
