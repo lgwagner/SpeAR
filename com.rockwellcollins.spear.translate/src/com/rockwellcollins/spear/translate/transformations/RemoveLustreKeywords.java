@@ -10,6 +10,8 @@ import org.eclipse.xtext.util.SimpleAttributeResolver;
 
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
+import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.utilities.LustreUtilities;
 
 public class RemoveLustreKeywords {

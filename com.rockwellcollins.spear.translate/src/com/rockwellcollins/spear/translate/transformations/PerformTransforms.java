@@ -4,6 +4,9 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 
+import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
+import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
+
 public class PerformTransforms {
 
 	public static Map<EObject,Map<String,String>> apply(SpearDocument doc) throws Exception {

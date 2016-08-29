@@ -1,4 +1,4 @@
-package com.rockwellcollins.spear.translate.transformations;
+package com.rockwellcollins.spear.translate.intermediate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,6 @@ import org.eclipse.emf.ecore.EObject;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.TypeDef;
-import com.rockwellcollins.spear.translate.actions.FindPatternDependencies;
 
 public class PatternDocument {
 

@@ -3,8 +3,8 @@ package com.rockwellcollins.spear.translate.master;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.translate.naming.PNameMap;
-import com.rockwellcollins.spear.translate.transformations.SpearDocument;
 
 public class SProgram {
 

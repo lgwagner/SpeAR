@@ -1,4 +1,4 @@
-package com.rockwellcollins.spear.translate.transformations;
+package com.rockwellcollins.spear.translate.intermediate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,6 @@ import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.TypeDef;
-import com.rockwellcollins.spear.translate.actions.FindSpecificationDependencies;
 
 public class SpearDocument {
 

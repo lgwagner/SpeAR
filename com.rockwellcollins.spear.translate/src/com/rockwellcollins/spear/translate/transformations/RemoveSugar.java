@@ -10,6 +10,8 @@ import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.WhileExpr;
 import com.rockwellcollins.spear.language.CreateExpr;
+import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
+import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 public class RemoveSugar extends SpearSwitch<Void> {

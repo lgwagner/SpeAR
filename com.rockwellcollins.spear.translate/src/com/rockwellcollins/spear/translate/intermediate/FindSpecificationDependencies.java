@@ -1,4 +1,4 @@
-package com.rockwellcollins.spear.translate.actions;
+package com.rockwellcollins.spear.translate.intermediate;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -12,7 +12,7 @@ import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.TypeDef;
-import com.rockwellcollins.spear.translate.actions.FindSpecificationDependencies.Status;
+import com.rockwellcollins.spear.translate.intermediate.FindSpecificationDependencies.Status;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 public class FindSpecificationDependencies extends SpearSwitch<Status> {

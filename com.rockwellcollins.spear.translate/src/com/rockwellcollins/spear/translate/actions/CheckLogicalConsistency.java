@@ -29,10 +29,10 @@ import org.eclipse.xtext.validation.Issue;
 import com.google.inject.Injector;
 import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.translate.master.SProgram;
 import com.rockwellcollins.spear.translate.master.SProgram;
 import com.rockwellcollins.spear.translate.transformations.PerformTransforms;
-import com.rockwellcollins.spear.translate.transformations.SpearDocument;
 import com.rockwellcollins.spear.translate.views.SpearResultsView;
 import com.rockwellcollins.ui.internal.SpearActivator;
 

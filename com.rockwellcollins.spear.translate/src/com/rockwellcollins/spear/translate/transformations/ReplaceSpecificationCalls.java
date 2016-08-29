@@ -12,6 +12,7 @@ import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.SpearFactory;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.SpecificationCall;
+import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 public class ReplaceSpecificationCalls extends SpearSwitch<EObject> {

@@ -13,6 +13,8 @@ import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.RecordExpr;
 import com.rockwellcollins.spear.SpearFactory;
 import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
+import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 
 public class ReplaceShortHandRecords {
 	

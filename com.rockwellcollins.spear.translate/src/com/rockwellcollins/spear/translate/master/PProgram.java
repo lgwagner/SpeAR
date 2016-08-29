@@ -2,8 +2,8 @@ package com.rockwellcollins.spear.translate.master;
 
 import java.util.List;
 
+import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
 import com.rockwellcollins.spear.translate.naming.PNameMap;
-import com.rockwellcollins.spear.translate.transformations.PatternDocument;
 
 import jkind.lustre.Program;
 import jkind.lustre.builders.ProgramBuilder;

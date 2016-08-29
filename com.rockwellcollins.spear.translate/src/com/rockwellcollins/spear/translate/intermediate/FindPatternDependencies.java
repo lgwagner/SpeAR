@@ -1,4 +1,4 @@
-package com.rockwellcollins.spear.translate.actions;
+package com.rockwellcollins.spear.translate.intermediate;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -11,7 +11,7 @@ import org.eclipse.xtext.EcoreUtil2;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.TypeDef;
-import com.rockwellcollins.spear.translate.actions.FindPatternDependencies.Status;
+import com.rockwellcollins.spear.translate.intermediate.FindPatternDependencies.Status;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 public class FindPatternDependencies extends SpearSwitch<Status> {
