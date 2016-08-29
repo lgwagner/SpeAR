@@ -18,6 +18,15 @@ public class SpearDocument {
 	public List<Pattern> patterns = new ArrayList<>();
 	public List<Specification> specifications = new ArrayList<>();
 
+	public Specification getMain() {
+		for(Specification s : specifications) {
+			if(s.getName().equals(mainName)) {
+				return s;
+			}
+		}
+		return null;
+	}
+	
 	public SpearDocument(Specification main) {
 		this.mainName = main.getName();
 		List<EObject> objects = FindSpecificationDependencies.getDependencies(main);
