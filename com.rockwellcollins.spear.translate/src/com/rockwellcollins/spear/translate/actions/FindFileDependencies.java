@@ -12,20 +12,20 @@ import org.eclipse.xtext.EcoreUtil2;
 
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Specification;
-import com.rockwellcollins.spear.translate.actions.FindDependencies.Status;
+import com.rockwellcollins.spear.translate.actions.FindFileDependencies.Status;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
-public class FindDependencies extends SpearSwitch<Status> {
+public class FindFileDependencies extends SpearSwitch<Status> {
 
-	public static FindDependencies instance(Specification main) {
-		FindDependencies findDeps = new FindDependencies();
+	public static FindFileDependencies instance(Specification main) {
+		FindFileDependencies findDeps = new FindFileDependencies();
 		findDeps.set.add(main);
 		findDeps.doSwitch(main);	
 		return findDeps;
 	}
 	
-	public static FindDependencies instance(File main) {
-		FindDependencies findDeps = new FindDependencies();
+	public static FindFileDependencies instance(File main) {
+		FindFileDependencies findDeps = new FindFileDependencies();
 		findDeps.set.add(main);
 		findDeps.doSwitch(main);	
 		return findDeps;
@@ -47,6 +47,7 @@ public class FindDependencies extends SpearSwitch<Status> {
 		return map;
 	}
 	
+	@Override
 	public Status caseFile(File f) {
 		set.add(f);
 		this.defaultCase(f);

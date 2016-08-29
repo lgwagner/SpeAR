@@ -16,7 +16,8 @@ import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.utils.EditorUtils;
 
 import com.rockwellcollins.spear.Pattern;
-import com.rockwellcollins.spear.translate.master.SPatternProgram;
+import com.rockwellcollins.spear.translate.master.SPatternProgram2;
+import com.rockwellcollins.spear.translate.transformations.PatternDocument;
 import com.rockwellcollins.spear.translate.views.SpearResultsView;
 import com.rockwellcollins.spear.ui.preferences.PreferencesUtil;
 
@@ -45,15 +46,37 @@ public class AnalyzePattern extends AbstractHandler {
 				return null;
 			}
 			
-			analyzePattern(p);
+			analyzePattern2(p);
 			return null;
 		});
 		return null;
 	}
 
-	private void analyzePattern(Pattern p) {
-		SPatternProgram patternProg = new SPatternProgram(p);
-		Program program = patternProg.toLustre();
+//	private void analyzePattern(Pattern p) {
+//		SPatternProgram patternProg = new SPatternProgram(p);
+//		Program program = patternProg.toLustre();
+//		
+//		JKindApi api = (JKindApi) PreferencesUtil.getKindApi();
+//		JKindResult result = new JKindResult("result");
+//		for(String prop : program.getMainNode().properties) {
+//			result.addProperty(prop);
+//		}
+//		IProgressMonitor monitor = new NullProgressMonitor();
+//		String nicename = "Pattern Analysis: " + p.getName();
+//		showView(result, new NodeLayout(program.getMainNode()), nicename);
+//		
+//		try {
+//			api.execute(program, result, monitor);
+//		} catch (Exception e) {
+//			System.out.println(result.getText());
+//			throw e;
+//		}
+//	}
+	
+	private void analyzePattern2(Pattern p) {
+		PatternDocument doc = new PatternDocument(p);
+		SPatternProgram2 pprogram = new SPatternProgram2(doc);
+		Program program = pprogram.toLustre(pprogram.map);
 		
 		JKindApi api = (JKindApi) PreferencesUtil.getKindApi();
 		JKindResult result = new JKindResult("result");

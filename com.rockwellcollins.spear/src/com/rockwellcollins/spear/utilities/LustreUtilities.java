@@ -44,6 +44,7 @@ public class LustreUtilities {
 		keywords.add("since");
 		keywords.add("triggers");
 		keywords.add("responds_within");
+		keywords.add("counter");
 		return keywords;
 	}
 }

@@ -3,6 +3,8 @@ package com.rockwellcollins.spear.translate.master;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.xtext.EcoreUtil2;
+
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.translate.naming.NameMap;
 
@@ -32,16 +34,15 @@ public class SPattern {
 	}
 	
 	public String name;
-	private List<SPVariable> inputs;
-	private List<SPVariable> outputs;
-	private List<SPVariable> locals;
-	private List<SLustreEquation> equations;
-	private List<SLustreProperty> properties;
-	private List<SLustreAssertion> assertions;
+	protected List<SPVariable> inputs;
+	protected List<SPVariable> outputs;
+	protected List<SPVariable> locals;
+	protected List<SLustreEquation> equations;
+	protected List<SLustreProperty> properties;
+	protected List<SLustreAssertion> assertions;
 	
 	public SPattern(Pattern p, NameMap map) {
 		map.addPattern(p, this);
-		
 		this.name = map.getFileBasedName(p);
 		this.inputs = SPVariable.build(p.getInputs(), p, map);
 		this.outputs = SPVariable.build(p.getOutputs(), p, map);
@@ -50,7 +51,6 @@ public class SPattern {
 		this.properties = SLustreProperty.build(p.getProperties(), map);
 		this.assertions = SLustreAssertion.build(p.getAssertions());
 	}
-	
 	
 	public Node toLustre(NameMap map) {
 		NodeBuilder builder = new NodeBuilder(this.name);

@@ -9,21 +9,30 @@ import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.util.SimpleAttributeResolver;
 
 import com.rockwellcollins.spear.File;
+import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.utilities.LustreUtilities;
 
 public class RemoveLustreKeywords {
 
-	public static Map<File,Map<String,String>> transform(SpearDocument p) {
+	public static Map<File,Map<String,String>> transform(SpearDocument doc) {
 		Map<File,Map<String,String>> filemap = new HashMap<>();
-		for(File f : p.files) {
+		for(File f : doc.files) {
 			filemap.put(f, transform(f));
 		}
 		return filemap;
 	}
 	
-	public static Map<String,String> transform(File f) {
+	public static Map<Pattern,Map<String,String>> transform(PatternDocument doc) {
+		Map<Pattern,Map<String,String>> patternmap = new HashMap<>();
+		for(Pattern p : doc.patterns) {
+			patternmap.put(p, transform(p));
+		}
+		return patternmap;		
+	}
+	
+	public static Map<String,String> transform(EObject o) {
 		RemoveLustreKeywords rlk = new RemoveLustreKeywords();
-		return rlk.processNames(f);
+		return rlk.processNames(o);
 	}
 
 	private final Set<String> keywords;
