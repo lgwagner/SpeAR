@@ -77,7 +77,9 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 				SpearRuntimeOptions.setRuntimeOptions();
 				
 				SpearDocument workingCopy = new SpearDocument(specification);
+				@SuppressWarnings("unused")
 				Map<EObject,Map<String,String>> renamed = PerformTransforms.apply(workingCopy);
+				@SuppressWarnings("unused")
 				SProgram program = SProgram.build(workingCopy);
 
 /*
