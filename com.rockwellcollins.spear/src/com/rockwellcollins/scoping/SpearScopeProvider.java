@@ -9,6 +9,7 @@ import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
 
 import com.rockwellcollins.spear.Constant;
+import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.RecordAccessExpr;
@@ -58,6 +59,7 @@ public class SpearScopeProvider extends org.eclipse.xtext.scoping.impl.AbstractD
 
 	private IScope getPatternScope(Pattern p) {
 		IScope scope = Scopes.scopeFor(EcoreUtil2.getAllContentsOfType(Utilities.getRoot(p), Constant.class));
+		scope = Scopes.scopeFor(EcoreUtil2.getAllContentsOfType(Utilities.getRoot(p), EnumValue.class));
 		scope = Scopes.scopeFor(EcoreUtil2.getAllContentsOfType(p, Variable.class), scope);
 		return scope;
 	}
