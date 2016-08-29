@@ -6,11 +6,6 @@ import java.io.IOException;
 import java.util.Map;
 
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.action.IAction;
@@ -20,7 +15,6 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.XtextEditor;
@@ -35,20 +29,12 @@ import com.google.inject.Injector;
 import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Specification;
-import com.rockwellcollins.spear.translate.layout.SpearLayout;
-import com.rockwellcollins.spear.translate.master.SProgram;
 import com.rockwellcollins.spear.translate.transformations.PerformTransforms;
 import com.rockwellcollins.spear.translate.transformations.SpearDocument;
 import com.rockwellcollins.spear.translate.views.SpearResultsView;
-import com.rockwellcollins.spear.ui.preferences.PreferencesUtil;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
-import jkind.api.KindApi;
 import jkind.api.results.JKindResult;
-import jkind.api.results.MapRenaming;
-import jkind.api.results.MapRenaming.Mode;
-import jkind.api.results.Renaming;
-import jkind.lustre.Program;
 import jkind.results.layout.Layout;
 
 public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
@@ -91,6 +77,8 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 				
 				SpearDocument workingCopy = new SpearDocument(specification);
 				Map<File,Map<String,String>> renamed = PerformTransforms.apply(workingCopy);
+				System.exit(-1);
+/*
 				SProgram program = SProgram.build(workingCopy);
 
 				Program p = program.getLogicalEntailment();
@@ -119,6 +107,7 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 					System.out.println(result.getText());
 					throw e;
 				}
+*/
 				return null;
 			}
 		});

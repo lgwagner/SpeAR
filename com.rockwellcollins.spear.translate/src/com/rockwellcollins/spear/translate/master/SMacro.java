@@ -8,14 +8,14 @@ import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.Type;
 import com.rockwellcollins.spear.translate.lustre.TranslateExpr;
 import com.rockwellcollins.spear.translate.lustre.TranslateType;
-import com.rockwellcollins.spear.translate.naming.NameMap;
+import com.rockwellcollins.spear.translate.naming.PNameMap;
 
 import jkind.lustre.Equation;
 import jkind.lustre.VarDecl;
 
 public class SMacro {
 
-	public static List<SMacro> build(List<Macro> list, NameMap map) {
+	public static List<SMacro> build(List<Macro> list, PNameMap map) {
 		List<SMacro> built = new ArrayList<>();
 		for(Macro m : list) {
 			built.add(SMacro.build(m, map));
@@ -23,7 +23,7 @@ public class SMacro {
 		return built;
 	}
 	
-	public static List<VarDecl> toVarDecls(List<SMacro> list, NameMap map) {
+	public static List<VarDecl> toVarDecls(List<SMacro> list, PNameMap map) {
 		List<VarDecl> decls = new ArrayList<>();
 		for(SMacro smacro : list) {
 			decls.add(smacro.toVarDecl(map));
@@ -31,7 +31,7 @@ public class SMacro {
 		return decls;
 	}
 	
-	public static List<Equation> toEquations(List<SMacro> list, NameMap map) {
+	public static List<Equation> toEquations(List<SMacro> list, PNameMap map) {
 		List<Equation> equations = new ArrayList<>();
 		for(SMacro smacro : list) {
 			equations.add(smacro.toEquation(map));
@@ -39,7 +39,7 @@ public class SMacro {
 		return equations;
 	}
 	
-	public static SMacro build(Macro m, NameMap map) {
+	public static SMacro build(Macro m, PNameMap map) {
 		return new SMacro(m,map);
 	}
 	
@@ -47,18 +47,18 @@ public class SMacro {
 	public Type type;
 	public Expr expression;
 	
-	public SMacro(Macro m, NameMap map) {
-		this.name=map.getName(m);
+	public SMacro(Macro m, PNameMap map) {
+		this.name=map.getName(m.getName());
 		this.type=m.getType();
 		this.expression=m.getExpr();
 	}
 	
-	public jkind.lustre.VarDecl toVarDecl(NameMap map) {
+	public jkind.lustre.VarDecl toVarDecl(PNameMap map) {
 		jkind.lustre.Type type = TranslateType.translate(this.type, map);
 		return new jkind.lustre.VarDecl(this.name,type);
 	}
 	
-	public jkind.lustre.Equation toEquation(NameMap map) {
+	public jkind.lustre.Equation toEquation(PNameMap map) {
 		jkind.lustre.IdExpr LHS = new jkind.lustre.IdExpr(this.name);
 		jkind.lustre.Expr RHS = TranslateExpr.translate(expression, map);
 		return new jkind.lustre.Equation(LHS,RHS);

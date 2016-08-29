@@ -10,17 +10,13 @@ import org.eclipse.emf.ecore.EObject;
 
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.EnumValue;
-import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.Macro;
-import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.Variable;
-import com.rockwellcollins.spear.translate.master.SCall;
-import com.rockwellcollins.spear.translate.naming.NameMap;
+import com.rockwellcollins.spear.translate.naming.PNameMap;
 import com.rockwellcollins.spear.typing.SpearTypeChecker;
 import com.rockwellcollins.spear.typing.Type;
 import com.rockwellcollins.spear.util.SpearSwitch;
-import com.rockwellcollins.spear.utilities.Utilities;
 
 import jkind.lustre.ArrayAccessExpr;
 import jkind.lustre.ArrayExpr;
@@ -42,13 +38,13 @@ import jkind.lustre.UnaryOp;
 
 public class TranslateExpr extends SpearSwitch<Expr> {
 
-	public static Expr translate(com.rockwellcollins.spear.Expr e, NameMap map) {
+	public static Expr translate(com.rockwellcollins.spear.Expr e, PNameMap map) {
 		return new TranslateExpr(map).doSwitch(e);
 	}
 
-	private NameMap map;
+	private PNameMap map;
 
-	public TranslateExpr(NameMap map) {
+	public TranslateExpr(PNameMap map) {
 		this.map=map;
 	}
 	
@@ -165,7 +161,7 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 		for(com.rockwellcollins.spear.FieldExpr fe : re.getFieldExprs()) {
 			fields.put(fe.getField().getName(), doSwitch(fe.getExpr()));
 		}
-		return new RecordExpr(map.lookup(re.getType()),fields);
+		return new RecordExpr(map.lookupOriginal(re.getType().getName()),fields);
 	}
 	
 	@Override
@@ -204,11 +200,12 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 			args.add(this.doSwitch(idr));
 		}
 
-		SCall scall = map.callMapping.get(call);
-		args.addAll(scall.getCallsArgs(map));
-		
-		String name = map.fileMapping.get(call.getSpec()).name;
-		return new NodeCallExpr(name,args);
+		return new IdExpr("call");
+//		SCall scall = map.callMapping.get(call);
+//		args.addAll(scall.getCallsArgs(map));
+//		
+//		String name = map.fileMapping.get(call.getSpec()).name;
+//		return new NodeCallExpr(name,args);
 	}
 	
 	@Override
@@ -217,9 +214,7 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 		for(com.rockwellcollins.spear.Expr e : call.getArgs()) {
 			args.add(TranslateExpr.translate(e, map));
 		}
-		
-		String name = map.patternMapping.get(call.getPattern()).name;
-		return new NodeCallExpr(name,args);
+		return new NodeCallExpr(call.getPattern().getName(), args);
 	}
 
 	@Override
@@ -234,30 +229,23 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	
 	@Override
 	public Expr caseVariable(Variable v) {
-		EObject container = Utilities.getTopContainer(v);
-		if(container instanceof File) {
-			return new IdExpr(map.lookup(v));	
-		} else if (container instanceof Pattern) {
-			Pattern p = (Pattern) container;
-			return new IdExpr(map.lookup(p, v.getName()));
-		} else {
-			throw new RuntimeException("Variable container was " + container);
-		}
+		String name = map.lookupOriginal(v.getName());
+		return new IdExpr(name);
 	}
 	
 	@Override
 	public Expr caseMacro(Macro m) {
-		return new IdExpr(map.lookup(m));
+		return new IdExpr(map.lookupOriginal(m.getName()));
 	}
 	
 	@Override
 	public Expr caseConstant(Constant c) {
-		return new IdExpr(map.lookup(c));
+		return new IdExpr(map.lookupOriginal(c.getName()));
 	}
 	
 	@Override
 	public Expr caseEnumValue(EnumValue ev) {
-		return new IdExpr(map.lookup(ev));
+		return new IdExpr(map.lookupOriginal(ev.getName()));
 	}
 	
 	@Override

@@ -3,63 +3,79 @@ package com.rockwellcollins.spear.translate.master;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.xtext.EcoreUtil2;
-
 import com.rockwellcollins.spear.Pattern;
-import com.rockwellcollins.spear.translate.naming.NameMap;
+import com.rockwellcollins.spear.translate.naming.PNameMap;
 
 import jkind.lustre.Node;
 import jkind.lustre.builders.NodeBuilder;
 
 public class SPattern {
 
-	public static List<SPattern> build(List<Pattern> list, NameMap map) {
+	public static List<String> addNames(List<Pattern> list, PNameMap global) {
+		List<String> renamed = new ArrayList<>();
+		for(Pattern p : list) {
+			renamed.add(SPattern.addName(p, global));
+		}
+		return renamed;
+	}
+	
+	public static String addName(Pattern p, PNameMap global) {
+		return global.getName(p.getName());
+	}
+	
+	public static List<SPattern> build(List<Pattern> list, PNameMap global) {
 		List<SPattern> built = new ArrayList<>();
 		for(Pattern p : list) {
-			built.add(SPattern.build(p, map));
+			built.add(SPattern.build(p, global));
 		}
 		return built;
 	}
 	
-	public static List<Node> toLustre(List<SPattern> list, NameMap map) {
+	public static List<Node> toLustre(List<SPattern> list) {
 		List<Node> lustre = new ArrayList<>();
 		for(SPattern p : list) {
-			lustre.add(p.toLustre(map));
+			lustre.add(p.toLustre());
 		}
 		return lustre;
 	}
 	
-	public static SPattern build(Pattern p, NameMap map) {
+	public static SPattern build(Pattern p, PNameMap map) {
 		return new SPattern(p,map);
 	}
 	
+	public PNameMap local;
 	public String name;
-	protected List<SPVariable> inputs;
-	protected List<SPVariable> outputs;
-	protected List<SPVariable> locals;
-	protected List<SLustreEquation> equations;
-	protected List<SLustreProperty> properties;
-	protected List<SLustreAssertion> assertions;
+	public List<SPVariable> inputs;
+	public List<SPVariable> outputs;
+	public List<SPVariable> locals;
+	public List<SLustreEquation> equations;
+	public List<SLustreProperty> properties;
+	public List<SLustreAssertion> assertions;
 	
-	public SPattern(Pattern p, NameMap map) {
-		map.addPattern(p, this);
-		this.name = map.getFileBasedName(p);
-		this.inputs = SPVariable.build(p.getInputs(), p, map);
-		this.outputs = SPVariable.build(p.getOutputs(), p, map);
-		this.locals = SPVariable.build(p.getLocals(), p, map);
-		this.equations = SLustreEquation.build(p.getEquations(), map);
-		this.properties = SLustreProperty.build(p.getProperties(), map);
+	public SPattern(Pattern p, PNameMap global) {
+		//we already added these names to the global map
+		this.name = global.lookupOriginal(p.getName());
+		
+		//copy the global name map for the basis of the local
+		this.local = PNameMap.copy(global);
+		
+		//process everything
+		this.inputs = SPVariable.build(p.getInputs(), local);
+		this.outputs = SPVariable.build(p.getOutputs(), local);
+		this.locals = SPVariable.build(p.getLocals(), local);
+		this.equations = SLustreEquation.build(p.getEquations(), local);
+		this.properties = SLustreProperty.build(p.getProperties(), local);
 		this.assertions = SLustreAssertion.build(p.getAssertions());
 	}
 	
-	public Node toLustre(NameMap map) {
+	public Node toLustre() {
 		NodeBuilder builder = new NodeBuilder(this.name);
-		builder.addInputs(SPVariable.toVarDecl(this.inputs, map));
-		builder.addOutputs(SPVariable.toVarDecl(this.outputs, map));
-		builder.addLocals(SPVariable.toVarDecl(this.locals, map));
-		builder.addEquations(SLustreEquation.toLustre(this.equations, map));
+		builder.addInputs(SPVariable.toVarDecl(this.inputs, local));
+		builder.addOutputs(SPVariable.toVarDecl(this.outputs, local));
+		builder.addLocals(SPVariable.toVarDecl(this.locals, local));
+		builder.addEquations(SLustreEquation.toLustre(this.equations, local));
 		builder.addProperties(SLustreProperty.toLustre(this.properties));
-		builder.addAssertions(SLustreAssertion.toLustre(this.assertions,map));
+		builder.addAssertions(SLustreAssertion.toLustre(this.assertions,local));
 		return builder.build();
 	}
 }
