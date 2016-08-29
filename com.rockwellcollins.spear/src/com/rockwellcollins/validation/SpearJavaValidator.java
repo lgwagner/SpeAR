@@ -11,6 +11,8 @@ import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.ComposedChecks;
 
+import com.google.inject.Inject;
+import com.rockwellcollins.services.SpearGrammarAccess;
 import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Constraint;
@@ -113,5 +115,15 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 				}
 			}
 		}
+	}
+	
+	@Inject
+	private SpearGrammarAccess g; 
+	
+	@Check
+	public void checkForIllegalSectionheaders(Specification s) {
+		//TODO: Talk to Andrew
+		String requirements = g.getRequirementsHeaderAccess().getRule().getName();
+		String properties = g.getPropertiesHeaderAccess().getRule().getName();
 	}
 }
