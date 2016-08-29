@@ -9,18 +9,22 @@ import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FieldExpr;
 import com.rockwellcollins.spear.FieldType;
 import com.rockwellcollins.spear.FieldlessRecordExpr;
-import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.RecordExpr;
 import com.rockwellcollins.spear.SpearFactory;
+import com.rockwellcollins.spear.Specification;
 
 public class ReplaceShortHandRecords {
 	
 	public static SpearFactory factory = SpearFactory.eINSTANCE;
 	
 	public static void transform(SpearDocument doc) {
-		for(File f : doc.files) {
-			transform(f);
+		for(Pattern p : doc.patterns) {
+			transform(p);
+		}
+		
+		for(Specification s : doc.specifications) {
+			transform(s);
 		}
 	}
 	

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -27,8 +28,9 @@ import org.eclipse.xtext.validation.Issue;
 
 import com.google.inject.Injector;
 import com.rockwellcollins.SpearInjectorUtil;
-import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.translate.master.SProgram;
+import com.rockwellcollins.spear.translate.master.SProgram;
 import com.rockwellcollins.spear.translate.transformations.PerformTransforms;
 import com.rockwellcollins.spear.translate.transformations.SpearDocument;
 import com.rockwellcollins.spear.translate.views.SpearResultsView;
@@ -70,10 +72,10 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 				SpearRuntimeOptions.setRuntimeOptions();
 				
 				SpearDocument workingCopy = new SpearDocument(specification); 
-				Map<File,Map<String,String>> renamed = PerformTransforms.apply(workingCopy);
-/*
+				Map<EObject,Map<String,String>> renamed = PerformTransforms.apply(workingCopy);
 				SProgram program = SProgram.build(workingCopy);
-				
+
+/*
 				// translate to Lustre
 				Program p = program.getLogicalConsistency();
 				URI lustreURI = createURI(state.getURI(), "", "lus");

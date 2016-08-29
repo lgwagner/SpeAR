@@ -4,9 +4,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 
 import com.rockwellcollins.spear.AfterUntilExpr;
-import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.IfThenElseExpr;
 import com.rockwellcollins.spear.Pattern;
+import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.WhileExpr;
 import com.rockwellcollins.spear.language.CreateExpr;
@@ -15,8 +15,12 @@ import com.rockwellcollins.spear.util.SpearSwitch;
 public class RemoveSugar extends SpearSwitch<Void> {
 	
 	public static void transform(SpearDocument doc) {
-		for(File f : doc.files) {
-			transform(f);
+		for(Pattern p : doc.patterns) {
+			transform(p);
+		}
+		
+		for(Specification s : doc.specifications) {
+			transform(s);
 		}
 	}
 	

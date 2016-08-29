@@ -10,19 +10,20 @@ import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.MultipleIdExpr;
 import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.SpearFactory;
+import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.SpecificationCall;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 public class ReplaceSpecificationCalls extends SpearSwitch<EObject> {
 
 	public static void transform(SpearDocument p) {
-		for(File f : p.files) {
-			transform(f);
+		for(Specification s : p.specifications) {
+			transform(s);
 		}
 	}
 	
-	private static File transform(File f) {
-		File updated = (File) new ReplaceSpecificationCalls().doSwitch(f);
+	private static File transform(Specification s) {
+		Specification updated = (Specification) new ReplaceSpecificationCalls().doSwitch(s);
 		return updated;
 	}
 

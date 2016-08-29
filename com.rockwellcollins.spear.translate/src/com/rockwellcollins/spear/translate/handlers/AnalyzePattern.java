@@ -60,7 +60,7 @@ public class AnalyzePattern extends AbstractHandler {
 
 		try {
 			@SuppressWarnings("unused")
-			Map<Pattern,Map<String,String>> remapped = PerformTransforms.apply(document);
+			Map<EObject,Map<String,String>> remapped = PerformTransforms.apply(document);
 		} catch (Exception e1) {
 			System.err.println("Unexpected error transforming PatternDocument for analysis.");
 			e1.printStackTrace();

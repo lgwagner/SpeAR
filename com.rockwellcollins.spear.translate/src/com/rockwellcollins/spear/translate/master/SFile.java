@@ -8,7 +8,6 @@
 //import com.rockwellcollins.spear.Definitions;
 //import com.rockwellcollins.spear.File;
 //import com.rockwellcollins.spear.Specification;
-//import com.rockwellcollins.spear.translate.naming.NameMap;
 //import com.rockwellcollins.spear.util.SpearSwitch;
 //
 //public class SFile {

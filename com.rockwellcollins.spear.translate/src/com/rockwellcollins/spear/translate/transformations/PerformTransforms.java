@@ -2,13 +2,12 @@ package com.rockwellcollins.spear.translate.transformations;
 
 import java.util.Map;
 
-import com.rockwellcollins.spear.File;
-import com.rockwellcollins.spear.Pattern;
+import org.eclipse.emf.ecore.EObject;
 
 public class PerformTransforms {
 
-	public static Map<File,Map<String,String>> apply(SpearDocument doc) throws Exception {
-		Map<File,Map<String,String>> renamed = RemoveLustreKeywords.transform(doc);
+	public static Map<EObject,Map<String,String>> apply(SpearDocument doc) throws Exception {
+		Map<EObject,Map<String,String>> renamed = RemoveLustreKeywords.transform(doc);
 		NormalizeOperators.transform(doc);
 		ReplaceShortHandRecords.transform(doc);
 		RemoveSugar.transform(doc);
@@ -16,8 +15,8 @@ public class PerformTransforms {
 		return renamed;
 	}
 	
-	public static Map<Pattern,Map<String,String>> apply(PatternDocument doc) throws Exception {
-		Map<Pattern,Map<String,String>> renamed = RemoveLustreKeywords.transform(doc);
+	public static Map<EObject,Map<String,String>> apply(PatternDocument doc) throws Exception {
+		Map<EObject,Map<String,String>> renamed = RemoveLustreKeywords.transform(doc);
 		NormalizeOperators.transform(doc);
 		ReplaceShortHandRecords.transform(doc);
 		RemoveSugar.transform(doc);

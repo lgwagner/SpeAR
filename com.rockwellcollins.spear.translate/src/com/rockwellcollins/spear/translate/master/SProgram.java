@@ -1,45 +1,43 @@
-//package com.rockwellcollins.spear.translate.master;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//import com.rockwellcollins.spear.File;
-//import com.rockwellcollins.spear.translate.naming.NameMap;
-//import com.rockwellcollins.spear.translate.transformations.SpearDocument;
-//import com.rockwellcollins.spear.utilities.PLTL;
-//
-//import jkind.lustre.Node;
-//import jkind.lustre.Program;
-//import jkind.lustre.builders.ProgramBuilder;
-//
-//public class SProgram {
-//
-//	public static SProgram build(SpearDocument doc) {
-//		return new SProgram(doc);
-//	}
-//	
-//	public SFile main;
-//	public NameMap map;
-//	
-//	public SProgram(SpearDocument document) {
-//		//initialize the map
-//		map = new NameMap();
-//		//initialize the call unique identifier
-//		SCall.uniqueKey = 0;
-//		
-//		//copy the files from the SpeAR document
-//		List<File> files = new ArrayList<>(document.files);
-//		
-//		//this is a gross way to traverse the list in reverse order, but so be it.
-//		for(int i=files.size()-1; i>=0; i--) {
-//			File f = files.get(i);
-//			SFile sfile = SFile.build(f, map);
-//			if(f.getName().equals(document.mainName)) {
-//				this.main = sfile;
-//			}	
-//		}
-//	}
-//	
+package com.rockwellcollins.spear.translate.master;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.rockwellcollins.spear.translate.naming.PNameMap;
+import com.rockwellcollins.spear.translate.transformations.SpearDocument;
+
+public class SProgram {
+
+	public static SProgram build(SpearDocument doc) {
+		return new SProgram(doc);
+	}
+	
+	public PNameMap map;
+	public String main;
+	public List<STypeDef> typedefs = new ArrayList<>();
+	public List<SConstant> constants = new ArrayList<>();
+	public List<SPattern> patterns = new ArrayList<>();
+	public List<SSpecification> specifications = new ArrayList<>();
+	
+	public SProgram(SpearDocument document) {
+		//initialize the program's global map
+		map = PNameMap.newMap();
+
+		//get the names of the typedefs, constants and process them
+		typedefs.addAll(STypeDef.build(document.typedefs, map));
+		constants.addAll(SConstant.build(document.constants, map));
+		
+		//just get the names of these because we need to have them in the 
+		//namespace before we process them.
+		@SuppressWarnings("unused")
+		List<String> renamedPatterns = SPattern.addNames(document.patterns, map);
+		@SuppressWarnings("unused")
+		List<String> renamedSpecifications = SSpecification.addNames(document.specifications, map);
+		
+		patterns.addAll(SPattern.build(document.patterns, map));
+		specifications.addAll(SSpecification.build(document.specifications, map));
+	}
+	
 //	public Program getLogicalEntailment() {
 //		ProgramBuilder program = new ProgramBuilder();
 //		
@@ -91,4 +89,4 @@
 //		program.setMain(main.name);
 //		return program.build();
 //	}
-//}
+}

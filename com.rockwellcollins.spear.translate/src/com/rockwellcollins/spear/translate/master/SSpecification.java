@@ -1,34 +1,37 @@
-//package com.rockwellcollins.spear.translate.master;
-//
-//import java.util.ArrayList;
-//import java.util.Iterator;
-//import java.util.List;
-//
-//import org.eclipse.xtext.EcoreUtil2;
-//
-//import com.rockwellcollins.spear.NormalizedCall;
-//import com.rockwellcollins.spear.Specification;
-//import com.rockwellcollins.spear.translate.actions.SpearRuntimeOptions;
-//import com.rockwellcollins.spear.translate.naming.NameMap;
-//import com.rockwellcollins.spear.utilities.PLTL;
-//
-//import jkind.lustre.BinaryExpr;
-//import jkind.lustre.BinaryOp;
-//import jkind.lustre.BoolExpr;
-//import jkind.lustre.Equation;
-//import jkind.lustre.Expr;
-//import jkind.lustre.IdExpr;
-//import jkind.lustre.IntExpr;
-//import jkind.lustre.NamedType;
-//import jkind.lustre.Node;
-//import jkind.lustre.NodeCallExpr;
-//import jkind.lustre.UnaryExpr;
-//import jkind.lustre.UnaryOp;
-//import jkind.lustre.VarDecl;
-//import jkind.lustre.builders.NodeBuilder;
-//
-//public class SSpecification extends SFile {
-//
+package com.rockwellcollins.spear.translate.master;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.translate.naming.PNameMap;
+
+public class SSpecification {
+
+	public static List<String> addNames(List<Specification> list, PNameMap global) {
+		List<String> renamed = new ArrayList<>();
+		for(Specification  s : list) {
+			renamed.add(SSpecification.addName(s, global));
+		}
+		return renamed;
+	}
+	
+	public static String addName(Specification s, PNameMap global) {
+		return global.getName(s.getName());
+	}
+	
+	public static List<SSpecification> build(List<Specification> list, PNameMap global) {
+		List<SSpecification> converted = new ArrayList<>();
+		for(Specification  s : list) {
+			converted.add(SSpecification.build(s, global));
+		}
+		return converted;
+	}
+	
+	public static SSpecification build(Specification s, PNameMap global) {
+		return new SSpecification(s,global);
+	}
+	
 //	private String assertionName;
 //	private static final String ASSERTION = "assertions";
 //
@@ -37,39 +40,37 @@
 //	
 //	private String consistencyName;
 //	private static final String CONSISTENCY = "consistent";
-//
-//	public List<SMacro> macros = new ArrayList<>();
-//	public List<SVariable> inputs = new ArrayList<>();
-//	public List<SVariable> outputs = new ArrayList<>();
-//	public List<SVariable> state = new ArrayList<>();
-//	public List<SConstraint> assumptions = new ArrayList<>();
-//	public List<SConstraint> requirements = new ArrayList<>();
-//	public List<SConstraint> behaviors = new ArrayList<>();
+	
+	public PNameMap local;
+	
+	public List<SMacro> macros = new ArrayList<>();
+	public List<SVariable> inputs = new ArrayList<>();
+	public List<SVariable> outputs = new ArrayList<>();
+	public List<SVariable> state = new ArrayList<>();
+	public List<SConstraint> assumptions = new ArrayList<>();
+	public List<SConstraint> requirements = new ArrayList<>();
+	public List<SConstraint> behaviors = new ArrayList<>();
 //	public List<SCall> calls = new ArrayList<>();
-//	
-//	public SSpecification(Specification s, NameMap map) {
-//		// this initializes the map to include an entry for this object
-//		map.addFile(s, this);
-//	
-//		// set the name
-//		this.name = map.getName(s);
-//		this.typedefs.addAll(STypeDef.build(s.getTypedefs(), map));
-//		this.constants.addAll(SConstant.build(s.getConstants(), map));
-//		this.patterns.addAll(SPattern.build(s.getPatterns(), map));
-//		this.inputs.addAll(SVariable.build(s.getInputs(), map));
-//		this.outputs.addAll(SVariable.build(s.getOutputs(), map));
-//		this.state.addAll(SVariable.build(s.getState(), map));
-//		this.macros.addAll(SMacro.build(s.getMacros(), map));
-//		this.assumptions.addAll(SConstraint.build(s.getAssumptions(), map));
-//		this.requirements.addAll(SConstraint.build(s.getRequirements(), map));
-//		this.behaviors.addAll(SConstraint.build(s.getBehaviors(), map));
+	
+	public SSpecification(Specification s, PNameMap global) {
+		//copy the global map as the local
+		this.local = PNameMap.copy(global);
+		
+		// set the name
+		this.inputs.addAll(SVariable.build(s.getInputs(), local));
+		this.outputs.addAll(SVariable.build(s.getOutputs(), local));
+		this.state.addAll(SVariable.build(s.getState(), local));
+		this.macros.addAll(SMacro.build(s.getMacros(), local));
+		this.assumptions.addAll(SConstraint.build(s.getAssumptions(), local));
+		this.requirements.addAll(SConstraint.build(s.getRequirements(), local));
+		this.behaviors.addAll(SConstraint.build(s.getBehaviors(), local));
 //		this.calls.addAll(SCall.build(EcoreUtil2.getAllContentsOfType(s, NormalizedCall.class),map));		
-//		
+		
 //		this.assertionName = map.getName(s, ASSERTION);
 //		this.counterName = map.getName(s, COUNTER);
 //		this.consistencyName = map.getName(s, CONSISTENCY);
-//	}
-//
+	}
+
 //	public List<VarDecl> getAllCalledStateVariables(NameMap map) {
 //		List<VarDecl> list = new ArrayList<>();
 //		for(SCall thisCall : this.calls) {
@@ -79,7 +80,7 @@
 //		}
 //		return list;
 //	}
-//	
+	
 //	public Node toBaseLustre(NameMap map) {
 //		NodeBuilder builder = new NodeBuilder(name);
 //
@@ -113,7 +114,7 @@
 //
 //		return builder.build();
 //	}
-//
+
 //	public Node getLogicalEntailmentMain(NameMap map) {
 //		NodeBuilder builder = new NodeBuilder(this.toBaseLustre(map));
 //		builder.addOutput(this.getAssertionVarDecl());
@@ -241,4 +242,4 @@
 //		}
 //		return new Equation(new IdExpr(this.assertionName), RHS);
 //	}
-//}
+}

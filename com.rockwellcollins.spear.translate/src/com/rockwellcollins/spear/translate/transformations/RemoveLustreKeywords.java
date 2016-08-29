@@ -8,26 +8,31 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.util.SimpleAttributeResolver;
 
-import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Pattern;
+import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.utilities.LustreUtilities;
 
 public class RemoveLustreKeywords {
 
-	public static Map<File,Map<String,String>> transform(SpearDocument doc) {
-		Map<File,Map<String,String>> filemap = new HashMap<>();
-		for(File f : doc.files) {
-			filemap.put(f, transform(f));
+	public static Map<EObject,Map<String,String>> transform(SpearDocument doc) {
+		Map<EObject,Map<String,String>> map = new HashMap<>();
+		
+		for(Pattern p : doc.patterns) {
+			map.put(p, transform(p));
 		}
-		return filemap;
+		
+		for(Specification s : doc.specifications) {
+			map.put(s, transform(s));
+		}
+		return map;
 	}
 	
-	public static Map<Pattern,Map<String,String>> transform(PatternDocument doc) {
-		Map<Pattern,Map<String,String>> patternmap = new HashMap<>();
+	public static Map<EObject,Map<String,String>> transform(PatternDocument doc) {
+		Map<EObject,Map<String,String>> map = new HashMap<>();
 		for(Pattern p : doc.patterns) {
-			patternmap.put(p, transform(p));
+			map.put(p, transform(p));
 		}
-		return patternmap;		
+		return map;		
 	}
 	
 	public static Map<String,String> transform(EObject o) {
