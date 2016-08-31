@@ -1334,9 +1334,10 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         outputs+=Variable* 
 	 *         state+=Variable* 
 	 *         macros+=Macro* 
-	 *         assumptions+=Constraint* 
+	 *         (assumptionsKeyword=AssumptionsHeader assumptions+=Constraint*)? 
+	 *         requirementsKeyword=RequirementsHeader 
 	 *         requirements+=Constraint* 
-	 *         behaviors+=Constraint*
+	 *         (propertiesKeyword=PropertiesHeader behaviors+=Constraint*)?
 	 *     )
 	 */
 	protected void sequence_Specification(ISerializationContext context, Specification semanticObject) {

@@ -221,13 +221,31 @@ public interface SpearPackage extends EPackage
   int SPECIFICATION__MACROS = FILE_FEATURE_COUNT + 4;
 
   /**
+   * The feature id for the '<em><b>Assumptions Keyword</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SPECIFICATION__ASSUMPTIONS_KEYWORD = FILE_FEATURE_COUNT + 5;
+
+  /**
    * The feature id for the '<em><b>Assumptions</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SPECIFICATION__ASSUMPTIONS = FILE_FEATURE_COUNT + 5;
+  int SPECIFICATION__ASSUMPTIONS = FILE_FEATURE_COUNT + 6;
+
+  /**
+   * The feature id for the '<em><b>Requirements Keyword</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SPECIFICATION__REQUIREMENTS_KEYWORD = FILE_FEATURE_COUNT + 7;
 
   /**
    * The feature id for the '<em><b>Requirements</b></em>' containment reference list.
@@ -236,7 +254,16 @@ public interface SpearPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SPECIFICATION__REQUIREMENTS = FILE_FEATURE_COUNT + 6;
+  int SPECIFICATION__REQUIREMENTS = FILE_FEATURE_COUNT + 8;
+
+  /**
+   * The feature id for the '<em><b>Properties Keyword</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SPECIFICATION__PROPERTIES_KEYWORD = FILE_FEATURE_COUNT + 9;
 
   /**
    * The feature id for the '<em><b>Behaviors</b></em>' containment reference list.
@@ -245,7 +272,7 @@ public interface SpearPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SPECIFICATION__BEHAVIORS = FILE_FEATURE_COUNT + 7;
+  int SPECIFICATION__BEHAVIORS = FILE_FEATURE_COUNT + 10;
 
   /**
    * The number of structural features of the '<em>Specification</em>' class.
@@ -254,7 +281,7 @@ public interface SpearPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SPECIFICATION_FEATURE_COUNT = FILE_FEATURE_COUNT + 8;
+  int SPECIFICATION_FEATURE_COUNT = FILE_FEATURE_COUNT + 11;
 
   /**
    * The meta object id for the '{@link com.rockwellcollins.spear.impl.ImportImpl <em>Import</em>}' class.
@@ -2387,6 +2414,17 @@ public interface SpearPackage extends EPackage
   EReference getSpecification_Macros();
 
   /**
+   * Returns the meta object for the attribute '{@link com.rockwellcollins.spear.Specification#getAssumptionsKeyword <em>Assumptions Keyword</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Assumptions Keyword</em>'.
+   * @see com.rockwellcollins.spear.Specification#getAssumptionsKeyword()
+   * @see #getSpecification()
+   * @generated
+   */
+  EAttribute getSpecification_AssumptionsKeyword();
+
+  /**
    * Returns the meta object for the containment reference list '{@link com.rockwellcollins.spear.Specification#getAssumptions <em>Assumptions</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2398,6 +2436,17 @@ public interface SpearPackage extends EPackage
   EReference getSpecification_Assumptions();
 
   /**
+   * Returns the meta object for the attribute '{@link com.rockwellcollins.spear.Specification#getRequirementsKeyword <em>Requirements Keyword</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Requirements Keyword</em>'.
+   * @see com.rockwellcollins.spear.Specification#getRequirementsKeyword()
+   * @see #getSpecification()
+   * @generated
+   */
+  EAttribute getSpecification_RequirementsKeyword();
+
+  /**
    * Returns the meta object for the containment reference list '{@link com.rockwellcollins.spear.Specification#getRequirements <em>Requirements</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2407,6 +2456,17 @@ public interface SpearPackage extends EPackage
    * @generated
    */
   EReference getSpecification_Requirements();
+
+  /**
+   * Returns the meta object for the attribute '{@link com.rockwellcollins.spear.Specification#getPropertiesKeyword <em>Properties Keyword</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Properties Keyword</em>'.
+   * @see com.rockwellcollins.spear.Specification#getPropertiesKeyword()
+   * @see #getSpecification()
+   * @generated
+   */
+  EAttribute getSpecification_PropertiesKeyword();
 
   /**
    * Returns the meta object for the containment reference list '{@link com.rockwellcollins.spear.Specification#getBehaviors <em>Behaviors</em>}'.
@@ -4050,6 +4110,14 @@ public interface SpearPackage extends EPackage
     EReference SPECIFICATION__MACROS = eINSTANCE.getSpecification_Macros();
 
     /**
+     * The meta object literal for the '<em><b>Assumptions Keyword</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SPECIFICATION__ASSUMPTIONS_KEYWORD = eINSTANCE.getSpecification_AssumptionsKeyword();
+
+    /**
      * The meta object literal for the '<em><b>Assumptions</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4058,12 +4126,28 @@ public interface SpearPackage extends EPackage
     EReference SPECIFICATION__ASSUMPTIONS = eINSTANCE.getSpecification_Assumptions();
 
     /**
+     * The meta object literal for the '<em><b>Requirements Keyword</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SPECIFICATION__REQUIREMENTS_KEYWORD = eINSTANCE.getSpecification_RequirementsKeyword();
+
+    /**
      * The meta object literal for the '<em><b>Requirements</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference SPECIFICATION__REQUIREMENTS = eINSTANCE.getSpecification_Requirements();
+
+    /**
+     * The meta object literal for the '<em><b>Properties Keyword</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SPECIFICATION__PROPERTIES_KEYWORD = eINSTANCE.getSpecification_PropertiesKeyword();
 
     /**
      * The meta object literal for the '<em><b>Behaviors</b></em>' containment reference list feature.

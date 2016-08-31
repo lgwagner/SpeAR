@@ -664,9 +664,9 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSpecification_Assumptions()
+  public EAttribute getSpecification_AssumptionsKeyword()
   {
-    return (EReference)specificationEClass.getEStructuralFeatures().get(5);
+    return (EAttribute)specificationEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -674,7 +674,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSpecification_Requirements()
+  public EReference getSpecification_Assumptions()
   {
     return (EReference)specificationEClass.getEStructuralFeatures().get(6);
   }
@@ -684,9 +684,39 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getSpecification_RequirementsKeyword()
+  {
+    return (EAttribute)specificationEClass.getEStructuralFeatures().get(7);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSpecification_Requirements()
+  {
+    return (EReference)specificationEClass.getEStructuralFeatures().get(8);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getSpecification_PropertiesKeyword()
+  {
+    return (EAttribute)specificationEClass.getEStructuralFeatures().get(9);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getSpecification_Behaviors()
   {
-    return (EReference)specificationEClass.getEStructuralFeatures().get(7);
+    return (EReference)specificationEClass.getEStructuralFeatures().get(10);
   }
 
   /**
@@ -2152,8 +2182,11 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     createEReference(specificationEClass, SPECIFICATION__OUTPUTS);
     createEReference(specificationEClass, SPECIFICATION__STATE);
     createEReference(specificationEClass, SPECIFICATION__MACROS);
+    createEAttribute(specificationEClass, SPECIFICATION__ASSUMPTIONS_KEYWORD);
     createEReference(specificationEClass, SPECIFICATION__ASSUMPTIONS);
+    createEAttribute(specificationEClass, SPECIFICATION__REQUIREMENTS_KEYWORD);
     createEReference(specificationEClass, SPECIFICATION__REQUIREMENTS);
+    createEAttribute(specificationEClass, SPECIFICATION__PROPERTIES_KEYWORD);
     createEReference(specificationEClass, SPECIFICATION__BEHAVIORS);
 
     importEClass = createEClass(IMPORT);
@@ -2440,8 +2473,11 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     initEReference(getSpecification_Outputs(), this.getVariable(), null, "outputs", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSpecification_State(), this.getVariable(), null, "state", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSpecification_Macros(), this.getMacro(), null, "macros", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getSpecification_AssumptionsKeyword(), ecorePackage.getEString(), "assumptionsKeyword", null, 0, 1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSpecification_Assumptions(), this.getConstraint(), null, "assumptions", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getSpecification_RequirementsKeyword(), ecorePackage.getEString(), "requirementsKeyword", null, 0, 1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSpecification_Requirements(), this.getConstraint(), null, "requirements", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getSpecification_PropertiesKeyword(), ecorePackage.getEString(), "propertiesKeyword", null, 0, 1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSpecification_Behaviors(), this.getConstraint(), null, "behaviors", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(importEClass, Import.class, "Import", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

@@ -337,15 +337,25 @@ ruleSpecification returns [EObject current=null]
 	    }
 
 )
-)*)?(
-    { 
-        newCompositeNode(grammarAccess.getSpecificationAccess().getAssumptionsHeaderParserRuleCall_13_0()); 
-    }
-ruleAssumptionsHeader
-    { 
-        afterParserOrEnumRuleCall();
-    }
-	otherlv_21=':' 
+)*)?((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getSpecificationAccess().getAssumptionsKeywordAssumptionsHeaderParserRuleCall_13_0_0()); 
+	    }
+		lv_assumptionsKeyword_20_0=ruleAssumptionsHeader		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getSpecificationRule());
+	        }
+       		set(
+       			$current, 
+       			"assumptionsKeyword",
+        		lv_assumptionsKeyword_20_0, 
+        		"com.rockwellcollins.Spear.AssumptionsHeader");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_21=':' 
     {
     	newLeafNode(otherlv_21, grammarAccess.getSpecificationAccess().getColonKeyword_13_1());
     }
@@ -367,15 +377,25 @@ ruleAssumptionsHeader
 	    }
 
 )
-)*)?
-    { 
-        newCompositeNode(grammarAccess.getSpecificationAccess().getRequirementsHeaderParserRuleCall_14()); 
-    }
-ruleRequirementsHeader
-    { 
-        afterParserOrEnumRuleCall();
-    }
-	otherlv_24=':' 
+)*)?(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getSpecificationAccess().getRequirementsKeywordRequirementsHeaderParserRuleCall_14_0()); 
+	    }
+		lv_requirementsKeyword_23_0=ruleRequirementsHeader		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getSpecificationRule());
+	        }
+       		set(
+       			$current, 
+       			"requirementsKeyword",
+        		lv_requirementsKeyword_23_0, 
+        		"com.rockwellcollins.Spear.RequirementsHeader");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_24=':' 
     {
     	newLeafNode(otherlv_24, grammarAccess.getSpecificationAccess().getColonKeyword_15());
     }
@@ -397,15 +417,25 @@ ruleRequirementsHeader
 	    }
 
 )
-)*(
-    { 
-        newCompositeNode(grammarAccess.getSpecificationAccess().getPropertiesHeaderParserRuleCall_17_0()); 
-    }
-rulePropertiesHeader
-    { 
-        afterParserOrEnumRuleCall();
-    }
-	otherlv_27=':' 
+)*((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getSpecificationAccess().getPropertiesKeywordPropertiesHeaderParserRuleCall_17_0_0()); 
+	    }
+		lv_propertiesKeyword_26_0=rulePropertiesHeader		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getSpecificationRule());
+	        }
+       		set(
+       			$current, 
+       			"propertiesKeyword",
+        		lv_propertiesKeyword_26_0, 
+        		"com.rockwellcollins.Spear.PropertiesHeader");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_27=':' 
     {
     	newLeafNode(otherlv_27, grammarAccess.getSpecificationAccess().getColonKeyword_17_1());
     }

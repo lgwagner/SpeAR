@@ -20,8 +20,11 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Specification/outputs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Specification/state"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Specification/macros"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//Specification/assumptionsKeyword"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Specification/assumptions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//Specification/requirementsKeyword"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Specification/requirements"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//Specification/propertiesKeyword"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Specification/behaviors"/>
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//Import">

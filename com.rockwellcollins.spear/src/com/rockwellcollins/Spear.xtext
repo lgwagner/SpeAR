@@ -16,9 +16,9 @@ Specification:
 	'Outputs:' outputs+=Variable*
 	('State:' state+=Variable*)?
 	('Macros:' macros+=Macro*)?
-	(AssumptionsHeader ':' assumptions+=Constraint*)?
-	RequirementsHeader ':' requirements+=Constraint*
-	(PropertiesHeader ':' behaviors+=Constraint*)?;
+	(assumptionsKeyword=AssumptionsHeader ':' assumptions+=Constraint*)?
+	requirementsKeyword=RequirementsHeader ':' requirements+=Constraint*
+	(propertiesKeyword=PropertiesHeader ':' behaviors+=Constraint*)?;
 
 AssumptionsHeader:
 	'Assumptions' | 'Environment'

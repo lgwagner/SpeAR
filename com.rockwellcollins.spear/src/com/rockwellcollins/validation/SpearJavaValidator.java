@@ -117,13 +117,13 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 		}
 	}
 	
-	@Inject
-	private SpearGrammarAccess g; 
-	
 	@Check
 	public void checkForIllegalSectionheaders(Specification s) {
-		//TODO: Talk to Andrew
-		String requirements = g.getRequirementsHeaderAccess().getRule().getName();
-		String properties = g.getPropertiesHeaderAccess().getRule().getName();
+		String requirements = s.getRequirementsKeyword();
+		String properties = s.getPropertiesKeyword();
+		if(requirements.equals(properties)) {
+			error("Duplicate section name used: " + requirements,s,SpearPackage.Literals.SPECIFICATION__REQUIREMENTS_KEYWORD);
+			error("Duplicate section name used: " + requirements,s,SpearPackage.Literals.SPECIFICATION__PROPERTIES_KEYWORD);
+		}
 	}
 }

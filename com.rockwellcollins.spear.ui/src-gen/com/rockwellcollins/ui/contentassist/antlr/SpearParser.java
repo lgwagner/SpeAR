@@ -227,8 +227,11 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSpecificationAccess().getOutputsAssignment_10(), "rule__Specification__OutputsAssignment_10");
 					put(grammarAccess.getSpecificationAccess().getStateAssignment_11_1(), "rule__Specification__StateAssignment_11_1");
 					put(grammarAccess.getSpecificationAccess().getMacrosAssignment_12_1(), "rule__Specification__MacrosAssignment_12_1");
+					put(grammarAccess.getSpecificationAccess().getAssumptionsKeywordAssignment_13_0(), "rule__Specification__AssumptionsKeywordAssignment_13_0");
 					put(grammarAccess.getSpecificationAccess().getAssumptionsAssignment_13_2(), "rule__Specification__AssumptionsAssignment_13_2");
+					put(grammarAccess.getSpecificationAccess().getRequirementsKeywordAssignment_14(), "rule__Specification__RequirementsKeywordAssignment_14");
 					put(grammarAccess.getSpecificationAccess().getRequirementsAssignment_16(), "rule__Specification__RequirementsAssignment_16");
+					put(grammarAccess.getSpecificationAccess().getPropertiesKeywordAssignment_17_0(), "rule__Specification__PropertiesKeywordAssignment_17_0");
 					put(grammarAccess.getSpecificationAccess().getBehaviorsAssignment_17_2(), "rule__Specification__BehaviorsAssignment_17_2");
 					put(grammarAccess.getImportAccess().getImportURIAssignment_1(), "rule__Import__ImportURIAssignment_1");
 					put(grammarAccess.getDefinitionsAccess().getNameAssignment_1(), "rule__Definitions__NameAssignment_1");

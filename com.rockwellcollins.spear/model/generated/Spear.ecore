@@ -23,10 +23,13 @@
         eType="#//Variable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="macros" upperBound="-1"
         eType="#//Macro" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="assumptionsKeyword" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="assumptions" upperBound="-1"
         eType="#//Constraint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="requirementsKeyword" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="requirements" upperBound="-1"
         eType="#//Constraint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertiesKeyword" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="behaviors" upperBound="-1"
         eType="#//Constraint" containment="true"/>
   </eClassifiers>

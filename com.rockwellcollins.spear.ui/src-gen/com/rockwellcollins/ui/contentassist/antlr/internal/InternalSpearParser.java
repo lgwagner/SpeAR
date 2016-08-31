@@ -5279,11 +5279,11 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             if ( (LA7_0==RULE_ID) ) {
                 int LA7_1 = input.LA(2);
 
-                if ( (LA7_1==EOF||(LA7_1>=RULE_ID && LA7_1<=RULE_STRING)||LA7_1==61||(LA7_1>=65 && LA7_1<=67)) ) {
-                    alt7=1;
-                }
-                else if ( ((LA7_1>=24 && LA7_1<=26)) ) {
+                if ( ((LA7_1>=24 && LA7_1<=26)) ) {
                     alt7=2;
+                }
+                else if ( (LA7_1==EOF||(LA7_1>=RULE_ID && LA7_1<=RULE_STRING)||LA7_1==61||(LA7_1>=65 && LA7_1<=67)) ) {
+                    alt7=1;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -8111,25 +8111,25 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             if ( (LA29_0==RULE_INT) ) {
                 int LA29_1 = input.LA(2);
 
-                if ( (LA29_1==107) ) {
-                    int LA29_3 = input.LA(3);
+                if ( (LA29_1==EOF||LA29_1==RULE_ID||(LA29_1>=11 && LA29_1<=23)||(LA29_1>=27 && LA29_1<=34)||(LA29_1>=42 && LA29_1<=55)||LA29_1==61||LA29_1==67||LA29_1==74||(LA29_1>=77 && LA29_1<=78)||LA29_1==80||(LA29_1>=82 && LA29_1<=83)||(LA29_1>=85 && LA29_1<=88)||LA29_1==93||LA29_1==95||(LA29_1>=97 && LA29_1<=98)||LA29_1==100||LA29_1==102||LA29_1==104||LA29_1==108||LA29_1==110||LA29_1==114) ) {
+                    alt29=1;
+                }
+                else if ( (LA29_1==107) ) {
+                    int LA29_4 = input.LA(3);
 
-                    if ( (LA29_3==RULE_INT) ) {
+                    if ( (LA29_4==RULE_INT) ) {
                         alt29=3;
                     }
-                    else if ( (LA29_3==RULE_ID) ) {
+                    else if ( (LA29_4==RULE_ID) ) {
                         alt29=1;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return ;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 29, 3, input);
+                            new NoViableAltException("", 29, 4, input);
 
                         throw nvae;
                     }
-                }
-                else if ( (LA29_1==EOF||LA29_1==RULE_ID||(LA29_1>=11 && LA29_1<=23)||(LA29_1>=27 && LA29_1<=34)||(LA29_1>=42 && LA29_1<=55)||LA29_1==61||LA29_1==67||LA29_1==74||(LA29_1>=77 && LA29_1<=78)||LA29_1==80||(LA29_1>=82 && LA29_1<=83)||(LA29_1>=85 && LA29_1<=88)||LA29_1==93||LA29_1==95||(LA29_1>=97 && LA29_1<=98)||LA29_1==100||LA29_1==102||LA29_1==104||LA29_1==108||LA29_1==110||LA29_1==114) ) {
-                    alt29=1;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -9881,28 +9881,34 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__Group__14__Impl"
-    // InternalSpear.g:2976:1: rule__Specification__Group__14__Impl : ( ruleRequirementsHeader ) ;
+    // InternalSpear.g:2976:1: rule__Specification__Group__14__Impl : ( ( rule__Specification__RequirementsKeywordAssignment_14 ) ) ;
     public final void rule__Specification__Group__14__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:2980:1: ( ( ruleRequirementsHeader ) )
-            // InternalSpear.g:2981:1: ( ruleRequirementsHeader )
+            // InternalSpear.g:2980:1: ( ( ( rule__Specification__RequirementsKeywordAssignment_14 ) ) )
+            // InternalSpear.g:2981:1: ( ( rule__Specification__RequirementsKeywordAssignment_14 ) )
             {
-            // InternalSpear.g:2981:1: ( ruleRequirementsHeader )
-            // InternalSpear.g:2982:1: ruleRequirementsHeader
+            // InternalSpear.g:2981:1: ( ( rule__Specification__RequirementsKeywordAssignment_14 ) )
+            // InternalSpear.g:2982:1: ( rule__Specification__RequirementsKeywordAssignment_14 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getSpecificationAccess().getRequirementsHeaderParserRuleCall_14()); 
+               before(grammarAccess.getSpecificationAccess().getRequirementsKeywordAssignment_14()); 
             }
+            // InternalSpear.g:2983:1: ( rule__Specification__RequirementsKeywordAssignment_14 )
+            // InternalSpear.g:2983:2: rule__Specification__RequirementsKeywordAssignment_14
+            {
             pushFollow(FOLLOW_2);
-            ruleRequirementsHeader();
+            rule__Specification__RequirementsKeywordAssignment_14();
 
             state._fsp--;
             if (state.failed) return ;
+
+            }
+
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getSpecificationAccess().getRequirementsHeaderParserRuleCall_14()); 
+               after(grammarAccess.getSpecificationAccess().getRequirementsKeywordAssignment_14()); 
             }
 
             }
@@ -11512,28 +11518,34 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__Group_13__0__Impl"
-    // InternalSpear.g:3570:1: rule__Specification__Group_13__0__Impl : ( ruleAssumptionsHeader ) ;
+    // InternalSpear.g:3570:1: rule__Specification__Group_13__0__Impl : ( ( rule__Specification__AssumptionsKeywordAssignment_13_0 ) ) ;
     public final void rule__Specification__Group_13__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:3574:1: ( ( ruleAssumptionsHeader ) )
-            // InternalSpear.g:3575:1: ( ruleAssumptionsHeader )
+            // InternalSpear.g:3574:1: ( ( ( rule__Specification__AssumptionsKeywordAssignment_13_0 ) ) )
+            // InternalSpear.g:3575:1: ( ( rule__Specification__AssumptionsKeywordAssignment_13_0 ) )
             {
-            // InternalSpear.g:3575:1: ( ruleAssumptionsHeader )
-            // InternalSpear.g:3576:1: ruleAssumptionsHeader
+            // InternalSpear.g:3575:1: ( ( rule__Specification__AssumptionsKeywordAssignment_13_0 ) )
+            // InternalSpear.g:3576:1: ( rule__Specification__AssumptionsKeywordAssignment_13_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getSpecificationAccess().getAssumptionsHeaderParserRuleCall_13_0()); 
+               before(grammarAccess.getSpecificationAccess().getAssumptionsKeywordAssignment_13_0()); 
             }
+            // InternalSpear.g:3577:1: ( rule__Specification__AssumptionsKeywordAssignment_13_0 )
+            // InternalSpear.g:3577:2: rule__Specification__AssumptionsKeywordAssignment_13_0
+            {
             pushFollow(FOLLOW_2);
-            ruleAssumptionsHeader();
+            rule__Specification__AssumptionsKeywordAssignment_13_0();
 
             state._fsp--;
             if (state.failed) return ;
+
+            }
+
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getSpecificationAccess().getAssumptionsHeaderParserRuleCall_13_0()); 
+               after(grammarAccess.getSpecificationAccess().getAssumptionsKeywordAssignment_13_0()); 
             }
 
             }
@@ -11776,28 +11788,34 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__Group_17__0__Impl"
-    // InternalSpear.g:3664:1: rule__Specification__Group_17__0__Impl : ( rulePropertiesHeader ) ;
+    // InternalSpear.g:3664:1: rule__Specification__Group_17__0__Impl : ( ( rule__Specification__PropertiesKeywordAssignment_17_0 ) ) ;
     public final void rule__Specification__Group_17__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:3668:1: ( ( rulePropertiesHeader ) )
-            // InternalSpear.g:3669:1: ( rulePropertiesHeader )
+            // InternalSpear.g:3668:1: ( ( ( rule__Specification__PropertiesKeywordAssignment_17_0 ) ) )
+            // InternalSpear.g:3669:1: ( ( rule__Specification__PropertiesKeywordAssignment_17_0 ) )
             {
-            // InternalSpear.g:3669:1: ( rulePropertiesHeader )
-            // InternalSpear.g:3670:1: rulePropertiesHeader
+            // InternalSpear.g:3669:1: ( ( rule__Specification__PropertiesKeywordAssignment_17_0 ) )
+            // InternalSpear.g:3670:1: ( rule__Specification__PropertiesKeywordAssignment_17_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getSpecificationAccess().getPropertiesHeaderParserRuleCall_17_0()); 
+               before(grammarAccess.getSpecificationAccess().getPropertiesKeywordAssignment_17_0()); 
             }
+            // InternalSpear.g:3671:1: ( rule__Specification__PropertiesKeywordAssignment_17_0 )
+            // InternalSpear.g:3671:2: rule__Specification__PropertiesKeywordAssignment_17_0
+            {
             pushFollow(FOLLOW_2);
-            rulePropertiesHeader();
+            rule__Specification__PropertiesKeywordAssignment_17_0();
 
             state._fsp--;
             if (state.failed) return ;
+
+            }
+
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getSpecificationAccess().getPropertiesHeaderParserRuleCall_17_0()); 
+               after(grammarAccess.getSpecificationAccess().getPropertiesKeywordAssignment_17_0()); 
             }
 
             }
@@ -45396,18 +45414,63 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Specification__MacrosAssignment_12_1"
 
 
+    // $ANTLR start "rule__Specification__AssumptionsKeywordAssignment_13_0"
+    // InternalSpear.g:16118:1: rule__Specification__AssumptionsKeywordAssignment_13_0 : ( ruleAssumptionsHeader ) ;
+    public final void rule__Specification__AssumptionsKeywordAssignment_13_0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:16122:1: ( ( ruleAssumptionsHeader ) )
+            // InternalSpear.g:16123:1: ( ruleAssumptionsHeader )
+            {
+            // InternalSpear.g:16123:1: ( ruleAssumptionsHeader )
+            // InternalSpear.g:16124:1: ruleAssumptionsHeader
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getSpecificationAccess().getAssumptionsKeywordAssumptionsHeaderParserRuleCall_13_0_0()); 
+            }
+            pushFollow(FOLLOW_2);
+            ruleAssumptionsHeader();
+
+            state._fsp--;
+            if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getSpecificationAccess().getAssumptionsKeywordAssumptionsHeaderParserRuleCall_13_0_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Specification__AssumptionsKeywordAssignment_13_0"
+
+
     // $ANTLR start "rule__Specification__AssumptionsAssignment_13_2"
-    // InternalSpear.g:16118:1: rule__Specification__AssumptionsAssignment_13_2 : ( ruleConstraint ) ;
+    // InternalSpear.g:16133:1: rule__Specification__AssumptionsAssignment_13_2 : ( ruleConstraint ) ;
     public final void rule__Specification__AssumptionsAssignment_13_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16122:1: ( ( ruleConstraint ) )
-            // InternalSpear.g:16123:1: ( ruleConstraint )
+            // InternalSpear.g:16137:1: ( ( ruleConstraint ) )
+            // InternalSpear.g:16138:1: ( ruleConstraint )
             {
-            // InternalSpear.g:16123:1: ( ruleConstraint )
-            // InternalSpear.g:16124:1: ruleConstraint
+            // InternalSpear.g:16138:1: ( ruleConstraint )
+            // InternalSpear.g:16139:1: ruleConstraint
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSpecificationAccess().getAssumptionsConstraintParserRuleCall_13_2_0()); 
@@ -45441,18 +45504,63 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Specification__AssumptionsAssignment_13_2"
 
 
+    // $ANTLR start "rule__Specification__RequirementsKeywordAssignment_14"
+    // InternalSpear.g:16148:1: rule__Specification__RequirementsKeywordAssignment_14 : ( ruleRequirementsHeader ) ;
+    public final void rule__Specification__RequirementsKeywordAssignment_14() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:16152:1: ( ( ruleRequirementsHeader ) )
+            // InternalSpear.g:16153:1: ( ruleRequirementsHeader )
+            {
+            // InternalSpear.g:16153:1: ( ruleRequirementsHeader )
+            // InternalSpear.g:16154:1: ruleRequirementsHeader
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getSpecificationAccess().getRequirementsKeywordRequirementsHeaderParserRuleCall_14_0()); 
+            }
+            pushFollow(FOLLOW_2);
+            ruleRequirementsHeader();
+
+            state._fsp--;
+            if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getSpecificationAccess().getRequirementsKeywordRequirementsHeaderParserRuleCall_14_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Specification__RequirementsKeywordAssignment_14"
+
+
     // $ANTLR start "rule__Specification__RequirementsAssignment_16"
-    // InternalSpear.g:16133:1: rule__Specification__RequirementsAssignment_16 : ( ruleConstraint ) ;
+    // InternalSpear.g:16163:1: rule__Specification__RequirementsAssignment_16 : ( ruleConstraint ) ;
     public final void rule__Specification__RequirementsAssignment_16() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16137:1: ( ( ruleConstraint ) )
-            // InternalSpear.g:16138:1: ( ruleConstraint )
+            // InternalSpear.g:16167:1: ( ( ruleConstraint ) )
+            // InternalSpear.g:16168:1: ( ruleConstraint )
             {
-            // InternalSpear.g:16138:1: ( ruleConstraint )
-            // InternalSpear.g:16139:1: ruleConstraint
+            // InternalSpear.g:16168:1: ( ruleConstraint )
+            // InternalSpear.g:16169:1: ruleConstraint
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSpecificationAccess().getRequirementsConstraintParserRuleCall_16_0()); 
@@ -45486,18 +45594,63 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Specification__RequirementsAssignment_16"
 
 
+    // $ANTLR start "rule__Specification__PropertiesKeywordAssignment_17_0"
+    // InternalSpear.g:16178:1: rule__Specification__PropertiesKeywordAssignment_17_0 : ( rulePropertiesHeader ) ;
+    public final void rule__Specification__PropertiesKeywordAssignment_17_0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:16182:1: ( ( rulePropertiesHeader ) )
+            // InternalSpear.g:16183:1: ( rulePropertiesHeader )
+            {
+            // InternalSpear.g:16183:1: ( rulePropertiesHeader )
+            // InternalSpear.g:16184:1: rulePropertiesHeader
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getSpecificationAccess().getPropertiesKeywordPropertiesHeaderParserRuleCall_17_0_0()); 
+            }
+            pushFollow(FOLLOW_2);
+            rulePropertiesHeader();
+
+            state._fsp--;
+            if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getSpecificationAccess().getPropertiesKeywordPropertiesHeaderParserRuleCall_17_0_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Specification__PropertiesKeywordAssignment_17_0"
+
+
     // $ANTLR start "rule__Specification__BehaviorsAssignment_17_2"
-    // InternalSpear.g:16148:1: rule__Specification__BehaviorsAssignment_17_2 : ( ruleConstraint ) ;
+    // InternalSpear.g:16193:1: rule__Specification__BehaviorsAssignment_17_2 : ( ruleConstraint ) ;
     public final void rule__Specification__BehaviorsAssignment_17_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16152:1: ( ( ruleConstraint ) )
-            // InternalSpear.g:16153:1: ( ruleConstraint )
+            // InternalSpear.g:16197:1: ( ( ruleConstraint ) )
+            // InternalSpear.g:16198:1: ( ruleConstraint )
             {
-            // InternalSpear.g:16153:1: ( ruleConstraint )
-            // InternalSpear.g:16154:1: ruleConstraint
+            // InternalSpear.g:16198:1: ( ruleConstraint )
+            // InternalSpear.g:16199:1: ruleConstraint
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSpecificationAccess().getBehaviorsConstraintParserRuleCall_17_2_0()); 
@@ -45532,17 +45685,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Import__ImportURIAssignment_1"
-    // InternalSpear.g:16163:1: rule__Import__ImportURIAssignment_1 : ( RULE_STRING ) ;
+    // InternalSpear.g:16208:1: rule__Import__ImportURIAssignment_1 : ( RULE_STRING ) ;
     public final void rule__Import__ImportURIAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16167:1: ( ( RULE_STRING ) )
-            // InternalSpear.g:16168:1: ( RULE_STRING )
+            // InternalSpear.g:16212:1: ( ( RULE_STRING ) )
+            // InternalSpear.g:16213:1: ( RULE_STRING )
             {
-            // InternalSpear.g:16168:1: ( RULE_STRING )
-            // InternalSpear.g:16169:1: RULE_STRING
+            // InternalSpear.g:16213:1: ( RULE_STRING )
+            // InternalSpear.g:16214:1: RULE_STRING
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getImportAccess().getImportURISTRINGTerminalRuleCall_1_0()); 
@@ -45573,17 +45726,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Definitions__NameAssignment_1"
-    // InternalSpear.g:16178:1: rule__Definitions__NameAssignment_1 : ( RULE_ID ) ;
+    // InternalSpear.g:16223:1: rule__Definitions__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__Definitions__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16182:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16183:1: ( RULE_ID )
+            // InternalSpear.g:16227:1: ( ( RULE_ID ) )
+            // InternalSpear.g:16228:1: ( RULE_ID )
             {
-            // InternalSpear.g:16183:1: ( RULE_ID )
-            // InternalSpear.g:16184:1: RULE_ID
+            // InternalSpear.g:16228:1: ( RULE_ID )
+            // InternalSpear.g:16229:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDefinitionsAccess().getNameIDTerminalRuleCall_1_0()); 
@@ -45614,17 +45767,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Definitions__ImportsAssignment_2_1"
-    // InternalSpear.g:16193:1: rule__Definitions__ImportsAssignment_2_1 : ( ruleImport ) ;
+    // InternalSpear.g:16238:1: rule__Definitions__ImportsAssignment_2_1 : ( ruleImport ) ;
     public final void rule__Definitions__ImportsAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16197:1: ( ( ruleImport ) )
-            // InternalSpear.g:16198:1: ( ruleImport )
+            // InternalSpear.g:16242:1: ( ( ruleImport ) )
+            // InternalSpear.g:16243:1: ( ruleImport )
             {
-            // InternalSpear.g:16198:1: ( ruleImport )
-            // InternalSpear.g:16199:1: ruleImport
+            // InternalSpear.g:16243:1: ( ruleImport )
+            // InternalSpear.g:16244:1: ruleImport
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDefinitionsAccess().getImportsImportParserRuleCall_2_1_0()); 
@@ -45659,17 +45812,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Definitions__UnitdefsAssignment_3_1"
-    // InternalSpear.g:16208:1: rule__Definitions__UnitdefsAssignment_3_1 : ( ruleUnitDef ) ;
+    // InternalSpear.g:16253:1: rule__Definitions__UnitdefsAssignment_3_1 : ( ruleUnitDef ) ;
     public final void rule__Definitions__UnitdefsAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16212:1: ( ( ruleUnitDef ) )
-            // InternalSpear.g:16213:1: ( ruleUnitDef )
+            // InternalSpear.g:16257:1: ( ( ruleUnitDef ) )
+            // InternalSpear.g:16258:1: ( ruleUnitDef )
             {
-            // InternalSpear.g:16213:1: ( ruleUnitDef )
-            // InternalSpear.g:16214:1: ruleUnitDef
+            // InternalSpear.g:16258:1: ( ruleUnitDef )
+            // InternalSpear.g:16259:1: ruleUnitDef
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDefinitionsAccess().getUnitdefsUnitDefParserRuleCall_3_1_0()); 
@@ -45704,17 +45857,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Definitions__TypedefsAssignment_4_1"
-    // InternalSpear.g:16223:1: rule__Definitions__TypedefsAssignment_4_1 : ( ruleTypeDef ) ;
+    // InternalSpear.g:16268:1: rule__Definitions__TypedefsAssignment_4_1 : ( ruleTypeDef ) ;
     public final void rule__Definitions__TypedefsAssignment_4_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16227:1: ( ( ruleTypeDef ) )
-            // InternalSpear.g:16228:1: ( ruleTypeDef )
+            // InternalSpear.g:16272:1: ( ( ruleTypeDef ) )
+            // InternalSpear.g:16273:1: ( ruleTypeDef )
             {
-            // InternalSpear.g:16228:1: ( ruleTypeDef )
-            // InternalSpear.g:16229:1: ruleTypeDef
+            // InternalSpear.g:16273:1: ( ruleTypeDef )
+            // InternalSpear.g:16274:1: ruleTypeDef
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDefinitionsAccess().getTypedefsTypeDefParserRuleCall_4_1_0()); 
@@ -45749,17 +45902,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Definitions__ConstantsAssignment_5_1"
-    // InternalSpear.g:16238:1: rule__Definitions__ConstantsAssignment_5_1 : ( ruleConstant ) ;
+    // InternalSpear.g:16283:1: rule__Definitions__ConstantsAssignment_5_1 : ( ruleConstant ) ;
     public final void rule__Definitions__ConstantsAssignment_5_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16242:1: ( ( ruleConstant ) )
-            // InternalSpear.g:16243:1: ( ruleConstant )
+            // InternalSpear.g:16287:1: ( ( ruleConstant ) )
+            // InternalSpear.g:16288:1: ( ruleConstant )
             {
-            // InternalSpear.g:16243:1: ( ruleConstant )
-            // InternalSpear.g:16244:1: ruleConstant
+            // InternalSpear.g:16288:1: ( ruleConstant )
+            // InternalSpear.g:16289:1: ruleConstant
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDefinitionsAccess().getConstantsConstantParserRuleCall_5_1_0()); 
@@ -45794,17 +45947,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Definitions__PatternsAssignment_6_1"
-    // InternalSpear.g:16253:1: rule__Definitions__PatternsAssignment_6_1 : ( rulePattern ) ;
+    // InternalSpear.g:16298:1: rule__Definitions__PatternsAssignment_6_1 : ( rulePattern ) ;
     public final void rule__Definitions__PatternsAssignment_6_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16257:1: ( ( rulePattern ) )
-            // InternalSpear.g:16258:1: ( rulePattern )
+            // InternalSpear.g:16302:1: ( ( rulePattern ) )
+            // InternalSpear.g:16303:1: ( rulePattern )
             {
-            // InternalSpear.g:16258:1: ( rulePattern )
-            // InternalSpear.g:16259:1: rulePattern
+            // InternalSpear.g:16303:1: ( rulePattern )
+            // InternalSpear.g:16304:1: rulePattern
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDefinitionsAccess().getPatternsPatternParserRuleCall_6_1_0()); 
@@ -45839,17 +45992,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Pattern__NameAssignment_1"
-    // InternalSpear.g:16268:1: rule__Pattern__NameAssignment_1 : ( RULE_ID ) ;
+    // InternalSpear.g:16313:1: rule__Pattern__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__Pattern__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16272:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16273:1: ( RULE_ID )
+            // InternalSpear.g:16317:1: ( ( RULE_ID ) )
+            // InternalSpear.g:16318:1: ( RULE_ID )
             {
-            // InternalSpear.g:16273:1: ( RULE_ID )
-            // InternalSpear.g:16274:1: RULE_ID
+            // InternalSpear.g:16318:1: ( RULE_ID )
+            // InternalSpear.g:16319:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternAccess().getNameIDTerminalRuleCall_1_0()); 
@@ -45880,17 +46033,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Pattern__InputsAssignment_3_0"
-    // InternalSpear.g:16283:1: rule__Pattern__InputsAssignment_3_0 : ( ruleVariable ) ;
+    // InternalSpear.g:16328:1: rule__Pattern__InputsAssignment_3_0 : ( ruleVariable ) ;
     public final void rule__Pattern__InputsAssignment_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16287:1: ( ( ruleVariable ) )
-            // InternalSpear.g:16288:1: ( ruleVariable )
+            // InternalSpear.g:16332:1: ( ( ruleVariable ) )
+            // InternalSpear.g:16333:1: ( ruleVariable )
             {
-            // InternalSpear.g:16288:1: ( ruleVariable )
-            // InternalSpear.g:16289:1: ruleVariable
+            // InternalSpear.g:16333:1: ( ruleVariable )
+            // InternalSpear.g:16334:1: ruleVariable
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternAccess().getInputsVariableParserRuleCall_3_0_0()); 
@@ -45925,17 +46078,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Pattern__InputsAssignment_3_1_1"
-    // InternalSpear.g:16298:1: rule__Pattern__InputsAssignment_3_1_1 : ( ruleVariable ) ;
+    // InternalSpear.g:16343:1: rule__Pattern__InputsAssignment_3_1_1 : ( ruleVariable ) ;
     public final void rule__Pattern__InputsAssignment_3_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16302:1: ( ( ruleVariable ) )
-            // InternalSpear.g:16303:1: ( ruleVariable )
+            // InternalSpear.g:16347:1: ( ( ruleVariable ) )
+            // InternalSpear.g:16348:1: ( ruleVariable )
             {
-            // InternalSpear.g:16303:1: ( ruleVariable )
-            // InternalSpear.g:16304:1: ruleVariable
+            // InternalSpear.g:16348:1: ( ruleVariable )
+            // InternalSpear.g:16349:1: ruleVariable
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternAccess().getInputsVariableParserRuleCall_3_1_1_0()); 
@@ -45970,17 +46123,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Pattern__OutputsAssignment_7_0"
-    // InternalSpear.g:16313:1: rule__Pattern__OutputsAssignment_7_0 : ( ruleVariable ) ;
+    // InternalSpear.g:16358:1: rule__Pattern__OutputsAssignment_7_0 : ( ruleVariable ) ;
     public final void rule__Pattern__OutputsAssignment_7_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16317:1: ( ( ruleVariable ) )
-            // InternalSpear.g:16318:1: ( ruleVariable )
+            // InternalSpear.g:16362:1: ( ( ruleVariable ) )
+            // InternalSpear.g:16363:1: ( ruleVariable )
             {
-            // InternalSpear.g:16318:1: ( ruleVariable )
-            // InternalSpear.g:16319:1: ruleVariable
+            // InternalSpear.g:16363:1: ( ruleVariable )
+            // InternalSpear.g:16364:1: ruleVariable
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternAccess().getOutputsVariableParserRuleCall_7_0_0()); 
@@ -46015,17 +46168,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Pattern__OutputsAssignment_7_1_1"
-    // InternalSpear.g:16328:1: rule__Pattern__OutputsAssignment_7_1_1 : ( ruleVariable ) ;
+    // InternalSpear.g:16373:1: rule__Pattern__OutputsAssignment_7_1_1 : ( ruleVariable ) ;
     public final void rule__Pattern__OutputsAssignment_7_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16332:1: ( ( ruleVariable ) )
-            // InternalSpear.g:16333:1: ( ruleVariable )
+            // InternalSpear.g:16377:1: ( ( ruleVariable ) )
+            // InternalSpear.g:16378:1: ( ruleVariable )
             {
-            // InternalSpear.g:16333:1: ( ruleVariable )
-            // InternalSpear.g:16334:1: ruleVariable
+            // InternalSpear.g:16378:1: ( ruleVariable )
+            // InternalSpear.g:16379:1: ruleVariable
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternAccess().getOutputsVariableParserRuleCall_7_1_1_0()); 
@@ -46060,17 +46213,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Pattern__LocalsAssignment_9_1"
-    // InternalSpear.g:16343:1: rule__Pattern__LocalsAssignment_9_1 : ( ruleVariable ) ;
+    // InternalSpear.g:16388:1: rule__Pattern__LocalsAssignment_9_1 : ( ruleVariable ) ;
     public final void rule__Pattern__LocalsAssignment_9_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16347:1: ( ( ruleVariable ) )
-            // InternalSpear.g:16348:1: ( ruleVariable )
+            // InternalSpear.g:16392:1: ( ( ruleVariable ) )
+            // InternalSpear.g:16393:1: ( ruleVariable )
             {
-            // InternalSpear.g:16348:1: ( ruleVariable )
-            // InternalSpear.g:16349:1: ruleVariable
+            // InternalSpear.g:16393:1: ( ruleVariable )
+            // InternalSpear.g:16394:1: ruleVariable
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternAccess().getLocalsVariableParserRuleCall_9_1_0()); 
@@ -46105,17 +46258,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Pattern__EquationsAssignment_11_0"
-    // InternalSpear.g:16358:1: rule__Pattern__EquationsAssignment_11_0 : ( ruleLustreEquation ) ;
+    // InternalSpear.g:16403:1: rule__Pattern__EquationsAssignment_11_0 : ( ruleLustreEquation ) ;
     public final void rule__Pattern__EquationsAssignment_11_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16362:1: ( ( ruleLustreEquation ) )
-            // InternalSpear.g:16363:1: ( ruleLustreEquation )
+            // InternalSpear.g:16407:1: ( ( ruleLustreEquation ) )
+            // InternalSpear.g:16408:1: ( ruleLustreEquation )
             {
-            // InternalSpear.g:16363:1: ( ruleLustreEquation )
-            // InternalSpear.g:16364:1: ruleLustreEquation
+            // InternalSpear.g:16408:1: ( ruleLustreEquation )
+            // InternalSpear.g:16409:1: ruleLustreEquation
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternAccess().getEquationsLustreEquationParserRuleCall_11_0_0()); 
@@ -46150,17 +46303,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Pattern__PropertiesAssignment_11_1"
-    // InternalSpear.g:16373:1: rule__Pattern__PropertiesAssignment_11_1 : ( ruleLustreProperty ) ;
+    // InternalSpear.g:16418:1: rule__Pattern__PropertiesAssignment_11_1 : ( ruleLustreProperty ) ;
     public final void rule__Pattern__PropertiesAssignment_11_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16377:1: ( ( ruleLustreProperty ) )
-            // InternalSpear.g:16378:1: ( ruleLustreProperty )
+            // InternalSpear.g:16422:1: ( ( ruleLustreProperty ) )
+            // InternalSpear.g:16423:1: ( ruleLustreProperty )
             {
-            // InternalSpear.g:16378:1: ( ruleLustreProperty )
-            // InternalSpear.g:16379:1: ruleLustreProperty
+            // InternalSpear.g:16423:1: ( ruleLustreProperty )
+            // InternalSpear.g:16424:1: ruleLustreProperty
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternAccess().getPropertiesLustrePropertyParserRuleCall_11_1_0()); 
@@ -46195,17 +46348,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Pattern__AssertionsAssignment_11_2"
-    // InternalSpear.g:16388:1: rule__Pattern__AssertionsAssignment_11_2 : ( ruleLustreAssertion ) ;
+    // InternalSpear.g:16433:1: rule__Pattern__AssertionsAssignment_11_2 : ( ruleLustreAssertion ) ;
     public final void rule__Pattern__AssertionsAssignment_11_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16392:1: ( ( ruleLustreAssertion ) )
-            // InternalSpear.g:16393:1: ( ruleLustreAssertion )
+            // InternalSpear.g:16437:1: ( ( ruleLustreAssertion ) )
+            // InternalSpear.g:16438:1: ( ruleLustreAssertion )
             {
-            // InternalSpear.g:16393:1: ( ruleLustreAssertion )
-            // InternalSpear.g:16394:1: ruleLustreAssertion
+            // InternalSpear.g:16438:1: ( ruleLustreAssertion )
+            // InternalSpear.g:16439:1: ruleLustreAssertion
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternAccess().getAssertionsLustreAssertionParserRuleCall_11_2_0()); 
@@ -46240,23 +46393,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LustreEquation__IdsAssignment_0_1"
-    // InternalSpear.g:16403:1: rule__LustreEquation__IdsAssignment_0_1 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:16448:1: rule__LustreEquation__IdsAssignment_0_1 : ( ( RULE_ID ) ) ;
     public final void rule__LustreEquation__IdsAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16407:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:16408:1: ( ( RULE_ID ) )
+            // InternalSpear.g:16452:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:16453:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:16408:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16409:1: ( RULE_ID )
+            // InternalSpear.g:16453:1: ( ( RULE_ID ) )
+            // InternalSpear.g:16454:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLustreEquationAccess().getIdsVariableCrossReference_0_1_0()); 
             }
-            // InternalSpear.g:16410:1: ( RULE_ID )
-            // InternalSpear.g:16411:1: RULE_ID
+            // InternalSpear.g:16455:1: ( RULE_ID )
+            // InternalSpear.g:16456:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLustreEquationAccess().getIdsVariableIDTerminalRuleCall_0_1_0_1()); 
@@ -46293,23 +46446,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LustreEquation__IdsAssignment_0_2_1"
-    // InternalSpear.g:16422:1: rule__LustreEquation__IdsAssignment_0_2_1 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:16467:1: rule__LustreEquation__IdsAssignment_0_2_1 : ( ( RULE_ID ) ) ;
     public final void rule__LustreEquation__IdsAssignment_0_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16426:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:16427:1: ( ( RULE_ID ) )
+            // InternalSpear.g:16471:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:16472:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:16427:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16428:1: ( RULE_ID )
+            // InternalSpear.g:16472:1: ( ( RULE_ID ) )
+            // InternalSpear.g:16473:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLustreEquationAccess().getIdsVariableCrossReference_0_2_1_0()); 
             }
-            // InternalSpear.g:16429:1: ( RULE_ID )
-            // InternalSpear.g:16430:1: RULE_ID
+            // InternalSpear.g:16474:1: ( RULE_ID )
+            // InternalSpear.g:16475:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLustreEquationAccess().getIdsVariableIDTerminalRuleCall_0_2_1_0_1()); 
@@ -46346,17 +46499,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LustreEquation__RhsAssignment_0_5"
-    // InternalSpear.g:16441:1: rule__LustreEquation__RhsAssignment_0_5 : ( ruleExpr ) ;
+    // InternalSpear.g:16486:1: rule__LustreEquation__RhsAssignment_0_5 : ( ruleExpr ) ;
     public final void rule__LustreEquation__RhsAssignment_0_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16445:1: ( ( ruleExpr ) )
-            // InternalSpear.g:16446:1: ( ruleExpr )
+            // InternalSpear.g:16490:1: ( ( ruleExpr ) )
+            // InternalSpear.g:16491:1: ( ruleExpr )
             {
-            // InternalSpear.g:16446:1: ( ruleExpr )
-            // InternalSpear.g:16447:1: ruleExpr
+            // InternalSpear.g:16491:1: ( ruleExpr )
+            // InternalSpear.g:16492:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLustreEquationAccess().getRhsExprParserRuleCall_0_5_0()); 
@@ -46391,23 +46544,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LustreEquation__IdsAssignment_1_0"
-    // InternalSpear.g:16456:1: rule__LustreEquation__IdsAssignment_1_0 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:16501:1: rule__LustreEquation__IdsAssignment_1_0 : ( ( RULE_ID ) ) ;
     public final void rule__LustreEquation__IdsAssignment_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16460:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:16461:1: ( ( RULE_ID ) )
+            // InternalSpear.g:16505:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:16506:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:16461:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16462:1: ( RULE_ID )
+            // InternalSpear.g:16506:1: ( ( RULE_ID ) )
+            // InternalSpear.g:16507:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLustreEquationAccess().getIdsVariableCrossReference_1_0_0()); 
             }
-            // InternalSpear.g:16463:1: ( RULE_ID )
-            // InternalSpear.g:16464:1: RULE_ID
+            // InternalSpear.g:16508:1: ( RULE_ID )
+            // InternalSpear.g:16509:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLustreEquationAccess().getIdsVariableIDTerminalRuleCall_1_0_0_1()); 
@@ -46444,17 +46597,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LustreEquation__RhsAssignment_1_2"
-    // InternalSpear.g:16475:1: rule__LustreEquation__RhsAssignment_1_2 : ( ruleExpr ) ;
+    // InternalSpear.g:16520:1: rule__LustreEquation__RhsAssignment_1_2 : ( ruleExpr ) ;
     public final void rule__LustreEquation__RhsAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16479:1: ( ( ruleExpr ) )
-            // InternalSpear.g:16480:1: ( ruleExpr )
+            // InternalSpear.g:16524:1: ( ( ruleExpr ) )
+            // InternalSpear.g:16525:1: ( ruleExpr )
             {
-            // InternalSpear.g:16480:1: ( ruleExpr )
-            // InternalSpear.g:16481:1: ruleExpr
+            // InternalSpear.g:16525:1: ( ruleExpr )
+            // InternalSpear.g:16526:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLustreEquationAccess().getRhsExprParserRuleCall_1_2_0()); 
@@ -46489,23 +46642,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LustreProperty__PropertyIdAssignment_1"
-    // InternalSpear.g:16490:1: rule__LustreProperty__PropertyIdAssignment_1 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:16535:1: rule__LustreProperty__PropertyIdAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__LustreProperty__PropertyIdAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16494:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:16495:1: ( ( RULE_ID ) )
+            // InternalSpear.g:16539:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:16540:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:16495:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16496:1: ( RULE_ID )
+            // InternalSpear.g:16540:1: ( ( RULE_ID ) )
+            // InternalSpear.g:16541:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLustrePropertyAccess().getPropertyIdVariableCrossReference_1_0()); 
             }
-            // InternalSpear.g:16497:1: ( RULE_ID )
-            // InternalSpear.g:16498:1: RULE_ID
+            // InternalSpear.g:16542:1: ( RULE_ID )
+            // InternalSpear.g:16543:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLustrePropertyAccess().getPropertyIdVariableIDTerminalRuleCall_1_0_1()); 
@@ -46542,17 +46695,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LustreAssertion__AssertionExprAssignment_1"
-    // InternalSpear.g:16509:1: rule__LustreAssertion__AssertionExprAssignment_1 : ( ruleExpr ) ;
+    // InternalSpear.g:16554:1: rule__LustreAssertion__AssertionExprAssignment_1 : ( ruleExpr ) ;
     public final void rule__LustreAssertion__AssertionExprAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16513:1: ( ( ruleExpr ) )
-            // InternalSpear.g:16514:1: ( ruleExpr )
+            // InternalSpear.g:16558:1: ( ( ruleExpr ) )
+            // InternalSpear.g:16559:1: ( ruleExpr )
             {
-            // InternalSpear.g:16514:1: ( ruleExpr )
-            // InternalSpear.g:16515:1: ruleExpr
+            // InternalSpear.g:16559:1: ( ruleExpr )
+            // InternalSpear.g:16560:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLustreAssertionAccess().getAssertionExprExprParserRuleCall_1_0()); 
@@ -46587,17 +46740,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnitDef__NameAssignment_0_1"
-    // InternalSpear.g:16524:1: rule__UnitDef__NameAssignment_0_1 : ( RULE_ID ) ;
+    // InternalSpear.g:16569:1: rule__UnitDef__NameAssignment_0_1 : ( RULE_ID ) ;
     public final void rule__UnitDef__NameAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16528:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16529:1: ( RULE_ID )
+            // InternalSpear.g:16573:1: ( ( RULE_ID ) )
+            // InternalSpear.g:16574:1: ( RULE_ID )
             {
-            // InternalSpear.g:16529:1: ( RULE_ID )
-            // InternalSpear.g:16530:1: RULE_ID
+            // InternalSpear.g:16574:1: ( RULE_ID )
+            // InternalSpear.g:16575:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitDefAccess().getNameIDTerminalRuleCall_0_1_0()); 
@@ -46628,17 +46781,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnitDef__DescriptionAssignment_0_2"
-    // InternalSpear.g:16539:1: rule__UnitDef__DescriptionAssignment_0_2 : ( RULE_STRING ) ;
+    // InternalSpear.g:16584:1: rule__UnitDef__DescriptionAssignment_0_2 : ( RULE_STRING ) ;
     public final void rule__UnitDef__DescriptionAssignment_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16543:1: ( ( RULE_STRING ) )
-            // InternalSpear.g:16544:1: ( RULE_STRING )
+            // InternalSpear.g:16588:1: ( ( RULE_STRING ) )
+            // InternalSpear.g:16589:1: ( RULE_STRING )
             {
-            // InternalSpear.g:16544:1: ( RULE_STRING )
-            // InternalSpear.g:16545:1: RULE_STRING
+            // InternalSpear.g:16589:1: ( RULE_STRING )
+            // InternalSpear.g:16590:1: RULE_STRING
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitDefAccess().getDescriptionSTRINGTerminalRuleCall_0_2_0()); 
@@ -46669,17 +46822,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnitDef__NameAssignment_1_1"
-    // InternalSpear.g:16554:1: rule__UnitDef__NameAssignment_1_1 : ( RULE_ID ) ;
+    // InternalSpear.g:16599:1: rule__UnitDef__NameAssignment_1_1 : ( RULE_ID ) ;
     public final void rule__UnitDef__NameAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16558:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16559:1: ( RULE_ID )
+            // InternalSpear.g:16603:1: ( ( RULE_ID ) )
+            // InternalSpear.g:16604:1: ( RULE_ID )
             {
-            // InternalSpear.g:16559:1: ( RULE_ID )
-            // InternalSpear.g:16560:1: RULE_ID
+            // InternalSpear.g:16604:1: ( RULE_ID )
+            // InternalSpear.g:16605:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitDefAccess().getNameIDTerminalRuleCall_1_1_0()); 
@@ -46710,17 +46863,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnitDef__UnitAssignment_1_3"
-    // InternalSpear.g:16569:1: rule__UnitDef__UnitAssignment_1_3 : ( ruleUnitExpr ) ;
+    // InternalSpear.g:16614:1: rule__UnitDef__UnitAssignment_1_3 : ( ruleUnitExpr ) ;
     public final void rule__UnitDef__UnitAssignment_1_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16573:1: ( ( ruleUnitExpr ) )
-            // InternalSpear.g:16574:1: ( ruleUnitExpr )
+            // InternalSpear.g:16618:1: ( ( ruleUnitExpr ) )
+            // InternalSpear.g:16619:1: ( ruleUnitExpr )
             {
-            // InternalSpear.g:16574:1: ( ruleUnitExpr )
-            // InternalSpear.g:16575:1: ruleUnitExpr
+            // InternalSpear.g:16619:1: ( ruleUnitExpr )
+            // InternalSpear.g:16620:1: ruleUnitExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitDefAccess().getUnitUnitExprParserRuleCall_1_3_0()); 
@@ -46755,17 +46908,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnitDef__DescriptionAssignment_1_4"
-    // InternalSpear.g:16584:1: rule__UnitDef__DescriptionAssignment_1_4 : ( RULE_STRING ) ;
+    // InternalSpear.g:16629:1: rule__UnitDef__DescriptionAssignment_1_4 : ( RULE_STRING ) ;
     public final void rule__UnitDef__DescriptionAssignment_1_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16588:1: ( ( RULE_STRING ) )
-            // InternalSpear.g:16589:1: ( RULE_STRING )
+            // InternalSpear.g:16633:1: ( ( RULE_STRING ) )
+            // InternalSpear.g:16634:1: ( RULE_STRING )
             {
-            // InternalSpear.g:16589:1: ( RULE_STRING )
-            // InternalSpear.g:16590:1: RULE_STRING
+            // InternalSpear.g:16634:1: ( RULE_STRING )
+            // InternalSpear.g:16635:1: RULE_STRING
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitDefAccess().getDescriptionSTRINGTerminalRuleCall_1_4_0()); 
@@ -46796,23 +46949,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProductUnitExpr__OpAssignment_1_0_0_1"
-    // InternalSpear.g:16599:1: rule__ProductUnitExpr__OpAssignment_1_0_0_1 : ( ( '*' ) ) ;
+    // InternalSpear.g:16644:1: rule__ProductUnitExpr__OpAssignment_1_0_0_1 : ( ( '*' ) ) ;
     public final void rule__ProductUnitExpr__OpAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16603:1: ( ( ( '*' ) ) )
-            // InternalSpear.g:16604:1: ( ( '*' ) )
+            // InternalSpear.g:16648:1: ( ( ( '*' ) ) )
+            // InternalSpear.g:16649:1: ( ( '*' ) )
             {
-            // InternalSpear.g:16604:1: ( ( '*' ) )
-            // InternalSpear.g:16605:1: ( '*' )
+            // InternalSpear.g:16649:1: ( ( '*' ) )
+            // InternalSpear.g:16650:1: ( '*' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProductUnitExprAccess().getOpAsteriskKeyword_1_0_0_1_0()); 
             }
-            // InternalSpear.g:16606:1: ( '*' )
-            // InternalSpear.g:16607:1: '*'
+            // InternalSpear.g:16651:1: ( '*' )
+            // InternalSpear.g:16652:1: '*'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProductUnitExprAccess().getOpAsteriskKeyword_1_0_0_1_0()); 
@@ -46849,17 +47002,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProductUnitExpr__RightAssignment_1_1"
-    // InternalSpear.g:16622:1: rule__ProductUnitExpr__RightAssignment_1_1 : ( ruleProductUnitExpr ) ;
+    // InternalSpear.g:16667:1: rule__ProductUnitExpr__RightAssignment_1_1 : ( ruleProductUnitExpr ) ;
     public final void rule__ProductUnitExpr__RightAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16626:1: ( ( ruleProductUnitExpr ) )
-            // InternalSpear.g:16627:1: ( ruleProductUnitExpr )
+            // InternalSpear.g:16671:1: ( ( ruleProductUnitExpr ) )
+            // InternalSpear.g:16672:1: ( ruleProductUnitExpr )
             {
-            // InternalSpear.g:16627:1: ( ruleProductUnitExpr )
-            // InternalSpear.g:16628:1: ruleProductUnitExpr
+            // InternalSpear.g:16672:1: ( ruleProductUnitExpr )
+            // InternalSpear.g:16673:1: ruleProductUnitExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProductUnitExprAccess().getRightProductUnitExprParserRuleCall_1_1_0()); 
@@ -46894,23 +47047,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DivisionUnitExpr__OpAssignment_1_0_0_1"
-    // InternalSpear.g:16637:1: rule__DivisionUnitExpr__OpAssignment_1_0_0_1 : ( ( '/' ) ) ;
+    // InternalSpear.g:16682:1: rule__DivisionUnitExpr__OpAssignment_1_0_0_1 : ( ( '/' ) ) ;
     public final void rule__DivisionUnitExpr__OpAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16641:1: ( ( ( '/' ) ) )
-            // InternalSpear.g:16642:1: ( ( '/' ) )
+            // InternalSpear.g:16686:1: ( ( ( '/' ) ) )
+            // InternalSpear.g:16687:1: ( ( '/' ) )
             {
-            // InternalSpear.g:16642:1: ( ( '/' ) )
-            // InternalSpear.g:16643:1: ( '/' )
+            // InternalSpear.g:16687:1: ( ( '/' ) )
+            // InternalSpear.g:16688:1: ( '/' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDivisionUnitExprAccess().getOpSolidusKeyword_1_0_0_1_0()); 
             }
-            // InternalSpear.g:16644:1: ( '/' )
-            // InternalSpear.g:16645:1: '/'
+            // InternalSpear.g:16689:1: ( '/' )
+            // InternalSpear.g:16690:1: '/'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDivisionUnitExprAccess().getOpSolidusKeyword_1_0_0_1_0()); 
@@ -46947,17 +47100,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DivisionUnitExpr__RightAssignment_1_1"
-    // InternalSpear.g:16660:1: rule__DivisionUnitExpr__RightAssignment_1_1 : ( ruleAtomicUnitExpr ) ;
+    // InternalSpear.g:16705:1: rule__DivisionUnitExpr__RightAssignment_1_1 : ( ruleAtomicUnitExpr ) ;
     public final void rule__DivisionUnitExpr__RightAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16664:1: ( ( ruleAtomicUnitExpr ) )
-            // InternalSpear.g:16665:1: ( ruleAtomicUnitExpr )
+            // InternalSpear.g:16709:1: ( ( ruleAtomicUnitExpr ) )
+            // InternalSpear.g:16710:1: ( ruleAtomicUnitExpr )
             {
-            // InternalSpear.g:16665:1: ( ruleAtomicUnitExpr )
-            // InternalSpear.g:16666:1: ruleAtomicUnitExpr
+            // InternalSpear.g:16710:1: ( ruleAtomicUnitExpr )
+            // InternalSpear.g:16711:1: ruleAtomicUnitExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDivisionUnitExprAccess().getRightAtomicUnitExprParserRuleCall_1_1_0()); 
@@ -46992,23 +47145,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicUnitExpr__UnitAssignment_0_1"
-    // InternalSpear.g:16675:1: rule__AtomicUnitExpr__UnitAssignment_0_1 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:16720:1: rule__AtomicUnitExpr__UnitAssignment_0_1 : ( ( RULE_ID ) ) ;
     public final void rule__AtomicUnitExpr__UnitAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16679:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:16680:1: ( ( RULE_ID ) )
+            // InternalSpear.g:16724:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:16725:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:16680:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16681:1: ( RULE_ID )
+            // InternalSpear.g:16725:1: ( ( RULE_ID ) )
+            // InternalSpear.g:16726:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicUnitExprAccess().getUnitUnitDefCrossReference_0_1_0()); 
             }
-            // InternalSpear.g:16682:1: ( RULE_ID )
-            // InternalSpear.g:16683:1: RULE_ID
+            // InternalSpear.g:16727:1: ( RULE_ID )
+            // InternalSpear.g:16728:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicUnitExprAccess().getUnitUnitDefIDTerminalRuleCall_0_1_0_1()); 
@@ -47045,17 +47198,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDef__NameAssignment_0_1"
-    // InternalSpear.g:16694:1: rule__TypeDef__NameAssignment_0_1 : ( RULE_ID ) ;
+    // InternalSpear.g:16739:1: rule__TypeDef__NameAssignment_0_1 : ( RULE_ID ) ;
     public final void rule__TypeDef__NameAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16698:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16699:1: ( RULE_ID )
+            // InternalSpear.g:16743:1: ( ( RULE_ID ) )
+            // InternalSpear.g:16744:1: ( RULE_ID )
             {
-            // InternalSpear.g:16699:1: ( RULE_ID )
-            // InternalSpear.g:16700:1: RULE_ID
+            // InternalSpear.g:16744:1: ( RULE_ID )
+            // InternalSpear.g:16745:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeDefAccess().getNameIDTerminalRuleCall_0_1_0()); 
@@ -47086,17 +47239,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDef__TypeAssignment_0_3"
-    // InternalSpear.g:16709:1: rule__TypeDef__TypeAssignment_0_3 : ( ruleType ) ;
+    // InternalSpear.g:16754:1: rule__TypeDef__TypeAssignment_0_3 : ( ruleType ) ;
     public final void rule__TypeDef__TypeAssignment_0_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16713:1: ( ( ruleType ) )
-            // InternalSpear.g:16714:1: ( ruleType )
+            // InternalSpear.g:16758:1: ( ( ruleType ) )
+            // InternalSpear.g:16759:1: ( ruleType )
             {
-            // InternalSpear.g:16714:1: ( ruleType )
-            // InternalSpear.g:16715:1: ruleType
+            // InternalSpear.g:16759:1: ( ruleType )
+            // InternalSpear.g:16760:1: ruleType
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeDefAccess().getTypeTypeParserRuleCall_0_3_0()); 
@@ -47131,23 +47284,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDef__UnitAssignment_0_4"
-    // InternalSpear.g:16724:1: rule__TypeDef__UnitAssignment_0_4 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:16769:1: rule__TypeDef__UnitAssignment_0_4 : ( ( RULE_ID ) ) ;
     public final void rule__TypeDef__UnitAssignment_0_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16728:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:16729:1: ( ( RULE_ID ) )
+            // InternalSpear.g:16773:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:16774:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:16729:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16730:1: ( RULE_ID )
+            // InternalSpear.g:16774:1: ( ( RULE_ID ) )
+            // InternalSpear.g:16775:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeDefAccess().getUnitUnitDefCrossReference_0_4_0()); 
             }
-            // InternalSpear.g:16731:1: ( RULE_ID )
-            // InternalSpear.g:16732:1: RULE_ID
+            // InternalSpear.g:16776:1: ( RULE_ID )
+            // InternalSpear.g:16777:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeDefAccess().getUnitUnitDefIDTerminalRuleCall_0_4_0_1()); 
@@ -47184,17 +47337,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDef__NameAssignment_1_1"
-    // InternalSpear.g:16743:1: rule__TypeDef__NameAssignment_1_1 : ( RULE_ID ) ;
+    // InternalSpear.g:16788:1: rule__TypeDef__NameAssignment_1_1 : ( RULE_ID ) ;
     public final void rule__TypeDef__NameAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16747:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16748:1: ( RULE_ID )
+            // InternalSpear.g:16792:1: ( ( RULE_ID ) )
+            // InternalSpear.g:16793:1: ( RULE_ID )
             {
-            // InternalSpear.g:16748:1: ( RULE_ID )
-            // InternalSpear.g:16749:1: RULE_ID
+            // InternalSpear.g:16793:1: ( RULE_ID )
+            // InternalSpear.g:16794:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeDefAccess().getNameIDTerminalRuleCall_1_1_0()); 
@@ -47225,17 +47378,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDef__FieldsAssignment_1_5"
-    // InternalSpear.g:16758:1: rule__TypeDef__FieldsAssignment_1_5 : ( ruleFieldType ) ;
+    // InternalSpear.g:16803:1: rule__TypeDef__FieldsAssignment_1_5 : ( ruleFieldType ) ;
     public final void rule__TypeDef__FieldsAssignment_1_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16762:1: ( ( ruleFieldType ) )
-            // InternalSpear.g:16763:1: ( ruleFieldType )
+            // InternalSpear.g:16807:1: ( ( ruleFieldType ) )
+            // InternalSpear.g:16808:1: ( ruleFieldType )
             {
-            // InternalSpear.g:16763:1: ( ruleFieldType )
-            // InternalSpear.g:16764:1: ruleFieldType
+            // InternalSpear.g:16808:1: ( ruleFieldType )
+            // InternalSpear.g:16809:1: ruleFieldType
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeDefAccess().getFieldsFieldTypeParserRuleCall_1_5_0()); 
@@ -47270,17 +47423,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDef__FieldsAssignment_1_6_1"
-    // InternalSpear.g:16773:1: rule__TypeDef__FieldsAssignment_1_6_1 : ( ruleFieldType ) ;
+    // InternalSpear.g:16818:1: rule__TypeDef__FieldsAssignment_1_6_1 : ( ruleFieldType ) ;
     public final void rule__TypeDef__FieldsAssignment_1_6_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16777:1: ( ( ruleFieldType ) )
-            // InternalSpear.g:16778:1: ( ruleFieldType )
+            // InternalSpear.g:16822:1: ( ( ruleFieldType ) )
+            // InternalSpear.g:16823:1: ( ruleFieldType )
             {
-            // InternalSpear.g:16778:1: ( ruleFieldType )
-            // InternalSpear.g:16779:1: ruleFieldType
+            // InternalSpear.g:16823:1: ( ruleFieldType )
+            // InternalSpear.g:16824:1: ruleFieldType
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeDefAccess().getFieldsFieldTypeParserRuleCall_1_6_1_0()); 
@@ -47315,17 +47468,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDef__NameAssignment_2_1"
-    // InternalSpear.g:16788:1: rule__TypeDef__NameAssignment_2_1 : ( RULE_ID ) ;
+    // InternalSpear.g:16833:1: rule__TypeDef__NameAssignment_2_1 : ( RULE_ID ) ;
     public final void rule__TypeDef__NameAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16792:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16793:1: ( RULE_ID )
+            // InternalSpear.g:16837:1: ( ( RULE_ID ) )
+            // InternalSpear.g:16838:1: ( RULE_ID )
             {
-            // InternalSpear.g:16793:1: ( RULE_ID )
-            // InternalSpear.g:16794:1: RULE_ID
+            // InternalSpear.g:16838:1: ( RULE_ID )
+            // InternalSpear.g:16839:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeDefAccess().getNameIDTerminalRuleCall_2_1_0()); 
@@ -47356,17 +47509,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDef__BaseAssignment_2_3"
-    // InternalSpear.g:16803:1: rule__TypeDef__BaseAssignment_2_3 : ( ruleType ) ;
+    // InternalSpear.g:16848:1: rule__TypeDef__BaseAssignment_2_3 : ( ruleType ) ;
     public final void rule__TypeDef__BaseAssignment_2_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16807:1: ( ( ruleType ) )
-            // InternalSpear.g:16808:1: ( ruleType )
+            // InternalSpear.g:16852:1: ( ( ruleType ) )
+            // InternalSpear.g:16853:1: ( ruleType )
             {
-            // InternalSpear.g:16808:1: ( ruleType )
-            // InternalSpear.g:16809:1: ruleType
+            // InternalSpear.g:16853:1: ( ruleType )
+            // InternalSpear.g:16854:1: ruleType
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeDefAccess().getBaseTypeParserRuleCall_2_3_0()); 
@@ -47401,17 +47554,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDef__SizeAssignment_2_5"
-    // InternalSpear.g:16818:1: rule__TypeDef__SizeAssignment_2_5 : ( RULE_INT ) ;
+    // InternalSpear.g:16863:1: rule__TypeDef__SizeAssignment_2_5 : ( RULE_INT ) ;
     public final void rule__TypeDef__SizeAssignment_2_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16822:1: ( ( RULE_INT ) )
-            // InternalSpear.g:16823:1: ( RULE_INT )
+            // InternalSpear.g:16867:1: ( ( RULE_INT ) )
+            // InternalSpear.g:16868:1: ( RULE_INT )
             {
-            // InternalSpear.g:16823:1: ( RULE_INT )
-            // InternalSpear.g:16824:1: RULE_INT
+            // InternalSpear.g:16868:1: ( RULE_INT )
+            // InternalSpear.g:16869:1: RULE_INT
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeDefAccess().getSizeINTTerminalRuleCall_2_5_0()); 
@@ -47442,17 +47595,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDef__NameAssignment_3_1"
-    // InternalSpear.g:16833:1: rule__TypeDef__NameAssignment_3_1 : ( RULE_ID ) ;
+    // InternalSpear.g:16878:1: rule__TypeDef__NameAssignment_3_1 : ( RULE_ID ) ;
     public final void rule__TypeDef__NameAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16837:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16838:1: ( RULE_ID )
+            // InternalSpear.g:16882:1: ( ( RULE_ID ) )
+            // InternalSpear.g:16883:1: ( RULE_ID )
             {
-            // InternalSpear.g:16838:1: ( RULE_ID )
-            // InternalSpear.g:16839:1: RULE_ID
+            // InternalSpear.g:16883:1: ( RULE_ID )
+            // InternalSpear.g:16884:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeDefAccess().getNameIDTerminalRuleCall_3_1_0()); 
@@ -47483,17 +47636,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDef__ValuesAssignment_3_5"
-    // InternalSpear.g:16848:1: rule__TypeDef__ValuesAssignment_3_5 : ( ruleEnumValue ) ;
+    // InternalSpear.g:16893:1: rule__TypeDef__ValuesAssignment_3_5 : ( ruleEnumValue ) ;
     public final void rule__TypeDef__ValuesAssignment_3_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16852:1: ( ( ruleEnumValue ) )
-            // InternalSpear.g:16853:1: ( ruleEnumValue )
+            // InternalSpear.g:16897:1: ( ( ruleEnumValue ) )
+            // InternalSpear.g:16898:1: ( ruleEnumValue )
             {
-            // InternalSpear.g:16853:1: ( ruleEnumValue )
-            // InternalSpear.g:16854:1: ruleEnumValue
+            // InternalSpear.g:16898:1: ( ruleEnumValue )
+            // InternalSpear.g:16899:1: ruleEnumValue
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeDefAccess().getValuesEnumValueParserRuleCall_3_5_0()); 
@@ -47528,17 +47681,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDef__ValuesAssignment_3_6_1"
-    // InternalSpear.g:16863:1: rule__TypeDef__ValuesAssignment_3_6_1 : ( ruleEnumValue ) ;
+    // InternalSpear.g:16908:1: rule__TypeDef__ValuesAssignment_3_6_1 : ( ruleEnumValue ) ;
     public final void rule__TypeDef__ValuesAssignment_3_6_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16867:1: ( ( ruleEnumValue ) )
-            // InternalSpear.g:16868:1: ( ruleEnumValue )
+            // InternalSpear.g:16912:1: ( ( ruleEnumValue ) )
+            // InternalSpear.g:16913:1: ( ruleEnumValue )
             {
-            // InternalSpear.g:16868:1: ( ruleEnumValue )
-            // InternalSpear.g:16869:1: ruleEnumValue
+            // InternalSpear.g:16913:1: ( ruleEnumValue )
+            // InternalSpear.g:16914:1: ruleEnumValue
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeDefAccess().getValuesEnumValueParserRuleCall_3_6_1_0()); 
@@ -47573,17 +47726,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FieldType__NameAssignment_0"
-    // InternalSpear.g:16878:1: rule__FieldType__NameAssignment_0 : ( RULE_ID ) ;
+    // InternalSpear.g:16923:1: rule__FieldType__NameAssignment_0 : ( RULE_ID ) ;
     public final void rule__FieldType__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16882:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16883:1: ( RULE_ID )
+            // InternalSpear.g:16927:1: ( ( RULE_ID ) )
+            // InternalSpear.g:16928:1: ( RULE_ID )
             {
-            // InternalSpear.g:16883:1: ( RULE_ID )
-            // InternalSpear.g:16884:1: RULE_ID
+            // InternalSpear.g:16928:1: ( RULE_ID )
+            // InternalSpear.g:16929:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFieldTypeAccess().getNameIDTerminalRuleCall_0_0()); 
@@ -47614,17 +47767,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FieldType__TypeAssignment_2"
-    // InternalSpear.g:16893:1: rule__FieldType__TypeAssignment_2 : ( ruleType ) ;
+    // InternalSpear.g:16938:1: rule__FieldType__TypeAssignment_2 : ( ruleType ) ;
     public final void rule__FieldType__TypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16897:1: ( ( ruleType ) )
-            // InternalSpear.g:16898:1: ( ruleType )
+            // InternalSpear.g:16942:1: ( ( ruleType ) )
+            // InternalSpear.g:16943:1: ( ruleType )
             {
-            // InternalSpear.g:16898:1: ( ruleType )
-            // InternalSpear.g:16899:1: ruleType
+            // InternalSpear.g:16943:1: ( ruleType )
+            // InternalSpear.g:16944:1: ruleType
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFieldTypeAccess().getTypeTypeParserRuleCall_2_0()); 
@@ -47659,17 +47812,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EnumValue__NameAssignment"
-    // InternalSpear.g:16908:1: rule__EnumValue__NameAssignment : ( RULE_ID ) ;
+    // InternalSpear.g:16953:1: rule__EnumValue__NameAssignment : ( RULE_ID ) ;
     public final void rule__EnumValue__NameAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16912:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16913:1: ( RULE_ID )
+            // InternalSpear.g:16957:1: ( ( RULE_ID ) )
+            // InternalSpear.g:16958:1: ( RULE_ID )
             {
-            // InternalSpear.g:16913:1: ( RULE_ID )
-            // InternalSpear.g:16914:1: RULE_ID
+            // InternalSpear.g:16958:1: ( RULE_ID )
+            // InternalSpear.g:16959:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getEnumValueAccess().getNameIDTerminalRuleCall_0()); 
@@ -47700,23 +47853,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Type__DefAssignment_3_1"
-    // InternalSpear.g:16923:1: rule__Type__DefAssignment_3_1 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:16968:1: rule__Type__DefAssignment_3_1 : ( ( RULE_ID ) ) ;
     public final void rule__Type__DefAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16927:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:16928:1: ( ( RULE_ID ) )
+            // InternalSpear.g:16972:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:16973:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:16928:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16929:1: ( RULE_ID )
+            // InternalSpear.g:16973:1: ( ( RULE_ID ) )
+            // InternalSpear.g:16974:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeAccess().getDefTypeDefCrossReference_3_1_0()); 
             }
-            // InternalSpear.g:16930:1: ( RULE_ID )
-            // InternalSpear.g:16931:1: RULE_ID
+            // InternalSpear.g:16975:1: ( RULE_ID )
+            // InternalSpear.g:16976:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeAccess().getDefTypeDefIDTerminalRuleCall_3_1_0_1()); 
@@ -47753,17 +47906,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constant__NameAssignment_0"
-    // InternalSpear.g:16942:1: rule__Constant__NameAssignment_0 : ( RULE_ID ) ;
+    // InternalSpear.g:16987:1: rule__Constant__NameAssignment_0 : ( RULE_ID ) ;
     public final void rule__Constant__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16946:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16947:1: ( RULE_ID )
+            // InternalSpear.g:16991:1: ( ( RULE_ID ) )
+            // InternalSpear.g:16992:1: ( RULE_ID )
             {
-            // InternalSpear.g:16947:1: ( RULE_ID )
-            // InternalSpear.g:16948:1: RULE_ID
+            // InternalSpear.g:16992:1: ( RULE_ID )
+            // InternalSpear.g:16993:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConstantAccess().getNameIDTerminalRuleCall_0_0()); 
@@ -47794,17 +47947,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constant__TypeAssignment_2"
-    // InternalSpear.g:16957:1: rule__Constant__TypeAssignment_2 : ( ruleType ) ;
+    // InternalSpear.g:17002:1: rule__Constant__TypeAssignment_2 : ( ruleType ) ;
     public final void rule__Constant__TypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16961:1: ( ( ruleType ) )
-            // InternalSpear.g:16962:1: ( ruleType )
+            // InternalSpear.g:17006:1: ( ( ruleType ) )
+            // InternalSpear.g:17007:1: ( ruleType )
             {
-            // InternalSpear.g:16962:1: ( ruleType )
-            // InternalSpear.g:16963:1: ruleType
+            // InternalSpear.g:17007:1: ( ruleType )
+            // InternalSpear.g:17008:1: ruleType
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConstantAccess().getTypeTypeParserRuleCall_2_0()); 
@@ -47839,17 +47992,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constant__ExprAssignment_4"
-    // InternalSpear.g:16972:1: rule__Constant__ExprAssignment_4 : ( ruleExpr ) ;
+    // InternalSpear.g:17017:1: rule__Constant__ExprAssignment_4 : ( ruleExpr ) ;
     public final void rule__Constant__ExprAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16976:1: ( ( ruleExpr ) )
-            // InternalSpear.g:16977:1: ( ruleExpr )
+            // InternalSpear.g:17021:1: ( ( ruleExpr ) )
+            // InternalSpear.g:17022:1: ( ruleExpr )
             {
-            // InternalSpear.g:16977:1: ( ruleExpr )
-            // InternalSpear.g:16978:1: ruleExpr
+            // InternalSpear.g:17022:1: ( ruleExpr )
+            // InternalSpear.g:17023:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConstantAccess().getExprExprParserRuleCall_4_0()); 
@@ -47884,17 +48037,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constant__DescriptorAssignment_5_2"
-    // InternalSpear.g:16987:1: rule__Constant__DescriptorAssignment_5_2 : ( RULE_STRING ) ;
+    // InternalSpear.g:17032:1: rule__Constant__DescriptorAssignment_5_2 : ( RULE_STRING ) ;
     public final void rule__Constant__DescriptorAssignment_5_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16991:1: ( ( RULE_STRING ) )
-            // InternalSpear.g:16992:1: ( RULE_STRING )
+            // InternalSpear.g:17036:1: ( ( RULE_STRING ) )
+            // InternalSpear.g:17037:1: ( RULE_STRING )
             {
-            // InternalSpear.g:16992:1: ( RULE_STRING )
-            // InternalSpear.g:16993:1: RULE_STRING
+            // InternalSpear.g:17037:1: ( RULE_STRING )
+            // InternalSpear.g:17038:1: RULE_STRING
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConstantAccess().getDescriptorSTRINGTerminalRuleCall_5_2_0()); 
@@ -47925,17 +48078,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Variable__NameAssignment_0"
-    // InternalSpear.g:17002:1: rule__Variable__NameAssignment_0 : ( RULE_ID ) ;
+    // InternalSpear.g:17047:1: rule__Variable__NameAssignment_0 : ( RULE_ID ) ;
     public final void rule__Variable__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17006:1: ( ( RULE_ID ) )
-            // InternalSpear.g:17007:1: ( RULE_ID )
+            // InternalSpear.g:17051:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17052:1: ( RULE_ID )
             {
-            // InternalSpear.g:17007:1: ( RULE_ID )
-            // InternalSpear.g:17008:1: RULE_ID
+            // InternalSpear.g:17052:1: ( RULE_ID )
+            // InternalSpear.g:17053:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVariableAccess().getNameIDTerminalRuleCall_0_0()); 
@@ -47966,17 +48119,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Variable__TypeAssignment_2"
-    // InternalSpear.g:17017:1: rule__Variable__TypeAssignment_2 : ( ruleType ) ;
+    // InternalSpear.g:17062:1: rule__Variable__TypeAssignment_2 : ( ruleType ) ;
     public final void rule__Variable__TypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17021:1: ( ( ruleType ) )
-            // InternalSpear.g:17022:1: ( ruleType )
+            // InternalSpear.g:17066:1: ( ( ruleType ) )
+            // InternalSpear.g:17067:1: ( ruleType )
             {
-            // InternalSpear.g:17022:1: ( ruleType )
-            // InternalSpear.g:17023:1: ruleType
+            // InternalSpear.g:17067:1: ( ruleType )
+            // InternalSpear.g:17068:1: ruleType
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVariableAccess().getTypeTypeParserRuleCall_2_0()); 
@@ -48011,17 +48164,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Macro__NameAssignment_0"
-    // InternalSpear.g:17032:1: rule__Macro__NameAssignment_0 : ( RULE_ID ) ;
+    // InternalSpear.g:17077:1: rule__Macro__NameAssignment_0 : ( RULE_ID ) ;
     public final void rule__Macro__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17036:1: ( ( RULE_ID ) )
-            // InternalSpear.g:17037:1: ( RULE_ID )
+            // InternalSpear.g:17081:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17082:1: ( RULE_ID )
             {
-            // InternalSpear.g:17037:1: ( RULE_ID )
-            // InternalSpear.g:17038:1: RULE_ID
+            // InternalSpear.g:17082:1: ( RULE_ID )
+            // InternalSpear.g:17083:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMacroAccess().getNameIDTerminalRuleCall_0_0()); 
@@ -48052,17 +48205,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Macro__TypeAssignment_2"
-    // InternalSpear.g:17047:1: rule__Macro__TypeAssignment_2 : ( ruleType ) ;
+    // InternalSpear.g:17092:1: rule__Macro__TypeAssignment_2 : ( ruleType ) ;
     public final void rule__Macro__TypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17051:1: ( ( ruleType ) )
-            // InternalSpear.g:17052:1: ( ruleType )
+            // InternalSpear.g:17096:1: ( ( ruleType ) )
+            // InternalSpear.g:17097:1: ( ruleType )
             {
-            // InternalSpear.g:17052:1: ( ruleType )
-            // InternalSpear.g:17053:1: ruleType
+            // InternalSpear.g:17097:1: ( ruleType )
+            // InternalSpear.g:17098:1: ruleType
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMacroAccess().getTypeTypeParserRuleCall_2_0()); 
@@ -48097,17 +48250,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Macro__ExprAssignment_4"
-    // InternalSpear.g:17062:1: rule__Macro__ExprAssignment_4 : ( ruleExpr ) ;
+    // InternalSpear.g:17107:1: rule__Macro__ExprAssignment_4 : ( ruleExpr ) ;
     public final void rule__Macro__ExprAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17066:1: ( ( ruleExpr ) )
-            // InternalSpear.g:17067:1: ( ruleExpr )
+            // InternalSpear.g:17111:1: ( ( ruleExpr ) )
+            // InternalSpear.g:17112:1: ( ruleExpr )
             {
-            // InternalSpear.g:17067:1: ( ruleExpr )
-            // InternalSpear.g:17068:1: ruleExpr
+            // InternalSpear.g:17112:1: ( ruleExpr )
+            // InternalSpear.g:17113:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMacroAccess().getExprExprParserRuleCall_4_0()); 
@@ -48142,17 +48295,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Macro__DescriptorAssignment_5_2"
-    // InternalSpear.g:17077:1: rule__Macro__DescriptorAssignment_5_2 : ( RULE_STRING ) ;
+    // InternalSpear.g:17122:1: rule__Macro__DescriptorAssignment_5_2 : ( RULE_STRING ) ;
     public final void rule__Macro__DescriptorAssignment_5_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17081:1: ( ( RULE_STRING ) )
-            // InternalSpear.g:17082:1: ( RULE_STRING )
+            // InternalSpear.g:17126:1: ( ( RULE_STRING ) )
+            // InternalSpear.g:17127:1: ( RULE_STRING )
             {
-            // InternalSpear.g:17082:1: ( RULE_STRING )
-            // InternalSpear.g:17083:1: RULE_STRING
+            // InternalSpear.g:17127:1: ( RULE_STRING )
+            // InternalSpear.g:17128:1: RULE_STRING
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMacroAccess().getDescriptorSTRINGTerminalRuleCall_5_2_0()); 
@@ -48183,17 +48336,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FormalConstraint__NameAssignment_0"
-    // InternalSpear.g:17092:1: rule__FormalConstraint__NameAssignment_0 : ( RULE_ID ) ;
+    // InternalSpear.g:17137:1: rule__FormalConstraint__NameAssignment_0 : ( RULE_ID ) ;
     public final void rule__FormalConstraint__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17096:1: ( ( RULE_ID ) )
-            // InternalSpear.g:17097:1: ( RULE_ID )
+            // InternalSpear.g:17141:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17142:1: ( RULE_ID )
             {
-            // InternalSpear.g:17097:1: ( RULE_ID )
-            // InternalSpear.g:17098:1: RULE_ID
+            // InternalSpear.g:17142:1: ( RULE_ID )
+            // InternalSpear.g:17143:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFormalConstraintAccess().getNameIDTerminalRuleCall_0_0()); 
@@ -48224,17 +48377,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FormalConstraint__ExprAssignment_2"
-    // InternalSpear.g:17107:1: rule__FormalConstraint__ExprAssignment_2 : ( ruleExpr ) ;
+    // InternalSpear.g:17152:1: rule__FormalConstraint__ExprAssignment_2 : ( ruleExpr ) ;
     public final void rule__FormalConstraint__ExprAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17111:1: ( ( ruleExpr ) )
-            // InternalSpear.g:17112:1: ( ruleExpr )
+            // InternalSpear.g:17156:1: ( ( ruleExpr ) )
+            // InternalSpear.g:17157:1: ( ruleExpr )
             {
-            // InternalSpear.g:17112:1: ( ruleExpr )
-            // InternalSpear.g:17113:1: ruleExpr
+            // InternalSpear.g:17157:1: ( ruleExpr )
+            // InternalSpear.g:17158:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFormalConstraintAccess().getExprExprParserRuleCall_2_0()); 
@@ -48269,17 +48422,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FormalConstraint__DescriptorAssignment_3_2"
-    // InternalSpear.g:17122:1: rule__FormalConstraint__DescriptorAssignment_3_2 : ( RULE_STRING ) ;
+    // InternalSpear.g:17167:1: rule__FormalConstraint__DescriptorAssignment_3_2 : ( RULE_STRING ) ;
     public final void rule__FormalConstraint__DescriptorAssignment_3_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17126:1: ( ( RULE_STRING ) )
-            // InternalSpear.g:17127:1: ( RULE_STRING )
+            // InternalSpear.g:17171:1: ( ( RULE_STRING ) )
+            // InternalSpear.g:17172:1: ( RULE_STRING )
             {
-            // InternalSpear.g:17127:1: ( RULE_STRING )
-            // InternalSpear.g:17128:1: RULE_STRING
+            // InternalSpear.g:17172:1: ( RULE_STRING )
+            // InternalSpear.g:17173:1: RULE_STRING
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFormalConstraintAccess().getDescriptorSTRINGTerminalRuleCall_3_2_0()); 
@@ -48310,17 +48463,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EnglishConstraint__NameAssignment_0"
-    // InternalSpear.g:17137:1: rule__EnglishConstraint__NameAssignment_0 : ( RULE_ID ) ;
+    // InternalSpear.g:17182:1: rule__EnglishConstraint__NameAssignment_0 : ( RULE_ID ) ;
     public final void rule__EnglishConstraint__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17141:1: ( ( RULE_ID ) )
-            // InternalSpear.g:17142:1: ( RULE_ID )
+            // InternalSpear.g:17186:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17187:1: ( RULE_ID )
             {
-            // InternalSpear.g:17142:1: ( RULE_ID )
-            // InternalSpear.g:17143:1: RULE_ID
+            // InternalSpear.g:17187:1: ( RULE_ID )
+            // InternalSpear.g:17188:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getEnglishConstraintAccess().getNameIDTerminalRuleCall_0_0()); 
@@ -48351,17 +48504,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EnglishConstraint__TextAssignment_2"
-    // InternalSpear.g:17152:1: rule__EnglishConstraint__TextAssignment_2 : ( RULE_STRING ) ;
+    // InternalSpear.g:17197:1: rule__EnglishConstraint__TextAssignment_2 : ( RULE_STRING ) ;
     public final void rule__EnglishConstraint__TextAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17156:1: ( ( RULE_STRING ) )
-            // InternalSpear.g:17157:1: ( RULE_STRING )
+            // InternalSpear.g:17201:1: ( ( RULE_STRING ) )
+            // InternalSpear.g:17202:1: ( RULE_STRING )
             {
-            // InternalSpear.g:17157:1: ( RULE_STRING )
-            // InternalSpear.g:17158:1: RULE_STRING
+            // InternalSpear.g:17202:1: ( RULE_STRING )
+            // InternalSpear.g:17203:1: RULE_STRING
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getEnglishConstraintAccess().getTextSTRINGTerminalRuleCall_2_0()); 
@@ -48392,17 +48545,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__WhileExpr__CondAssignment_0_2"
-    // InternalSpear.g:17167:1: rule__WhileExpr__CondAssignment_0_2 : ( ruleExpr ) ;
+    // InternalSpear.g:17212:1: rule__WhileExpr__CondAssignment_0_2 : ( ruleExpr ) ;
     public final void rule__WhileExpr__CondAssignment_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17171:1: ( ( ruleExpr ) )
-            // InternalSpear.g:17172:1: ( ruleExpr )
+            // InternalSpear.g:17216:1: ( ( ruleExpr ) )
+            // InternalSpear.g:17217:1: ( ruleExpr )
             {
-            // InternalSpear.g:17172:1: ( ruleExpr )
-            // InternalSpear.g:17173:1: ruleExpr
+            // InternalSpear.g:17217:1: ( ruleExpr )
+            // InternalSpear.g:17218:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getWhileExprAccess().getCondExprParserRuleCall_0_2_0()); 
@@ -48437,17 +48590,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__WhileExpr__ThenAssignment_0_4"
-    // InternalSpear.g:17182:1: rule__WhileExpr__ThenAssignment_0_4 : ( ruleExpr ) ;
+    // InternalSpear.g:17227:1: rule__WhileExpr__ThenAssignment_0_4 : ( ruleExpr ) ;
     public final void rule__WhileExpr__ThenAssignment_0_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17186:1: ( ( ruleExpr ) )
-            // InternalSpear.g:17187:1: ( ruleExpr )
+            // InternalSpear.g:17231:1: ( ( ruleExpr ) )
+            // InternalSpear.g:17232:1: ( ruleExpr )
             {
-            // InternalSpear.g:17187:1: ( ruleExpr )
-            // InternalSpear.g:17188:1: ruleExpr
+            // InternalSpear.g:17232:1: ( ruleExpr )
+            // InternalSpear.g:17233:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getWhileExprAccess().getThenExprParserRuleCall_0_4_0()); 
@@ -48482,23 +48635,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ImpliesExpr__OpAssignment_1_0_0_1"
-    // InternalSpear.g:17197:1: rule__ImpliesExpr__OpAssignment_1_0_0_1 : ( ( rule__ImpliesExpr__OpAlternatives_1_0_0_1_0 ) ) ;
+    // InternalSpear.g:17242:1: rule__ImpliesExpr__OpAssignment_1_0_0_1 : ( ( rule__ImpliesExpr__OpAlternatives_1_0_0_1_0 ) ) ;
     public final void rule__ImpliesExpr__OpAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17201:1: ( ( ( rule__ImpliesExpr__OpAlternatives_1_0_0_1_0 ) ) )
-            // InternalSpear.g:17202:1: ( ( rule__ImpliesExpr__OpAlternatives_1_0_0_1_0 ) )
+            // InternalSpear.g:17246:1: ( ( ( rule__ImpliesExpr__OpAlternatives_1_0_0_1_0 ) ) )
+            // InternalSpear.g:17247:1: ( ( rule__ImpliesExpr__OpAlternatives_1_0_0_1_0 ) )
             {
-            // InternalSpear.g:17202:1: ( ( rule__ImpliesExpr__OpAlternatives_1_0_0_1_0 ) )
-            // InternalSpear.g:17203:1: ( rule__ImpliesExpr__OpAlternatives_1_0_0_1_0 )
+            // InternalSpear.g:17247:1: ( ( rule__ImpliesExpr__OpAlternatives_1_0_0_1_0 ) )
+            // InternalSpear.g:17248:1: ( rule__ImpliesExpr__OpAlternatives_1_0_0_1_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getImpliesExprAccess().getOpAlternatives_1_0_0_1_0()); 
             }
-            // InternalSpear.g:17204:1: ( rule__ImpliesExpr__OpAlternatives_1_0_0_1_0 )
-            // InternalSpear.g:17204:2: rule__ImpliesExpr__OpAlternatives_1_0_0_1_0
+            // InternalSpear.g:17249:1: ( rule__ImpliesExpr__OpAlternatives_1_0_0_1_0 )
+            // InternalSpear.g:17249:2: rule__ImpliesExpr__OpAlternatives_1_0_0_1_0
             {
             pushFollow(FOLLOW_2);
             rule__ImpliesExpr__OpAlternatives_1_0_0_1_0();
@@ -48533,17 +48686,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ImpliesExpr__RightAssignment_1_1"
-    // InternalSpear.g:17213:1: rule__ImpliesExpr__RightAssignment_1_1 : ( ruleImpliesExpr ) ;
+    // InternalSpear.g:17258:1: rule__ImpliesExpr__RightAssignment_1_1 : ( ruleImpliesExpr ) ;
     public final void rule__ImpliesExpr__RightAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17217:1: ( ( ruleImpliesExpr ) )
-            // InternalSpear.g:17218:1: ( ruleImpliesExpr )
+            // InternalSpear.g:17262:1: ( ( ruleImpliesExpr ) )
+            // InternalSpear.g:17263:1: ( ruleImpliesExpr )
             {
-            // InternalSpear.g:17218:1: ( ruleImpliesExpr )
-            // InternalSpear.g:17219:1: ruleImpliesExpr
+            // InternalSpear.g:17263:1: ( ruleImpliesExpr )
+            // InternalSpear.g:17264:1: ruleImpliesExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getImpliesExprAccess().getRightImpliesExprParserRuleCall_1_1_0()); 
@@ -48578,23 +48731,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpr__OpAssignment_1_0_0_1"
-    // InternalSpear.g:17228:1: rule__OrExpr__OpAssignment_1_0_0_1 : ( ( rule__OrExpr__OpAlternatives_1_0_0_1_0 ) ) ;
+    // InternalSpear.g:17273:1: rule__OrExpr__OpAssignment_1_0_0_1 : ( ( rule__OrExpr__OpAlternatives_1_0_0_1_0 ) ) ;
     public final void rule__OrExpr__OpAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17232:1: ( ( ( rule__OrExpr__OpAlternatives_1_0_0_1_0 ) ) )
-            // InternalSpear.g:17233:1: ( ( rule__OrExpr__OpAlternatives_1_0_0_1_0 ) )
+            // InternalSpear.g:17277:1: ( ( ( rule__OrExpr__OpAlternatives_1_0_0_1_0 ) ) )
+            // InternalSpear.g:17278:1: ( ( rule__OrExpr__OpAlternatives_1_0_0_1_0 ) )
             {
-            // InternalSpear.g:17233:1: ( ( rule__OrExpr__OpAlternatives_1_0_0_1_0 ) )
-            // InternalSpear.g:17234:1: ( rule__OrExpr__OpAlternatives_1_0_0_1_0 )
+            // InternalSpear.g:17278:1: ( ( rule__OrExpr__OpAlternatives_1_0_0_1_0 ) )
+            // InternalSpear.g:17279:1: ( rule__OrExpr__OpAlternatives_1_0_0_1_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOrExprAccess().getOpAlternatives_1_0_0_1_0()); 
             }
-            // InternalSpear.g:17235:1: ( rule__OrExpr__OpAlternatives_1_0_0_1_0 )
-            // InternalSpear.g:17235:2: rule__OrExpr__OpAlternatives_1_0_0_1_0
+            // InternalSpear.g:17280:1: ( rule__OrExpr__OpAlternatives_1_0_0_1_0 )
+            // InternalSpear.g:17280:2: rule__OrExpr__OpAlternatives_1_0_0_1_0
             {
             pushFollow(FOLLOW_2);
             rule__OrExpr__OpAlternatives_1_0_0_1_0();
@@ -48629,17 +48782,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpr__RightAssignment_1_1"
-    // InternalSpear.g:17244:1: rule__OrExpr__RightAssignment_1_1 : ( ruleOrExpr ) ;
+    // InternalSpear.g:17289:1: rule__OrExpr__RightAssignment_1_1 : ( ruleOrExpr ) ;
     public final void rule__OrExpr__RightAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17248:1: ( ( ruleOrExpr ) )
-            // InternalSpear.g:17249:1: ( ruleOrExpr )
+            // InternalSpear.g:17293:1: ( ( ruleOrExpr ) )
+            // InternalSpear.g:17294:1: ( ruleOrExpr )
             {
-            // InternalSpear.g:17249:1: ( ruleOrExpr )
-            // InternalSpear.g:17250:1: ruleOrExpr
+            // InternalSpear.g:17294:1: ( ruleOrExpr )
+            // InternalSpear.g:17295:1: ruleOrExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOrExprAccess().getRightOrExprParserRuleCall_1_1_0()); 
@@ -48674,23 +48827,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpr__OpAssignment_1_0_0_1"
-    // InternalSpear.g:17259:1: rule__AndExpr__OpAssignment_1_0_0_1 : ( ( 'and' ) ) ;
+    // InternalSpear.g:17304:1: rule__AndExpr__OpAssignment_1_0_0_1 : ( ( 'and' ) ) ;
     public final void rule__AndExpr__OpAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17263:1: ( ( ( 'and' ) ) )
-            // InternalSpear.g:17264:1: ( ( 'and' ) )
+            // InternalSpear.g:17308:1: ( ( ( 'and' ) ) )
+            // InternalSpear.g:17309:1: ( ( 'and' ) )
             {
-            // InternalSpear.g:17264:1: ( ( 'and' ) )
-            // InternalSpear.g:17265:1: ( 'and' )
+            // InternalSpear.g:17309:1: ( ( 'and' ) )
+            // InternalSpear.g:17310:1: ( 'and' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAndExprAccess().getOpAndKeyword_1_0_0_1_0()); 
             }
-            // InternalSpear.g:17266:1: ( 'and' )
-            // InternalSpear.g:17267:1: 'and'
+            // InternalSpear.g:17311:1: ( 'and' )
+            // InternalSpear.g:17312:1: 'and'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAndExprAccess().getOpAndKeyword_1_0_0_1_0()); 
@@ -48727,17 +48880,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpr__RightAssignment_1_1"
-    // InternalSpear.g:17282:1: rule__AndExpr__RightAssignment_1_1 : ( ruleAndExpr ) ;
+    // InternalSpear.g:17327:1: rule__AndExpr__RightAssignment_1_1 : ( ruleAndExpr ) ;
     public final void rule__AndExpr__RightAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17286:1: ( ( ruleAndExpr ) )
-            // InternalSpear.g:17287:1: ( ruleAndExpr )
+            // InternalSpear.g:17331:1: ( ( ruleAndExpr ) )
+            // InternalSpear.g:17332:1: ( ruleAndExpr )
             {
-            // InternalSpear.g:17287:1: ( ruleAndExpr )
-            // InternalSpear.g:17288:1: ruleAndExpr
+            // InternalSpear.g:17332:1: ( ruleAndExpr )
+            // InternalSpear.g:17333:1: ruleAndExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAndExprAccess().getRightAndExprParserRuleCall_1_1_0()); 
@@ -48772,17 +48925,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AfterUntilExpr__AfterAssignment_0_2"
-    // InternalSpear.g:17297:1: rule__AfterUntilExpr__AfterAssignment_0_2 : ( ruleTriggersExpr ) ;
+    // InternalSpear.g:17342:1: rule__AfterUntilExpr__AfterAssignment_0_2 : ( ruleTriggersExpr ) ;
     public final void rule__AfterUntilExpr__AfterAssignment_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17301:1: ( ( ruleTriggersExpr ) )
-            // InternalSpear.g:17302:1: ( ruleTriggersExpr )
+            // InternalSpear.g:17346:1: ( ( ruleTriggersExpr ) )
+            // InternalSpear.g:17347:1: ( ruleTriggersExpr )
             {
-            // InternalSpear.g:17302:1: ( ruleTriggersExpr )
-            // InternalSpear.g:17303:1: ruleTriggersExpr
+            // InternalSpear.g:17347:1: ( ruleTriggersExpr )
+            // InternalSpear.g:17348:1: ruleTriggersExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAfterUntilExprAccess().getAfterTriggersExprParserRuleCall_0_2_0()); 
@@ -48817,17 +48970,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AfterUntilExpr__UntilAssignment_0_3_1"
-    // InternalSpear.g:17312:1: rule__AfterUntilExpr__UntilAssignment_0_3_1 : ( ruleTriggersExpr ) ;
+    // InternalSpear.g:17357:1: rule__AfterUntilExpr__UntilAssignment_0_3_1 : ( ruleTriggersExpr ) ;
     public final void rule__AfterUntilExpr__UntilAssignment_0_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17316:1: ( ( ruleTriggersExpr ) )
-            // InternalSpear.g:17317:1: ( ruleTriggersExpr )
+            // InternalSpear.g:17361:1: ( ( ruleTriggersExpr ) )
+            // InternalSpear.g:17362:1: ( ruleTriggersExpr )
             {
-            // InternalSpear.g:17317:1: ( ruleTriggersExpr )
-            // InternalSpear.g:17318:1: ruleTriggersExpr
+            // InternalSpear.g:17362:1: ( ruleTriggersExpr )
+            // InternalSpear.g:17363:1: ruleTriggersExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAfterUntilExprAccess().getUntilTriggersExprParserRuleCall_0_3_1_0()); 
@@ -48862,23 +49015,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TriggersExpr__OpAssignment_1_0_0_1"
-    // InternalSpear.g:17327:1: rule__TriggersExpr__OpAssignment_1_0_0_1 : ( ( rule__TriggersExpr__OpAlternatives_1_0_0_1_0 ) ) ;
+    // InternalSpear.g:17372:1: rule__TriggersExpr__OpAssignment_1_0_0_1 : ( ( rule__TriggersExpr__OpAlternatives_1_0_0_1_0 ) ) ;
     public final void rule__TriggersExpr__OpAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17331:1: ( ( ( rule__TriggersExpr__OpAlternatives_1_0_0_1_0 ) ) )
-            // InternalSpear.g:17332:1: ( ( rule__TriggersExpr__OpAlternatives_1_0_0_1_0 ) )
+            // InternalSpear.g:17376:1: ( ( ( rule__TriggersExpr__OpAlternatives_1_0_0_1_0 ) ) )
+            // InternalSpear.g:17377:1: ( ( rule__TriggersExpr__OpAlternatives_1_0_0_1_0 ) )
             {
-            // InternalSpear.g:17332:1: ( ( rule__TriggersExpr__OpAlternatives_1_0_0_1_0 ) )
-            // InternalSpear.g:17333:1: ( rule__TriggersExpr__OpAlternatives_1_0_0_1_0 )
+            // InternalSpear.g:17377:1: ( ( rule__TriggersExpr__OpAlternatives_1_0_0_1_0 ) )
+            // InternalSpear.g:17378:1: ( rule__TriggersExpr__OpAlternatives_1_0_0_1_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTriggersExprAccess().getOpAlternatives_1_0_0_1_0()); 
             }
-            // InternalSpear.g:17334:1: ( rule__TriggersExpr__OpAlternatives_1_0_0_1_0 )
-            // InternalSpear.g:17334:2: rule__TriggersExpr__OpAlternatives_1_0_0_1_0
+            // InternalSpear.g:17379:1: ( rule__TriggersExpr__OpAlternatives_1_0_0_1_0 )
+            // InternalSpear.g:17379:2: rule__TriggersExpr__OpAlternatives_1_0_0_1_0
             {
             pushFollow(FOLLOW_2);
             rule__TriggersExpr__OpAlternatives_1_0_0_1_0();
@@ -48913,17 +49066,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TriggersExpr__RightAssignment_1_1"
-    // InternalSpear.g:17343:1: rule__TriggersExpr__RightAssignment_1_1 : ( ruleTriggersExpr ) ;
+    // InternalSpear.g:17388:1: rule__TriggersExpr__RightAssignment_1_1 : ( ruleTriggersExpr ) ;
     public final void rule__TriggersExpr__RightAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17347:1: ( ( ruleTriggersExpr ) )
-            // InternalSpear.g:17348:1: ( ruleTriggersExpr )
+            // InternalSpear.g:17392:1: ( ( ruleTriggersExpr ) )
+            // InternalSpear.g:17393:1: ( ruleTriggersExpr )
             {
-            // InternalSpear.g:17348:1: ( ruleTriggersExpr )
-            // InternalSpear.g:17349:1: ruleTriggersExpr
+            // InternalSpear.g:17393:1: ( ruleTriggersExpr )
+            // InternalSpear.g:17394:1: ruleTriggersExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTriggersExprAccess().getRightTriggersExprParserRuleCall_1_1_0()); 
@@ -48958,23 +49111,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SinceExpr__OpAssignment_1_0_0_1"
-    // InternalSpear.g:17358:1: rule__SinceExpr__OpAssignment_1_0_0_1 : ( ( rule__SinceExpr__OpAlternatives_1_0_0_1_0 ) ) ;
+    // InternalSpear.g:17403:1: rule__SinceExpr__OpAssignment_1_0_0_1 : ( ( rule__SinceExpr__OpAlternatives_1_0_0_1_0 ) ) ;
     public final void rule__SinceExpr__OpAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17362:1: ( ( ( rule__SinceExpr__OpAlternatives_1_0_0_1_0 ) ) )
-            // InternalSpear.g:17363:1: ( ( rule__SinceExpr__OpAlternatives_1_0_0_1_0 ) )
+            // InternalSpear.g:17407:1: ( ( ( rule__SinceExpr__OpAlternatives_1_0_0_1_0 ) ) )
+            // InternalSpear.g:17408:1: ( ( rule__SinceExpr__OpAlternatives_1_0_0_1_0 ) )
             {
-            // InternalSpear.g:17363:1: ( ( rule__SinceExpr__OpAlternatives_1_0_0_1_0 ) )
-            // InternalSpear.g:17364:1: ( rule__SinceExpr__OpAlternatives_1_0_0_1_0 )
+            // InternalSpear.g:17408:1: ( ( rule__SinceExpr__OpAlternatives_1_0_0_1_0 ) )
+            // InternalSpear.g:17409:1: ( rule__SinceExpr__OpAlternatives_1_0_0_1_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSinceExprAccess().getOpAlternatives_1_0_0_1_0()); 
             }
-            // InternalSpear.g:17365:1: ( rule__SinceExpr__OpAlternatives_1_0_0_1_0 )
-            // InternalSpear.g:17365:2: rule__SinceExpr__OpAlternatives_1_0_0_1_0
+            // InternalSpear.g:17410:1: ( rule__SinceExpr__OpAlternatives_1_0_0_1_0 )
+            // InternalSpear.g:17410:2: rule__SinceExpr__OpAlternatives_1_0_0_1_0
             {
             pushFollow(FOLLOW_2);
             rule__SinceExpr__OpAlternatives_1_0_0_1_0();
@@ -49009,17 +49162,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SinceExpr__RightAssignment_1_1"
-    // InternalSpear.g:17374:1: rule__SinceExpr__RightAssignment_1_1 : ( ruleSinceExpr ) ;
+    // InternalSpear.g:17419:1: rule__SinceExpr__RightAssignment_1_1 : ( ruleSinceExpr ) ;
     public final void rule__SinceExpr__RightAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17378:1: ( ( ruleSinceExpr ) )
-            // InternalSpear.g:17379:1: ( ruleSinceExpr )
+            // InternalSpear.g:17423:1: ( ( ruleSinceExpr ) )
+            // InternalSpear.g:17424:1: ( ruleSinceExpr )
             {
-            // InternalSpear.g:17379:1: ( ruleSinceExpr )
-            // InternalSpear.g:17380:1: ruleSinceExpr
+            // InternalSpear.g:17424:1: ( ruleSinceExpr )
+            // InternalSpear.g:17425:1: ruleSinceExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSinceExprAccess().getRightSinceExprParserRuleCall_1_1_0()); 
@@ -49054,23 +49207,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TemporalPrefixExpr__OpAssignment_0_1"
-    // InternalSpear.g:17389:1: rule__TemporalPrefixExpr__OpAssignment_0_1 : ( ( rule__TemporalPrefixExpr__OpAlternatives_0_1_0 ) ) ;
+    // InternalSpear.g:17434:1: rule__TemporalPrefixExpr__OpAssignment_0_1 : ( ( rule__TemporalPrefixExpr__OpAlternatives_0_1_0 ) ) ;
     public final void rule__TemporalPrefixExpr__OpAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17393:1: ( ( ( rule__TemporalPrefixExpr__OpAlternatives_0_1_0 ) ) )
-            // InternalSpear.g:17394:1: ( ( rule__TemporalPrefixExpr__OpAlternatives_0_1_0 ) )
+            // InternalSpear.g:17438:1: ( ( ( rule__TemporalPrefixExpr__OpAlternatives_0_1_0 ) ) )
+            // InternalSpear.g:17439:1: ( ( rule__TemporalPrefixExpr__OpAlternatives_0_1_0 ) )
             {
-            // InternalSpear.g:17394:1: ( ( rule__TemporalPrefixExpr__OpAlternatives_0_1_0 ) )
-            // InternalSpear.g:17395:1: ( rule__TemporalPrefixExpr__OpAlternatives_0_1_0 )
+            // InternalSpear.g:17439:1: ( ( rule__TemporalPrefixExpr__OpAlternatives_0_1_0 ) )
+            // InternalSpear.g:17440:1: ( rule__TemporalPrefixExpr__OpAlternatives_0_1_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTemporalPrefixExprAccess().getOpAlternatives_0_1_0()); 
             }
-            // InternalSpear.g:17396:1: ( rule__TemporalPrefixExpr__OpAlternatives_0_1_0 )
-            // InternalSpear.g:17396:2: rule__TemporalPrefixExpr__OpAlternatives_0_1_0
+            // InternalSpear.g:17441:1: ( rule__TemporalPrefixExpr__OpAlternatives_0_1_0 )
+            // InternalSpear.g:17441:2: rule__TemporalPrefixExpr__OpAlternatives_0_1_0
             {
             pushFollow(FOLLOW_2);
             rule__TemporalPrefixExpr__OpAlternatives_0_1_0();
@@ -49105,17 +49258,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TemporalPrefixExpr__ExprAssignment_0_2"
-    // InternalSpear.g:17405:1: rule__TemporalPrefixExpr__ExprAssignment_0_2 : ( ruleTemporalPrefixExpr ) ;
+    // InternalSpear.g:17450:1: rule__TemporalPrefixExpr__ExprAssignment_0_2 : ( ruleTemporalPrefixExpr ) ;
     public final void rule__TemporalPrefixExpr__ExprAssignment_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17409:1: ( ( ruleTemporalPrefixExpr ) )
-            // InternalSpear.g:17410:1: ( ruleTemporalPrefixExpr )
+            // InternalSpear.g:17454:1: ( ( ruleTemporalPrefixExpr ) )
+            // InternalSpear.g:17455:1: ( ruleTemporalPrefixExpr )
             {
-            // InternalSpear.g:17410:1: ( ruleTemporalPrefixExpr )
-            // InternalSpear.g:17411:1: ruleTemporalPrefixExpr
+            // InternalSpear.g:17455:1: ( ruleTemporalPrefixExpr )
+            // InternalSpear.g:17456:1: ruleTemporalPrefixExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTemporalPrefixExprAccess().getExprTemporalPrefixExprParserRuleCall_0_2_0()); 
@@ -49150,17 +49303,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalExpr__OpAssignment_1_0_0_1"
-    // InternalSpear.g:17420:1: rule__RelationalExpr__OpAssignment_1_0_0_1 : ( ruleRelationalOp ) ;
+    // InternalSpear.g:17465:1: rule__RelationalExpr__OpAssignment_1_0_0_1 : ( ruleRelationalOp ) ;
     public final void rule__RelationalExpr__OpAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17424:1: ( ( ruleRelationalOp ) )
-            // InternalSpear.g:17425:1: ( ruleRelationalOp )
+            // InternalSpear.g:17469:1: ( ( ruleRelationalOp ) )
+            // InternalSpear.g:17470:1: ( ruleRelationalOp )
             {
-            // InternalSpear.g:17425:1: ( ruleRelationalOp )
-            // InternalSpear.g:17426:1: ruleRelationalOp
+            // InternalSpear.g:17470:1: ( ruleRelationalOp )
+            // InternalSpear.g:17471:1: ruleRelationalOp
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalExprAccess().getOpRelationalOpParserRuleCall_1_0_0_1_0()); 
@@ -49195,17 +49348,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalExpr__RightAssignment_1_1"
-    // InternalSpear.g:17435:1: rule__RelationalExpr__RightAssignment_1_1 : ( ruleRelationalExpr ) ;
+    // InternalSpear.g:17480:1: rule__RelationalExpr__RightAssignment_1_1 : ( ruleRelationalExpr ) ;
     public final void rule__RelationalExpr__RightAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17439:1: ( ( ruleRelationalExpr ) )
-            // InternalSpear.g:17440:1: ( ruleRelationalExpr )
+            // InternalSpear.g:17484:1: ( ( ruleRelationalExpr ) )
+            // InternalSpear.g:17485:1: ( ruleRelationalExpr )
             {
-            // InternalSpear.g:17440:1: ( ruleRelationalExpr )
-            // InternalSpear.g:17441:1: ruleRelationalExpr
+            // InternalSpear.g:17485:1: ( ruleRelationalExpr )
+            // InternalSpear.g:17486:1: ruleRelationalExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalExprAccess().getRightRelationalExprParserRuleCall_1_1_0()); 
@@ -49240,23 +49393,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PlusExpr__OpAssignment_1_0_0_1"
-    // InternalSpear.g:17450:1: rule__PlusExpr__OpAssignment_1_0_0_1 : ( ( rule__PlusExpr__OpAlternatives_1_0_0_1_0 ) ) ;
+    // InternalSpear.g:17495:1: rule__PlusExpr__OpAssignment_1_0_0_1 : ( ( rule__PlusExpr__OpAlternatives_1_0_0_1_0 ) ) ;
     public final void rule__PlusExpr__OpAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17454:1: ( ( ( rule__PlusExpr__OpAlternatives_1_0_0_1_0 ) ) )
-            // InternalSpear.g:17455:1: ( ( rule__PlusExpr__OpAlternatives_1_0_0_1_0 ) )
+            // InternalSpear.g:17499:1: ( ( ( rule__PlusExpr__OpAlternatives_1_0_0_1_0 ) ) )
+            // InternalSpear.g:17500:1: ( ( rule__PlusExpr__OpAlternatives_1_0_0_1_0 ) )
             {
-            // InternalSpear.g:17455:1: ( ( rule__PlusExpr__OpAlternatives_1_0_0_1_0 ) )
-            // InternalSpear.g:17456:1: ( rule__PlusExpr__OpAlternatives_1_0_0_1_0 )
+            // InternalSpear.g:17500:1: ( ( rule__PlusExpr__OpAlternatives_1_0_0_1_0 ) )
+            // InternalSpear.g:17501:1: ( rule__PlusExpr__OpAlternatives_1_0_0_1_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPlusExprAccess().getOpAlternatives_1_0_0_1_0()); 
             }
-            // InternalSpear.g:17457:1: ( rule__PlusExpr__OpAlternatives_1_0_0_1_0 )
-            // InternalSpear.g:17457:2: rule__PlusExpr__OpAlternatives_1_0_0_1_0
+            // InternalSpear.g:17502:1: ( rule__PlusExpr__OpAlternatives_1_0_0_1_0 )
+            // InternalSpear.g:17502:2: rule__PlusExpr__OpAlternatives_1_0_0_1_0
             {
             pushFollow(FOLLOW_2);
             rule__PlusExpr__OpAlternatives_1_0_0_1_0();
@@ -49291,17 +49444,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PlusExpr__RightAssignment_1_1"
-    // InternalSpear.g:17466:1: rule__PlusExpr__RightAssignment_1_1 : ( rulePlusExpr ) ;
+    // InternalSpear.g:17511:1: rule__PlusExpr__RightAssignment_1_1 : ( rulePlusExpr ) ;
     public final void rule__PlusExpr__RightAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17470:1: ( ( rulePlusExpr ) )
-            // InternalSpear.g:17471:1: ( rulePlusExpr )
+            // InternalSpear.g:17515:1: ( ( rulePlusExpr ) )
+            // InternalSpear.g:17516:1: ( rulePlusExpr )
             {
-            // InternalSpear.g:17471:1: ( rulePlusExpr )
-            // InternalSpear.g:17472:1: rulePlusExpr
+            // InternalSpear.g:17516:1: ( rulePlusExpr )
+            // InternalSpear.g:17517:1: rulePlusExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPlusExprAccess().getRightPlusExprParserRuleCall_1_1_0()); 
@@ -49336,23 +49489,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplyExpr__OpAssignment_1_0_0_1"
-    // InternalSpear.g:17481:1: rule__MultiplyExpr__OpAssignment_1_0_0_1 : ( ( rule__MultiplyExpr__OpAlternatives_1_0_0_1_0 ) ) ;
+    // InternalSpear.g:17526:1: rule__MultiplyExpr__OpAssignment_1_0_0_1 : ( ( rule__MultiplyExpr__OpAlternatives_1_0_0_1_0 ) ) ;
     public final void rule__MultiplyExpr__OpAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17485:1: ( ( ( rule__MultiplyExpr__OpAlternatives_1_0_0_1_0 ) ) )
-            // InternalSpear.g:17486:1: ( ( rule__MultiplyExpr__OpAlternatives_1_0_0_1_0 ) )
+            // InternalSpear.g:17530:1: ( ( ( rule__MultiplyExpr__OpAlternatives_1_0_0_1_0 ) ) )
+            // InternalSpear.g:17531:1: ( ( rule__MultiplyExpr__OpAlternatives_1_0_0_1_0 ) )
             {
-            // InternalSpear.g:17486:1: ( ( rule__MultiplyExpr__OpAlternatives_1_0_0_1_0 ) )
-            // InternalSpear.g:17487:1: ( rule__MultiplyExpr__OpAlternatives_1_0_0_1_0 )
+            // InternalSpear.g:17531:1: ( ( rule__MultiplyExpr__OpAlternatives_1_0_0_1_0 ) )
+            // InternalSpear.g:17532:1: ( rule__MultiplyExpr__OpAlternatives_1_0_0_1_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMultiplyExprAccess().getOpAlternatives_1_0_0_1_0()); 
             }
-            // InternalSpear.g:17488:1: ( rule__MultiplyExpr__OpAlternatives_1_0_0_1_0 )
-            // InternalSpear.g:17488:2: rule__MultiplyExpr__OpAlternatives_1_0_0_1_0
+            // InternalSpear.g:17533:1: ( rule__MultiplyExpr__OpAlternatives_1_0_0_1_0 )
+            // InternalSpear.g:17533:2: rule__MultiplyExpr__OpAlternatives_1_0_0_1_0
             {
             pushFollow(FOLLOW_2);
             rule__MultiplyExpr__OpAlternatives_1_0_0_1_0();
@@ -49387,17 +49540,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplyExpr__RightAssignment_1_1"
-    // InternalSpear.g:17497:1: rule__MultiplyExpr__RightAssignment_1_1 : ( ruleMultiplyExpr ) ;
+    // InternalSpear.g:17542:1: rule__MultiplyExpr__RightAssignment_1_1 : ( ruleMultiplyExpr ) ;
     public final void rule__MultiplyExpr__RightAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17501:1: ( ( ruleMultiplyExpr ) )
-            // InternalSpear.g:17502:1: ( ruleMultiplyExpr )
+            // InternalSpear.g:17546:1: ( ( ruleMultiplyExpr ) )
+            // InternalSpear.g:17547:1: ( ruleMultiplyExpr )
             {
-            // InternalSpear.g:17502:1: ( ruleMultiplyExpr )
-            // InternalSpear.g:17503:1: ruleMultiplyExpr
+            // InternalSpear.g:17547:1: ( ruleMultiplyExpr )
+            // InternalSpear.g:17548:1: ruleMultiplyExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMultiplyExprAccess().getRightMultiplyExprParserRuleCall_1_1_0()); 
@@ -49432,23 +49585,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ArrowExpr__OpAssignment_1_0_0_1"
-    // InternalSpear.g:17512:1: rule__ArrowExpr__OpAssignment_1_0_0_1 : ( ( rule__ArrowExpr__OpAlternatives_1_0_0_1_0 ) ) ;
+    // InternalSpear.g:17557:1: rule__ArrowExpr__OpAssignment_1_0_0_1 : ( ( rule__ArrowExpr__OpAlternatives_1_0_0_1_0 ) ) ;
     public final void rule__ArrowExpr__OpAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17516:1: ( ( ( rule__ArrowExpr__OpAlternatives_1_0_0_1_0 ) ) )
-            // InternalSpear.g:17517:1: ( ( rule__ArrowExpr__OpAlternatives_1_0_0_1_0 ) )
+            // InternalSpear.g:17561:1: ( ( ( rule__ArrowExpr__OpAlternatives_1_0_0_1_0 ) ) )
+            // InternalSpear.g:17562:1: ( ( rule__ArrowExpr__OpAlternatives_1_0_0_1_0 ) )
             {
-            // InternalSpear.g:17517:1: ( ( rule__ArrowExpr__OpAlternatives_1_0_0_1_0 ) )
-            // InternalSpear.g:17518:1: ( rule__ArrowExpr__OpAlternatives_1_0_0_1_0 )
+            // InternalSpear.g:17562:1: ( ( rule__ArrowExpr__OpAlternatives_1_0_0_1_0 ) )
+            // InternalSpear.g:17563:1: ( rule__ArrowExpr__OpAlternatives_1_0_0_1_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrowExprAccess().getOpAlternatives_1_0_0_1_0()); 
             }
-            // InternalSpear.g:17519:1: ( rule__ArrowExpr__OpAlternatives_1_0_0_1_0 )
-            // InternalSpear.g:17519:2: rule__ArrowExpr__OpAlternatives_1_0_0_1_0
+            // InternalSpear.g:17564:1: ( rule__ArrowExpr__OpAlternatives_1_0_0_1_0 )
+            // InternalSpear.g:17564:2: rule__ArrowExpr__OpAlternatives_1_0_0_1_0
             {
             pushFollow(FOLLOW_2);
             rule__ArrowExpr__OpAlternatives_1_0_0_1_0();
@@ -49483,17 +49636,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ArrowExpr__RightAssignment_1_1"
-    // InternalSpear.g:17528:1: rule__ArrowExpr__RightAssignment_1_1 : ( ruleArrowExpr ) ;
+    // InternalSpear.g:17573:1: rule__ArrowExpr__RightAssignment_1_1 : ( ruleArrowExpr ) ;
     public final void rule__ArrowExpr__RightAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17532:1: ( ( ruleArrowExpr ) )
-            // InternalSpear.g:17533:1: ( ruleArrowExpr )
+            // InternalSpear.g:17577:1: ( ( ruleArrowExpr ) )
+            // InternalSpear.g:17578:1: ( ruleArrowExpr )
             {
-            // InternalSpear.g:17533:1: ( ruleArrowExpr )
-            // InternalSpear.g:17534:1: ruleArrowExpr
+            // InternalSpear.g:17578:1: ( ruleArrowExpr )
+            // InternalSpear.g:17579:1: ruleArrowExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrowExprAccess().getRightArrowExprParserRuleCall_1_1_0()); 
@@ -49528,23 +49681,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixExpr__OpAssignment_0_1"
-    // InternalSpear.g:17543:1: rule__PrefixExpr__OpAssignment_0_1 : ( ( rule__PrefixExpr__OpAlternatives_0_1_0 ) ) ;
+    // InternalSpear.g:17588:1: rule__PrefixExpr__OpAssignment_0_1 : ( ( rule__PrefixExpr__OpAlternatives_0_1_0 ) ) ;
     public final void rule__PrefixExpr__OpAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17547:1: ( ( ( rule__PrefixExpr__OpAlternatives_0_1_0 ) ) )
-            // InternalSpear.g:17548:1: ( ( rule__PrefixExpr__OpAlternatives_0_1_0 ) )
+            // InternalSpear.g:17592:1: ( ( ( rule__PrefixExpr__OpAlternatives_0_1_0 ) ) )
+            // InternalSpear.g:17593:1: ( ( rule__PrefixExpr__OpAlternatives_0_1_0 ) )
             {
-            // InternalSpear.g:17548:1: ( ( rule__PrefixExpr__OpAlternatives_0_1_0 ) )
-            // InternalSpear.g:17549:1: ( rule__PrefixExpr__OpAlternatives_0_1_0 )
+            // InternalSpear.g:17593:1: ( ( rule__PrefixExpr__OpAlternatives_0_1_0 ) )
+            // InternalSpear.g:17594:1: ( rule__PrefixExpr__OpAlternatives_0_1_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPrefixExprAccess().getOpAlternatives_0_1_0()); 
             }
-            // InternalSpear.g:17550:1: ( rule__PrefixExpr__OpAlternatives_0_1_0 )
-            // InternalSpear.g:17550:2: rule__PrefixExpr__OpAlternatives_0_1_0
+            // InternalSpear.g:17595:1: ( rule__PrefixExpr__OpAlternatives_0_1_0 )
+            // InternalSpear.g:17595:2: rule__PrefixExpr__OpAlternatives_0_1_0
             {
             pushFollow(FOLLOW_2);
             rule__PrefixExpr__OpAlternatives_0_1_0();
@@ -49579,17 +49732,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixExpr__ExprAssignment_0_2"
-    // InternalSpear.g:17559:1: rule__PrefixExpr__ExprAssignment_0_2 : ( rulePrefixExpr ) ;
+    // InternalSpear.g:17604:1: rule__PrefixExpr__ExprAssignment_0_2 : ( rulePrefixExpr ) ;
     public final void rule__PrefixExpr__ExprAssignment_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17563:1: ( ( rulePrefixExpr ) )
-            // InternalSpear.g:17564:1: ( rulePrefixExpr )
+            // InternalSpear.g:17608:1: ( ( rulePrefixExpr ) )
+            // InternalSpear.g:17609:1: ( rulePrefixExpr )
             {
-            // InternalSpear.g:17564:1: ( rulePrefixExpr )
-            // InternalSpear.g:17565:1: rulePrefixExpr
+            // InternalSpear.g:17609:1: ( rulePrefixExpr )
+            // InternalSpear.g:17610:1: rulePrefixExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPrefixExprAccess().getExprPrefixExprParserRuleCall_0_2_0()); 
@@ -49624,17 +49777,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixExpr__VarAssignment_1_2"
-    // InternalSpear.g:17574:1: rule__PrefixExpr__VarAssignment_1_2 : ( rulePrefixExpr ) ;
+    // InternalSpear.g:17619:1: rule__PrefixExpr__VarAssignment_1_2 : ( rulePrefixExpr ) ;
     public final void rule__PrefixExpr__VarAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17578:1: ( ( rulePrefixExpr ) )
-            // InternalSpear.g:17579:1: ( rulePrefixExpr )
+            // InternalSpear.g:17623:1: ( ( rulePrefixExpr ) )
+            // InternalSpear.g:17624:1: ( rulePrefixExpr )
             {
-            // InternalSpear.g:17579:1: ( rulePrefixExpr )
-            // InternalSpear.g:17580:1: rulePrefixExpr
+            // InternalSpear.g:17624:1: ( rulePrefixExpr )
+            // InternalSpear.g:17625:1: rulePrefixExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPrefixExprAccess().getVarPrefixExprParserRuleCall_1_2_0()); 
@@ -49669,17 +49822,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixExpr__InitAssignment_1_3_3"
-    // InternalSpear.g:17589:1: rule__PrefixExpr__InitAssignment_1_3_3 : ( rulePrefixExpr ) ;
+    // InternalSpear.g:17634:1: rule__PrefixExpr__InitAssignment_1_3_3 : ( rulePrefixExpr ) ;
     public final void rule__PrefixExpr__InitAssignment_1_3_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17593:1: ( ( rulePrefixExpr ) )
-            // InternalSpear.g:17594:1: ( rulePrefixExpr )
+            // InternalSpear.g:17638:1: ( ( rulePrefixExpr ) )
+            // InternalSpear.g:17639:1: ( rulePrefixExpr )
             {
-            // InternalSpear.g:17594:1: ( rulePrefixExpr )
-            // InternalSpear.g:17595:1: rulePrefixExpr
+            // InternalSpear.g:17639:1: ( rulePrefixExpr )
+            // InternalSpear.g:17640:1: rulePrefixExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPrefixExprAccess().getInitPrefixExprParserRuleCall_1_3_3_0()); 
@@ -49714,23 +49867,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__FieldAssignment_1_0_1"
-    // InternalSpear.g:17604:1: rule__AccessExpr__FieldAssignment_1_0_1 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:17649:1: rule__AccessExpr__FieldAssignment_1_0_1 : ( ( RULE_ID ) ) ;
     public final void rule__AccessExpr__FieldAssignment_1_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17608:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:17609:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17653:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:17654:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:17609:1: ( ( RULE_ID ) )
-            // InternalSpear.g:17610:1: ( RULE_ID )
+            // InternalSpear.g:17654:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17655:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getFieldFieldTypeCrossReference_1_0_1_0()); 
             }
-            // InternalSpear.g:17611:1: ( RULE_ID )
-            // InternalSpear.g:17612:1: RULE_ID
+            // InternalSpear.g:17656:1: ( RULE_ID )
+            // InternalSpear.g:17657:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getFieldFieldTypeIDTerminalRuleCall_1_0_1_0_1()); 
@@ -49767,23 +49920,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__FieldAssignment_1_1_0_0_2"
-    // InternalSpear.g:17623:1: rule__AccessExpr__FieldAssignment_1_1_0_0_2 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:17668:1: rule__AccessExpr__FieldAssignment_1_1_0_0_2 : ( ( RULE_ID ) ) ;
     public final void rule__AccessExpr__FieldAssignment_1_1_0_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17627:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:17628:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17672:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:17673:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:17628:1: ( ( RULE_ID ) )
-            // InternalSpear.g:17629:1: ( RULE_ID )
+            // InternalSpear.g:17673:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17674:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getFieldFieldTypeCrossReference_1_1_0_0_2_0()); 
             }
-            // InternalSpear.g:17630:1: ( RULE_ID )
-            // InternalSpear.g:17631:1: RULE_ID
+            // InternalSpear.g:17675:1: ( RULE_ID )
+            // InternalSpear.g:17676:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getFieldFieldTypeIDTerminalRuleCall_1_1_0_0_2_0_1()); 
@@ -49820,17 +49973,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__ValueAssignment_1_1_1"
-    // InternalSpear.g:17642:1: rule__AccessExpr__ValueAssignment_1_1_1 : ( ruleExpr ) ;
+    // InternalSpear.g:17687:1: rule__AccessExpr__ValueAssignment_1_1_1 : ( ruleExpr ) ;
     public final void rule__AccessExpr__ValueAssignment_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17646:1: ( ( ruleExpr ) )
-            // InternalSpear.g:17647:1: ( ruleExpr )
+            // InternalSpear.g:17691:1: ( ( ruleExpr ) )
+            // InternalSpear.g:17692:1: ( ruleExpr )
             {
-            // InternalSpear.g:17647:1: ( ruleExpr )
-            // InternalSpear.g:17648:1: ruleExpr
+            // InternalSpear.g:17692:1: ( ruleExpr )
+            // InternalSpear.g:17693:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getValueExprParserRuleCall_1_1_1_0()); 
@@ -49865,17 +50018,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__IndexAssignment_1_2_1"
-    // InternalSpear.g:17657:1: rule__AccessExpr__IndexAssignment_1_2_1 : ( ruleExpr ) ;
+    // InternalSpear.g:17702:1: rule__AccessExpr__IndexAssignment_1_2_1 : ( ruleExpr ) ;
     public final void rule__AccessExpr__IndexAssignment_1_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17661:1: ( ( ruleExpr ) )
-            // InternalSpear.g:17662:1: ( ruleExpr )
+            // InternalSpear.g:17706:1: ( ( ruleExpr ) )
+            // InternalSpear.g:17707:1: ( ruleExpr )
             {
-            // InternalSpear.g:17662:1: ( ruleExpr )
-            // InternalSpear.g:17663:1: ruleExpr
+            // InternalSpear.g:17707:1: ( ruleExpr )
+            // InternalSpear.g:17708:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getIndexExprParserRuleCall_1_2_1_0()); 
@@ -49910,17 +50063,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__ValueAssignment_1_2_2_1"
-    // InternalSpear.g:17672:1: rule__AccessExpr__ValueAssignment_1_2_2_1 : ( ruleExpr ) ;
+    // InternalSpear.g:17717:1: rule__AccessExpr__ValueAssignment_1_2_2_1 : ( ruleExpr ) ;
     public final void rule__AccessExpr__ValueAssignment_1_2_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17676:1: ( ( ruleExpr ) )
-            // InternalSpear.g:17677:1: ( ruleExpr )
+            // InternalSpear.g:17721:1: ( ( ruleExpr ) )
+            // InternalSpear.g:17722:1: ( ruleExpr )
             {
-            // InternalSpear.g:17677:1: ( ruleExpr )
-            // InternalSpear.g:17678:1: ruleExpr
+            // InternalSpear.g:17722:1: ( ruleExpr )
+            // InternalSpear.g:17723:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getValueExprParserRuleCall_1_2_2_1_0()); 
@@ -49955,23 +50108,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__IdAssignment_1_1"
-    // InternalSpear.g:17687:1: rule__AtomicExpr__IdAssignment_1_1 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:17732:1: rule__AtomicExpr__IdAssignment_1_1 : ( ( RULE_ID ) ) ;
     public final void rule__AtomicExpr__IdAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17691:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:17692:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17736:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:17737:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:17692:1: ( ( RULE_ID ) )
-            // InternalSpear.g:17693:1: ( RULE_ID )
+            // InternalSpear.g:17737:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17738:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getIdIdRefCrossReference_1_1_0()); 
             }
-            // InternalSpear.g:17694:1: ( RULE_ID )
-            // InternalSpear.g:17695:1: RULE_ID
+            // InternalSpear.g:17739:1: ( RULE_ID )
+            // InternalSpear.g:17740:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getIdIdRefIDTerminalRuleCall_1_1_0_1()); 
@@ -50008,23 +50161,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__IdsAssignment_2_2"
-    // InternalSpear.g:17706:1: rule__AtomicExpr__IdsAssignment_2_2 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:17751:1: rule__AtomicExpr__IdsAssignment_2_2 : ( ( RULE_ID ) ) ;
     public final void rule__AtomicExpr__IdsAssignment_2_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17710:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:17711:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17755:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:17756:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:17711:1: ( ( RULE_ID ) )
-            // InternalSpear.g:17712:1: ( RULE_ID )
+            // InternalSpear.g:17756:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17757:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getIdsIdRefCrossReference_2_2_0()); 
             }
-            // InternalSpear.g:17713:1: ( RULE_ID )
-            // InternalSpear.g:17714:1: RULE_ID
+            // InternalSpear.g:17758:1: ( RULE_ID )
+            // InternalSpear.g:17759:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getIdsIdRefIDTerminalRuleCall_2_2_0_1()); 
@@ -50061,23 +50214,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__IdsAssignment_2_3_1"
-    // InternalSpear.g:17725:1: rule__AtomicExpr__IdsAssignment_2_3_1 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:17770:1: rule__AtomicExpr__IdsAssignment_2_3_1 : ( ( RULE_ID ) ) ;
     public final void rule__AtomicExpr__IdsAssignment_2_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17729:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:17730:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17774:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:17775:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:17730:1: ( ( RULE_ID ) )
-            // InternalSpear.g:17731:1: ( RULE_ID )
+            // InternalSpear.g:17775:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17776:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getIdsIdRefCrossReference_2_3_1_0()); 
             }
-            // InternalSpear.g:17732:1: ( RULE_ID )
-            // InternalSpear.g:17733:1: RULE_ID
+            // InternalSpear.g:17777:1: ( RULE_ID )
+            // InternalSpear.g:17778:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getIdsIdRefIDTerminalRuleCall_2_3_1_0_1()); 
@@ -50114,17 +50267,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__CondAssignment_3_2"
-    // InternalSpear.g:17744:1: rule__AtomicExpr__CondAssignment_3_2 : ( ruleExpr ) ;
+    // InternalSpear.g:17789:1: rule__AtomicExpr__CondAssignment_3_2 : ( ruleExpr ) ;
     public final void rule__AtomicExpr__CondAssignment_3_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17748:1: ( ( ruleExpr ) )
-            // InternalSpear.g:17749:1: ( ruleExpr )
+            // InternalSpear.g:17793:1: ( ( ruleExpr ) )
+            // InternalSpear.g:17794:1: ( ruleExpr )
             {
-            // InternalSpear.g:17749:1: ( ruleExpr )
-            // InternalSpear.g:17750:1: ruleExpr
+            // InternalSpear.g:17794:1: ( ruleExpr )
+            // InternalSpear.g:17795:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getCondExprParserRuleCall_3_2_0()); 
@@ -50159,17 +50312,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__ThenAssignment_3_4"
-    // InternalSpear.g:17759:1: rule__AtomicExpr__ThenAssignment_3_4 : ( ruleExpr ) ;
+    // InternalSpear.g:17804:1: rule__AtomicExpr__ThenAssignment_3_4 : ( ruleExpr ) ;
     public final void rule__AtomicExpr__ThenAssignment_3_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17763:1: ( ( ruleExpr ) )
-            // InternalSpear.g:17764:1: ( ruleExpr )
+            // InternalSpear.g:17808:1: ( ( ruleExpr ) )
+            // InternalSpear.g:17809:1: ( ruleExpr )
             {
-            // InternalSpear.g:17764:1: ( ruleExpr )
-            // InternalSpear.g:17765:1: ruleExpr
+            // InternalSpear.g:17809:1: ( ruleExpr )
+            // InternalSpear.g:17810:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getThenExprParserRuleCall_3_4_0()); 
@@ -50204,17 +50357,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__ElseAssignment_3_5_1"
-    // InternalSpear.g:17774:1: rule__AtomicExpr__ElseAssignment_3_5_1 : ( ruleExpr ) ;
+    // InternalSpear.g:17819:1: rule__AtomicExpr__ElseAssignment_3_5_1 : ( ruleExpr ) ;
     public final void rule__AtomicExpr__ElseAssignment_3_5_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17778:1: ( ( ruleExpr ) )
-            // InternalSpear.g:17779:1: ( ruleExpr )
+            // InternalSpear.g:17823:1: ( ( ruleExpr ) )
+            // InternalSpear.g:17824:1: ( ruleExpr )
             {
-            // InternalSpear.g:17779:1: ( ruleExpr )
-            // InternalSpear.g:17780:1: ruleExpr
+            // InternalSpear.g:17824:1: ( ruleExpr )
+            // InternalSpear.g:17825:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getElseExprParserRuleCall_3_5_1_0()); 
@@ -50249,23 +50402,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__TypeAssignment_4_2"
-    // InternalSpear.g:17789:1: rule__AtomicExpr__TypeAssignment_4_2 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:17834:1: rule__AtomicExpr__TypeAssignment_4_2 : ( ( RULE_ID ) ) ;
     public final void rule__AtomicExpr__TypeAssignment_4_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17793:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:17794:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17838:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:17839:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:17794:1: ( ( RULE_ID ) )
-            // InternalSpear.g:17795:1: ( RULE_ID )
+            // InternalSpear.g:17839:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17840:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getTypeRecordTypeDefCrossReference_4_2_0()); 
             }
-            // InternalSpear.g:17796:1: ( RULE_ID )
-            // InternalSpear.g:17797:1: RULE_ID
+            // InternalSpear.g:17841:1: ( RULE_ID )
+            // InternalSpear.g:17842:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getTypeRecordTypeDefIDTerminalRuleCall_4_2_0_1()); 
@@ -50302,17 +50455,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__FieldExprsAssignment_4_4"
-    // InternalSpear.g:17808:1: rule__AtomicExpr__FieldExprsAssignment_4_4 : ( ruleFieldExpr ) ;
+    // InternalSpear.g:17853:1: rule__AtomicExpr__FieldExprsAssignment_4_4 : ( ruleFieldExpr ) ;
     public final void rule__AtomicExpr__FieldExprsAssignment_4_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17812:1: ( ( ruleFieldExpr ) )
-            // InternalSpear.g:17813:1: ( ruleFieldExpr )
+            // InternalSpear.g:17857:1: ( ( ruleFieldExpr ) )
+            // InternalSpear.g:17858:1: ( ruleFieldExpr )
             {
-            // InternalSpear.g:17813:1: ( ruleFieldExpr )
-            // InternalSpear.g:17814:1: ruleFieldExpr
+            // InternalSpear.g:17858:1: ( ruleFieldExpr )
+            // InternalSpear.g:17859:1: ruleFieldExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getFieldExprsFieldExprParserRuleCall_4_4_0()); 
@@ -50347,17 +50500,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__FieldExprsAssignment_4_5_1"
-    // InternalSpear.g:17823:1: rule__AtomicExpr__FieldExprsAssignment_4_5_1 : ( ruleFieldExpr ) ;
+    // InternalSpear.g:17868:1: rule__AtomicExpr__FieldExprsAssignment_4_5_1 : ( ruleFieldExpr ) ;
     public final void rule__AtomicExpr__FieldExprsAssignment_4_5_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17827:1: ( ( ruleFieldExpr ) )
-            // InternalSpear.g:17828:1: ( ruleFieldExpr )
+            // InternalSpear.g:17872:1: ( ( ruleFieldExpr ) )
+            // InternalSpear.g:17873:1: ( ruleFieldExpr )
             {
-            // InternalSpear.g:17828:1: ( ruleFieldExpr )
-            // InternalSpear.g:17829:1: ruleFieldExpr
+            // InternalSpear.g:17873:1: ( ruleFieldExpr )
+            // InternalSpear.g:17874:1: ruleFieldExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getFieldExprsFieldExprParserRuleCall_4_5_1_0()); 
@@ -50392,23 +50545,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__TypeAssignment_5_2"
-    // InternalSpear.g:17838:1: rule__AtomicExpr__TypeAssignment_5_2 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:17883:1: rule__AtomicExpr__TypeAssignment_5_2 : ( ( RULE_ID ) ) ;
     public final void rule__AtomicExpr__TypeAssignment_5_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17842:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:17843:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17887:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:17888:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:17843:1: ( ( RULE_ID ) )
-            // InternalSpear.g:17844:1: ( RULE_ID )
+            // InternalSpear.g:17888:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17889:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getTypeRecordTypeDefCrossReference_5_2_0()); 
             }
-            // InternalSpear.g:17845:1: ( RULE_ID )
-            // InternalSpear.g:17846:1: RULE_ID
+            // InternalSpear.g:17890:1: ( RULE_ID )
+            // InternalSpear.g:17891:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getTypeRecordTypeDefIDTerminalRuleCall_5_2_0_1()); 
@@ -50445,17 +50598,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__ExprsAssignment_5_4"
-    // InternalSpear.g:17857:1: rule__AtomicExpr__ExprsAssignment_5_4 : ( ruleExpr ) ;
+    // InternalSpear.g:17902:1: rule__AtomicExpr__ExprsAssignment_5_4 : ( ruleExpr ) ;
     public final void rule__AtomicExpr__ExprsAssignment_5_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17861:1: ( ( ruleExpr ) )
-            // InternalSpear.g:17862:1: ( ruleExpr )
+            // InternalSpear.g:17906:1: ( ( ruleExpr ) )
+            // InternalSpear.g:17907:1: ( ruleExpr )
             {
-            // InternalSpear.g:17862:1: ( ruleExpr )
-            // InternalSpear.g:17863:1: ruleExpr
+            // InternalSpear.g:17907:1: ( ruleExpr )
+            // InternalSpear.g:17908:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getExprsExprParserRuleCall_5_4_0()); 
@@ -50490,17 +50643,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__ExprsAssignment_5_5_1"
-    // InternalSpear.g:17872:1: rule__AtomicExpr__ExprsAssignment_5_5_1 : ( ruleExpr ) ;
+    // InternalSpear.g:17917:1: rule__AtomicExpr__ExprsAssignment_5_5_1 : ( ruleExpr ) ;
     public final void rule__AtomicExpr__ExprsAssignment_5_5_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17876:1: ( ( ruleExpr ) )
-            // InternalSpear.g:17877:1: ( ruleExpr )
+            // InternalSpear.g:17921:1: ( ( ruleExpr ) )
+            // InternalSpear.g:17922:1: ( ruleExpr )
             {
-            // InternalSpear.g:17877:1: ( ruleExpr )
-            // InternalSpear.g:17878:1: ruleExpr
+            // InternalSpear.g:17922:1: ( ruleExpr )
+            // InternalSpear.g:17923:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getExprsExprParserRuleCall_5_5_1_0()); 
@@ -50535,23 +50688,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__TypeAssignment_6_2"
-    // InternalSpear.g:17887:1: rule__AtomicExpr__TypeAssignment_6_2 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:17932:1: rule__AtomicExpr__TypeAssignment_6_2 : ( ( RULE_ID ) ) ;
     public final void rule__AtomicExpr__TypeAssignment_6_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17891:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:17892:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17936:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:17937:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:17892:1: ( ( RULE_ID ) )
-            // InternalSpear.g:17893:1: ( RULE_ID )
+            // InternalSpear.g:17937:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17938:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getTypeArrayTypeDefCrossReference_6_2_0()); 
             }
-            // InternalSpear.g:17894:1: ( RULE_ID )
-            // InternalSpear.g:17895:1: RULE_ID
+            // InternalSpear.g:17939:1: ( RULE_ID )
+            // InternalSpear.g:17940:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getTypeArrayTypeDefIDTerminalRuleCall_6_2_0_1()); 
@@ -50588,17 +50741,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__ExprsAssignment_6_4"
-    // InternalSpear.g:17906:1: rule__AtomicExpr__ExprsAssignment_6_4 : ( ruleExpr ) ;
+    // InternalSpear.g:17951:1: rule__AtomicExpr__ExprsAssignment_6_4 : ( ruleExpr ) ;
     public final void rule__AtomicExpr__ExprsAssignment_6_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17910:1: ( ( ruleExpr ) )
-            // InternalSpear.g:17911:1: ( ruleExpr )
+            // InternalSpear.g:17955:1: ( ( ruleExpr ) )
+            // InternalSpear.g:17956:1: ( ruleExpr )
             {
-            // InternalSpear.g:17911:1: ( ruleExpr )
-            // InternalSpear.g:17912:1: ruleExpr
+            // InternalSpear.g:17956:1: ( ruleExpr )
+            // InternalSpear.g:17957:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getExprsExprParserRuleCall_6_4_0()); 
@@ -50633,17 +50786,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__ExprsAssignment_6_5_1"
-    // InternalSpear.g:17921:1: rule__AtomicExpr__ExprsAssignment_6_5_1 : ( ruleExpr ) ;
+    // InternalSpear.g:17966:1: rule__AtomicExpr__ExprsAssignment_6_5_1 : ( ruleExpr ) ;
     public final void rule__AtomicExpr__ExprsAssignment_6_5_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17925:1: ( ( ruleExpr ) )
-            // InternalSpear.g:17926:1: ( ruleExpr )
+            // InternalSpear.g:17970:1: ( ( ruleExpr ) )
+            // InternalSpear.g:17971:1: ( ruleExpr )
             {
-            // InternalSpear.g:17926:1: ( ruleExpr )
-            // InternalSpear.g:17927:1: ruleExpr
+            // InternalSpear.g:17971:1: ( ruleExpr )
+            // InternalSpear.g:17972:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getExprsExprParserRuleCall_6_5_1_0()); 
@@ -50678,23 +50831,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__PatternAssignment_7_1"
-    // InternalSpear.g:17936:1: rule__AtomicExpr__PatternAssignment_7_1 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:17981:1: rule__AtomicExpr__PatternAssignment_7_1 : ( ( RULE_ID ) ) ;
     public final void rule__AtomicExpr__PatternAssignment_7_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17940:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:17941:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17985:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:17986:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:17941:1: ( ( RULE_ID ) )
-            // InternalSpear.g:17942:1: ( RULE_ID )
+            // InternalSpear.g:17986:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17987:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getPatternPatternCrossReference_7_1_0()); 
             }
-            // InternalSpear.g:17943:1: ( RULE_ID )
-            // InternalSpear.g:17944:1: RULE_ID
+            // InternalSpear.g:17988:1: ( RULE_ID )
+            // InternalSpear.g:17989:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getPatternPatternIDTerminalRuleCall_7_1_0_1()); 
@@ -50731,17 +50884,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__ArgsAssignment_7_3_0"
-    // InternalSpear.g:17955:1: rule__AtomicExpr__ArgsAssignment_7_3_0 : ( ruleExpr ) ;
+    // InternalSpear.g:18000:1: rule__AtomicExpr__ArgsAssignment_7_3_0 : ( ruleExpr ) ;
     public final void rule__AtomicExpr__ArgsAssignment_7_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17959:1: ( ( ruleExpr ) )
-            // InternalSpear.g:17960:1: ( ruleExpr )
+            // InternalSpear.g:18004:1: ( ( ruleExpr ) )
+            // InternalSpear.g:18005:1: ( ruleExpr )
             {
-            // InternalSpear.g:17960:1: ( ruleExpr )
-            // InternalSpear.g:17961:1: ruleExpr
+            // InternalSpear.g:18005:1: ( ruleExpr )
+            // InternalSpear.g:18006:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getArgsExprParserRuleCall_7_3_0_0()); 
@@ -50776,17 +50929,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__ArgsAssignment_7_3_1_1"
-    // InternalSpear.g:17970:1: rule__AtomicExpr__ArgsAssignment_7_3_1_1 : ( ruleExpr ) ;
+    // InternalSpear.g:18015:1: rule__AtomicExpr__ArgsAssignment_7_3_1_1 : ( ruleExpr ) ;
     public final void rule__AtomicExpr__ArgsAssignment_7_3_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17974:1: ( ( ruleExpr ) )
-            // InternalSpear.g:17975:1: ( ruleExpr )
+            // InternalSpear.g:18019:1: ( ( ruleExpr ) )
+            // InternalSpear.g:18020:1: ( ruleExpr )
             {
-            // InternalSpear.g:17975:1: ( ruleExpr )
-            // InternalSpear.g:17976:1: ruleExpr
+            // InternalSpear.g:18020:1: ( ruleExpr )
+            // InternalSpear.g:18021:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getArgsExprParserRuleCall_7_3_1_1_0()); 
@@ -50821,23 +50974,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__SpecAssignment_8_2"
-    // InternalSpear.g:17985:1: rule__AtomicExpr__SpecAssignment_8_2 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:18030:1: rule__AtomicExpr__SpecAssignment_8_2 : ( ( RULE_ID ) ) ;
     public final void rule__AtomicExpr__SpecAssignment_8_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17989:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:17990:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18034:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:18035:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:17990:1: ( ( RULE_ID ) )
-            // InternalSpear.g:17991:1: ( RULE_ID )
+            // InternalSpear.g:18035:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18036:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getSpecSpecificationCrossReference_8_2_0()); 
             }
-            // InternalSpear.g:17992:1: ( RULE_ID )
-            // InternalSpear.g:17993:1: RULE_ID
+            // InternalSpear.g:18037:1: ( RULE_ID )
+            // InternalSpear.g:18038:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getSpecSpecificationIDTerminalRuleCall_8_2_0_1()); 
@@ -50874,17 +51027,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__ArgsAssignment_8_4_0"
-    // InternalSpear.g:18004:1: rule__AtomicExpr__ArgsAssignment_8_4_0 : ( ruleExpr ) ;
+    // InternalSpear.g:18049:1: rule__AtomicExpr__ArgsAssignment_8_4_0 : ( ruleExpr ) ;
     public final void rule__AtomicExpr__ArgsAssignment_8_4_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18008:1: ( ( ruleExpr ) )
-            // InternalSpear.g:18009:1: ( ruleExpr )
+            // InternalSpear.g:18053:1: ( ( ruleExpr ) )
+            // InternalSpear.g:18054:1: ( ruleExpr )
             {
-            // InternalSpear.g:18009:1: ( ruleExpr )
-            // InternalSpear.g:18010:1: ruleExpr
+            // InternalSpear.g:18054:1: ( ruleExpr )
+            // InternalSpear.g:18055:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getArgsExprParserRuleCall_8_4_0_0()); 
@@ -50919,17 +51072,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__ArgsAssignment_8_4_1_1"
-    // InternalSpear.g:18019:1: rule__AtomicExpr__ArgsAssignment_8_4_1_1 : ( ruleExpr ) ;
+    // InternalSpear.g:18064:1: rule__AtomicExpr__ArgsAssignment_8_4_1_1 : ( ruleExpr ) ;
     public final void rule__AtomicExpr__ArgsAssignment_8_4_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18023:1: ( ( ruleExpr ) )
-            // InternalSpear.g:18024:1: ( ruleExpr )
+            // InternalSpear.g:18068:1: ( ( ruleExpr ) )
+            // InternalSpear.g:18069:1: ( ruleExpr )
             {
-            // InternalSpear.g:18024:1: ( ruleExpr )
-            // InternalSpear.g:18025:1: ruleExpr
+            // InternalSpear.g:18069:1: ( ruleExpr )
+            // InternalSpear.g:18070:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getArgsExprParserRuleCall_8_4_1_1_0()); 
@@ -50964,17 +51117,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralExpr__ValueAssignment_0_1"
-    // InternalSpear.g:18034:1: rule__LiteralExpr__ValueAssignment_0_1 : ( RULE_INT ) ;
+    // InternalSpear.g:18079:1: rule__LiteralExpr__ValueAssignment_0_1 : ( RULE_INT ) ;
     public final void rule__LiteralExpr__ValueAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18038:1: ( ( RULE_INT ) )
-            // InternalSpear.g:18039:1: ( RULE_INT )
+            // InternalSpear.g:18083:1: ( ( RULE_INT ) )
+            // InternalSpear.g:18084:1: ( RULE_INT )
             {
-            // InternalSpear.g:18039:1: ( RULE_INT )
-            // InternalSpear.g:18040:1: RULE_INT
+            // InternalSpear.g:18084:1: ( RULE_INT )
+            // InternalSpear.g:18085:1: RULE_INT
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLiteralExprAccess().getValueINTTerminalRuleCall_0_1_0()); 
@@ -51005,23 +51158,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralExpr__UnitAssignment_0_2"
-    // InternalSpear.g:18049:1: rule__LiteralExpr__UnitAssignment_0_2 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:18094:1: rule__LiteralExpr__UnitAssignment_0_2 : ( ( RULE_ID ) ) ;
     public final void rule__LiteralExpr__UnitAssignment_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18053:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:18054:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18098:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:18099:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:18054:1: ( ( RULE_ID ) )
-            // InternalSpear.g:18055:1: ( RULE_ID )
+            // InternalSpear.g:18099:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18100:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLiteralExprAccess().getUnitUnitDefCrossReference_0_2_0()); 
             }
-            // InternalSpear.g:18056:1: ( RULE_ID )
-            // InternalSpear.g:18057:1: RULE_ID
+            // InternalSpear.g:18101:1: ( RULE_ID )
+            // InternalSpear.g:18102:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLiteralExprAccess().getUnitUnitDefIDTerminalRuleCall_0_2_0_1()); 
@@ -51058,17 +51211,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralExpr__ValueAssignment_1_1"
-    // InternalSpear.g:18068:1: rule__LiteralExpr__ValueAssignment_1_1 : ( ruleBOOL ) ;
+    // InternalSpear.g:18113:1: rule__LiteralExpr__ValueAssignment_1_1 : ( ruleBOOL ) ;
     public final void rule__LiteralExpr__ValueAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18072:1: ( ( ruleBOOL ) )
-            // InternalSpear.g:18073:1: ( ruleBOOL )
+            // InternalSpear.g:18117:1: ( ( ruleBOOL ) )
+            // InternalSpear.g:18118:1: ( ruleBOOL )
             {
-            // InternalSpear.g:18073:1: ( ruleBOOL )
-            // InternalSpear.g:18074:1: ruleBOOL
+            // InternalSpear.g:18118:1: ( ruleBOOL )
+            // InternalSpear.g:18119:1: ruleBOOL
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLiteralExprAccess().getValueBOOLParserRuleCall_1_1_0()); 
@@ -51103,17 +51256,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralExpr__ValueAssignment_2_1"
-    // InternalSpear.g:18083:1: rule__LiteralExpr__ValueAssignment_2_1 : ( ruleREAL ) ;
+    // InternalSpear.g:18128:1: rule__LiteralExpr__ValueAssignment_2_1 : ( ruleREAL ) ;
     public final void rule__LiteralExpr__ValueAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18087:1: ( ( ruleREAL ) )
-            // InternalSpear.g:18088:1: ( ruleREAL )
+            // InternalSpear.g:18132:1: ( ( ruleREAL ) )
+            // InternalSpear.g:18133:1: ( ruleREAL )
             {
-            // InternalSpear.g:18088:1: ( ruleREAL )
-            // InternalSpear.g:18089:1: ruleREAL
+            // InternalSpear.g:18133:1: ( ruleREAL )
+            // InternalSpear.g:18134:1: ruleREAL
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLiteralExprAccess().getValueREALParserRuleCall_2_1_0()); 
@@ -51148,23 +51301,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralExpr__UnitAssignment_2_2"
-    // InternalSpear.g:18098:1: rule__LiteralExpr__UnitAssignment_2_2 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:18143:1: rule__LiteralExpr__UnitAssignment_2_2 : ( ( RULE_ID ) ) ;
     public final void rule__LiteralExpr__UnitAssignment_2_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18102:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:18103:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18147:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:18148:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:18103:1: ( ( RULE_ID ) )
-            // InternalSpear.g:18104:1: ( RULE_ID )
+            // InternalSpear.g:18148:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18149:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLiteralExprAccess().getUnitUnitDefCrossReference_2_2_0()); 
             }
-            // InternalSpear.g:18105:1: ( RULE_ID )
-            // InternalSpear.g:18106:1: RULE_ID
+            // InternalSpear.g:18150:1: ( RULE_ID )
+            // InternalSpear.g:18151:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLiteralExprAccess().getUnitUnitDefIDTerminalRuleCall_2_2_0_1()); 
@@ -51201,23 +51354,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__IdsAssignment_2"
-    // InternalSpear.g:18117:1: rule__UnusedExpr__IdsAssignment_2 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:18162:1: rule__UnusedExpr__IdsAssignment_2 : ( ( RULE_ID ) ) ;
     public final void rule__UnusedExpr__IdsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18121:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:18122:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18166:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:18167:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:18122:1: ( ( RULE_ID ) )
-            // InternalSpear.g:18123:1: ( RULE_ID )
+            // InternalSpear.g:18167:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18168:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getIdsIdRefCrossReference_2_0()); 
             }
-            // InternalSpear.g:18124:1: ( RULE_ID )
-            // InternalSpear.g:18125:1: RULE_ID
+            // InternalSpear.g:18169:1: ( RULE_ID )
+            // InternalSpear.g:18170:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getIdsIdRefIDTerminalRuleCall_2_0_1()); 
@@ -51254,23 +51407,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__IdsAssignment_3_1"
-    // InternalSpear.g:18136:1: rule__UnusedExpr__IdsAssignment_3_1 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:18181:1: rule__UnusedExpr__IdsAssignment_3_1 : ( ( RULE_ID ) ) ;
     public final void rule__UnusedExpr__IdsAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18140:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:18141:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18185:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:18186:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:18141:1: ( ( RULE_ID ) )
-            // InternalSpear.g:18142:1: ( RULE_ID )
+            // InternalSpear.g:18186:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18187:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getIdsIdRefCrossReference_3_1_0()); 
             }
-            // InternalSpear.g:18143:1: ( RULE_ID )
-            // InternalSpear.g:18144:1: RULE_ID
+            // InternalSpear.g:18188:1: ( RULE_ID )
+            // InternalSpear.g:18189:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getIdsIdRefIDTerminalRuleCall_3_1_0_1()); 
@@ -51307,23 +51460,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__SpecAssignment_7"
-    // InternalSpear.g:18155:1: rule__UnusedExpr__SpecAssignment_7 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:18200:1: rule__UnusedExpr__SpecAssignment_7 : ( ( RULE_ID ) ) ;
     public final void rule__UnusedExpr__SpecAssignment_7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18159:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:18160:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18204:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:18205:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:18160:1: ( ( RULE_ID ) )
-            // InternalSpear.g:18161:1: ( RULE_ID )
+            // InternalSpear.g:18205:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18206:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getSpecSpecificationCrossReference_7_0()); 
             }
-            // InternalSpear.g:18162:1: ( RULE_ID )
-            // InternalSpear.g:18163:1: RULE_ID
+            // InternalSpear.g:18207:1: ( RULE_ID )
+            // InternalSpear.g:18208:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getSpecSpecificationIDTerminalRuleCall_7_0_1()); 
@@ -51360,17 +51513,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__ArgsAssignment_9"
-    // InternalSpear.g:18174:1: rule__UnusedExpr__ArgsAssignment_9 : ( ruleExpr ) ;
+    // InternalSpear.g:18219:1: rule__UnusedExpr__ArgsAssignment_9 : ( ruleExpr ) ;
     public final void rule__UnusedExpr__ArgsAssignment_9() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18178:1: ( ( ruleExpr ) )
-            // InternalSpear.g:18179:1: ( ruleExpr )
+            // InternalSpear.g:18223:1: ( ( ruleExpr ) )
+            // InternalSpear.g:18224:1: ( ruleExpr )
             {
-            // InternalSpear.g:18179:1: ( ruleExpr )
-            // InternalSpear.g:18180:1: ruleExpr
+            // InternalSpear.g:18224:1: ( ruleExpr )
+            // InternalSpear.g:18225:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getArgsExprParserRuleCall_9_0()); 
@@ -51405,17 +51558,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__ArgsAssignment_10_1"
-    // InternalSpear.g:18189:1: rule__UnusedExpr__ArgsAssignment_10_1 : ( ruleExpr ) ;
+    // InternalSpear.g:18234:1: rule__UnusedExpr__ArgsAssignment_10_1 : ( ruleExpr ) ;
     public final void rule__UnusedExpr__ArgsAssignment_10_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18193:1: ( ( ruleExpr ) )
-            // InternalSpear.g:18194:1: ( ruleExpr )
+            // InternalSpear.g:18238:1: ( ( ruleExpr ) )
+            // InternalSpear.g:18239:1: ( ruleExpr )
             {
-            // InternalSpear.g:18194:1: ( ruleExpr )
-            // InternalSpear.g:18195:1: ruleExpr
+            // InternalSpear.g:18239:1: ( ruleExpr )
+            // InternalSpear.g:18240:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getArgsExprParserRuleCall_10_1_0()); 
@@ -51450,23 +51603,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FieldExpr__FieldAssignment_0"
-    // InternalSpear.g:18204:1: rule__FieldExpr__FieldAssignment_0 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:18249:1: rule__FieldExpr__FieldAssignment_0 : ( ( RULE_ID ) ) ;
     public final void rule__FieldExpr__FieldAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18208:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:18209:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18253:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:18254:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:18209:1: ( ( RULE_ID ) )
-            // InternalSpear.g:18210:1: ( RULE_ID )
+            // InternalSpear.g:18254:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18255:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFieldExprAccess().getFieldFieldTypeCrossReference_0_0()); 
             }
-            // InternalSpear.g:18211:1: ( RULE_ID )
-            // InternalSpear.g:18212:1: RULE_ID
+            // InternalSpear.g:18256:1: ( RULE_ID )
+            // InternalSpear.g:18257:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFieldExprAccess().getFieldFieldTypeIDTerminalRuleCall_0_0_1()); 
@@ -51503,17 +51656,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FieldExpr__ExprAssignment_2"
-    // InternalSpear.g:18223:1: rule__FieldExpr__ExprAssignment_2 : ( ruleExpr ) ;
+    // InternalSpear.g:18268:1: rule__FieldExpr__ExprAssignment_2 : ( ruleExpr ) ;
     public final void rule__FieldExpr__ExprAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18227:1: ( ( ruleExpr ) )
-            // InternalSpear.g:18228:1: ( ruleExpr )
+            // InternalSpear.g:18272:1: ( ( ruleExpr ) )
+            // InternalSpear.g:18273:1: ( ruleExpr )
             {
-            // InternalSpear.g:18228:1: ( ruleExpr )
-            // InternalSpear.g:18229:1: ruleExpr
+            // InternalSpear.g:18273:1: ( ruleExpr )
+            // InternalSpear.g:18274:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFieldExprAccess().getExprExprParserRuleCall_2_0()); 
@@ -51932,23 +52085,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     protected DFA28 dfa28 = new DFA28(this);
     protected DFA88 dfa88 = new DFA88(this);
     static final String dfa_1s = "\15\uffff";
-    static final String dfa_2s = "\7\uffff\4\13\2\uffff";
-    static final String dfa_3s = "\1\5\1\30\3\5\2\uffff\4\5\2\uffff";
-    static final String dfa_4s = "\1\5\1\32\3\134\2\uffff\4\127\2\uffff";
-    static final String dfa_5s = "\5\uffff\1\4\1\2\4\uffff\1\1\1\3";
+    static final String dfa_2s = "\5\uffff\4\13\4\uffff";
+    static final String dfa_3s = "\1\5\1\30\7\5\4\uffff";
+    static final String dfa_4s = "\1\5\1\32\3\134\4\127\4\uffff";
+    static final String dfa_5s = "\11\uffff\1\4\1\2\1\1\1\3";
     static final String dfa_6s = "\15\uffff}>";
     static final String[] dfa_7s = {
             "\1\1",
             "\1\2\1\3\1\4",
-            "\1\12\116\uffff\1\6\4\uffff\1\5\1\7\1\10\1\11",
-            "\1\12\116\uffff\1\6\4\uffff\1\5\1\7\1\10\1\11",
-            "\1\12\116\uffff\1\6\4\uffff\1\5\1\7\1\10\1\11",
+            "\1\10\116\uffff\1\12\4\uffff\1\11\1\5\1\6\1\7",
+            "\1\10\116\uffff\1\12\4\uffff\1\11\1\5\1\6\1\7",
+            "\1\10\116\uffff\1\12\4\uffff\1\11\1\5\1\6\1\7",
+            "\1\13\67\uffff\1\13\4\uffff\2\13\23\uffff\1\14",
+            "\1\13\67\uffff\1\13\4\uffff\2\13\23\uffff\1\14",
+            "\1\13\67\uffff\1\13\4\uffff\2\13\23\uffff\1\14",
+            "\1\13\67\uffff\1\13\4\uffff\2\13\23\uffff\1\14",
             "",
             "",
-            "\1\13\67\uffff\1\13\4\uffff\2\13\23\uffff\1\14",
-            "\1\13\67\uffff\1\13\4\uffff\2\13\23\uffff\1\14",
-            "\1\13\67\uffff\1\13\4\uffff\2\13\23\uffff\1\14",
-            "\1\13\67\uffff\1\13\4\uffff\2\13\23\uffff\1\14",
             "",
             ""
     };
@@ -52029,14 +52182,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             return "2109:1: rule__RelationalOp__Alternatives : ( ( '<' ) | ( ( rule__RelationalOp__Group_1__0 ) ) | ( '<=' ) | ( ( rule__RelationalOp__Group_3__0 ) ) | ( '>' ) | ( ( rule__RelationalOp__Group_5__0 ) ) | ( '>=' ) | ( ( rule__RelationalOp__Group_7__0 ) ) | ( '==' ) | ( ( rule__RelationalOp__Group_9__0 ) ) | ( '<>' ) | ( ( rule__RelationalOp__Group_11__0 ) ) );";
         }
     }
-    static final String dfa_15s = "\2\uffff\1\12\16\uffff";
+    static final String dfa_15s = "\2\uffff\1\11\16\uffff";
     static final String dfa_16s = "\1\4\1\uffff\1\5\2\uffff\1\5\5\uffff\1\125\1\4\1\uffff\1\33\2\uffff";
     static final String dfa_17s = "\1\161\1\uffff\1\162\2\uffff\1\5\5\uffff\1\127\1\161\1\uffff\1\162\2\uffff";
-    static final String dfa_18s = "\1\uffff\1\1\1\uffff\1\3\1\4\1\uffff\1\11\1\12\1\13\1\10\1\2\2\uffff\1\7\1\uffff\1\6\1\5";
+    static final String dfa_18s = "\1\uffff\1\1\1\uffff\1\3\1\4\1\uffff\1\11\1\12\1\13\1\2\1\10\2\uffff\1\7\1\uffff\1\6\1\5";
     static final String[] dfa_19s = {
             "\1\1\1\2\62\uffff\4\1\15\uffff\1\10\6\uffff\1\3\34\uffff\1\4\1\uffff\1\5\1\6\1\7",
             "",
-            "\1\12\5\uffff\15\12\3\uffff\10\12\7\uffff\16\12\5\uffff\1\12\5\uffff\1\12\5\uffff\1\11\1\12\2\uffff\2\12\1\uffff\1\12\1\uffff\2\12\1\uffff\4\12\4\uffff\1\12\1\uffff\1\12\1\uffff\2\12\1\uffff\1\12\1\uffff\1\12\1\uffff\1\12\2\uffff\2\12\1\uffff\1\12\3\uffff\1\12",
+            "\1\11\5\uffff\15\11\3\uffff\10\11\7\uffff\16\11\5\uffff\1\11\5\uffff\1\11\5\uffff\1\12\1\11\2\uffff\2\11\1\uffff\1\11\1\uffff\2\11\1\uffff\4\11\4\uffff\1\11\1\uffff\1\11\1\uffff\2\11\1\uffff\1\11\1\uffff\1\11\1\uffff\1\11\2\uffff\2\11\1\uffff\1\11\3\uffff\1\11",
             "",
             "",
             "\1\13",
@@ -52079,7 +52232,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     static final String dfa_21s = "\1\5\12\0\2\uffff";
     static final String dfa_22s = "\1\162\12\0\2\uffff";
     static final String dfa_23s = "\13\uffff\1\2\1\1";
-    static final String dfa_24s = "\1\uffff\1\2\1\11\1\7\1\0\1\3\1\6\1\10\1\4\1\1\1\5\2\uffff}>";
+    static final String dfa_24s = "\1\uffff\1\1\1\10\1\6\1\11\1\3\1\2\1\7\1\4\1\0\1\5\2\uffff}>";
     static final String[] dfa_25s = {
             "\1\13\5\uffff\15\13\3\uffff\10\13\7\uffff\1\1\1\3\1\4\1\6\1\7\1\11\7\13\1\12\5\uffff\1\13\5\uffff\1\13\6\uffff\1\13\2\uffff\2\13\1\uffff\1\13\1\uffff\2\13\1\uffff\4\13\4\uffff\1\13\1\uffff\1\13\1\uffff\1\13\1\2\1\uffff\1\10\1\uffff\1\5\1\uffff\1\13\2\uffff\2\13\1\uffff\1\13\3\uffff\1\13",
             "\1\uffff",
@@ -52123,21 +52276,6 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA88_4 = input.LA(1);
-
-                         
-                        int index88_4 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred130_InternalSpear()) ) {s = 12;}
-
-                        else if ( (true) ) {s = 11;}
-
-                         
-                        input.seek(index88_4);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
                         int LA88_9 = input.LA(1);
 
                          
@@ -52152,7 +52290,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                         input.seek(index88_9);
                         if ( s>=0 ) return s;
                         break;
-                    case 2 : 
+                    case 1 : 
                         int LA88_1 = input.LA(1);
 
                          
@@ -52165,6 +52303,21 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
                          
                         input.seek(index88_1);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
+                        int LA88_6 = input.LA(1);
+
+                         
+                        int index88_6 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred130_InternalSpear()) ) {s = 12;}
+
+                        else if ( (true) ) {s = 11;}
+
+                         
+                        input.seek(index88_6);
                         if ( s>=0 ) return s;
                         break;
                     case 3 : 
@@ -52213,21 +52366,6 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                         if ( s>=0 ) return s;
                         break;
                     case 6 : 
-                        int LA88_6 = input.LA(1);
-
-                         
-                        int index88_6 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred130_InternalSpear()) ) {s = 12;}
-
-                        else if ( (true) ) {s = 11;}
-
-                         
-                        input.seek(index88_6);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 7 : 
                         int LA88_3 = input.LA(1);
 
                          
@@ -52242,7 +52380,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                         input.seek(index88_3);
                         if ( s>=0 ) return s;
                         break;
-                    case 8 : 
+                    case 7 : 
                         int LA88_7 = input.LA(1);
 
                          
@@ -52257,7 +52395,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                         input.seek(index88_7);
                         if ( s>=0 ) return s;
                         break;
-                    case 9 : 
+                    case 8 : 
                         int LA88_2 = input.LA(1);
 
                          
@@ -52270,6 +52408,21 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
                          
                         input.seek(index88_2);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 9 : 
+                        int LA88_4 = input.LA(1);
+
+                         
+                        int index88_4 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred130_InternalSpear()) ) {s = 12;}
+
+                        else if ( (true) ) {s = 11;}
+
+                         
+                        input.seek(index88_4);
                         if ( s>=0 ) return s;
                         break;
             }
