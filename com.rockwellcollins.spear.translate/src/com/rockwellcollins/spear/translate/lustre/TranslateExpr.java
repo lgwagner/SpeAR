@@ -200,7 +200,10 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 			args.add(this.doSwitch(idr));
 		}
 
-		return new IdExpr("call");
+		String nodeName = map.lookupOriginal(call.getSpec().getName());
+		//TODO: still need to add the extra args for the node call.
+		return new NodeCallExpr(nodeName,args);
+		
 //		SCall scall = map.callMapping.get(call);
 //		args.addAll(scall.getCallsArgs(map));
 //		

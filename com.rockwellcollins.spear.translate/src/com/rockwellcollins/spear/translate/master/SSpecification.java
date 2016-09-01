@@ -82,6 +82,7 @@ public class SSpecification {
 	public List<SConstraint> requirements = new ArrayList<>();
 	public List<SConstraint> behaviors = new ArrayList<>();
 	public Map<Integer,SSpecification> embedded = new HashMap<>();
+	public List<SCallVar> callVars = new ArrayList<>();
 	
 	public SSpecification(Specification s, Renaming global) {
 		//get the name from the global map
@@ -114,6 +115,23 @@ public class SSpecification {
 			}
 		}
 	}
+	
+	public void resolveCallVars() {
+		this.callVars.addAll(this.getAllCalledStateVariables(local));
+	}
+	
+	public List<SCallVar> getAllCalledStateVariables(Renaming map) {
+		List<SCallVar> callvars = new ArrayList<>();
+		for(Integer key : embedded.keySet()) {
+			SSpecification spec = embedded.get(key);
+			List<SCallVar> subs = spec.getAllCalledStateVariables(map);
+			for(SVariable state : spec.state) {
+				callvars.add(new SCallVar(state,this,key,spec,map));
+			}
+			callvars.addAll(subs);
+		}
+		return callvars;
+	}
 
 	public Node toBaseLustre() {
 		NodeBuilder builder = new NodeBuilder(name);
@@ -121,13 +139,13 @@ public class SSpecification {
 		/*
 		 * We must add: 1. the true inputs 2. the shadow inputs for the outputs
 		 * 3. the shadow inputs for the state 4. the args from any calls that
-		 * also need shadow inputs 5. the args from any call's, calls that need
+		 * also need shadow inputs 5. the args from any calls, calls that need
 		 * shadow args
 		 */
 		builder.addInputs(SVariable.toVarDecl(inputs, local));
 		builder.addInputs(SVariable.toVarDecl(outputs, local));
 		builder.addInputs(SVariable.toVarDecl(state, local));
-//		builder.addInputs(this.getAllCalledStateVariables(local));
+		builder.addInputs(SCallVar.toVarDecl(callVars, local));
 
 		/*
 		 * We must add 1. locals for the macros 2. locals for the assumptions 3.

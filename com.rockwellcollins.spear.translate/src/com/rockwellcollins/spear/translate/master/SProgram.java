@@ -42,12 +42,14 @@ public class SProgram {
 		patterns.addAll(SPattern.build(document.patterns, map));
 		
 		/* 
-		 * process the specifications in two steps
+		 * process the specifications in three steps
 		 * 1. build them
 		 * 2. resolve the calls among them
+		 * 3. resolve the call variables
 		 */
 		specifications.addAll(SSpecification.build(document.specifications, map));
 		resolveSpecificationCalls(document);
+		resolveCallVariables();
 		
 		//identify the main node.
 		this.main = map.lookupOriginal(document.mainName);
@@ -56,6 +58,12 @@ public class SProgram {
 	private void resolveSpecificationCalls(SpearDocument document) {
 		for(SSpecification s : specifications) {
 			s.resolveCalls(document.calls, specifications);
+		}
+	}
+	
+	private void resolveCallVariables() {
+		for(SSpecification s : specifications) {
+			s.resolveCallVars();
 		}
 	}
 	
@@ -77,8 +85,9 @@ public class SProgram {
 		for(SSpecification spec : specifications) {
 			if(spec.name.equals(this.main)) {
 				program.addNode(spec.getLogicalEntailmentMain());
+			} else {
+				program.addNode(spec.toBaseLustre());
 			}
-			//TODO add an else case for the called nodes
 		}
 		program.setMain(this.main);
 		return program.build();
@@ -90,8 +99,9 @@ public class SProgram {
 		for(SSpecification spec : specifications) {
 			if(spec.name.equals(this.main)) {
 				program.addNode(spec.getLogicalConsistencyMain());
+			} else {
+				program.addNode(spec.toBaseLustre());
 			}
-			//TODO add an else case for the called nodes
 		}
 		program.setMain(this.main);
 		return program.build();
