@@ -3,9 +3,6 @@ package com.rockwellcollins.spear.translate.master;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.xtext.EcoreUtil2;
-
-import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.translate.naming.Renaming;
 import com.rockwellcollins.spear.utilities.PLTL;

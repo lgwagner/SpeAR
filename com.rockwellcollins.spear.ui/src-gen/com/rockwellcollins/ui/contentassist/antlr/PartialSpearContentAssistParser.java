@@ -15,6 +15,7 @@ import org.eclipse.xtext.util.PolymorphicDispatcher;
 /*
  * Template CodetemplatesGeneratorFragment.xpt
  */
+@SuppressWarnings("restriction")
 public class PartialSpearContentAssistParser extends SpearParser implements IPartialContentAssistParser {
 
 	private AbstractRule rule;
