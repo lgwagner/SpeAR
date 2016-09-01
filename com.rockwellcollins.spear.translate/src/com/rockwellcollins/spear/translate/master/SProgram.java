@@ -42,7 +42,7 @@ public class SProgram {
 		List<String> renamedSpecifications = SSpecification.addNames(document.specifications, map);
 
 		patterns.addAll(SPattern.build(document.patterns, map));
-		specifications.addAll(SSpecification.build(document.specifications, map));
+		specifications.addAll(SSpecification.build(document.specifications, document.calls, map));
 		this.main = map.lookupOriginal(document.mainName);
 	}
 	

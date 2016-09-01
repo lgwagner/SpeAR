@@ -3,9 +3,11 @@ package com.rockwellcollins.spear.translate.master;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.actions.SpearRuntimeOptions;
+import com.rockwellcollins.spear.translate.intermediate.SpearCall;
 import com.rockwellcollins.spear.translate.naming.Renaming;
 import com.rockwellcollins.spear.utilities.PLTL;
 
@@ -38,25 +40,17 @@ public class SSpecification {
 		return global.getName(s.getName());
 	}
 	
-	public static List<SSpecification> build(List<Specification> list, Renaming global) {
+	public static List<SSpecification> build(List<Specification> list, Map<String, Map<Integer, SpearCall>> calls, Renaming global) {
 		List<SSpecification> converted = new ArrayList<>();
-		for(Specification  s : list) {
-			converted.add(SSpecification.build(s, global));
+		for(Specification s : list) {
+			Map<Integer,SpearCall> these = calls.get(s.getName());
+			converted.add(SSpecification.build(s, these, global));
 		}
 		return converted;
 	}
 	
-	public static SSpecification lookup(String name, List<SSpecification> specs) {
-		for(SSpecification s : specs) {
-			if(s.name.equals(name)) {
-				return s;
-			}
-		}
-		return null;
-	}
-	
-	public static SSpecification build(Specification s, Renaming global) {
-		return new SSpecification(s,global);
+	public static SSpecification build(Specification s, Map<Integer, SpearCall> calls, Renaming global) {
+		return new SSpecification(s,calls,global);
 	}
 	
 	private String assertionName;
@@ -78,9 +72,9 @@ public class SSpecification {
 	public List<SConstraint> assumptions = new ArrayList<>();
 	public List<SConstraint> requirements = new ArrayList<>();
 	public List<SConstraint> behaviors = new ArrayList<>();
-//	public List<SCall> calls = new ArrayList<>();
+	public List<SVariable> embedded = new ArrayList<>();
 	
-	public SSpecification(Specification s, Renaming global) {
+	public SSpecification(Specification s, Map<Integer,SpearCall> calls, Renaming global) {
 		//get the name from the global map
 		this.name = global.lookupOriginal(s.getName());
 		
@@ -95,6 +89,7 @@ public class SSpecification {
 		this.assumptions.addAll(SConstraint.build(s.getAssumptions(), local));
 		this.requirements.addAll(SConstraint.build(s.getRequirements(), local));
 		this.behaviors.addAll(SConstraint.build(s.getBehaviors(), local));
+		//TODO: handle the calls
 		
 		this.assertionName = local.getName(ASSERTION);
 		this.counterName = local.getName(COUNTER);
