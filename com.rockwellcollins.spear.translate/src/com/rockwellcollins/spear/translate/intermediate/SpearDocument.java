@@ -1,14 +1,19 @@
 package com.rockwellcollins.spear.translate.intermediate;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.EcoreUtil2;
 
 import com.rockwellcollins.spear.Constant;
+import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.TypeDef;
+import com.rockwellcollins.spear.translate.transformations.PerformTransforms;
 
 public class SpearDocument {
 
@@ -17,6 +22,9 @@ public class SpearDocument {
 	public List<Constant> constants = new ArrayList<>();
 	public List<Pattern> patterns = new ArrayList<>();
 	public List<Specification> specifications = new ArrayList<>();
+	public Map<String,Map<Integer,SpearCall>> calls = new HashMap<>();
+	
+	public Map<EObject,Map<String,String>> renamed;
 
 	public Specification getMain() {
 		for(Specification s : specifications) {
@@ -25,6 +33,16 @@ public class SpearDocument {
 			}
 		}
 		return null;
+	}
+	
+	private void insert(String specName, SpearCall call) {
+		Map<Integer,SpearCall> temp = new HashMap<>();
+		if(calls.containsKey(specName)) {
+			temp.putAll(calls.get(specName));
+		}
+		Integer key = calls.keySet().size();
+		temp.put(key, call);
+		calls.put(specName, temp);
 	}
 	
 	public SpearDocument(Specification main) {
@@ -51,5 +69,23 @@ public class SpearDocument {
 				specifications.add(spec);
 			}
 		}
-	}	
+		
+		try {
+			this.renamed = PerformTransforms.apply(this);
+			this.computeCallInfo();
+		} catch (Exception e) {
+			System.err.println("Error performing transformations.");
+			e.printStackTrace();
+			System.exit(-1);
+		}
+	}
+	
+	public void computeCallInfo() {
+		for(Specification s : specifications) {
+			List<NormalizedCall> normalizedCalls = EcoreUtil2.getAllContentsOfType(s, NormalizedCall.class);
+			for(NormalizedCall ncall : normalizedCalls) {
+				insert(s.getName(),new SpearCall(ncall));
+			}
+		}
+	}
 }

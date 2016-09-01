@@ -44,4 +44,8 @@ public class SVariable {
 		jkind.lustre.Type type = TranslateType.translate(this.type, nameMap);
 		return new jkind.lustre.VarDecl(this.name,type);
 	}
+	
+	public String toString() {
+		return this.name;
+	}
 }

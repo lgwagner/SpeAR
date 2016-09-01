@@ -46,6 +46,15 @@ public class SSpecification {
 		return converted;
 	}
 	
+	public static SSpecification lookup(String name, List<SSpecification> specs) {
+		for(SSpecification s : specs) {
+			if(s.name.equals(name)) {
+				return s;
+			}
+		}
+		return null;
+	}
+	
 	public static SSpecification build(Specification s, Renaming global) {
 		return new SSpecification(s,global);
 	}
@@ -92,16 +101,6 @@ public class SSpecification {
 		this.consistencyName = local.getName(CONSISTENCY);
 	}
 
-//	public List<VarDecl> getAllCalledStateVariables(PNameMap map) {
-//		List<VarDecl> list = new ArrayList<>();
-//		for(SCall thisCall : this.calls) {
-//			list.addAll(thisCall.getNDLocals(map));
-//			SSpecification s = (SSpecification) map.fileMapping.get(thisCall.call.getSpec());
-//			list.addAll(s.getAllCalledStateVariables(map));
-//		}
-//		return list;
-//	}
-	
 	public Node toBaseLustre() {
 		NodeBuilder builder = new NodeBuilder(name);
 
@@ -149,21 +148,6 @@ public class SSpecification {
 		return builder.build();
 	}
 
-//	public Node getLogicalEntailmentCalled() {
-//		NodeBuilder builder = new NodeBuilder(this.toBaseLustre(map));
-//
-//		/*
-//		 * The nodes have only a single output, the assertions to be passed up
-//		 * the chain.
-//		 */
-//		builder.addOutput(this.getAssertionVarDecl());
-//		builder.addEquation(this.getAssertionCalledEquation(requirements));
-//
-////		builder.addProperties(SConstraint.toPropertyIds(assumptions, map));
-////		builder.addProperties(SConstraint.toPropertyIds(behaviors, map));
-//		return builder.build();
-//	}
-
 	public Node getLogicalConsistencyMain() {
 		NodeBuilder builder = new NodeBuilder(this.toBaseLustre());
 
@@ -185,18 +169,6 @@ public class SSpecification {
 		
 		return builder.build();
 	}
-	
-//	public Node getLogicalConsistencyCalled(NameMap map) {
-//		NodeBuilder builder = new NodeBuilder(this.toBaseLustre(map));
-//
-//		/*
-//		 * The nodes have only a single output, the assertions to be passed up
-//		 * the chain.
-//		 */
-//		builder.addOutput(this.getAssertionVarDecl());
-//		builder.addEquation(this.getAssertionCalledEquation(requirements));
-//		return builder.build();		
-//	}
 
 	private VarDecl getCounterVarDecl() {
 		return new VarDecl(this.counterName, NamedType.INT);
@@ -253,14 +225,4 @@ public class SSpecification {
 		}
 		return new Equation(new IdExpr(this.assertionName), new NodeCallExpr(PLTL.historically().id, RHS));
 	}
-
-//	private Equation getAssertionCalledEquation(List<SConstraint> conjunct) {
-//		Expr RHS;
-//		if (conjunct.isEmpty()) {
-//			RHS = new BoolExpr(true);
-//		} else {
-//			RHS = conjunctify(conjunct.iterator());
-//		}
-//		return new Equation(new IdExpr(this.assertionName), RHS);
-//	}
 }

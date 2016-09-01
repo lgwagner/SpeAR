@@ -5,7 +5,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
@@ -14,7 +13,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -39,7 +37,6 @@ import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.translate.layout.SpearLayout;
 import com.rockwellcollins.spear.translate.master.SProgram;
-import com.rockwellcollins.spear.translate.transformations.PerformTransforms;
 import com.rockwellcollins.spear.translate.views.SpearResultsView;
 import com.rockwellcollins.spear.ui.preferences.PreferencesUtil;
 import com.rockwellcollins.ui.internal.SpearActivator;
@@ -85,13 +82,10 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 				SpearRuntimeOptions.setRuntimeOptions();
 				
 				SpearDocument workingCopy = new SpearDocument(specification); 
-				Map<EObject,Map<String,String>> renamed = PerformTransforms.apply(workingCopy);
 				SProgram program = SProgram.build(workingCopy);
-
-				// translate to Lustre
 				Program p = program.getLogicalConsistency();
+				
 				URI lustreURI = createURI(state.getURI(), "", "lus");
-
 				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 				
 				if(SpearRuntimeOptions.printFinalLustre) {
@@ -105,7 +99,7 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 				JKindApi api = (JKindApi) PreferencesUtil.getKindApi();
 				api.setIvcReduction();
 				
-				Renaming renaming = new MapRenaming(renamed.get(workingCopy.getMain()), Mode.IDENTITY);
+				Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.getMain()), Mode.IDENTITY);
 				List<Boolean> invert = new ArrayList<>();
 				for(@SuppressWarnings("unused") String prop : p.getMainNode().properties) {
 					invert.add(true);
