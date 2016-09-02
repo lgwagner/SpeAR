@@ -1,14 +1,11 @@
 package com.rockwellcollins.spear.translate.master;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.actions.SpearRuntimeOptions;
-import com.rockwellcollins.spear.translate.intermediate.SpearCall;
 import com.rockwellcollins.spear.translate.naming.Renaming;
 import com.rockwellcollins.spear.utilities.PLTL;
 
@@ -81,8 +78,6 @@ public class SSpecification {
 	public List<SConstraint> assumptions = new ArrayList<>();
 	public List<SConstraint> requirements = new ArrayList<>();
 	public List<SConstraint> behaviors = new ArrayList<>();
-	public Map<Integer,SSpecification> embedded = new HashMap<>();
-	public List<SCallVar> callVars = new ArrayList<>();
 	
 	public SSpecification(Specification s, Renaming global) {
 		//get the name from the global map
@@ -105,34 +100,6 @@ public class SSpecification {
 		this.consistencyName = local.getName(CONSISTENCY);
 	}
 	
-	public void resolveCalls(Map<String,Map<Integer,SpearCall>> allCalls, List<SSpecification> specs) {
-		if(allCalls.containsKey(this.name)){
-			Map<Integer,SpearCall> thisCalls = allCalls.get(this.name);
-			for(Integer key : thisCalls.keySet()) {
-				SpearCall sc = thisCalls.get(key);
-				String sspecName = this.local.lookupOriginal(sc.called);
-				embedded.put(key, SSpecification.lookup(sspecName, specs));
-			}
-		}
-	}
-	
-	public void resolveCallVars() {
-		this.callVars.addAll(this.getAllCalledStateVariables(local));
-	}
-	
-	public List<SCallVar> getAllCalledStateVariables(Renaming map) {
-		List<SCallVar> callvars = new ArrayList<>();
-		for(Integer key : embedded.keySet()) {
-			SSpecification spec = embedded.get(key);
-			List<SCallVar> subs = spec.getAllCalledStateVariables(map);
-			for(SVariable state : spec.state) {
-				callvars.add(new SCallVar(state,this,key,spec,map));
-			}
-			callvars.addAll(subs);
-		}
-		return callvars;
-	}
-
 	public Node toBaseLustre() {
 		NodeBuilder builder = new NodeBuilder(name);
 
@@ -145,7 +112,7 @@ public class SSpecification {
 		builder.addInputs(SVariable.toVarDecl(inputs, local));
 		builder.addInputs(SVariable.toVarDecl(outputs, local));
 		builder.addInputs(SVariable.toVarDecl(state, local));
-		builder.addInputs(SCallVar.toVarDecl(callVars, local));
+//		builder.addInputs(SCallVar.toVarDecl(callVars, local));
 
 		/*
 		 * We must add 1. locals for the macros 2. locals for the assumptions 3.

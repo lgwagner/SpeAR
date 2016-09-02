@@ -22,7 +22,18 @@ public class SpearDocument {
 	public List<Constant> constants = new ArrayList<>();
 	public List<Pattern> patterns = new ArrayList<>();
 	public List<Specification> specifications = new ArrayList<>();
-	public Map<String,Map<Integer,SpearCall>> calls = new HashMap<>();
+	public Map<String,List<Call>> calls = new HashMap<>();
+	
+	public void insert(String name, Call call) {
+		List<Call> local = null;
+		if(calls.containsKey(name)) {
+			local = calls.get(name);
+		} else {
+			local = new ArrayList<>();
+		}
+		local.add(call);
+		calls.put(name,local);
+	}
 	
 	public Map<EObject,Map<String,String>> renamed;
 
@@ -33,16 +44,6 @@ public class SpearDocument {
 			}
 		}
 		return null;
-	}
-	
-	private void insert(String specName, SpearCall call) {
-		Map<Integer,SpearCall> temp = new HashMap<>();
-		if(calls.containsKey(specName)) {
-			temp.putAll(calls.get(specName));
-		}
-		Integer key = calls.keySet().size();
-		temp.put(key, call);
-		calls.put(specName, temp);
 	}
 	
 	public SpearDocument(Specification main) {
@@ -69,23 +70,24 @@ public class SpearDocument {
 				specifications.add(spec);
 			}
 		}
-		
+
+		//transform the document
 		try {
 			this.renamed = PerformTransforms.apply(this);
-			this.computeCallInfo();
 		} catch (Exception e) {
 			System.err.println("Error performing transformations.");
 			e.printStackTrace();
 			System.exit(-1);
 		}
+		
+		//compute the call info.
+		computeCallInfo(main);
 	}
 	
-	public void computeCallInfo() {
-		for(Specification s : specifications) {
-			List<NormalizedCall> normalizedCalls = EcoreUtil2.getAllContentsOfType(s, NormalizedCall.class);
-			for(NormalizedCall ncall : normalizedCalls) {
-				insert(s.getName(),new SpearCall(ncall));
-			}
+	private void computeCallInfo(Specification s) {
+		for(NormalizedCall nc : EcoreUtil2.getAllContentsOfType(s, NormalizedCall.class)) {
+			Call call = new Call(nc);
+			insert(s.getName(),call);
 		}
 	}
 }

@@ -48,25 +48,13 @@ public class SProgram {
 		 * 3. resolve the call variables
 		 */
 		specifications.addAll(SSpecification.build(document.specifications, map));
-		resolveSpecificationCalls(document);
-		resolveCallVariables();
+//		resolveSpecificationCalls(document);
+//		resolveCallVariables();
 		
 		//identify the main node.
 		this.main = map.lookupOriginal(document.mainName);
 	}
 
-	private void resolveSpecificationCalls(SpearDocument document) {
-		for(SSpecification s : specifications) {
-			s.resolveCalls(document.calls, specifications);
-		}
-	}
-	
-	private void resolveCallVariables() {
-		for(SSpecification s : specifications) {
-			s.resolveCallVars();
-		}
-	}
-	
 	public Program getBaseProgram() {
 		ProgramBuilder program = new ProgramBuilder();
 		
