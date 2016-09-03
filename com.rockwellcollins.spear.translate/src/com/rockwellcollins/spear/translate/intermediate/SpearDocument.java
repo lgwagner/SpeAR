@@ -1,7 +1,6 @@
 package com.rockwellcollins.spear.translate.intermediate;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,19 +21,7 @@ public class SpearDocument {
 	public List<Constant> constants = new ArrayList<>();
 	public List<Pattern> patterns = new ArrayList<>();
 	public List<Specification> specifications = new ArrayList<>();
-	public Map<String,List<Call>> calls = new HashMap<>();
-	
-	public void insert(String name, Call call) {
-		List<Call> local = null;
-		if(calls.containsKey(name)) {
-			local = calls.get(name);
-		} else {
-			local = new ArrayList<>();
-		}
-		local.add(call);
-		calls.put(name,local);
-	}
-	
+	public List<Call> calls = new ArrayList<>();
 	public Map<EObject,Map<String,String>> renamed;
 
 	public Specification getMain() {
@@ -80,14 +67,16 @@ public class SpearDocument {
 			System.exit(-1);
 		}
 		
+		Specification transformedMain = this.getMain();
 		//compute the call info.
-		computeCallInfo(main);
+		computeCallInfo(transformedMain);
 	}
 	
 	private void computeCallInfo(Specification s) {
+		Call.reset();
 		for(NormalizedCall nc : EcoreUtil2.getAllContentsOfType(s, NormalizedCall.class)) {
 			Call call = new Call(nc);
-			insert(s.getName(),call);
+			calls.add(call);
 		}
 	}
 }
