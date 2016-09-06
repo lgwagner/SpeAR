@@ -191,6 +191,8 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	
 	@Override
 	public Expr caseNormalizedCall(com.rockwellcollins.spear.NormalizedCall call) {
+		Integer id = CallMap.addCall(call);
+		
 		List<Expr> args = new ArrayList<>();
 		for(com.rockwellcollins.spear.Expr e : call.getArgs()) {
 			args.add(TranslateExpr.translate(e, map));
@@ -201,14 +203,16 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 		}
 
 		String nodeName = map.lookupOriginal(call.getSpec().getName());
-		//TODO: still need to add the extra args for the node call.
-		return new NodeCallExpr(nodeName,args);
+		return new IntExpr(-1000);
 		
-//		SCall scall = map.callMapping.get(call);
-//		args.addAll(scall.getCallsArgs(map));
+//		//TODO: still need to add the extra args for the node call.
+//		return new NodeCallExpr(nodeName,args);
 //		
-//		String name = map.fileMapping.get(call.getSpec()).name;
-//		return new NodeCallExpr(name,args);
+////		SCall scall = map.callMapping.get(call);
+////		args.addAll(scall.getCallsArgs(map));
+////		
+////		String name = map.fileMapping.get(call.getSpec()).name;
+////		return new NodeCallExpr(name,args);
 	}
 	
 	@Override

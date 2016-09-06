@@ -3,6 +3,7 @@ package com.rockwellcollins.spear.translate.master;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.rockwellcollins.spear.translate.intermediate.Call;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.translate.naming.Renaming;
 import com.rockwellcollins.spear.utilities.PLTL;
@@ -17,11 +18,20 @@ public class SProgram {
 	}
 	
 	public Renaming map;
-	public String main;
+	public String mainName;
 	public List<STypeDef> typedefs = new ArrayList<>();
 	public List<SConstant> constants = new ArrayList<>();
 	public List<SPattern> patterns = new ArrayList<>();
 	public List<SSpecification> specifications = new ArrayList<>();
+	
+	public SSpecification lookupSpec(String name) {
+		for(SSpecification s : specifications) {
+			if(s.name.equals(mainName)) {
+				return s;
+			}
+		}
+		return null;
+	}
 	
 	public SProgram(SpearDocument document) {
 		//initialize the program's global map
@@ -48,11 +58,13 @@ public class SProgram {
 		 * 3. resolve the call variables
 		 */
 		specifications.addAll(SSpecification.build(document.specifications, map));
-//		resolveSpecificationCalls(document);
-//		resolveCallVariables();
 		
 		//identify the main node.
-		this.main = map.lookupOriginal(document.mainName);
+		this.mainName = map.lookupOriginal(document.mainName);
+		SSpecification main = SSpecification.lookup(this.mainName, specifications);
+		for(Call call : document.calls) {
+			main.resolveCall(call,specifications,map);
+		}
 	}
 
 	public Program getBaseProgram() {
@@ -71,13 +83,13 @@ public class SProgram {
 		ProgramBuilder program = new ProgramBuilder(this.getBaseProgram());
 	
 		for(SSpecification spec : specifications) {
-			if(spec.name.equals(this.main)) {
+			if(spec.name.equals(this.mainName)) {
 				program.addNode(spec.getLogicalEntailmentMain());
 			} else {
 				program.addNode(spec.toBaseLustre());
 			}
 		}
-		program.setMain(this.main);
+		program.setMain(this.mainName);
 		return program.build();
 	}
 	
@@ -85,13 +97,13 @@ public class SProgram {
 		ProgramBuilder program = new ProgramBuilder(this.getBaseProgram());
 		
 		for(SSpecification spec : specifications) {
-			if(spec.name.equals(this.main)) {
+			if(spec.name.equals(this.mainName)) {
 				program.addNode(spec.getLogicalConsistencyMain());
 			} else {
 				program.addNode(spec.toBaseLustre());
 			}
 		}
-		program.setMain(this.main);
+		program.setMain(this.mainName);
 		return program.build();
 	}
 }
