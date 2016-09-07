@@ -19,7 +19,7 @@ import org.eclipse.xtext.ui.editor.utils.EditorUtils;
 
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
-import com.rockwellcollins.spear.translate.master.PProgram;
+import com.rockwellcollins.spear.translate.master.SProgram;
 import com.rockwellcollins.spear.translate.transformations.PerformTransforms;
 import com.rockwellcollins.spear.translate.views.SpearResultsView;
 import com.rockwellcollins.spear.ui.preferences.PreferencesUtil;
@@ -66,8 +66,8 @@ public class AnalyzePattern extends AbstractHandler {
 			e1.printStackTrace();
 		} 
 		
-		PProgram pprogram = new PProgram(document);
-		Program program = pprogram.toLustre();
+		SProgram pprogram = new SProgram(document);
+		Program program = pprogram.patternToLustre();
 		
 		JKindApi api = (JKindApi) PreferencesUtil.getKindApi();
 		JKindResult result = new JKindResult("result");

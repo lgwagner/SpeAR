@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.rockwellcollins.spear.EnumTypeDef;
 import com.rockwellcollins.spear.EnumValue;
-import com.rockwellcollins.spear.translate.naming.Renaming;
 
 import jkind.lustre.EnumType;
 import jkind.lustre.TypeDef;
@@ -15,18 +14,18 @@ public class SEnumTypeDef extends STypeDef {
 	public String definitionName;
 	public List<String> values = new ArrayList<>();
 	
-	public SEnumTypeDef(EnumTypeDef etd, Renaming map) {
-		this.name = map.getName(etd.getName());
-		this.definitionName=map.getName(etd.getName() + "_definition");
+	public SEnumTypeDef(EnumTypeDef etd, SProgram program) {
+		this.name = program.map.getName(etd.getName());
+		this.definitionName=program.map.getName(etd.getName() + "_definition");
 		
 		for(EnumValue ev : etd.getValues()) {
-			String value = map.getName(ev.getName());
+			String value = program.map.getName(ev.getName());
 			this.values.add(value);
 		}
 	}
 
 	@Override
-	public TypeDef toLustre(Renaming naming) {
+	public TypeDef toLustre(SProgram program) {
 		jkind.lustre.EnumType type = new EnumType(this.definitionName, values);
 		return new TypeDef(this.name, type);
 	}

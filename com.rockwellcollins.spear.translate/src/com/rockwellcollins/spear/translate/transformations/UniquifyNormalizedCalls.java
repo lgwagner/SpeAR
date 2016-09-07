@@ -39,13 +39,14 @@ public class UniquifyNormalizedCalls {
 	private void processSpec(Specification s) {
 		for(NormalizedCall nc : EcoreUtil2.getAllContentsOfType(s, NormalizedCall.class)) {
 			Specification next = nc.getSpec();
-			processSpec(next);
 			if(specs.contains(next)) {
 				Specification newNext = createCopy(next);
 				nc.setSpec(newNext);
 				specs.add(newNext);
+				processSpec(newNext);
 			} else {
 				specs.add(next);
+				processSpec(next);
 			}
 		}
 	}

@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EObject;
 
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.EnumValue;
-import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.translate.naming.Renaming;
@@ -38,10 +37,10 @@ import jkind.lustre.UnaryOp;
 
 public class TranslateExpr extends SpearSwitch<Expr> {
 
-	public static Expr translate(com.rockwellcollins.spear.Expr e, Renaming map) {
-		return new TranslateExpr(map).doSwitch(e);
+	public static Expr translate(EObject o, Renaming map) {
+		return new TranslateExpr(map).doSwitch(o);
 	}
-
+	
 	private Renaming map;
 
 	public TranslateExpr(Renaming map) {
@@ -190,36 +189,10 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	}
 	
 	@Override
-	public Expr caseNormalizedCall(com.rockwellcollins.spear.NormalizedCall call) {
-		Integer id = CallMap.addCall(call);
-		
-		List<Expr> args = new ArrayList<>();
-		for(com.rockwellcollins.spear.Expr e : call.getArgs()) {
-			args.add(TranslateExpr.translate(e, map));
-		}
-		
-		for(IdRef idr : call.getIds()) {
-			args.add(this.doSwitch(idr));
-		}
-
-		String nodeName = map.lookupOriginal(call.getSpec().getName());
-		return new IntExpr(-1000);
-		
-//		//TODO: still need to add the extra args for the node call.
-//		return new NodeCallExpr(nodeName,args);
-//		
-////		SCall scall = map.callMapping.get(call);
-////		args.addAll(scall.getCallsArgs(map));
-////		
-////		String name = map.fileMapping.get(call.getSpec()).name;
-////		return new NodeCallExpr(name,args);
-	}
-	
-	@Override
 	public Expr casePatternCall(com.rockwellcollins.spear.PatternCall call) {
 		List<Expr> args = new ArrayList<>();
 		for(com.rockwellcollins.spear.Expr e : call.getArgs()) {
-			args.add(TranslateExpr.translate(e, map));
+			args.add(TranslateExpr.translate(e, this.map));
 		}
 		return new NodeCallExpr(call.getPattern().getName(), args);
 	}

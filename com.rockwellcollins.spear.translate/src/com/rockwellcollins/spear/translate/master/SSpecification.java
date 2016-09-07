@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.xtext.EcoreUtil2;
+
+import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.actions.SpearRuntimeOptions;
 import com.rockwellcollins.spear.translate.naming.Renaming;
@@ -80,37 +83,51 @@ public class SSpecification {
 	private String consistencyName;
 	private static final String CONSISTENCY = "consistent";
 	
-	public Renaming local;
+	public Renaming map;
 	
 	public String name;
 	public List<SMacro> macros = new ArrayList<>();
 	public List<SVariable> inputs = new ArrayList<>();
 	public List<SVariable> outputs = new ArrayList<>();
 	public List<SVariable> state = new ArrayList<>();
+	public List<SVariable> callVars = new ArrayList<>();
 	public List<SConstraint> assumptions = new ArrayList<>();
 	public List<SConstraint> requirements = new ArrayList<>();
 	public List<SConstraint> behaviors = new ArrayList<>();
+	
+	private List<NormalizedCall> spearCalls = new ArrayList<>();
+	public List<SCall> calls = new ArrayList<>();
 	
 	public SSpecification(Specification s, Renaming global) {
 		//get the name from the global map
 		this.name = global.lookupOriginal(s.getName());
 		
 		//copy the global map as the local
-		this.local = Renaming.copy(global);
+		this.map = Renaming.copy(global);
 		
 		// set the name
-		this.inputs.addAll(SVariable.build(s.getInputs(), local));
-		this.outputs.addAll(SVariable.build(s.getOutputs(), local));
-		this.state.addAll(SVariable.build(s.getState(), local));
-		this.macros.addAll(SMacro.build(s.getMacros(), local));
-		this.assumptions.addAll(SConstraint.build(s.getAssumptions(), local));
-		this.requirements.addAll(SConstraint.build(s.getRequirements(), local));
-		this.behaviors.addAll(SConstraint.build(s.getBehaviors(), local));
-
-		this.assertionName = local.getName(ASSERTION);
-		this.counterName = local.getName(COUNTER);
-		this.consistencyName = local.getName(CONSISTENCY);
+		this.inputs.addAll(SVariable.build(s.getInputs(), this));
+		this.outputs.addAll(SVariable.build(s.getOutputs(), this));
+		this.state.addAll(SVariable.build(s.getState(), this));
+		this.macros.addAll(SMacro.build(s.getMacros(), this));
+		this.assumptions.addAll(SConstraint.build(s.getAssumptions(), this));
+		this.requirements.addAll(SConstraint.build(s.getRequirements(), this));
+		this.behaviors.addAll(SConstraint.build(s.getBehaviors(), this));
+		this.spearCalls.addAll(EcoreUtil2.getAllContentsOfType(s, NormalizedCall.class));
 		
+		this.assertionName = map.getName(ASSERTION);
+		this.counterName = map.getName(COUNTER);
+		this.consistencyName = map.getName(CONSISTENCY);
+	}
+
+	public void resolveCalls(List<SSpecification> specs) {
+		this.calls=SCall.build(spearCalls, specs, map);
+	}
+	
+	public void resolveCallVars() {
+		for(SCall call : calls) {
+			callVars.addAll(call.getCallVariables());
+		}
 	}
 	
 	public Node toBaseLustre() {
@@ -122,29 +139,27 @@ public class SSpecification {
 		 * also need shadow inputs 5. the args from any calls, calls that need
 		 * shadow args
 		 */
-		builder.addInputs(SVariable.toVarDecl(inputs, local));
-		builder.addInputs(SVariable.toVarDecl(outputs, local));
-		builder.addInputs(SVariable.toVarDecl(state, local));
-		List<List<String>> list = new ArrayList<>();
+		builder.addInputs(SVariable.toVarDecl(inputs, this));
+		builder.addInputs(SVariable.toVarDecl(outputs, this));
+		builder.addInputs(SVariable.toVarDecl(state, this));
+		builder.addInputs(SVariable.toVarDecl(callVars, this));
 		
-//		builder.addInputs(SCallVar.toVarDecl(callVars, local));
-
 		/*
 		 * We must add 1. locals for the macros 2. locals for the assumptions 3.
 		 * locals for the requirements 4. locals for the behaviors
 		 */
-		builder.addLocals(SMacro.toVarDecls(macros, local));
-		builder.addLocals(SConstraint.toVarDecl(assumptions, local));
-		builder.addLocals(SConstraint.toVarDecl(requirements, local));
-		builder.addLocals(SConstraint.toVarDecl(behaviors, local));
+		builder.addLocals(SMacro.toVarDecls(macros, this));
+		builder.addLocals(SConstraint.toVarDecl(assumptions, this));
+		builder.addLocals(SConstraint.toVarDecl(requirements, this));
+		builder.addLocals(SConstraint.toVarDecl(behaviors, this));
 
 		/*
 		 * For now, we're not allowing Macros to contain specification calls
 		 */
-		builder.addEquations(SMacro.toEquations(macros, local));
-		builder.addEquations(SConstraint.toEquation(assumptions, local));
-		builder.addEquations(SConstraint.toEquation(requirements, local));
-		builder.addEquations(SConstraint.toPropertyEquations(behaviors, assertionName, local));
+		builder.addEquations(SMacro.toEquations(macros, this));
+		builder.addEquations(SConstraint.toEquation(assumptions, this));
+		builder.addEquations(SConstraint.toEquation(requirements, this));
+		builder.addEquations(SConstraint.toPropertyEquations(behaviors, assertionName, this));
 
 		return builder.build();
 	}
@@ -158,7 +173,7 @@ public class SSpecification {
 			builder.addAssertion(this.conjunctify(assumptions.iterator()));
 		}
 
-		builder.addProperties(SConstraint.toPropertyIds(behaviors, local));
+		builder.addProperties(SConstraint.toPropertyIds(behaviors, this));
 		return builder.build();
 	}
 
@@ -179,7 +194,7 @@ public class SSpecification {
 		List<SConstraint> list = new ArrayList<>();
 		list.addAll(assumptions);
 		list.addAll(requirements);
-		builder.addIvcs(SConstraint.toPropertyIds(list, local));
+		builder.addIvcs(SConstraint.toPropertyIds(list, this));
 		
 		return builder.build();
 	}

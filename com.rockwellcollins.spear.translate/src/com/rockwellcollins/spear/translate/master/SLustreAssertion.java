@@ -6,7 +6,6 @@ import java.util.List;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.LustreAssertion;
 import com.rockwellcollins.spear.translate.lustre.TranslateExpr;
-import com.rockwellcollins.spear.translate.naming.Renaming;
 
 public class SLustreAssertion {
 
@@ -18,10 +17,10 @@ public class SLustreAssertion {
 		return built;
 	}
 	
-	public static List<jkind.lustre.Expr> toLustre(List<SLustreAssertion> list, Renaming map) {
+	public static List<jkind.lustre.Expr> toLustre(List<SLustreAssertion> list, SPattern pattern) {
 		List<jkind.lustre.Expr> lustre = new ArrayList<>();
 		for(SLustreAssertion assertion : list) {
-			lustre.add(assertion.toLustre(map));
+			lustre.add(assertion.toLustre(pattern));
 		}
 		return lustre;
 	}
@@ -36,7 +35,7 @@ public class SLustreAssertion {
 		this.expression = assertion.getAssertionExpr();
 	}
 	
-	public jkind.lustre.Expr toLustre(Renaming map) {
-		return TranslateExpr.translate(this.expression, map);
+	public jkind.lustre.Expr toLustre(SPattern pattern) {
+		return TranslateExpr.translate(this.expression, pattern.map);
 	}
 }

@@ -11,22 +11,22 @@ import jkind.lustre.builders.NodeBuilder;
 
 public class SPattern {
 
-	public static List<String> addNames(List<Pattern> list, Renaming global) {
+	public static List<String> addNames(List<Pattern> list, SProgram program) {
 		List<String> renamed = new ArrayList<>();
 		for(Pattern p : list) {
-			renamed.add(SPattern.addName(p, global));
+			renamed.add(SPattern.addName(p, program));
 		}
 		return renamed;
 	}
 	
-	public static String addName(Pattern p, Renaming global) {
-		return global.getName(p.getName());
+	public static String addName(Pattern p, SProgram program) {
+		return program.map.getName(p.getName());
 	}
 	
-	public static List<SPattern> build(List<Pattern> list, Renaming global) {
+	public static List<SPattern> build(List<Pattern> list, SProgram program) {
 		List<SPattern> built = new ArrayList<>();
 		for(Pattern p : list) {
-			built.add(SPattern.build(p, global));
+			built.add(SPattern.build(p, program));
 		}
 		return built;
 	}
@@ -39,11 +39,12 @@ public class SPattern {
 		return lustre;
 	}
 	
-	public static SPattern build(Pattern p, Renaming map) {
-		return new SPattern(p,map);
+	public static SPattern build(Pattern p, SProgram program) {
+		return new SPattern(p,program);
 	}
 	
-	public Renaming local;
+	public Renaming map;
+	
 	public String name;
 	public List<SPVariable> inputs;
 	public List<SPVariable> outputs;
@@ -52,30 +53,30 @@ public class SPattern {
 	public List<SLustreProperty> properties;
 	public List<SLustreAssertion> assertions;
 	
-	public SPattern(Pattern p, Renaming global) {
+	public SPattern(Pattern p, SProgram program) {
 		//we already added these names to the global map
-		this.name = global.lookupOriginal(p.getName());
+		this.name = program.map.lookupOriginal(p.getName());
 		
 		//copy the global name map for the basis of the local
-		this.local = Renaming.copy(global);
+		this.map = Renaming.copy(program.map);
 		
 		//process everything
-		this.inputs = SPVariable.build(p.getInputs(), local);
-		this.outputs = SPVariable.build(p.getOutputs(), local);
-		this.locals = SPVariable.build(p.getLocals(), local);
-		this.equations = SLustreEquation.build(p.getEquations(), local);
-		this.properties = SLustreProperty.build(p.getProperties(), local);
+		this.inputs = SPVariable.build(p.getInputs(), this);
+		this.outputs = SPVariable.build(p.getOutputs(), this);
+		this.locals = SPVariable.build(p.getLocals(), this);
+		this.equations = SLustreEquation.build(p.getEquations(), this);
+		this.properties = SLustreProperty.build(p.getProperties(), this);
 		this.assertions = SLustreAssertion.build(p.getAssertions());
 	}
 	
 	public Node toLustre() {
 		NodeBuilder builder = new NodeBuilder(this.name);
-		builder.addInputs(SPVariable.toVarDecl(this.inputs, local));
-		builder.addOutputs(SPVariable.toVarDecl(this.outputs, local));
-		builder.addLocals(SPVariable.toVarDecl(this.locals, local));
-		builder.addEquations(SLustreEquation.toLustre(this.equations, local));
+		builder.addInputs(SPVariable.toVarDecl(this.inputs, this));
+		builder.addOutputs(SPVariable.toVarDecl(this.outputs, this));
+		builder.addLocals(SPVariable.toVarDecl(this.locals, this));
+		builder.addEquations(SLustreEquation.toLustre(this.equations, this));
 		builder.addProperties(SLustreProperty.toLustre(this.properties));
-		builder.addAssertions(SLustreAssertion.toLustre(this.assertions,local));
+		builder.addAssertions(SLustreAssertion.toLustre(this.assertions,this));
 		return builder.build();
 	}
 }

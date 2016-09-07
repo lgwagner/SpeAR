@@ -8,60 +8,59 @@ import com.rockwellcollins.spear.EnumTypeDef;
 import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.RecordTypeDef;
 import com.rockwellcollins.spear.TypeDef;
-import com.rockwellcollins.spear.translate.naming.Renaming;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 public abstract class STypeDef {
 
-	public static List<STypeDef> build(List<TypeDef> list, Renaming map) {
+	public static List<STypeDef> build(List<TypeDef> list, SProgram p) {
 		List<STypeDef> processed = new ArrayList<>();
 		for(TypeDef td : list) {
-			processed.add(STypeDef.build(td, map));
+			processed.add(STypeDef.build(td, p));
 		}
 		return processed;
 	}
 	
-	public static List<jkind.lustre.TypeDef> toLustre(List<STypeDef> list, Renaming map) {
+	public static List<jkind.lustre.TypeDef> toLustre(List<STypeDef> list, SProgram p) {
 		List<jkind.lustre.TypeDef> lustre = new ArrayList<>();
 		for(STypeDef std : list) {
-			lustre.add(std.toLustre(map));
+			lustre.add(std.toLustre(p));
 		}
 		return lustre;
 	}
 	
-	public static STypeDef build(TypeDef td, Renaming map) {
-		STypeDefBuilder builder = new STypeDefBuilder(map);
+	public static STypeDef build(TypeDef td, SProgram program) {
+		STypeDefBuilder builder = new STypeDefBuilder(program);
 		return builder.doSwitch(td);
 	}
 	
 	public String name;
-	public abstract jkind.lustre.TypeDef toLustre(Renaming map);
+	public abstract jkind.lustre.TypeDef toLustre(SProgram p);
 	
 	private static class STypeDefBuilder extends SpearSwitch<STypeDef> {
-		private Renaming map;
+		private SProgram program;
 		
-		private STypeDefBuilder(Renaming map) {
-			this.map=map;
+		private STypeDefBuilder(SProgram program) {
+			this.program=program;
 		}
 		
 		@Override
 		public STypeDef caseNamedTypeDef(NamedTypeDef ntd) {
-			return new SNamedTypeDef(ntd,map);
+			return new SNamedTypeDef(ntd,program);
 		}
 		
 		@Override
 		public STypeDef caseRecordTypeDef(RecordTypeDef rtd) {
-			return new SRecordTypeDef(rtd,map);
+			return new SRecordTypeDef(rtd,program);
 		}
 		
 		@Override
 		public STypeDef caseArrayTypeDef(ArrayTypeDef atd) {
-			return new SArrayTypeDef(atd,map);
+			return new SArrayTypeDef(atd,program);
 		}
 		
 		@Override
 		public STypeDef caseEnumTypeDef(EnumTypeDef etd) {
-			return new SEnumTypeDef(etd,map);
+			return new SEnumTypeDef(etd,program);
 		}
 	}
 	
