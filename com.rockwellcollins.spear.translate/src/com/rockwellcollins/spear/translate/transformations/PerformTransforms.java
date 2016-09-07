@@ -15,6 +15,7 @@ public class PerformTransforms {
 		ReplaceShortHandRecords.transform(doc);
 		RemoveSugar.transform(doc);
 		ReplaceSpecificationCalls.transform(doc);
+		UniquifyNormalizedCalls.transform(doc);
 		return renamed;
 	}
 	

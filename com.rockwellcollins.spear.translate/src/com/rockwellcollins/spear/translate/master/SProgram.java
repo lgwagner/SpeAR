@@ -3,7 +3,6 @@ package com.rockwellcollins.spear.translate.master;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.rockwellcollins.spear.translate.intermediate.Call;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.translate.naming.Renaming;
 import com.rockwellcollins.spear.utilities.PLTL;
@@ -62,9 +61,6 @@ public class SProgram {
 		//identify the main node.
 		this.mainName = map.lookupOriginal(document.mainName);
 		SSpecification main = SSpecification.lookup(this.mainName, specifications);
-		for(Call call : document.calls) {
-			main.resolveCall(call,specifications,map);
-		}
 	}
 
 	public Program getBaseProgram() {

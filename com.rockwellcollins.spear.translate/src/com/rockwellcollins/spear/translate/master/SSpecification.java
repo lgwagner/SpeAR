@@ -1,17 +1,11 @@
 package com.rockwellcollins.spear.translate.master;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
-import org.eclipse.xtext.EcoreUtil2;
-
-import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.actions.SpearRuntimeOptions;
-import com.rockwellcollins.spear.translate.intermediate.Call;
 import com.rockwellcollins.spear.translate.naming.Renaming;
 import com.rockwellcollins.spear.utilities.PLTL;
 
@@ -96,7 +90,6 @@ public class SSpecification {
 	public List<SConstraint> assumptions = new ArrayList<>();
 	public List<SConstraint> requirements = new ArrayList<>();
 	public List<SConstraint> behaviors = new ArrayList<>();
-	public List<SCall> calls = new ArrayList<>();
 	
 	public SSpecification(Specification s, Renaming global) {
 		//get the name from the global map
@@ -118,15 +111,6 @@ public class SSpecification {
 		this.counterName = local.getName(COUNTER);
 		this.consistencyName = local.getName(CONSISTENCY);
 		
-	}
-	
-	public void resolveCall(Call call, List<SSpecification> specifications, Renaming global) {
-		this.calls.add(SCall.build(call, global));
-		String calledName = global.lookupOriginal(call.called);
-		SSpecification called = SSpecification.lookup(calledName, specifications);
-		for(Call subCall : call.calls) {
-			called.resolveCall(subCall, specifications, global);
-		}
 	}
 	
 	public Node toBaseLustre() {
