@@ -9,7 +9,6 @@ import com.rockwellcollins.spear.translate.naming.Renaming;
 import com.rockwellcollins.spear.utilities.Utilities;
 
 import jkind.lustre.IdExpr;
-import jkind.lustre.Type;
 import jkind.lustre.VarDecl;
 
 public class SCall {
@@ -71,13 +70,12 @@ public class SCall {
 	
 	public List<VarDecl> toVarDecl(SSpecification s) {
 		List<VarDecl> decls = new ArrayList<>();
-		for(SVariable v : variables) {
-			Type t = TranslateType.translate(v.type, s.map);
-			decls.add(new VarDecl(v.name,t));
+		for(SVariable sv : variables) {
+			decls.add(new VarDecl(sv.name,TranslateType.translate(sv.type, caller.map)));
 		}
 		
-		for(SCall sub : called.calls) {
-			decls.addAll(sub.toVarDecl(called));
+		for(SCall call : called.calls) {
+			decls.addAll(call.toVarDecl(called));
 		}
 		return decls;
 	}
@@ -86,6 +84,10 @@ public class SCall {
 		List<jkind.lustre.Expr> args = new ArrayList<>();
 		for(SVariable sv : variables) {
 			args.add(new IdExpr(sv.name));
+		}
+		
+		for(SCall call : called.calls) {
+			args.addAll(call.getCallArgs());
 		}
 		return args;
 	}
