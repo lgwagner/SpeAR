@@ -126,7 +126,7 @@ public class SProgram {
 			if(spec.name.equals(this.mainName)) {
 				program.addNode(spec.getLogicalEntailmentMain());
 			} else {
-				program.addNode(spec.toBaseLustre());
+				program.addNode(spec.getLogicalEntailmentCalled());
 			}
 		}
 		program.setMain(this.mainName);
@@ -140,7 +140,7 @@ public class SProgram {
 			if(spec.name.equals(this.mainName)) {
 				program.addNode(spec.getLogicalConsistencyMain());
 			} else {
-				program.addNode(spec.toBaseLustre());
+				program.addNode(spec.getLogicalConsistencyCalled());
 			}
 		}
 		program.setMain(this.mainName);

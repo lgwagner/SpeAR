@@ -156,6 +156,11 @@ public class SSpecification {
 		builder.addLocals(SConstraint.toVarDecl(behaviors, this));
 
 		/*
+		 * Add assertions as output.
+		 */
+		builder.addOutput(this.getAssertionVarDecl());
+		
+		/*
 		 * For now, we're not allowing Macros to contain specification calls
 		 */
 		builder.addEquations(SMacro.toEquations(macros, this));
@@ -168,7 +173,7 @@ public class SSpecification {
 
 	public Node getLogicalEntailmentMain() {
 		NodeBuilder builder = new NodeBuilder(this.toBaseLustre());
-		builder.addOutput(this.getAssertionVarDecl());
+
 		builder.addEquation(this.getAssertionMainEquation(requirements));
 
 		if (!assumptions.isEmpty()) {
@@ -178,6 +183,13 @@ public class SSpecification {
 		builder.addProperties(SConstraint.toPropertyIds(behaviors, this));
 		return builder.build();
 	}
+	
+	public Node getLogicalEntailmentCalled() {
+		NodeBuilder builder = new NodeBuilder(this.toBaseLustre());
+		
+		builder.addEquation(this.getAssertionCalledEquation(requirements));
+		return builder.build();
+	}
 
 	public Node getLogicalConsistencyMain() {
 		NodeBuilder builder = new NodeBuilder(this.toBaseLustre());
@@ -185,8 +197,6 @@ public class SSpecification {
 		builder.addLocal(this.getCounterVarDecl());
 		builder.addLocal(this.getConsistencyVarDecl());
 		
-		builder.addOutput(this.getAssertionVarDecl());
-
 		builder.addEquation(this.getCounterEquation());
 		builder.addEquation(this.getConsistencyEquation());
 		builder.addEquation(this.getAssertionMainEquation(getAssumptionsAndRequirements()));
@@ -199,6 +209,10 @@ public class SSpecification {
 		builder.addIvcs(SConstraint.toPropertyIds(list, this));
 		
 		return builder.build();
+	}
+	
+	public Node getLogicalConsistencyCalled() {
+		return getLogicalEntailmentCalled();
 	}
 
 	private VarDecl getCounterVarDecl() {
@@ -255,6 +269,16 @@ public class SSpecification {
 			RHS = conjunctify(conjunct.iterator());
 		}
 		return new Equation(new IdExpr(this.assertionName), new NodeCallExpr(PLTL.historically().id, RHS));
+	}
+	
+	public Equation getAssertionCalledEquation(List<SConstraint> conjunct) {
+		Expr RHS;
+		if (conjunct.isEmpty()) {
+			RHS = new BoolExpr(true);
+		} else {
+			RHS = conjunctify(conjunct.iterator());
+		}
+		return new Equation(new IdExpr(this.assertionName), RHS);
 	}
 	
 	public String toString() {
