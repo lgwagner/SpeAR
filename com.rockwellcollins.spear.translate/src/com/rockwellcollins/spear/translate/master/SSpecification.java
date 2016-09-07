@@ -90,7 +90,6 @@ public class SSpecification {
 	public List<SVariable> inputs = new ArrayList<>();
 	public List<SVariable> outputs = new ArrayList<>();
 	public List<SVariable> state = new ArrayList<>();
-	public List<SVariable> callVars = new ArrayList<>();
 	public List<SConstraint> assumptions = new ArrayList<>();
 	public List<SConstraint> requirements = new ArrayList<>();
 	public List<SConstraint> behaviors = new ArrayList<>();
@@ -126,7 +125,7 @@ public class SSpecification {
 	
 	public void resolveCallVars() {
 		for(SCall call : calls) {
-			callVars.addAll(call.getCallVariables());
+			call.resolveCallVars();
 		}
 	}
 	
@@ -142,11 +141,14 @@ public class SSpecification {
 		builder.addInputs(SVariable.toVarDecl(inputs, this));
 		builder.addInputs(SVariable.toVarDecl(outputs, this));
 		builder.addInputs(SVariable.toVarDecl(state, this));
-		builder.addInputs(SVariable.toVarDecl(callVars, this));
+		builder.addInputs(SCall.toVarDecl(calls, this));
 		
 		/*
-		 * We must add 1. locals for the macros 2. locals for the assumptions 3.
-		 * locals for the requirements 4. locals for the behaviors
+		 * We must add 
+		 	1. locals for the macros 
+		 	2. locals for the assumptions 
+		 	3. locals for the requirements 
+		 	4. locals for the behaviors
 		 */
 		builder.addLocals(SMacro.toVarDecls(macros, this));
 		builder.addLocals(SConstraint.toVarDecl(assumptions, this));

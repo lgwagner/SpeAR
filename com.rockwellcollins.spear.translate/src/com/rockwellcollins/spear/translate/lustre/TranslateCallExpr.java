@@ -38,8 +38,7 @@ public class TranslateCallExpr extends SpearSwitch<Expr> {
 
 		String nodeName = specification.map.lookupOriginal(call.getSpec().getName());
 		SCall scall = SCall.get(call,specification.calls);
-		args.addAll(scall.getCallVarExprs());
-		
+		args.addAll(scall.getCallArgs());
 		return new NodeCallExpr(nodeName,args);
 	}
 	

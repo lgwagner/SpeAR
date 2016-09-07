@@ -3,13 +3,14 @@ package com.rockwellcollins.spear.translate.master;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.rockwellcollins.spear.Expr;
-import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.NormalizedCall;
+import com.rockwellcollins.spear.translate.lustre.TranslateType;
 import com.rockwellcollins.spear.translate.naming.Renaming;
 import com.rockwellcollins.spear.utilities.Utilities;
 
 import jkind.lustre.IdExpr;
+import jkind.lustre.Type;
+import jkind.lustre.VarDecl;
 
 public class SCall {
 
@@ -25,6 +26,14 @@ public class SCall {
 		return new SCall(call,specs,map);
 	}
 	
+	public static List<VarDecl> toVarDecl(List<SCall> calls, SSpecification s) {
+		List<VarDecl> decls = new ArrayList<>();
+		for(SCall call : calls) {
+			decls.addAll(call.toVarDecl(s));
+		}
+		return decls;
+	}
+	
 	public static SCall get(NormalizedCall call, List<SCall> calls) {
 		for(SCall scall : calls) {
 			if(scall.original.equals(call)) {
@@ -38,12 +47,10 @@ public class SCall {
 	public String calledName;
 	public SSpecification caller;
 	public SSpecification called;
-	public List<IdRef> ids;
-	public List<Expr> args;
 	private NormalizedCall original;
 	
-	private List<SVariable> callVars = new ArrayList<>();
-
+	public List<SVariable> variables = new ArrayList<>();
+	
 	private SCall(NormalizedCall call, List<SSpecification> specs, Renaming map) {
 		this.original=call;
 		
@@ -52,29 +59,35 @@ public class SCall {
 		
 		this.calledName=map.lookupOriginal(call.getSpec().getName());
 		this.called=SSpecification.lookup(this.calledName, specs);
-		
-		this.ids=new ArrayList<>(call.getIds());
-		this.args=new ArrayList<>(call.getArgs());
 	}
 	
-	public List<SVariable> getCallVariables() {
+	public void resolveCallVars() {
 		for(SVariable sv : called.state) {
 			String name = called.name + "_" + sv.name;
-			this.callVars.add(new SVariable(name,sv.type,caller));
+			//the SVariable registers the name with the caller spec
+			variables.add(new SVariable(name,sv.type,caller));
 		}
-		
-		for(SCall call : called.calls) {
-			this.callVars.addAll(call.getCallVariables());
-		}
-		return this.callVars;
 	}
 	
-	public List<jkind.lustre.Expr> getCallVarExprs() {
-		List<jkind.lustre.Expr> exprs = new ArrayList<>();
-		for(SVariable sv : this.callVars) {
-			exprs.add(new IdExpr(sv.name));
+	public List<VarDecl> toVarDecl(SSpecification s) {
+		List<VarDecl> decls = new ArrayList<>();
+		for(SVariable v : variables) {
+			Type t = TranslateType.translate(v.type, s.map);
+			decls.add(new VarDecl(v.name,t));
 		}
-		return exprs;
+		
+		for(SCall sub : called.calls) {
+			decls.addAll(sub.toVarDecl(called));
+		}
+		return decls;
+	}
+	
+	public List<jkind.lustre.Expr> getCallArgs() {
+		List<jkind.lustre.Expr> args = new ArrayList<>();
+		for(SVariable sv : variables) {
+			args.add(new IdExpr(sv.name));
+		}
+		return args;
 	}
 	
 	public String toString() {
