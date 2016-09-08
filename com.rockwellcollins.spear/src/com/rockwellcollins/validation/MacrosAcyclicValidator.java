@@ -21,7 +21,7 @@ import jkind.util.CycleFinder;
 public class MacrosAcyclicValidator extends AbstractSpearJavaValidator {
 
 	@Check
-	public void checkConstantsAcyclic(Specification spec) {
+	public void checkMacrosAcyclic(Specification spec) {
 		Map<String, Set<String>> dependencies = getDependencies(spec);
 		List<String> cycle = CycleFinder.findCycle(dependencies);
 		if(cycle != null) {

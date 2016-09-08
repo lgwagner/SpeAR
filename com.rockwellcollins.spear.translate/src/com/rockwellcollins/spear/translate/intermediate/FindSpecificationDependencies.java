@@ -26,6 +26,7 @@ public class FindSpecificationDependencies extends SpearSwitch<Status> {
 	
 	public static enum Status { DONE };
 	private Set<EObject> set = new LinkedHashSet<>();
+	private Set<EObject> traversed = new LinkedHashSet<>();
 	
 	public List<EObject> getCalledFiles() {
 		List<EObject> objects = new ArrayList<>(EcoreUtil2.copyAll(set));
@@ -63,11 +64,17 @@ public class FindSpecificationDependencies extends SpearSwitch<Status> {
 	@Override
 	public Status defaultCase(EObject e) {
 		for(EObject sub : e.eContents()) {
-			this.doSwitch(sub);
+			if(!traversed.contains(sub)) {
+				traversed.add(sub);
+				this.doSwitch(sub);				
+			}
 		}
 		
 		for(EObject ref : e.eCrossReferences()) {
-			this.doSwitch(ref);	
+			if(!traversed.contains(ref)) {
+				traversed.add(ref);
+				this.doSwitch(ref);				
+			}
 		}
 		return Status.DONE;
 	}
