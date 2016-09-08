@@ -1,7 +1,7 @@
-Specification specC
+Specification specD
 
 Imports:
-	import "specD.spear"
+	import "specE.spear"
 
 Inputs:
 	a : int
@@ -18,8 +18,8 @@ Assumptions:
 	a0: a > 0
 
 Requirements:
-	r0: r == spec specD(a)
-	r1: y == spec specD(a+1)
+	r0: r == spec specE(a)
+	r1: y == spec specE(a+1)
 
 Properties:
 	p0: r > a

@@ -8,7 +8,6 @@ Inputs:
 
 Outputs:
 	y : int
-	z : int
 
 State:
 
@@ -16,10 +15,10 @@ Assumptions:
 	a0: a > 0
 
 Requirements:
-	r0: y == spec specB(a)
-	r1: z == spec specB(a+1)
+	r0: if a > 0 
+		then y == spec specB(a*1) 
+		else y == spec specB(a*-1)
 
 Properties:
 	p0: y > 0
-	p1: z > 0
 
