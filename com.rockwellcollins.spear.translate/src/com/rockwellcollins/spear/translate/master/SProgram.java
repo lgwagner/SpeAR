@@ -85,7 +85,6 @@ public class SProgram {
 		//then add the patterns (because they have local scope that could conflict with global scope)
 		patterns = SPattern.build(document.patterns, this);		
 	}
-
 	
 	public Program patternToLustre() {
 		ProgramBuilder program = new ProgramBuilder();

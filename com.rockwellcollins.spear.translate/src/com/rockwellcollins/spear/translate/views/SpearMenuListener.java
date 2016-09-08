@@ -115,7 +115,7 @@ public class SpearMenuListener implements IMenuListener {
 	}
 
 	private void viewSupport(Set<String> support) {
-		MessageDialog.openInformation(window.getShell(), "Conflict Constraints!", support.toString());
+		MessageDialog.openInformation(window.getShell(), "Conflicting Constraints!", support.toString());
 	}
 	
 	private static Set<String> getSupport(PropertyResult result) {
