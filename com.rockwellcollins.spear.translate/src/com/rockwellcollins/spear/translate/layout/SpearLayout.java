@@ -21,12 +21,13 @@ public class SpearLayout implements Layout {
 	private static final String STATE = "State";
 	private static final String MACROS = "Macros";
 	private static final String ASSUMPTIONS = "Assumptions";
-	private static final String DERIVED_REQUIREMENTS = "DerivedRequirements";
-	private static final String REQUIREMENTS = "REQUIREMENTS";
+	private static final String REQUIREMENTS = "Requirements";
+	private static final String PROPERTIES = "Properties";
 	
-	public static final String[] CATEGORIES = {INPUTS, OUTPUTS, STATE, MACROS, ASSUMPTIONS, DERIVED_REQUIREMENTS, REQUIREMENTS};
+	public static final String[] CATEGORIES = {INPUTS, OUTPUTS, STATE, MACROS, ASSUMPTIONS, REQUIREMENTS, PROPERTIES};
 	
 	public SpearLayout(Specification s) {
+		
 		if(s == null) {
 			throw new IllegalArgumentException("Unable to create layout for null specification.");
 		}
@@ -49,16 +50,8 @@ public class SpearLayout implements Layout {
 			map.put(m.getName(), MACROS);
 		}
 		
-		for(Constraint c : s.getAssumptions()) {
-			map.put(c.getName(), ASSUMPTIONS);
-		}
-		
-		for(Constraint c : s.getRequirements()) {
-			map.put(c.getName(), DERIVED_REQUIREMENTS);
-		}
-		
 		for(Constraint c : s.getBehaviors()) {
-			map.put(c.getName(), REQUIREMENTS);
+			map.put(c.getName(), PROPERTIES);
 		}
 	}
 	
@@ -72,5 +65,4 @@ public class SpearLayout implements Layout {
 		String prefix = signal.split("\\.|\\[")[0];
 		return map.get(prefix);
 	}
-	
 }
