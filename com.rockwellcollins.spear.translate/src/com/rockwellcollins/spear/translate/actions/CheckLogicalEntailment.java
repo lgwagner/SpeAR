@@ -31,6 +31,8 @@ import org.eclipse.xtext.validation.Issue;
 
 import com.google.inject.Injector;
 import com.rockwellcollins.SpearInjectorUtil;
+import com.rockwellcollins.spear.Definitions;
+import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.translate.layout.SpearLayout;
@@ -69,7 +71,14 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 
 			@Override
 			public java.lang.Void exec(XtextResource state) throws Exception {
-				Specification specification = (Specification) state.getContents().get(0);
+				File f = (File) state.getContents().get(0);
+
+				Specification specification = null;
+				if (f instanceof Definitions) {
+					MessageDialog.openError(window.getShell(), "Error", "Cannot analyze a Definitions file.");	
+				} else {
+					specification = (Specification) f;
+				}
 
 				if (hasErrors(specification.eResource())) {
 					MessageDialog.openError(window.getShell(), "Error", "Specification contains errors.");
