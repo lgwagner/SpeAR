@@ -11,6 +11,7 @@ import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.ComposedChecks;
 
+import com.google.inject.Inject;
 import com.rockwellcollins.spear.AbstractTypeDef;
 import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.Constant;
@@ -129,5 +130,32 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 	@Check
 	public void warnOnAbstract(AbstractTypeDef atd) {
 		warning("Abstract types are in beta, analysis is not supported.",atd,null);
+	}
+	
+	@Inject
+	protected IValidatorAdvisor options;
+	
+	@Check
+	public void checkNonlinearDivision(BinaryExpr be) {
+		if(options.isSolverNonlinear()) {
+			return;
+		}
+		
+		boolean isLeftConstant = ConstantChecker.isConstant(be.getLeft());
+		boolean isRightConstant = ConstantChecker.isConstant(be.getRight());
+		
+		switch (be.getOp()) {
+			case "/":
+				if(!isRightConstant) {
+					error("Division by non-constant variable is not supported.",be,SpearPackage.Literals.BINARY_EXPR__RIGHT);
+				}
+				break;
+				
+			case "*":
+				if(!isLeftConstant && !isRightConstant) {
+					error("Multiplication by non-constant variables is not supported.",be,null);
+				}
+				break;
+		}
 	}
 }
