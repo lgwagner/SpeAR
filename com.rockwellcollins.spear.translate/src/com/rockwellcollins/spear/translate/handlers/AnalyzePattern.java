@@ -8,6 +8,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.text.TextSelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
@@ -45,7 +46,7 @@ public class AnalyzePattern extends AbstractHandler {
 			
 			Pattern p = EcoreUtil2.getContainerOfType(e, Pattern.class);
 			if(p == null) {
-				System.out.println("No patterns found");
+				MessageDialog.openError(window.getShell(), "Pattern Not Found", "Please place the cursor inside a valid pattern.");
 				return null;
 			}
 			
