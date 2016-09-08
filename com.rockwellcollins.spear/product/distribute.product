@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="SpeAR" uid="spear.product" id="com.rockwellcollins.spear.spear_product" application="org.eclipse.ui.ide.workbench" version="2.0-rc8.1" useFeatures="false" includeLaunchers="true">
+<product name="SpeAR" uid="spear.product" id="com.rockwellcollins.spear.spear_product" application="org.eclipse.ui.ide.workbench" version="2.0" useFeatures="false" includeLaunchers="true">
 
    <aboutInfo>
       <image path="/com.rockwellcollins.spear/branding/1429142344_weapons_spear-128.png"/>
