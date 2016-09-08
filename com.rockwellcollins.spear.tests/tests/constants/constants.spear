@@ -1,0 +1,27 @@
+Specification constants
+
+Types:
+	record1: record {a : int, b : real, c : bool}
+	array1: int[3]
+
+Constants:
+	c1 : int = 5
+	c2 : real = 5.0
+	c3 : bool = false
+	c4 : record1 = new record1 {a = c1, b=c2, c=c3}
+	c5 : array1 = new array1 [c1, c1+1, c1+2]
+
+Inputs:
+
+Outputs:
+
+State:
+
+Macros:
+
+Assumptions:
+
+Constraints:
+
+Properties:
+
