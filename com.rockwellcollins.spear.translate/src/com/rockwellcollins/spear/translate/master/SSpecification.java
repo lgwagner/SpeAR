@@ -167,7 +167,6 @@ public class SSpecification {
 		builder.addEquations(SConstraint.toEquation(assumptions, this));
 		builder.addEquations(SConstraint.toEquation(requirements, this));
 		builder.addEquations(SConstraint.toPropertyEquations(behaviors, assertionName, this));
-
 		return builder.build();
 	}
 
