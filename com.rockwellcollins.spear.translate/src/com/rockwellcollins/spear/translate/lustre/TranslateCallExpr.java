@@ -11,6 +11,7 @@ import com.rockwellcollins.spear.translate.master.SSpecification;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 import jkind.lustre.Expr;
+import jkind.lustre.IfThenElseExpr;
 import jkind.lustre.NodeCallExpr;
 
 public class TranslateCallExpr extends SpearSwitch<Expr> {
@@ -40,6 +41,14 @@ public class TranslateCallExpr extends SpearSwitch<Expr> {
 		SCall scall = SCall.get(call,specification.calls);
 		args.addAll(scall.getCallArgs());
 		return new NodeCallExpr(nodeName,args);
+	}
+	
+	@Override
+	public Expr caseIfThenElseExpr(com.rockwellcollins.spear.IfThenElseExpr ite) {
+		Expr condExpr = this.doSwitch(ite.getCond());
+		Expr thenExpr = this.doSwitch(ite.getThen());
+		Expr elseExpr = this.doSwitch(ite.getElse());
+		return new IfThenElseExpr(condExpr,thenExpr,elseExpr);
 	}
 	
 	@Override
