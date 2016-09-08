@@ -93,6 +93,7 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
       case SpearPackage.BINARY_UNIT_EXPR: return createBinaryUnitExpr();
       case SpearPackage.NAMED_UNIT_EXPR: return createNamedUnitExpr();
       case SpearPackage.NAMED_TYPE_DEF: return createNamedTypeDef();
+      case SpearPackage.ABSTRACT_TYPE_DEF: return createAbstractTypeDef();
       case SpearPackage.RECORD_TYPE_DEF: return createRecordTypeDef();
       case SpearPackage.ARRAY_TYPE_DEF: return createArrayTypeDef();
       case SpearPackage.ENUM_TYPE_DEF: return createEnumTypeDef();
@@ -443,6 +444,17 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
   {
     NamedTypeDefImpl namedTypeDef = new NamedTypeDefImpl();
     return namedTypeDef;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AbstractTypeDef createAbstractTypeDef()
+  {
+    AbstractTypeDefImpl abstractTypeDef = new AbstractTypeDefImpl();
+    return abstractTypeDef;
   }
 
   /**

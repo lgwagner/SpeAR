@@ -132,6 +132,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="unit" eType="#//UnitDef"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractTypeDef" eSuperTypes="#//TypeDef"/>
   <eClassifiers xsi:type="ecore:EClass" name="RecordTypeDef" eSuperTypes="#//TypeDef">
     <eStructuralFeatures xsi:type="ecore:EReference" name="fields" upperBound="-1"
         eType="#//FieldType" containment="true"/>

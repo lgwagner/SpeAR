@@ -5,6 +5,7 @@ package com.rockwellcollins.serializer;
 
 import com.google.inject.Inject;
 import com.rockwellcollins.services.SpearGrammarAccess;
+import com.rockwellcollins.spear.AbstractTypeDef;
 import com.rockwellcollins.spear.AfterUntilExpr;
 import com.rockwellcollins.spear.ArrayAccessExpr;
 import com.rockwellcollins.spear.ArrayExpr;
@@ -79,6 +80,9 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == SpearPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case SpearPackage.ABSTRACT_TYPE_DEF:
+				sequence_TypeDef(context, (AbstractTypeDef) semanticObject); 
+				return; 
 			case SpearPackage.AFTER_UNTIL_EXPR:
 				sequence_AfterUntilExpr(context, (AfterUntilExpr) semanticObject); 
 				return; 
@@ -1347,6 +1351,24 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     TypeDef returns AbstractTypeDef
+	 *
+	 * Constraint:
+	 *     name=ID
+	 */
+	protected void sequence_TypeDef(ISerializationContext context, AbstractTypeDef semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.TYPE_DEF__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.TYPE_DEF__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getTypeDefAccess().getNameIDTerminalRuleCall_1_1_0(), semanticObject.getName());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     TypeDef returns ArrayTypeDef
 	 *
 	 * Constraint:
@@ -1362,9 +1384,9 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.ARRAY_TYPE_DEF__SIZE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTypeDefAccess().getNameIDTerminalRuleCall_2_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getTypeDefAccess().getBaseTypeParserRuleCall_2_3_0(), semanticObject.getBase());
-		feeder.accept(grammarAccess.getTypeDefAccess().getSizeINTTerminalRuleCall_2_5_0(), semanticObject.getSize());
+		feeder.accept(grammarAccess.getTypeDefAccess().getNameIDTerminalRuleCall_3_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getTypeDefAccess().getBaseTypeParserRuleCall_3_3_0(), semanticObject.getBase());
+		feeder.accept(grammarAccess.getTypeDefAccess().getSizeINTTerminalRuleCall_3_5_0(), semanticObject.getSize());
 		feeder.finish();
 	}
 	

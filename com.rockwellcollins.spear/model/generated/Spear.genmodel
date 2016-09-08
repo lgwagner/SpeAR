@@ -114,6 +114,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//NamedTypeDef/type"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Spear.ecore#//NamedTypeDef/unit"/>
     </genClasses>
+    <genClasses ecoreClass="Spear.ecore#//AbstractTypeDef"/>
     <genClasses ecoreClass="Spear.ecore#//RecordTypeDef">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//RecordTypeDef/fields"/>
     </genClasses>

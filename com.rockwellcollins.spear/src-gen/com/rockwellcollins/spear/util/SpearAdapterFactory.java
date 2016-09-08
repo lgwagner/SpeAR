@@ -220,6 +220,11 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
         return createNamedTypeDefAdapter();
       }
       @Override
+      public Adapter caseAbstractTypeDef(AbstractTypeDef object)
+      {
+        return createAbstractTypeDefAdapter();
+      }
+      @Override
       public Adapter caseRecordTypeDef(RecordTypeDef object)
       {
         return createRecordTypeDefAdapter();
@@ -812,6 +817,21 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createNamedTypeDefAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.AbstractTypeDef <em>Abstract Type Def</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.rockwellcollins.spear.AbstractTypeDef
+   * @generated
+   */
+  public Adapter createAbstractTypeDefAdapter()
   {
     return null;
   }

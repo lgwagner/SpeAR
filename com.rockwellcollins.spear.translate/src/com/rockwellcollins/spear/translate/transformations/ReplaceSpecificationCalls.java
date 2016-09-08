@@ -58,19 +58,15 @@ public class ReplaceSpecificationCalls extends SpearSwitch<EObject> {
 			SpecificationCall specificationCall = (SpecificationCall) right;
 			this.doSwitch(specificationCall.getSpec());
 			EcoreUtil2.replace(be, getReplacement(left,specificationCall));
-			return be;
 		}
 		
 		if (left instanceof SpecificationCall) {
 			SpecificationCall specificationCall = (SpecificationCall) left;
 			this.doSwitch(specificationCall.getSpec());
 			EcoreUtil2.replace(be, getReplacement(right,specificationCall));
-			return be;
 		}
-		
-		System.err.println("Unexpected");
-		return null;
-		
+	
+		return be;
 	}
 	
 	@Override

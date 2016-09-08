@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.validation.ValidationMessageAcceptor;
 
+import com.rockwellcollins.spear.AbstractTypeDef;
 import com.rockwellcollins.spear.AfterUntilExpr;
 import com.rockwellcollins.spear.ArrayAccessExpr;
 import com.rockwellcollins.spear.ArrayExpr;
@@ -190,6 +191,11 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		}
 	}
 
+	@Override
+	public Unit caseAbstractTypeDef(AbstractTypeDef at) {
+		return SCALAR;
+	}
+	
 	@Override
 	public Unit caseRecordTypeDef(RecordTypeDef rt) {
 		Map<String, Unit> fields = new HashMap<>();

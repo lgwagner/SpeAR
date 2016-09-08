@@ -1043,54 +1043,62 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cUnitUnitDefCrossReference_0_4_0 = (CrossReference)cUnitAssignment_0_4.eContents().get(0);
 		private final RuleCall cUnitUnitDefIDTerminalRuleCall_0_4_0_1 = (RuleCall)cUnitUnitDefCrossReference_0_4_0.eContents().get(1);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Action cRecordTypeDefAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Action cAbstractTypeDefAction_1_0 = (Action)cGroup_1.eContents().get(0);
 		private final Assignment cNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_1_0 = (RuleCall)cNameAssignment_1_1.eContents().get(0);
 		private final RuleCall cIdTypeDelimiterParserRuleCall_1_2 = (RuleCall)cGroup_1.eContents().get(2);
-		private final Keyword cRecordKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
-		private final Keyword cLeftCurlyBracketKeyword_1_4 = (Keyword)cGroup_1.eContents().get(4);
-		private final Assignment cFieldsAssignment_1_5 = (Assignment)cGroup_1.eContents().get(5);
-		private final RuleCall cFieldsFieldTypeParserRuleCall_1_5_0 = (RuleCall)cFieldsAssignment_1_5.eContents().get(0);
-		private final Group cGroup_1_6 = (Group)cGroup_1.eContents().get(6);
-		private final Keyword cCommaKeyword_1_6_0 = (Keyword)cGroup_1_6.eContents().get(0);
-		private final Assignment cFieldsAssignment_1_6_1 = (Assignment)cGroup_1_6.eContents().get(1);
-		private final RuleCall cFieldsFieldTypeParserRuleCall_1_6_1_0 = (RuleCall)cFieldsAssignment_1_6_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_1_7 = (Keyword)cGroup_1.eContents().get(7);
+		private final Keyword cAbstractKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
 		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
-		private final Action cArrayTypeDefAction_2_0 = (Action)cGroup_2.eContents().get(0);
+		private final Action cRecordTypeDefAction_2_0 = (Action)cGroup_2.eContents().get(0);
 		private final Assignment cNameAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_2_1_0 = (RuleCall)cNameAssignment_2_1.eContents().get(0);
 		private final RuleCall cIdTypeDelimiterParserRuleCall_2_2 = (RuleCall)cGroup_2.eContents().get(2);
-		private final Assignment cBaseAssignment_2_3 = (Assignment)cGroup_2.eContents().get(3);
-		private final RuleCall cBaseTypeParserRuleCall_2_3_0 = (RuleCall)cBaseAssignment_2_3.eContents().get(0);
-		private final Keyword cLeftSquareBracketKeyword_2_4 = (Keyword)cGroup_2.eContents().get(4);
-		private final Assignment cSizeAssignment_2_5 = (Assignment)cGroup_2.eContents().get(5);
-		private final RuleCall cSizeINTTerminalRuleCall_2_5_0 = (RuleCall)cSizeAssignment_2_5.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_2_6 = (Keyword)cGroup_2.eContents().get(6);
+		private final Keyword cRecordKeyword_2_3 = (Keyword)cGroup_2.eContents().get(3);
+		private final Keyword cLeftCurlyBracketKeyword_2_4 = (Keyword)cGroup_2.eContents().get(4);
+		private final Assignment cFieldsAssignment_2_5 = (Assignment)cGroup_2.eContents().get(5);
+		private final RuleCall cFieldsFieldTypeParserRuleCall_2_5_0 = (RuleCall)cFieldsAssignment_2_5.eContents().get(0);
+		private final Group cGroup_2_6 = (Group)cGroup_2.eContents().get(6);
+		private final Keyword cCommaKeyword_2_6_0 = (Keyword)cGroup_2_6.eContents().get(0);
+		private final Assignment cFieldsAssignment_2_6_1 = (Assignment)cGroup_2_6.eContents().get(1);
+		private final RuleCall cFieldsFieldTypeParserRuleCall_2_6_1_0 = (RuleCall)cFieldsAssignment_2_6_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_2_7 = (Keyword)cGroup_2.eContents().get(7);
 		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
-		private final Action cEnumTypeDefAction_3_0 = (Action)cGroup_3.eContents().get(0);
+		private final Action cArrayTypeDefAction_3_0 = (Action)cGroup_3.eContents().get(0);
 		private final Assignment cNameAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_3_1_0 = (RuleCall)cNameAssignment_3_1.eContents().get(0);
 		private final RuleCall cIdTypeDelimiterParserRuleCall_3_2 = (RuleCall)cGroup_3.eContents().get(2);
-		private final Keyword cEnumKeyword_3_3 = (Keyword)cGroup_3.eContents().get(3);
-		private final Keyword cLeftCurlyBracketKeyword_3_4 = (Keyword)cGroup_3.eContents().get(4);
-		private final Assignment cValuesAssignment_3_5 = (Assignment)cGroup_3.eContents().get(5);
-		private final RuleCall cValuesEnumValueParserRuleCall_3_5_0 = (RuleCall)cValuesAssignment_3_5.eContents().get(0);
-		private final Group cGroup_3_6 = (Group)cGroup_3.eContents().get(6);
-		private final Keyword cCommaKeyword_3_6_0 = (Keyword)cGroup_3_6.eContents().get(0);
-		private final Assignment cValuesAssignment_3_6_1 = (Assignment)cGroup_3_6.eContents().get(1);
-		private final RuleCall cValuesEnumValueParserRuleCall_3_6_1_0 = (RuleCall)cValuesAssignment_3_6_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_3_7 = (Keyword)cGroup_3.eContents().get(7);
+		private final Assignment cBaseAssignment_3_3 = (Assignment)cGroup_3.eContents().get(3);
+		private final RuleCall cBaseTypeParserRuleCall_3_3_0 = (RuleCall)cBaseAssignment_3_3.eContents().get(0);
+		private final Keyword cLeftSquareBracketKeyword_3_4 = (Keyword)cGroup_3.eContents().get(4);
+		private final Assignment cSizeAssignment_3_5 = (Assignment)cGroup_3.eContents().get(5);
+		private final RuleCall cSizeINTTerminalRuleCall_3_5_0 = (RuleCall)cSizeAssignment_3_5.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_3_6 = (Keyword)cGroup_3.eContents().get(6);
+		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
+		private final Action cEnumTypeDefAction_4_0 = (Action)cGroup_4.eContents().get(0);
+		private final Assignment cNameAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_4_1_0 = (RuleCall)cNameAssignment_4_1.eContents().get(0);
+		private final RuleCall cIdTypeDelimiterParserRuleCall_4_2 = (RuleCall)cGroup_4.eContents().get(2);
+		private final Keyword cEnumKeyword_4_3 = (Keyword)cGroup_4.eContents().get(3);
+		private final Keyword cLeftCurlyBracketKeyword_4_4 = (Keyword)cGroup_4.eContents().get(4);
+		private final Assignment cValuesAssignment_4_5 = (Assignment)cGroup_4.eContents().get(5);
+		private final RuleCall cValuesEnumValueParserRuleCall_4_5_0 = (RuleCall)cValuesAssignment_4_5.eContents().get(0);
+		private final Group cGroup_4_6 = (Group)cGroup_4.eContents().get(6);
+		private final Keyword cCommaKeyword_4_6_0 = (Keyword)cGroup_4_6.eContents().get(0);
+		private final Assignment cValuesAssignment_4_6_1 = (Assignment)cGroup_4_6.eContents().get(1);
+		private final RuleCall cValuesEnumValueParserRuleCall_4_6_1_0 = (RuleCall)cValuesAssignment_4_6_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_4_7 = (Keyword)cGroup_4.eContents().get(7);
 		
 		//TypeDef:
-		//	{NamedTypeDef} name=ID IdTypeDelimiter type=Type unit=[UnitDef]? | {RecordTypeDef} name=ID IdTypeDelimiter 'record'
-		//	'{' fields+=FieldType (',' fields+=FieldType)* '}' | {ArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=INT
-		//	']' | {EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{' values+=EnumValue (',' values+=EnumValue)* '}';
+		//	{NamedTypeDef} name=ID IdTypeDelimiter type=Type unit=[UnitDef]? | {AbstractTypeDef} name=ID IdTypeDelimiter
+		//	'abstract' | {RecordTypeDef} name=ID IdTypeDelimiter 'record' '{' fields+=FieldType (',' fields+=FieldType)* '}' |
+		//	{ArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=INT ']' | {EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{'
+		//	values+=EnumValue (',' values+=EnumValue)* '}';
 		@Override public ParserRule getRule() { return rule; }
 
-		//{NamedTypeDef} name=ID IdTypeDelimiter type=Type unit=[UnitDef]? | {RecordTypeDef} name=ID IdTypeDelimiter 'record' '{'
-		//fields+=FieldType (',' fields+=FieldType)* '}' | {ArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=INT ']' |
-		//{EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{' values+=EnumValue (',' values+=EnumValue)* '}'
+		//{NamedTypeDef} name=ID IdTypeDelimiter type=Type unit=[UnitDef]? | {AbstractTypeDef} name=ID IdTypeDelimiter 'abstract'
+		//| {RecordTypeDef} name=ID IdTypeDelimiter 'record' '{' fields+=FieldType (',' fields+=FieldType)* '}' | {ArrayTypeDef}
+		//name=ID IdTypeDelimiter base=Type '[' size=INT ']' | {EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{'
+		//values+=EnumValue (',' values+=EnumValue)* '}'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//{NamedTypeDef} name=ID IdTypeDelimiter type=Type unit=[UnitDef]?
@@ -1123,11 +1131,11 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getUnitUnitDefIDTerminalRuleCall_0_4_0_1() { return cUnitUnitDefIDTerminalRuleCall_0_4_0_1; }
 
-		//{RecordTypeDef} name=ID IdTypeDelimiter 'record' '{' fields+=FieldType (',' fields+=FieldType)* '}'
+		//{AbstractTypeDef} name=ID IdTypeDelimiter 'abstract'
 		public Group getGroup_1() { return cGroup_1; }
 
-		//{RecordTypeDef}
-		public Action getRecordTypeDefAction_1_0() { return cRecordTypeDefAction_1_0; }
+		//{AbstractTypeDef}
+		public Action getAbstractTypeDefAction_1_0() { return cAbstractTypeDefAction_1_0; }
 
 		//name=ID
 		public Assignment getNameAssignment_1_1() { return cNameAssignment_1_1; }
@@ -1138,38 +1146,14 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//IdTypeDelimiter
 		public RuleCall getIdTypeDelimiterParserRuleCall_1_2() { return cIdTypeDelimiterParserRuleCall_1_2; }
 
-		//'record'
-		public Keyword getRecordKeyword_1_3() { return cRecordKeyword_1_3; }
+		//'abstract'
+		public Keyword getAbstractKeyword_1_3() { return cAbstractKeyword_1_3; }
 
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_1_4() { return cLeftCurlyBracketKeyword_1_4; }
-
-		//fields+=FieldType
-		public Assignment getFieldsAssignment_1_5() { return cFieldsAssignment_1_5; }
-
-		//FieldType
-		public RuleCall getFieldsFieldTypeParserRuleCall_1_5_0() { return cFieldsFieldTypeParserRuleCall_1_5_0; }
-
-		//(',' fields+=FieldType)*
-		public Group getGroup_1_6() { return cGroup_1_6; }
-
-		//','
-		public Keyword getCommaKeyword_1_6_0() { return cCommaKeyword_1_6_0; }
-
-		//fields+=FieldType
-		public Assignment getFieldsAssignment_1_6_1() { return cFieldsAssignment_1_6_1; }
-
-		//FieldType
-		public RuleCall getFieldsFieldTypeParserRuleCall_1_6_1_0() { return cFieldsFieldTypeParserRuleCall_1_6_1_0; }
-
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_1_7() { return cRightCurlyBracketKeyword_1_7; }
-
-		//{ArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=INT ']'
+		//{RecordTypeDef} name=ID IdTypeDelimiter 'record' '{' fields+=FieldType (',' fields+=FieldType)* '}'
 		public Group getGroup_2() { return cGroup_2; }
 
-		//{ArrayTypeDef}
-		public Action getArrayTypeDefAction_2_0() { return cArrayTypeDefAction_2_0; }
+		//{RecordTypeDef}
+		public Action getRecordTypeDefAction_2_0() { return cRecordTypeDefAction_2_0; }
 
 		//name=ID
 		public Assignment getNameAssignment_2_1() { return cNameAssignment_2_1; }
@@ -1180,29 +1164,38 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//IdTypeDelimiter
 		public RuleCall getIdTypeDelimiterParserRuleCall_2_2() { return cIdTypeDelimiterParserRuleCall_2_2; }
 
-		//base=Type
-		public Assignment getBaseAssignment_2_3() { return cBaseAssignment_2_3; }
+		//'record'
+		public Keyword getRecordKeyword_2_3() { return cRecordKeyword_2_3; }
 
-		//Type
-		public RuleCall getBaseTypeParserRuleCall_2_3_0() { return cBaseTypeParserRuleCall_2_3_0; }
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_2_4() { return cLeftCurlyBracketKeyword_2_4; }
 
-		//'['
-		public Keyword getLeftSquareBracketKeyword_2_4() { return cLeftSquareBracketKeyword_2_4; }
+		//fields+=FieldType
+		public Assignment getFieldsAssignment_2_5() { return cFieldsAssignment_2_5; }
 
-		//size=INT
-		public Assignment getSizeAssignment_2_5() { return cSizeAssignment_2_5; }
+		//FieldType
+		public RuleCall getFieldsFieldTypeParserRuleCall_2_5_0() { return cFieldsFieldTypeParserRuleCall_2_5_0; }
 
-		//INT
-		public RuleCall getSizeINTTerminalRuleCall_2_5_0() { return cSizeINTTerminalRuleCall_2_5_0; }
+		//(',' fields+=FieldType)*
+		public Group getGroup_2_6() { return cGroup_2_6; }
 
-		//']'
-		public Keyword getRightSquareBracketKeyword_2_6() { return cRightSquareBracketKeyword_2_6; }
+		//','
+		public Keyword getCommaKeyword_2_6_0() { return cCommaKeyword_2_6_0; }
 
-		//{EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{' values+=EnumValue (',' values+=EnumValue)* '}'
+		//fields+=FieldType
+		public Assignment getFieldsAssignment_2_6_1() { return cFieldsAssignment_2_6_1; }
+
+		//FieldType
+		public RuleCall getFieldsFieldTypeParserRuleCall_2_6_1_0() { return cFieldsFieldTypeParserRuleCall_2_6_1_0; }
+
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_2_7() { return cRightCurlyBracketKeyword_2_7; }
+
+		//{ArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=INT ']'
 		public Group getGroup_3() { return cGroup_3; }
 
-		//{EnumTypeDef}
-		public Action getEnumTypeDefAction_3_0() { return cEnumTypeDefAction_3_0; }
+		//{ArrayTypeDef}
+		public Action getArrayTypeDefAction_3_0() { return cArrayTypeDefAction_3_0; }
 
 		//name=ID
 		public Assignment getNameAssignment_3_1() { return cNameAssignment_3_1; }
@@ -1213,32 +1206,65 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//IdTypeDelimiter
 		public RuleCall getIdTypeDelimiterParserRuleCall_3_2() { return cIdTypeDelimiterParserRuleCall_3_2; }
 
+		//base=Type
+		public Assignment getBaseAssignment_3_3() { return cBaseAssignment_3_3; }
+
+		//Type
+		public RuleCall getBaseTypeParserRuleCall_3_3_0() { return cBaseTypeParserRuleCall_3_3_0; }
+
+		//'['
+		public Keyword getLeftSquareBracketKeyword_3_4() { return cLeftSquareBracketKeyword_3_4; }
+
+		//size=INT
+		public Assignment getSizeAssignment_3_5() { return cSizeAssignment_3_5; }
+
+		//INT
+		public RuleCall getSizeINTTerminalRuleCall_3_5_0() { return cSizeINTTerminalRuleCall_3_5_0; }
+
+		//']'
+		public Keyword getRightSquareBracketKeyword_3_6() { return cRightSquareBracketKeyword_3_6; }
+
+		//{EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{' values+=EnumValue (',' values+=EnumValue)* '}'
+		public Group getGroup_4() { return cGroup_4; }
+
+		//{EnumTypeDef}
+		public Action getEnumTypeDefAction_4_0() { return cEnumTypeDefAction_4_0; }
+
+		//name=ID
+		public Assignment getNameAssignment_4_1() { return cNameAssignment_4_1; }
+
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_4_1_0() { return cNameIDTerminalRuleCall_4_1_0; }
+
+		//IdTypeDelimiter
+		public RuleCall getIdTypeDelimiterParserRuleCall_4_2() { return cIdTypeDelimiterParserRuleCall_4_2; }
+
 		//'enum'
-		public Keyword getEnumKeyword_3_3() { return cEnumKeyword_3_3; }
+		public Keyword getEnumKeyword_4_3() { return cEnumKeyword_4_3; }
 
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_3_4() { return cLeftCurlyBracketKeyword_3_4; }
+		public Keyword getLeftCurlyBracketKeyword_4_4() { return cLeftCurlyBracketKeyword_4_4; }
 
 		//values+=EnumValue
-		public Assignment getValuesAssignment_3_5() { return cValuesAssignment_3_5; }
+		public Assignment getValuesAssignment_4_5() { return cValuesAssignment_4_5; }
 
 		//EnumValue
-		public RuleCall getValuesEnumValueParserRuleCall_3_5_0() { return cValuesEnumValueParserRuleCall_3_5_0; }
+		public RuleCall getValuesEnumValueParserRuleCall_4_5_0() { return cValuesEnumValueParserRuleCall_4_5_0; }
 
 		//(',' values+=EnumValue)*
-		public Group getGroup_3_6() { return cGroup_3_6; }
+		public Group getGroup_4_6() { return cGroup_4_6; }
 
 		//','
-		public Keyword getCommaKeyword_3_6_0() { return cCommaKeyword_3_6_0; }
+		public Keyword getCommaKeyword_4_6_0() { return cCommaKeyword_4_6_0; }
 
 		//values+=EnumValue
-		public Assignment getValuesAssignment_3_6_1() { return cValuesAssignment_3_6_1; }
+		public Assignment getValuesAssignment_4_6_1() { return cValuesAssignment_4_6_1; }
 
 		//EnumValue
-		public RuleCall getValuesEnumValueParserRuleCall_3_6_1_0() { return cValuesEnumValueParserRuleCall_3_6_1_0; }
+		public RuleCall getValuesEnumValueParserRuleCall_4_6_1_0() { return cValuesEnumValueParserRuleCall_4_6_1_0; }
 
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_3_7() { return cRightCurlyBracketKeyword_3_7; }
+		public Keyword getRightCurlyBracketKeyword_4_7() { return cRightCurlyBracketKeyword_4_7; }
 	}
 
 	public class FieldTypeElements extends AbstractParserRuleElementFinder {
@@ -3819,9 +3845,10 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypeDef:
-	//	{NamedTypeDef} name=ID IdTypeDelimiter type=Type unit=[UnitDef]? | {RecordTypeDef} name=ID IdTypeDelimiter 'record'
-	//	'{' fields+=FieldType (',' fields+=FieldType)* '}' | {ArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=INT
-	//	']' | {EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{' values+=EnumValue (',' values+=EnumValue)* '}';
+	//	{NamedTypeDef} name=ID IdTypeDelimiter type=Type unit=[UnitDef]? | {AbstractTypeDef} name=ID IdTypeDelimiter
+	//	'abstract' | {RecordTypeDef} name=ID IdTypeDelimiter 'record' '{' fields+=FieldType (',' fields+=FieldType)* '}' |
+	//	{ArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=INT ']' | {EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{'
+	//	values+=EnumValue (',' values+=EnumValue)* '}';
 	public TypeDefElements getTypeDefAccess() {
 		return pTypeDef;
 	}

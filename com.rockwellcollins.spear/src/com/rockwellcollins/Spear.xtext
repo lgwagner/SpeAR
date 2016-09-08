@@ -86,6 +86,7 @@ AtomicUnitExpr returns UnitExpr:
 
 TypeDef:
 	{NamedTypeDef} name=ID IdTypeDelimiter type=Type (unit=[UnitDef])?
+	| {AbstractTypeDef} name=ID IdTypeDelimiter 'abstract'
 	| {RecordTypeDef} name=ID IdTypeDelimiter 'record' '{' fields+=FieldType (',' fields+=FieldType)* '}'
 	| {ArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=INT ']'
 	| {EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{' values+=EnumValue (',' values+=EnumValue)* '}';

@@ -11,6 +11,7 @@ import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.ComposedChecks;
 
+import com.rockwellcollins.spear.AbstractTypeDef;
 import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Constraint;
@@ -123,5 +124,10 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 			error("Duplicate section name used: " + requirements,s,SpearPackage.Literals.SPECIFICATION__REQUIREMENTS_KEYWORD);
 			error("Duplicate section name used: " + requirements,s,SpearPackage.Literals.SPECIFICATION__PROPERTIES_KEYWORD);
 		}
+	}
+	
+	@Check
+	public void warnOnAbstract(AbstractTypeDef atd) {
+		warning("Abstract types are in beta, analysis is not supported.",atd,null);
 	}
 }

@@ -284,6 +284,15 @@ public interface SpearFactory extends EFactory
   NamedTypeDef createNamedTypeDef();
 
   /**
+   * Returns a new object of class '<em>Abstract Type Def</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Abstract Type Def</em>'.
+   * @generated
+   */
+  AbstractTypeDef createAbstractTypeDef();
+
+  /**
    * Returns a new object of class '<em>Record Type Def</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

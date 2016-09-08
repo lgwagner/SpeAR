@@ -2,6 +2,7 @@
  */
 package com.rockwellcollins.spear.impl;
 
+import com.rockwellcollins.spear.AbstractTypeDef;
 import com.rockwellcollins.spear.AfterUntilExpr;
 import com.rockwellcollins.spear.ArrayAccessExpr;
 import com.rockwellcollins.spear.ArrayExpr;
@@ -279,6 +280,13 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * @generated
    */
   private EClass namedTypeDefEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass abstractTypeDefEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1384,6 +1392,16 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getAbstractTypeDef()
+  {
+    return abstractTypeDefEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getRecordTypeDef()
   {
     return recordTypeDefEClass;
@@ -2282,6 +2300,8 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     createEReference(namedTypeDefEClass, NAMED_TYPE_DEF__TYPE);
     createEReference(namedTypeDefEClass, NAMED_TYPE_DEF__UNIT);
 
+    abstractTypeDefEClass = createEClass(ABSTRACT_TYPE_DEF);
+
     recordTypeDefEClass = createEClass(RECORD_TYPE_DEF);
     createEReference(recordTypeDefEClass, RECORD_TYPE_DEF__FIELDS);
 
@@ -2430,6 +2450,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     binaryUnitExprEClass.getESuperTypes().add(this.getUnitExpr());
     namedUnitExprEClass.getESuperTypes().add(this.getUnitExpr());
     namedTypeDefEClass.getESuperTypes().add(this.getTypeDef());
+    abstractTypeDefEClass.getESuperTypes().add(this.getTypeDef());
     recordTypeDefEClass.getESuperTypes().add(this.getTypeDef());
     arrayTypeDefEClass.getESuperTypes().add(this.getTypeDef());
     enumTypeDefEClass.getESuperTypes().add(this.getTypeDef());
@@ -2572,6 +2593,8 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     initEClass(namedTypeDefEClass, NamedTypeDef.class, "NamedTypeDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getNamedTypeDef_Type(), this.getType(), null, "type", null, 0, 1, NamedTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getNamedTypeDef_Unit(), this.getUnitDef(), null, "unit", null, 0, 1, NamedTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(abstractTypeDefEClass, AbstractTypeDef.class, "AbstractTypeDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(recordTypeDefEClass, RecordTypeDef.class, "RecordTypeDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRecordTypeDef_Fields(), this.getFieldType(), null, "fields", null, 0, -1, RecordTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

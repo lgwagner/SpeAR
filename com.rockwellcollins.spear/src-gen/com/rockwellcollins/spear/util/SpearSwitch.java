@@ -289,6 +289,14 @@ public class SpearSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case SpearPackage.ABSTRACT_TYPE_DEF:
+      {
+        AbstractTypeDef abstractTypeDef = (AbstractTypeDef)theEObject;
+        T result = caseAbstractTypeDef(abstractTypeDef);
+        if (result == null) result = caseTypeDef(abstractTypeDef);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case SpearPackage.RECORD_TYPE_DEF:
       {
         RecordTypeDef recordTypeDef = (RecordTypeDef)theEObject;
@@ -980,6 +988,22 @@ public class SpearSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseNamedTypeDef(NamedTypeDef object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Abstract Type Def</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Abstract Type Def</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAbstractTypeDef(AbstractTypeDef object)
   {
     return null;
   }

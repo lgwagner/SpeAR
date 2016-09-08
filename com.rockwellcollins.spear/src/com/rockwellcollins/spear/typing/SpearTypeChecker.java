@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.validation.ValidationMessageAcceptor;
 
+import com.rockwellcollins.spear.AbstractTypeDef;
 import com.rockwellcollins.spear.AfterUntilExpr;
 import com.rockwellcollins.spear.ArrayAccessExpr;
 import com.rockwellcollins.spear.ArrayExpr;
@@ -102,10 +103,15 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	/***************************************************************************************************/
 	// TYPES
 	/***************************************************************************************************/
-
+	
 	@Override
 	public Type caseNamedTypeDef(NamedTypeDef nt) {
 		return doSwitch(nt.getType());
+	}
+	
+	@Override
+	public Type caseAbstractTypeDef(AbstractTypeDef at) {
+		return new AbstractType(at.getName());
 	}
 
 	@Override
@@ -221,6 +227,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 			if (left == INT && right == INT) {
 				return INT;
 			}
+			
 			break;
 
 		case "mod":

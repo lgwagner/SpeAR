@@ -1698,7 +1698,7 @@ ruleIdTypeDelimiter
     |((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getTypeDefAccess().getRecordTypeDefAction_1_0(),
+            grammarAccess.getTypeDefAccess().getAbstractTypeDefAction_1_0(),
             $current);
     }
 )(
@@ -1727,70 +1727,22 @@ ruleIdTypeDelimiter
     { 
         afterParserOrEnumRuleCall();
     }
-	otherlv_8='record' 
+	otherlv_8='abstract' 
     {
-    	newLeafNode(otherlv_8, grammarAccess.getTypeDefAccess().getRecordKeyword_1_3());
-    }
-	otherlv_9='{' 
-    {
-    	newLeafNode(otherlv_9, grammarAccess.getTypeDefAccess().getLeftCurlyBracketKeyword_1_4());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getTypeDefAccess().getFieldsFieldTypeParserRuleCall_1_5_0()); 
-	    }
-		lv_fields_10_0=ruleFieldType		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getTypeDefRule());
-	        }
-       		add(
-       			$current, 
-       			"fields",
-        		lv_fields_10_0, 
-        		"com.rockwellcollins.Spear.FieldType");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)(	otherlv_11=',' 
-    {
-    	newLeafNode(otherlv_11, grammarAccess.getTypeDefAccess().getCommaKeyword_1_6_0());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getTypeDefAccess().getFieldsFieldTypeParserRuleCall_1_6_1_0()); 
-	    }
-		lv_fields_12_0=ruleFieldType		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getTypeDefRule());
-	        }
-       		add(
-       			$current, 
-       			"fields",
-        		lv_fields_12_0, 
-        		"com.rockwellcollins.Spear.FieldType");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))*	otherlv_13='}' 
-    {
-    	newLeafNode(otherlv_13, grammarAccess.getTypeDefAccess().getRightCurlyBracketKeyword_1_7());
+    	newLeafNode(otherlv_8, grammarAccess.getTypeDefAccess().getAbstractKeyword_1_3());
     }
 )
     |((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getTypeDefAccess().getArrayTypeDefAction_2_0(),
+            grammarAccess.getTypeDefAccess().getRecordTypeDefAction_2_0(),
             $current);
     }
 )(
 (
-		lv_name_15_0=RULE_ID
+		lv_name_10_0=RULE_ID
 		{
-			newLeafNode(lv_name_15_0, grammarAccess.getTypeDefAccess().getNameIDTerminalRuleCall_2_1_0()); 
+			newLeafNode(lv_name_10_0, grammarAccess.getTypeDefAccess().getNameIDTerminalRuleCall_2_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -1799,7 +1751,7 @@ ruleIdTypeDelimiter
        		setWithLastConsumed(
        			$current, 
        			"name",
-        		lv_name_15_0, 
+        		lv_name_10_0, 
         		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
@@ -1812,62 +1764,70 @@ ruleIdTypeDelimiter
     { 
         afterParserOrEnumRuleCall();
     }
+	otherlv_12='record' 
+    {
+    	newLeafNode(otherlv_12, grammarAccess.getTypeDefAccess().getRecordKeyword_2_3());
+    }
+	otherlv_13='{' 
+    {
+    	newLeafNode(otherlv_13, grammarAccess.getTypeDefAccess().getLeftCurlyBracketKeyword_2_4());
+    }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getTypeDefAccess().getBaseTypeParserRuleCall_2_3_0()); 
+	        newCompositeNode(grammarAccess.getTypeDefAccess().getFieldsFieldTypeParserRuleCall_2_5_0()); 
 	    }
-		lv_base_17_0=ruleType		{
+		lv_fields_14_0=ruleFieldType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getTypeDefRule());
 	        }
-       		set(
+       		add(
        			$current, 
-       			"base",
-        		lv_base_17_0, 
-        		"com.rockwellcollins.Spear.Type");
+       			"fields",
+        		lv_fields_14_0, 
+        		"com.rockwellcollins.Spear.FieldType");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_18='[' 
+)(	otherlv_15=',' 
     {
-    	newLeafNode(otherlv_18, grammarAccess.getTypeDefAccess().getLeftSquareBracketKeyword_2_4());
+    	newLeafNode(otherlv_15, grammarAccess.getTypeDefAccess().getCommaKeyword_2_6_0());
     }
 (
 (
-		lv_size_19_0=RULE_INT
-		{
-			newLeafNode(lv_size_19_0, grammarAccess.getTypeDefAccess().getSizeINTTerminalRuleCall_2_5_0()); 
-		}
-		{
+		{ 
+	        newCompositeNode(grammarAccess.getTypeDefAccess().getFieldsFieldTypeParserRuleCall_2_6_1_0()); 
+	    }
+		lv_fields_16_0=ruleFieldType		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getTypeDefRule());
+	            $current = createModelElementForParent(grammarAccess.getTypeDefRule());
 	        }
-       		setWithLastConsumed(
+       		add(
        			$current, 
-       			"size",
-        		lv_size_19_0, 
-        		"org.eclipse.xtext.common.Terminals.INT");
+       			"fields",
+        		lv_fields_16_0, 
+        		"com.rockwellcollins.Spear.FieldType");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_20=']' 
+))*	otherlv_17='}' 
     {
-    	newLeafNode(otherlv_20, grammarAccess.getTypeDefAccess().getRightSquareBracketKeyword_2_6());
+    	newLeafNode(otherlv_17, grammarAccess.getTypeDefAccess().getRightCurlyBracketKeyword_2_7());
     }
 )
     |((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getTypeDefAccess().getEnumTypeDefAction_3_0(),
+            grammarAccess.getTypeDefAccess().getArrayTypeDefAction_3_0(),
             $current);
     }
 )(
 (
-		lv_name_22_0=RULE_ID
+		lv_name_19_0=RULE_ID
 		{
-			newLeafNode(lv_name_22_0, grammarAccess.getTypeDefAccess().getNameIDTerminalRuleCall_3_1_0()); 
+			newLeafNode(lv_name_19_0, grammarAccess.getTypeDefAccess().getNameIDTerminalRuleCall_3_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -1876,7 +1836,7 @@ ruleIdTypeDelimiter
        		setWithLastConsumed(
        			$current, 
        			"name",
-        		lv_name_22_0, 
+        		lv_name_19_0, 
         		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
@@ -1889,57 +1849,134 @@ ruleIdTypeDelimiter
     { 
         afterParserOrEnumRuleCall();
     }
-	otherlv_24='enum' 
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getTypeDefAccess().getBaseTypeParserRuleCall_3_3_0()); 
+	    }
+		lv_base_21_0=ruleType		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getTypeDefRule());
+	        }
+       		set(
+       			$current, 
+       			"base",
+        		lv_base_21_0, 
+        		"com.rockwellcollins.Spear.Type");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_22='[' 
     {
-    	newLeafNode(otherlv_24, grammarAccess.getTypeDefAccess().getEnumKeyword_3_3());
+    	newLeafNode(otherlv_22, grammarAccess.getTypeDefAccess().getLeftSquareBracketKeyword_3_4());
     }
-	otherlv_25='{' 
+(
+(
+		lv_size_23_0=RULE_INT
+		{
+			newLeafNode(lv_size_23_0, grammarAccess.getTypeDefAccess().getSizeINTTerminalRuleCall_3_5_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getTypeDefRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"size",
+        		lv_size_23_0, 
+        		"org.eclipse.xtext.common.Terminals.INT");
+	    }
+
+)
+)	otherlv_24=']' 
     {
-    	newLeafNode(otherlv_25, grammarAccess.getTypeDefAccess().getLeftCurlyBracketKeyword_3_4());
+    	newLeafNode(otherlv_24, grammarAccess.getTypeDefAccess().getRightSquareBracketKeyword_3_6());
+    }
+)
+    |((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getTypeDefAccess().getEnumTypeDefAction_4_0(),
+            $current);
+    }
+)(
+(
+		lv_name_26_0=RULE_ID
+		{
+			newLeafNode(lv_name_26_0, grammarAccess.getTypeDefAccess().getNameIDTerminalRuleCall_4_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getTypeDefRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"name",
+        		lv_name_26_0, 
+        		"org.eclipse.xtext.common.Terminals.ID");
+	    }
+
+)
+)
+    { 
+        newCompositeNode(grammarAccess.getTypeDefAccess().getIdTypeDelimiterParserRuleCall_4_2()); 
+    }
+ruleIdTypeDelimiter
+    { 
+        afterParserOrEnumRuleCall();
+    }
+	otherlv_28='enum' 
+    {
+    	newLeafNode(otherlv_28, grammarAccess.getTypeDefAccess().getEnumKeyword_4_3());
+    }
+	otherlv_29='{' 
+    {
+    	newLeafNode(otherlv_29, grammarAccess.getTypeDefAccess().getLeftCurlyBracketKeyword_4_4());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getTypeDefAccess().getValuesEnumValueParserRuleCall_3_5_0()); 
+	        newCompositeNode(grammarAccess.getTypeDefAccess().getValuesEnumValueParserRuleCall_4_5_0()); 
 	    }
-		lv_values_26_0=ruleEnumValue		{
+		lv_values_30_0=ruleEnumValue		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getTypeDefRule());
 	        }
        		add(
        			$current, 
        			"values",
-        		lv_values_26_0, 
+        		lv_values_30_0, 
         		"com.rockwellcollins.Spear.EnumValue");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)(	otherlv_27=',' 
+)(	otherlv_31=',' 
     {
-    	newLeafNode(otherlv_27, grammarAccess.getTypeDefAccess().getCommaKeyword_3_6_0());
+    	newLeafNode(otherlv_31, grammarAccess.getTypeDefAccess().getCommaKeyword_4_6_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getTypeDefAccess().getValuesEnumValueParserRuleCall_3_6_1_0()); 
+	        newCompositeNode(grammarAccess.getTypeDefAccess().getValuesEnumValueParserRuleCall_4_6_1_0()); 
 	    }
-		lv_values_28_0=ruleEnumValue		{
+		lv_values_32_0=ruleEnumValue		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getTypeDefRule());
 	        }
        		add(
        			$current, 
        			"values",
-        		lv_values_28_0, 
+        		lv_values_32_0, 
         		"com.rockwellcollins.Spear.EnumValue");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))*	otherlv_29='}' 
+))*	otherlv_33='}' 
     {
-    	newLeafNode(otherlv_29, grammarAccess.getTypeDefAccess().getRightCurlyBracketKeyword_3_7());
+    	newLeafNode(otherlv_33, grammarAccess.getTypeDefAccess().getRightCurlyBracketKeyword_4_7());
     }
 ))
 ;
