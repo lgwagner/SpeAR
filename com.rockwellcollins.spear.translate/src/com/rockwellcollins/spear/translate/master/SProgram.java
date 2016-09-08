@@ -72,6 +72,9 @@ public class SProgram {
 		//create the map
 		map = Renaming.newMap();
 		
+		//add the PLTL node names to the program namespace
+		Renaming.addPLTL(map);
+		
 		//not going to rename the main name. it will be first in, no conflicts.
 		this.mainName = document.mainName;
 		
@@ -88,9 +91,16 @@ public class SProgram {
 	
 	public Program patternToLustre() {
 		ProgramBuilder program = new ProgramBuilder();
+		
+		//add the PLTL nodes
+		program.addNodes(PLTL.getPLTL());
+		
+		//add the typedefs, constants, and patterns
 		program.addTypes(STypeDef.toLustre(typedefs, this));
 		program.addConstants(SConstant.toLustre(constants, this));
 		program.addNodes(SPattern.toLustre(patterns));
+		
+		//set the main name
 		program.setMain(this.mainName);
 		return program.build();
 	}
