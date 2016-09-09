@@ -22,6 +22,6 @@ public class PreferenceBasedValidatorAdvisor implements IValidatorAdvisor {
 	@Override
 	public boolean isSolverNonlinear() {
 		String solver = preferencesStore.getString(PreferenceConstants.PREF_SOLVER);
-		return solver.equals(PreferenceConstants.SOLVER_Z3) || solver.equals(PreferenceConstants.SOLVER_YICES2);
+		return solver.equals(PreferenceConstants.SOLVER_Z3);
 	}
 }
