@@ -16,6 +16,7 @@ import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.BinaryUnitExpr;
 import com.rockwellcollins.spear.BoolLiteral;
 import com.rockwellcollins.spear.BoolType;
+import com.rockwellcollins.spear.ConcreteArrayTypeDef;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.DerivedUnit;
@@ -112,6 +113,9 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case SpearPackage.BOOL_TYPE:
 				sequence_Type(context, (BoolType) semanticObject); 
+				return; 
+			case SpearPackage.CONCRETE_ARRAY_TYPE_DEF:
+				sequence_UnusedTypeDef(context, (ConcreteArrayTypeDef) semanticObject); 
 				return; 
 			case SpearPackage.CONSTANT:
 				sequence_Constant(context, (Constant) semanticObject); 
@@ -1372,7 +1376,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     TypeDef returns ArrayTypeDef
 	 *
 	 * Constraint:
-	 *     (name=ID base=Type size=INT)
+	 *     (name=ID base=Type size=Expr)
 	 */
 	protected void sequence_TypeDef(ISerializationContext context, ArrayTypeDef semanticObject) {
 		if (errorAcceptor != null) {
@@ -1386,7 +1390,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getTypeDefAccess().getNameIDTerminalRuleCall_3_1_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getTypeDefAccess().getBaseTypeParserRuleCall_3_3_0(), semanticObject.getBase());
-		feeder.accept(grammarAccess.getTypeDefAccess().getSizeINTTerminalRuleCall_3_5_0(), semanticObject.getSize());
+		feeder.accept(grammarAccess.getTypeDefAccess().getSizeExprParserRuleCall_3_5_0(), semanticObject.getSize());
 		feeder.finish();
 	}
 	
@@ -1542,6 +1546,30 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 */
 	protected void sequence_UnusedExpr(ISerializationContext context, NormalizedCall semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     UnusedTypeDef returns ConcreteArrayTypeDef
+	 *
+	 * Constraint:
+	 *     (name=ID base=Type size=INT)
+	 */
+	protected void sequence_UnusedTypeDef(ISerializationContext context, ConcreteArrayTypeDef semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.TYPE_DEF__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.TYPE_DEF__NAME));
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.CONCRETE_ARRAY_TYPE_DEF__BASE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.CONCRETE_ARRAY_TYPE_DEF__BASE));
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.CONCRETE_ARRAY_TYPE_DEF__SIZE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.CONCRETE_ARRAY_TYPE_DEF__SIZE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getUnusedTypeDefAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getUnusedTypeDefAccess().getBaseTypeParserRuleCall_3_0(), semanticObject.getBase());
+		feeder.accept(grammarAccess.getUnusedTypeDefAccess().getSizeINTTerminalRuleCall_5_0(), semanticObject.getSize());
+		feeder.finish();
 	}
 	
 	

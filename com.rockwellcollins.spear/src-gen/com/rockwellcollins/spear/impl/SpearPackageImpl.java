@@ -13,6 +13,7 @@ import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.BinaryUnitExpr;
 import com.rockwellcollins.spear.BoolLiteral;
 import com.rockwellcollins.spear.BoolType;
+import com.rockwellcollins.spear.ConcreteArrayTypeDef;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Constraint;
 import com.rockwellcollins.spear.Definitions;
@@ -308,6 +309,13 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * @generated
    */
   private EClass enumTypeDefEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass concreteArrayTypeDefEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1442,9 +1450,9 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getArrayTypeDef_Size()
+  public EReference getArrayTypeDef_Size()
   {
-    return (EAttribute)arrayTypeDefEClass.getEStructuralFeatures().get(1);
+    return (EReference)arrayTypeDefEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1465,6 +1473,36 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
   public EReference getEnumTypeDef_Values()
   {
     return (EReference)enumTypeDefEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getConcreteArrayTypeDef()
+  {
+    return concreteArrayTypeDefEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getConcreteArrayTypeDef_Base()
+  {
+    return (EReference)concreteArrayTypeDefEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getConcreteArrayTypeDef_Size()
+  {
+    return (EAttribute)concreteArrayTypeDefEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2307,10 +2345,14 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
 
     arrayTypeDefEClass = createEClass(ARRAY_TYPE_DEF);
     createEReference(arrayTypeDefEClass, ARRAY_TYPE_DEF__BASE);
-    createEAttribute(arrayTypeDefEClass, ARRAY_TYPE_DEF__SIZE);
+    createEReference(arrayTypeDefEClass, ARRAY_TYPE_DEF__SIZE);
 
     enumTypeDefEClass = createEClass(ENUM_TYPE_DEF);
     createEReference(enumTypeDefEClass, ENUM_TYPE_DEF__VALUES);
+
+    concreteArrayTypeDefEClass = createEClass(CONCRETE_ARRAY_TYPE_DEF);
+    createEReference(concreteArrayTypeDefEClass, CONCRETE_ARRAY_TYPE_DEF__BASE);
+    createEAttribute(concreteArrayTypeDefEClass, CONCRETE_ARRAY_TYPE_DEF__SIZE);
 
     intTypeEClass = createEClass(INT_TYPE);
 
@@ -2454,6 +2496,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     recordTypeDefEClass.getESuperTypes().add(this.getTypeDef());
     arrayTypeDefEClass.getESuperTypes().add(this.getTypeDef());
     enumTypeDefEClass.getESuperTypes().add(this.getTypeDef());
+    concreteArrayTypeDefEClass.getESuperTypes().add(this.getTypeDef());
     intTypeEClass.getESuperTypes().add(this.getType());
     boolTypeEClass.getESuperTypes().add(this.getType());
     realTypeEClass.getESuperTypes().add(this.getType());
@@ -2601,10 +2644,14 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
 
     initEClass(arrayTypeDefEClass, ArrayTypeDef.class, "ArrayTypeDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getArrayTypeDef_Base(), this.getType(), null, "base", null, 0, 1, ArrayTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getArrayTypeDef_Size(), ecorePackage.getEInt(), "size", null, 0, 1, ArrayTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getArrayTypeDef_Size(), this.getExpr(), null, "size", null, 0, 1, ArrayTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(enumTypeDefEClass, EnumTypeDef.class, "EnumTypeDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getEnumTypeDef_Values(), this.getEnumValue(), null, "values", null, 0, -1, EnumTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(concreteArrayTypeDefEClass, ConcreteArrayTypeDef.class, "ConcreteArrayTypeDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getConcreteArrayTypeDef_Base(), this.getType(), null, "base", null, 0, 1, ConcreteArrayTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getConcreteArrayTypeDef_Size(), ecorePackage.getEInt(), "size", null, 0, 1, ConcreteArrayTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(intTypeEClass, IntType.class, "IntType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -240,6 +240,11 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
         return createEnumTypeDefAdapter();
       }
       @Override
+      public Adapter caseConcreteArrayTypeDef(ConcreteArrayTypeDef object)
+      {
+        return createConcreteArrayTypeDefAdapter();
+      }
+      @Override
       public Adapter caseIntType(IntType object)
       {
         return createIntTypeAdapter();
@@ -877,6 +882,21 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createEnumTypeDefAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.ConcreteArrayTypeDef <em>Concrete Array Type Def</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.rockwellcollins.spear.ConcreteArrayTypeDef
+   * @generated
+   */
+  public Adapter createConcreteArrayTypeDefAdapter()
   {
     return null;
   }

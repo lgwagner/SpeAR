@@ -97,6 +97,7 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
       case SpearPackage.RECORD_TYPE_DEF: return createRecordTypeDef();
       case SpearPackage.ARRAY_TYPE_DEF: return createArrayTypeDef();
       case SpearPackage.ENUM_TYPE_DEF: return createEnumTypeDef();
+      case SpearPackage.CONCRETE_ARRAY_TYPE_DEF: return createConcreteArrayTypeDef();
       case SpearPackage.INT_TYPE: return createIntType();
       case SpearPackage.BOOL_TYPE: return createBoolType();
       case SpearPackage.REAL_TYPE: return createRealType();
@@ -488,6 +489,17 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
   {
     EnumTypeDefImpl enumTypeDef = new EnumTypeDefImpl();
     return enumTypeDef;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ConcreteArrayTypeDef createConcreteArrayTypeDef()
+  {
+    ConcreteArrayTypeDefImpl concreteArrayTypeDef = new ConcreteArrayTypeDefImpl();
+    return concreteArrayTypeDef;
   }
 
   /**

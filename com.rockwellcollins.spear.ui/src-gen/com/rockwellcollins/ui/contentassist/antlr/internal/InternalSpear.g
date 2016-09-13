@@ -533,6 +533,8 @@ finally {
 
 
 
+
+
 // Entry rule entryRuleFieldType
 entryRuleFieldType 
 :
@@ -7490,6 +7492,7 @@ rule__TypeDef__Group_4_6__1__Impl
 finally {
 	restoreStackSize(stackSize);
 }
+
 
 
 
@@ -16982,8 +16985,8 @@ rule__TypeDef__SizeAssignment_3_5
     }
 :
 (
-{ before(grammarAccess.getTypeDefAccess().getSizeINTTerminalRuleCall_3_5_0()); }
-	RULE_INT{ after(grammarAccess.getTypeDefAccess().getSizeINTTerminalRuleCall_3_5_0()); }
+{ before(grammarAccess.getTypeDefAccess().getSizeExprParserRuleCall_3_5_0()); }
+	ruleExpr{ after(grammarAccess.getTypeDefAccess().getSizeExprParserRuleCall_3_5_0()); }
 )
 
 ;
@@ -17035,6 +17038,9 @@ rule__TypeDef__ValuesAssignment_4_6_1
 finally {
 	restoreStackSize(stackSize);
 }
+
+
+
 
 rule__FieldType__NameAssignment_0
     @init {

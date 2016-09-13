@@ -120,10 +120,14 @@
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//ArrayTypeDef">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//ArrayTypeDef/base"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//ArrayTypeDef/size"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//ArrayTypeDef/size"/>
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//EnumTypeDef">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//EnumTypeDef/values"/>
+    </genClasses>
+    <genClasses ecoreClass="Spear.ecore#//ConcreteArrayTypeDef">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//ConcreteArrayTypeDef/base"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//ConcreteArrayTypeDef/size"/>
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//IntType"/>
     <genClasses ecoreClass="Spear.ecore#//BoolType"/>

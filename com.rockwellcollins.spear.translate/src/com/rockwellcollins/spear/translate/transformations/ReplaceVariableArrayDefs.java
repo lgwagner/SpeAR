@@ -3,26 +3,27 @@ package com.rockwellcollins.spear.translate.transformations;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 
-import com.rockwellcollins.spear.AbstractTypeDef;
-import com.rockwellcollins.spear.NamedTypeDef;
+import com.rockwellcollins.spear.ArrayTypeDef;
+import com.rockwellcollins.spear.ConcreteArrayTypeDef;
 import com.rockwellcollins.spear.SpearFactory;
 import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.util.SpearSwitch;
+import com.rockwellcollins.spear.utilities.ConstantFinder;
 
-public class ReplaceAbstractTypes extends SpearSwitch<EObject> {
+public class ReplaceVariableArrayDefs extends SpearSwitch<EObject> {
 
 	public static void transform(SpearDocument d) {
-		ReplaceAbstractTypes replacer = new ReplaceAbstractTypes(d);
+		ReplaceVariableArrayDefs replacer = new ReplaceVariableArrayDefs(d);
 		for(TypeDef td : d.typedefs.values()) {
 			replacer.doSwitch(td);
 		}
 	}
 	
 	public static void transform(PatternDocument d) {
-		ReplaceAbstractTypes replacer = new ReplaceAbstractTypes(d);
+		ReplaceVariableArrayDefs replacer = new ReplaceVariableArrayDefs(d);
 		for(TypeDef td : d.typedefs.values()) {
 			replacer.doSwitch(td);
 		}		
@@ -30,17 +31,19 @@ public class ReplaceAbstractTypes extends SpearSwitch<EObject> {
 
 	private Document document;
 	
-	public ReplaceAbstractTypes(Document d) {
+	public ReplaceVariableArrayDefs(Document d) {
 		this.document=d;
 	}
 	
-	public EObject caseAbstractTypeDef(AbstractTypeDef atd) {
-		NamedTypeDef ntd = SpearFactory.eINSTANCE.createNamedTypeDef();
-		ntd.setName(atd.getName());
-		ntd.setType(SpearFactory.eINSTANCE.createIntType());
-		EcoreUtil2.replace(atd, ntd);
-		document.typedefs.put(ntd.getName(), ntd);
-		return ntd;
+	public EObject caseArrayTypeDef(ArrayTypeDef atd) {
+		Integer size = ConstantFinder.fetch(atd);
+		ConcreteArrayTypeDef ctd = SpearFactory.eINSTANCE.createConcreteArrayTypeDef();
+		ctd.setName(atd.getName());
+		ctd.setBase(atd.getBase());
+		ctd.setSize(size);
+		EcoreUtil2.replace(atd, ctd);
+		document.typedefs.put(ctd.getName(), ctd);
+		return ctd;
 	}
 	
 	public EObject defaultCase(EObject e) {

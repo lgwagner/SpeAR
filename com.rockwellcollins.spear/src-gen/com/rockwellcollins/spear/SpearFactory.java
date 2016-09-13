@@ -320,6 +320,15 @@ public interface SpearFactory extends EFactory
   EnumTypeDef createEnumTypeDef();
 
   /**
+   * Returns a new object of class '<em>Concrete Array Type Def</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Concrete Array Type Def</em>'.
+   * @generated
+   */
+  ConcreteArrayTypeDef createConcreteArrayTypeDef();
+
+  /**
    * Returns a new object of class '<em>Int Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

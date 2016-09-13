@@ -12,14 +12,9 @@ import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.translate.transformations.PerformTransforms;
 
-public class SpearDocument {
+public class SpearDocument extends Document {
 
-	public String mainName;
-	public Map<String,TypeDef> typedefs = new HashMap<>();
-	public Map<String,Constant> constants = new HashMap<>();
-	public Map<String,Pattern> patterns = new HashMap<>();
 	public Map<String,Specification> specifications = new HashMap<>();
-	public Map<EObject,Map<String,String>> renamed;
 
 	public Specification getMain() {
 		return specifications.get(this.mainName);

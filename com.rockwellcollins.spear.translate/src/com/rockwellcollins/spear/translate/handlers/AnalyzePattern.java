@@ -1,7 +1,5 @@
 package com.rockwellcollins.spear.translate.handlers;
 
-import java.util.Map;
-
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -21,7 +19,6 @@ import org.eclipse.xtext.ui.editor.utils.EditorUtils;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
 import com.rockwellcollins.spear.translate.master.SProgram;
-import com.rockwellcollins.spear.translate.transformations.PerformTransforms;
 import com.rockwellcollins.spear.translate.views.SpearResultsView;
 import com.rockwellcollins.spear.ui.preferences.PreferencesUtil;
 
@@ -60,8 +57,7 @@ public class AnalyzePattern extends AbstractHandler {
 		PatternDocument document = new PatternDocument(p);
 
 		try {
-			@SuppressWarnings("unused")
-			Map<EObject,Map<String,String>> remapped = PerformTransforms.apply(document);
+			document.transform();
 		} catch (Exception e1) {
 			System.err.println("Unexpected error transforming PatternDocument for analysis.");
 			e1.printStackTrace();

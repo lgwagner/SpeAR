@@ -1845,19 +1845,19 @@ ruleIdTypeDelimiter
     }
 (
 (
-		lv_size_23_0=RULE_INT
-		{
-			newLeafNode(lv_size_23_0, grammarAccess.getTypeDefAccess().getSizeINTTerminalRuleCall_3_5_0()); 
-		}
-		{
+		{ 
+	        newCompositeNode(grammarAccess.getTypeDefAccess().getSizeExprParserRuleCall_3_5_0()); 
+	    }
+		lv_size_23_0=ruleExpr		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getTypeDefRule());
+	            $current = createModelElementForParent(grammarAccess.getTypeDefRule());
 	        }
-       		setWithLastConsumed(
+       		set(
        			$current, 
        			"size",
         		lv_size_23_0, 
-        		"org.eclipse.xtext.common.Terminals.INT");
+        		"com.rockwellcollins.Spear.Expr");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
@@ -1952,6 +1952,8 @@ ruleIdTypeDelimiter
     }
 ))
 ;
+
+
 
 
 

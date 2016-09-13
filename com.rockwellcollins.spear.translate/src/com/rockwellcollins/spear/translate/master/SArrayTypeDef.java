@@ -1,6 +1,6 @@
 package com.rockwellcollins.spear.translate.master;
 
-import com.rockwellcollins.spear.ArrayTypeDef;
+import com.rockwellcollins.spear.ConcreteArrayTypeDef;
 import com.rockwellcollins.spear.Type;
 import com.rockwellcollins.spear.translate.lustre.TranslateType;
 
@@ -12,7 +12,7 @@ public class SArrayTypeDef extends STypeDef {
 	public Type base;
 	public Integer size;
 	
-	public SArrayTypeDef(ArrayTypeDef atd, SProgram program) {
+	public SArrayTypeDef(ConcreteArrayTypeDef atd, SProgram program) {
 		this.name = program.map.getName(atd.getName());
 		this.base = atd.getBase();
 		this.size = atd.getSize();

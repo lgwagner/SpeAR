@@ -1054,7 +1054,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cBaseTypeParserRuleCall_3_3_0 = (RuleCall)cBaseAssignment_3_3.eContents().get(0);
 		private final Keyword cLeftSquareBracketKeyword_3_4 = (Keyword)cGroup_3.eContents().get(4);
 		private final Assignment cSizeAssignment_3_5 = (Assignment)cGroup_3.eContents().get(5);
-		private final RuleCall cSizeINTTerminalRuleCall_3_5_0 = (RuleCall)cSizeAssignment_3_5.eContents().get(0);
+		private final RuleCall cSizeExprParserRuleCall_3_5_0 = (RuleCall)cSizeAssignment_3_5.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_3_6 = (Keyword)cGroup_3.eContents().get(6);
 		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
 		private final Action cEnumTypeDefAction_4_0 = (Action)cGroup_4.eContents().get(0);
@@ -1074,13 +1074,13 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//TypeDef:
 		//	{NamedTypeDef} name=ID IdTypeDelimiter type=Type unit=[UnitDef]? | {AbstractTypeDef} name=ID IdTypeDelimiter
 		//	'abstract' | {RecordTypeDef} name=ID IdTypeDelimiter 'record' '{' fields+=FieldType (',' fields+=FieldType)* '}' |
-		//	{ArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=INT ']' | {EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{'
+		//	{ArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=Expr ']' | {EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{'
 		//	values+=EnumValue (',' values+=EnumValue)* '}';
 		@Override public ParserRule getRule() { return rule; }
 
 		//{NamedTypeDef} name=ID IdTypeDelimiter type=Type unit=[UnitDef]? | {AbstractTypeDef} name=ID IdTypeDelimiter 'abstract'
 		//| {RecordTypeDef} name=ID IdTypeDelimiter 'record' '{' fields+=FieldType (',' fields+=FieldType)* '}' | {ArrayTypeDef}
-		//name=ID IdTypeDelimiter base=Type '[' size=INT ']' | {EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{'
+		//name=ID IdTypeDelimiter base=Type '[' size=Expr ']' | {EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{'
 		//values+=EnumValue (',' values+=EnumValue)* '}'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
@@ -1174,7 +1174,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_2_7() { return cRightCurlyBracketKeyword_2_7; }
 
-		//{ArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=INT ']'
+		//{ArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=Expr ']'
 		public Group getGroup_3() { return cGroup_3; }
 
 		//{ArrayTypeDef}
@@ -1198,11 +1198,11 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//'['
 		public Keyword getLeftSquareBracketKeyword_3_4() { return cLeftSquareBracketKeyword_3_4; }
 
-		//size=INT
+		//size=Expr
 		public Assignment getSizeAssignment_3_5() { return cSizeAssignment_3_5; }
 
-		//INT
-		public RuleCall getSizeINTTerminalRuleCall_3_5_0() { return cSizeINTTerminalRuleCall_3_5_0; }
+		//Expr
+		public RuleCall getSizeExprParserRuleCall_3_5_0() { return cSizeExprParserRuleCall_3_5_0; }
 
 		//']'
 		public Keyword getRightSquareBracketKeyword_3_6() { return cRightSquareBracketKeyword_3_6; }
@@ -1248,6 +1248,58 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_4_7() { return cRightCurlyBracketKeyword_4_7; }
+	}
+
+	public class UnusedTypeDefElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.rockwellcollins.Spear.UnusedTypeDef");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cConcreteArrayTypeDefAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final RuleCall cIdTypeDelimiterParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final Assignment cBaseAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cBaseTypeParserRuleCall_3_0 = (RuleCall)cBaseAssignment_3.eContents().get(0);
+		private final Keyword cLeftSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cSizeAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cSizeINTTerminalRuleCall_5_0 = (RuleCall)cSizeAssignment_5.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		
+		//UnusedTypeDef TypeDef:
+		//	{ConcreteArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=INT ']'
+		@Override public ParserRule getRule() { return rule; }
+
+		//{ConcreteArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=INT ']'
+		public Group getGroup() { return cGroup; }
+
+		//{ConcreteArrayTypeDef}
+		public Action getConcreteArrayTypeDefAction_0() { return cConcreteArrayTypeDefAction_0; }
+
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+
+		//IdTypeDelimiter
+		public RuleCall getIdTypeDelimiterParserRuleCall_2() { return cIdTypeDelimiterParserRuleCall_2; }
+
+		//base=Type
+		public Assignment getBaseAssignment_3() { return cBaseAssignment_3; }
+
+		//Type
+		public RuleCall getBaseTypeParserRuleCall_3_0() { return cBaseTypeParserRuleCall_3_0; }
+
+		//'['
+		public Keyword getLeftSquareBracketKeyword_4() { return cLeftSquareBracketKeyword_4; }
+
+		//size=INT
+		public Assignment getSizeAssignment_5() { return cSizeAssignment_5; }
+
+		//INT
+		public RuleCall getSizeINTTerminalRuleCall_5_0() { return cSizeINTTerminalRuleCall_5_0; }
+
+		//']'
+		public Keyword getRightSquareBracketKeyword_6() { return cRightSquareBracketKeyword_6; }
 	}
 
 	public class FieldTypeElements extends AbstractParserRuleElementFinder {
@@ -3533,6 +3585,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	private final DivisionUnitExprElements pDivisionUnitExpr;
 	private final AtomicUnitExprElements pAtomicUnitExpr;
 	private final TypeDefElements pTypeDef;
+	private final UnusedTypeDefElements pUnusedTypeDef;
 	private final FieldTypeElements pFieldType;
 	private final EnumValueElements pEnumValue;
 	private final TypeElements pType;
@@ -3595,6 +3648,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		this.pDivisionUnitExpr = new DivisionUnitExprElements();
 		this.pAtomicUnitExpr = new AtomicUnitExprElements();
 		this.pTypeDef = new TypeDefElements();
+		this.pUnusedTypeDef = new UnusedTypeDefElements();
 		this.pFieldType = new FieldTypeElements();
 		this.pEnumValue = new EnumValueElements();
 		this.pType = new TypeElements();
@@ -3829,7 +3883,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	//TypeDef:
 	//	{NamedTypeDef} name=ID IdTypeDelimiter type=Type unit=[UnitDef]? | {AbstractTypeDef} name=ID IdTypeDelimiter
 	//	'abstract' | {RecordTypeDef} name=ID IdTypeDelimiter 'record' '{' fields+=FieldType (',' fields+=FieldType)* '}' |
-	//	{ArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=INT ']' | {EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{'
+	//	{ArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=Expr ']' | {EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{'
 	//	values+=EnumValue (',' values+=EnumValue)* '}';
 	public TypeDefElements getTypeDefAccess() {
 		return pTypeDef;
@@ -3837,6 +3891,16 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getTypeDefRule() {
 		return getTypeDefAccess().getRule();
+	}
+
+	//UnusedTypeDef TypeDef:
+	//	{ConcreteArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=INT ']'
+	public UnusedTypeDefElements getUnusedTypeDefAccess() {
+		return pUnusedTypeDef;
+	}
+	
+	public ParserRule getUnusedTypeDefRule() {
+		return getUnusedTypeDefAccess().getRule();
 	}
 
 	//FieldType:

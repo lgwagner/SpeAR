@@ -53,6 +53,8 @@ import com.rockwellcollins.spear.UserType;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.WhileExpr;
 import com.rockwellcollins.spear.util.SpearSwitch;
+import com.rockwellcollins.spear.utilities.ConstantChecker;
+import com.rockwellcollins.spear.utilities.ConstantFinder;
 
 public class SpearTypeChecker extends SpearSwitch<Type> {
 
@@ -133,7 +135,24 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 			return ERROR;
 		}
 
-		return new ArrayType(at.getName(), doSwitch(at.getBase()), at.getSize());
+		Type sizeType = doSwitch(at.getSize());
+		if(!sizeType.equals(PrimitiveType.INT)) {
+			error(at.getName() + " must be given an integer size argument.", at, SpearPackage.Literals.ARRAY_TYPE_DEF__SIZE);
+			return ERROR;
+		}
+		
+		if(!ConstantChecker.isConstant(at.getSize())) {
+			error(at.getName() + " must be given a constant size argument.", at, SpearPackage.Literals.ARRAY_TYPE_DEF__SIZE);
+			return ERROR;
+		} 
+		
+		Integer size = ConstantFinder.fetch(at);
+		if(size == null) {
+			error("A concrete size value cannot be determined for " + at.getName(), at, SpearPackage.Literals.ARRAY_TYPE_DEF__SIZE);
+			return ERROR;
+		}
+		
+		return new ArrayType(at.getName(), doSwitch(at.getBase()), size);
 	}
 
 	@Override

@@ -321,6 +321,14 @@ public class SpearSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case SpearPackage.CONCRETE_ARRAY_TYPE_DEF:
+      {
+        ConcreteArrayTypeDef concreteArrayTypeDef = (ConcreteArrayTypeDef)theEObject;
+        T result = caseConcreteArrayTypeDef(concreteArrayTypeDef);
+        if (result == null) result = caseTypeDef(concreteArrayTypeDef);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case SpearPackage.INT_TYPE:
       {
         IntType intType = (IntType)theEObject;
@@ -1052,6 +1060,22 @@ public class SpearSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseEnumTypeDef(EnumTypeDef object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Concrete Array Type Def</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Concrete Array Type Def</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseConcreteArrayTypeDef(ConcreteArrayTypeDef object)
   {
     return null;
   }

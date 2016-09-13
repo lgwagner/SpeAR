@@ -117,6 +117,7 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypeDefAccess().getGroup_3(), "rule__TypeDef__Group_3__0");
 					put(grammarAccess.getTypeDefAccess().getGroup_4(), "rule__TypeDef__Group_4__0");
 					put(grammarAccess.getTypeDefAccess().getGroup_4_6(), "rule__TypeDef__Group_4_6__0");
+					put(grammarAccess.getUnusedTypeDefAccess().getGroup(), "rule__UnusedTypeDef__Group__0");
 					put(grammarAccess.getFieldTypeAccess().getGroup(), "rule__FieldType__Group__0");
 					put(grammarAccess.getTypeAccess().getGroup_0(), "rule__Type__Group_0__0");
 					put(grammarAccess.getTypeAccess().getGroup_1(), "rule__Type__Group_1__0");
@@ -280,6 +281,9 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypeDefAccess().getNameAssignment_4_1(), "rule__TypeDef__NameAssignment_4_1");
 					put(grammarAccess.getTypeDefAccess().getValuesAssignment_4_5(), "rule__TypeDef__ValuesAssignment_4_5");
 					put(grammarAccess.getTypeDefAccess().getValuesAssignment_4_6_1(), "rule__TypeDef__ValuesAssignment_4_6_1");
+					put(grammarAccess.getUnusedTypeDefAccess().getNameAssignment_1(), "rule__UnusedTypeDef__NameAssignment_1");
+					put(grammarAccess.getUnusedTypeDefAccess().getBaseAssignment_3(), "rule__UnusedTypeDef__BaseAssignment_3");
+					put(grammarAccess.getUnusedTypeDefAccess().getSizeAssignment_5(), "rule__UnusedTypeDef__SizeAssignment_5");
 					put(grammarAccess.getFieldTypeAccess().getNameAssignment_0(), "rule__FieldType__NameAssignment_0");
 					put(grammarAccess.getFieldTypeAccess().getTypeAssignment_2(), "rule__FieldType__TypeAssignment_2");
 					put(grammarAccess.getEnumValueAccess().getNameAssignment(), "rule__EnumValue__NameAssignment");

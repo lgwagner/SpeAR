@@ -2,8 +2,7 @@
  */
 package com.rockwellcollins.spear.impl;
 
-import com.rockwellcollins.spear.ArrayTypeDef;
-import com.rockwellcollins.spear.Expr;
+import com.rockwellcollins.spear.ConcreteArrayTypeDef;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Type;
 
@@ -17,19 +16,19 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Array Type Def</b></em>'.
+ * An implementation of the model object '<em><b>Concrete Array Type Def</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link com.rockwellcollins.spear.impl.ArrayTypeDefImpl#getBase <em>Base</em>}</li>
- *   <li>{@link com.rockwellcollins.spear.impl.ArrayTypeDefImpl#getSize <em>Size</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.impl.ConcreteArrayTypeDefImpl#getBase <em>Base</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.impl.ConcreteArrayTypeDefImpl#getSize <em>Size</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ArrayTypeDefImpl extends TypeDefImpl implements ArrayTypeDef
+public class ConcreteArrayTypeDefImpl extends TypeDefImpl implements ConcreteArrayTypeDef
 {
   /**
    * The cached value of the '{@link #getBase() <em>Base</em>}' containment reference.
@@ -42,21 +41,31 @@ public class ArrayTypeDefImpl extends TypeDefImpl implements ArrayTypeDef
   protected Type base;
 
   /**
-   * The cached value of the '{@link #getSize() <em>Size</em>}' containment reference.
+   * The default value of the '{@link #getSize() <em>Size</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getSize()
    * @generated
    * @ordered
    */
-  protected Expr size;
+  protected static final int SIZE_EDEFAULT = 0;
+
+  /**
+   * The cached value of the '{@link #getSize() <em>Size</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getSize()
+   * @generated
+   * @ordered
+   */
+  protected int size = SIZE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ArrayTypeDefImpl()
+  protected ConcreteArrayTypeDefImpl()
   {
     super();
   }
@@ -69,7 +78,7 @@ public class ArrayTypeDefImpl extends TypeDefImpl implements ArrayTypeDef
   @Override
   protected EClass eStaticClass()
   {
-    return SpearPackage.Literals.ARRAY_TYPE_DEF;
+    return SpearPackage.Literals.CONCRETE_ARRAY_TYPE_DEF;
   }
 
   /**
@@ -93,7 +102,7 @@ public class ArrayTypeDefImpl extends TypeDefImpl implements ArrayTypeDef
     base = newBase;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpearPackage.ARRAY_TYPE_DEF__BASE, oldBase, newBase);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpearPackage.CONCRETE_ARRAY_TYPE_DEF__BASE, oldBase, newBase);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -110,14 +119,14 @@ public class ArrayTypeDefImpl extends TypeDefImpl implements ArrayTypeDef
     {
       NotificationChain msgs = null;
       if (base != null)
-        msgs = ((InternalEObject)base).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpearPackage.ARRAY_TYPE_DEF__BASE, null, msgs);
+        msgs = ((InternalEObject)base).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpearPackage.CONCRETE_ARRAY_TYPE_DEF__BASE, null, msgs);
       if (newBase != null)
-        msgs = ((InternalEObject)newBase).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpearPackage.ARRAY_TYPE_DEF__BASE, null, msgs);
+        msgs = ((InternalEObject)newBase).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpearPackage.CONCRETE_ARRAY_TYPE_DEF__BASE, null, msgs);
       msgs = basicSetBase(newBase, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, SpearPackage.ARRAY_TYPE_DEF__BASE, newBase, newBase));
+      eNotify(new ENotificationImpl(this, Notification.SET, SpearPackage.CONCRETE_ARRAY_TYPE_DEF__BASE, newBase, newBase));
   }
 
   /**
@@ -125,7 +134,7 @@ public class ArrayTypeDefImpl extends TypeDefImpl implements ArrayTypeDef
    * <!-- end-user-doc -->
    * @generated
    */
-  public Expr getSize()
+  public int getSize()
   {
     return size;
   }
@@ -135,37 +144,12 @@ public class ArrayTypeDefImpl extends TypeDefImpl implements ArrayTypeDef
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetSize(Expr newSize, NotificationChain msgs)
+  public void setSize(int newSize)
   {
-    Expr oldSize = size;
+    int oldSize = size;
     size = newSize;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpearPackage.ARRAY_TYPE_DEF__SIZE, oldSize, newSize);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setSize(Expr newSize)
-  {
-    if (newSize != size)
-    {
-      NotificationChain msgs = null;
-      if (size != null)
-        msgs = ((InternalEObject)size).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpearPackage.ARRAY_TYPE_DEF__SIZE, null, msgs);
-      if (newSize != null)
-        msgs = ((InternalEObject)newSize).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpearPackage.ARRAY_TYPE_DEF__SIZE, null, msgs);
-      msgs = basicSetSize(newSize, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, SpearPackage.ARRAY_TYPE_DEF__SIZE, newSize, newSize));
+      eNotify(new ENotificationImpl(this, Notification.SET, SpearPackage.CONCRETE_ARRAY_TYPE_DEF__SIZE, oldSize, size));
   }
 
   /**
@@ -178,10 +162,8 @@ public class ArrayTypeDefImpl extends TypeDefImpl implements ArrayTypeDef
   {
     switch (featureID)
     {
-      case SpearPackage.ARRAY_TYPE_DEF__BASE:
+      case SpearPackage.CONCRETE_ARRAY_TYPE_DEF__BASE:
         return basicSetBase(null, msgs);
-      case SpearPackage.ARRAY_TYPE_DEF__SIZE:
-        return basicSetSize(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -196,9 +178,9 @@ public class ArrayTypeDefImpl extends TypeDefImpl implements ArrayTypeDef
   {
     switch (featureID)
     {
-      case SpearPackage.ARRAY_TYPE_DEF__BASE:
+      case SpearPackage.CONCRETE_ARRAY_TYPE_DEF__BASE:
         return getBase();
-      case SpearPackage.ARRAY_TYPE_DEF__SIZE:
+      case SpearPackage.CONCRETE_ARRAY_TYPE_DEF__SIZE:
         return getSize();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -214,11 +196,11 @@ public class ArrayTypeDefImpl extends TypeDefImpl implements ArrayTypeDef
   {
     switch (featureID)
     {
-      case SpearPackage.ARRAY_TYPE_DEF__BASE:
+      case SpearPackage.CONCRETE_ARRAY_TYPE_DEF__BASE:
         setBase((Type)newValue);
         return;
-      case SpearPackage.ARRAY_TYPE_DEF__SIZE:
-        setSize((Expr)newValue);
+      case SpearPackage.CONCRETE_ARRAY_TYPE_DEF__SIZE:
+        setSize((Integer)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -234,11 +216,11 @@ public class ArrayTypeDefImpl extends TypeDefImpl implements ArrayTypeDef
   {
     switch (featureID)
     {
-      case SpearPackage.ARRAY_TYPE_DEF__BASE:
+      case SpearPackage.CONCRETE_ARRAY_TYPE_DEF__BASE:
         setBase((Type)null);
         return;
-      case SpearPackage.ARRAY_TYPE_DEF__SIZE:
-        setSize((Expr)null);
+      case SpearPackage.CONCRETE_ARRAY_TYPE_DEF__SIZE:
+        setSize(SIZE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -254,12 +236,29 @@ public class ArrayTypeDefImpl extends TypeDefImpl implements ArrayTypeDef
   {
     switch (featureID)
     {
-      case SpearPackage.ARRAY_TYPE_DEF__BASE:
+      case SpearPackage.CONCRETE_ARRAY_TYPE_DEF__BASE:
         return base != null;
-      case SpearPackage.ARRAY_TYPE_DEF__SIZE:
-        return size != null;
+      case SpearPackage.CONCRETE_ARRAY_TYPE_DEF__SIZE:
+        return size != SIZE_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
 
-} //ArrayTypeDefImpl
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (size: ");
+    result.append(size);
+    result.append(')');
+    return result.toString();
+  }
+
+} //ConcreteArrayTypeDefImpl
