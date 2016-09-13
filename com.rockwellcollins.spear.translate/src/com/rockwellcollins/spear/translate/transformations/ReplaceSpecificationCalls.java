@@ -18,7 +18,7 @@ import com.rockwellcollins.spear.util.SpearSwitch;
 public class ReplaceSpecificationCalls extends SpearSwitch<EObject> {
 
 	public static void transform(SpearDocument p) {
-		for(Specification s : p.specifications) {
+		for(Specification s : p.specifications.values()) {
 			transform(s);
 		}
 	}

@@ -299,18 +299,15 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Keyword cDerivedRequirementsKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cRequirementsKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
-		private final Keyword cLowLevelRequirementsKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
-		private final Keyword cLLRsKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
-		private final Keyword cImplementationKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
-		private final Keyword cDesignKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
-		private final Keyword cConstraintsKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
+		private final Keyword cImplementationKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+		private final Keyword cDesignKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
+		private final Keyword cConstraintsKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
 		
 		//RequirementsHeader:
-		//	'DerivedRequirements' | 'Requirements' | 'Low-Level Requirements' | 'LLRs' | 'Implementation' | 'Design' |
-		//	'Constraints';
+		//	'DerivedRequirements' | 'Requirements' | 'Implementation' | 'Design' | 'Constraints';
 		@Override public ParserRule getRule() { return rule; }
 
-		//'DerivedRequirements' | 'Requirements' | 'Low-Level Requirements' | 'LLRs' | 'Implementation' | 'Design' | 'Constraints'
+		//'DerivedRequirements' | 'Requirements' | 'Implementation' | 'Design' | 'Constraints'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//'DerivedRequirements'
@@ -319,20 +316,14 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//'Requirements'
 		public Keyword getRequirementsKeyword_1() { return cRequirementsKeyword_1; }
 
-		//'Low-Level Requirements'
-		public Keyword getLowLevelRequirementsKeyword_2() { return cLowLevelRequirementsKeyword_2; }
-
-		//'LLRs'
-		public Keyword getLLRsKeyword_3() { return cLLRsKeyword_3; }
-
 		//'Implementation'
-		public Keyword getImplementationKeyword_4() { return cImplementationKeyword_4; }
+		public Keyword getImplementationKeyword_2() { return cImplementationKeyword_2; }
 
 		//'Design'
-		public Keyword getDesignKeyword_5() { return cDesignKeyword_5; }
+		public Keyword getDesignKeyword_3() { return cDesignKeyword_3; }
 
 		//'Constraints'
-		public Keyword getConstraintsKeyword_6() { return cConstraintsKeyword_6; }
+		public Keyword getConstraintsKeyword_4() { return cConstraintsKeyword_4; }
 	}
 
 	public class PropertiesHeaderElements extends AbstractParserRuleElementFinder {
@@ -341,14 +332,12 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRequirementsKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cPropertiesKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		private final Keyword cGuaranteesKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
-		private final Keyword cHighLevelRequirementsKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
-		private final Keyword cHLRsKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
 		
 		//PropertiesHeader:
-		//	'Requirements' | 'Properties' | 'Guarantees' | 'High-level Requirements' | 'HLRs';
+		//	'Requirements' | 'Properties' | 'Guarantees';
 		@Override public ParserRule getRule() { return rule; }
 
-		//'Requirements' | 'Properties' | 'Guarantees' | 'High-level Requirements' | 'HLRs'
+		//'Requirements' | 'Properties' | 'Guarantees'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//'Requirements'
@@ -359,12 +348,6 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 
 		//'Guarantees'
 		public Keyword getGuaranteesKeyword_2() { return cGuaranteesKeyword_2; }
-
-		//'High-level Requirements'
-		public Keyword getHighLevelRequirementsKeyword_3() { return cHighLevelRequirementsKeyword_3; }
-
-		//'HLRs'
-		public Keyword getHLRsKeyword_4() { return cHLRsKeyword_4; }
 	}
 
 	public class ImportElements extends AbstractParserRuleElementFinder {
@@ -3711,8 +3694,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//RequirementsHeader:
-	//	'DerivedRequirements' | 'Requirements' | 'Low-Level Requirements' | 'LLRs' | 'Implementation' | 'Design' |
-	//	'Constraints';
+	//	'DerivedRequirements' | 'Requirements' | 'Implementation' | 'Design' | 'Constraints';
 	public RequirementsHeaderElements getRequirementsHeaderAccess() {
 		return pRequirementsHeader;
 	}
@@ -3722,7 +3704,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PropertiesHeader:
-	//	'Requirements' | 'Properties' | 'Guarantees' | 'High-level Requirements' | 'HLRs';
+	//	'Requirements' | 'Properties' | 'Guarantees';
 	public PropertiesHeaderElements getPropertiesHeaderAccess() {
 		return pPropertiesHeader;
 	}

@@ -19,11 +19,11 @@ public class RemoveLustreKeywords {
 	public static Map<EObject,Map<String,String>> transform(SpearDocument doc) {
 		Map<EObject,Map<String,String>> map = new HashMap<>();
 		
-		for(Pattern p : doc.patterns) {
+		for(Pattern p : doc.patterns.values()) {
 			map.put(p, transform(p));
 		}
 		
-		for(Specification s : doc.specifications) {
+		for(Specification s : doc.specifications.values()) {
 			map.put(s, transform(s));
 		}
 		return map;
@@ -31,7 +31,7 @@ public class RemoveLustreKeywords {
 	
 	public static Map<EObject,Map<String,String>> transform(PatternDocument doc) {
 		Map<EObject,Map<String,String>> map = new HashMap<>();
-		for(Pattern p : doc.patterns) {
+		for(Pattern p : doc.patterns.values()) {
 			map.put(p, transform(p));
 		}
 		return map;		

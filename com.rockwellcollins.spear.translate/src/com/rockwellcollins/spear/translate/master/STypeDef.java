@@ -1,6 +1,7 @@
 package com.rockwellcollins.spear.translate.master;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import com.rockwellcollins.spear.ArrayTypeDef;
@@ -12,7 +13,7 @@ import com.rockwellcollins.spear.util.SpearSwitch;
 
 public abstract class STypeDef {
 
-	public static List<STypeDef> build(List<TypeDef> list, SProgram p) {
+	public static List<STypeDef> build(Collection<TypeDef> list, SProgram p) {
 		List<STypeDef> processed = new ArrayList<>();
 		for(TypeDef td : list) {
 			processed.add(STypeDef.build(td, p));

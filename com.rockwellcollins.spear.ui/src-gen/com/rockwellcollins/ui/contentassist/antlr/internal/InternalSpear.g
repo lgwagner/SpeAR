@@ -1558,43 +1558,27 @@ rule__RequirementsHeader__Alternatives
 )
 
     |(
-{ before(grammarAccess.getRequirementsHeaderAccess().getLowLevelRequirementsKeyword_2()); }
-
-	'Low-Level Requirements' 
-
-{ after(grammarAccess.getRequirementsHeaderAccess().getLowLevelRequirementsKeyword_2()); }
-)
-
-    |(
-{ before(grammarAccess.getRequirementsHeaderAccess().getLLRsKeyword_3()); }
-
-	'LLRs' 
-
-{ after(grammarAccess.getRequirementsHeaderAccess().getLLRsKeyword_3()); }
-)
-
-    |(
-{ before(grammarAccess.getRequirementsHeaderAccess().getImplementationKeyword_4()); }
+{ before(grammarAccess.getRequirementsHeaderAccess().getImplementationKeyword_2()); }
 
 	'Implementation' 
 
-{ after(grammarAccess.getRequirementsHeaderAccess().getImplementationKeyword_4()); }
+{ after(grammarAccess.getRequirementsHeaderAccess().getImplementationKeyword_2()); }
 )
 
     |(
-{ before(grammarAccess.getRequirementsHeaderAccess().getDesignKeyword_5()); }
+{ before(grammarAccess.getRequirementsHeaderAccess().getDesignKeyword_3()); }
 
 	'Design' 
 
-{ after(grammarAccess.getRequirementsHeaderAccess().getDesignKeyword_5()); }
+{ after(grammarAccess.getRequirementsHeaderAccess().getDesignKeyword_3()); }
 )
 
     |(
-{ before(grammarAccess.getRequirementsHeaderAccess().getConstraintsKeyword_6()); }
+{ before(grammarAccess.getRequirementsHeaderAccess().getConstraintsKeyword_4()); }
 
 	'Constraints' 
 
-{ after(grammarAccess.getRequirementsHeaderAccess().getConstraintsKeyword_6()); }
+{ after(grammarAccess.getRequirementsHeaderAccess().getConstraintsKeyword_4()); }
 )
 
 ;
@@ -1629,22 +1613,6 @@ rule__PropertiesHeader__Alternatives
 	'Guarantees' 
 
 { after(grammarAccess.getPropertiesHeaderAccess().getGuaranteesKeyword_2()); }
-)
-
-    |(
-{ before(grammarAccess.getPropertiesHeaderAccess().getHighLevelRequirementsKeyword_3()); }
-
-	'High-level Requirements' 
-
-{ after(grammarAccess.getPropertiesHeaderAccess().getHighLevelRequirementsKeyword_3()); }
-)
-
-    |(
-{ before(grammarAccess.getPropertiesHeaderAccess().getHLRsKeyword_4()); }
-
-	'HLRs' 
-
-{ after(grammarAccess.getPropertiesHeaderAccess().getHLRsKeyword_4()); }
 )
 
 ;

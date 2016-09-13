@@ -1,6 +1,7 @@
 package com.rockwellcollins.spear.translate.master;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import com.rockwellcollins.spear.Pattern;
@@ -11,7 +12,7 @@ import jkind.lustre.builders.NodeBuilder;
 
 public class SPattern {
 
-	public static List<String> addNames(List<Pattern> list, SProgram program) {
+	public static List<String> addNames(Collection<Pattern> list, SProgram program) {
 		List<String> renamed = new ArrayList<>();
 		for(Pattern p : list) {
 			renamed.add(SPattern.addName(p, program));
@@ -23,7 +24,7 @@ public class SPattern {
 		return program.map.getName(p.getName());
 	}
 	
-	public static List<SPattern> build(List<Pattern> list, SProgram program) {
+	public static List<SPattern> build(Collection<Pattern> list, SProgram program) {
 		List<SPattern> built = new ArrayList<>();
 		for(Pattern p : list) {
 			built.add(SPattern.build(p, program));

@@ -17,17 +17,17 @@ import com.rockwellcollins.spear.util.SpearSwitch;
 public class RemoveSugar extends SpearSwitch<Void> {
 	
 	public static void transform(SpearDocument doc) {
-		for(Pattern p : doc.patterns) {
+		for(Pattern p : doc.patterns.values()) {
 			transform(p);
 		}
 		
-		for(Specification s : doc.specifications) {
+		for(Specification s : doc.specifications.values()) {
 			transform(s);
 		}
 	}
 	
 	public static void transform(PatternDocument doc) {
-		for(Pattern p : doc.patterns) {
+		for(Pattern p : doc.patterns.values()) {
 			transform(p);
 		}
 	}

@@ -10,6 +10,7 @@ import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 public class PerformTransforms {
 
 	public static Map<EObject,Map<String,String>> apply(SpearDocument doc) throws Exception {
+		ReplaceAbstractTypes.transform(doc);
 		Map<EObject,Map<String,String>> renamed = RemoveLustreKeywords.transform(doc);
 		NormalizeOperators.transform(doc);
 		ReplaceShortHandRecords.transform(doc);
@@ -20,6 +21,7 @@ public class PerformTransforms {
 	}
 	
 	public static Map<EObject,Map<String,String>> apply(PatternDocument doc) throws Exception {
+//		ReplaceAbstractTypes.transform(doc);
 		Map<EObject,Map<String,String>> renamed = RemoveLustreKeywords.transform(doc);
 		NormalizeOperators.transform(doc);
 		ReplaceShortHandRecords.transform(doc);

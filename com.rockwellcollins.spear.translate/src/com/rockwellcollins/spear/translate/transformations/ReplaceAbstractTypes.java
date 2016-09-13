@@ -5,42 +5,43 @@ import org.eclipse.xtext.EcoreUtil2;
 
 import com.rockwellcollins.spear.AbstractTypeDef;
 import com.rockwellcollins.spear.NamedTypeDef;
-import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.SpearFactory;
-import com.rockwellcollins.spear.Specification;
-import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
+import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
-public class ReplaceAbstractTypes extends SpearSwitch<Integer> {
+public class ReplaceAbstractTypes extends SpearSwitch<EObject> {
 
 	public static void transform(SpearDocument d) {
-		ReplaceAbstractTypes replacer = new ReplaceAbstractTypes();
-		for(Specification s : d.specifications) {
-			replacer.doSwitch(s);
-		}
-		
-		for(Pattern p : d.patterns) {
-			replacer.doSwitch(p);
+		ReplaceAbstractTypes replacer = new ReplaceAbstractTypes(d);
+		for(TypeDef td : d.typedefs.values()) {
+			replacer.doSwitch(td);
 		}
 	}
 	
-	public static void transofrm(PatternDocument d) {
-		ReplaceAbstractTypes replacer = new ReplaceAbstractTypes();
-		for(Pattern p : d.patterns) {
-			replacer.doSwitch(p);
-		}
+//	public static void transform(PatternDocument d) {
+//		ReplaceAbstractTypes replacer = new ReplaceAbstractTypes();
+//		for(TypeDef td : d.typedefs) {
+//			replacer.doSwitch(td);
+//		}		
+//	}
+
+	private SpearDocument document;
+	
+	public ReplaceAbstractTypes(SpearDocument d) {
+		this.document=d;
 	}
 	
-	public Integer caseAbstractTypeDef(AbstractTypeDef atd) {
+	public EObject caseAbstractTypeDef(AbstractTypeDef atd) {
 		NamedTypeDef ntd = SpearFactory.eINSTANCE.createNamedTypeDef();
 		ntd.setName(atd.getName());
 		ntd.setType(SpearFactory.eINSTANCE.createIntType());
 		EcoreUtil2.replace(atd, ntd);
-		return 0;
+		document.typedefs.put(ntd.getName(), ntd);
+		return ntd;
 	}
 	
-	public Integer defaultCase(EObject e) {
+	public EObject defaultCase(EObject e) {
 		for(EObject o : e.eContents()) {
 			this.doSwitch(o);
 		}
@@ -48,6 +49,6 @@ public class ReplaceAbstractTypes extends SpearSwitch<Integer> {
 		for(EObject o : e.eCrossReferences()) {
 			this.doSwitch(o);
 		}
-		return 0;
+		return e;
 	}
 }

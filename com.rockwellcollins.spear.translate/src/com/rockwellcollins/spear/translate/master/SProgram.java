@@ -41,17 +41,17 @@ public class SProgram {
 		Renaming.addPLTL(map);
 
 		//get the names of the typedefs, constants and process them
-		typedefs.addAll(STypeDef.build(document.typedefs, this));
-		constants.addAll(SConstant.build(document.constants, this));
+		typedefs.addAll(STypeDef.build(document.typedefs.values(), this));
+		constants.addAll(SConstant.build(document.constants.values(), this));
 		
 		//just get the names of these because we need to have them in the namespace before we process them.
 		@SuppressWarnings("unused")
-		List<String> renamedPatterns = SPattern.addNames(document.patterns, this);
+		List<String> renamedPatterns = SPattern.addNames(document.patterns.values(), this);
 		@SuppressWarnings("unused")
-		List<String> renamedSpecifications = SSpecification.addNames(document.specifications, map);
+		List<String> renamedSpecifications = SSpecification.addNames(document.specifications.values(), map);
 
 		//process the patterns. Nothing special to do here.
-		patterns.addAll(SPattern.build(document.patterns, this));
+		patterns.addAll(SPattern.build(document.patterns.values(), this));
 		
 		/* 
 		 * process the specifications in three steps
@@ -59,7 +59,7 @@ public class SProgram {
 		 * 2. resolve the calls among them
 		 * 3. resolve the call variables
 		 */
-		specifications.addAll(SSpecification.build(document.specifications, map));
+		specifications.addAll(SSpecification.build(document.specifications.values(), map));
 		
 		resolveCalls();	
 		resolveCallVars();
@@ -79,14 +79,14 @@ public class SProgram {
 		this.mainName = document.mainName;
 		
 		//add the definitions first
-		typedefs = STypeDef.build(document.typedefs, this);
-		constants = SConstant.build(document.constants, this);
+		typedefs = STypeDef.build(document.typedefs.values(), this);
+		constants = SConstant.build(document.constants.values(), this);
 		
 		@SuppressWarnings("unused")
-		List<String> renamed = SPattern.addNames(document.patterns, this);
+		List<String> renamed = SPattern.addNames(document.patterns.values(), this);
 		
 		//then add the patterns (because they have local scope that could conflict with global scope)
-		patterns = SPattern.build(document.patterns, this);		
+		patterns = SPattern.build(document.patterns.values(), this);		
 	}
 	
 	public Program patternToLustre() {

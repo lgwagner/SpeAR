@@ -1,6 +1,6 @@
 package com.rockwellcollins.spear.translate.intermediate;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,19 +15,14 @@ import com.rockwellcollins.spear.translate.transformations.PerformTransforms;
 public class SpearDocument {
 
 	public String mainName;
-	public List<TypeDef> typedefs = new ArrayList<>();
-	public List<Constant> constants = new ArrayList<>();
-	public List<Pattern> patterns = new ArrayList<>();
-	public List<Specification> specifications = new ArrayList<>();
+	public Map<String,TypeDef> typedefs = new HashMap<>();
+	public Map<String,Constant> constants = new HashMap<>();
+	public Map<String,Pattern> patterns = new HashMap<>();
+	public Map<String,Specification> specifications = new HashMap<>();
 	public Map<EObject,Map<String,String>> renamed;
 
 	public Specification getMain() {
-		for(Specification s : specifications) {
-			if(s.getName().equals(mainName)) {
-				return s;
-			}
-		}
-		return null;
+		return specifications.get(this.mainName);
 	}
 	
 	public SpearDocument(Specification main) {
@@ -36,25 +31,27 @@ public class SpearDocument {
 		for(EObject o : objects) {
 			if (o instanceof TypeDef) {
 				TypeDef typedef = (TypeDef) o;
-				typedefs.add(typedef);
+				typedefs.put(typedef.getName(),typedef);
 			}
 			
 			if (o instanceof Constant) {
 				Constant constant = (Constant) o;
-				constants.add(constant);
+				constants.put(constant.getName(),constant);
 			}
 			
 			if (o instanceof Pattern) {
 				Pattern pattern = (Pattern) o;
-				patterns.add(pattern);
+				patterns.put(pattern.getName(),pattern);
 			}
 			
 			if (o instanceof Specification) {
 				Specification spec = (Specification) o;
-				specifications.add(spec);
+				specifications.put(spec.getName(),spec);
 			}
 		}
-
+	}
+	
+	public void transform() {
 		//transform the document
 		try {
 			this.renamed = PerformTransforms.apply(this);
@@ -62,6 +59,6 @@ public class SpearDocument {
 			System.err.println("Error performing transformations.");
 			e.printStackTrace();
 			System.exit(-1);
-		}
+		}		
 	}
 }

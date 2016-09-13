@@ -1,10 +1,7 @@
 package com.rockwellcollins.spear.translate.transformations;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.xtext.EcoreUtil2;
 
@@ -33,19 +30,19 @@ public class UniquifyNormalizedCalls {
 		return proposed;
 	}
 	
-	private Set<Specification> specs = new HashSet<>();
+	private Map<String,Specification> specs = new HashMap<>();
 	private Map<String,String> map = new HashMap<>();
 	
 	private void processSpec(Specification s) {
 		for(NormalizedCall nc : EcoreUtil2.getAllContentsOfType(s, NormalizedCall.class)) {
 			Specification next = nc.getSpec();
-			if(specs.contains(next)) {
+			if(specs.containsValue(next)) {
 				Specification newNext = createCopy(next);
 				nc.setSpec(newNext);
-				specs.add(newNext);
+				specs.put(newNext.getName(),newNext);
 				processSpec(newNext);
 			} else {
-				specs.add(next);
+				specs.put(next.getName(),next);
 				processSpec(next);
 			}
 		}
@@ -59,19 +56,19 @@ public class UniquifyNormalizedCalls {
 	}
 	
 	private void populateMap(SpearDocument d) {
-		for(TypeDef td : d.typedefs) {
+		for(TypeDef td : d.typedefs.values()) {
 			map.put(td.getName(), td.getName());
 		}
 		
-		for(Constant c : d.constants) {
+		for(Constant c : d.constants.values()) {
 			map.put(c.getName(), c.getName());
 		}
 		
-		for(Pattern p : d.patterns) {
+		for(Pattern p : d.patterns.values()) {
 			map.put(p.getName(), p.getName());
 		}
 		
-		for(Specification s : d.specifications) {
+		for(Specification s : d.specifications.values()) {
 			map.put(s.getName(), s.getName());
 		}
 	}
@@ -79,8 +76,8 @@ public class UniquifyNormalizedCalls {
 	public void makeUnique(SpearDocument d) {
 		populateMap(d);
 		Specification main = d.getMain();
-		specs.add(main);
+		specs.put(main.getName(),main);
 		processSpec(main);
-		d.specifications=new ArrayList<>(this.specs);
+		d.specifications=new HashMap<>(this.specs);
 	}
 }

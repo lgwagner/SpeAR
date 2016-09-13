@@ -95,6 +95,8 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 				SpearRuntimeOptions.setRuntimeOptions();
 				
 				SpearDocument workingCopy = new SpearDocument(specification);
+				workingCopy.transform();
+				
 				SProgram program = SProgram.build(workingCopy);
 
 				Program p = program.getLogicalEntailment();

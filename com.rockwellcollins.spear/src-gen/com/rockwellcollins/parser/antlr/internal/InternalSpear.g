@@ -527,38 +527,24 @@ ruleRequirementsHeader returns [AntlrDatatypeRuleToken current=new AntlrDatatype
     }
 
     |
-	kw='Low-Level Requirements' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getRequirementsHeaderAccess().getLowLevelRequirementsKeyword_2()); 
-    }
-
-    |
-	kw='LLRs' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getRequirementsHeaderAccess().getLLRsKeyword_3()); 
-    }
-
-    |
 	kw='Implementation' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getRequirementsHeaderAccess().getImplementationKeyword_4()); 
+        newLeafNode(kw, grammarAccess.getRequirementsHeaderAccess().getImplementationKeyword_2()); 
     }
 
     |
 	kw='Design' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getRequirementsHeaderAccess().getDesignKeyword_5()); 
+        newLeafNode(kw, grammarAccess.getRequirementsHeaderAccess().getDesignKeyword_3()); 
     }
 
     |
 	kw='Constraints' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getRequirementsHeaderAccess().getConstraintsKeyword_6()); 
+        newLeafNode(kw, grammarAccess.getRequirementsHeaderAccess().getConstraintsKeyword_4()); 
     }
 )
     ;
@@ -600,20 +586,6 @@ rulePropertiesHeader returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRu
     {
         $current.merge(kw);
         newLeafNode(kw, grammarAccess.getPropertiesHeaderAccess().getGuaranteesKeyword_2()); 
-    }
-
-    |
-	kw='High-level Requirements' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getPropertiesHeaderAccess().getHighLevelRequirementsKeyword_3()); 
-    }
-
-    |
-	kw='HLRs' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getPropertiesHeaderAccess().getHLRsKeyword_4()); 
     }
 )
     ;

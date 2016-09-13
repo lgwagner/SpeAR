@@ -1,6 +1,7 @@
 package com.rockwellcollins.spear.translate.master;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import com.rockwellcollins.spear.Constant;
@@ -11,16 +12,16 @@ import com.rockwellcollins.spear.translate.lustre.TranslateType;
 
 public class SConstant {
 	
-	public static SConstant build(Constant c, SProgram program) {
-		return new SConstant(c,program);
-	}
-	
-	public static List<SConstant> build(List<Constant> list, SProgram program) {
+	public static List<SConstant> build(Collection<Constant> list, SProgram program) {
 		List<SConstant> built = new ArrayList<>();
 		for(Constant c : list) {
 			built.add(SConstant.build(c, program));
 		}
 		return built;
+	}
+	
+	public static SConstant build(Constant c, SProgram program) {
+		return new SConstant(c,program);
 	}
 	
 	public static List<jkind.lustre.Constant> toLustre(List<SConstant> list, SProgram program) {

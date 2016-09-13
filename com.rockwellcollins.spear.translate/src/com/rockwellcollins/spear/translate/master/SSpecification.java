@@ -1,6 +1,7 @@
 package com.rockwellcollins.spear.translate.master;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -29,7 +30,7 @@ import jkind.lustre.builders.NodeBuilder;
 
 public class SSpecification {
 
-	public static List<String> addNames(List<Specification> list, Renaming global) {
+	public static List<String> addNames(Collection<Specification> list, Renaming global) {
 		List<String> renamed = new ArrayList<>();
 		for(Specification  s : list) {
 			renamed.add(SSpecification.addName(s, global));
@@ -41,7 +42,7 @@ public class SSpecification {
 		return global.getName(s.getName());
 	}
 	
-	public static List<SSpecification> build(List<Specification> list, Renaming global) {
+	public static List<SSpecification> build(Collection<Specification> list, Renaming global) {
 		List<SSpecification> converted = new ArrayList<>();
 		for(Specification s : list) {
 			converted.add(SSpecification.build(s, global));

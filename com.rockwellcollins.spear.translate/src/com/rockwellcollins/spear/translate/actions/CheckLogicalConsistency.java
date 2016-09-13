@@ -91,7 +91,9 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 				//Set the runtime options
 				SpearRuntimeOptions.setRuntimeOptions();
 				
-				SpearDocument workingCopy = new SpearDocument(specification); 
+				SpearDocument workingCopy = new SpearDocument(specification);
+				workingCopy.transform();
+				
 				SProgram program = SProgram.build(workingCopy);
 				Program p = program.getLogicalConsistency();
 				
