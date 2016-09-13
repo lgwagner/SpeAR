@@ -127,11 +127,6 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 		}
 	}
 	
-	@Check
-	public void warnOnAbstract(AbstractTypeDef atd) {
-		warning("Abstract types are in beta, analysis is not supported.",atd,null);
-	}
-	
 	@Inject
 	protected IValidatorAdvisor options;
 	

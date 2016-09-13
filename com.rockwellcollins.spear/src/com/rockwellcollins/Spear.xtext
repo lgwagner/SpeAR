@@ -29,7 +29,7 @@ RequirementsHeader:
 ;
 
 PropertiesHeader:
-	'Requirements' | 'Properties' | 'Guarantees'
+	'Requirements' | 'Properties' | 'Guarantees' | 'Behaviors'
 ;
 
 Import:

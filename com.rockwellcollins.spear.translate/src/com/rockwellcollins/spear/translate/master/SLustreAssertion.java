@@ -36,6 +36,6 @@ public class SLustreAssertion {
 	}
 	
 	public jkind.lustre.Expr toLustre(SPattern pattern) {
-		return TranslateExpr.translate(this.expression, pattern.map);
+		return TranslateExpr.translate(this.expression, pattern);
 	}
 }

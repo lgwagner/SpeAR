@@ -43,12 +43,12 @@ public class SLustreEquation {
 		this.expression = eq.getRhs();
 	}
 	
-	public Equation toLustre(SPattern s) {
+	public Equation toLustre(SPattern p) {
 		List<IdExpr> lhs = new ArrayList<>();
 		for(String id : ids) {
 			lhs.add(new IdExpr(id));
 		}
-		jkind.lustre.Expr rhs = TranslateExpr.translate(expression, s.map);
+		jkind.lustre.Expr rhs = TranslateExpr.translate(expression, p);
 		return new Equation(lhs,rhs);
 	}
 }

@@ -10,7 +10,7 @@ import com.rockwellcollins.spear.translate.naming.Renaming;
 import jkind.lustre.Node;
 import jkind.lustre.builders.NodeBuilder;
 
-public class SPattern {
+public class SPattern extends SMapElement {
 
 	public static List<String> addNames(Collection<Pattern> list, SProgram program) {
 		List<String> renamed = new ArrayList<>();
@@ -43,8 +43,6 @@ public class SPattern {
 	public static SPattern build(Pattern p, SProgram program) {
 		return new SPattern(p,program);
 	}
-	
-	public Renaming map;
 	
 	public String name;
 	public List<SPVariable> inputs;

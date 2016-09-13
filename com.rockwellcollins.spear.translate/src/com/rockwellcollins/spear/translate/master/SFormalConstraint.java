@@ -2,7 +2,7 @@ package com.rockwellcollins.spear.translate.master;
 
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FormalConstraint;
-import com.rockwellcollins.spear.translate.lustre.TranslateCallExpr;
+import com.rockwellcollins.spear.translate.lustre.TranslateExpr;
 
 import jkind.lustre.BinaryExpr;
 import jkind.lustre.BinaryOp;
@@ -30,14 +30,14 @@ public class SFormalConstraint extends SConstraint {
 	@Override
 	public jkind.lustre.Equation toEquation(SSpecification s) {
 		jkind.lustre.IdExpr lhs = new jkind.lustre.IdExpr(this.name);
-		jkind.lustre.Expr rhs = TranslateCallExpr.translate(this.expression, s);
+		jkind.lustre.Expr rhs = TranslateExpr.translate(this.expression, s);
 		return new jkind.lustre.Equation(lhs, rhs);
 	}
 
 	@Override
 	public jkind.lustre.Equation getPropertyEquation(String assertion, SSpecification spec) {
 		IdExpr lhs = new IdExpr(this.name);
-		jkind.lustre.Expr rhs = new BinaryExpr(new IdExpr(assertion),BinaryOp.IMPLIES,TranslateCallExpr.translate(this.expression,spec));
+		jkind.lustre.Expr rhs = new BinaryExpr(new IdExpr(assertion),BinaryOp.IMPLIES,TranslateExpr.translate(this.expression,spec));
 		return new jkind.lustre.Equation(lhs,rhs);
 	}
 }

@@ -1617,6 +1617,14 @@ rule__PropertiesHeader__Alternatives
 { after(grammarAccess.getPropertiesHeaderAccess().getGuaranteesKeyword_2()); }
 )
 
+    |(
+{ before(grammarAccess.getPropertiesHeaderAccess().getBehaviorsKeyword_3()); }
+
+	'Behaviors' 
+
+{ after(grammarAccess.getPropertiesHeaderAccess().getBehaviorsKeyword_3()); }
+)
+
 ;
 finally {
 	restoreStackSize(stackSize);

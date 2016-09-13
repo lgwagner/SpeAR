@@ -28,7 +28,7 @@ import jkind.lustre.UnaryOp;
 import jkind.lustre.VarDecl;
 import jkind.lustre.builders.NodeBuilder;
 
-public class SSpecification {
+public class SSpecification extends SMapElement {
 
 	public static List<String> addNames(Collection<Specification> list, Renaming global) {
 		List<String> renamed = new ArrayList<>();
@@ -83,8 +83,6 @@ public class SSpecification {
 	
 	private String consistencyName;
 	private static final String CONSISTENCY = "consistent";
-	
-	public Renaming map;
 	
 	public String name;
 	public List<SMacro> macros = new ArrayList<>();

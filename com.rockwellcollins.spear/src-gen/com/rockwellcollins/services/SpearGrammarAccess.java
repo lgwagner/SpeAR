@@ -332,12 +332,13 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRequirementsKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cPropertiesKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		private final Keyword cGuaranteesKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+		private final Keyword cBehaviorsKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
 		
 		//PropertiesHeader:
-		//	'Requirements' | 'Properties' | 'Guarantees';
+		//	'Requirements' | 'Properties' | 'Guarantees' | 'Behaviors';
 		@Override public ParserRule getRule() { return rule; }
 
-		//'Requirements' | 'Properties' | 'Guarantees'
+		//'Requirements' | 'Properties' | 'Guarantees' | 'Behaviors'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//'Requirements'
@@ -348,6 +349,9 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 
 		//'Guarantees'
 		public Keyword getGuaranteesKeyword_2() { return cGuaranteesKeyword_2; }
+
+		//'Behaviors'
+		public Keyword getBehaviorsKeyword_3() { return cBehaviorsKeyword_3; }
 	}
 
 	public class ImportElements extends AbstractParserRuleElementFinder {
@@ -3758,7 +3762,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PropertiesHeader:
-	//	'Requirements' | 'Properties' | 'Guarantees';
+	//	'Requirements' | 'Properties' | 'Guarantees' | 'Behaviors';
 	public PropertiesHeaderElements getPropertiesHeaderAccess() {
 		return pPropertiesHeader;
 	}

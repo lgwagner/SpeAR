@@ -6,7 +6,7 @@ import java.util.List;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.Type;
-import com.rockwellcollins.spear.translate.lustre.TranslateCallExpr;
+import com.rockwellcollins.spear.translate.lustre.TranslateExpr;
 import com.rockwellcollins.spear.translate.lustre.TranslateType;
 
 import jkind.lustre.Equation;
@@ -59,7 +59,7 @@ public class SMacro {
 	
 	public jkind.lustre.Equation toEquation(SSpecification s) {
 		jkind.lustre.IdExpr LHS = new jkind.lustre.IdExpr(this.name);
-		jkind.lustre.Expr RHS = TranslateCallExpr.translate(expression, s);
+		jkind.lustre.Expr RHS = TranslateExpr.translate(expression, s);
 		return new jkind.lustre.Equation(LHS,RHS);
 	}
 }

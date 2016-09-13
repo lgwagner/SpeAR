@@ -587,6 +587,13 @@ rulePropertiesHeader returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRu
         $current.merge(kw);
         newLeafNode(kw, grammarAccess.getPropertiesHeaderAccess().getGuaranteesKeyword_2()); 
     }
+
+    |
+	kw='Behaviors' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getPropertiesHeaderAccess().getBehaviorsKeyword_3()); 
+    }
 )
     ;
 

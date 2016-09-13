@@ -11,13 +11,12 @@ import com.rockwellcollins.spear.utilities.PLTL;
 import jkind.lustre.Program;
 import jkind.lustre.builders.ProgramBuilder;
 
-public class SProgram {
+public class SProgram extends SMapElement {
 
 	public static SProgram build(SpearDocument doc) {
 		return new SProgram(doc);
 	}
 	
-	public Renaming map;
 	public String mainName;
 	public List<STypeDef> typedefs = new ArrayList<>();
 	public List<SConstant> constants = new ArrayList<>();
@@ -104,6 +103,7 @@ public class SProgram {
 		program.setMain(this.mainName);
 		return program.build();
 	}
+	
 	private void resolveCalls() {
 		for(SSpecification s : specifications) {
 			s.resolveCalls(specifications);
