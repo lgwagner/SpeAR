@@ -156,6 +156,9 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 					error("Multiplication by non-constant variables is not supported.",be,null);
 				}
 				break;
+				
+			default:
+				break;
 		}
 	}
 }
