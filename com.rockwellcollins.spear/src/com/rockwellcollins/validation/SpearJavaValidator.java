@@ -12,7 +12,7 @@ import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.ComposedChecks;
 
 import com.google.inject.Inject;
-import com.rockwellcollins.spear.AbstractTypeDef;
+import com.rockwellcollins.spear.ArrayAccessExpr;
 import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Constraint;

@@ -217,7 +217,7 @@ UnusedExpr returns Expr:
 	{NormalizedCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')';
 
 IdRef:
-	Variable
+	 Variable
 	| Macro
 	| Constant
 	| EnumValue;

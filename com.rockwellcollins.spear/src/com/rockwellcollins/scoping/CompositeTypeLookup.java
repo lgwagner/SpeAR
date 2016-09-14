@@ -5,6 +5,7 @@ import org.eclipse.emf.ecore.EObject;
 import com.rockwellcollins.spear.ArrayAccessExpr;
 import com.rockwellcollins.spear.ArrayExpr;
 import com.rockwellcollins.spear.ArrayTypeDef;
+import com.rockwellcollins.spear.ArrayUpdateExpr;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.EnumTypeDef;
 import com.rockwellcollins.spear.Expr;
@@ -28,6 +29,10 @@ public class CompositeTypeLookup extends SpearSwitch<TypeDef> {
 
 	public static RecordTypeDef getRecordType(Expr e) {
 		return (RecordTypeDef) new CompositeTypeLookup().doSwitch(e);
+	}
+	
+	public static TypeDef getTypeDef(Expr e) {
+		return new CompositeTypeLookup().doSwitch(e);
 	}
 
 	@Override
@@ -84,6 +89,11 @@ public class CompositeTypeLookup extends SpearSwitch<TypeDef> {
 	public TypeDef caseArrayAccessExpr(ArrayAccessExpr aae) {
 		ArrayTypeDef at = (ArrayTypeDef) doSwitch(aae.getArray());
 		return doSwitch(at.getBase());
+	}
+	
+	@Override
+	public TypeDef caseArrayUpdateExpr(ArrayUpdateExpr aue) {
+		return this.doSwitch(aue.getAccess());
 	}
 	
 	@Override
