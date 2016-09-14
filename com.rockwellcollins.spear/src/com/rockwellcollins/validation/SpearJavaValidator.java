@@ -108,7 +108,7 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 	@Check
 	public void checkForIllegalArrows(Specification s) {
 		for(BinaryExpr be : EcoreUtil2.getAllContentsOfType(s, BinaryExpr.class)) {
-			if(be.getOp().equals("->")) {
+			if(be.getOp().equals("->") || be.getOp().equals("arrow")) {
 				EObject container = Utilities.getTopContainer(be);
 				if(container instanceof Specification) {
 					error("Arrow operators are meant for use inside of patterns only.",be,SpearPackage.Literals.BINARY_EXPR__OP);
@@ -142,13 +142,13 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 		switch (be.getOp()) {
 			case "/":
 				if(!isRightConstant) {
-					error("Division by non-constant variable is not supported.",be,SpearPackage.Literals.BINARY_EXPR__RIGHT);
+					error("Division by non-constant expressions is not supported.",be,SpearPackage.Literals.BINARY_EXPR__RIGHT);
 				}
 				break;
 				
 			case "*":
 				if(!isLeftConstant && !isRightConstant) {
-					error("Multiplication by non-constant variables is not supported.",be,null);
+					error("Multiplication by non-constant expressions is not supported.",be,null);
 				}
 				break;
 				
