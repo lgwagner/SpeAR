@@ -66,14 +66,15 @@ public class FindSpecificationDependencies extends SpearSwitch<Status> {
 		for(EObject sub : e.eContents()) {
 			if(!traversed.contains(sub)) {
 				traversed.add(sub);
-				this.doSwitch(sub);				
+				this.doSwitch(sub);
 			}
+							
 		}
 		
 		for(EObject ref : e.eCrossReferences()) {
 			if(!traversed.contains(ref)) {
 				traversed.add(ref);
-				this.doSwitch(ref);				
+				this.doSwitch(ref);
 			}
 		}
 		return Status.DONE;
