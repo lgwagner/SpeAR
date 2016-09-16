@@ -82,7 +82,6 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 					specification = (Specification) f;
 				}
 
-
 				if (hasErrors(specification.eResource())) {
 					MessageDialog.openError(window.getShell(), "Error", "Specification contains errors.");
 					return null;

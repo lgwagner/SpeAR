@@ -6,21 +6,29 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.text.TextSelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.resource.EObjectAtOffsetHelper;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.utils.EditorUtils;
+import org.eclipse.xtext.util.CancelIndicator;
+import org.eclipse.xtext.validation.CheckMode;
+import org.eclipse.xtext.validation.IResourceValidator;
+import org.eclipse.xtext.validation.Issue;
 
+import com.google.inject.Injector;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
 import com.rockwellcollins.spear.translate.master.SProgram;
 import com.rockwellcollins.spear.translate.views.SpearResultsView;
 import com.rockwellcollins.spear.ui.preferences.PreferencesUtil;
+import com.rockwellcollins.ui.internal.SpearActivator;
 
 import jkind.api.JKindApi;
 import jkind.api.results.JKindResult;
@@ -47,12 +55,29 @@ public class AnalyzePattern extends AbstractHandler {
 				return null;
 			}
 			
+			if(hasErrors(resource)) {
+				MessageDialog.openError(window.getShell(), "Error", "Pattern contains errors.");
+				return null;
+			}
+			
 			analyzePattern(p);
 			return null;
 		});
 		return null;
 	}
 
+	protected boolean hasErrors(Resource res) {
+		Injector injector = SpearActivator.getInstance().getInjector(SpearActivator.COM_ROCKWELLCOLLINS_SPEAR);
+		IResourceValidator resourceValidator = injector.getInstance(IResourceValidator.class);
+
+		for (Issue issue : resourceValidator.validate(res, CheckMode.ALL, CancelIndicator.NullImpl)) {
+			if (issue.getSeverity() == Severity.ERROR) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	private void analyzePattern(Pattern p) {
 		PatternDocument document = new PatternDocument(p);
 
