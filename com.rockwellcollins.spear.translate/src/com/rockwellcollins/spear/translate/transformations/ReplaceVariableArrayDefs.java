@@ -39,7 +39,7 @@ public class ReplaceVariableArrayDefs extends SpearSwitch<EObject> {
 		Integer size = ConstantFinder.fetch(atd);
 		ConcreteArrayTypeDef ctd = SpearFactory.eINSTANCE.createConcreteArrayTypeDef();
 		ctd.setName(atd.getName());
-		ctd.setBase(atd.getBase());
+		ctd.setBase(EcoreUtil2.copy(atd.getBase()));
 		ctd.setSize(size);
 		EcoreUtil2.replace(atd, ctd);
 		document.typedefs.put(ctd.getName(), ctd);
