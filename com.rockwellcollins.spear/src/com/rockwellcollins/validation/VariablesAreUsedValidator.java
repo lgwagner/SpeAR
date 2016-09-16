@@ -39,7 +39,7 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 	}
 	
 	private String notAssignedErrorMessage(EObject o) {
-		return Utilities.getName(o) + " is not assigned, but must be.";
+		return Utilities.getName(o) + " is declared, but never assigned.";
 	}
 	
 	@Check
