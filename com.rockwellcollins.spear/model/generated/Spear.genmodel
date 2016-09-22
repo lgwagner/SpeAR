@@ -4,7 +4,7 @@
     editorDirectory="/com.rockwellcollins.spear.editor/src" modelPluginID="com.rockwellcollins.spear"
     forceOverwrite="true" modelName="Spear" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="6.0" copyrightFields="false" editPluginID="com.rockwellcollins.spear.edit"
-    editorPluginID="com.rockwellcollins.spear.editor" runtimeVersion="2.12">
+    editorPluginID="com.rockwellcollins.spear.editor" runtimeVersion="2.11">
   <genPackages prefix="Spear" basePackage="com.rockwellcollins" disposableProviderFactory="true"
       fileExtensions="spear" ecorePackage="Spear.ecore#/">
     <genClasses ecoreClass="Spear.ecore#//File">

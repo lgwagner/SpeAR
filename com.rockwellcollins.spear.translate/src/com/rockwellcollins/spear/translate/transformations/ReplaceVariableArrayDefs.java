@@ -11,7 +11,7 @@ import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.util.SpearSwitch;
-import com.rockwellcollins.spear.utilities.ConstantFinder;
+import com.rockwellcollins.spear.utilities.IntegerConstantFinder;
 
 public class ReplaceVariableArrayDefs extends SpearSwitch<EObject> {
 
@@ -36,7 +36,7 @@ public class ReplaceVariableArrayDefs extends SpearSwitch<EObject> {
 	}
 	
 	public EObject caseArrayTypeDef(ArrayTypeDef atd) {
-		Integer size = ConstantFinder.fetch(atd);
+		Integer size = IntegerConstantFinder.fetch(atd);
 		ConcreteArrayTypeDef ctd = SpearFactory.eINSTANCE.createConcreteArrayTypeDef();
 		ctd.setName(atd.getName());
 		ctd.setBase(EcoreUtil2.copy(atd.getBase()));

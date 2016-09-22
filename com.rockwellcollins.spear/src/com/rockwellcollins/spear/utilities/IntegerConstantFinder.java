@@ -7,25 +7,20 @@ import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.IntLiteral;
-import com.rockwellcollins.spear.Macro;
+import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
-public class ConstantFinder extends SpearSwitch<Integer> {
+public class IntegerConstantFinder extends SpearSwitch<Integer> {
 
 	public static Integer fetch(ArrayTypeDef atd) {
-		ConstantFinder finder = new ConstantFinder();
+		IntegerConstantFinder finder = new IntegerConstantFinder();
 		return finder.doSwitch(atd.getSize());
 	}
 	
 	@Override
 	public Integer caseConstant(Constant c) {
 		return this.doSwitch(c.getExpr());
-	}
-	
-	@Override
-	public Integer caseMacro(Macro m) {
-		return this.doSwitch(m.getExpr());
 	}
 	
 	@Override

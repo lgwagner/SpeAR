@@ -11,7 +11,6 @@ import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FieldExpr;
 import com.rockwellcollins.spear.FieldlessRecordExpr;
 import com.rockwellcollins.spear.IdExpr;
-import com.rockwellcollins.spear.IfThenElseExpr;
 import com.rockwellcollins.spear.IntLiteral;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.RealLiteral;
@@ -19,7 +18,6 @@ import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.RecordExpr;
 import com.rockwellcollins.spear.RecordUpdateExpr;
 import com.rockwellcollins.spear.UnaryExpr;
-import com.rockwellcollins.spear.WhileExpr;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 public class ConstantChecker extends SpearSwitch<Boolean> {
