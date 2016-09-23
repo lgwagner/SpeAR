@@ -37,7 +37,6 @@ public class SpecificationsAcyclicValidator extends AbstractSpearJavaValidator {
 		}
 		return dependencies;
 	}
-	
 
 	private Map<String, Set<String>> insert(Map<String, Set<String>> map, String spec, String calledSpec) {
 		Set<String> specSet;
