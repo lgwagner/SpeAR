@@ -10,6 +10,7 @@ import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.Macro;
+import com.rockwellcollins.spear.PreviousExpr;
 import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.util.SpearSwitch;
 import com.rockwellcollins.spear.utilities.Utilities;
@@ -55,6 +56,11 @@ public class AcyclicValidator extends SpearSwitch<Integer> {
 	}
 	
 	public List<EObject> dependencies = new ArrayList<>();
+	
+	@Override
+	public Integer casePreviousExpr(PreviousExpr pe) {
+		return 0;
+	}
 	
 	@Override
 	public Integer caseTypeDef(TypeDef td) {
