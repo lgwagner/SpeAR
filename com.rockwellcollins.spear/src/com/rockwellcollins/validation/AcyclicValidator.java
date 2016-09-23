@@ -29,9 +29,9 @@ public class AcyclicValidator extends SpearSwitch<Integer> {
 	}
 	
 	public static List<EObject> validate(Macro m) {
-		AcyclicValidator valid8 = new AcyclicValidator();
-		valid8.doSwitch(m.getExpr());
-		return valid8.dependencies;
+		AcyclicValidator validate = new AcyclicValidator();
+		validate.doSwitch(m.getExpr());
+		return validate.dependencies;
 	}
 	
 	public static String getMessage(EObject start, List<EObject> dependencies) {
