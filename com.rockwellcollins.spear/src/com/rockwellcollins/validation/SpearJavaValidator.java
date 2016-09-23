@@ -4,6 +4,7 @@
 package com.rockwellcollins.validation;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
@@ -12,7 +13,6 @@ import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.ComposedChecks;
 
 import com.google.inject.Inject;
-import com.rockwellcollins.spear.ArrayAccessExpr;
 import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Constraint;
@@ -35,7 +35,7 @@ import com.rockwellcollins.spear.utilities.Utilities;
 
 @ComposedChecks(validators = {TypesAcyclicValidator.class, 
 							  SpecificationsAcyclicValidator.class, 
-							  ConstantsAcyclicValidator.class,
+//							  ConstantsAcyclicValidator.class,
 							  MacrosAcyclicValidator.class,
 							  VariablesAreUsedValidator.class,
 							  IllegalAnalysisValidations.class,
@@ -114,6 +114,15 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 					error("Arrow operators are meant for use inside of patterns only.",be,SpearPackage.Literals.BINARY_EXPR__OP);
 				}
 			}
+		}
+	}
+	
+	@Check
+	public void checkConstantsAreAcyclic(Constant c) {
+		List<EObject> deps = ConstantsAcyclicValidator2.validate(c);
+		if(deps.contains(c)) {
+			String message = "Cycle detected: " + c.getName() + " -> " + ConstantsAcyclicValidator2.getMessage(c,deps);
+			error(message, c, SpearPackage.Literals.ID_REF__NAME);
 		}
 	}
 	
