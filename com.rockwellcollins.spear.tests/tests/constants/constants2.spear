@@ -1,0 +1,29 @@
+Specification constants
+
+Types:
+	record1: record {a : int, b : real, c : bool}
+	array1: int[3]
+
+Constants:
+	c1 : int = m1
+	c2 : int = c3
+	c3 : int = c1
+	
+	c4 : real = c5
+	c5 : real = c4
+
+Inputs:
+
+Outputs:
+
+State:
+
+Macros:
+	m1 : int = c2
+
+Assumptions:
+
+Constraints:
+
+Properties:
+

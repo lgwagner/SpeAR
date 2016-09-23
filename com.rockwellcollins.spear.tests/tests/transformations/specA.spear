@@ -1,0 +1,25 @@
+Specification specA
+
+Types:
+	array1: int[c1+c2]
+
+Constants:
+	c1 : int = 5
+	c2 : int = 7
+
+Inputs:
+	a : array1
+
+Outputs:
+	y : array1
+
+State:
+
+Assumptions:
+
+Requirements:
+	r0: y[0] == a[3]
+
+Properties:
+	p0: y[1] > a[2]
+

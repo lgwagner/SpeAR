@@ -16,11 +16,11 @@ Outputs:
 
 Assumptions:
 	a0: a == b
-	a1: a == c
 
 Constraints:
 	c0: x == (c == d)
 	c1: y == (a == b)
 	
 Requirements:
+	p0: x
 

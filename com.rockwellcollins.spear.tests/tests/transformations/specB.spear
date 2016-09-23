@@ -1,0 +1,16 @@
+Specification specB
+
+
+Inputs:
+	in : bool
+
+Outputs:
+	out : bool
+
+Assumptions:
+
+Requirements:
+	r0: out == not in
+	
+Properties:
+

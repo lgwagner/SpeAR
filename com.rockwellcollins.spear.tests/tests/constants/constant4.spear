@@ -1,0 +1,27 @@
+Specification constants
+
+Imports:
+	import "constant3.spear"
+
+Types:
+	type1 : t1
+
+Constants:
+	constant3 : int = c6
+
+
+Inputs:
+
+Outputs:
+
+State:
+
+Macros:
+	macro1 : int = m1
+
+Assumptions:
+
+Constraints:
+
+Properties:
+

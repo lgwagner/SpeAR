@@ -18,9 +18,7 @@ Assumptions:
 	a1: d > 0.0 and e > 0.0
 
 DerivedRequirements:
-	r0: x == a / b
-	r1: y == d / e
 
 Requirements:
-	dr0: x > 0
+	dr0: x == 0 arrow 5
 	dr1: y > 0.0

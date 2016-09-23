@@ -1,0 +1,51 @@
+Specification constants
+
+Imports:
+	import "constant4.spear"
+
+Types:
+	t1 : t2
+	t2 : t3
+	t3 : type1
+	
+	t_array1 : t_array2[3]
+	t_array2 : t_array1[4]
+	
+	t_record : record {a : int, b : t_record}
+	
+	t_record2 : record {a : int, b : t_record3}
+	t_record3 : record {a : int, b : t_record2}
+	
+	t_mix : record {a : t10, b : t11}
+	t10 : t12
+	t11 : t_mix
+	t12 : int
+
+Constants:
+	c1 : int = m1
+	c2 : int = c3
+	c3 : int = c1
+	
+	c4 : real = c5
+	c5 : real = c4
+	
+	c6 : int = constant3
+	
+	c14 : int = m1
+
+Inputs:
+
+Outputs:
+
+State:
+
+Macros:
+	m1 : int = m2
+	m2 : int = macro1
+
+Assumptions:
+
+Constraints:
+
+Properties:
+

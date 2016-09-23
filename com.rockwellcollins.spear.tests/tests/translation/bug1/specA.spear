@@ -20,6 +20,6 @@ Requirements:
 	r1: z == spec specB(a+1)
 
 Properties:
-	p0: y > 0
+	p0: y > 11
 	p1: z > 0
 
