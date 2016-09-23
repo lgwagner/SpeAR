@@ -11,10 +11,10 @@ import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
-public class ConstantFinder extends SpearSwitch<Integer> {
+public class IntConstantFinder extends SpearSwitch<Integer> {
 
 	public static Integer fetch(ArrayTypeDef atd) {
-		ConstantFinder finder = new ConstantFinder();
+		IntConstantFinder finder = new IntConstantFinder();
 		return finder.doSwitch(atd.getSize());
 	}
 	

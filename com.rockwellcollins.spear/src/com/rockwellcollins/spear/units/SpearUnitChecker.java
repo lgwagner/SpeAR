@@ -50,7 +50,7 @@ import com.rockwellcollins.spear.UserType;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.WhileExpr;
 import com.rockwellcollins.spear.util.SpearSwitch;
-import com.rockwellcollins.spear.utilities.ConstantFinder;
+import com.rockwellcollins.spear.utilities.IntConstantFinder;
 
 public class SpearUnitChecker extends SpearSwitch<Unit> {
 
@@ -209,7 +209,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	@Override
 	public Unit caseArrayTypeDef(ArrayTypeDef at) {
 		//this should just work because typechecking has presumably passed.
-		Integer size = ConstantFinder.fetch(at);
+		Integer size = IntConstantFinder.fetch(at);
 		if(size == null) {
 			return ERROR;
 		}
