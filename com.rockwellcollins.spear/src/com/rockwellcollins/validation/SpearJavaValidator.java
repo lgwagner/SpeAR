@@ -18,6 +18,7 @@ import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Constraint;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.IdExpr;
+import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.PreviousExpr;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
@@ -34,13 +35,10 @@ import com.rockwellcollins.spear.utilities.Utilities;
  * validation
  */
 
-@ComposedChecks(validators = {
-//							  TypesAcyclicValidator.class, 
-							  SpecificationsAcyclicValidator.class, 
-							  MacrosAcyclicValidator.class,
-							  VariablesAreUsedValidator.class,
-							  IllegalAnalysisValidations.class,
-							  TypeCheckingValidator.class})
+@ComposedChecks(validators = { SpecificationsAcyclicValidator.class,
+							   VariablesAreUsedValidator.class,
+							   IllegalAnalysisValidations.class,
+							   TypeCheckingValidator.class})
 
 public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractSpearJavaValidator {
 
@@ -119,6 +117,15 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 	}
 	
 	@Check
+	public void checkTypesAreAcyclic(TypeDef td) {
+		List<EObject> deps = AcyclicValidator.validate(td);
+		if(deps.contains(td)) {
+			String message = "Cycle detected: " + td.getName() + " -> " + AcyclicValidator.getMessage(td,deps);
+			error(message, td, SpearPackage.Literals.TYPE_DEF__NAME);
+		}
+	}
+	
+	@Check
 	public void checkConstantsAreAcyclic(Constant c) {
 		List<EObject> deps = AcyclicValidator.validate(c);
 		if(deps.contains(c)) {
@@ -128,12 +135,12 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 	}
 	
 	@Check
-	public void checkTypesAreAcyclic(TypeDef td) {
-		List<EObject> deps = AcyclicValidator.validate(td);
-		if(deps.contains(td)) {
-			String message = "Cycle detected: " + td.getName() + " -> " + AcyclicValidator.getMessage(td,deps);
-			error(message, td, SpearPackage.Literals.TYPE_DEF__NAME);
-		}
+	public void checkMacrosAreAcyclic(Macro m) {
+		List<EObject> deps = AcyclicValidator.validate(m);
+		if(deps.contains(m)) {
+			String message = "Cycle detected: " + m.getName() + " -> " + AcyclicValidator.getMessage(m,deps);
+			error(message, m, SpearPackage.Literals.ID_REF__NAME);
+		}	
 	}
 	
 	@Check

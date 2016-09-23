@@ -9,11 +9,18 @@ import org.eclipse.emf.ecore.EObject;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.IdRef;
+import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.util.SpearSwitch;
 import com.rockwellcollins.spear.utilities.Utilities;
 
 public class AcyclicValidator extends SpearSwitch<Integer> {
+
+	public static List<EObject> validate(TypeDef td) {
+		AcyclicValidator valid8 = new AcyclicValidator();
+		valid8.defaultCase(td);
+		return valid8.dependencies;
+	}
 
 	public static List<EObject> validate(Constant c) {
 		AcyclicValidator valid8 = new AcyclicValidator();
@@ -21,9 +28,9 @@ public class AcyclicValidator extends SpearSwitch<Integer> {
 		return valid8.dependencies;
 	}
 	
-	public static List<EObject> validate(TypeDef td) {
+	public static List<EObject> validate(Macro m) {
 		AcyclicValidator valid8 = new AcyclicValidator();
-		valid8.defaultCase(td);
+		valid8.doSwitch(m.getExpr());
 		return valid8.dependencies;
 	}
 	
