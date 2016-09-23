@@ -55,6 +55,7 @@ import com.rockwellcollins.spear.WhileExpr;
 import com.rockwellcollins.spear.util.SpearSwitch;
 import com.rockwellcollins.spear.utilities.ConstantChecker;
 import com.rockwellcollins.spear.utilities.IntConstantFinder;
+import com.rockwellcollins.spear.utilities.IntegerConstantFinder;
 
 public class SpearTypeChecker extends SpearSwitch<Type> {
 

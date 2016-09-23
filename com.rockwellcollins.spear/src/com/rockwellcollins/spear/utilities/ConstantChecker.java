@@ -1,19 +1,23 @@
 package com.rockwellcollins.spear.utilities;
 
-import org.eclipse.emf.ecore.EObject;
-
+import com.rockwellcollins.spear.ArrayAccessExpr;
+import com.rockwellcollins.spear.ArrayExpr;
+import com.rockwellcollins.spear.ArrayUpdateExpr;
 import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.BoolLiteral;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.Expr;
+import com.rockwellcollins.spear.FieldExpr;
+import com.rockwellcollins.spear.FieldlessRecordExpr;
 import com.rockwellcollins.spear.IdExpr;
-import com.rockwellcollins.spear.IfThenElseExpr;
 import com.rockwellcollins.spear.IntLiteral;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.RealLiteral;
+import com.rockwellcollins.spear.RecordAccessExpr;
+import com.rockwellcollins.spear.RecordExpr;
+import com.rockwellcollins.spear.RecordUpdateExpr;
 import com.rockwellcollins.spear.UnaryExpr;
-import com.rockwellcollins.spear.WhileExpr;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 public class ConstantChecker extends SpearSwitch<Boolean> {
@@ -43,15 +47,60 @@ public class ConstantChecker extends SpearSwitch<Boolean> {
 	}
 	
 	@Override
-	public Boolean caseIfThenElseExpr(IfThenElseExpr ite) {
-		return false;
+	public Boolean caseArrayExpr(ArrayExpr ae) {
+		for(Expr e : ae.getExprs()) {
+			boolean current = this.doSwitch(e);
+			if(!current) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	@Override
-	public Boolean caseWhileExpr(WhileExpr we) {
-		boolean cond = this.doSwitch(we.getCond());
-		boolean when = this.doSwitch(we.getThen());
-		return cond && when;
+	public Boolean caseArrayAccessExpr(ArrayAccessExpr aae) {
+		return this.doSwitch(aae.getArray());
+	}
+	
+	@Override
+	public Boolean caseArrayUpdateExpr(ArrayUpdateExpr aue) {
+		boolean array = this.doSwitch(aue.getAccess().getArray());
+		boolean update = this.doSwitch(aue.getValue());
+		return array && update;
+	}
+	
+	@Override
+	public Boolean caseRecordExpr(RecordExpr re) {
+		for(FieldExpr fe : re.getFieldExprs()) {
+			boolean current = this.doSwitch(fe.getExpr());
+			if(!current) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	@Override
+	public Boolean caseRecordAccessExpr(RecordAccessExpr rae) {
+		return this.doSwitch(rae.getRecord());
+	}
+	
+	@Override
+	public Boolean caseRecordUpdateExpr(RecordUpdateExpr rue) {
+		boolean record = this.doSwitch(rue.getRecord());
+		boolean update = this.doSwitch(rue.getValue());
+		return record && update;
+	}
+	
+	@Override
+	public Boolean caseFieldlessRecordExpr(FieldlessRecordExpr fre) {
+		for(Expr e : fre.getExprs()) {
+			boolean current = this.doSwitch(e);
+			if(!current) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	@Override

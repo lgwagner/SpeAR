@@ -22,4 +22,4 @@ Requirements:
 Properties:
 	p0: y > 11
 	p1: z > 0
-
+	p2: y > 0

@@ -13,6 +13,7 @@ import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.util.SpearSwitch;
 import com.rockwellcollins.spear.utilities.IntConstantFinder;
 
+
 public class ReplaceVariableArrayDefs extends SpearSwitch<EObject> {
 
 	public static void transform(SpearDocument d) {
