@@ -53,7 +53,7 @@ public class SpecificationsAcyclicValidator extends AbstractSpearJavaValidator {
 	}
 
 	protected void error(Specification spec, List<String> cycle) {
-		String message = "Cycle in specifications " + CycleUtilities.getCycleErrorMessage(cycle);
+		String message = "Cycle detected: " + CycleUtilities.getCycleErrorMessage(cycle);
 		for(SpecificationCall specCall : EcoreUtil2.getAllContentsOfType(spec, SpecificationCall.class)) {
 			if(cycle.contains(specCall.getSpec().getName())) {
 				error(message, specCall, SpearPackage.Literals.SPECIFICATION_CALL__SPEC);
