@@ -21,6 +21,7 @@ import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.PreviousExpr;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.utilities.ConstantChecker;
@@ -33,9 +34,9 @@ import com.rockwellcollins.spear.utilities.Utilities;
  * validation
  */
 
-@ComposedChecks(validators = {TypesAcyclicValidator.class, 
+@ComposedChecks(validators = {
+//							  TypesAcyclicValidator.class, 
 							  SpecificationsAcyclicValidator.class, 
-//							  ConstantsAcyclicValidator.class,
 							  MacrosAcyclicValidator.class,
 							  VariablesAreUsedValidator.class,
 							  IllegalAnalysisValidations.class,
@@ -119,10 +120,19 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 	
 	@Check
 	public void checkConstantsAreAcyclic(Constant c) {
-		List<EObject> deps = ConstantsAcyclicValidator2.validate(c);
+		List<EObject> deps = AcyclicValidator.validate(c);
 		if(deps.contains(c)) {
-			String message = "Cycle detected: " + c.getName() + " -> " + ConstantsAcyclicValidator2.getMessage(c,deps);
+			String message = "Cycle detected: " + c.getName() + " -> " + AcyclicValidator.getMessage(c,deps);
 			error(message, c, SpearPackage.Literals.ID_REF__NAME);
+		}
+	}
+	
+	@Check
+	public void checkTypesAreAcyclic(TypeDef td) {
+		List<EObject> deps = AcyclicValidator.validate(td);
+		if(deps.contains(td)) {
+			String message = "Cycle detected: " + td.getName() + " -> " + AcyclicValidator.getMessage(td,deps);
+			error(message, td, SpearPackage.Literals.TYPE_DEF__NAME);
 		}
 	}
 	

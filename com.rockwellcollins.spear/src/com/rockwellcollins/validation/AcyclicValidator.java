@@ -9,18 +9,25 @@ import org.eclipse.emf.ecore.EObject;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.IdRef;
+import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.util.SpearSwitch;
 import com.rockwellcollins.spear.utilities.Utilities;
 
-public class ConstantsAcyclicValidator2 extends SpearSwitch<Integer> {
+public class AcyclicValidator extends SpearSwitch<Integer> {
 
 	public static List<EObject> validate(Constant c) {
-		ConstantsAcyclicValidator2 valid8 = new ConstantsAcyclicValidator2();
+		AcyclicValidator valid8 = new AcyclicValidator();
 		valid8.doSwitch(c.getExpr());
 		return valid8.dependencies;
 	}
 	
-	public static String getMessage(Constant start, List<EObject> dependencies) {
+	public static List<EObject> validate(TypeDef td) {
+		AcyclicValidator valid8 = new AcyclicValidator();
+		valid8.defaultCase(td);
+		return valid8.dependencies;
+	}
+	
+	public static String getMessage(EObject start, List<EObject> dependencies) {
 		File root = Utilities.getRoot(start);
 		Iterator<EObject> iter8 = dependencies.iterator();
 		StringBuilder builder = new StringBuilder();
@@ -41,6 +48,15 @@ public class ConstantsAcyclicValidator2 extends SpearSwitch<Integer> {
 	}
 	
 	public List<EObject> dependencies = new ArrayList<>();
+	
+	@Override
+	public Integer caseTypeDef(TypeDef td) {
+		if(!dependencies.contains(td)) {
+			dependencies.add(td);
+			this.defaultCase(td);				
+		}
+		return 0;
+	}
 	
 	@Override
 	public Integer caseIdRef(IdRef idr) {
