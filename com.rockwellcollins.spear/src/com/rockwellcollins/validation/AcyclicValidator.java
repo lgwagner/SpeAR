@@ -17,15 +17,15 @@ import com.rockwellcollins.spear.utilities.Utilities;
 public class AcyclicValidator extends SpearSwitch<Integer> {
 
 	public static List<EObject> validate(TypeDef td) {
-		AcyclicValidator valid8 = new AcyclicValidator();
-		valid8.defaultCase(td);
-		return valid8.dependencies;
+		AcyclicValidator validate = new AcyclicValidator();
+		validate.defaultCase(td);
+		return validate.dependencies;
 	}
 
 	public static List<EObject> validate(Constant c) {
-		AcyclicValidator valid8 = new AcyclicValidator();
-		valid8.doSwitch(c.getExpr());
-		return valid8.dependencies;
+		AcyclicValidator validate = new AcyclicValidator();
+		validate.doSwitch(c.getExpr());
+		return validate.dependencies;
 	}
 	
 	public static List<EObject> validate(Macro m) {
@@ -36,10 +36,10 @@ public class AcyclicValidator extends SpearSwitch<Integer> {
 	
 	public static String getMessage(EObject start, List<EObject> dependencies) {
 		File root = Utilities.getRoot(start);
-		Iterator<EObject> iter8 = dependencies.iterator();
+		Iterator<EObject> iterate = dependencies.iterator();
 		StringBuilder builder = new StringBuilder();
-		while(iter8.hasNext()) {
-			EObject next = iter8.next();
+		while(iterate.hasNext()) {
+			EObject next = iterate.next();
 			File currentRoot = Utilities.getRoot(next);
 			if(currentRoot.equals(root)) {
 				builder.append(Utilities.getName(next));
@@ -47,7 +47,7 @@ public class AcyclicValidator extends SpearSwitch<Integer> {
 				builder.append(Utilities.getFileBasedName(next));
 			}
 			
-			if(iter8.hasNext()) {
+			if(iterate.hasNext()) {
 				builder.append(" -> ");
 			}
 		}
