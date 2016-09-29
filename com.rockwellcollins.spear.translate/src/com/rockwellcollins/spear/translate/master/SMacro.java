@@ -47,7 +47,7 @@ public class SMacro {
 	public Expr expression;
 	
 	public SMacro(Macro m, SSpecification s) {
-		this.name=s.map.getName(m.getName());
+		this.name=s.map.getModuleName(m.getName());
 		this.type=m.getType();
 		this.expression=m.getExpr();
 	}

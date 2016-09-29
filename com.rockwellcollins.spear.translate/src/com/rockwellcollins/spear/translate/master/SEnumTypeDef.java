@@ -15,11 +15,11 @@ public class SEnumTypeDef extends STypeDef {
 	public List<String> values = new ArrayList<>();
 	
 	public SEnumTypeDef(EnumTypeDef etd, SProgram program) {
-		this.name = program.map.getName(etd.getName());
-		this.definitionName=program.map.getName(etd.getName() + "_definition");
+		this.name = program.map.getProgramName(etd.getName());
+		this.definitionName=program.map.getProgramName(etd.getName() + "_definition");
 		
 		for(EnumValue ev : etd.getValues()) {
-			String value = program.map.getName(ev.getName());
+			String value = program.map.getProgramName(ev.getName());
 			this.values.add(value);
 		}
 	}

@@ -11,6 +11,7 @@ import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.actions.SpearRuntimeOptions;
 import com.rockwellcollins.spear.translate.naming.Map;
+import com.rockwellcollins.spear.translate.naming.SpearMap;
 import com.rockwellcollins.spear.utilities.PLTL;
 
 import jkind.lustre.BinaryExpr;
@@ -30,28 +31,28 @@ import jkind.lustre.builders.NodeBuilder;
 
 public class SSpecification extends SMapElement {
 
-	public static List<String> addNames(Collection<Specification> list, Map global) {
+	public static List<String> addNames(Collection<Specification> list, SpearMap map) {
 		List<String> renamed = new ArrayList<>();
 		for(Specification  s : list) {
-			renamed.add(SSpecification.addName(s, global));
+			renamed.add(SSpecification.addName(s, map));
 		}
 		return renamed;
 	}
 	
-	public static String addName(Specification s, Map global) {
-		return global.getName(s.getName());
+	public static String addName(Specification s, SpearMap map) {
+		return map.getProgramName(s.getName());
 	}
 	
-	public static List<SSpecification> build(Collection<Specification> list, Map global) {
+	public static List<SSpecification> build(Collection<Specification> list, SpearMap map) {
 		List<SSpecification> converted = new ArrayList<>();
 		for(Specification s : list) {
-			converted.add(SSpecification.build(s, global));
+			converted.add(SSpecification.build(s, map));
 		}
 		return converted;
 	}
 	
-	public static SSpecification build(Specification s, Map global) {
-		return new SSpecification(s,global);
+	public static SSpecification build(Specification s, SpearMap map) {
+		return new SSpecification(s,map);
 	}
 	
 	public static SSpecification lookup(String name , List<SSpecification> specs) {
@@ -96,12 +97,12 @@ public class SSpecification extends SMapElement {
 	private List<NormalizedCall> spearCalls = new ArrayList<>();
 	public List<SCall> calls = new ArrayList<>();
 	
-	public SSpecification(Specification s, Map global) {
+	public SSpecification(Specification s, SpearMap programMap) {
 		//get the name from the global map
-		this.name = global.lookupOriginal(s.getName());
+		this.name = programMap.lookupOriginalProgram(s.getName());
 		
 		//copy the global map as the local
-		this.map = Map.copy(global);
+		this.map = SpearMap.getModuleMap(programMap);
 		
 		// set the name
 		this.inputs.addAll(SVariable.build(s.getInputs(), this));
@@ -113,9 +114,9 @@ public class SSpecification extends SMapElement {
 		this.behaviors.addAll(SConstraint.build(s.getBehaviors(), this));
 		this.spearCalls.addAll(EcoreUtil2.getAllContentsOfType(s, NormalizedCall.class));
 		
-		this.assertionName = map.getName(ASSERTION);
-		this.counterName = map.getName(COUNTER);
-		this.consistencyName = map.getName(CONSISTENCY);
+		this.assertionName = map.getModuleName(ASSERTION);
+		this.counterName = map.getModuleName(COUNTER);
+		this.consistencyName = map.getModuleName(CONSISTENCY);
 	}
 
 	public void resolveCalls(List<SSpecification> specs) {

@@ -11,7 +11,7 @@ public class SNamedTypeDef extends STypeDef {
 	public Type type;
 
 	public SNamedTypeDef(NamedTypeDef ntd, SProgram program) {
-		this.name = program.map.getName(ntd.getName());
+		this.name = program.map.getProgramName(ntd.getName());
 		this.type = ntd.getType();
 	}
 

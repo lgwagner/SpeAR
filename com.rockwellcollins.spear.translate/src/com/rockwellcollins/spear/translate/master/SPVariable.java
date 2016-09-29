@@ -35,7 +35,7 @@ public class SPVariable {
 	public Type type;
 	
 	public SPVariable(Variable v, SPattern pattern) {
-		this.name=pattern.map.getName(v.getName());
+		this.name=pattern.map.getModuleName(v.getName());
 		this.type=v.getType();
 	}
 	

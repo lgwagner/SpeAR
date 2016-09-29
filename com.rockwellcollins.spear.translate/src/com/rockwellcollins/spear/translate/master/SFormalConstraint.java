@@ -18,7 +18,7 @@ public class SFormalConstraint extends SConstraint {
 	public Expr expression;
 
 	public SFormalConstraint(FormalConstraint fc, SSpecification s) {
-		this.name = s.map.getName(fc.getName());
+		this.name = s.map.getModuleName(fc.getName());
 		this.expression = fc.getExpr();
 	}
 

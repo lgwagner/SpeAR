@@ -13,7 +13,7 @@ public class SArrayTypeDef extends STypeDef {
 	public Integer size;
 	
 	public SArrayTypeDef(ConcreteArrayTypeDef atd, SProgram program) {
-		this.name = program.map.getName(atd.getName());
+		this.name = program.map.getProgramName(atd.getName());
 		this.base = atd.getBase();
 		this.size = atd.getSize();
 	}

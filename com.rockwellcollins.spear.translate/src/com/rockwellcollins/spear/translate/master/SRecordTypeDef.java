@@ -17,8 +17,8 @@ public class SRecordTypeDef extends STypeDef {
 	public Map<String,Type> fields = new LinkedHashMap<>();
 	
 	public SRecordTypeDef(RecordTypeDef rtd, SProgram program) {
-		this.name = program.map.getName(rtd.getName());
-		this.definitionName = program.map.getName(rtd.getName() + "_definition");
+		this.name = program.map.getProgramName(rtd.getName());
+		this.definitionName = program.map.getProgramName(rtd.getName() + "_definition");
 		for(FieldType ft : rtd.getFields()) {
 			fields.put(ft.getName(), ft.getType());
 		}

@@ -38,7 +38,7 @@ public class SLustreEquation {
 
 	public SLustreEquation(LustreEquation eq, SPattern s) {
 		for(Variable v : eq.getIds()) {
-			this.ids.add(s.map.lookupOriginal(v.getName()));
+			this.ids.add(s.map.lookupOriginalModule(v.getName()));
 		}
 		this.expression = eq.getRhs();
 	}

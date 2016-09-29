@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
-import com.rockwellcollins.spear.translate.naming.Map;
+import com.rockwellcollins.spear.translate.naming.SpearMap;
 import com.rockwellcollins.spear.utilities.PLTL;
 
 import jkind.lustre.Program;
@@ -34,10 +34,10 @@ public class SProgram extends SMapElement {
 	
 	public SProgram(SpearDocument document) {
 		//initialize the program's global map
-		map = Map.newMap();
+		map = SpearMap.getProgramMap();
 		
 		//add the PLTL node names to the program namespace
-		Map.addPLTL(map);
+		SpearMap.addPLTL(map);
 
 		//get the names of the typedefs, constants and process them
 		typedefs.addAll(STypeDef.build(document.typedefs.values(), this));
@@ -64,15 +64,15 @@ public class SProgram extends SMapElement {
 		resolveCallVars();
 		
 		//identify the main node.
-		this.mainName = map.lookupOriginal(document.mainName);
+		this.mainName = map.lookupOriginalProgram(document.mainName);
 	}
 	
 	public SProgram(PatternDocument document) {
 		//create the map
-		map = Map.newMap();
+		map = SpearMap.getProgramMap();
 		
 		//add the PLTL node names to the program namespace
-		Map.addPLTL(map);
+		SpearMap.addPLTL(map);
 		
 		//not going to rename the main name. it will be first in, no conflicts.
 		this.mainName = document.mainName;

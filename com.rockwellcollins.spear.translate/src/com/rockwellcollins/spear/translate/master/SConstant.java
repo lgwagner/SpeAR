@@ -37,7 +37,7 @@ public class SConstant {
 	public Expr expr;
 	
 	public SConstant(Constant c, SProgram program) {
-		this.name=program.map.getName(c.getName());
+		this.name=program.map.getProgramName(c.getName());
 		this.type=c.getType();
 		this.expr=c.getExpr();
 	}

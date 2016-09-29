@@ -30,7 +30,7 @@ public class SLustreProperty {
 	private String propertyId;
 
 	public SLustreProperty(LustreProperty lp, SPattern pattern) {
-		this.propertyId = pattern.map.lookupOriginal(lp.getPropertyId().getName());
+		this.propertyId = pattern.map.lookupOriginalModule(lp.getPropertyId().getName());
 	}
 	
 	public String toLustre() {
