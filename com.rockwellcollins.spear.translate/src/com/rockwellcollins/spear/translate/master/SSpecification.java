@@ -10,7 +10,7 @@ import org.eclipse.xtext.EcoreUtil2;
 import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.actions.SpearRuntimeOptions;
-import com.rockwellcollins.spear.translate.naming.Renaming;
+import com.rockwellcollins.spear.translate.naming.Map;
 import com.rockwellcollins.spear.utilities.PLTL;
 
 import jkind.lustre.BinaryExpr;
@@ -30,7 +30,7 @@ import jkind.lustre.builders.NodeBuilder;
 
 public class SSpecification extends SMapElement {
 
-	public static List<String> addNames(Collection<Specification> list, Renaming global) {
+	public static List<String> addNames(Collection<Specification> list, Map global) {
 		List<String> renamed = new ArrayList<>();
 		for(Specification  s : list) {
 			renamed.add(SSpecification.addName(s, global));
@@ -38,11 +38,11 @@ public class SSpecification extends SMapElement {
 		return renamed;
 	}
 	
-	public static String addName(Specification s, Renaming global) {
+	public static String addName(Specification s, Map global) {
 		return global.getName(s.getName());
 	}
 	
-	public static List<SSpecification> build(Collection<Specification> list, Renaming global) {
+	public static List<SSpecification> build(Collection<Specification> list, Map global) {
 		List<SSpecification> converted = new ArrayList<>();
 		for(Specification s : list) {
 			converted.add(SSpecification.build(s, global));
@@ -50,7 +50,7 @@ public class SSpecification extends SMapElement {
 		return converted;
 	}
 	
-	public static SSpecification build(Specification s, Renaming global) {
+	public static SSpecification build(Specification s, Map global) {
 		return new SSpecification(s,global);
 	}
 	
@@ -96,12 +96,12 @@ public class SSpecification extends SMapElement {
 	private List<NormalizedCall> spearCalls = new ArrayList<>();
 	public List<SCall> calls = new ArrayList<>();
 	
-	public SSpecification(Specification s, Renaming global) {
+	public SSpecification(Specification s, Map global) {
 		//get the name from the global map
 		this.name = global.lookupOriginal(s.getName());
 		
 		//copy the global map as the local
-		this.map = Renaming.copy(global);
+		this.map = Map.copy(global);
 		
 		// set the name
 		this.inputs.addAll(SVariable.build(s.getInputs(), this));

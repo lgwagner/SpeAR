@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
-import com.rockwellcollins.spear.translate.naming.Renaming;
+import com.rockwellcollins.spear.translate.naming.Map;
 import com.rockwellcollins.spear.utilities.PLTL;
 
 import jkind.lustre.Program;
@@ -34,10 +34,10 @@ public class SProgram extends SMapElement {
 	
 	public SProgram(SpearDocument document) {
 		//initialize the program's global map
-		map = Renaming.newMap();
+		map = Map.newMap();
 		
 		//add the PLTL node names to the program namespace
-		Renaming.addPLTL(map);
+		Map.addPLTL(map);
 
 		//get the names of the typedefs, constants and process them
 		typedefs.addAll(STypeDef.build(document.typedefs.values(), this));
@@ -69,10 +69,10 @@ public class SProgram extends SMapElement {
 	
 	public SProgram(PatternDocument document) {
 		//create the map
-		map = Renaming.newMap();
+		map = Map.newMap();
 		
 		//add the PLTL node names to the program namespace
-		Renaming.addPLTL(map);
+		Map.addPLTL(map);
 		
 		//not going to rename the main name. it will be first in, no conflicts.
 		this.mainName = document.mainName;

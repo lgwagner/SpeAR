@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.translate.lustre.TranslateType;
-import com.rockwellcollins.spear.translate.naming.Renaming;
+import com.rockwellcollins.spear.translate.naming.Map;
 import com.rockwellcollins.spear.utilities.Utilities;
 
 import jkind.lustre.IdExpr;
@@ -13,7 +13,7 @@ import jkind.lustre.VarDecl;
 
 public class SCall {
 
-	public static List<SCall> build(List<NormalizedCall> calls, List<SSpecification> specs, Renaming map) {
+	public static List<SCall> build(List<NormalizedCall> calls, List<SSpecification> specs, Map map) {
 		List<SCall> built = new ArrayList<>();
 		for(NormalizedCall call : calls) {
 			built.add(SCall.build(call,specs,map));
@@ -21,7 +21,7 @@ public class SCall {
 		return built;
 	}
 	
-	public static SCall build(NormalizedCall call, List<SSpecification> specs, Renaming map) {
+	public static SCall build(NormalizedCall call, List<SSpecification> specs, Map map) {
 		return new SCall(call,specs,map);
 	}
 	
@@ -50,7 +50,7 @@ public class SCall {
 	
 	public List<SVariable> variables = new ArrayList<>();
 	
-	private SCall(NormalizedCall call, List<SSpecification> specs, Renaming map) {
+	private SCall(NormalizedCall call, List<SSpecification> specs, Map map) {
 		this.original=call;
 		
 		this.callerName=map.lookupOriginal(Utilities.getRoot(call).getName());

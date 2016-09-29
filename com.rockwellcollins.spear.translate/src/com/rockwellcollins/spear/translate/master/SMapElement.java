@@ -1,8 +1,8 @@
 package com.rockwellcollins.spear.translate.master;
 
-import com.rockwellcollins.spear.translate.naming.Renaming;
+import com.rockwellcollins.spear.translate.naming.Map;
 
 public class SMapElement {
 
-	public Renaming map;
+	public Map map;
 }

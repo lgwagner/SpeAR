@@ -6,19 +6,19 @@ import com.rockwellcollins.spear.utilities.PLTL;
 
 import jkind.lustre.Node;
 
-public class Renaming {
+public class Map {
 
-	public static Renaming newMap() {
-		Renaming map = new Renaming();
+	public static Map newMap() {
+		Map map = new Map();
 		return map;
 	}
 	
-	public static Renaming copy(Renaming map) {
-		Renaming copied = new Renaming(map);
+	public static Map copy(Map map) {
+		Map copied = new Map(map);
 		return copied;
 	}
 	
-	public static void addPLTL(Renaming map) {
+	public static void addPLTL(Map map) {
 		for(Node n : PLTL.getPLTL()) {
 			map.getName(n.id);
 		}
@@ -26,11 +26,11 @@ public class Renaming {
 	
 	private DualHashBidiMap<String,String> map;
 	
-	private Renaming() {
+	private Map() {
 		this.map = new DualHashBidiMap<>();
 	}
 	
-	private Renaming(Renaming existing) {
+	private Map(Map existing) {
 		this.map = new DualHashBidiMap<>();
 		this.map.putAll(existing.map);
 	}

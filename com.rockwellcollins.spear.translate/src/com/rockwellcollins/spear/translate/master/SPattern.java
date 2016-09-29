@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 import com.rockwellcollins.spear.Pattern;
-import com.rockwellcollins.spear.translate.naming.Renaming;
+import com.rockwellcollins.spear.translate.naming.Map;
 
 import jkind.lustre.Node;
 import jkind.lustre.builders.NodeBuilder;
@@ -57,7 +57,7 @@ public class SPattern extends SMapElement {
 		this.name = program.map.lookupOriginal(p.getName());
 		
 		//copy the global name map for the basis of the local
-		this.map = Renaming.copy(program.map);
+		this.map = Map.copy(program.map);
 		
 		//process everything
 		this.inputs = SPVariable.build(p.getInputs(), this);
