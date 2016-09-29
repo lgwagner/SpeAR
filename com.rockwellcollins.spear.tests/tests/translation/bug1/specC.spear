@@ -1,5 +1,8 @@
 Specification specC
 
+Imports:
+	import "specD.spear"
+
 Inputs:
 	a : int
 
@@ -7,7 +10,7 @@ Outputs:
 	y : int
 
 State:
-	sc : int
+	r : int
 
 Macros:
 
@@ -15,10 +18,10 @@ Assumptions:
 	a0: a > 0
 
 Requirements:
-	r0: sc == a + 1
-	r1: y == sc + 1
+	r0: r == spec specD(a)
+	r1: y == spec specD(a+1)
 
 Properties:
-	p0: sc > a
-	p1: y > sc and y > a
+	p0: r > a
+	p1: y > r and y > a
 

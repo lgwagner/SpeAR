@@ -1,0 +1,10 @@
+Specification callee
+
+Inputs:
+	x : int
+
+Outputs:
+	y : int
+	
+Requirements:
+	r0: y == x + 1

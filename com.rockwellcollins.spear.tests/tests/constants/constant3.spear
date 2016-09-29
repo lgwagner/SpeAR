@@ -31,7 +31,7 @@ Constants:
 	
 	c6 : int = constant3
 	
-	c14 : int = m1
+	c14 : int = previous c14 with initial value 0
 
 Inputs:
 
@@ -41,8 +41,8 @@ State:
 
 Macros:
 	m1 : int = m2
-	m2 : int = macro1
-
+	m2 : int = ( previous m2 with initial value 0 )
+	
 Assumptions:
 
 Constraints:

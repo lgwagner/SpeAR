@@ -10,14 +10,14 @@ Outputs:
 	out : int
 	
 State:
-	sb : int
+	local : int
 
 Assumptions:
 	a : in > 0
 
 Requirements:
-	r0: sb == spec specC(in)
-	r1: out == spec specC(sb)
+	r0: local == spec specC(in)
+	r1: out == spec specC(local)
 
 Properties:
 	p0: out >= 0
