@@ -2,6 +2,8 @@
  */
 package com.rockwellcollins.spear;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -14,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link com.rockwellcollins.spear.Constraint#getName <em>Name</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.Constraint#getIds <em>Ids</em>}</li>
  * </ul>
  *
  * @see com.rockwellcollins.spear.SpearPackage#getConstraint()
@@ -47,5 +50,21 @@ public interface Constraint extends EObject
    * @generated
    */
   void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Ids</b></em>' attribute list.
+   * The list contents are of type {@link java.lang.String}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Ids</em>' attribute list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Ids</em>' attribute list.
+   * @see com.rockwellcollins.spear.SpearPackage#getConstraint_Ids()
+   * @model unique="false"
+   * @generated
+   */
+  EList<String> getIds();
 
 } // Constraint

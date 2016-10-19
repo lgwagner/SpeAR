@@ -920,19 +920,10 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     EnglishConstraint returns EnglishConstraint
 	 *
 	 * Constraint:
-	 *     (name=ID text=STRING)
+	 *     (name=ID text=STRING (ids+=ID ids+=ID*)?)
 	 */
 	protected void sequence_EnglishConstraint(ISerializationContext context, EnglishConstraint semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.CONSTRAINT__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.CONSTRAINT__NAME));
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ENGLISH_CONSTRAINT__TEXT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.ENGLISH_CONSTRAINT__TEXT));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getEnglishConstraintAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getEnglishConstraintAccess().getTextSTRINGTerminalRuleCall_2_0(), semanticObject.getText());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1003,7 +994,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     FormalConstraint returns FormalConstraint
 	 *
 	 * Constraint:
-	 *     (name=ID expr=Expr descriptor=STRING?)
+	 *     (name=ID expr=Expr descriptor=STRING? (ids+=ID ids+=ID*)?)
 	 */
 	protected void sequence_FormalConstraint(ISerializationContext context, FormalConstraint semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

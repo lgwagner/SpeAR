@@ -23,7 +23,7 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class InternalSpearParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_ID", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'Assumptions'", "'Environment'", "'DerivedRequirements'", "'Requirements'", "'Implementation'", "'Design'", "'Constraints'", "'Properties'", "'Guarantees'", "'Behaviors'", "':'", "'is a'", "'is an'", "'=>'", "'implies'", "'or'", "'xor'", "'T'", "'triggers'", "'S'", "'since'", "'O'", "'once'", "'H'", "'historically'", "'never'", "'before'", "'initially'", "'<'", "'<='", "'>'", "'>='", "'=='", "'<>'", "'+'", "'-'", "'*'", "'/'", "'mod'", "'->'", "'arrow'", "'not'", "'TRUE'", "'true'", "'FALSE'", "'false'", "'Specification'", "'Inputs:'", "'Outputs:'", "'Imports:'", "'Units:'", "'Types:'", "'Constants:'", "'Patterns:'", "'State:'", "'Macros:'", "'import'", "'Definitions'", "'pattern'", "'('", "')'", "'returns'", "'let'", "'tel'", "','", "'var'", "'|'", "'='", "'--%PROPERTY'", "'assert'", "'abstract'", "'record'", "'{'", "'}'", "'['", "']'", "'enum'", "'int'", "'bool'", "'real'", "'text'", "'while'", "'then'", "'after'", "'until'", "'less'", "'than'", "'equal'", "'to'", "'greater'", "'previous'", "'with'", "'initial'", "'value'", "'.'", "':='", "'if'", "'else'", "'new'", "'spec'", "'#'", "'and'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_ID", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'Assumptions'", "'Environment'", "'DerivedRequirements'", "'Requirements'", "'Implementation'", "'Design'", "'Constraints'", "'Properties'", "'Guarantees'", "'Behaviors'", "':'", "'is a'", "'is an'", "'=>'", "'implies'", "'or'", "'xor'", "'T'", "'triggers'", "'S'", "'since'", "'O'", "'once'", "'H'", "'historically'", "'never'", "'before'", "'initially'", "'<'", "'<='", "'>'", "'>='", "'=='", "'<>'", "'+'", "'-'", "'*'", "'/'", "'mod'", "'->'", "'arrow'", "'not'", "'TRUE'", "'true'", "'FALSE'", "'false'", "'Specification'", "'Inputs:'", "'Outputs:'", "'Imports:'", "'Units:'", "'Types:'", "'Constants:'", "'Patterns:'", "'State:'", "'Macros:'", "'import'", "'Definitions'", "'pattern'", "'('", "')'", "'returns'", "'let'", "'tel'", "','", "'var'", "'|'", "'='", "'--%PROPERTY'", "'assert'", "'abstract'", "'record'", "'{'", "'}'", "'['", "']'", "'enum'", "'int'", "'bool'", "'real'", "'text'", "'trace'", "'while'", "'then'", "'after'", "'until'", "'less'", "'than'", "'equal'", "'to'", "'greater'", "'previous'", "'with'", "'initial'", "'value'", "'.'", "':='", "'if'", "'else'", "'new'", "'spec'", "'#'", "'and'"
     };
     public static final int T__50=50;
     public static final int T__59=59;
@@ -118,6 +118,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     public static final int T__81=81;
     public static final int T__110=110;
     public static final int T__82=82;
+    public static final int T__113=113;
     public static final int T__83=83;
     public static final int T__112=112;
     public static final int RULE_WS=9;
@@ -5205,11 +5206,11 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             if ( (LA7_0==RULE_ID) ) {
                 int LA7_1 = input.LA(2);
 
-                if ( ((LA7_1>=21 && LA7_1<=23)) ) {
-                    alt7=2;
-                }
-                else if ( (LA7_1==EOF||(LA7_1>=RULE_ID && LA7_1<=RULE_STRING)||LA7_1==58||(LA7_1>=62 && LA7_1<=64)) ) {
+                if ( (LA7_1==EOF||(LA7_1>=RULE_ID && LA7_1<=RULE_STRING)||LA7_1==58||(LA7_1>=62 && LA7_1<=64)) ) {
                     alt7=1;
+                }
+                else if ( ((LA7_1>=21 && LA7_1<=23)) ) {
+                    alt7=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -5872,11 +5873,11 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                 if ( (LA12_1==21) ) {
                     int LA12_2 = input.LA(3);
 
-                    if ( (LA12_2==RULE_STRING) ) {
-                        alt12=2;
-                    }
-                    else if ( ((LA12_2>=RULE_INT && LA12_2<=RULE_ID)||(LA12_2>=32 && LA12_2<=38)||LA12_2==46||(LA12_2>=52 && LA12_2<=56)||LA12_2==70||LA12_2==77||LA12_2==92||LA12_2==94||LA12_2==101||LA12_2==107||(LA12_2>=109 && LA12_2<=111)) ) {
+                    if ( ((LA12_2>=RULE_INT && LA12_2<=RULE_ID)||(LA12_2>=32 && LA12_2<=38)||LA12_2==46||(LA12_2>=52 && LA12_2<=56)||LA12_2==70||LA12_2==77||LA12_2==93||LA12_2==95||LA12_2==102||LA12_2==108||(LA12_2>=110 && LA12_2<=112)) ) {
                         alt12=1;
+                    }
+                    else if ( (LA12_2==RULE_STRING) ) {
+                        alt12=2;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return ;}
@@ -5976,10 +5977,10 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             int alt13=2;
             int LA13_0 = input.LA(1);
 
-            if ( (LA13_0==92) ) {
+            if ( (LA13_0==93) ) {
                 alt13=1;
             }
-            else if ( ((LA13_0>=RULE_INT && LA13_0<=RULE_ID)||(LA13_0>=32 && LA13_0<=38)||LA13_0==46||(LA13_0>=52 && LA13_0<=56)||LA13_0==70||LA13_0==77||LA13_0==94||LA13_0==101||LA13_0==107||(LA13_0>=109 && LA13_0<=111)) ) {
+            else if ( ((LA13_0>=RULE_INT && LA13_0<=RULE_ID)||(LA13_0>=32 && LA13_0<=38)||LA13_0==46||(LA13_0>=52 && LA13_0<=56)||LA13_0==70||LA13_0==77||LA13_0==95||LA13_0==102||LA13_0==108||(LA13_0>=110 && LA13_0<=112)) ) {
                 alt13=2;
             }
             else {
@@ -6230,10 +6231,10 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             int alt16=2;
             int LA16_0 = input.LA(1);
 
-            if ( (LA16_0==94) ) {
+            if ( (LA16_0==95) ) {
                 alt16=1;
             }
-            else if ( ((LA16_0>=RULE_INT && LA16_0<=RULE_ID)||(LA16_0>=32 && LA16_0<=38)||LA16_0==46||(LA16_0>=52 && LA16_0<=56)||LA16_0==70||LA16_0==77||LA16_0==101||LA16_0==107||(LA16_0>=109 && LA16_0<=111)) ) {
+            else if ( ((LA16_0>=RULE_INT && LA16_0<=RULE_ID)||(LA16_0>=32 && LA16_0<=38)||LA16_0==46||(LA16_0>=52 && LA16_0<=56)||LA16_0==70||LA16_0==77||LA16_0==102||LA16_0==108||(LA16_0>=110 && LA16_0<=112)) ) {
                 alt16=2;
             }
             else {
@@ -6487,7 +6488,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             if ( ((LA19_0>=32 && LA19_0<=38)) ) {
                 alt19=1;
             }
-            else if ( ((LA19_0>=RULE_INT && LA19_0<=RULE_ID)||LA19_0==46||(LA19_0>=52 && LA19_0<=56)||LA19_0==70||LA19_0==77||LA19_0==101||LA19_0==107||(LA19_0>=109 && LA19_0<=111)) ) {
+            else if ( ((LA19_0>=RULE_INT && LA19_0<=RULE_ID)||LA19_0==46||(LA19_0>=52 && LA19_0<=56)||LA19_0==70||LA19_0==77||LA19_0==102||LA19_0==108||(LA19_0>=110 && LA19_0<=112)) ) {
                 alt19=2;
             }
             else {
@@ -7371,7 +7372,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                 alt25=1;
                 }
                 break;
-            case 101:
+            case 102:
                 {
                 alt25=2;
                 }
@@ -7384,10 +7385,10 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             case 56:
             case 70:
             case 77:
-            case 107:
-            case 109:
+            case 108:
             case 110:
             case 111:
+            case 112:
                 {
                 alt25=3;
                 }
@@ -7589,7 +7590,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             // InternalSpear.g:2331:1: ( ( ( rule__AccessExpr__Group_1_0__0 ) ) | ( ( rule__AccessExpr__Group_1_1__0 ) ) | ( ( rule__AccessExpr__Group_1_2__0 ) ) )
             int alt27=3;
             switch ( input.LA(1) ) {
-            case 105:
+            case 106:
                 {
                 alt27=1;
                 }
@@ -8066,14 +8067,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             if ( (LA29_0==RULE_INT) ) {
                 int LA29_1 = input.LA(2);
 
-                if ( (LA29_1==105) ) {
+                if ( (LA29_1==106) ) {
                     int LA29_3 = input.LA(3);
 
-                    if ( (LA29_3==RULE_ID) ) {
-                        alt29=1;
-                    }
-                    else if ( (LA29_3==RULE_INT) ) {
+                    if ( (LA29_3==RULE_INT) ) {
                         alt29=3;
+                    }
+                    else if ( (LA29_3==RULE_ID) ) {
+                        alt29=1;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return ;}
@@ -8083,7 +8084,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                         throw nvae;
                     }
                 }
-                else if ( (LA29_1==EOF||LA29_1==RULE_ID||(LA29_1>=11 && LA29_1<=20)||(LA29_1>=24 && LA29_1<=31)||(LA29_1>=39 && LA29_1<=52)||LA29_1==58||LA29_1==64||LA29_1==71||(LA29_1>=74 && LA29_1<=75)||LA29_1==77||(LA29_1>=79 && LA29_1<=80)||(LA29_1>=83 && LA29_1<=86)||LA29_1==91||LA29_1==93||(LA29_1>=95 && LA29_1<=96)||LA29_1==98||LA29_1==100||LA29_1==102||LA29_1==106||LA29_1==108||LA29_1==112) ) {
+                else if ( (LA29_1==EOF||LA29_1==RULE_ID||(LA29_1>=11 && LA29_1<=20)||(LA29_1>=24 && LA29_1<=31)||(LA29_1>=39 && LA29_1<=52)||LA29_1==58||LA29_1==64||LA29_1==71||(LA29_1>=74 && LA29_1<=75)||LA29_1==77||(LA29_1>=79 && LA29_1<=80)||(LA29_1>=83 && LA29_1<=86)||(LA29_1>=91 && LA29_1<=92)||LA29_1==94||(LA29_1>=96 && LA29_1<=97)||LA29_1==99||LA29_1==101||LA29_1==103||LA29_1==107||LA29_1==109||LA29_1==113) ) {
                     alt29=1;
                 }
                 else {
@@ -25138,7 +25139,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             // InternalSpear.g:8584:1: ( rule__FormalConstraint__Group__2__Impl rule__FormalConstraint__Group__3 )
             // InternalSpear.g:8585:2: rule__FormalConstraint__Group__2__Impl rule__FormalConstraint__Group__3
             {
-            pushFollow(FOLLOW_43);
+            pushFollow(FOLLOW_44);
             rule__FormalConstraint__Group__2__Impl();
 
             state._fsp--;
@@ -25218,17 +25219,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FormalConstraint__Group__3"
-    // InternalSpear.g:8609:1: rule__FormalConstraint__Group__3 : rule__FormalConstraint__Group__3__Impl ;
+    // InternalSpear.g:8609:1: rule__FormalConstraint__Group__3 : rule__FormalConstraint__Group__3__Impl rule__FormalConstraint__Group__4 ;
     public final void rule__FormalConstraint__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:8613:1: ( rule__FormalConstraint__Group__3__Impl )
-            // InternalSpear.g:8614:2: rule__FormalConstraint__Group__3__Impl
+            // InternalSpear.g:8613:1: ( rule__FormalConstraint__Group__3__Impl rule__FormalConstraint__Group__4 )
+            // InternalSpear.g:8614:2: rule__FormalConstraint__Group__3__Impl rule__FormalConstraint__Group__4
             {
-            pushFollow(FOLLOW_2);
+            pushFollow(FOLLOW_44);
             rule__FormalConstraint__Group__3__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+            pushFollow(FOLLOW_2);
+            rule__FormalConstraint__Group__4();
 
             state._fsp--;
             if (state.failed) return ;
@@ -25251,22 +25257,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FormalConstraint__Group__3__Impl"
-    // InternalSpear.g:8620:1: rule__FormalConstraint__Group__3__Impl : ( ( rule__FormalConstraint__Group_3__0 )? ) ;
+    // InternalSpear.g:8621:1: rule__FormalConstraint__Group__3__Impl : ( ( rule__FormalConstraint__Group_3__0 )? ) ;
     public final void rule__FormalConstraint__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:8624:1: ( ( ( rule__FormalConstraint__Group_3__0 )? ) )
-            // InternalSpear.g:8625:1: ( ( rule__FormalConstraint__Group_3__0 )? )
+            // InternalSpear.g:8625:1: ( ( ( rule__FormalConstraint__Group_3__0 )? ) )
+            // InternalSpear.g:8626:1: ( ( rule__FormalConstraint__Group_3__0 )? )
             {
-            // InternalSpear.g:8625:1: ( ( rule__FormalConstraint__Group_3__0 )? )
-            // InternalSpear.g:8626:1: ( rule__FormalConstraint__Group_3__0 )?
+            // InternalSpear.g:8626:1: ( ( rule__FormalConstraint__Group_3__0 )? )
+            // InternalSpear.g:8627:1: ( rule__FormalConstraint__Group_3__0 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFormalConstraintAccess().getGroup_3()); 
             }
-            // InternalSpear.g:8627:1: ( rule__FormalConstraint__Group_3__0 )?
+            // InternalSpear.g:8628:1: ( rule__FormalConstraint__Group_3__0 )?
             int alt81=2;
             int LA81_0 = input.LA(1);
 
@@ -25275,7 +25281,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             }
             switch (alt81) {
                 case 1 :
-                    // InternalSpear.g:8627:2: rule__FormalConstraint__Group_3__0
+                    // InternalSpear.g:8628:2: rule__FormalConstraint__Group_3__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__FormalConstraint__Group_3__0();
@@ -25312,15 +25318,110 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__FormalConstraint__Group__3__Impl"
 
 
+    // $ANTLR start "rule__FormalConstraint__Group__4"
+    // InternalSpear.g:8638:1: rule__FormalConstraint__Group__4 : rule__FormalConstraint__Group__4__Impl ;
+    public final void rule__FormalConstraint__Group__4() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:8642:1: ( rule__FormalConstraint__Group__4__Impl )
+            // InternalSpear.g:8643:2: rule__FormalConstraint__Group__4__Impl
+            {
+            pushFollow(FOLLOW_2);
+            rule__FormalConstraint__Group__4__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__FormalConstraint__Group__4"
+
+
+    // $ANTLR start "rule__FormalConstraint__Group__4__Impl"
+    // InternalSpear.g:8649:1: rule__FormalConstraint__Group__4__Impl : ( ( rule__FormalConstraint__Group_4__0 )? ) ;
+    public final void rule__FormalConstraint__Group__4__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:8653:1: ( ( ( rule__FormalConstraint__Group_4__0 )? ) )
+            // InternalSpear.g:8654:1: ( ( rule__FormalConstraint__Group_4__0 )? )
+            {
+            // InternalSpear.g:8654:1: ( ( rule__FormalConstraint__Group_4__0 )? )
+            // InternalSpear.g:8655:1: ( rule__FormalConstraint__Group_4__0 )?
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getFormalConstraintAccess().getGroup_4()); 
+            }
+            // InternalSpear.g:8656:1: ( rule__FormalConstraint__Group_4__0 )?
+            int alt82=2;
+            int LA82_0 = input.LA(1);
+
+            if ( (LA82_0==92) ) {
+                alt82=1;
+            }
+            switch (alt82) {
+                case 1 :
+                    // InternalSpear.g:8656:2: rule__FormalConstraint__Group_4__0
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__FormalConstraint__Group_4__0();
+
+                    state._fsp--;
+                    if (state.failed) return ;
+
+                    }
+                    break;
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getFormalConstraintAccess().getGroup_4()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__FormalConstraint__Group__4__Impl"
+
+
     // $ANTLR start "rule__FormalConstraint__Group_3__0"
-    // InternalSpear.g:8645:1: rule__FormalConstraint__Group_3__0 : rule__FormalConstraint__Group_3__0__Impl rule__FormalConstraint__Group_3__1 ;
+    // InternalSpear.g:8676:1: rule__FormalConstraint__Group_3__0 : rule__FormalConstraint__Group_3__0__Impl rule__FormalConstraint__Group_3__1 ;
     public final void rule__FormalConstraint__Group_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:8649:1: ( rule__FormalConstraint__Group_3__0__Impl rule__FormalConstraint__Group_3__1 )
-            // InternalSpear.g:8650:2: rule__FormalConstraint__Group_3__0__Impl rule__FormalConstraint__Group_3__1
+            // InternalSpear.g:8680:1: ( rule__FormalConstraint__Group_3__0__Impl rule__FormalConstraint__Group_3__1 )
+            // InternalSpear.g:8681:2: rule__FormalConstraint__Group_3__0__Impl rule__FormalConstraint__Group_3__1
             {
             pushFollow(FOLLOW_25);
             rule__FormalConstraint__Group_3__0__Impl();
@@ -25351,17 +25452,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FormalConstraint__Group_3__0__Impl"
-    // InternalSpear.g:8657:1: rule__FormalConstraint__Group_3__0__Impl : ( 'text' ) ;
+    // InternalSpear.g:8688:1: rule__FormalConstraint__Group_3__0__Impl : ( 'text' ) ;
     public final void rule__FormalConstraint__Group_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:8661:1: ( ( 'text' ) )
-            // InternalSpear.g:8662:1: ( 'text' )
+            // InternalSpear.g:8692:1: ( ( 'text' ) )
+            // InternalSpear.g:8693:1: ( 'text' )
             {
-            // InternalSpear.g:8662:1: ( 'text' )
-            // InternalSpear.g:8663:1: 'text'
+            // InternalSpear.g:8693:1: ( 'text' )
+            // InternalSpear.g:8694:1: 'text'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFormalConstraintAccess().getTextKeyword_3_0()); 
@@ -25392,14 +25493,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FormalConstraint__Group_3__1"
-    // InternalSpear.g:8676:1: rule__FormalConstraint__Group_3__1 : rule__FormalConstraint__Group_3__1__Impl rule__FormalConstraint__Group_3__2 ;
+    // InternalSpear.g:8707:1: rule__FormalConstraint__Group_3__1 : rule__FormalConstraint__Group_3__1__Impl rule__FormalConstraint__Group_3__2 ;
     public final void rule__FormalConstraint__Group_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:8680:1: ( rule__FormalConstraint__Group_3__1__Impl rule__FormalConstraint__Group_3__2 )
-            // InternalSpear.g:8681:2: rule__FormalConstraint__Group_3__1__Impl rule__FormalConstraint__Group_3__2
+            // InternalSpear.g:8711:1: ( rule__FormalConstraint__Group_3__1__Impl rule__FormalConstraint__Group_3__2 )
+            // InternalSpear.g:8712:2: rule__FormalConstraint__Group_3__1__Impl rule__FormalConstraint__Group_3__2
             {
             pushFollow(FOLLOW_14);
             rule__FormalConstraint__Group_3__1__Impl();
@@ -25430,17 +25531,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FormalConstraint__Group_3__1__Impl"
-    // InternalSpear.g:8688:1: rule__FormalConstraint__Group_3__1__Impl : ( '=' ) ;
+    // InternalSpear.g:8719:1: rule__FormalConstraint__Group_3__1__Impl : ( '=' ) ;
     public final void rule__FormalConstraint__Group_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:8692:1: ( ( '=' ) )
-            // InternalSpear.g:8693:1: ( '=' )
+            // InternalSpear.g:8723:1: ( ( '=' ) )
+            // InternalSpear.g:8724:1: ( '=' )
             {
-            // InternalSpear.g:8693:1: ( '=' )
-            // InternalSpear.g:8694:1: '='
+            // InternalSpear.g:8724:1: ( '=' )
+            // InternalSpear.g:8725:1: '='
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFormalConstraintAccess().getEqualsSignKeyword_3_1()); 
@@ -25471,14 +25572,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FormalConstraint__Group_3__2"
-    // InternalSpear.g:8707:1: rule__FormalConstraint__Group_3__2 : rule__FormalConstraint__Group_3__2__Impl ;
+    // InternalSpear.g:8738:1: rule__FormalConstraint__Group_3__2 : rule__FormalConstraint__Group_3__2__Impl ;
     public final void rule__FormalConstraint__Group_3__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:8711:1: ( rule__FormalConstraint__Group_3__2__Impl )
-            // InternalSpear.g:8712:2: rule__FormalConstraint__Group_3__2__Impl
+            // InternalSpear.g:8742:1: ( rule__FormalConstraint__Group_3__2__Impl )
+            // InternalSpear.g:8743:2: rule__FormalConstraint__Group_3__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__FormalConstraint__Group_3__2__Impl();
@@ -25504,23 +25605,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FormalConstraint__Group_3__2__Impl"
-    // InternalSpear.g:8718:1: rule__FormalConstraint__Group_3__2__Impl : ( ( rule__FormalConstraint__DescriptorAssignment_3_2 ) ) ;
+    // InternalSpear.g:8749:1: rule__FormalConstraint__Group_3__2__Impl : ( ( rule__FormalConstraint__DescriptorAssignment_3_2 ) ) ;
     public final void rule__FormalConstraint__Group_3__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:8722:1: ( ( ( rule__FormalConstraint__DescriptorAssignment_3_2 ) ) )
-            // InternalSpear.g:8723:1: ( ( rule__FormalConstraint__DescriptorAssignment_3_2 ) )
+            // InternalSpear.g:8753:1: ( ( ( rule__FormalConstraint__DescriptorAssignment_3_2 ) ) )
+            // InternalSpear.g:8754:1: ( ( rule__FormalConstraint__DescriptorAssignment_3_2 ) )
             {
-            // InternalSpear.g:8723:1: ( ( rule__FormalConstraint__DescriptorAssignment_3_2 ) )
-            // InternalSpear.g:8724:1: ( rule__FormalConstraint__DescriptorAssignment_3_2 )
+            // InternalSpear.g:8754:1: ( ( rule__FormalConstraint__DescriptorAssignment_3_2 ) )
+            // InternalSpear.g:8755:1: ( rule__FormalConstraint__DescriptorAssignment_3_2 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFormalConstraintAccess().getDescriptorAssignment_3_2()); 
             }
-            // InternalSpear.g:8725:1: ( rule__FormalConstraint__DescriptorAssignment_3_2 )
-            // InternalSpear.g:8725:2: rule__FormalConstraint__DescriptorAssignment_3_2
+            // InternalSpear.g:8756:1: ( rule__FormalConstraint__DescriptorAssignment_3_2 )
+            // InternalSpear.g:8756:2: rule__FormalConstraint__DescriptorAssignment_3_2
             {
             pushFollow(FOLLOW_2);
             rule__FormalConstraint__DescriptorAssignment_3_2();
@@ -25554,15 +25655,685 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__FormalConstraint__Group_3__2__Impl"
 
 
+    // $ANTLR start "rule__FormalConstraint__Group_4__0"
+    // InternalSpear.g:8772:1: rule__FormalConstraint__Group_4__0 : rule__FormalConstraint__Group_4__0__Impl rule__FormalConstraint__Group_4__1 ;
+    public final void rule__FormalConstraint__Group_4__0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:8776:1: ( rule__FormalConstraint__Group_4__0__Impl rule__FormalConstraint__Group_4__1 )
+            // InternalSpear.g:8777:2: rule__FormalConstraint__Group_4__0__Impl rule__FormalConstraint__Group_4__1
+            {
+            pushFollow(FOLLOW_25);
+            rule__FormalConstraint__Group_4__0__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+            pushFollow(FOLLOW_2);
+            rule__FormalConstraint__Group_4__1();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__FormalConstraint__Group_4__0"
+
+
+    // $ANTLR start "rule__FormalConstraint__Group_4__0__Impl"
+    // InternalSpear.g:8784:1: rule__FormalConstraint__Group_4__0__Impl : ( 'trace' ) ;
+    public final void rule__FormalConstraint__Group_4__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:8788:1: ( ( 'trace' ) )
+            // InternalSpear.g:8789:1: ( 'trace' )
+            {
+            // InternalSpear.g:8789:1: ( 'trace' )
+            // InternalSpear.g:8790:1: 'trace'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getFormalConstraintAccess().getTraceKeyword_4_0()); 
+            }
+            match(input,92,FOLLOW_2); if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getFormalConstraintAccess().getTraceKeyword_4_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__FormalConstraint__Group_4__0__Impl"
+
+
+    // $ANTLR start "rule__FormalConstraint__Group_4__1"
+    // InternalSpear.g:8803:1: rule__FormalConstraint__Group_4__1 : rule__FormalConstraint__Group_4__1__Impl rule__FormalConstraint__Group_4__2 ;
+    public final void rule__FormalConstraint__Group_4__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:8807:1: ( rule__FormalConstraint__Group_4__1__Impl rule__FormalConstraint__Group_4__2 )
+            // InternalSpear.g:8808:2: rule__FormalConstraint__Group_4__1__Impl rule__FormalConstraint__Group_4__2
+            {
+            pushFollow(FOLLOW_37);
+            rule__FormalConstraint__Group_4__1__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+            pushFollow(FOLLOW_2);
+            rule__FormalConstraint__Group_4__2();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__FormalConstraint__Group_4__1"
+
+
+    // $ANTLR start "rule__FormalConstraint__Group_4__1__Impl"
+    // InternalSpear.g:8815:1: rule__FormalConstraint__Group_4__1__Impl : ( '=' ) ;
+    public final void rule__FormalConstraint__Group_4__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:8819:1: ( ( '=' ) )
+            // InternalSpear.g:8820:1: ( '=' )
+            {
+            // InternalSpear.g:8820:1: ( '=' )
+            // InternalSpear.g:8821:1: '='
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getFormalConstraintAccess().getEqualsSignKeyword_4_1()); 
+            }
+            match(input,78,FOLLOW_2); if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getFormalConstraintAccess().getEqualsSignKeyword_4_1()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__FormalConstraint__Group_4__1__Impl"
+
+
+    // $ANTLR start "rule__FormalConstraint__Group_4__2"
+    // InternalSpear.g:8834:1: rule__FormalConstraint__Group_4__2 : rule__FormalConstraint__Group_4__2__Impl rule__FormalConstraint__Group_4__3 ;
+    public final void rule__FormalConstraint__Group_4__2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:8838:1: ( rule__FormalConstraint__Group_4__2__Impl rule__FormalConstraint__Group_4__3 )
+            // InternalSpear.g:8839:2: rule__FormalConstraint__Group_4__2__Impl rule__FormalConstraint__Group_4__3
+            {
+            pushFollow(FOLLOW_3);
+            rule__FormalConstraint__Group_4__2__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+            pushFollow(FOLLOW_2);
+            rule__FormalConstraint__Group_4__3();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__FormalConstraint__Group_4__2"
+
+
+    // $ANTLR start "rule__FormalConstraint__Group_4__2__Impl"
+    // InternalSpear.g:8846:1: rule__FormalConstraint__Group_4__2__Impl : ( '[' ) ;
+    public final void rule__FormalConstraint__Group_4__2__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:8850:1: ( ( '[' ) )
+            // InternalSpear.g:8851:1: ( '[' )
+            {
+            // InternalSpear.g:8851:1: ( '[' )
+            // InternalSpear.g:8852:1: '['
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getFormalConstraintAccess().getLeftSquareBracketKeyword_4_2()); 
+            }
+            match(input,85,FOLLOW_2); if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getFormalConstraintAccess().getLeftSquareBracketKeyword_4_2()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__FormalConstraint__Group_4__2__Impl"
+
+
+    // $ANTLR start "rule__FormalConstraint__Group_4__3"
+    // InternalSpear.g:8865:1: rule__FormalConstraint__Group_4__3 : rule__FormalConstraint__Group_4__3__Impl rule__FormalConstraint__Group_4__4 ;
+    public final void rule__FormalConstraint__Group_4__3() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:8869:1: ( rule__FormalConstraint__Group_4__3__Impl rule__FormalConstraint__Group_4__4 )
+            // InternalSpear.g:8870:2: rule__FormalConstraint__Group_4__3__Impl rule__FormalConstraint__Group_4__4
+            {
+            pushFollow(FOLLOW_45);
+            rule__FormalConstraint__Group_4__3__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+            pushFollow(FOLLOW_2);
+            rule__FormalConstraint__Group_4__4();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__FormalConstraint__Group_4__3"
+
+
+    // $ANTLR start "rule__FormalConstraint__Group_4__3__Impl"
+    // InternalSpear.g:8877:1: rule__FormalConstraint__Group_4__3__Impl : ( ( rule__FormalConstraint__IdsAssignment_4_3 ) ) ;
+    public final void rule__FormalConstraint__Group_4__3__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:8881:1: ( ( ( rule__FormalConstraint__IdsAssignment_4_3 ) ) )
+            // InternalSpear.g:8882:1: ( ( rule__FormalConstraint__IdsAssignment_4_3 ) )
+            {
+            // InternalSpear.g:8882:1: ( ( rule__FormalConstraint__IdsAssignment_4_3 ) )
+            // InternalSpear.g:8883:1: ( rule__FormalConstraint__IdsAssignment_4_3 )
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getFormalConstraintAccess().getIdsAssignment_4_3()); 
+            }
+            // InternalSpear.g:8884:1: ( rule__FormalConstraint__IdsAssignment_4_3 )
+            // InternalSpear.g:8884:2: rule__FormalConstraint__IdsAssignment_4_3
+            {
+            pushFollow(FOLLOW_2);
+            rule__FormalConstraint__IdsAssignment_4_3();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getFormalConstraintAccess().getIdsAssignment_4_3()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__FormalConstraint__Group_4__3__Impl"
+
+
+    // $ANTLR start "rule__FormalConstraint__Group_4__4"
+    // InternalSpear.g:8894:1: rule__FormalConstraint__Group_4__4 : rule__FormalConstraint__Group_4__4__Impl rule__FormalConstraint__Group_4__5 ;
+    public final void rule__FormalConstraint__Group_4__4() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:8898:1: ( rule__FormalConstraint__Group_4__4__Impl rule__FormalConstraint__Group_4__5 )
+            // InternalSpear.g:8899:2: rule__FormalConstraint__Group_4__4__Impl rule__FormalConstraint__Group_4__5
+            {
+            pushFollow(FOLLOW_45);
+            rule__FormalConstraint__Group_4__4__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+            pushFollow(FOLLOW_2);
+            rule__FormalConstraint__Group_4__5();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__FormalConstraint__Group_4__4"
+
+
+    // $ANTLR start "rule__FormalConstraint__Group_4__4__Impl"
+    // InternalSpear.g:8906:1: rule__FormalConstraint__Group_4__4__Impl : ( ( rule__FormalConstraint__Group_4_4__0 )* ) ;
+    public final void rule__FormalConstraint__Group_4__4__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:8910:1: ( ( ( rule__FormalConstraint__Group_4_4__0 )* ) )
+            // InternalSpear.g:8911:1: ( ( rule__FormalConstraint__Group_4_4__0 )* )
+            {
+            // InternalSpear.g:8911:1: ( ( rule__FormalConstraint__Group_4_4__0 )* )
+            // InternalSpear.g:8912:1: ( rule__FormalConstraint__Group_4_4__0 )*
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getFormalConstraintAccess().getGroup_4_4()); 
+            }
+            // InternalSpear.g:8913:1: ( rule__FormalConstraint__Group_4_4__0 )*
+            loop83:
+            do {
+                int alt83=2;
+                int LA83_0 = input.LA(1);
+
+                if ( (LA83_0==75) ) {
+                    alt83=1;
+                }
+
+
+                switch (alt83) {
+            	case 1 :
+            	    // InternalSpear.g:8913:2: rule__FormalConstraint__Group_4_4__0
+            	    {
+            	    pushFollow(FOLLOW_23);
+            	    rule__FormalConstraint__Group_4_4__0();
+
+            	    state._fsp--;
+            	    if (state.failed) return ;
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop83;
+                }
+            } while (true);
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getFormalConstraintAccess().getGroup_4_4()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__FormalConstraint__Group_4__4__Impl"
+
+
+    // $ANTLR start "rule__FormalConstraint__Group_4__5"
+    // InternalSpear.g:8923:1: rule__FormalConstraint__Group_4__5 : rule__FormalConstraint__Group_4__5__Impl ;
+    public final void rule__FormalConstraint__Group_4__5() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:8927:1: ( rule__FormalConstraint__Group_4__5__Impl )
+            // InternalSpear.g:8928:2: rule__FormalConstraint__Group_4__5__Impl
+            {
+            pushFollow(FOLLOW_2);
+            rule__FormalConstraint__Group_4__5__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__FormalConstraint__Group_4__5"
+
+
+    // $ANTLR start "rule__FormalConstraint__Group_4__5__Impl"
+    // InternalSpear.g:8934:1: rule__FormalConstraint__Group_4__5__Impl : ( ']' ) ;
+    public final void rule__FormalConstraint__Group_4__5__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:8938:1: ( ( ']' ) )
+            // InternalSpear.g:8939:1: ( ']' )
+            {
+            // InternalSpear.g:8939:1: ( ']' )
+            // InternalSpear.g:8940:1: ']'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getFormalConstraintAccess().getRightSquareBracketKeyword_4_5()); 
+            }
+            match(input,86,FOLLOW_2); if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getFormalConstraintAccess().getRightSquareBracketKeyword_4_5()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__FormalConstraint__Group_4__5__Impl"
+
+
+    // $ANTLR start "rule__FormalConstraint__Group_4_4__0"
+    // InternalSpear.g:8965:1: rule__FormalConstraint__Group_4_4__0 : rule__FormalConstraint__Group_4_4__0__Impl rule__FormalConstraint__Group_4_4__1 ;
+    public final void rule__FormalConstraint__Group_4_4__0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:8969:1: ( rule__FormalConstraint__Group_4_4__0__Impl rule__FormalConstraint__Group_4_4__1 )
+            // InternalSpear.g:8970:2: rule__FormalConstraint__Group_4_4__0__Impl rule__FormalConstraint__Group_4_4__1
+            {
+            pushFollow(FOLLOW_3);
+            rule__FormalConstraint__Group_4_4__0__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+            pushFollow(FOLLOW_2);
+            rule__FormalConstraint__Group_4_4__1();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__FormalConstraint__Group_4_4__0"
+
+
+    // $ANTLR start "rule__FormalConstraint__Group_4_4__0__Impl"
+    // InternalSpear.g:8977:1: rule__FormalConstraint__Group_4_4__0__Impl : ( ',' ) ;
+    public final void rule__FormalConstraint__Group_4_4__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:8981:1: ( ( ',' ) )
+            // InternalSpear.g:8982:1: ( ',' )
+            {
+            // InternalSpear.g:8982:1: ( ',' )
+            // InternalSpear.g:8983:1: ','
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getFormalConstraintAccess().getCommaKeyword_4_4_0()); 
+            }
+            match(input,75,FOLLOW_2); if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getFormalConstraintAccess().getCommaKeyword_4_4_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__FormalConstraint__Group_4_4__0__Impl"
+
+
+    // $ANTLR start "rule__FormalConstraint__Group_4_4__1"
+    // InternalSpear.g:8996:1: rule__FormalConstraint__Group_4_4__1 : rule__FormalConstraint__Group_4_4__1__Impl ;
+    public final void rule__FormalConstraint__Group_4_4__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:9000:1: ( rule__FormalConstraint__Group_4_4__1__Impl )
+            // InternalSpear.g:9001:2: rule__FormalConstraint__Group_4_4__1__Impl
+            {
+            pushFollow(FOLLOW_2);
+            rule__FormalConstraint__Group_4_4__1__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__FormalConstraint__Group_4_4__1"
+
+
+    // $ANTLR start "rule__FormalConstraint__Group_4_4__1__Impl"
+    // InternalSpear.g:9007:1: rule__FormalConstraint__Group_4_4__1__Impl : ( ( rule__FormalConstraint__IdsAssignment_4_4_1 ) ) ;
+    public final void rule__FormalConstraint__Group_4_4__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:9011:1: ( ( ( rule__FormalConstraint__IdsAssignment_4_4_1 ) ) )
+            // InternalSpear.g:9012:1: ( ( rule__FormalConstraint__IdsAssignment_4_4_1 ) )
+            {
+            // InternalSpear.g:9012:1: ( ( rule__FormalConstraint__IdsAssignment_4_4_1 ) )
+            // InternalSpear.g:9013:1: ( rule__FormalConstraint__IdsAssignment_4_4_1 )
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getFormalConstraintAccess().getIdsAssignment_4_4_1()); 
+            }
+            // InternalSpear.g:9014:1: ( rule__FormalConstraint__IdsAssignment_4_4_1 )
+            // InternalSpear.g:9014:2: rule__FormalConstraint__IdsAssignment_4_4_1
+            {
+            pushFollow(FOLLOW_2);
+            rule__FormalConstraint__IdsAssignment_4_4_1();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getFormalConstraintAccess().getIdsAssignment_4_4_1()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__FormalConstraint__Group_4_4__1__Impl"
+
+
     // $ANTLR start "rule__EnglishConstraint__Group__0"
-    // InternalSpear.g:8741:1: rule__EnglishConstraint__Group__0 : rule__EnglishConstraint__Group__0__Impl rule__EnglishConstraint__Group__1 ;
+    // InternalSpear.g:9028:1: rule__EnglishConstraint__Group__0 : rule__EnglishConstraint__Group__0__Impl rule__EnglishConstraint__Group__1 ;
     public final void rule__EnglishConstraint__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:8745:1: ( rule__EnglishConstraint__Group__0__Impl rule__EnglishConstraint__Group__1 )
-            // InternalSpear.g:8746:2: rule__EnglishConstraint__Group__0__Impl rule__EnglishConstraint__Group__1
+            // InternalSpear.g:9032:1: ( rule__EnglishConstraint__Group__0__Impl rule__EnglishConstraint__Group__1 )
+            // InternalSpear.g:9033:2: rule__EnglishConstraint__Group__0__Impl rule__EnglishConstraint__Group__1
             {
             pushFollow(FOLLOW_8);
             rule__EnglishConstraint__Group__0__Impl();
@@ -25593,23 +26364,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EnglishConstraint__Group__0__Impl"
-    // InternalSpear.g:8753:1: rule__EnglishConstraint__Group__0__Impl : ( ( rule__EnglishConstraint__NameAssignment_0 ) ) ;
+    // InternalSpear.g:9040:1: rule__EnglishConstraint__Group__0__Impl : ( ( rule__EnglishConstraint__NameAssignment_0 ) ) ;
     public final void rule__EnglishConstraint__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:8757:1: ( ( ( rule__EnglishConstraint__NameAssignment_0 ) ) )
-            // InternalSpear.g:8758:1: ( ( rule__EnglishConstraint__NameAssignment_0 ) )
+            // InternalSpear.g:9044:1: ( ( ( rule__EnglishConstraint__NameAssignment_0 ) ) )
+            // InternalSpear.g:9045:1: ( ( rule__EnglishConstraint__NameAssignment_0 ) )
             {
-            // InternalSpear.g:8758:1: ( ( rule__EnglishConstraint__NameAssignment_0 ) )
-            // InternalSpear.g:8759:1: ( rule__EnglishConstraint__NameAssignment_0 )
+            // InternalSpear.g:9045:1: ( ( rule__EnglishConstraint__NameAssignment_0 ) )
+            // InternalSpear.g:9046:1: ( rule__EnglishConstraint__NameAssignment_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getEnglishConstraintAccess().getNameAssignment_0()); 
             }
-            // InternalSpear.g:8760:1: ( rule__EnglishConstraint__NameAssignment_0 )
-            // InternalSpear.g:8760:2: rule__EnglishConstraint__NameAssignment_0
+            // InternalSpear.g:9047:1: ( rule__EnglishConstraint__NameAssignment_0 )
+            // InternalSpear.g:9047:2: rule__EnglishConstraint__NameAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__EnglishConstraint__NameAssignment_0();
@@ -25644,14 +26415,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EnglishConstraint__Group__1"
-    // InternalSpear.g:8770:1: rule__EnglishConstraint__Group__1 : rule__EnglishConstraint__Group__1__Impl rule__EnglishConstraint__Group__2 ;
+    // InternalSpear.g:9057:1: rule__EnglishConstraint__Group__1 : rule__EnglishConstraint__Group__1__Impl rule__EnglishConstraint__Group__2 ;
     public final void rule__EnglishConstraint__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:8774:1: ( rule__EnglishConstraint__Group__1__Impl rule__EnglishConstraint__Group__2 )
-            // InternalSpear.g:8775:2: rule__EnglishConstraint__Group__1__Impl rule__EnglishConstraint__Group__2
+            // InternalSpear.g:9061:1: ( rule__EnglishConstraint__Group__1__Impl rule__EnglishConstraint__Group__2 )
+            // InternalSpear.g:9062:2: rule__EnglishConstraint__Group__1__Impl rule__EnglishConstraint__Group__2
             {
             pushFollow(FOLLOW_14);
             rule__EnglishConstraint__Group__1__Impl();
@@ -25682,17 +26453,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EnglishConstraint__Group__1__Impl"
-    // InternalSpear.g:8782:1: rule__EnglishConstraint__Group__1__Impl : ( ':' ) ;
+    // InternalSpear.g:9069:1: rule__EnglishConstraint__Group__1__Impl : ( ':' ) ;
     public final void rule__EnglishConstraint__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:8786:1: ( ( ':' ) )
-            // InternalSpear.g:8787:1: ( ':' )
+            // InternalSpear.g:9073:1: ( ( ':' ) )
+            // InternalSpear.g:9074:1: ( ':' )
             {
-            // InternalSpear.g:8787:1: ( ':' )
-            // InternalSpear.g:8788:1: ':'
+            // InternalSpear.g:9074:1: ( ':' )
+            // InternalSpear.g:9075:1: ':'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getEnglishConstraintAccess().getColonKeyword_1()); 
@@ -25723,17 +26494,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EnglishConstraint__Group__2"
-    // InternalSpear.g:8801:1: rule__EnglishConstraint__Group__2 : rule__EnglishConstraint__Group__2__Impl ;
+    // InternalSpear.g:9088:1: rule__EnglishConstraint__Group__2 : rule__EnglishConstraint__Group__2__Impl rule__EnglishConstraint__Group__3 ;
     public final void rule__EnglishConstraint__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:8805:1: ( rule__EnglishConstraint__Group__2__Impl )
-            // InternalSpear.g:8806:2: rule__EnglishConstraint__Group__2__Impl
+            // InternalSpear.g:9092:1: ( rule__EnglishConstraint__Group__2__Impl rule__EnglishConstraint__Group__3 )
+            // InternalSpear.g:9093:2: rule__EnglishConstraint__Group__2__Impl rule__EnglishConstraint__Group__3
             {
-            pushFollow(FOLLOW_2);
+            pushFollow(FOLLOW_46);
             rule__EnglishConstraint__Group__2__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+            pushFollow(FOLLOW_2);
+            rule__EnglishConstraint__Group__3();
 
             state._fsp--;
             if (state.failed) return ;
@@ -25756,23 +26532,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EnglishConstraint__Group__2__Impl"
-    // InternalSpear.g:8812:1: rule__EnglishConstraint__Group__2__Impl : ( ( rule__EnglishConstraint__TextAssignment_2 ) ) ;
+    // InternalSpear.g:9100:1: rule__EnglishConstraint__Group__2__Impl : ( ( rule__EnglishConstraint__TextAssignment_2 ) ) ;
     public final void rule__EnglishConstraint__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:8816:1: ( ( ( rule__EnglishConstraint__TextAssignment_2 ) ) )
-            // InternalSpear.g:8817:1: ( ( rule__EnglishConstraint__TextAssignment_2 ) )
+            // InternalSpear.g:9104:1: ( ( ( rule__EnglishConstraint__TextAssignment_2 ) ) )
+            // InternalSpear.g:9105:1: ( ( rule__EnglishConstraint__TextAssignment_2 ) )
             {
-            // InternalSpear.g:8817:1: ( ( rule__EnglishConstraint__TextAssignment_2 ) )
-            // InternalSpear.g:8818:1: ( rule__EnglishConstraint__TextAssignment_2 )
+            // InternalSpear.g:9105:1: ( ( rule__EnglishConstraint__TextAssignment_2 ) )
+            // InternalSpear.g:9106:1: ( rule__EnglishConstraint__TextAssignment_2 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getEnglishConstraintAccess().getTextAssignment_2()); 
             }
-            // InternalSpear.g:8819:1: ( rule__EnglishConstraint__TextAssignment_2 )
-            // InternalSpear.g:8819:2: rule__EnglishConstraint__TextAssignment_2
+            // InternalSpear.g:9107:1: ( rule__EnglishConstraint__TextAssignment_2 )
+            // InternalSpear.g:9107:2: rule__EnglishConstraint__TextAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__EnglishConstraint__TextAssignment_2();
@@ -25806,17 +26582,782 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__EnglishConstraint__Group__2__Impl"
 
 
+    // $ANTLR start "rule__EnglishConstraint__Group__3"
+    // InternalSpear.g:9117:1: rule__EnglishConstraint__Group__3 : rule__EnglishConstraint__Group__3__Impl ;
+    public final void rule__EnglishConstraint__Group__3() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:9121:1: ( rule__EnglishConstraint__Group__3__Impl )
+            // InternalSpear.g:9122:2: rule__EnglishConstraint__Group__3__Impl
+            {
+            pushFollow(FOLLOW_2);
+            rule__EnglishConstraint__Group__3__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__EnglishConstraint__Group__3"
+
+
+    // $ANTLR start "rule__EnglishConstraint__Group__3__Impl"
+    // InternalSpear.g:9128:1: rule__EnglishConstraint__Group__3__Impl : ( ( rule__EnglishConstraint__Group_3__0 )? ) ;
+    public final void rule__EnglishConstraint__Group__3__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:9132:1: ( ( ( rule__EnglishConstraint__Group_3__0 )? ) )
+            // InternalSpear.g:9133:1: ( ( rule__EnglishConstraint__Group_3__0 )? )
+            {
+            // InternalSpear.g:9133:1: ( ( rule__EnglishConstraint__Group_3__0 )? )
+            // InternalSpear.g:9134:1: ( rule__EnglishConstraint__Group_3__0 )?
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getEnglishConstraintAccess().getGroup_3()); 
+            }
+            // InternalSpear.g:9135:1: ( rule__EnglishConstraint__Group_3__0 )?
+            int alt84=2;
+            int LA84_0 = input.LA(1);
+
+            if ( (LA84_0==92) ) {
+                alt84=1;
+            }
+            switch (alt84) {
+                case 1 :
+                    // InternalSpear.g:9135:2: rule__EnglishConstraint__Group_3__0
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__EnglishConstraint__Group_3__0();
+
+                    state._fsp--;
+                    if (state.failed) return ;
+
+                    }
+                    break;
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getEnglishConstraintAccess().getGroup_3()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__EnglishConstraint__Group__3__Impl"
+
+
+    // $ANTLR start "rule__EnglishConstraint__Group_3__0"
+    // InternalSpear.g:9153:1: rule__EnglishConstraint__Group_3__0 : rule__EnglishConstraint__Group_3__0__Impl rule__EnglishConstraint__Group_3__1 ;
+    public final void rule__EnglishConstraint__Group_3__0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:9157:1: ( rule__EnglishConstraint__Group_3__0__Impl rule__EnglishConstraint__Group_3__1 )
+            // InternalSpear.g:9158:2: rule__EnglishConstraint__Group_3__0__Impl rule__EnglishConstraint__Group_3__1
+            {
+            pushFollow(FOLLOW_25);
+            rule__EnglishConstraint__Group_3__0__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+            pushFollow(FOLLOW_2);
+            rule__EnglishConstraint__Group_3__1();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__EnglishConstraint__Group_3__0"
+
+
+    // $ANTLR start "rule__EnglishConstraint__Group_3__0__Impl"
+    // InternalSpear.g:9165:1: rule__EnglishConstraint__Group_3__0__Impl : ( 'trace' ) ;
+    public final void rule__EnglishConstraint__Group_3__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:9169:1: ( ( 'trace' ) )
+            // InternalSpear.g:9170:1: ( 'trace' )
+            {
+            // InternalSpear.g:9170:1: ( 'trace' )
+            // InternalSpear.g:9171:1: 'trace'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getEnglishConstraintAccess().getTraceKeyword_3_0()); 
+            }
+            match(input,92,FOLLOW_2); if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getEnglishConstraintAccess().getTraceKeyword_3_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__EnglishConstraint__Group_3__0__Impl"
+
+
+    // $ANTLR start "rule__EnglishConstraint__Group_3__1"
+    // InternalSpear.g:9184:1: rule__EnglishConstraint__Group_3__1 : rule__EnglishConstraint__Group_3__1__Impl rule__EnglishConstraint__Group_3__2 ;
+    public final void rule__EnglishConstraint__Group_3__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:9188:1: ( rule__EnglishConstraint__Group_3__1__Impl rule__EnglishConstraint__Group_3__2 )
+            // InternalSpear.g:9189:2: rule__EnglishConstraint__Group_3__1__Impl rule__EnglishConstraint__Group_3__2
+            {
+            pushFollow(FOLLOW_37);
+            rule__EnglishConstraint__Group_3__1__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+            pushFollow(FOLLOW_2);
+            rule__EnglishConstraint__Group_3__2();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__EnglishConstraint__Group_3__1"
+
+
+    // $ANTLR start "rule__EnglishConstraint__Group_3__1__Impl"
+    // InternalSpear.g:9196:1: rule__EnglishConstraint__Group_3__1__Impl : ( '=' ) ;
+    public final void rule__EnglishConstraint__Group_3__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:9200:1: ( ( '=' ) )
+            // InternalSpear.g:9201:1: ( '=' )
+            {
+            // InternalSpear.g:9201:1: ( '=' )
+            // InternalSpear.g:9202:1: '='
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getEnglishConstraintAccess().getEqualsSignKeyword_3_1()); 
+            }
+            match(input,78,FOLLOW_2); if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getEnglishConstraintAccess().getEqualsSignKeyword_3_1()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__EnglishConstraint__Group_3__1__Impl"
+
+
+    // $ANTLR start "rule__EnglishConstraint__Group_3__2"
+    // InternalSpear.g:9215:1: rule__EnglishConstraint__Group_3__2 : rule__EnglishConstraint__Group_3__2__Impl rule__EnglishConstraint__Group_3__3 ;
+    public final void rule__EnglishConstraint__Group_3__2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:9219:1: ( rule__EnglishConstraint__Group_3__2__Impl rule__EnglishConstraint__Group_3__3 )
+            // InternalSpear.g:9220:2: rule__EnglishConstraint__Group_3__2__Impl rule__EnglishConstraint__Group_3__3
+            {
+            pushFollow(FOLLOW_3);
+            rule__EnglishConstraint__Group_3__2__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+            pushFollow(FOLLOW_2);
+            rule__EnglishConstraint__Group_3__3();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__EnglishConstraint__Group_3__2"
+
+
+    // $ANTLR start "rule__EnglishConstraint__Group_3__2__Impl"
+    // InternalSpear.g:9227:1: rule__EnglishConstraint__Group_3__2__Impl : ( '[' ) ;
+    public final void rule__EnglishConstraint__Group_3__2__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:9231:1: ( ( '[' ) )
+            // InternalSpear.g:9232:1: ( '[' )
+            {
+            // InternalSpear.g:9232:1: ( '[' )
+            // InternalSpear.g:9233:1: '['
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getEnglishConstraintAccess().getLeftSquareBracketKeyword_3_2()); 
+            }
+            match(input,85,FOLLOW_2); if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getEnglishConstraintAccess().getLeftSquareBracketKeyword_3_2()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__EnglishConstraint__Group_3__2__Impl"
+
+
+    // $ANTLR start "rule__EnglishConstraint__Group_3__3"
+    // InternalSpear.g:9246:1: rule__EnglishConstraint__Group_3__3 : rule__EnglishConstraint__Group_3__3__Impl rule__EnglishConstraint__Group_3__4 ;
+    public final void rule__EnglishConstraint__Group_3__3() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:9250:1: ( rule__EnglishConstraint__Group_3__3__Impl rule__EnglishConstraint__Group_3__4 )
+            // InternalSpear.g:9251:2: rule__EnglishConstraint__Group_3__3__Impl rule__EnglishConstraint__Group_3__4
+            {
+            pushFollow(FOLLOW_45);
+            rule__EnglishConstraint__Group_3__3__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+            pushFollow(FOLLOW_2);
+            rule__EnglishConstraint__Group_3__4();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__EnglishConstraint__Group_3__3"
+
+
+    // $ANTLR start "rule__EnglishConstraint__Group_3__3__Impl"
+    // InternalSpear.g:9258:1: rule__EnglishConstraint__Group_3__3__Impl : ( ( rule__EnglishConstraint__IdsAssignment_3_3 ) ) ;
+    public final void rule__EnglishConstraint__Group_3__3__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:9262:1: ( ( ( rule__EnglishConstraint__IdsAssignment_3_3 ) ) )
+            // InternalSpear.g:9263:1: ( ( rule__EnglishConstraint__IdsAssignment_3_3 ) )
+            {
+            // InternalSpear.g:9263:1: ( ( rule__EnglishConstraint__IdsAssignment_3_3 ) )
+            // InternalSpear.g:9264:1: ( rule__EnglishConstraint__IdsAssignment_3_3 )
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getEnglishConstraintAccess().getIdsAssignment_3_3()); 
+            }
+            // InternalSpear.g:9265:1: ( rule__EnglishConstraint__IdsAssignment_3_3 )
+            // InternalSpear.g:9265:2: rule__EnglishConstraint__IdsAssignment_3_3
+            {
+            pushFollow(FOLLOW_2);
+            rule__EnglishConstraint__IdsAssignment_3_3();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getEnglishConstraintAccess().getIdsAssignment_3_3()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__EnglishConstraint__Group_3__3__Impl"
+
+
+    // $ANTLR start "rule__EnglishConstraint__Group_3__4"
+    // InternalSpear.g:9275:1: rule__EnglishConstraint__Group_3__4 : rule__EnglishConstraint__Group_3__4__Impl rule__EnglishConstraint__Group_3__5 ;
+    public final void rule__EnglishConstraint__Group_3__4() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:9279:1: ( rule__EnglishConstraint__Group_3__4__Impl rule__EnglishConstraint__Group_3__5 )
+            // InternalSpear.g:9280:2: rule__EnglishConstraint__Group_3__4__Impl rule__EnglishConstraint__Group_3__5
+            {
+            pushFollow(FOLLOW_45);
+            rule__EnglishConstraint__Group_3__4__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+            pushFollow(FOLLOW_2);
+            rule__EnglishConstraint__Group_3__5();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__EnglishConstraint__Group_3__4"
+
+
+    // $ANTLR start "rule__EnglishConstraint__Group_3__4__Impl"
+    // InternalSpear.g:9287:1: rule__EnglishConstraint__Group_3__4__Impl : ( ( rule__EnglishConstraint__Group_3_4__0 )* ) ;
+    public final void rule__EnglishConstraint__Group_3__4__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:9291:1: ( ( ( rule__EnglishConstraint__Group_3_4__0 )* ) )
+            // InternalSpear.g:9292:1: ( ( rule__EnglishConstraint__Group_3_4__0 )* )
+            {
+            // InternalSpear.g:9292:1: ( ( rule__EnglishConstraint__Group_3_4__0 )* )
+            // InternalSpear.g:9293:1: ( rule__EnglishConstraint__Group_3_4__0 )*
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getEnglishConstraintAccess().getGroup_3_4()); 
+            }
+            // InternalSpear.g:9294:1: ( rule__EnglishConstraint__Group_3_4__0 )*
+            loop85:
+            do {
+                int alt85=2;
+                int LA85_0 = input.LA(1);
+
+                if ( (LA85_0==75) ) {
+                    alt85=1;
+                }
+
+
+                switch (alt85) {
+            	case 1 :
+            	    // InternalSpear.g:9294:2: rule__EnglishConstraint__Group_3_4__0
+            	    {
+            	    pushFollow(FOLLOW_23);
+            	    rule__EnglishConstraint__Group_3_4__0();
+
+            	    state._fsp--;
+            	    if (state.failed) return ;
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop85;
+                }
+            } while (true);
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getEnglishConstraintAccess().getGroup_3_4()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__EnglishConstraint__Group_3__4__Impl"
+
+
+    // $ANTLR start "rule__EnglishConstraint__Group_3__5"
+    // InternalSpear.g:9304:1: rule__EnglishConstraint__Group_3__5 : rule__EnglishConstraint__Group_3__5__Impl ;
+    public final void rule__EnglishConstraint__Group_3__5() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:9308:1: ( rule__EnglishConstraint__Group_3__5__Impl )
+            // InternalSpear.g:9309:2: rule__EnglishConstraint__Group_3__5__Impl
+            {
+            pushFollow(FOLLOW_2);
+            rule__EnglishConstraint__Group_3__5__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__EnglishConstraint__Group_3__5"
+
+
+    // $ANTLR start "rule__EnglishConstraint__Group_3__5__Impl"
+    // InternalSpear.g:9315:1: rule__EnglishConstraint__Group_3__5__Impl : ( ']' ) ;
+    public final void rule__EnglishConstraint__Group_3__5__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:9319:1: ( ( ']' ) )
+            // InternalSpear.g:9320:1: ( ']' )
+            {
+            // InternalSpear.g:9320:1: ( ']' )
+            // InternalSpear.g:9321:1: ']'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getEnglishConstraintAccess().getRightSquareBracketKeyword_3_5()); 
+            }
+            match(input,86,FOLLOW_2); if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getEnglishConstraintAccess().getRightSquareBracketKeyword_3_5()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__EnglishConstraint__Group_3__5__Impl"
+
+
+    // $ANTLR start "rule__EnglishConstraint__Group_3_4__0"
+    // InternalSpear.g:9346:1: rule__EnglishConstraint__Group_3_4__0 : rule__EnglishConstraint__Group_3_4__0__Impl rule__EnglishConstraint__Group_3_4__1 ;
+    public final void rule__EnglishConstraint__Group_3_4__0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:9350:1: ( rule__EnglishConstraint__Group_3_4__0__Impl rule__EnglishConstraint__Group_3_4__1 )
+            // InternalSpear.g:9351:2: rule__EnglishConstraint__Group_3_4__0__Impl rule__EnglishConstraint__Group_3_4__1
+            {
+            pushFollow(FOLLOW_3);
+            rule__EnglishConstraint__Group_3_4__0__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+            pushFollow(FOLLOW_2);
+            rule__EnglishConstraint__Group_3_4__1();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__EnglishConstraint__Group_3_4__0"
+
+
+    // $ANTLR start "rule__EnglishConstraint__Group_3_4__0__Impl"
+    // InternalSpear.g:9358:1: rule__EnglishConstraint__Group_3_4__0__Impl : ( ',' ) ;
+    public final void rule__EnglishConstraint__Group_3_4__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:9362:1: ( ( ',' ) )
+            // InternalSpear.g:9363:1: ( ',' )
+            {
+            // InternalSpear.g:9363:1: ( ',' )
+            // InternalSpear.g:9364:1: ','
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getEnglishConstraintAccess().getCommaKeyword_3_4_0()); 
+            }
+            match(input,75,FOLLOW_2); if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getEnglishConstraintAccess().getCommaKeyword_3_4_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__EnglishConstraint__Group_3_4__0__Impl"
+
+
+    // $ANTLR start "rule__EnglishConstraint__Group_3_4__1"
+    // InternalSpear.g:9377:1: rule__EnglishConstraint__Group_3_4__1 : rule__EnglishConstraint__Group_3_4__1__Impl ;
+    public final void rule__EnglishConstraint__Group_3_4__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:9381:1: ( rule__EnglishConstraint__Group_3_4__1__Impl )
+            // InternalSpear.g:9382:2: rule__EnglishConstraint__Group_3_4__1__Impl
+            {
+            pushFollow(FOLLOW_2);
+            rule__EnglishConstraint__Group_3_4__1__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__EnglishConstraint__Group_3_4__1"
+
+
+    // $ANTLR start "rule__EnglishConstraint__Group_3_4__1__Impl"
+    // InternalSpear.g:9388:1: rule__EnglishConstraint__Group_3_4__1__Impl : ( ( rule__EnglishConstraint__IdsAssignment_3_4_1 ) ) ;
+    public final void rule__EnglishConstraint__Group_3_4__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:9392:1: ( ( ( rule__EnglishConstraint__IdsAssignment_3_4_1 ) ) )
+            // InternalSpear.g:9393:1: ( ( rule__EnglishConstraint__IdsAssignment_3_4_1 ) )
+            {
+            // InternalSpear.g:9393:1: ( ( rule__EnglishConstraint__IdsAssignment_3_4_1 ) )
+            // InternalSpear.g:9394:1: ( rule__EnglishConstraint__IdsAssignment_3_4_1 )
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getEnglishConstraintAccess().getIdsAssignment_3_4_1()); 
+            }
+            // InternalSpear.g:9395:1: ( rule__EnglishConstraint__IdsAssignment_3_4_1 )
+            // InternalSpear.g:9395:2: rule__EnglishConstraint__IdsAssignment_3_4_1
+            {
+            pushFollow(FOLLOW_2);
+            rule__EnglishConstraint__IdsAssignment_3_4_1();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getEnglishConstraintAccess().getIdsAssignment_3_4_1()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__EnglishConstraint__Group_3_4__1__Impl"
+
+
     // $ANTLR start "rule__WhileExpr__Group_0__0"
-    // InternalSpear.g:8835:1: rule__WhileExpr__Group_0__0 : rule__WhileExpr__Group_0__0__Impl rule__WhileExpr__Group_0__1 ;
+    // InternalSpear.g:9409:1: rule__WhileExpr__Group_0__0 : rule__WhileExpr__Group_0__0__Impl rule__WhileExpr__Group_0__1 ;
     public final void rule__WhileExpr__Group_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:8839:1: ( rule__WhileExpr__Group_0__0__Impl rule__WhileExpr__Group_0__1 )
-            // InternalSpear.g:8840:2: rule__WhileExpr__Group_0__0__Impl rule__WhileExpr__Group_0__1
+            // InternalSpear.g:9413:1: ( rule__WhileExpr__Group_0__0__Impl rule__WhileExpr__Group_0__1 )
+            // InternalSpear.g:9414:2: rule__WhileExpr__Group_0__0__Impl rule__WhileExpr__Group_0__1
             {
-            pushFollow(FOLLOW_44);
+            pushFollow(FOLLOW_47);
             rule__WhileExpr__Group_0__0__Impl();
 
             state._fsp--;
@@ -25845,23 +27386,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__WhileExpr__Group_0__0__Impl"
-    // InternalSpear.g:8847:1: rule__WhileExpr__Group_0__0__Impl : ( () ) ;
+    // InternalSpear.g:9421:1: rule__WhileExpr__Group_0__0__Impl : ( () ) ;
     public final void rule__WhileExpr__Group_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:8851:1: ( ( () ) )
-            // InternalSpear.g:8852:1: ( () )
+            // InternalSpear.g:9425:1: ( ( () ) )
+            // InternalSpear.g:9426:1: ( () )
             {
-            // InternalSpear.g:8852:1: ( () )
-            // InternalSpear.g:8853:1: ()
+            // InternalSpear.g:9426:1: ( () )
+            // InternalSpear.g:9427:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getWhileExprAccess().getWhileExprAction_0_0()); 
             }
-            // InternalSpear.g:8854:1: ()
-            // InternalSpear.g:8856:1: 
+            // InternalSpear.g:9428:1: ()
+            // InternalSpear.g:9430:1: 
             {
             }
 
@@ -25886,14 +27427,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__WhileExpr__Group_0__1"
-    // InternalSpear.g:8866:1: rule__WhileExpr__Group_0__1 : rule__WhileExpr__Group_0__1__Impl rule__WhileExpr__Group_0__2 ;
+    // InternalSpear.g:9440:1: rule__WhileExpr__Group_0__1 : rule__WhileExpr__Group_0__1__Impl rule__WhileExpr__Group_0__2 ;
     public final void rule__WhileExpr__Group_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:8870:1: ( rule__WhileExpr__Group_0__1__Impl rule__WhileExpr__Group_0__2 )
-            // InternalSpear.g:8871:2: rule__WhileExpr__Group_0__1__Impl rule__WhileExpr__Group_0__2
+            // InternalSpear.g:9444:1: ( rule__WhileExpr__Group_0__1__Impl rule__WhileExpr__Group_0__2 )
+            // InternalSpear.g:9445:2: rule__WhileExpr__Group_0__1__Impl rule__WhileExpr__Group_0__2
             {
             pushFollow(FOLLOW_26);
             rule__WhileExpr__Group_0__1__Impl();
@@ -25924,22 +27465,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__WhileExpr__Group_0__1__Impl"
-    // InternalSpear.g:8878:1: rule__WhileExpr__Group_0__1__Impl : ( 'while' ) ;
+    // InternalSpear.g:9452:1: rule__WhileExpr__Group_0__1__Impl : ( 'while' ) ;
     public final void rule__WhileExpr__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:8882:1: ( ( 'while' ) )
-            // InternalSpear.g:8883:1: ( 'while' )
+            // InternalSpear.g:9456:1: ( ( 'while' ) )
+            // InternalSpear.g:9457:1: ( 'while' )
             {
-            // InternalSpear.g:8883:1: ( 'while' )
-            // InternalSpear.g:8884:1: 'while'
+            // InternalSpear.g:9457:1: ( 'while' )
+            // InternalSpear.g:9458:1: 'while'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getWhileExprAccess().getWhileKeyword_0_1()); 
             }
-            match(input,92,FOLLOW_2); if (state.failed) return ;
+            match(input,93,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getWhileExprAccess().getWhileKeyword_0_1()); 
             }
@@ -25965,16 +27506,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__WhileExpr__Group_0__2"
-    // InternalSpear.g:8897:1: rule__WhileExpr__Group_0__2 : rule__WhileExpr__Group_0__2__Impl rule__WhileExpr__Group_0__3 ;
+    // InternalSpear.g:9471:1: rule__WhileExpr__Group_0__2 : rule__WhileExpr__Group_0__2__Impl rule__WhileExpr__Group_0__3 ;
     public final void rule__WhileExpr__Group_0__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:8901:1: ( rule__WhileExpr__Group_0__2__Impl rule__WhileExpr__Group_0__3 )
-            // InternalSpear.g:8902:2: rule__WhileExpr__Group_0__2__Impl rule__WhileExpr__Group_0__3
+            // InternalSpear.g:9475:1: ( rule__WhileExpr__Group_0__2__Impl rule__WhileExpr__Group_0__3 )
+            // InternalSpear.g:9476:2: rule__WhileExpr__Group_0__2__Impl rule__WhileExpr__Group_0__3
             {
-            pushFollow(FOLLOW_45);
+            pushFollow(FOLLOW_48);
             rule__WhileExpr__Group_0__2__Impl();
 
             state._fsp--;
@@ -26003,23 +27544,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__WhileExpr__Group_0__2__Impl"
-    // InternalSpear.g:8909:1: rule__WhileExpr__Group_0__2__Impl : ( ( rule__WhileExpr__CondAssignment_0_2 ) ) ;
+    // InternalSpear.g:9483:1: rule__WhileExpr__Group_0__2__Impl : ( ( rule__WhileExpr__CondAssignment_0_2 ) ) ;
     public final void rule__WhileExpr__Group_0__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:8913:1: ( ( ( rule__WhileExpr__CondAssignment_0_2 ) ) )
-            // InternalSpear.g:8914:1: ( ( rule__WhileExpr__CondAssignment_0_2 ) )
+            // InternalSpear.g:9487:1: ( ( ( rule__WhileExpr__CondAssignment_0_2 ) ) )
+            // InternalSpear.g:9488:1: ( ( rule__WhileExpr__CondAssignment_0_2 ) )
             {
-            // InternalSpear.g:8914:1: ( ( rule__WhileExpr__CondAssignment_0_2 ) )
-            // InternalSpear.g:8915:1: ( rule__WhileExpr__CondAssignment_0_2 )
+            // InternalSpear.g:9488:1: ( ( rule__WhileExpr__CondAssignment_0_2 ) )
+            // InternalSpear.g:9489:1: ( rule__WhileExpr__CondAssignment_0_2 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getWhileExprAccess().getCondAssignment_0_2()); 
             }
-            // InternalSpear.g:8916:1: ( rule__WhileExpr__CondAssignment_0_2 )
-            // InternalSpear.g:8916:2: rule__WhileExpr__CondAssignment_0_2
+            // InternalSpear.g:9490:1: ( rule__WhileExpr__CondAssignment_0_2 )
+            // InternalSpear.g:9490:2: rule__WhileExpr__CondAssignment_0_2
             {
             pushFollow(FOLLOW_2);
             rule__WhileExpr__CondAssignment_0_2();
@@ -26054,14 +27595,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__WhileExpr__Group_0__3"
-    // InternalSpear.g:8926:1: rule__WhileExpr__Group_0__3 : rule__WhileExpr__Group_0__3__Impl rule__WhileExpr__Group_0__4 ;
+    // InternalSpear.g:9500:1: rule__WhileExpr__Group_0__3 : rule__WhileExpr__Group_0__3__Impl rule__WhileExpr__Group_0__4 ;
     public final void rule__WhileExpr__Group_0__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:8930:1: ( rule__WhileExpr__Group_0__3__Impl rule__WhileExpr__Group_0__4 )
-            // InternalSpear.g:8931:2: rule__WhileExpr__Group_0__3__Impl rule__WhileExpr__Group_0__4
+            // InternalSpear.g:9504:1: ( rule__WhileExpr__Group_0__3__Impl rule__WhileExpr__Group_0__4 )
+            // InternalSpear.g:9505:2: rule__WhileExpr__Group_0__3__Impl rule__WhileExpr__Group_0__4
             {
             pushFollow(FOLLOW_26);
             rule__WhileExpr__Group_0__3__Impl();
@@ -26092,22 +27633,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__WhileExpr__Group_0__3__Impl"
-    // InternalSpear.g:8938:1: rule__WhileExpr__Group_0__3__Impl : ( 'then' ) ;
+    // InternalSpear.g:9512:1: rule__WhileExpr__Group_0__3__Impl : ( 'then' ) ;
     public final void rule__WhileExpr__Group_0__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:8942:1: ( ( 'then' ) )
-            // InternalSpear.g:8943:1: ( 'then' )
+            // InternalSpear.g:9516:1: ( ( 'then' ) )
+            // InternalSpear.g:9517:1: ( 'then' )
             {
-            // InternalSpear.g:8943:1: ( 'then' )
-            // InternalSpear.g:8944:1: 'then'
+            // InternalSpear.g:9517:1: ( 'then' )
+            // InternalSpear.g:9518:1: 'then'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getWhileExprAccess().getThenKeyword_0_3()); 
             }
-            match(input,93,FOLLOW_2); if (state.failed) return ;
+            match(input,94,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getWhileExprAccess().getThenKeyword_0_3()); 
             }
@@ -26133,14 +27674,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__WhileExpr__Group_0__4"
-    // InternalSpear.g:8957:1: rule__WhileExpr__Group_0__4 : rule__WhileExpr__Group_0__4__Impl ;
+    // InternalSpear.g:9531:1: rule__WhileExpr__Group_0__4 : rule__WhileExpr__Group_0__4__Impl ;
     public final void rule__WhileExpr__Group_0__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:8961:1: ( rule__WhileExpr__Group_0__4__Impl )
-            // InternalSpear.g:8962:2: rule__WhileExpr__Group_0__4__Impl
+            // InternalSpear.g:9535:1: ( rule__WhileExpr__Group_0__4__Impl )
+            // InternalSpear.g:9536:2: rule__WhileExpr__Group_0__4__Impl
             {
             pushFollow(FOLLOW_2);
             rule__WhileExpr__Group_0__4__Impl();
@@ -26166,23 +27707,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__WhileExpr__Group_0__4__Impl"
-    // InternalSpear.g:8968:1: rule__WhileExpr__Group_0__4__Impl : ( ( rule__WhileExpr__ThenAssignment_0_4 ) ) ;
+    // InternalSpear.g:9542:1: rule__WhileExpr__Group_0__4__Impl : ( ( rule__WhileExpr__ThenAssignment_0_4 ) ) ;
     public final void rule__WhileExpr__Group_0__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:8972:1: ( ( ( rule__WhileExpr__ThenAssignment_0_4 ) ) )
-            // InternalSpear.g:8973:1: ( ( rule__WhileExpr__ThenAssignment_0_4 ) )
+            // InternalSpear.g:9546:1: ( ( ( rule__WhileExpr__ThenAssignment_0_4 ) ) )
+            // InternalSpear.g:9547:1: ( ( rule__WhileExpr__ThenAssignment_0_4 ) )
             {
-            // InternalSpear.g:8973:1: ( ( rule__WhileExpr__ThenAssignment_0_4 ) )
-            // InternalSpear.g:8974:1: ( rule__WhileExpr__ThenAssignment_0_4 )
+            // InternalSpear.g:9547:1: ( ( rule__WhileExpr__ThenAssignment_0_4 ) )
+            // InternalSpear.g:9548:1: ( rule__WhileExpr__ThenAssignment_0_4 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getWhileExprAccess().getThenAssignment_0_4()); 
             }
-            // InternalSpear.g:8975:1: ( rule__WhileExpr__ThenAssignment_0_4 )
-            // InternalSpear.g:8975:2: rule__WhileExpr__ThenAssignment_0_4
+            // InternalSpear.g:9549:1: ( rule__WhileExpr__ThenAssignment_0_4 )
+            // InternalSpear.g:9549:2: rule__WhileExpr__ThenAssignment_0_4
             {
             pushFollow(FOLLOW_2);
             rule__WhileExpr__ThenAssignment_0_4();
@@ -26217,16 +27758,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ImpliesExpr__Group__0"
-    // InternalSpear.g:8995:1: rule__ImpliesExpr__Group__0 : rule__ImpliesExpr__Group__0__Impl rule__ImpliesExpr__Group__1 ;
+    // InternalSpear.g:9569:1: rule__ImpliesExpr__Group__0 : rule__ImpliesExpr__Group__0__Impl rule__ImpliesExpr__Group__1 ;
     public final void rule__ImpliesExpr__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:8999:1: ( rule__ImpliesExpr__Group__0__Impl rule__ImpliesExpr__Group__1 )
-            // InternalSpear.g:9000:2: rule__ImpliesExpr__Group__0__Impl rule__ImpliesExpr__Group__1
+            // InternalSpear.g:9573:1: ( rule__ImpliesExpr__Group__0__Impl rule__ImpliesExpr__Group__1 )
+            // InternalSpear.g:9574:2: rule__ImpliesExpr__Group__0__Impl rule__ImpliesExpr__Group__1
             {
-            pushFollow(FOLLOW_46);
+            pushFollow(FOLLOW_49);
             rule__ImpliesExpr__Group__0__Impl();
 
             state._fsp--;
@@ -26255,17 +27796,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ImpliesExpr__Group__0__Impl"
-    // InternalSpear.g:9007:1: rule__ImpliesExpr__Group__0__Impl : ( ruleOrExpr ) ;
+    // InternalSpear.g:9581:1: rule__ImpliesExpr__Group__0__Impl : ( ruleOrExpr ) ;
     public final void rule__ImpliesExpr__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9011:1: ( ( ruleOrExpr ) )
-            // InternalSpear.g:9012:1: ( ruleOrExpr )
+            // InternalSpear.g:9585:1: ( ( ruleOrExpr ) )
+            // InternalSpear.g:9586:1: ( ruleOrExpr )
             {
-            // InternalSpear.g:9012:1: ( ruleOrExpr )
-            // InternalSpear.g:9013:1: ruleOrExpr
+            // InternalSpear.g:9586:1: ( ruleOrExpr )
+            // InternalSpear.g:9587:1: ruleOrExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getImpliesExprAccess().getOrExprParserRuleCall_0()); 
@@ -26300,14 +27841,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ImpliesExpr__Group__1"
-    // InternalSpear.g:9024:1: rule__ImpliesExpr__Group__1 : rule__ImpliesExpr__Group__1__Impl ;
+    // InternalSpear.g:9598:1: rule__ImpliesExpr__Group__1 : rule__ImpliesExpr__Group__1__Impl ;
     public final void rule__ImpliesExpr__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9028:1: ( rule__ImpliesExpr__Group__1__Impl )
-            // InternalSpear.g:9029:2: rule__ImpliesExpr__Group__1__Impl
+            // InternalSpear.g:9602:1: ( rule__ImpliesExpr__Group__1__Impl )
+            // InternalSpear.g:9603:2: rule__ImpliesExpr__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ImpliesExpr__Group__1__Impl();
@@ -26333,42 +27874,42 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ImpliesExpr__Group__1__Impl"
-    // InternalSpear.g:9035:1: rule__ImpliesExpr__Group__1__Impl : ( ( rule__ImpliesExpr__Group_1__0 )? ) ;
+    // InternalSpear.g:9609:1: rule__ImpliesExpr__Group__1__Impl : ( ( rule__ImpliesExpr__Group_1__0 )? ) ;
     public final void rule__ImpliesExpr__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9039:1: ( ( ( rule__ImpliesExpr__Group_1__0 )? ) )
-            // InternalSpear.g:9040:1: ( ( rule__ImpliesExpr__Group_1__0 )? )
+            // InternalSpear.g:9613:1: ( ( ( rule__ImpliesExpr__Group_1__0 )? ) )
+            // InternalSpear.g:9614:1: ( ( rule__ImpliesExpr__Group_1__0 )? )
             {
-            // InternalSpear.g:9040:1: ( ( rule__ImpliesExpr__Group_1__0 )? )
-            // InternalSpear.g:9041:1: ( rule__ImpliesExpr__Group_1__0 )?
+            // InternalSpear.g:9614:1: ( ( rule__ImpliesExpr__Group_1__0 )? )
+            // InternalSpear.g:9615:1: ( rule__ImpliesExpr__Group_1__0 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getImpliesExprAccess().getGroup_1()); 
             }
-            // InternalSpear.g:9042:1: ( rule__ImpliesExpr__Group_1__0 )?
-            int alt82=2;
-            int LA82_0 = input.LA(1);
+            // InternalSpear.g:9616:1: ( rule__ImpliesExpr__Group_1__0 )?
+            int alt86=2;
+            int LA86_0 = input.LA(1);
 
-            if ( (LA82_0==24) ) {
-                int LA82_1 = input.LA(2);
+            if ( (LA86_0==24) ) {
+                int LA86_1 = input.LA(2);
 
-                if ( (synpred122_InternalSpear()) ) {
-                    alt82=1;
+                if ( (synpred126_InternalSpear()) ) {
+                    alt86=1;
                 }
             }
-            else if ( (LA82_0==25) ) {
-                int LA82_2 = input.LA(2);
+            else if ( (LA86_0==25) ) {
+                int LA86_2 = input.LA(2);
 
-                if ( (synpred122_InternalSpear()) ) {
-                    alt82=1;
+                if ( (synpred126_InternalSpear()) ) {
+                    alt86=1;
                 }
             }
-            switch (alt82) {
+            switch (alt86) {
                 case 1 :
-                    // InternalSpear.g:9042:2: rule__ImpliesExpr__Group_1__0
+                    // InternalSpear.g:9616:2: rule__ImpliesExpr__Group_1__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__ImpliesExpr__Group_1__0();
@@ -26406,14 +27947,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ImpliesExpr__Group_1__0"
-    // InternalSpear.g:9056:1: rule__ImpliesExpr__Group_1__0 : rule__ImpliesExpr__Group_1__0__Impl rule__ImpliesExpr__Group_1__1 ;
+    // InternalSpear.g:9630:1: rule__ImpliesExpr__Group_1__0 : rule__ImpliesExpr__Group_1__0__Impl rule__ImpliesExpr__Group_1__1 ;
     public final void rule__ImpliesExpr__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9060:1: ( rule__ImpliesExpr__Group_1__0__Impl rule__ImpliesExpr__Group_1__1 )
-            // InternalSpear.g:9061:2: rule__ImpliesExpr__Group_1__0__Impl rule__ImpliesExpr__Group_1__1
+            // InternalSpear.g:9634:1: ( rule__ImpliesExpr__Group_1__0__Impl rule__ImpliesExpr__Group_1__1 )
+            // InternalSpear.g:9635:2: rule__ImpliesExpr__Group_1__0__Impl rule__ImpliesExpr__Group_1__1
             {
             pushFollow(FOLLOW_26);
             rule__ImpliesExpr__Group_1__0__Impl();
@@ -26444,23 +27985,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ImpliesExpr__Group_1__0__Impl"
-    // InternalSpear.g:9068:1: rule__ImpliesExpr__Group_1__0__Impl : ( ( rule__ImpliesExpr__Group_1_0__0 ) ) ;
+    // InternalSpear.g:9642:1: rule__ImpliesExpr__Group_1__0__Impl : ( ( rule__ImpliesExpr__Group_1_0__0 ) ) ;
     public final void rule__ImpliesExpr__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9072:1: ( ( ( rule__ImpliesExpr__Group_1_0__0 ) ) )
-            // InternalSpear.g:9073:1: ( ( rule__ImpliesExpr__Group_1_0__0 ) )
+            // InternalSpear.g:9646:1: ( ( ( rule__ImpliesExpr__Group_1_0__0 ) ) )
+            // InternalSpear.g:9647:1: ( ( rule__ImpliesExpr__Group_1_0__0 ) )
             {
-            // InternalSpear.g:9073:1: ( ( rule__ImpliesExpr__Group_1_0__0 ) )
-            // InternalSpear.g:9074:1: ( rule__ImpliesExpr__Group_1_0__0 )
+            // InternalSpear.g:9647:1: ( ( rule__ImpliesExpr__Group_1_0__0 ) )
+            // InternalSpear.g:9648:1: ( rule__ImpliesExpr__Group_1_0__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getImpliesExprAccess().getGroup_1_0()); 
             }
-            // InternalSpear.g:9075:1: ( rule__ImpliesExpr__Group_1_0__0 )
-            // InternalSpear.g:9075:2: rule__ImpliesExpr__Group_1_0__0
+            // InternalSpear.g:9649:1: ( rule__ImpliesExpr__Group_1_0__0 )
+            // InternalSpear.g:9649:2: rule__ImpliesExpr__Group_1_0__0
             {
             pushFollow(FOLLOW_2);
             rule__ImpliesExpr__Group_1_0__0();
@@ -26495,14 +28036,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ImpliesExpr__Group_1__1"
-    // InternalSpear.g:9085:1: rule__ImpliesExpr__Group_1__1 : rule__ImpliesExpr__Group_1__1__Impl ;
+    // InternalSpear.g:9659:1: rule__ImpliesExpr__Group_1__1 : rule__ImpliesExpr__Group_1__1__Impl ;
     public final void rule__ImpliesExpr__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9089:1: ( rule__ImpliesExpr__Group_1__1__Impl )
-            // InternalSpear.g:9090:2: rule__ImpliesExpr__Group_1__1__Impl
+            // InternalSpear.g:9663:1: ( rule__ImpliesExpr__Group_1__1__Impl )
+            // InternalSpear.g:9664:2: rule__ImpliesExpr__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ImpliesExpr__Group_1__1__Impl();
@@ -26528,23 +28069,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ImpliesExpr__Group_1__1__Impl"
-    // InternalSpear.g:9096:1: rule__ImpliesExpr__Group_1__1__Impl : ( ( rule__ImpliesExpr__RightAssignment_1_1 ) ) ;
+    // InternalSpear.g:9670:1: rule__ImpliesExpr__Group_1__1__Impl : ( ( rule__ImpliesExpr__RightAssignment_1_1 ) ) ;
     public final void rule__ImpliesExpr__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9100:1: ( ( ( rule__ImpliesExpr__RightAssignment_1_1 ) ) )
-            // InternalSpear.g:9101:1: ( ( rule__ImpliesExpr__RightAssignment_1_1 ) )
+            // InternalSpear.g:9674:1: ( ( ( rule__ImpliesExpr__RightAssignment_1_1 ) ) )
+            // InternalSpear.g:9675:1: ( ( rule__ImpliesExpr__RightAssignment_1_1 ) )
             {
-            // InternalSpear.g:9101:1: ( ( rule__ImpliesExpr__RightAssignment_1_1 ) )
-            // InternalSpear.g:9102:1: ( rule__ImpliesExpr__RightAssignment_1_1 )
+            // InternalSpear.g:9675:1: ( ( rule__ImpliesExpr__RightAssignment_1_1 ) )
+            // InternalSpear.g:9676:1: ( rule__ImpliesExpr__RightAssignment_1_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getImpliesExprAccess().getRightAssignment_1_1()); 
             }
-            // InternalSpear.g:9103:1: ( rule__ImpliesExpr__RightAssignment_1_1 )
-            // InternalSpear.g:9103:2: rule__ImpliesExpr__RightAssignment_1_1
+            // InternalSpear.g:9677:1: ( rule__ImpliesExpr__RightAssignment_1_1 )
+            // InternalSpear.g:9677:2: rule__ImpliesExpr__RightAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__ImpliesExpr__RightAssignment_1_1();
@@ -26579,14 +28120,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ImpliesExpr__Group_1_0__0"
-    // InternalSpear.g:9117:1: rule__ImpliesExpr__Group_1_0__0 : rule__ImpliesExpr__Group_1_0__0__Impl ;
+    // InternalSpear.g:9691:1: rule__ImpliesExpr__Group_1_0__0 : rule__ImpliesExpr__Group_1_0__0__Impl ;
     public final void rule__ImpliesExpr__Group_1_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9121:1: ( rule__ImpliesExpr__Group_1_0__0__Impl )
-            // InternalSpear.g:9122:2: rule__ImpliesExpr__Group_1_0__0__Impl
+            // InternalSpear.g:9695:1: ( rule__ImpliesExpr__Group_1_0__0__Impl )
+            // InternalSpear.g:9696:2: rule__ImpliesExpr__Group_1_0__0__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ImpliesExpr__Group_1_0__0__Impl();
@@ -26612,23 +28153,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ImpliesExpr__Group_1_0__0__Impl"
-    // InternalSpear.g:9128:1: rule__ImpliesExpr__Group_1_0__0__Impl : ( ( rule__ImpliesExpr__Group_1_0_0__0 ) ) ;
+    // InternalSpear.g:9702:1: rule__ImpliesExpr__Group_1_0__0__Impl : ( ( rule__ImpliesExpr__Group_1_0_0__0 ) ) ;
     public final void rule__ImpliesExpr__Group_1_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9132:1: ( ( ( rule__ImpliesExpr__Group_1_0_0__0 ) ) )
-            // InternalSpear.g:9133:1: ( ( rule__ImpliesExpr__Group_1_0_0__0 ) )
+            // InternalSpear.g:9706:1: ( ( ( rule__ImpliesExpr__Group_1_0_0__0 ) ) )
+            // InternalSpear.g:9707:1: ( ( rule__ImpliesExpr__Group_1_0_0__0 ) )
             {
-            // InternalSpear.g:9133:1: ( ( rule__ImpliesExpr__Group_1_0_0__0 ) )
-            // InternalSpear.g:9134:1: ( rule__ImpliesExpr__Group_1_0_0__0 )
+            // InternalSpear.g:9707:1: ( ( rule__ImpliesExpr__Group_1_0_0__0 ) )
+            // InternalSpear.g:9708:1: ( rule__ImpliesExpr__Group_1_0_0__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getImpliesExprAccess().getGroup_1_0_0()); 
             }
-            // InternalSpear.g:9135:1: ( rule__ImpliesExpr__Group_1_0_0__0 )
-            // InternalSpear.g:9135:2: rule__ImpliesExpr__Group_1_0_0__0
+            // InternalSpear.g:9709:1: ( rule__ImpliesExpr__Group_1_0_0__0 )
+            // InternalSpear.g:9709:2: rule__ImpliesExpr__Group_1_0_0__0
             {
             pushFollow(FOLLOW_2);
             rule__ImpliesExpr__Group_1_0_0__0();
@@ -26663,16 +28204,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ImpliesExpr__Group_1_0_0__0"
-    // InternalSpear.g:9147:1: rule__ImpliesExpr__Group_1_0_0__0 : rule__ImpliesExpr__Group_1_0_0__0__Impl rule__ImpliesExpr__Group_1_0_0__1 ;
+    // InternalSpear.g:9721:1: rule__ImpliesExpr__Group_1_0_0__0 : rule__ImpliesExpr__Group_1_0_0__0__Impl rule__ImpliesExpr__Group_1_0_0__1 ;
     public final void rule__ImpliesExpr__Group_1_0_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9151:1: ( rule__ImpliesExpr__Group_1_0_0__0__Impl rule__ImpliesExpr__Group_1_0_0__1 )
-            // InternalSpear.g:9152:2: rule__ImpliesExpr__Group_1_0_0__0__Impl rule__ImpliesExpr__Group_1_0_0__1
+            // InternalSpear.g:9725:1: ( rule__ImpliesExpr__Group_1_0_0__0__Impl rule__ImpliesExpr__Group_1_0_0__1 )
+            // InternalSpear.g:9726:2: rule__ImpliesExpr__Group_1_0_0__0__Impl rule__ImpliesExpr__Group_1_0_0__1
             {
-            pushFollow(FOLLOW_46);
+            pushFollow(FOLLOW_49);
             rule__ImpliesExpr__Group_1_0_0__0__Impl();
 
             state._fsp--;
@@ -26701,23 +28242,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ImpliesExpr__Group_1_0_0__0__Impl"
-    // InternalSpear.g:9159:1: rule__ImpliesExpr__Group_1_0_0__0__Impl : ( () ) ;
+    // InternalSpear.g:9733:1: rule__ImpliesExpr__Group_1_0_0__0__Impl : ( () ) ;
     public final void rule__ImpliesExpr__Group_1_0_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9163:1: ( ( () ) )
-            // InternalSpear.g:9164:1: ( () )
+            // InternalSpear.g:9737:1: ( ( () ) )
+            // InternalSpear.g:9738:1: ( () )
             {
-            // InternalSpear.g:9164:1: ( () )
-            // InternalSpear.g:9165:1: ()
+            // InternalSpear.g:9738:1: ( () )
+            // InternalSpear.g:9739:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getImpliesExprAccess().getBinaryExprLeftAction_1_0_0_0()); 
             }
-            // InternalSpear.g:9166:1: ()
-            // InternalSpear.g:9168:1: 
+            // InternalSpear.g:9740:1: ()
+            // InternalSpear.g:9742:1: 
             {
             }
 
@@ -26742,14 +28283,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ImpliesExpr__Group_1_0_0__1"
-    // InternalSpear.g:9178:1: rule__ImpliesExpr__Group_1_0_0__1 : rule__ImpliesExpr__Group_1_0_0__1__Impl ;
+    // InternalSpear.g:9752:1: rule__ImpliesExpr__Group_1_0_0__1 : rule__ImpliesExpr__Group_1_0_0__1__Impl ;
     public final void rule__ImpliesExpr__Group_1_0_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9182:1: ( rule__ImpliesExpr__Group_1_0_0__1__Impl )
-            // InternalSpear.g:9183:2: rule__ImpliesExpr__Group_1_0_0__1__Impl
+            // InternalSpear.g:9756:1: ( rule__ImpliesExpr__Group_1_0_0__1__Impl )
+            // InternalSpear.g:9757:2: rule__ImpliesExpr__Group_1_0_0__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ImpliesExpr__Group_1_0_0__1__Impl();
@@ -26775,23 +28316,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ImpliesExpr__Group_1_0_0__1__Impl"
-    // InternalSpear.g:9189:1: rule__ImpliesExpr__Group_1_0_0__1__Impl : ( ( rule__ImpliesExpr__OpAssignment_1_0_0_1 ) ) ;
+    // InternalSpear.g:9763:1: rule__ImpliesExpr__Group_1_0_0__1__Impl : ( ( rule__ImpliesExpr__OpAssignment_1_0_0_1 ) ) ;
     public final void rule__ImpliesExpr__Group_1_0_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9193:1: ( ( ( rule__ImpliesExpr__OpAssignment_1_0_0_1 ) ) )
-            // InternalSpear.g:9194:1: ( ( rule__ImpliesExpr__OpAssignment_1_0_0_1 ) )
+            // InternalSpear.g:9767:1: ( ( ( rule__ImpliesExpr__OpAssignment_1_0_0_1 ) ) )
+            // InternalSpear.g:9768:1: ( ( rule__ImpliesExpr__OpAssignment_1_0_0_1 ) )
             {
-            // InternalSpear.g:9194:1: ( ( rule__ImpliesExpr__OpAssignment_1_0_0_1 ) )
-            // InternalSpear.g:9195:1: ( rule__ImpliesExpr__OpAssignment_1_0_0_1 )
+            // InternalSpear.g:9768:1: ( ( rule__ImpliesExpr__OpAssignment_1_0_0_1 ) )
+            // InternalSpear.g:9769:1: ( rule__ImpliesExpr__OpAssignment_1_0_0_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getImpliesExprAccess().getOpAssignment_1_0_0_1()); 
             }
-            // InternalSpear.g:9196:1: ( rule__ImpliesExpr__OpAssignment_1_0_0_1 )
-            // InternalSpear.g:9196:2: rule__ImpliesExpr__OpAssignment_1_0_0_1
+            // InternalSpear.g:9770:1: ( rule__ImpliesExpr__OpAssignment_1_0_0_1 )
+            // InternalSpear.g:9770:2: rule__ImpliesExpr__OpAssignment_1_0_0_1
             {
             pushFollow(FOLLOW_2);
             rule__ImpliesExpr__OpAssignment_1_0_0_1();
@@ -26826,16 +28367,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpr__Group__0"
-    // InternalSpear.g:9210:1: rule__OrExpr__Group__0 : rule__OrExpr__Group__0__Impl rule__OrExpr__Group__1 ;
+    // InternalSpear.g:9784:1: rule__OrExpr__Group__0 : rule__OrExpr__Group__0__Impl rule__OrExpr__Group__1 ;
     public final void rule__OrExpr__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9214:1: ( rule__OrExpr__Group__0__Impl rule__OrExpr__Group__1 )
-            // InternalSpear.g:9215:2: rule__OrExpr__Group__0__Impl rule__OrExpr__Group__1
+            // InternalSpear.g:9788:1: ( rule__OrExpr__Group__0__Impl rule__OrExpr__Group__1 )
+            // InternalSpear.g:9789:2: rule__OrExpr__Group__0__Impl rule__OrExpr__Group__1
             {
-            pushFollow(FOLLOW_47);
+            pushFollow(FOLLOW_50);
             rule__OrExpr__Group__0__Impl();
 
             state._fsp--;
@@ -26864,17 +28405,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpr__Group__0__Impl"
-    // InternalSpear.g:9222:1: rule__OrExpr__Group__0__Impl : ( ruleAndExpr ) ;
+    // InternalSpear.g:9796:1: rule__OrExpr__Group__0__Impl : ( ruleAndExpr ) ;
     public final void rule__OrExpr__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9226:1: ( ( ruleAndExpr ) )
-            // InternalSpear.g:9227:1: ( ruleAndExpr )
+            // InternalSpear.g:9800:1: ( ( ruleAndExpr ) )
+            // InternalSpear.g:9801:1: ( ruleAndExpr )
             {
-            // InternalSpear.g:9227:1: ( ruleAndExpr )
-            // InternalSpear.g:9228:1: ruleAndExpr
+            // InternalSpear.g:9801:1: ( ruleAndExpr )
+            // InternalSpear.g:9802:1: ruleAndExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOrExprAccess().getAndExprParserRuleCall_0()); 
@@ -26909,14 +28450,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpr__Group__1"
-    // InternalSpear.g:9239:1: rule__OrExpr__Group__1 : rule__OrExpr__Group__1__Impl ;
+    // InternalSpear.g:9813:1: rule__OrExpr__Group__1 : rule__OrExpr__Group__1__Impl ;
     public final void rule__OrExpr__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9243:1: ( rule__OrExpr__Group__1__Impl )
-            // InternalSpear.g:9244:2: rule__OrExpr__Group__1__Impl
+            // InternalSpear.g:9817:1: ( rule__OrExpr__Group__1__Impl )
+            // InternalSpear.g:9818:2: rule__OrExpr__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__OrExpr__Group__1__Impl();
@@ -26942,42 +28483,42 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpr__Group__1__Impl"
-    // InternalSpear.g:9250:1: rule__OrExpr__Group__1__Impl : ( ( rule__OrExpr__Group_1__0 )? ) ;
+    // InternalSpear.g:9824:1: rule__OrExpr__Group__1__Impl : ( ( rule__OrExpr__Group_1__0 )? ) ;
     public final void rule__OrExpr__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9254:1: ( ( ( rule__OrExpr__Group_1__0 )? ) )
-            // InternalSpear.g:9255:1: ( ( rule__OrExpr__Group_1__0 )? )
+            // InternalSpear.g:9828:1: ( ( ( rule__OrExpr__Group_1__0 )? ) )
+            // InternalSpear.g:9829:1: ( ( rule__OrExpr__Group_1__0 )? )
             {
-            // InternalSpear.g:9255:1: ( ( rule__OrExpr__Group_1__0 )? )
-            // InternalSpear.g:9256:1: ( rule__OrExpr__Group_1__0 )?
+            // InternalSpear.g:9829:1: ( ( rule__OrExpr__Group_1__0 )? )
+            // InternalSpear.g:9830:1: ( rule__OrExpr__Group_1__0 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOrExprAccess().getGroup_1()); 
             }
-            // InternalSpear.g:9257:1: ( rule__OrExpr__Group_1__0 )?
-            int alt83=2;
-            int LA83_0 = input.LA(1);
+            // InternalSpear.g:9831:1: ( rule__OrExpr__Group_1__0 )?
+            int alt87=2;
+            int LA87_0 = input.LA(1);
 
-            if ( (LA83_0==26) ) {
-                int LA83_1 = input.LA(2);
+            if ( (LA87_0==26) ) {
+                int LA87_1 = input.LA(2);
 
-                if ( (synpred123_InternalSpear()) ) {
-                    alt83=1;
+                if ( (synpred127_InternalSpear()) ) {
+                    alt87=1;
                 }
             }
-            else if ( (LA83_0==27) ) {
-                int LA83_2 = input.LA(2);
+            else if ( (LA87_0==27) ) {
+                int LA87_2 = input.LA(2);
 
-                if ( (synpred123_InternalSpear()) ) {
-                    alt83=1;
+                if ( (synpred127_InternalSpear()) ) {
+                    alt87=1;
                 }
             }
-            switch (alt83) {
+            switch (alt87) {
                 case 1 :
-                    // InternalSpear.g:9257:2: rule__OrExpr__Group_1__0
+                    // InternalSpear.g:9831:2: rule__OrExpr__Group_1__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__OrExpr__Group_1__0();
@@ -27015,14 +28556,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpr__Group_1__0"
-    // InternalSpear.g:9271:1: rule__OrExpr__Group_1__0 : rule__OrExpr__Group_1__0__Impl rule__OrExpr__Group_1__1 ;
+    // InternalSpear.g:9845:1: rule__OrExpr__Group_1__0 : rule__OrExpr__Group_1__0__Impl rule__OrExpr__Group_1__1 ;
     public final void rule__OrExpr__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9275:1: ( rule__OrExpr__Group_1__0__Impl rule__OrExpr__Group_1__1 )
-            // InternalSpear.g:9276:2: rule__OrExpr__Group_1__0__Impl rule__OrExpr__Group_1__1
+            // InternalSpear.g:9849:1: ( rule__OrExpr__Group_1__0__Impl rule__OrExpr__Group_1__1 )
+            // InternalSpear.g:9850:2: rule__OrExpr__Group_1__0__Impl rule__OrExpr__Group_1__1
             {
             pushFollow(FOLLOW_26);
             rule__OrExpr__Group_1__0__Impl();
@@ -27053,23 +28594,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpr__Group_1__0__Impl"
-    // InternalSpear.g:9283:1: rule__OrExpr__Group_1__0__Impl : ( ( rule__OrExpr__Group_1_0__0 ) ) ;
+    // InternalSpear.g:9857:1: rule__OrExpr__Group_1__0__Impl : ( ( rule__OrExpr__Group_1_0__0 ) ) ;
     public final void rule__OrExpr__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9287:1: ( ( ( rule__OrExpr__Group_1_0__0 ) ) )
-            // InternalSpear.g:9288:1: ( ( rule__OrExpr__Group_1_0__0 ) )
+            // InternalSpear.g:9861:1: ( ( ( rule__OrExpr__Group_1_0__0 ) ) )
+            // InternalSpear.g:9862:1: ( ( rule__OrExpr__Group_1_0__0 ) )
             {
-            // InternalSpear.g:9288:1: ( ( rule__OrExpr__Group_1_0__0 ) )
-            // InternalSpear.g:9289:1: ( rule__OrExpr__Group_1_0__0 )
+            // InternalSpear.g:9862:1: ( ( rule__OrExpr__Group_1_0__0 ) )
+            // InternalSpear.g:9863:1: ( rule__OrExpr__Group_1_0__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOrExprAccess().getGroup_1_0()); 
             }
-            // InternalSpear.g:9290:1: ( rule__OrExpr__Group_1_0__0 )
-            // InternalSpear.g:9290:2: rule__OrExpr__Group_1_0__0
+            // InternalSpear.g:9864:1: ( rule__OrExpr__Group_1_0__0 )
+            // InternalSpear.g:9864:2: rule__OrExpr__Group_1_0__0
             {
             pushFollow(FOLLOW_2);
             rule__OrExpr__Group_1_0__0();
@@ -27104,14 +28645,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpr__Group_1__1"
-    // InternalSpear.g:9300:1: rule__OrExpr__Group_1__1 : rule__OrExpr__Group_1__1__Impl ;
+    // InternalSpear.g:9874:1: rule__OrExpr__Group_1__1 : rule__OrExpr__Group_1__1__Impl ;
     public final void rule__OrExpr__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9304:1: ( rule__OrExpr__Group_1__1__Impl )
-            // InternalSpear.g:9305:2: rule__OrExpr__Group_1__1__Impl
+            // InternalSpear.g:9878:1: ( rule__OrExpr__Group_1__1__Impl )
+            // InternalSpear.g:9879:2: rule__OrExpr__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__OrExpr__Group_1__1__Impl();
@@ -27137,23 +28678,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpr__Group_1__1__Impl"
-    // InternalSpear.g:9311:1: rule__OrExpr__Group_1__1__Impl : ( ( rule__OrExpr__RightAssignment_1_1 ) ) ;
+    // InternalSpear.g:9885:1: rule__OrExpr__Group_1__1__Impl : ( ( rule__OrExpr__RightAssignment_1_1 ) ) ;
     public final void rule__OrExpr__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9315:1: ( ( ( rule__OrExpr__RightAssignment_1_1 ) ) )
-            // InternalSpear.g:9316:1: ( ( rule__OrExpr__RightAssignment_1_1 ) )
+            // InternalSpear.g:9889:1: ( ( ( rule__OrExpr__RightAssignment_1_1 ) ) )
+            // InternalSpear.g:9890:1: ( ( rule__OrExpr__RightAssignment_1_1 ) )
             {
-            // InternalSpear.g:9316:1: ( ( rule__OrExpr__RightAssignment_1_1 ) )
-            // InternalSpear.g:9317:1: ( rule__OrExpr__RightAssignment_1_1 )
+            // InternalSpear.g:9890:1: ( ( rule__OrExpr__RightAssignment_1_1 ) )
+            // InternalSpear.g:9891:1: ( rule__OrExpr__RightAssignment_1_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOrExprAccess().getRightAssignment_1_1()); 
             }
-            // InternalSpear.g:9318:1: ( rule__OrExpr__RightAssignment_1_1 )
-            // InternalSpear.g:9318:2: rule__OrExpr__RightAssignment_1_1
+            // InternalSpear.g:9892:1: ( rule__OrExpr__RightAssignment_1_1 )
+            // InternalSpear.g:9892:2: rule__OrExpr__RightAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__OrExpr__RightAssignment_1_1();
@@ -27188,14 +28729,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpr__Group_1_0__0"
-    // InternalSpear.g:9332:1: rule__OrExpr__Group_1_0__0 : rule__OrExpr__Group_1_0__0__Impl ;
+    // InternalSpear.g:9906:1: rule__OrExpr__Group_1_0__0 : rule__OrExpr__Group_1_0__0__Impl ;
     public final void rule__OrExpr__Group_1_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9336:1: ( rule__OrExpr__Group_1_0__0__Impl )
-            // InternalSpear.g:9337:2: rule__OrExpr__Group_1_0__0__Impl
+            // InternalSpear.g:9910:1: ( rule__OrExpr__Group_1_0__0__Impl )
+            // InternalSpear.g:9911:2: rule__OrExpr__Group_1_0__0__Impl
             {
             pushFollow(FOLLOW_2);
             rule__OrExpr__Group_1_0__0__Impl();
@@ -27221,23 +28762,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpr__Group_1_0__0__Impl"
-    // InternalSpear.g:9343:1: rule__OrExpr__Group_1_0__0__Impl : ( ( rule__OrExpr__Group_1_0_0__0 ) ) ;
+    // InternalSpear.g:9917:1: rule__OrExpr__Group_1_0__0__Impl : ( ( rule__OrExpr__Group_1_0_0__0 ) ) ;
     public final void rule__OrExpr__Group_1_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9347:1: ( ( ( rule__OrExpr__Group_1_0_0__0 ) ) )
-            // InternalSpear.g:9348:1: ( ( rule__OrExpr__Group_1_0_0__0 ) )
+            // InternalSpear.g:9921:1: ( ( ( rule__OrExpr__Group_1_0_0__0 ) ) )
+            // InternalSpear.g:9922:1: ( ( rule__OrExpr__Group_1_0_0__0 ) )
             {
-            // InternalSpear.g:9348:1: ( ( rule__OrExpr__Group_1_0_0__0 ) )
-            // InternalSpear.g:9349:1: ( rule__OrExpr__Group_1_0_0__0 )
+            // InternalSpear.g:9922:1: ( ( rule__OrExpr__Group_1_0_0__0 ) )
+            // InternalSpear.g:9923:1: ( rule__OrExpr__Group_1_0_0__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOrExprAccess().getGroup_1_0_0()); 
             }
-            // InternalSpear.g:9350:1: ( rule__OrExpr__Group_1_0_0__0 )
-            // InternalSpear.g:9350:2: rule__OrExpr__Group_1_0_0__0
+            // InternalSpear.g:9924:1: ( rule__OrExpr__Group_1_0_0__0 )
+            // InternalSpear.g:9924:2: rule__OrExpr__Group_1_0_0__0
             {
             pushFollow(FOLLOW_2);
             rule__OrExpr__Group_1_0_0__0();
@@ -27272,16 +28813,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpr__Group_1_0_0__0"
-    // InternalSpear.g:9362:1: rule__OrExpr__Group_1_0_0__0 : rule__OrExpr__Group_1_0_0__0__Impl rule__OrExpr__Group_1_0_0__1 ;
+    // InternalSpear.g:9936:1: rule__OrExpr__Group_1_0_0__0 : rule__OrExpr__Group_1_0_0__0__Impl rule__OrExpr__Group_1_0_0__1 ;
     public final void rule__OrExpr__Group_1_0_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9366:1: ( rule__OrExpr__Group_1_0_0__0__Impl rule__OrExpr__Group_1_0_0__1 )
-            // InternalSpear.g:9367:2: rule__OrExpr__Group_1_0_0__0__Impl rule__OrExpr__Group_1_0_0__1
+            // InternalSpear.g:9940:1: ( rule__OrExpr__Group_1_0_0__0__Impl rule__OrExpr__Group_1_0_0__1 )
+            // InternalSpear.g:9941:2: rule__OrExpr__Group_1_0_0__0__Impl rule__OrExpr__Group_1_0_0__1
             {
-            pushFollow(FOLLOW_47);
+            pushFollow(FOLLOW_50);
             rule__OrExpr__Group_1_0_0__0__Impl();
 
             state._fsp--;
@@ -27310,23 +28851,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpr__Group_1_0_0__0__Impl"
-    // InternalSpear.g:9374:1: rule__OrExpr__Group_1_0_0__0__Impl : ( () ) ;
+    // InternalSpear.g:9948:1: rule__OrExpr__Group_1_0_0__0__Impl : ( () ) ;
     public final void rule__OrExpr__Group_1_0_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9378:1: ( ( () ) )
-            // InternalSpear.g:9379:1: ( () )
+            // InternalSpear.g:9952:1: ( ( () ) )
+            // InternalSpear.g:9953:1: ( () )
             {
-            // InternalSpear.g:9379:1: ( () )
-            // InternalSpear.g:9380:1: ()
+            // InternalSpear.g:9953:1: ( () )
+            // InternalSpear.g:9954:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOrExprAccess().getBinaryExprLeftAction_1_0_0_0()); 
             }
-            // InternalSpear.g:9381:1: ()
-            // InternalSpear.g:9383:1: 
+            // InternalSpear.g:9955:1: ()
+            // InternalSpear.g:9957:1: 
             {
             }
 
@@ -27351,14 +28892,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpr__Group_1_0_0__1"
-    // InternalSpear.g:9393:1: rule__OrExpr__Group_1_0_0__1 : rule__OrExpr__Group_1_0_0__1__Impl ;
+    // InternalSpear.g:9967:1: rule__OrExpr__Group_1_0_0__1 : rule__OrExpr__Group_1_0_0__1__Impl ;
     public final void rule__OrExpr__Group_1_0_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9397:1: ( rule__OrExpr__Group_1_0_0__1__Impl )
-            // InternalSpear.g:9398:2: rule__OrExpr__Group_1_0_0__1__Impl
+            // InternalSpear.g:9971:1: ( rule__OrExpr__Group_1_0_0__1__Impl )
+            // InternalSpear.g:9972:2: rule__OrExpr__Group_1_0_0__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__OrExpr__Group_1_0_0__1__Impl();
@@ -27384,23 +28925,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpr__Group_1_0_0__1__Impl"
-    // InternalSpear.g:9404:1: rule__OrExpr__Group_1_0_0__1__Impl : ( ( rule__OrExpr__OpAssignment_1_0_0_1 ) ) ;
+    // InternalSpear.g:9978:1: rule__OrExpr__Group_1_0_0__1__Impl : ( ( rule__OrExpr__OpAssignment_1_0_0_1 ) ) ;
     public final void rule__OrExpr__Group_1_0_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9408:1: ( ( ( rule__OrExpr__OpAssignment_1_0_0_1 ) ) )
-            // InternalSpear.g:9409:1: ( ( rule__OrExpr__OpAssignment_1_0_0_1 ) )
+            // InternalSpear.g:9982:1: ( ( ( rule__OrExpr__OpAssignment_1_0_0_1 ) ) )
+            // InternalSpear.g:9983:1: ( ( rule__OrExpr__OpAssignment_1_0_0_1 ) )
             {
-            // InternalSpear.g:9409:1: ( ( rule__OrExpr__OpAssignment_1_0_0_1 ) )
-            // InternalSpear.g:9410:1: ( rule__OrExpr__OpAssignment_1_0_0_1 )
+            // InternalSpear.g:9983:1: ( ( rule__OrExpr__OpAssignment_1_0_0_1 ) )
+            // InternalSpear.g:9984:1: ( rule__OrExpr__OpAssignment_1_0_0_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOrExprAccess().getOpAssignment_1_0_0_1()); 
             }
-            // InternalSpear.g:9411:1: ( rule__OrExpr__OpAssignment_1_0_0_1 )
-            // InternalSpear.g:9411:2: rule__OrExpr__OpAssignment_1_0_0_1
+            // InternalSpear.g:9985:1: ( rule__OrExpr__OpAssignment_1_0_0_1 )
+            // InternalSpear.g:9985:2: rule__OrExpr__OpAssignment_1_0_0_1
             {
             pushFollow(FOLLOW_2);
             rule__OrExpr__OpAssignment_1_0_0_1();
@@ -27435,16 +28976,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpr__Group__0"
-    // InternalSpear.g:9425:1: rule__AndExpr__Group__0 : rule__AndExpr__Group__0__Impl rule__AndExpr__Group__1 ;
+    // InternalSpear.g:9999:1: rule__AndExpr__Group__0 : rule__AndExpr__Group__0__Impl rule__AndExpr__Group__1 ;
     public final void rule__AndExpr__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9429:1: ( rule__AndExpr__Group__0__Impl rule__AndExpr__Group__1 )
-            // InternalSpear.g:9430:2: rule__AndExpr__Group__0__Impl rule__AndExpr__Group__1
+            // InternalSpear.g:10003:1: ( rule__AndExpr__Group__0__Impl rule__AndExpr__Group__1 )
+            // InternalSpear.g:10004:2: rule__AndExpr__Group__0__Impl rule__AndExpr__Group__1
             {
-            pushFollow(FOLLOW_48);
+            pushFollow(FOLLOW_51);
             rule__AndExpr__Group__0__Impl();
 
             state._fsp--;
@@ -27473,17 +29014,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpr__Group__0__Impl"
-    // InternalSpear.g:9437:1: rule__AndExpr__Group__0__Impl : ( ruleAfterUntilExpr ) ;
+    // InternalSpear.g:10011:1: rule__AndExpr__Group__0__Impl : ( ruleAfterUntilExpr ) ;
     public final void rule__AndExpr__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9441:1: ( ( ruleAfterUntilExpr ) )
-            // InternalSpear.g:9442:1: ( ruleAfterUntilExpr )
+            // InternalSpear.g:10015:1: ( ( ruleAfterUntilExpr ) )
+            // InternalSpear.g:10016:1: ( ruleAfterUntilExpr )
             {
-            // InternalSpear.g:9442:1: ( ruleAfterUntilExpr )
-            // InternalSpear.g:9443:1: ruleAfterUntilExpr
+            // InternalSpear.g:10016:1: ( ruleAfterUntilExpr )
+            // InternalSpear.g:10017:1: ruleAfterUntilExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAndExprAccess().getAfterUntilExprParserRuleCall_0()); 
@@ -27518,14 +29059,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpr__Group__1"
-    // InternalSpear.g:9454:1: rule__AndExpr__Group__1 : rule__AndExpr__Group__1__Impl ;
+    // InternalSpear.g:10028:1: rule__AndExpr__Group__1 : rule__AndExpr__Group__1__Impl ;
     public final void rule__AndExpr__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9458:1: ( rule__AndExpr__Group__1__Impl )
-            // InternalSpear.g:9459:2: rule__AndExpr__Group__1__Impl
+            // InternalSpear.g:10032:1: ( rule__AndExpr__Group__1__Impl )
+            // InternalSpear.g:10033:2: rule__AndExpr__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AndExpr__Group__1__Impl();
@@ -27551,35 +29092,35 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpr__Group__1__Impl"
-    // InternalSpear.g:9465:1: rule__AndExpr__Group__1__Impl : ( ( rule__AndExpr__Group_1__0 )? ) ;
+    // InternalSpear.g:10039:1: rule__AndExpr__Group__1__Impl : ( ( rule__AndExpr__Group_1__0 )? ) ;
     public final void rule__AndExpr__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9469:1: ( ( ( rule__AndExpr__Group_1__0 )? ) )
-            // InternalSpear.g:9470:1: ( ( rule__AndExpr__Group_1__0 )? )
+            // InternalSpear.g:10043:1: ( ( ( rule__AndExpr__Group_1__0 )? ) )
+            // InternalSpear.g:10044:1: ( ( rule__AndExpr__Group_1__0 )? )
             {
-            // InternalSpear.g:9470:1: ( ( rule__AndExpr__Group_1__0 )? )
-            // InternalSpear.g:9471:1: ( rule__AndExpr__Group_1__0 )?
+            // InternalSpear.g:10044:1: ( ( rule__AndExpr__Group_1__0 )? )
+            // InternalSpear.g:10045:1: ( rule__AndExpr__Group_1__0 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAndExprAccess().getGroup_1()); 
             }
-            // InternalSpear.g:9472:1: ( rule__AndExpr__Group_1__0 )?
-            int alt84=2;
-            int LA84_0 = input.LA(1);
+            // InternalSpear.g:10046:1: ( rule__AndExpr__Group_1__0 )?
+            int alt88=2;
+            int LA88_0 = input.LA(1);
 
-            if ( (LA84_0==112) ) {
-                int LA84_1 = input.LA(2);
+            if ( (LA88_0==113) ) {
+                int LA88_1 = input.LA(2);
 
-                if ( (synpred124_InternalSpear()) ) {
-                    alt84=1;
+                if ( (synpred128_InternalSpear()) ) {
+                    alt88=1;
                 }
             }
-            switch (alt84) {
+            switch (alt88) {
                 case 1 :
-                    // InternalSpear.g:9472:2: rule__AndExpr__Group_1__0
+                    // InternalSpear.g:10046:2: rule__AndExpr__Group_1__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__AndExpr__Group_1__0();
@@ -27617,14 +29158,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpr__Group_1__0"
-    // InternalSpear.g:9486:1: rule__AndExpr__Group_1__0 : rule__AndExpr__Group_1__0__Impl rule__AndExpr__Group_1__1 ;
+    // InternalSpear.g:10060:1: rule__AndExpr__Group_1__0 : rule__AndExpr__Group_1__0__Impl rule__AndExpr__Group_1__1 ;
     public final void rule__AndExpr__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9490:1: ( rule__AndExpr__Group_1__0__Impl rule__AndExpr__Group_1__1 )
-            // InternalSpear.g:9491:2: rule__AndExpr__Group_1__0__Impl rule__AndExpr__Group_1__1
+            // InternalSpear.g:10064:1: ( rule__AndExpr__Group_1__0__Impl rule__AndExpr__Group_1__1 )
+            // InternalSpear.g:10065:2: rule__AndExpr__Group_1__0__Impl rule__AndExpr__Group_1__1
             {
             pushFollow(FOLLOW_26);
             rule__AndExpr__Group_1__0__Impl();
@@ -27655,23 +29196,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpr__Group_1__0__Impl"
-    // InternalSpear.g:9498:1: rule__AndExpr__Group_1__0__Impl : ( ( rule__AndExpr__Group_1_0__0 ) ) ;
+    // InternalSpear.g:10072:1: rule__AndExpr__Group_1__0__Impl : ( ( rule__AndExpr__Group_1_0__0 ) ) ;
     public final void rule__AndExpr__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9502:1: ( ( ( rule__AndExpr__Group_1_0__0 ) ) )
-            // InternalSpear.g:9503:1: ( ( rule__AndExpr__Group_1_0__0 ) )
+            // InternalSpear.g:10076:1: ( ( ( rule__AndExpr__Group_1_0__0 ) ) )
+            // InternalSpear.g:10077:1: ( ( rule__AndExpr__Group_1_0__0 ) )
             {
-            // InternalSpear.g:9503:1: ( ( rule__AndExpr__Group_1_0__0 ) )
-            // InternalSpear.g:9504:1: ( rule__AndExpr__Group_1_0__0 )
+            // InternalSpear.g:10077:1: ( ( rule__AndExpr__Group_1_0__0 ) )
+            // InternalSpear.g:10078:1: ( rule__AndExpr__Group_1_0__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAndExprAccess().getGroup_1_0()); 
             }
-            // InternalSpear.g:9505:1: ( rule__AndExpr__Group_1_0__0 )
-            // InternalSpear.g:9505:2: rule__AndExpr__Group_1_0__0
+            // InternalSpear.g:10079:1: ( rule__AndExpr__Group_1_0__0 )
+            // InternalSpear.g:10079:2: rule__AndExpr__Group_1_0__0
             {
             pushFollow(FOLLOW_2);
             rule__AndExpr__Group_1_0__0();
@@ -27706,14 +29247,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpr__Group_1__1"
-    // InternalSpear.g:9515:1: rule__AndExpr__Group_1__1 : rule__AndExpr__Group_1__1__Impl ;
+    // InternalSpear.g:10089:1: rule__AndExpr__Group_1__1 : rule__AndExpr__Group_1__1__Impl ;
     public final void rule__AndExpr__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9519:1: ( rule__AndExpr__Group_1__1__Impl )
-            // InternalSpear.g:9520:2: rule__AndExpr__Group_1__1__Impl
+            // InternalSpear.g:10093:1: ( rule__AndExpr__Group_1__1__Impl )
+            // InternalSpear.g:10094:2: rule__AndExpr__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AndExpr__Group_1__1__Impl();
@@ -27739,23 +29280,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpr__Group_1__1__Impl"
-    // InternalSpear.g:9526:1: rule__AndExpr__Group_1__1__Impl : ( ( rule__AndExpr__RightAssignment_1_1 ) ) ;
+    // InternalSpear.g:10100:1: rule__AndExpr__Group_1__1__Impl : ( ( rule__AndExpr__RightAssignment_1_1 ) ) ;
     public final void rule__AndExpr__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9530:1: ( ( ( rule__AndExpr__RightAssignment_1_1 ) ) )
-            // InternalSpear.g:9531:1: ( ( rule__AndExpr__RightAssignment_1_1 ) )
+            // InternalSpear.g:10104:1: ( ( ( rule__AndExpr__RightAssignment_1_1 ) ) )
+            // InternalSpear.g:10105:1: ( ( rule__AndExpr__RightAssignment_1_1 ) )
             {
-            // InternalSpear.g:9531:1: ( ( rule__AndExpr__RightAssignment_1_1 ) )
-            // InternalSpear.g:9532:1: ( rule__AndExpr__RightAssignment_1_1 )
+            // InternalSpear.g:10105:1: ( ( rule__AndExpr__RightAssignment_1_1 ) )
+            // InternalSpear.g:10106:1: ( rule__AndExpr__RightAssignment_1_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAndExprAccess().getRightAssignment_1_1()); 
             }
-            // InternalSpear.g:9533:1: ( rule__AndExpr__RightAssignment_1_1 )
-            // InternalSpear.g:9533:2: rule__AndExpr__RightAssignment_1_1
+            // InternalSpear.g:10107:1: ( rule__AndExpr__RightAssignment_1_1 )
+            // InternalSpear.g:10107:2: rule__AndExpr__RightAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__AndExpr__RightAssignment_1_1();
@@ -27790,14 +29331,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpr__Group_1_0__0"
-    // InternalSpear.g:9547:1: rule__AndExpr__Group_1_0__0 : rule__AndExpr__Group_1_0__0__Impl ;
+    // InternalSpear.g:10121:1: rule__AndExpr__Group_1_0__0 : rule__AndExpr__Group_1_0__0__Impl ;
     public final void rule__AndExpr__Group_1_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9551:1: ( rule__AndExpr__Group_1_0__0__Impl )
-            // InternalSpear.g:9552:2: rule__AndExpr__Group_1_0__0__Impl
+            // InternalSpear.g:10125:1: ( rule__AndExpr__Group_1_0__0__Impl )
+            // InternalSpear.g:10126:2: rule__AndExpr__Group_1_0__0__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AndExpr__Group_1_0__0__Impl();
@@ -27823,23 +29364,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpr__Group_1_0__0__Impl"
-    // InternalSpear.g:9558:1: rule__AndExpr__Group_1_0__0__Impl : ( ( rule__AndExpr__Group_1_0_0__0 ) ) ;
+    // InternalSpear.g:10132:1: rule__AndExpr__Group_1_0__0__Impl : ( ( rule__AndExpr__Group_1_0_0__0 ) ) ;
     public final void rule__AndExpr__Group_1_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9562:1: ( ( ( rule__AndExpr__Group_1_0_0__0 ) ) )
-            // InternalSpear.g:9563:1: ( ( rule__AndExpr__Group_1_0_0__0 ) )
+            // InternalSpear.g:10136:1: ( ( ( rule__AndExpr__Group_1_0_0__0 ) ) )
+            // InternalSpear.g:10137:1: ( ( rule__AndExpr__Group_1_0_0__0 ) )
             {
-            // InternalSpear.g:9563:1: ( ( rule__AndExpr__Group_1_0_0__0 ) )
-            // InternalSpear.g:9564:1: ( rule__AndExpr__Group_1_0_0__0 )
+            // InternalSpear.g:10137:1: ( ( rule__AndExpr__Group_1_0_0__0 ) )
+            // InternalSpear.g:10138:1: ( rule__AndExpr__Group_1_0_0__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAndExprAccess().getGroup_1_0_0()); 
             }
-            // InternalSpear.g:9565:1: ( rule__AndExpr__Group_1_0_0__0 )
-            // InternalSpear.g:9565:2: rule__AndExpr__Group_1_0_0__0
+            // InternalSpear.g:10139:1: ( rule__AndExpr__Group_1_0_0__0 )
+            // InternalSpear.g:10139:2: rule__AndExpr__Group_1_0_0__0
             {
             pushFollow(FOLLOW_2);
             rule__AndExpr__Group_1_0_0__0();
@@ -27874,16 +29415,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpr__Group_1_0_0__0"
-    // InternalSpear.g:9577:1: rule__AndExpr__Group_1_0_0__0 : rule__AndExpr__Group_1_0_0__0__Impl rule__AndExpr__Group_1_0_0__1 ;
+    // InternalSpear.g:10151:1: rule__AndExpr__Group_1_0_0__0 : rule__AndExpr__Group_1_0_0__0__Impl rule__AndExpr__Group_1_0_0__1 ;
     public final void rule__AndExpr__Group_1_0_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9581:1: ( rule__AndExpr__Group_1_0_0__0__Impl rule__AndExpr__Group_1_0_0__1 )
-            // InternalSpear.g:9582:2: rule__AndExpr__Group_1_0_0__0__Impl rule__AndExpr__Group_1_0_0__1
+            // InternalSpear.g:10155:1: ( rule__AndExpr__Group_1_0_0__0__Impl rule__AndExpr__Group_1_0_0__1 )
+            // InternalSpear.g:10156:2: rule__AndExpr__Group_1_0_0__0__Impl rule__AndExpr__Group_1_0_0__1
             {
-            pushFollow(FOLLOW_48);
+            pushFollow(FOLLOW_51);
             rule__AndExpr__Group_1_0_0__0__Impl();
 
             state._fsp--;
@@ -27912,23 +29453,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpr__Group_1_0_0__0__Impl"
-    // InternalSpear.g:9589:1: rule__AndExpr__Group_1_0_0__0__Impl : ( () ) ;
+    // InternalSpear.g:10163:1: rule__AndExpr__Group_1_0_0__0__Impl : ( () ) ;
     public final void rule__AndExpr__Group_1_0_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9593:1: ( ( () ) )
-            // InternalSpear.g:9594:1: ( () )
+            // InternalSpear.g:10167:1: ( ( () ) )
+            // InternalSpear.g:10168:1: ( () )
             {
-            // InternalSpear.g:9594:1: ( () )
-            // InternalSpear.g:9595:1: ()
+            // InternalSpear.g:10168:1: ( () )
+            // InternalSpear.g:10169:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAndExprAccess().getBinaryExprLeftAction_1_0_0_0()); 
             }
-            // InternalSpear.g:9596:1: ()
-            // InternalSpear.g:9598:1: 
+            // InternalSpear.g:10170:1: ()
+            // InternalSpear.g:10172:1: 
             {
             }
 
@@ -27953,14 +29494,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpr__Group_1_0_0__1"
-    // InternalSpear.g:9608:1: rule__AndExpr__Group_1_0_0__1 : rule__AndExpr__Group_1_0_0__1__Impl ;
+    // InternalSpear.g:10182:1: rule__AndExpr__Group_1_0_0__1 : rule__AndExpr__Group_1_0_0__1__Impl ;
     public final void rule__AndExpr__Group_1_0_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9612:1: ( rule__AndExpr__Group_1_0_0__1__Impl )
-            // InternalSpear.g:9613:2: rule__AndExpr__Group_1_0_0__1__Impl
+            // InternalSpear.g:10186:1: ( rule__AndExpr__Group_1_0_0__1__Impl )
+            // InternalSpear.g:10187:2: rule__AndExpr__Group_1_0_0__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AndExpr__Group_1_0_0__1__Impl();
@@ -27986,23 +29527,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpr__Group_1_0_0__1__Impl"
-    // InternalSpear.g:9619:1: rule__AndExpr__Group_1_0_0__1__Impl : ( ( rule__AndExpr__OpAssignment_1_0_0_1 ) ) ;
+    // InternalSpear.g:10193:1: rule__AndExpr__Group_1_0_0__1__Impl : ( ( rule__AndExpr__OpAssignment_1_0_0_1 ) ) ;
     public final void rule__AndExpr__Group_1_0_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9623:1: ( ( ( rule__AndExpr__OpAssignment_1_0_0_1 ) ) )
-            // InternalSpear.g:9624:1: ( ( rule__AndExpr__OpAssignment_1_0_0_1 ) )
+            // InternalSpear.g:10197:1: ( ( ( rule__AndExpr__OpAssignment_1_0_0_1 ) ) )
+            // InternalSpear.g:10198:1: ( ( rule__AndExpr__OpAssignment_1_0_0_1 ) )
             {
-            // InternalSpear.g:9624:1: ( ( rule__AndExpr__OpAssignment_1_0_0_1 ) )
-            // InternalSpear.g:9625:1: ( rule__AndExpr__OpAssignment_1_0_0_1 )
+            // InternalSpear.g:10198:1: ( ( rule__AndExpr__OpAssignment_1_0_0_1 ) )
+            // InternalSpear.g:10199:1: ( rule__AndExpr__OpAssignment_1_0_0_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAndExprAccess().getOpAssignment_1_0_0_1()); 
             }
-            // InternalSpear.g:9626:1: ( rule__AndExpr__OpAssignment_1_0_0_1 )
-            // InternalSpear.g:9626:2: rule__AndExpr__OpAssignment_1_0_0_1
+            // InternalSpear.g:10200:1: ( rule__AndExpr__OpAssignment_1_0_0_1 )
+            // InternalSpear.g:10200:2: rule__AndExpr__OpAssignment_1_0_0_1
             {
             pushFollow(FOLLOW_2);
             rule__AndExpr__OpAssignment_1_0_0_1();
@@ -28037,16 +29578,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AfterUntilExpr__Group_0__0"
-    // InternalSpear.g:9640:1: rule__AfterUntilExpr__Group_0__0 : rule__AfterUntilExpr__Group_0__0__Impl rule__AfterUntilExpr__Group_0__1 ;
+    // InternalSpear.g:10214:1: rule__AfterUntilExpr__Group_0__0 : rule__AfterUntilExpr__Group_0__0__Impl rule__AfterUntilExpr__Group_0__1 ;
     public final void rule__AfterUntilExpr__Group_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9644:1: ( rule__AfterUntilExpr__Group_0__0__Impl rule__AfterUntilExpr__Group_0__1 )
-            // InternalSpear.g:9645:2: rule__AfterUntilExpr__Group_0__0__Impl rule__AfterUntilExpr__Group_0__1
+            // InternalSpear.g:10218:1: ( rule__AfterUntilExpr__Group_0__0__Impl rule__AfterUntilExpr__Group_0__1 )
+            // InternalSpear.g:10219:2: rule__AfterUntilExpr__Group_0__0__Impl rule__AfterUntilExpr__Group_0__1
             {
-            pushFollow(FOLLOW_49);
+            pushFollow(FOLLOW_52);
             rule__AfterUntilExpr__Group_0__0__Impl();
 
             state._fsp--;
@@ -28075,23 +29616,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AfterUntilExpr__Group_0__0__Impl"
-    // InternalSpear.g:9652:1: rule__AfterUntilExpr__Group_0__0__Impl : ( () ) ;
+    // InternalSpear.g:10226:1: rule__AfterUntilExpr__Group_0__0__Impl : ( () ) ;
     public final void rule__AfterUntilExpr__Group_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9656:1: ( ( () ) )
-            // InternalSpear.g:9657:1: ( () )
+            // InternalSpear.g:10230:1: ( ( () ) )
+            // InternalSpear.g:10231:1: ( () )
             {
-            // InternalSpear.g:9657:1: ( () )
-            // InternalSpear.g:9658:1: ()
+            // InternalSpear.g:10231:1: ( () )
+            // InternalSpear.g:10232:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAfterUntilExprAccess().getAfterUntilExprAction_0_0()); 
             }
-            // InternalSpear.g:9659:1: ()
-            // InternalSpear.g:9661:1: 
+            // InternalSpear.g:10233:1: ()
+            // InternalSpear.g:10235:1: 
             {
             }
 
@@ -28116,14 +29657,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AfterUntilExpr__Group_0__1"
-    // InternalSpear.g:9671:1: rule__AfterUntilExpr__Group_0__1 : rule__AfterUntilExpr__Group_0__1__Impl rule__AfterUntilExpr__Group_0__2 ;
+    // InternalSpear.g:10245:1: rule__AfterUntilExpr__Group_0__1 : rule__AfterUntilExpr__Group_0__1__Impl rule__AfterUntilExpr__Group_0__2 ;
     public final void rule__AfterUntilExpr__Group_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9675:1: ( rule__AfterUntilExpr__Group_0__1__Impl rule__AfterUntilExpr__Group_0__2 )
-            // InternalSpear.g:9676:2: rule__AfterUntilExpr__Group_0__1__Impl rule__AfterUntilExpr__Group_0__2
+            // InternalSpear.g:10249:1: ( rule__AfterUntilExpr__Group_0__1__Impl rule__AfterUntilExpr__Group_0__2 )
+            // InternalSpear.g:10250:2: rule__AfterUntilExpr__Group_0__1__Impl rule__AfterUntilExpr__Group_0__2
             {
             pushFollow(FOLLOW_26);
             rule__AfterUntilExpr__Group_0__1__Impl();
@@ -28154,22 +29695,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AfterUntilExpr__Group_0__1__Impl"
-    // InternalSpear.g:9683:1: rule__AfterUntilExpr__Group_0__1__Impl : ( 'after' ) ;
+    // InternalSpear.g:10257:1: rule__AfterUntilExpr__Group_0__1__Impl : ( 'after' ) ;
     public final void rule__AfterUntilExpr__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9687:1: ( ( 'after' ) )
-            // InternalSpear.g:9688:1: ( 'after' )
+            // InternalSpear.g:10261:1: ( ( 'after' ) )
+            // InternalSpear.g:10262:1: ( 'after' )
             {
-            // InternalSpear.g:9688:1: ( 'after' )
-            // InternalSpear.g:9689:1: 'after'
+            // InternalSpear.g:10262:1: ( 'after' )
+            // InternalSpear.g:10263:1: 'after'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAfterUntilExprAccess().getAfterKeyword_0_1()); 
             }
-            match(input,94,FOLLOW_2); if (state.failed) return ;
+            match(input,95,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getAfterUntilExprAccess().getAfterKeyword_0_1()); 
             }
@@ -28195,16 +29736,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AfterUntilExpr__Group_0__2"
-    // InternalSpear.g:9702:1: rule__AfterUntilExpr__Group_0__2 : rule__AfterUntilExpr__Group_0__2__Impl rule__AfterUntilExpr__Group_0__3 ;
+    // InternalSpear.g:10276:1: rule__AfterUntilExpr__Group_0__2 : rule__AfterUntilExpr__Group_0__2__Impl rule__AfterUntilExpr__Group_0__3 ;
     public final void rule__AfterUntilExpr__Group_0__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9706:1: ( rule__AfterUntilExpr__Group_0__2__Impl rule__AfterUntilExpr__Group_0__3 )
-            // InternalSpear.g:9707:2: rule__AfterUntilExpr__Group_0__2__Impl rule__AfterUntilExpr__Group_0__3
+            // InternalSpear.g:10280:1: ( rule__AfterUntilExpr__Group_0__2__Impl rule__AfterUntilExpr__Group_0__3 )
+            // InternalSpear.g:10281:2: rule__AfterUntilExpr__Group_0__2__Impl rule__AfterUntilExpr__Group_0__3
             {
-            pushFollow(FOLLOW_50);
+            pushFollow(FOLLOW_53);
             rule__AfterUntilExpr__Group_0__2__Impl();
 
             state._fsp--;
@@ -28233,23 +29774,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AfterUntilExpr__Group_0__2__Impl"
-    // InternalSpear.g:9714:1: rule__AfterUntilExpr__Group_0__2__Impl : ( ( rule__AfterUntilExpr__AfterAssignment_0_2 ) ) ;
+    // InternalSpear.g:10288:1: rule__AfterUntilExpr__Group_0__2__Impl : ( ( rule__AfterUntilExpr__AfterAssignment_0_2 ) ) ;
     public final void rule__AfterUntilExpr__Group_0__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9718:1: ( ( ( rule__AfterUntilExpr__AfterAssignment_0_2 ) ) )
-            // InternalSpear.g:9719:1: ( ( rule__AfterUntilExpr__AfterAssignment_0_2 ) )
+            // InternalSpear.g:10292:1: ( ( ( rule__AfterUntilExpr__AfterAssignment_0_2 ) ) )
+            // InternalSpear.g:10293:1: ( ( rule__AfterUntilExpr__AfterAssignment_0_2 ) )
             {
-            // InternalSpear.g:9719:1: ( ( rule__AfterUntilExpr__AfterAssignment_0_2 ) )
-            // InternalSpear.g:9720:1: ( rule__AfterUntilExpr__AfterAssignment_0_2 )
+            // InternalSpear.g:10293:1: ( ( rule__AfterUntilExpr__AfterAssignment_0_2 ) )
+            // InternalSpear.g:10294:1: ( rule__AfterUntilExpr__AfterAssignment_0_2 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAfterUntilExprAccess().getAfterAssignment_0_2()); 
             }
-            // InternalSpear.g:9721:1: ( rule__AfterUntilExpr__AfterAssignment_0_2 )
-            // InternalSpear.g:9721:2: rule__AfterUntilExpr__AfterAssignment_0_2
+            // InternalSpear.g:10295:1: ( rule__AfterUntilExpr__AfterAssignment_0_2 )
+            // InternalSpear.g:10295:2: rule__AfterUntilExpr__AfterAssignment_0_2
             {
             pushFollow(FOLLOW_2);
             rule__AfterUntilExpr__AfterAssignment_0_2();
@@ -28284,14 +29825,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AfterUntilExpr__Group_0__3"
-    // InternalSpear.g:9731:1: rule__AfterUntilExpr__Group_0__3 : rule__AfterUntilExpr__Group_0__3__Impl ;
+    // InternalSpear.g:10305:1: rule__AfterUntilExpr__Group_0__3 : rule__AfterUntilExpr__Group_0__3__Impl ;
     public final void rule__AfterUntilExpr__Group_0__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9735:1: ( rule__AfterUntilExpr__Group_0__3__Impl )
-            // InternalSpear.g:9736:2: rule__AfterUntilExpr__Group_0__3__Impl
+            // InternalSpear.g:10309:1: ( rule__AfterUntilExpr__Group_0__3__Impl )
+            // InternalSpear.g:10310:2: rule__AfterUntilExpr__Group_0__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AfterUntilExpr__Group_0__3__Impl();
@@ -28317,35 +29858,35 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AfterUntilExpr__Group_0__3__Impl"
-    // InternalSpear.g:9742:1: rule__AfterUntilExpr__Group_0__3__Impl : ( ( rule__AfterUntilExpr__Group_0_3__0 )? ) ;
+    // InternalSpear.g:10316:1: rule__AfterUntilExpr__Group_0__3__Impl : ( ( rule__AfterUntilExpr__Group_0_3__0 )? ) ;
     public final void rule__AfterUntilExpr__Group_0__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9746:1: ( ( ( rule__AfterUntilExpr__Group_0_3__0 )? ) )
-            // InternalSpear.g:9747:1: ( ( rule__AfterUntilExpr__Group_0_3__0 )? )
+            // InternalSpear.g:10320:1: ( ( ( rule__AfterUntilExpr__Group_0_3__0 )? ) )
+            // InternalSpear.g:10321:1: ( ( rule__AfterUntilExpr__Group_0_3__0 )? )
             {
-            // InternalSpear.g:9747:1: ( ( rule__AfterUntilExpr__Group_0_3__0 )? )
-            // InternalSpear.g:9748:1: ( rule__AfterUntilExpr__Group_0_3__0 )?
+            // InternalSpear.g:10321:1: ( ( rule__AfterUntilExpr__Group_0_3__0 )? )
+            // InternalSpear.g:10322:1: ( rule__AfterUntilExpr__Group_0_3__0 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAfterUntilExprAccess().getGroup_0_3()); 
             }
-            // InternalSpear.g:9749:1: ( rule__AfterUntilExpr__Group_0_3__0 )?
-            int alt85=2;
-            int LA85_0 = input.LA(1);
+            // InternalSpear.g:10323:1: ( rule__AfterUntilExpr__Group_0_3__0 )?
+            int alt89=2;
+            int LA89_0 = input.LA(1);
 
-            if ( (LA85_0==95) ) {
-                int LA85_1 = input.LA(2);
+            if ( (LA89_0==96) ) {
+                int LA89_1 = input.LA(2);
 
-                if ( (synpred125_InternalSpear()) ) {
-                    alt85=1;
+                if ( (synpred129_InternalSpear()) ) {
+                    alt89=1;
                 }
             }
-            switch (alt85) {
+            switch (alt89) {
                 case 1 :
-                    // InternalSpear.g:9749:2: rule__AfterUntilExpr__Group_0_3__0
+                    // InternalSpear.g:10323:2: rule__AfterUntilExpr__Group_0_3__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__AfterUntilExpr__Group_0_3__0();
@@ -28383,14 +29924,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AfterUntilExpr__Group_0_3__0"
-    // InternalSpear.g:9767:1: rule__AfterUntilExpr__Group_0_3__0 : rule__AfterUntilExpr__Group_0_3__0__Impl rule__AfterUntilExpr__Group_0_3__1 ;
+    // InternalSpear.g:10341:1: rule__AfterUntilExpr__Group_0_3__0 : rule__AfterUntilExpr__Group_0_3__0__Impl rule__AfterUntilExpr__Group_0_3__1 ;
     public final void rule__AfterUntilExpr__Group_0_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9771:1: ( rule__AfterUntilExpr__Group_0_3__0__Impl rule__AfterUntilExpr__Group_0_3__1 )
-            // InternalSpear.g:9772:2: rule__AfterUntilExpr__Group_0_3__0__Impl rule__AfterUntilExpr__Group_0_3__1
+            // InternalSpear.g:10345:1: ( rule__AfterUntilExpr__Group_0_3__0__Impl rule__AfterUntilExpr__Group_0_3__1 )
+            // InternalSpear.g:10346:2: rule__AfterUntilExpr__Group_0_3__0__Impl rule__AfterUntilExpr__Group_0_3__1
             {
             pushFollow(FOLLOW_26);
             rule__AfterUntilExpr__Group_0_3__0__Impl();
@@ -28421,25 +29962,25 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AfterUntilExpr__Group_0_3__0__Impl"
-    // InternalSpear.g:9779:1: rule__AfterUntilExpr__Group_0_3__0__Impl : ( ( 'until' ) ) ;
+    // InternalSpear.g:10353:1: rule__AfterUntilExpr__Group_0_3__0__Impl : ( ( 'until' ) ) ;
     public final void rule__AfterUntilExpr__Group_0_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9783:1: ( ( ( 'until' ) ) )
-            // InternalSpear.g:9784:1: ( ( 'until' ) )
+            // InternalSpear.g:10357:1: ( ( ( 'until' ) ) )
+            // InternalSpear.g:10358:1: ( ( 'until' ) )
             {
-            // InternalSpear.g:9784:1: ( ( 'until' ) )
-            // InternalSpear.g:9785:1: ( 'until' )
+            // InternalSpear.g:10358:1: ( ( 'until' ) )
+            // InternalSpear.g:10359:1: ( 'until' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAfterUntilExprAccess().getUntilKeyword_0_3_0()); 
             }
-            // InternalSpear.g:9786:1: ( 'until' )
-            // InternalSpear.g:9787:2: 'until'
+            // InternalSpear.g:10360:1: ( 'until' )
+            // InternalSpear.g:10361:2: 'until'
             {
-            match(input,95,FOLLOW_2); if (state.failed) return ;
+            match(input,96,FOLLOW_2); if (state.failed) return ;
 
             }
 
@@ -28468,14 +30009,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AfterUntilExpr__Group_0_3__1"
-    // InternalSpear.g:9798:1: rule__AfterUntilExpr__Group_0_3__1 : rule__AfterUntilExpr__Group_0_3__1__Impl ;
+    // InternalSpear.g:10372:1: rule__AfterUntilExpr__Group_0_3__1 : rule__AfterUntilExpr__Group_0_3__1__Impl ;
     public final void rule__AfterUntilExpr__Group_0_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9802:1: ( rule__AfterUntilExpr__Group_0_3__1__Impl )
-            // InternalSpear.g:9803:2: rule__AfterUntilExpr__Group_0_3__1__Impl
+            // InternalSpear.g:10376:1: ( rule__AfterUntilExpr__Group_0_3__1__Impl )
+            // InternalSpear.g:10377:2: rule__AfterUntilExpr__Group_0_3__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AfterUntilExpr__Group_0_3__1__Impl();
@@ -28501,23 +30042,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AfterUntilExpr__Group_0_3__1__Impl"
-    // InternalSpear.g:9809:1: rule__AfterUntilExpr__Group_0_3__1__Impl : ( ( rule__AfterUntilExpr__UntilAssignment_0_3_1 ) ) ;
+    // InternalSpear.g:10383:1: rule__AfterUntilExpr__Group_0_3__1__Impl : ( ( rule__AfterUntilExpr__UntilAssignment_0_3_1 ) ) ;
     public final void rule__AfterUntilExpr__Group_0_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9813:1: ( ( ( rule__AfterUntilExpr__UntilAssignment_0_3_1 ) ) )
-            // InternalSpear.g:9814:1: ( ( rule__AfterUntilExpr__UntilAssignment_0_3_1 ) )
+            // InternalSpear.g:10387:1: ( ( ( rule__AfterUntilExpr__UntilAssignment_0_3_1 ) ) )
+            // InternalSpear.g:10388:1: ( ( rule__AfterUntilExpr__UntilAssignment_0_3_1 ) )
             {
-            // InternalSpear.g:9814:1: ( ( rule__AfterUntilExpr__UntilAssignment_0_3_1 ) )
-            // InternalSpear.g:9815:1: ( rule__AfterUntilExpr__UntilAssignment_0_3_1 )
+            // InternalSpear.g:10388:1: ( ( rule__AfterUntilExpr__UntilAssignment_0_3_1 ) )
+            // InternalSpear.g:10389:1: ( rule__AfterUntilExpr__UntilAssignment_0_3_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAfterUntilExprAccess().getUntilAssignment_0_3_1()); 
             }
-            // InternalSpear.g:9816:1: ( rule__AfterUntilExpr__UntilAssignment_0_3_1 )
-            // InternalSpear.g:9816:2: rule__AfterUntilExpr__UntilAssignment_0_3_1
+            // InternalSpear.g:10390:1: ( rule__AfterUntilExpr__UntilAssignment_0_3_1 )
+            // InternalSpear.g:10390:2: rule__AfterUntilExpr__UntilAssignment_0_3_1
             {
             pushFollow(FOLLOW_2);
             rule__AfterUntilExpr__UntilAssignment_0_3_1();
@@ -28552,16 +30093,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TriggersExpr__Group__0"
-    // InternalSpear.g:9830:1: rule__TriggersExpr__Group__0 : rule__TriggersExpr__Group__0__Impl rule__TriggersExpr__Group__1 ;
+    // InternalSpear.g:10404:1: rule__TriggersExpr__Group__0 : rule__TriggersExpr__Group__0__Impl rule__TriggersExpr__Group__1 ;
     public final void rule__TriggersExpr__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9834:1: ( rule__TriggersExpr__Group__0__Impl rule__TriggersExpr__Group__1 )
-            // InternalSpear.g:9835:2: rule__TriggersExpr__Group__0__Impl rule__TriggersExpr__Group__1
+            // InternalSpear.g:10408:1: ( rule__TriggersExpr__Group__0__Impl rule__TriggersExpr__Group__1 )
+            // InternalSpear.g:10409:2: rule__TriggersExpr__Group__0__Impl rule__TriggersExpr__Group__1
             {
-            pushFollow(FOLLOW_51);
+            pushFollow(FOLLOW_54);
             rule__TriggersExpr__Group__0__Impl();
 
             state._fsp--;
@@ -28590,17 +30131,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TriggersExpr__Group__0__Impl"
-    // InternalSpear.g:9842:1: rule__TriggersExpr__Group__0__Impl : ( ruleSinceExpr ) ;
+    // InternalSpear.g:10416:1: rule__TriggersExpr__Group__0__Impl : ( ruleSinceExpr ) ;
     public final void rule__TriggersExpr__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9846:1: ( ( ruleSinceExpr ) )
-            // InternalSpear.g:9847:1: ( ruleSinceExpr )
+            // InternalSpear.g:10420:1: ( ( ruleSinceExpr ) )
+            // InternalSpear.g:10421:1: ( ruleSinceExpr )
             {
-            // InternalSpear.g:9847:1: ( ruleSinceExpr )
-            // InternalSpear.g:9848:1: ruleSinceExpr
+            // InternalSpear.g:10421:1: ( ruleSinceExpr )
+            // InternalSpear.g:10422:1: ruleSinceExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTriggersExprAccess().getSinceExprParserRuleCall_0()); 
@@ -28635,14 +30176,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TriggersExpr__Group__1"
-    // InternalSpear.g:9859:1: rule__TriggersExpr__Group__1 : rule__TriggersExpr__Group__1__Impl ;
+    // InternalSpear.g:10433:1: rule__TriggersExpr__Group__1 : rule__TriggersExpr__Group__1__Impl ;
     public final void rule__TriggersExpr__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9863:1: ( rule__TriggersExpr__Group__1__Impl )
-            // InternalSpear.g:9864:2: rule__TriggersExpr__Group__1__Impl
+            // InternalSpear.g:10437:1: ( rule__TriggersExpr__Group__1__Impl )
+            // InternalSpear.g:10438:2: rule__TriggersExpr__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__TriggersExpr__Group__1__Impl();
@@ -28668,42 +30209,42 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TriggersExpr__Group__1__Impl"
-    // InternalSpear.g:9870:1: rule__TriggersExpr__Group__1__Impl : ( ( rule__TriggersExpr__Group_1__0 )? ) ;
+    // InternalSpear.g:10444:1: rule__TriggersExpr__Group__1__Impl : ( ( rule__TriggersExpr__Group_1__0 )? ) ;
     public final void rule__TriggersExpr__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9874:1: ( ( ( rule__TriggersExpr__Group_1__0 )? ) )
-            // InternalSpear.g:9875:1: ( ( rule__TriggersExpr__Group_1__0 )? )
+            // InternalSpear.g:10448:1: ( ( ( rule__TriggersExpr__Group_1__0 )? ) )
+            // InternalSpear.g:10449:1: ( ( rule__TriggersExpr__Group_1__0 )? )
             {
-            // InternalSpear.g:9875:1: ( ( rule__TriggersExpr__Group_1__0 )? )
-            // InternalSpear.g:9876:1: ( rule__TriggersExpr__Group_1__0 )?
+            // InternalSpear.g:10449:1: ( ( rule__TriggersExpr__Group_1__0 )? )
+            // InternalSpear.g:10450:1: ( rule__TriggersExpr__Group_1__0 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTriggersExprAccess().getGroup_1()); 
             }
-            // InternalSpear.g:9877:1: ( rule__TriggersExpr__Group_1__0 )?
-            int alt86=2;
-            int LA86_0 = input.LA(1);
+            // InternalSpear.g:10451:1: ( rule__TriggersExpr__Group_1__0 )?
+            int alt90=2;
+            int LA90_0 = input.LA(1);
 
-            if ( (LA86_0==28) ) {
-                int LA86_1 = input.LA(2);
+            if ( (LA90_0==28) ) {
+                int LA90_1 = input.LA(2);
 
-                if ( (synpred126_InternalSpear()) ) {
-                    alt86=1;
+                if ( (synpred130_InternalSpear()) ) {
+                    alt90=1;
                 }
             }
-            else if ( (LA86_0==29) ) {
-                int LA86_2 = input.LA(2);
+            else if ( (LA90_0==29) ) {
+                int LA90_2 = input.LA(2);
 
-                if ( (synpred126_InternalSpear()) ) {
-                    alt86=1;
+                if ( (synpred130_InternalSpear()) ) {
+                    alt90=1;
                 }
             }
-            switch (alt86) {
+            switch (alt90) {
                 case 1 :
-                    // InternalSpear.g:9877:2: rule__TriggersExpr__Group_1__0
+                    // InternalSpear.g:10451:2: rule__TriggersExpr__Group_1__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__TriggersExpr__Group_1__0();
@@ -28741,14 +30282,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TriggersExpr__Group_1__0"
-    // InternalSpear.g:9891:1: rule__TriggersExpr__Group_1__0 : rule__TriggersExpr__Group_1__0__Impl rule__TriggersExpr__Group_1__1 ;
+    // InternalSpear.g:10465:1: rule__TriggersExpr__Group_1__0 : rule__TriggersExpr__Group_1__0__Impl rule__TriggersExpr__Group_1__1 ;
     public final void rule__TriggersExpr__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9895:1: ( rule__TriggersExpr__Group_1__0__Impl rule__TriggersExpr__Group_1__1 )
-            // InternalSpear.g:9896:2: rule__TriggersExpr__Group_1__0__Impl rule__TriggersExpr__Group_1__1
+            // InternalSpear.g:10469:1: ( rule__TriggersExpr__Group_1__0__Impl rule__TriggersExpr__Group_1__1 )
+            // InternalSpear.g:10470:2: rule__TriggersExpr__Group_1__0__Impl rule__TriggersExpr__Group_1__1
             {
             pushFollow(FOLLOW_26);
             rule__TriggersExpr__Group_1__0__Impl();
@@ -28779,23 +30320,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TriggersExpr__Group_1__0__Impl"
-    // InternalSpear.g:9903:1: rule__TriggersExpr__Group_1__0__Impl : ( ( rule__TriggersExpr__Group_1_0__0 ) ) ;
+    // InternalSpear.g:10477:1: rule__TriggersExpr__Group_1__0__Impl : ( ( rule__TriggersExpr__Group_1_0__0 ) ) ;
     public final void rule__TriggersExpr__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9907:1: ( ( ( rule__TriggersExpr__Group_1_0__0 ) ) )
-            // InternalSpear.g:9908:1: ( ( rule__TriggersExpr__Group_1_0__0 ) )
+            // InternalSpear.g:10481:1: ( ( ( rule__TriggersExpr__Group_1_0__0 ) ) )
+            // InternalSpear.g:10482:1: ( ( rule__TriggersExpr__Group_1_0__0 ) )
             {
-            // InternalSpear.g:9908:1: ( ( rule__TriggersExpr__Group_1_0__0 ) )
-            // InternalSpear.g:9909:1: ( rule__TriggersExpr__Group_1_0__0 )
+            // InternalSpear.g:10482:1: ( ( rule__TriggersExpr__Group_1_0__0 ) )
+            // InternalSpear.g:10483:1: ( rule__TriggersExpr__Group_1_0__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTriggersExprAccess().getGroup_1_0()); 
             }
-            // InternalSpear.g:9910:1: ( rule__TriggersExpr__Group_1_0__0 )
-            // InternalSpear.g:9910:2: rule__TriggersExpr__Group_1_0__0
+            // InternalSpear.g:10484:1: ( rule__TriggersExpr__Group_1_0__0 )
+            // InternalSpear.g:10484:2: rule__TriggersExpr__Group_1_0__0
             {
             pushFollow(FOLLOW_2);
             rule__TriggersExpr__Group_1_0__0();
@@ -28830,14 +30371,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TriggersExpr__Group_1__1"
-    // InternalSpear.g:9920:1: rule__TriggersExpr__Group_1__1 : rule__TriggersExpr__Group_1__1__Impl ;
+    // InternalSpear.g:10494:1: rule__TriggersExpr__Group_1__1 : rule__TriggersExpr__Group_1__1__Impl ;
     public final void rule__TriggersExpr__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9924:1: ( rule__TriggersExpr__Group_1__1__Impl )
-            // InternalSpear.g:9925:2: rule__TriggersExpr__Group_1__1__Impl
+            // InternalSpear.g:10498:1: ( rule__TriggersExpr__Group_1__1__Impl )
+            // InternalSpear.g:10499:2: rule__TriggersExpr__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__TriggersExpr__Group_1__1__Impl();
@@ -28863,23 +30404,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TriggersExpr__Group_1__1__Impl"
-    // InternalSpear.g:9931:1: rule__TriggersExpr__Group_1__1__Impl : ( ( rule__TriggersExpr__RightAssignment_1_1 ) ) ;
+    // InternalSpear.g:10505:1: rule__TriggersExpr__Group_1__1__Impl : ( ( rule__TriggersExpr__RightAssignment_1_1 ) ) ;
     public final void rule__TriggersExpr__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9935:1: ( ( ( rule__TriggersExpr__RightAssignment_1_1 ) ) )
-            // InternalSpear.g:9936:1: ( ( rule__TriggersExpr__RightAssignment_1_1 ) )
+            // InternalSpear.g:10509:1: ( ( ( rule__TriggersExpr__RightAssignment_1_1 ) ) )
+            // InternalSpear.g:10510:1: ( ( rule__TriggersExpr__RightAssignment_1_1 ) )
             {
-            // InternalSpear.g:9936:1: ( ( rule__TriggersExpr__RightAssignment_1_1 ) )
-            // InternalSpear.g:9937:1: ( rule__TriggersExpr__RightAssignment_1_1 )
+            // InternalSpear.g:10510:1: ( ( rule__TriggersExpr__RightAssignment_1_1 ) )
+            // InternalSpear.g:10511:1: ( rule__TriggersExpr__RightAssignment_1_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTriggersExprAccess().getRightAssignment_1_1()); 
             }
-            // InternalSpear.g:9938:1: ( rule__TriggersExpr__RightAssignment_1_1 )
-            // InternalSpear.g:9938:2: rule__TriggersExpr__RightAssignment_1_1
+            // InternalSpear.g:10512:1: ( rule__TriggersExpr__RightAssignment_1_1 )
+            // InternalSpear.g:10512:2: rule__TriggersExpr__RightAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__TriggersExpr__RightAssignment_1_1();
@@ -28914,14 +30455,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TriggersExpr__Group_1_0__0"
-    // InternalSpear.g:9952:1: rule__TriggersExpr__Group_1_0__0 : rule__TriggersExpr__Group_1_0__0__Impl ;
+    // InternalSpear.g:10526:1: rule__TriggersExpr__Group_1_0__0 : rule__TriggersExpr__Group_1_0__0__Impl ;
     public final void rule__TriggersExpr__Group_1_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9956:1: ( rule__TriggersExpr__Group_1_0__0__Impl )
-            // InternalSpear.g:9957:2: rule__TriggersExpr__Group_1_0__0__Impl
+            // InternalSpear.g:10530:1: ( rule__TriggersExpr__Group_1_0__0__Impl )
+            // InternalSpear.g:10531:2: rule__TriggersExpr__Group_1_0__0__Impl
             {
             pushFollow(FOLLOW_2);
             rule__TriggersExpr__Group_1_0__0__Impl();
@@ -28947,23 +30488,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TriggersExpr__Group_1_0__0__Impl"
-    // InternalSpear.g:9963:1: rule__TriggersExpr__Group_1_0__0__Impl : ( ( rule__TriggersExpr__Group_1_0_0__0 ) ) ;
+    // InternalSpear.g:10537:1: rule__TriggersExpr__Group_1_0__0__Impl : ( ( rule__TriggersExpr__Group_1_0_0__0 ) ) ;
     public final void rule__TriggersExpr__Group_1_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9967:1: ( ( ( rule__TriggersExpr__Group_1_0_0__0 ) ) )
-            // InternalSpear.g:9968:1: ( ( rule__TriggersExpr__Group_1_0_0__0 ) )
+            // InternalSpear.g:10541:1: ( ( ( rule__TriggersExpr__Group_1_0_0__0 ) ) )
+            // InternalSpear.g:10542:1: ( ( rule__TriggersExpr__Group_1_0_0__0 ) )
             {
-            // InternalSpear.g:9968:1: ( ( rule__TriggersExpr__Group_1_0_0__0 ) )
-            // InternalSpear.g:9969:1: ( rule__TriggersExpr__Group_1_0_0__0 )
+            // InternalSpear.g:10542:1: ( ( rule__TriggersExpr__Group_1_0_0__0 ) )
+            // InternalSpear.g:10543:1: ( rule__TriggersExpr__Group_1_0_0__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTriggersExprAccess().getGroup_1_0_0()); 
             }
-            // InternalSpear.g:9970:1: ( rule__TriggersExpr__Group_1_0_0__0 )
-            // InternalSpear.g:9970:2: rule__TriggersExpr__Group_1_0_0__0
+            // InternalSpear.g:10544:1: ( rule__TriggersExpr__Group_1_0_0__0 )
+            // InternalSpear.g:10544:2: rule__TriggersExpr__Group_1_0_0__0
             {
             pushFollow(FOLLOW_2);
             rule__TriggersExpr__Group_1_0_0__0();
@@ -28998,16 +30539,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TriggersExpr__Group_1_0_0__0"
-    // InternalSpear.g:9982:1: rule__TriggersExpr__Group_1_0_0__0 : rule__TriggersExpr__Group_1_0_0__0__Impl rule__TriggersExpr__Group_1_0_0__1 ;
+    // InternalSpear.g:10556:1: rule__TriggersExpr__Group_1_0_0__0 : rule__TriggersExpr__Group_1_0_0__0__Impl rule__TriggersExpr__Group_1_0_0__1 ;
     public final void rule__TriggersExpr__Group_1_0_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9986:1: ( rule__TriggersExpr__Group_1_0_0__0__Impl rule__TriggersExpr__Group_1_0_0__1 )
-            // InternalSpear.g:9987:2: rule__TriggersExpr__Group_1_0_0__0__Impl rule__TriggersExpr__Group_1_0_0__1
+            // InternalSpear.g:10560:1: ( rule__TriggersExpr__Group_1_0_0__0__Impl rule__TriggersExpr__Group_1_0_0__1 )
+            // InternalSpear.g:10561:2: rule__TriggersExpr__Group_1_0_0__0__Impl rule__TriggersExpr__Group_1_0_0__1
             {
-            pushFollow(FOLLOW_51);
+            pushFollow(FOLLOW_54);
             rule__TriggersExpr__Group_1_0_0__0__Impl();
 
             state._fsp--;
@@ -29036,23 +30577,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TriggersExpr__Group_1_0_0__0__Impl"
-    // InternalSpear.g:9994:1: rule__TriggersExpr__Group_1_0_0__0__Impl : ( () ) ;
+    // InternalSpear.g:10568:1: rule__TriggersExpr__Group_1_0_0__0__Impl : ( () ) ;
     public final void rule__TriggersExpr__Group_1_0_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:9998:1: ( ( () ) )
-            // InternalSpear.g:9999:1: ( () )
+            // InternalSpear.g:10572:1: ( ( () ) )
+            // InternalSpear.g:10573:1: ( () )
             {
-            // InternalSpear.g:9999:1: ( () )
-            // InternalSpear.g:10000:1: ()
+            // InternalSpear.g:10573:1: ( () )
+            // InternalSpear.g:10574:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTriggersExprAccess().getBinaryExprLeftAction_1_0_0_0()); 
             }
-            // InternalSpear.g:10001:1: ()
-            // InternalSpear.g:10003:1: 
+            // InternalSpear.g:10575:1: ()
+            // InternalSpear.g:10577:1: 
             {
             }
 
@@ -29077,14 +30618,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TriggersExpr__Group_1_0_0__1"
-    // InternalSpear.g:10013:1: rule__TriggersExpr__Group_1_0_0__1 : rule__TriggersExpr__Group_1_0_0__1__Impl ;
+    // InternalSpear.g:10587:1: rule__TriggersExpr__Group_1_0_0__1 : rule__TriggersExpr__Group_1_0_0__1__Impl ;
     public final void rule__TriggersExpr__Group_1_0_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10017:1: ( rule__TriggersExpr__Group_1_0_0__1__Impl )
-            // InternalSpear.g:10018:2: rule__TriggersExpr__Group_1_0_0__1__Impl
+            // InternalSpear.g:10591:1: ( rule__TriggersExpr__Group_1_0_0__1__Impl )
+            // InternalSpear.g:10592:2: rule__TriggersExpr__Group_1_0_0__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__TriggersExpr__Group_1_0_0__1__Impl();
@@ -29110,23 +30651,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TriggersExpr__Group_1_0_0__1__Impl"
-    // InternalSpear.g:10024:1: rule__TriggersExpr__Group_1_0_0__1__Impl : ( ( rule__TriggersExpr__OpAssignment_1_0_0_1 ) ) ;
+    // InternalSpear.g:10598:1: rule__TriggersExpr__Group_1_0_0__1__Impl : ( ( rule__TriggersExpr__OpAssignment_1_0_0_1 ) ) ;
     public final void rule__TriggersExpr__Group_1_0_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10028:1: ( ( ( rule__TriggersExpr__OpAssignment_1_0_0_1 ) ) )
-            // InternalSpear.g:10029:1: ( ( rule__TriggersExpr__OpAssignment_1_0_0_1 ) )
+            // InternalSpear.g:10602:1: ( ( ( rule__TriggersExpr__OpAssignment_1_0_0_1 ) ) )
+            // InternalSpear.g:10603:1: ( ( rule__TriggersExpr__OpAssignment_1_0_0_1 ) )
             {
-            // InternalSpear.g:10029:1: ( ( rule__TriggersExpr__OpAssignment_1_0_0_1 ) )
-            // InternalSpear.g:10030:1: ( rule__TriggersExpr__OpAssignment_1_0_0_1 )
+            // InternalSpear.g:10603:1: ( ( rule__TriggersExpr__OpAssignment_1_0_0_1 ) )
+            // InternalSpear.g:10604:1: ( rule__TriggersExpr__OpAssignment_1_0_0_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTriggersExprAccess().getOpAssignment_1_0_0_1()); 
             }
-            // InternalSpear.g:10031:1: ( rule__TriggersExpr__OpAssignment_1_0_0_1 )
-            // InternalSpear.g:10031:2: rule__TriggersExpr__OpAssignment_1_0_0_1
+            // InternalSpear.g:10605:1: ( rule__TriggersExpr__OpAssignment_1_0_0_1 )
+            // InternalSpear.g:10605:2: rule__TriggersExpr__OpAssignment_1_0_0_1
             {
             pushFollow(FOLLOW_2);
             rule__TriggersExpr__OpAssignment_1_0_0_1();
@@ -29161,16 +30702,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SinceExpr__Group__0"
-    // InternalSpear.g:10045:1: rule__SinceExpr__Group__0 : rule__SinceExpr__Group__0__Impl rule__SinceExpr__Group__1 ;
+    // InternalSpear.g:10619:1: rule__SinceExpr__Group__0 : rule__SinceExpr__Group__0__Impl rule__SinceExpr__Group__1 ;
     public final void rule__SinceExpr__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10049:1: ( rule__SinceExpr__Group__0__Impl rule__SinceExpr__Group__1 )
-            // InternalSpear.g:10050:2: rule__SinceExpr__Group__0__Impl rule__SinceExpr__Group__1
+            // InternalSpear.g:10623:1: ( rule__SinceExpr__Group__0__Impl rule__SinceExpr__Group__1 )
+            // InternalSpear.g:10624:2: rule__SinceExpr__Group__0__Impl rule__SinceExpr__Group__1
             {
-            pushFollow(FOLLOW_52);
+            pushFollow(FOLLOW_55);
             rule__SinceExpr__Group__0__Impl();
 
             state._fsp--;
@@ -29199,17 +30740,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SinceExpr__Group__0__Impl"
-    // InternalSpear.g:10057:1: rule__SinceExpr__Group__0__Impl : ( ruleTemporalPrefixExpr ) ;
+    // InternalSpear.g:10631:1: rule__SinceExpr__Group__0__Impl : ( ruleTemporalPrefixExpr ) ;
     public final void rule__SinceExpr__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10061:1: ( ( ruleTemporalPrefixExpr ) )
-            // InternalSpear.g:10062:1: ( ruleTemporalPrefixExpr )
+            // InternalSpear.g:10635:1: ( ( ruleTemporalPrefixExpr ) )
+            // InternalSpear.g:10636:1: ( ruleTemporalPrefixExpr )
             {
-            // InternalSpear.g:10062:1: ( ruleTemporalPrefixExpr )
-            // InternalSpear.g:10063:1: ruleTemporalPrefixExpr
+            // InternalSpear.g:10636:1: ( ruleTemporalPrefixExpr )
+            // InternalSpear.g:10637:1: ruleTemporalPrefixExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSinceExprAccess().getTemporalPrefixExprParserRuleCall_0()); 
@@ -29244,14 +30785,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SinceExpr__Group__1"
-    // InternalSpear.g:10074:1: rule__SinceExpr__Group__1 : rule__SinceExpr__Group__1__Impl ;
+    // InternalSpear.g:10648:1: rule__SinceExpr__Group__1 : rule__SinceExpr__Group__1__Impl ;
     public final void rule__SinceExpr__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10078:1: ( rule__SinceExpr__Group__1__Impl )
-            // InternalSpear.g:10079:2: rule__SinceExpr__Group__1__Impl
+            // InternalSpear.g:10652:1: ( rule__SinceExpr__Group__1__Impl )
+            // InternalSpear.g:10653:2: rule__SinceExpr__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__SinceExpr__Group__1__Impl();
@@ -29277,42 +30818,42 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SinceExpr__Group__1__Impl"
-    // InternalSpear.g:10085:1: rule__SinceExpr__Group__1__Impl : ( ( rule__SinceExpr__Group_1__0 )? ) ;
+    // InternalSpear.g:10659:1: rule__SinceExpr__Group__1__Impl : ( ( rule__SinceExpr__Group_1__0 )? ) ;
     public final void rule__SinceExpr__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10089:1: ( ( ( rule__SinceExpr__Group_1__0 )? ) )
-            // InternalSpear.g:10090:1: ( ( rule__SinceExpr__Group_1__0 )? )
+            // InternalSpear.g:10663:1: ( ( ( rule__SinceExpr__Group_1__0 )? ) )
+            // InternalSpear.g:10664:1: ( ( rule__SinceExpr__Group_1__0 )? )
             {
-            // InternalSpear.g:10090:1: ( ( rule__SinceExpr__Group_1__0 )? )
-            // InternalSpear.g:10091:1: ( rule__SinceExpr__Group_1__0 )?
+            // InternalSpear.g:10664:1: ( ( rule__SinceExpr__Group_1__0 )? )
+            // InternalSpear.g:10665:1: ( rule__SinceExpr__Group_1__0 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSinceExprAccess().getGroup_1()); 
             }
-            // InternalSpear.g:10092:1: ( rule__SinceExpr__Group_1__0 )?
-            int alt87=2;
-            int LA87_0 = input.LA(1);
+            // InternalSpear.g:10666:1: ( rule__SinceExpr__Group_1__0 )?
+            int alt91=2;
+            int LA91_0 = input.LA(1);
 
-            if ( (LA87_0==30) ) {
-                int LA87_1 = input.LA(2);
+            if ( (LA91_0==30) ) {
+                int LA91_1 = input.LA(2);
 
-                if ( (synpred127_InternalSpear()) ) {
-                    alt87=1;
+                if ( (synpred131_InternalSpear()) ) {
+                    alt91=1;
                 }
             }
-            else if ( (LA87_0==31) ) {
-                int LA87_2 = input.LA(2);
+            else if ( (LA91_0==31) ) {
+                int LA91_2 = input.LA(2);
 
-                if ( (synpred127_InternalSpear()) ) {
-                    alt87=1;
+                if ( (synpred131_InternalSpear()) ) {
+                    alt91=1;
                 }
             }
-            switch (alt87) {
+            switch (alt91) {
                 case 1 :
-                    // InternalSpear.g:10092:2: rule__SinceExpr__Group_1__0
+                    // InternalSpear.g:10666:2: rule__SinceExpr__Group_1__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__SinceExpr__Group_1__0();
@@ -29350,14 +30891,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SinceExpr__Group_1__0"
-    // InternalSpear.g:10106:1: rule__SinceExpr__Group_1__0 : rule__SinceExpr__Group_1__0__Impl rule__SinceExpr__Group_1__1 ;
+    // InternalSpear.g:10680:1: rule__SinceExpr__Group_1__0 : rule__SinceExpr__Group_1__0__Impl rule__SinceExpr__Group_1__1 ;
     public final void rule__SinceExpr__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10110:1: ( rule__SinceExpr__Group_1__0__Impl rule__SinceExpr__Group_1__1 )
-            // InternalSpear.g:10111:2: rule__SinceExpr__Group_1__0__Impl rule__SinceExpr__Group_1__1
+            // InternalSpear.g:10684:1: ( rule__SinceExpr__Group_1__0__Impl rule__SinceExpr__Group_1__1 )
+            // InternalSpear.g:10685:2: rule__SinceExpr__Group_1__0__Impl rule__SinceExpr__Group_1__1
             {
             pushFollow(FOLLOW_26);
             rule__SinceExpr__Group_1__0__Impl();
@@ -29388,23 +30929,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SinceExpr__Group_1__0__Impl"
-    // InternalSpear.g:10118:1: rule__SinceExpr__Group_1__0__Impl : ( ( rule__SinceExpr__Group_1_0__0 ) ) ;
+    // InternalSpear.g:10692:1: rule__SinceExpr__Group_1__0__Impl : ( ( rule__SinceExpr__Group_1_0__0 ) ) ;
     public final void rule__SinceExpr__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10122:1: ( ( ( rule__SinceExpr__Group_1_0__0 ) ) )
-            // InternalSpear.g:10123:1: ( ( rule__SinceExpr__Group_1_0__0 ) )
+            // InternalSpear.g:10696:1: ( ( ( rule__SinceExpr__Group_1_0__0 ) ) )
+            // InternalSpear.g:10697:1: ( ( rule__SinceExpr__Group_1_0__0 ) )
             {
-            // InternalSpear.g:10123:1: ( ( rule__SinceExpr__Group_1_0__0 ) )
-            // InternalSpear.g:10124:1: ( rule__SinceExpr__Group_1_0__0 )
+            // InternalSpear.g:10697:1: ( ( rule__SinceExpr__Group_1_0__0 ) )
+            // InternalSpear.g:10698:1: ( rule__SinceExpr__Group_1_0__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSinceExprAccess().getGroup_1_0()); 
             }
-            // InternalSpear.g:10125:1: ( rule__SinceExpr__Group_1_0__0 )
-            // InternalSpear.g:10125:2: rule__SinceExpr__Group_1_0__0
+            // InternalSpear.g:10699:1: ( rule__SinceExpr__Group_1_0__0 )
+            // InternalSpear.g:10699:2: rule__SinceExpr__Group_1_0__0
             {
             pushFollow(FOLLOW_2);
             rule__SinceExpr__Group_1_0__0();
@@ -29439,14 +30980,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SinceExpr__Group_1__1"
-    // InternalSpear.g:10135:1: rule__SinceExpr__Group_1__1 : rule__SinceExpr__Group_1__1__Impl ;
+    // InternalSpear.g:10709:1: rule__SinceExpr__Group_1__1 : rule__SinceExpr__Group_1__1__Impl ;
     public final void rule__SinceExpr__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10139:1: ( rule__SinceExpr__Group_1__1__Impl )
-            // InternalSpear.g:10140:2: rule__SinceExpr__Group_1__1__Impl
+            // InternalSpear.g:10713:1: ( rule__SinceExpr__Group_1__1__Impl )
+            // InternalSpear.g:10714:2: rule__SinceExpr__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__SinceExpr__Group_1__1__Impl();
@@ -29472,23 +31013,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SinceExpr__Group_1__1__Impl"
-    // InternalSpear.g:10146:1: rule__SinceExpr__Group_1__1__Impl : ( ( rule__SinceExpr__RightAssignment_1_1 ) ) ;
+    // InternalSpear.g:10720:1: rule__SinceExpr__Group_1__1__Impl : ( ( rule__SinceExpr__RightAssignment_1_1 ) ) ;
     public final void rule__SinceExpr__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10150:1: ( ( ( rule__SinceExpr__RightAssignment_1_1 ) ) )
-            // InternalSpear.g:10151:1: ( ( rule__SinceExpr__RightAssignment_1_1 ) )
+            // InternalSpear.g:10724:1: ( ( ( rule__SinceExpr__RightAssignment_1_1 ) ) )
+            // InternalSpear.g:10725:1: ( ( rule__SinceExpr__RightAssignment_1_1 ) )
             {
-            // InternalSpear.g:10151:1: ( ( rule__SinceExpr__RightAssignment_1_1 ) )
-            // InternalSpear.g:10152:1: ( rule__SinceExpr__RightAssignment_1_1 )
+            // InternalSpear.g:10725:1: ( ( rule__SinceExpr__RightAssignment_1_1 ) )
+            // InternalSpear.g:10726:1: ( rule__SinceExpr__RightAssignment_1_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSinceExprAccess().getRightAssignment_1_1()); 
             }
-            // InternalSpear.g:10153:1: ( rule__SinceExpr__RightAssignment_1_1 )
-            // InternalSpear.g:10153:2: rule__SinceExpr__RightAssignment_1_1
+            // InternalSpear.g:10727:1: ( rule__SinceExpr__RightAssignment_1_1 )
+            // InternalSpear.g:10727:2: rule__SinceExpr__RightAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__SinceExpr__RightAssignment_1_1();
@@ -29523,14 +31064,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SinceExpr__Group_1_0__0"
-    // InternalSpear.g:10167:1: rule__SinceExpr__Group_1_0__0 : rule__SinceExpr__Group_1_0__0__Impl ;
+    // InternalSpear.g:10741:1: rule__SinceExpr__Group_1_0__0 : rule__SinceExpr__Group_1_0__0__Impl ;
     public final void rule__SinceExpr__Group_1_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10171:1: ( rule__SinceExpr__Group_1_0__0__Impl )
-            // InternalSpear.g:10172:2: rule__SinceExpr__Group_1_0__0__Impl
+            // InternalSpear.g:10745:1: ( rule__SinceExpr__Group_1_0__0__Impl )
+            // InternalSpear.g:10746:2: rule__SinceExpr__Group_1_0__0__Impl
             {
             pushFollow(FOLLOW_2);
             rule__SinceExpr__Group_1_0__0__Impl();
@@ -29556,23 +31097,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SinceExpr__Group_1_0__0__Impl"
-    // InternalSpear.g:10178:1: rule__SinceExpr__Group_1_0__0__Impl : ( ( rule__SinceExpr__Group_1_0_0__0 ) ) ;
+    // InternalSpear.g:10752:1: rule__SinceExpr__Group_1_0__0__Impl : ( ( rule__SinceExpr__Group_1_0_0__0 ) ) ;
     public final void rule__SinceExpr__Group_1_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10182:1: ( ( ( rule__SinceExpr__Group_1_0_0__0 ) ) )
-            // InternalSpear.g:10183:1: ( ( rule__SinceExpr__Group_1_0_0__0 ) )
+            // InternalSpear.g:10756:1: ( ( ( rule__SinceExpr__Group_1_0_0__0 ) ) )
+            // InternalSpear.g:10757:1: ( ( rule__SinceExpr__Group_1_0_0__0 ) )
             {
-            // InternalSpear.g:10183:1: ( ( rule__SinceExpr__Group_1_0_0__0 ) )
-            // InternalSpear.g:10184:1: ( rule__SinceExpr__Group_1_0_0__0 )
+            // InternalSpear.g:10757:1: ( ( rule__SinceExpr__Group_1_0_0__0 ) )
+            // InternalSpear.g:10758:1: ( rule__SinceExpr__Group_1_0_0__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSinceExprAccess().getGroup_1_0_0()); 
             }
-            // InternalSpear.g:10185:1: ( rule__SinceExpr__Group_1_0_0__0 )
-            // InternalSpear.g:10185:2: rule__SinceExpr__Group_1_0_0__0
+            // InternalSpear.g:10759:1: ( rule__SinceExpr__Group_1_0_0__0 )
+            // InternalSpear.g:10759:2: rule__SinceExpr__Group_1_0_0__0
             {
             pushFollow(FOLLOW_2);
             rule__SinceExpr__Group_1_0_0__0();
@@ -29607,16 +31148,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SinceExpr__Group_1_0_0__0"
-    // InternalSpear.g:10197:1: rule__SinceExpr__Group_1_0_0__0 : rule__SinceExpr__Group_1_0_0__0__Impl rule__SinceExpr__Group_1_0_0__1 ;
+    // InternalSpear.g:10771:1: rule__SinceExpr__Group_1_0_0__0 : rule__SinceExpr__Group_1_0_0__0__Impl rule__SinceExpr__Group_1_0_0__1 ;
     public final void rule__SinceExpr__Group_1_0_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10201:1: ( rule__SinceExpr__Group_1_0_0__0__Impl rule__SinceExpr__Group_1_0_0__1 )
-            // InternalSpear.g:10202:2: rule__SinceExpr__Group_1_0_0__0__Impl rule__SinceExpr__Group_1_0_0__1
+            // InternalSpear.g:10775:1: ( rule__SinceExpr__Group_1_0_0__0__Impl rule__SinceExpr__Group_1_0_0__1 )
+            // InternalSpear.g:10776:2: rule__SinceExpr__Group_1_0_0__0__Impl rule__SinceExpr__Group_1_0_0__1
             {
-            pushFollow(FOLLOW_52);
+            pushFollow(FOLLOW_55);
             rule__SinceExpr__Group_1_0_0__0__Impl();
 
             state._fsp--;
@@ -29645,23 +31186,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SinceExpr__Group_1_0_0__0__Impl"
-    // InternalSpear.g:10209:1: rule__SinceExpr__Group_1_0_0__0__Impl : ( () ) ;
+    // InternalSpear.g:10783:1: rule__SinceExpr__Group_1_0_0__0__Impl : ( () ) ;
     public final void rule__SinceExpr__Group_1_0_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10213:1: ( ( () ) )
-            // InternalSpear.g:10214:1: ( () )
+            // InternalSpear.g:10787:1: ( ( () ) )
+            // InternalSpear.g:10788:1: ( () )
             {
-            // InternalSpear.g:10214:1: ( () )
-            // InternalSpear.g:10215:1: ()
+            // InternalSpear.g:10788:1: ( () )
+            // InternalSpear.g:10789:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSinceExprAccess().getBinaryExprLeftAction_1_0_0_0()); 
             }
-            // InternalSpear.g:10216:1: ()
-            // InternalSpear.g:10218:1: 
+            // InternalSpear.g:10790:1: ()
+            // InternalSpear.g:10792:1: 
             {
             }
 
@@ -29686,14 +31227,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SinceExpr__Group_1_0_0__1"
-    // InternalSpear.g:10228:1: rule__SinceExpr__Group_1_0_0__1 : rule__SinceExpr__Group_1_0_0__1__Impl ;
+    // InternalSpear.g:10802:1: rule__SinceExpr__Group_1_0_0__1 : rule__SinceExpr__Group_1_0_0__1__Impl ;
     public final void rule__SinceExpr__Group_1_0_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10232:1: ( rule__SinceExpr__Group_1_0_0__1__Impl )
-            // InternalSpear.g:10233:2: rule__SinceExpr__Group_1_0_0__1__Impl
+            // InternalSpear.g:10806:1: ( rule__SinceExpr__Group_1_0_0__1__Impl )
+            // InternalSpear.g:10807:2: rule__SinceExpr__Group_1_0_0__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__SinceExpr__Group_1_0_0__1__Impl();
@@ -29719,23 +31260,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SinceExpr__Group_1_0_0__1__Impl"
-    // InternalSpear.g:10239:1: rule__SinceExpr__Group_1_0_0__1__Impl : ( ( rule__SinceExpr__OpAssignment_1_0_0_1 ) ) ;
+    // InternalSpear.g:10813:1: rule__SinceExpr__Group_1_0_0__1__Impl : ( ( rule__SinceExpr__OpAssignment_1_0_0_1 ) ) ;
     public final void rule__SinceExpr__Group_1_0_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10243:1: ( ( ( rule__SinceExpr__OpAssignment_1_0_0_1 ) ) )
-            // InternalSpear.g:10244:1: ( ( rule__SinceExpr__OpAssignment_1_0_0_1 ) )
+            // InternalSpear.g:10817:1: ( ( ( rule__SinceExpr__OpAssignment_1_0_0_1 ) ) )
+            // InternalSpear.g:10818:1: ( ( rule__SinceExpr__OpAssignment_1_0_0_1 ) )
             {
-            // InternalSpear.g:10244:1: ( ( rule__SinceExpr__OpAssignment_1_0_0_1 ) )
-            // InternalSpear.g:10245:1: ( rule__SinceExpr__OpAssignment_1_0_0_1 )
+            // InternalSpear.g:10818:1: ( ( rule__SinceExpr__OpAssignment_1_0_0_1 ) )
+            // InternalSpear.g:10819:1: ( rule__SinceExpr__OpAssignment_1_0_0_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSinceExprAccess().getOpAssignment_1_0_0_1()); 
             }
-            // InternalSpear.g:10246:1: ( rule__SinceExpr__OpAssignment_1_0_0_1 )
-            // InternalSpear.g:10246:2: rule__SinceExpr__OpAssignment_1_0_0_1
+            // InternalSpear.g:10820:1: ( rule__SinceExpr__OpAssignment_1_0_0_1 )
+            // InternalSpear.g:10820:2: rule__SinceExpr__OpAssignment_1_0_0_1
             {
             pushFollow(FOLLOW_2);
             rule__SinceExpr__OpAssignment_1_0_0_1();
@@ -29770,16 +31311,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TemporalPrefixExpr__Group_0__0"
-    // InternalSpear.g:10260:1: rule__TemporalPrefixExpr__Group_0__0 : rule__TemporalPrefixExpr__Group_0__0__Impl rule__TemporalPrefixExpr__Group_0__1 ;
+    // InternalSpear.g:10834:1: rule__TemporalPrefixExpr__Group_0__0 : rule__TemporalPrefixExpr__Group_0__0__Impl rule__TemporalPrefixExpr__Group_0__1 ;
     public final void rule__TemporalPrefixExpr__Group_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10264:1: ( rule__TemporalPrefixExpr__Group_0__0__Impl rule__TemporalPrefixExpr__Group_0__1 )
-            // InternalSpear.g:10265:2: rule__TemporalPrefixExpr__Group_0__0__Impl rule__TemporalPrefixExpr__Group_0__1
+            // InternalSpear.g:10838:1: ( rule__TemporalPrefixExpr__Group_0__0__Impl rule__TemporalPrefixExpr__Group_0__1 )
+            // InternalSpear.g:10839:2: rule__TemporalPrefixExpr__Group_0__0__Impl rule__TemporalPrefixExpr__Group_0__1
             {
-            pushFollow(FOLLOW_53);
+            pushFollow(FOLLOW_56);
             rule__TemporalPrefixExpr__Group_0__0__Impl();
 
             state._fsp--;
@@ -29808,23 +31349,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TemporalPrefixExpr__Group_0__0__Impl"
-    // InternalSpear.g:10272:1: rule__TemporalPrefixExpr__Group_0__0__Impl : ( () ) ;
+    // InternalSpear.g:10846:1: rule__TemporalPrefixExpr__Group_0__0__Impl : ( () ) ;
     public final void rule__TemporalPrefixExpr__Group_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10276:1: ( ( () ) )
-            // InternalSpear.g:10277:1: ( () )
+            // InternalSpear.g:10850:1: ( ( () ) )
+            // InternalSpear.g:10851:1: ( () )
             {
-            // InternalSpear.g:10277:1: ( () )
-            // InternalSpear.g:10278:1: ()
+            // InternalSpear.g:10851:1: ( () )
+            // InternalSpear.g:10852:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTemporalPrefixExprAccess().getUnaryExprAction_0_0()); 
             }
-            // InternalSpear.g:10279:1: ()
-            // InternalSpear.g:10281:1: 
+            // InternalSpear.g:10853:1: ()
+            // InternalSpear.g:10855:1: 
             {
             }
 
@@ -29849,14 +31390,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TemporalPrefixExpr__Group_0__1"
-    // InternalSpear.g:10291:1: rule__TemporalPrefixExpr__Group_0__1 : rule__TemporalPrefixExpr__Group_0__1__Impl rule__TemporalPrefixExpr__Group_0__2 ;
+    // InternalSpear.g:10865:1: rule__TemporalPrefixExpr__Group_0__1 : rule__TemporalPrefixExpr__Group_0__1__Impl rule__TemporalPrefixExpr__Group_0__2 ;
     public final void rule__TemporalPrefixExpr__Group_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10295:1: ( rule__TemporalPrefixExpr__Group_0__1__Impl rule__TemporalPrefixExpr__Group_0__2 )
-            // InternalSpear.g:10296:2: rule__TemporalPrefixExpr__Group_0__1__Impl rule__TemporalPrefixExpr__Group_0__2
+            // InternalSpear.g:10869:1: ( rule__TemporalPrefixExpr__Group_0__1__Impl rule__TemporalPrefixExpr__Group_0__2 )
+            // InternalSpear.g:10870:2: rule__TemporalPrefixExpr__Group_0__1__Impl rule__TemporalPrefixExpr__Group_0__2
             {
             pushFollow(FOLLOW_26);
             rule__TemporalPrefixExpr__Group_0__1__Impl();
@@ -29887,23 +31428,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TemporalPrefixExpr__Group_0__1__Impl"
-    // InternalSpear.g:10303:1: rule__TemporalPrefixExpr__Group_0__1__Impl : ( ( rule__TemporalPrefixExpr__OpAssignment_0_1 ) ) ;
+    // InternalSpear.g:10877:1: rule__TemporalPrefixExpr__Group_0__1__Impl : ( ( rule__TemporalPrefixExpr__OpAssignment_0_1 ) ) ;
     public final void rule__TemporalPrefixExpr__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10307:1: ( ( ( rule__TemporalPrefixExpr__OpAssignment_0_1 ) ) )
-            // InternalSpear.g:10308:1: ( ( rule__TemporalPrefixExpr__OpAssignment_0_1 ) )
+            // InternalSpear.g:10881:1: ( ( ( rule__TemporalPrefixExpr__OpAssignment_0_1 ) ) )
+            // InternalSpear.g:10882:1: ( ( rule__TemporalPrefixExpr__OpAssignment_0_1 ) )
             {
-            // InternalSpear.g:10308:1: ( ( rule__TemporalPrefixExpr__OpAssignment_0_1 ) )
-            // InternalSpear.g:10309:1: ( rule__TemporalPrefixExpr__OpAssignment_0_1 )
+            // InternalSpear.g:10882:1: ( ( rule__TemporalPrefixExpr__OpAssignment_0_1 ) )
+            // InternalSpear.g:10883:1: ( rule__TemporalPrefixExpr__OpAssignment_0_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTemporalPrefixExprAccess().getOpAssignment_0_1()); 
             }
-            // InternalSpear.g:10310:1: ( rule__TemporalPrefixExpr__OpAssignment_0_1 )
-            // InternalSpear.g:10310:2: rule__TemporalPrefixExpr__OpAssignment_0_1
+            // InternalSpear.g:10884:1: ( rule__TemporalPrefixExpr__OpAssignment_0_1 )
+            // InternalSpear.g:10884:2: rule__TemporalPrefixExpr__OpAssignment_0_1
             {
             pushFollow(FOLLOW_2);
             rule__TemporalPrefixExpr__OpAssignment_0_1();
@@ -29938,14 +31479,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TemporalPrefixExpr__Group_0__2"
-    // InternalSpear.g:10320:1: rule__TemporalPrefixExpr__Group_0__2 : rule__TemporalPrefixExpr__Group_0__2__Impl ;
+    // InternalSpear.g:10894:1: rule__TemporalPrefixExpr__Group_0__2 : rule__TemporalPrefixExpr__Group_0__2__Impl ;
     public final void rule__TemporalPrefixExpr__Group_0__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10324:1: ( rule__TemporalPrefixExpr__Group_0__2__Impl )
-            // InternalSpear.g:10325:2: rule__TemporalPrefixExpr__Group_0__2__Impl
+            // InternalSpear.g:10898:1: ( rule__TemporalPrefixExpr__Group_0__2__Impl )
+            // InternalSpear.g:10899:2: rule__TemporalPrefixExpr__Group_0__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__TemporalPrefixExpr__Group_0__2__Impl();
@@ -29971,23 +31512,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TemporalPrefixExpr__Group_0__2__Impl"
-    // InternalSpear.g:10331:1: rule__TemporalPrefixExpr__Group_0__2__Impl : ( ( rule__TemporalPrefixExpr__ExprAssignment_0_2 ) ) ;
+    // InternalSpear.g:10905:1: rule__TemporalPrefixExpr__Group_0__2__Impl : ( ( rule__TemporalPrefixExpr__ExprAssignment_0_2 ) ) ;
     public final void rule__TemporalPrefixExpr__Group_0__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10335:1: ( ( ( rule__TemporalPrefixExpr__ExprAssignment_0_2 ) ) )
-            // InternalSpear.g:10336:1: ( ( rule__TemporalPrefixExpr__ExprAssignment_0_2 ) )
+            // InternalSpear.g:10909:1: ( ( ( rule__TemporalPrefixExpr__ExprAssignment_0_2 ) ) )
+            // InternalSpear.g:10910:1: ( ( rule__TemporalPrefixExpr__ExprAssignment_0_2 ) )
             {
-            // InternalSpear.g:10336:1: ( ( rule__TemporalPrefixExpr__ExprAssignment_0_2 ) )
-            // InternalSpear.g:10337:1: ( rule__TemporalPrefixExpr__ExprAssignment_0_2 )
+            // InternalSpear.g:10910:1: ( ( rule__TemporalPrefixExpr__ExprAssignment_0_2 ) )
+            // InternalSpear.g:10911:1: ( rule__TemporalPrefixExpr__ExprAssignment_0_2 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTemporalPrefixExprAccess().getExprAssignment_0_2()); 
             }
-            // InternalSpear.g:10338:1: ( rule__TemporalPrefixExpr__ExprAssignment_0_2 )
-            // InternalSpear.g:10338:2: rule__TemporalPrefixExpr__ExprAssignment_0_2
+            // InternalSpear.g:10912:1: ( rule__TemporalPrefixExpr__ExprAssignment_0_2 )
+            // InternalSpear.g:10912:2: rule__TemporalPrefixExpr__ExprAssignment_0_2
             {
             pushFollow(FOLLOW_2);
             rule__TemporalPrefixExpr__ExprAssignment_0_2();
@@ -30022,16 +31563,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalExpr__Group__0"
-    // InternalSpear.g:10354:1: rule__RelationalExpr__Group__0 : rule__RelationalExpr__Group__0__Impl rule__RelationalExpr__Group__1 ;
+    // InternalSpear.g:10928:1: rule__RelationalExpr__Group__0 : rule__RelationalExpr__Group__0__Impl rule__RelationalExpr__Group__1 ;
     public final void rule__RelationalExpr__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10358:1: ( rule__RelationalExpr__Group__0__Impl rule__RelationalExpr__Group__1 )
-            // InternalSpear.g:10359:2: rule__RelationalExpr__Group__0__Impl rule__RelationalExpr__Group__1
+            // InternalSpear.g:10932:1: ( rule__RelationalExpr__Group__0__Impl rule__RelationalExpr__Group__1 )
+            // InternalSpear.g:10933:2: rule__RelationalExpr__Group__0__Impl rule__RelationalExpr__Group__1
             {
-            pushFollow(FOLLOW_54);
+            pushFollow(FOLLOW_57);
             rule__RelationalExpr__Group__0__Impl();
 
             state._fsp--;
@@ -30060,17 +31601,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalExpr__Group__0__Impl"
-    // InternalSpear.g:10366:1: rule__RelationalExpr__Group__0__Impl : ( rulePlusExpr ) ;
+    // InternalSpear.g:10940:1: rule__RelationalExpr__Group__0__Impl : ( rulePlusExpr ) ;
     public final void rule__RelationalExpr__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10370:1: ( ( rulePlusExpr ) )
-            // InternalSpear.g:10371:1: ( rulePlusExpr )
+            // InternalSpear.g:10944:1: ( ( rulePlusExpr ) )
+            // InternalSpear.g:10945:1: ( rulePlusExpr )
             {
-            // InternalSpear.g:10371:1: ( rulePlusExpr )
-            // InternalSpear.g:10372:1: rulePlusExpr
+            // InternalSpear.g:10945:1: ( rulePlusExpr )
+            // InternalSpear.g:10946:1: rulePlusExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalExprAccess().getPlusExprParserRuleCall_0()); 
@@ -30105,14 +31646,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalExpr__Group__1"
-    // InternalSpear.g:10383:1: rule__RelationalExpr__Group__1 : rule__RelationalExpr__Group__1__Impl ;
+    // InternalSpear.g:10957:1: rule__RelationalExpr__Group__1 : rule__RelationalExpr__Group__1__Impl ;
     public final void rule__RelationalExpr__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10387:1: ( rule__RelationalExpr__Group__1__Impl )
-            // InternalSpear.g:10388:2: rule__RelationalExpr__Group__1__Impl
+            // InternalSpear.g:10961:1: ( rule__RelationalExpr__Group__1__Impl )
+            // InternalSpear.g:10962:2: rule__RelationalExpr__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__RelationalExpr__Group__1__Impl();
@@ -30138,27 +31679,27 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalExpr__Group__1__Impl"
-    // InternalSpear.g:10394:1: rule__RelationalExpr__Group__1__Impl : ( ( rule__RelationalExpr__Group_1__0 )? ) ;
+    // InternalSpear.g:10968:1: rule__RelationalExpr__Group__1__Impl : ( ( rule__RelationalExpr__Group_1__0 )? ) ;
     public final void rule__RelationalExpr__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10398:1: ( ( ( rule__RelationalExpr__Group_1__0 )? ) )
-            // InternalSpear.g:10399:1: ( ( rule__RelationalExpr__Group_1__0 )? )
+            // InternalSpear.g:10972:1: ( ( ( rule__RelationalExpr__Group_1__0 )? ) )
+            // InternalSpear.g:10973:1: ( ( rule__RelationalExpr__Group_1__0 )? )
             {
-            // InternalSpear.g:10399:1: ( ( rule__RelationalExpr__Group_1__0 )? )
-            // InternalSpear.g:10400:1: ( rule__RelationalExpr__Group_1__0 )?
+            // InternalSpear.g:10973:1: ( ( rule__RelationalExpr__Group_1__0 )? )
+            // InternalSpear.g:10974:1: ( rule__RelationalExpr__Group_1__0 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalExprAccess().getGroup_1()); 
             }
-            // InternalSpear.g:10401:1: ( rule__RelationalExpr__Group_1__0 )?
-            int alt88=2;
-            alt88 = dfa88.predict(input);
-            switch (alt88) {
+            // InternalSpear.g:10975:1: ( rule__RelationalExpr__Group_1__0 )?
+            int alt92=2;
+            alt92 = dfa92.predict(input);
+            switch (alt92) {
                 case 1 :
-                    // InternalSpear.g:10401:2: rule__RelationalExpr__Group_1__0
+                    // InternalSpear.g:10975:2: rule__RelationalExpr__Group_1__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__RelationalExpr__Group_1__0();
@@ -30196,14 +31737,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalExpr__Group_1__0"
-    // InternalSpear.g:10415:1: rule__RelationalExpr__Group_1__0 : rule__RelationalExpr__Group_1__0__Impl rule__RelationalExpr__Group_1__1 ;
+    // InternalSpear.g:10989:1: rule__RelationalExpr__Group_1__0 : rule__RelationalExpr__Group_1__0__Impl rule__RelationalExpr__Group_1__1 ;
     public final void rule__RelationalExpr__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10419:1: ( rule__RelationalExpr__Group_1__0__Impl rule__RelationalExpr__Group_1__1 )
-            // InternalSpear.g:10420:2: rule__RelationalExpr__Group_1__0__Impl rule__RelationalExpr__Group_1__1
+            // InternalSpear.g:10993:1: ( rule__RelationalExpr__Group_1__0__Impl rule__RelationalExpr__Group_1__1 )
+            // InternalSpear.g:10994:2: rule__RelationalExpr__Group_1__0__Impl rule__RelationalExpr__Group_1__1
             {
             pushFollow(FOLLOW_26);
             rule__RelationalExpr__Group_1__0__Impl();
@@ -30234,23 +31775,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalExpr__Group_1__0__Impl"
-    // InternalSpear.g:10427:1: rule__RelationalExpr__Group_1__0__Impl : ( ( rule__RelationalExpr__Group_1_0__0 ) ) ;
+    // InternalSpear.g:11001:1: rule__RelationalExpr__Group_1__0__Impl : ( ( rule__RelationalExpr__Group_1_0__0 ) ) ;
     public final void rule__RelationalExpr__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10431:1: ( ( ( rule__RelationalExpr__Group_1_0__0 ) ) )
-            // InternalSpear.g:10432:1: ( ( rule__RelationalExpr__Group_1_0__0 ) )
+            // InternalSpear.g:11005:1: ( ( ( rule__RelationalExpr__Group_1_0__0 ) ) )
+            // InternalSpear.g:11006:1: ( ( rule__RelationalExpr__Group_1_0__0 ) )
             {
-            // InternalSpear.g:10432:1: ( ( rule__RelationalExpr__Group_1_0__0 ) )
-            // InternalSpear.g:10433:1: ( rule__RelationalExpr__Group_1_0__0 )
+            // InternalSpear.g:11006:1: ( ( rule__RelationalExpr__Group_1_0__0 ) )
+            // InternalSpear.g:11007:1: ( rule__RelationalExpr__Group_1_0__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalExprAccess().getGroup_1_0()); 
             }
-            // InternalSpear.g:10434:1: ( rule__RelationalExpr__Group_1_0__0 )
-            // InternalSpear.g:10434:2: rule__RelationalExpr__Group_1_0__0
+            // InternalSpear.g:11008:1: ( rule__RelationalExpr__Group_1_0__0 )
+            // InternalSpear.g:11008:2: rule__RelationalExpr__Group_1_0__0
             {
             pushFollow(FOLLOW_2);
             rule__RelationalExpr__Group_1_0__0();
@@ -30285,14 +31826,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalExpr__Group_1__1"
-    // InternalSpear.g:10444:1: rule__RelationalExpr__Group_1__1 : rule__RelationalExpr__Group_1__1__Impl ;
+    // InternalSpear.g:11018:1: rule__RelationalExpr__Group_1__1 : rule__RelationalExpr__Group_1__1__Impl ;
     public final void rule__RelationalExpr__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10448:1: ( rule__RelationalExpr__Group_1__1__Impl )
-            // InternalSpear.g:10449:2: rule__RelationalExpr__Group_1__1__Impl
+            // InternalSpear.g:11022:1: ( rule__RelationalExpr__Group_1__1__Impl )
+            // InternalSpear.g:11023:2: rule__RelationalExpr__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__RelationalExpr__Group_1__1__Impl();
@@ -30318,23 +31859,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalExpr__Group_1__1__Impl"
-    // InternalSpear.g:10455:1: rule__RelationalExpr__Group_1__1__Impl : ( ( rule__RelationalExpr__RightAssignment_1_1 ) ) ;
+    // InternalSpear.g:11029:1: rule__RelationalExpr__Group_1__1__Impl : ( ( rule__RelationalExpr__RightAssignment_1_1 ) ) ;
     public final void rule__RelationalExpr__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10459:1: ( ( ( rule__RelationalExpr__RightAssignment_1_1 ) ) )
-            // InternalSpear.g:10460:1: ( ( rule__RelationalExpr__RightAssignment_1_1 ) )
+            // InternalSpear.g:11033:1: ( ( ( rule__RelationalExpr__RightAssignment_1_1 ) ) )
+            // InternalSpear.g:11034:1: ( ( rule__RelationalExpr__RightAssignment_1_1 ) )
             {
-            // InternalSpear.g:10460:1: ( ( rule__RelationalExpr__RightAssignment_1_1 ) )
-            // InternalSpear.g:10461:1: ( rule__RelationalExpr__RightAssignment_1_1 )
+            // InternalSpear.g:11034:1: ( ( rule__RelationalExpr__RightAssignment_1_1 ) )
+            // InternalSpear.g:11035:1: ( rule__RelationalExpr__RightAssignment_1_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalExprAccess().getRightAssignment_1_1()); 
             }
-            // InternalSpear.g:10462:1: ( rule__RelationalExpr__RightAssignment_1_1 )
-            // InternalSpear.g:10462:2: rule__RelationalExpr__RightAssignment_1_1
+            // InternalSpear.g:11036:1: ( rule__RelationalExpr__RightAssignment_1_1 )
+            // InternalSpear.g:11036:2: rule__RelationalExpr__RightAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__RelationalExpr__RightAssignment_1_1();
@@ -30369,14 +31910,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalExpr__Group_1_0__0"
-    // InternalSpear.g:10476:1: rule__RelationalExpr__Group_1_0__0 : rule__RelationalExpr__Group_1_0__0__Impl ;
+    // InternalSpear.g:11050:1: rule__RelationalExpr__Group_1_0__0 : rule__RelationalExpr__Group_1_0__0__Impl ;
     public final void rule__RelationalExpr__Group_1_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10480:1: ( rule__RelationalExpr__Group_1_0__0__Impl )
-            // InternalSpear.g:10481:2: rule__RelationalExpr__Group_1_0__0__Impl
+            // InternalSpear.g:11054:1: ( rule__RelationalExpr__Group_1_0__0__Impl )
+            // InternalSpear.g:11055:2: rule__RelationalExpr__Group_1_0__0__Impl
             {
             pushFollow(FOLLOW_2);
             rule__RelationalExpr__Group_1_0__0__Impl();
@@ -30402,23 +31943,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalExpr__Group_1_0__0__Impl"
-    // InternalSpear.g:10487:1: rule__RelationalExpr__Group_1_0__0__Impl : ( ( rule__RelationalExpr__Group_1_0_0__0 ) ) ;
+    // InternalSpear.g:11061:1: rule__RelationalExpr__Group_1_0__0__Impl : ( ( rule__RelationalExpr__Group_1_0_0__0 ) ) ;
     public final void rule__RelationalExpr__Group_1_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10491:1: ( ( ( rule__RelationalExpr__Group_1_0_0__0 ) ) )
-            // InternalSpear.g:10492:1: ( ( rule__RelationalExpr__Group_1_0_0__0 ) )
+            // InternalSpear.g:11065:1: ( ( ( rule__RelationalExpr__Group_1_0_0__0 ) ) )
+            // InternalSpear.g:11066:1: ( ( rule__RelationalExpr__Group_1_0_0__0 ) )
             {
-            // InternalSpear.g:10492:1: ( ( rule__RelationalExpr__Group_1_0_0__0 ) )
-            // InternalSpear.g:10493:1: ( rule__RelationalExpr__Group_1_0_0__0 )
+            // InternalSpear.g:11066:1: ( ( rule__RelationalExpr__Group_1_0_0__0 ) )
+            // InternalSpear.g:11067:1: ( rule__RelationalExpr__Group_1_0_0__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalExprAccess().getGroup_1_0_0()); 
             }
-            // InternalSpear.g:10494:1: ( rule__RelationalExpr__Group_1_0_0__0 )
-            // InternalSpear.g:10494:2: rule__RelationalExpr__Group_1_0_0__0
+            // InternalSpear.g:11068:1: ( rule__RelationalExpr__Group_1_0_0__0 )
+            // InternalSpear.g:11068:2: rule__RelationalExpr__Group_1_0_0__0
             {
             pushFollow(FOLLOW_2);
             rule__RelationalExpr__Group_1_0_0__0();
@@ -30453,16 +31994,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalExpr__Group_1_0_0__0"
-    // InternalSpear.g:10506:1: rule__RelationalExpr__Group_1_0_0__0 : rule__RelationalExpr__Group_1_0_0__0__Impl rule__RelationalExpr__Group_1_0_0__1 ;
+    // InternalSpear.g:11080:1: rule__RelationalExpr__Group_1_0_0__0 : rule__RelationalExpr__Group_1_0_0__0__Impl rule__RelationalExpr__Group_1_0_0__1 ;
     public final void rule__RelationalExpr__Group_1_0_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10510:1: ( rule__RelationalExpr__Group_1_0_0__0__Impl rule__RelationalExpr__Group_1_0_0__1 )
-            // InternalSpear.g:10511:2: rule__RelationalExpr__Group_1_0_0__0__Impl rule__RelationalExpr__Group_1_0_0__1
+            // InternalSpear.g:11084:1: ( rule__RelationalExpr__Group_1_0_0__0__Impl rule__RelationalExpr__Group_1_0_0__1 )
+            // InternalSpear.g:11085:2: rule__RelationalExpr__Group_1_0_0__0__Impl rule__RelationalExpr__Group_1_0_0__1
             {
-            pushFollow(FOLLOW_54);
+            pushFollow(FOLLOW_57);
             rule__RelationalExpr__Group_1_0_0__0__Impl();
 
             state._fsp--;
@@ -30491,23 +32032,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalExpr__Group_1_0_0__0__Impl"
-    // InternalSpear.g:10518:1: rule__RelationalExpr__Group_1_0_0__0__Impl : ( () ) ;
+    // InternalSpear.g:11092:1: rule__RelationalExpr__Group_1_0_0__0__Impl : ( () ) ;
     public final void rule__RelationalExpr__Group_1_0_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10522:1: ( ( () ) )
-            // InternalSpear.g:10523:1: ( () )
+            // InternalSpear.g:11096:1: ( ( () ) )
+            // InternalSpear.g:11097:1: ( () )
             {
-            // InternalSpear.g:10523:1: ( () )
-            // InternalSpear.g:10524:1: ()
+            // InternalSpear.g:11097:1: ( () )
+            // InternalSpear.g:11098:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalExprAccess().getBinaryExprLeftAction_1_0_0_0()); 
             }
-            // InternalSpear.g:10525:1: ()
-            // InternalSpear.g:10527:1: 
+            // InternalSpear.g:11099:1: ()
+            // InternalSpear.g:11101:1: 
             {
             }
 
@@ -30532,14 +32073,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalExpr__Group_1_0_0__1"
-    // InternalSpear.g:10537:1: rule__RelationalExpr__Group_1_0_0__1 : rule__RelationalExpr__Group_1_0_0__1__Impl ;
+    // InternalSpear.g:11111:1: rule__RelationalExpr__Group_1_0_0__1 : rule__RelationalExpr__Group_1_0_0__1__Impl ;
     public final void rule__RelationalExpr__Group_1_0_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10541:1: ( rule__RelationalExpr__Group_1_0_0__1__Impl )
-            // InternalSpear.g:10542:2: rule__RelationalExpr__Group_1_0_0__1__Impl
+            // InternalSpear.g:11115:1: ( rule__RelationalExpr__Group_1_0_0__1__Impl )
+            // InternalSpear.g:11116:2: rule__RelationalExpr__Group_1_0_0__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__RelationalExpr__Group_1_0_0__1__Impl();
@@ -30565,23 +32106,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalExpr__Group_1_0_0__1__Impl"
-    // InternalSpear.g:10548:1: rule__RelationalExpr__Group_1_0_0__1__Impl : ( ( rule__RelationalExpr__OpAssignment_1_0_0_1 ) ) ;
+    // InternalSpear.g:11122:1: rule__RelationalExpr__Group_1_0_0__1__Impl : ( ( rule__RelationalExpr__OpAssignment_1_0_0_1 ) ) ;
     public final void rule__RelationalExpr__Group_1_0_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10552:1: ( ( ( rule__RelationalExpr__OpAssignment_1_0_0_1 ) ) )
-            // InternalSpear.g:10553:1: ( ( rule__RelationalExpr__OpAssignment_1_0_0_1 ) )
+            // InternalSpear.g:11126:1: ( ( ( rule__RelationalExpr__OpAssignment_1_0_0_1 ) ) )
+            // InternalSpear.g:11127:1: ( ( rule__RelationalExpr__OpAssignment_1_0_0_1 ) )
             {
-            // InternalSpear.g:10553:1: ( ( rule__RelationalExpr__OpAssignment_1_0_0_1 ) )
-            // InternalSpear.g:10554:1: ( rule__RelationalExpr__OpAssignment_1_0_0_1 )
+            // InternalSpear.g:11127:1: ( ( rule__RelationalExpr__OpAssignment_1_0_0_1 ) )
+            // InternalSpear.g:11128:1: ( rule__RelationalExpr__OpAssignment_1_0_0_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalExprAccess().getOpAssignment_1_0_0_1()); 
             }
-            // InternalSpear.g:10555:1: ( rule__RelationalExpr__OpAssignment_1_0_0_1 )
-            // InternalSpear.g:10555:2: rule__RelationalExpr__OpAssignment_1_0_0_1
+            // InternalSpear.g:11129:1: ( rule__RelationalExpr__OpAssignment_1_0_0_1 )
+            // InternalSpear.g:11129:2: rule__RelationalExpr__OpAssignment_1_0_0_1
             {
             pushFollow(FOLLOW_2);
             rule__RelationalExpr__OpAssignment_1_0_0_1();
@@ -30616,16 +32157,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_1__0"
-    // InternalSpear.g:10569:1: rule__RelationalOp__Group_1__0 : rule__RelationalOp__Group_1__0__Impl rule__RelationalOp__Group_1__1 ;
+    // InternalSpear.g:11143:1: rule__RelationalOp__Group_1__0 : rule__RelationalOp__Group_1__0__Impl rule__RelationalOp__Group_1__1 ;
     public final void rule__RelationalOp__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10573:1: ( rule__RelationalOp__Group_1__0__Impl rule__RelationalOp__Group_1__1 )
-            // InternalSpear.g:10574:2: rule__RelationalOp__Group_1__0__Impl rule__RelationalOp__Group_1__1
+            // InternalSpear.g:11147:1: ( rule__RelationalOp__Group_1__0__Impl rule__RelationalOp__Group_1__1 )
+            // InternalSpear.g:11148:2: rule__RelationalOp__Group_1__0__Impl rule__RelationalOp__Group_1__1
             {
-            pushFollow(FOLLOW_55);
+            pushFollow(FOLLOW_58);
             rule__RelationalOp__Group_1__0__Impl();
 
             state._fsp--;
@@ -30654,22 +32195,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_1__0__Impl"
-    // InternalSpear.g:10581:1: rule__RelationalOp__Group_1__0__Impl : ( 'less' ) ;
+    // InternalSpear.g:11155:1: rule__RelationalOp__Group_1__0__Impl : ( 'less' ) ;
     public final void rule__RelationalOp__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10585:1: ( ( 'less' ) )
-            // InternalSpear.g:10586:1: ( 'less' )
+            // InternalSpear.g:11159:1: ( ( 'less' ) )
+            // InternalSpear.g:11160:1: ( 'less' )
             {
-            // InternalSpear.g:10586:1: ( 'less' )
-            // InternalSpear.g:10587:1: 'less'
+            // InternalSpear.g:11160:1: ( 'less' )
+            // InternalSpear.g:11161:1: 'less'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalOpAccess().getLessKeyword_1_0()); 
             }
-            match(input,96,FOLLOW_2); if (state.failed) return ;
+            match(input,97,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getRelationalOpAccess().getLessKeyword_1_0()); 
             }
@@ -30695,14 +32236,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_1__1"
-    // InternalSpear.g:10600:1: rule__RelationalOp__Group_1__1 : rule__RelationalOp__Group_1__1__Impl ;
+    // InternalSpear.g:11174:1: rule__RelationalOp__Group_1__1 : rule__RelationalOp__Group_1__1__Impl ;
     public final void rule__RelationalOp__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10604:1: ( rule__RelationalOp__Group_1__1__Impl )
-            // InternalSpear.g:10605:2: rule__RelationalOp__Group_1__1__Impl
+            // InternalSpear.g:11178:1: ( rule__RelationalOp__Group_1__1__Impl )
+            // InternalSpear.g:11179:2: rule__RelationalOp__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__RelationalOp__Group_1__1__Impl();
@@ -30728,22 +32269,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_1__1__Impl"
-    // InternalSpear.g:10611:1: rule__RelationalOp__Group_1__1__Impl : ( 'than' ) ;
+    // InternalSpear.g:11185:1: rule__RelationalOp__Group_1__1__Impl : ( 'than' ) ;
     public final void rule__RelationalOp__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10615:1: ( ( 'than' ) )
-            // InternalSpear.g:10616:1: ( 'than' )
+            // InternalSpear.g:11189:1: ( ( 'than' ) )
+            // InternalSpear.g:11190:1: ( 'than' )
             {
-            // InternalSpear.g:10616:1: ( 'than' )
-            // InternalSpear.g:10617:1: 'than'
+            // InternalSpear.g:11190:1: ( 'than' )
+            // InternalSpear.g:11191:1: 'than'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalOpAccess().getThanKeyword_1_1()); 
             }
-            match(input,97,FOLLOW_2); if (state.failed) return ;
+            match(input,98,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getRelationalOpAccess().getThanKeyword_1_1()); 
             }
@@ -30769,16 +32310,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_3__0"
-    // InternalSpear.g:10634:1: rule__RelationalOp__Group_3__0 : rule__RelationalOp__Group_3__0__Impl rule__RelationalOp__Group_3__1 ;
+    // InternalSpear.g:11208:1: rule__RelationalOp__Group_3__0 : rule__RelationalOp__Group_3__0__Impl rule__RelationalOp__Group_3__1 ;
     public final void rule__RelationalOp__Group_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10638:1: ( rule__RelationalOp__Group_3__0__Impl rule__RelationalOp__Group_3__1 )
-            // InternalSpear.g:10639:2: rule__RelationalOp__Group_3__0__Impl rule__RelationalOp__Group_3__1
+            // InternalSpear.g:11212:1: ( rule__RelationalOp__Group_3__0__Impl rule__RelationalOp__Group_3__1 )
+            // InternalSpear.g:11213:2: rule__RelationalOp__Group_3__0__Impl rule__RelationalOp__Group_3__1
             {
-            pushFollow(FOLLOW_55);
+            pushFollow(FOLLOW_58);
             rule__RelationalOp__Group_3__0__Impl();
 
             state._fsp--;
@@ -30807,22 +32348,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_3__0__Impl"
-    // InternalSpear.g:10646:1: rule__RelationalOp__Group_3__0__Impl : ( 'less' ) ;
+    // InternalSpear.g:11220:1: rule__RelationalOp__Group_3__0__Impl : ( 'less' ) ;
     public final void rule__RelationalOp__Group_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10650:1: ( ( 'less' ) )
-            // InternalSpear.g:10651:1: ( 'less' )
+            // InternalSpear.g:11224:1: ( ( 'less' ) )
+            // InternalSpear.g:11225:1: ( 'less' )
             {
-            // InternalSpear.g:10651:1: ( 'less' )
-            // InternalSpear.g:10652:1: 'less'
+            // InternalSpear.g:11225:1: ( 'less' )
+            // InternalSpear.g:11226:1: 'less'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalOpAccess().getLessKeyword_3_0()); 
             }
-            match(input,96,FOLLOW_2); if (state.failed) return ;
+            match(input,97,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getRelationalOpAccess().getLessKeyword_3_0()); 
             }
@@ -30848,16 +32389,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_3__1"
-    // InternalSpear.g:10665:1: rule__RelationalOp__Group_3__1 : rule__RelationalOp__Group_3__1__Impl rule__RelationalOp__Group_3__2 ;
+    // InternalSpear.g:11239:1: rule__RelationalOp__Group_3__1 : rule__RelationalOp__Group_3__1__Impl rule__RelationalOp__Group_3__2 ;
     public final void rule__RelationalOp__Group_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10669:1: ( rule__RelationalOp__Group_3__1__Impl rule__RelationalOp__Group_3__2 )
-            // InternalSpear.g:10670:2: rule__RelationalOp__Group_3__1__Impl rule__RelationalOp__Group_3__2
+            // InternalSpear.g:11243:1: ( rule__RelationalOp__Group_3__1__Impl rule__RelationalOp__Group_3__2 )
+            // InternalSpear.g:11244:2: rule__RelationalOp__Group_3__1__Impl rule__RelationalOp__Group_3__2
             {
-            pushFollow(FOLLOW_56);
+            pushFollow(FOLLOW_59);
             rule__RelationalOp__Group_3__1__Impl();
 
             state._fsp--;
@@ -30886,22 +32427,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_3__1__Impl"
-    // InternalSpear.g:10677:1: rule__RelationalOp__Group_3__1__Impl : ( 'than' ) ;
+    // InternalSpear.g:11251:1: rule__RelationalOp__Group_3__1__Impl : ( 'than' ) ;
     public final void rule__RelationalOp__Group_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10681:1: ( ( 'than' ) )
-            // InternalSpear.g:10682:1: ( 'than' )
+            // InternalSpear.g:11255:1: ( ( 'than' ) )
+            // InternalSpear.g:11256:1: ( 'than' )
             {
-            // InternalSpear.g:10682:1: ( 'than' )
-            // InternalSpear.g:10683:1: 'than'
+            // InternalSpear.g:11256:1: ( 'than' )
+            // InternalSpear.g:11257:1: 'than'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalOpAccess().getThanKeyword_3_1()); 
             }
-            match(input,97,FOLLOW_2); if (state.failed) return ;
+            match(input,98,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getRelationalOpAccess().getThanKeyword_3_1()); 
             }
@@ -30927,16 +32468,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_3__2"
-    // InternalSpear.g:10696:1: rule__RelationalOp__Group_3__2 : rule__RelationalOp__Group_3__2__Impl rule__RelationalOp__Group_3__3 ;
+    // InternalSpear.g:11270:1: rule__RelationalOp__Group_3__2 : rule__RelationalOp__Group_3__2__Impl rule__RelationalOp__Group_3__3 ;
     public final void rule__RelationalOp__Group_3__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10700:1: ( rule__RelationalOp__Group_3__2__Impl rule__RelationalOp__Group_3__3 )
-            // InternalSpear.g:10701:2: rule__RelationalOp__Group_3__2__Impl rule__RelationalOp__Group_3__3
+            // InternalSpear.g:11274:1: ( rule__RelationalOp__Group_3__2__Impl rule__RelationalOp__Group_3__3 )
+            // InternalSpear.g:11275:2: rule__RelationalOp__Group_3__2__Impl rule__RelationalOp__Group_3__3
             {
-            pushFollow(FOLLOW_57);
+            pushFollow(FOLLOW_60);
             rule__RelationalOp__Group_3__2__Impl();
 
             state._fsp--;
@@ -30965,17 +32506,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_3__2__Impl"
-    // InternalSpear.g:10708:1: rule__RelationalOp__Group_3__2__Impl : ( 'or' ) ;
+    // InternalSpear.g:11282:1: rule__RelationalOp__Group_3__2__Impl : ( 'or' ) ;
     public final void rule__RelationalOp__Group_3__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10712:1: ( ( 'or' ) )
-            // InternalSpear.g:10713:1: ( 'or' )
+            // InternalSpear.g:11286:1: ( ( 'or' ) )
+            // InternalSpear.g:11287:1: ( 'or' )
             {
-            // InternalSpear.g:10713:1: ( 'or' )
-            // InternalSpear.g:10714:1: 'or'
+            // InternalSpear.g:11287:1: ( 'or' )
+            // InternalSpear.g:11288:1: 'or'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalOpAccess().getOrKeyword_3_2()); 
@@ -31006,16 +32547,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_3__3"
-    // InternalSpear.g:10727:1: rule__RelationalOp__Group_3__3 : rule__RelationalOp__Group_3__3__Impl rule__RelationalOp__Group_3__4 ;
+    // InternalSpear.g:11301:1: rule__RelationalOp__Group_3__3 : rule__RelationalOp__Group_3__3__Impl rule__RelationalOp__Group_3__4 ;
     public final void rule__RelationalOp__Group_3__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10731:1: ( rule__RelationalOp__Group_3__3__Impl rule__RelationalOp__Group_3__4 )
-            // InternalSpear.g:10732:2: rule__RelationalOp__Group_3__3__Impl rule__RelationalOp__Group_3__4
+            // InternalSpear.g:11305:1: ( rule__RelationalOp__Group_3__3__Impl rule__RelationalOp__Group_3__4 )
+            // InternalSpear.g:11306:2: rule__RelationalOp__Group_3__3__Impl rule__RelationalOp__Group_3__4
             {
-            pushFollow(FOLLOW_58);
+            pushFollow(FOLLOW_61);
             rule__RelationalOp__Group_3__3__Impl();
 
             state._fsp--;
@@ -31044,22 +32585,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_3__3__Impl"
-    // InternalSpear.g:10739:1: rule__RelationalOp__Group_3__3__Impl : ( 'equal' ) ;
+    // InternalSpear.g:11313:1: rule__RelationalOp__Group_3__3__Impl : ( 'equal' ) ;
     public final void rule__RelationalOp__Group_3__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10743:1: ( ( 'equal' ) )
-            // InternalSpear.g:10744:1: ( 'equal' )
+            // InternalSpear.g:11317:1: ( ( 'equal' ) )
+            // InternalSpear.g:11318:1: ( 'equal' )
             {
-            // InternalSpear.g:10744:1: ( 'equal' )
-            // InternalSpear.g:10745:1: 'equal'
+            // InternalSpear.g:11318:1: ( 'equal' )
+            // InternalSpear.g:11319:1: 'equal'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalOpAccess().getEqualKeyword_3_3()); 
             }
-            match(input,98,FOLLOW_2); if (state.failed) return ;
+            match(input,99,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getRelationalOpAccess().getEqualKeyword_3_3()); 
             }
@@ -31085,14 +32626,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_3__4"
-    // InternalSpear.g:10758:1: rule__RelationalOp__Group_3__4 : rule__RelationalOp__Group_3__4__Impl ;
+    // InternalSpear.g:11332:1: rule__RelationalOp__Group_3__4 : rule__RelationalOp__Group_3__4__Impl ;
     public final void rule__RelationalOp__Group_3__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10762:1: ( rule__RelationalOp__Group_3__4__Impl )
-            // InternalSpear.g:10763:2: rule__RelationalOp__Group_3__4__Impl
+            // InternalSpear.g:11336:1: ( rule__RelationalOp__Group_3__4__Impl )
+            // InternalSpear.g:11337:2: rule__RelationalOp__Group_3__4__Impl
             {
             pushFollow(FOLLOW_2);
             rule__RelationalOp__Group_3__4__Impl();
@@ -31118,22 +32659,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_3__4__Impl"
-    // InternalSpear.g:10769:1: rule__RelationalOp__Group_3__4__Impl : ( 'to' ) ;
+    // InternalSpear.g:11343:1: rule__RelationalOp__Group_3__4__Impl : ( 'to' ) ;
     public final void rule__RelationalOp__Group_3__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10773:1: ( ( 'to' ) )
-            // InternalSpear.g:10774:1: ( 'to' )
+            // InternalSpear.g:11347:1: ( ( 'to' ) )
+            // InternalSpear.g:11348:1: ( 'to' )
             {
-            // InternalSpear.g:10774:1: ( 'to' )
-            // InternalSpear.g:10775:1: 'to'
+            // InternalSpear.g:11348:1: ( 'to' )
+            // InternalSpear.g:11349:1: 'to'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalOpAccess().getToKeyword_3_4()); 
             }
-            match(input,99,FOLLOW_2); if (state.failed) return ;
+            match(input,100,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getRelationalOpAccess().getToKeyword_3_4()); 
             }
@@ -31159,16 +32700,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_5__0"
-    // InternalSpear.g:10798:1: rule__RelationalOp__Group_5__0 : rule__RelationalOp__Group_5__0__Impl rule__RelationalOp__Group_5__1 ;
+    // InternalSpear.g:11372:1: rule__RelationalOp__Group_5__0 : rule__RelationalOp__Group_5__0__Impl rule__RelationalOp__Group_5__1 ;
     public final void rule__RelationalOp__Group_5__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10802:1: ( rule__RelationalOp__Group_5__0__Impl rule__RelationalOp__Group_5__1 )
-            // InternalSpear.g:10803:2: rule__RelationalOp__Group_5__0__Impl rule__RelationalOp__Group_5__1
+            // InternalSpear.g:11376:1: ( rule__RelationalOp__Group_5__0__Impl rule__RelationalOp__Group_5__1 )
+            // InternalSpear.g:11377:2: rule__RelationalOp__Group_5__0__Impl rule__RelationalOp__Group_5__1
             {
-            pushFollow(FOLLOW_55);
+            pushFollow(FOLLOW_58);
             rule__RelationalOp__Group_5__0__Impl();
 
             state._fsp--;
@@ -31197,22 +32738,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_5__0__Impl"
-    // InternalSpear.g:10810:1: rule__RelationalOp__Group_5__0__Impl : ( 'greater' ) ;
+    // InternalSpear.g:11384:1: rule__RelationalOp__Group_5__0__Impl : ( 'greater' ) ;
     public final void rule__RelationalOp__Group_5__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10814:1: ( ( 'greater' ) )
-            // InternalSpear.g:10815:1: ( 'greater' )
+            // InternalSpear.g:11388:1: ( ( 'greater' ) )
+            // InternalSpear.g:11389:1: ( 'greater' )
             {
-            // InternalSpear.g:10815:1: ( 'greater' )
-            // InternalSpear.g:10816:1: 'greater'
+            // InternalSpear.g:11389:1: ( 'greater' )
+            // InternalSpear.g:11390:1: 'greater'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalOpAccess().getGreaterKeyword_5_0()); 
             }
-            match(input,100,FOLLOW_2); if (state.failed) return ;
+            match(input,101,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getRelationalOpAccess().getGreaterKeyword_5_0()); 
             }
@@ -31238,14 +32779,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_5__1"
-    // InternalSpear.g:10829:1: rule__RelationalOp__Group_5__1 : rule__RelationalOp__Group_5__1__Impl ;
+    // InternalSpear.g:11403:1: rule__RelationalOp__Group_5__1 : rule__RelationalOp__Group_5__1__Impl ;
     public final void rule__RelationalOp__Group_5__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10833:1: ( rule__RelationalOp__Group_5__1__Impl )
-            // InternalSpear.g:10834:2: rule__RelationalOp__Group_5__1__Impl
+            // InternalSpear.g:11407:1: ( rule__RelationalOp__Group_5__1__Impl )
+            // InternalSpear.g:11408:2: rule__RelationalOp__Group_5__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__RelationalOp__Group_5__1__Impl();
@@ -31271,22 +32812,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_5__1__Impl"
-    // InternalSpear.g:10840:1: rule__RelationalOp__Group_5__1__Impl : ( 'than' ) ;
+    // InternalSpear.g:11414:1: rule__RelationalOp__Group_5__1__Impl : ( 'than' ) ;
     public final void rule__RelationalOp__Group_5__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10844:1: ( ( 'than' ) )
-            // InternalSpear.g:10845:1: ( 'than' )
+            // InternalSpear.g:11418:1: ( ( 'than' ) )
+            // InternalSpear.g:11419:1: ( 'than' )
             {
-            // InternalSpear.g:10845:1: ( 'than' )
-            // InternalSpear.g:10846:1: 'than'
+            // InternalSpear.g:11419:1: ( 'than' )
+            // InternalSpear.g:11420:1: 'than'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalOpAccess().getThanKeyword_5_1()); 
             }
-            match(input,97,FOLLOW_2); if (state.failed) return ;
+            match(input,98,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getRelationalOpAccess().getThanKeyword_5_1()); 
             }
@@ -31312,16 +32853,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_7__0"
-    // InternalSpear.g:10863:1: rule__RelationalOp__Group_7__0 : rule__RelationalOp__Group_7__0__Impl rule__RelationalOp__Group_7__1 ;
+    // InternalSpear.g:11437:1: rule__RelationalOp__Group_7__0 : rule__RelationalOp__Group_7__0__Impl rule__RelationalOp__Group_7__1 ;
     public final void rule__RelationalOp__Group_7__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10867:1: ( rule__RelationalOp__Group_7__0__Impl rule__RelationalOp__Group_7__1 )
-            // InternalSpear.g:10868:2: rule__RelationalOp__Group_7__0__Impl rule__RelationalOp__Group_7__1
+            // InternalSpear.g:11441:1: ( rule__RelationalOp__Group_7__0__Impl rule__RelationalOp__Group_7__1 )
+            // InternalSpear.g:11442:2: rule__RelationalOp__Group_7__0__Impl rule__RelationalOp__Group_7__1
             {
-            pushFollow(FOLLOW_55);
+            pushFollow(FOLLOW_58);
             rule__RelationalOp__Group_7__0__Impl();
 
             state._fsp--;
@@ -31350,22 +32891,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_7__0__Impl"
-    // InternalSpear.g:10875:1: rule__RelationalOp__Group_7__0__Impl : ( 'greater' ) ;
+    // InternalSpear.g:11449:1: rule__RelationalOp__Group_7__0__Impl : ( 'greater' ) ;
     public final void rule__RelationalOp__Group_7__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10879:1: ( ( 'greater' ) )
-            // InternalSpear.g:10880:1: ( 'greater' )
+            // InternalSpear.g:11453:1: ( ( 'greater' ) )
+            // InternalSpear.g:11454:1: ( 'greater' )
             {
-            // InternalSpear.g:10880:1: ( 'greater' )
-            // InternalSpear.g:10881:1: 'greater'
+            // InternalSpear.g:11454:1: ( 'greater' )
+            // InternalSpear.g:11455:1: 'greater'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalOpAccess().getGreaterKeyword_7_0()); 
             }
-            match(input,100,FOLLOW_2); if (state.failed) return ;
+            match(input,101,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getRelationalOpAccess().getGreaterKeyword_7_0()); 
             }
@@ -31391,16 +32932,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_7__1"
-    // InternalSpear.g:10894:1: rule__RelationalOp__Group_7__1 : rule__RelationalOp__Group_7__1__Impl rule__RelationalOp__Group_7__2 ;
+    // InternalSpear.g:11468:1: rule__RelationalOp__Group_7__1 : rule__RelationalOp__Group_7__1__Impl rule__RelationalOp__Group_7__2 ;
     public final void rule__RelationalOp__Group_7__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10898:1: ( rule__RelationalOp__Group_7__1__Impl rule__RelationalOp__Group_7__2 )
-            // InternalSpear.g:10899:2: rule__RelationalOp__Group_7__1__Impl rule__RelationalOp__Group_7__2
+            // InternalSpear.g:11472:1: ( rule__RelationalOp__Group_7__1__Impl rule__RelationalOp__Group_7__2 )
+            // InternalSpear.g:11473:2: rule__RelationalOp__Group_7__1__Impl rule__RelationalOp__Group_7__2
             {
-            pushFollow(FOLLOW_56);
+            pushFollow(FOLLOW_59);
             rule__RelationalOp__Group_7__1__Impl();
 
             state._fsp--;
@@ -31429,22 +32970,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_7__1__Impl"
-    // InternalSpear.g:10906:1: rule__RelationalOp__Group_7__1__Impl : ( 'than' ) ;
+    // InternalSpear.g:11480:1: rule__RelationalOp__Group_7__1__Impl : ( 'than' ) ;
     public final void rule__RelationalOp__Group_7__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10910:1: ( ( 'than' ) )
-            // InternalSpear.g:10911:1: ( 'than' )
+            // InternalSpear.g:11484:1: ( ( 'than' ) )
+            // InternalSpear.g:11485:1: ( 'than' )
             {
-            // InternalSpear.g:10911:1: ( 'than' )
-            // InternalSpear.g:10912:1: 'than'
+            // InternalSpear.g:11485:1: ( 'than' )
+            // InternalSpear.g:11486:1: 'than'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalOpAccess().getThanKeyword_7_1()); 
             }
-            match(input,97,FOLLOW_2); if (state.failed) return ;
+            match(input,98,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getRelationalOpAccess().getThanKeyword_7_1()); 
             }
@@ -31470,16 +33011,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_7__2"
-    // InternalSpear.g:10925:1: rule__RelationalOp__Group_7__2 : rule__RelationalOp__Group_7__2__Impl rule__RelationalOp__Group_7__3 ;
+    // InternalSpear.g:11499:1: rule__RelationalOp__Group_7__2 : rule__RelationalOp__Group_7__2__Impl rule__RelationalOp__Group_7__3 ;
     public final void rule__RelationalOp__Group_7__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10929:1: ( rule__RelationalOp__Group_7__2__Impl rule__RelationalOp__Group_7__3 )
-            // InternalSpear.g:10930:2: rule__RelationalOp__Group_7__2__Impl rule__RelationalOp__Group_7__3
+            // InternalSpear.g:11503:1: ( rule__RelationalOp__Group_7__2__Impl rule__RelationalOp__Group_7__3 )
+            // InternalSpear.g:11504:2: rule__RelationalOp__Group_7__2__Impl rule__RelationalOp__Group_7__3
             {
-            pushFollow(FOLLOW_57);
+            pushFollow(FOLLOW_60);
             rule__RelationalOp__Group_7__2__Impl();
 
             state._fsp--;
@@ -31508,17 +33049,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_7__2__Impl"
-    // InternalSpear.g:10937:1: rule__RelationalOp__Group_7__2__Impl : ( 'or' ) ;
+    // InternalSpear.g:11511:1: rule__RelationalOp__Group_7__2__Impl : ( 'or' ) ;
     public final void rule__RelationalOp__Group_7__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10941:1: ( ( 'or' ) )
-            // InternalSpear.g:10942:1: ( 'or' )
+            // InternalSpear.g:11515:1: ( ( 'or' ) )
+            // InternalSpear.g:11516:1: ( 'or' )
             {
-            // InternalSpear.g:10942:1: ( 'or' )
-            // InternalSpear.g:10943:1: 'or'
+            // InternalSpear.g:11516:1: ( 'or' )
+            // InternalSpear.g:11517:1: 'or'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalOpAccess().getOrKeyword_7_2()); 
@@ -31549,16 +33090,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_7__3"
-    // InternalSpear.g:10956:1: rule__RelationalOp__Group_7__3 : rule__RelationalOp__Group_7__3__Impl rule__RelationalOp__Group_7__4 ;
+    // InternalSpear.g:11530:1: rule__RelationalOp__Group_7__3 : rule__RelationalOp__Group_7__3__Impl rule__RelationalOp__Group_7__4 ;
     public final void rule__RelationalOp__Group_7__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10960:1: ( rule__RelationalOp__Group_7__3__Impl rule__RelationalOp__Group_7__4 )
-            // InternalSpear.g:10961:2: rule__RelationalOp__Group_7__3__Impl rule__RelationalOp__Group_7__4
+            // InternalSpear.g:11534:1: ( rule__RelationalOp__Group_7__3__Impl rule__RelationalOp__Group_7__4 )
+            // InternalSpear.g:11535:2: rule__RelationalOp__Group_7__3__Impl rule__RelationalOp__Group_7__4
             {
-            pushFollow(FOLLOW_58);
+            pushFollow(FOLLOW_61);
             rule__RelationalOp__Group_7__3__Impl();
 
             state._fsp--;
@@ -31587,22 +33128,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_7__3__Impl"
-    // InternalSpear.g:10968:1: rule__RelationalOp__Group_7__3__Impl : ( 'equal' ) ;
+    // InternalSpear.g:11542:1: rule__RelationalOp__Group_7__3__Impl : ( 'equal' ) ;
     public final void rule__RelationalOp__Group_7__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10972:1: ( ( 'equal' ) )
-            // InternalSpear.g:10973:1: ( 'equal' )
+            // InternalSpear.g:11546:1: ( ( 'equal' ) )
+            // InternalSpear.g:11547:1: ( 'equal' )
             {
-            // InternalSpear.g:10973:1: ( 'equal' )
-            // InternalSpear.g:10974:1: 'equal'
+            // InternalSpear.g:11547:1: ( 'equal' )
+            // InternalSpear.g:11548:1: 'equal'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalOpAccess().getEqualKeyword_7_3()); 
             }
-            match(input,98,FOLLOW_2); if (state.failed) return ;
+            match(input,99,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getRelationalOpAccess().getEqualKeyword_7_3()); 
             }
@@ -31628,14 +33169,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_7__4"
-    // InternalSpear.g:10987:1: rule__RelationalOp__Group_7__4 : rule__RelationalOp__Group_7__4__Impl ;
+    // InternalSpear.g:11561:1: rule__RelationalOp__Group_7__4 : rule__RelationalOp__Group_7__4__Impl ;
     public final void rule__RelationalOp__Group_7__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:10991:1: ( rule__RelationalOp__Group_7__4__Impl )
-            // InternalSpear.g:10992:2: rule__RelationalOp__Group_7__4__Impl
+            // InternalSpear.g:11565:1: ( rule__RelationalOp__Group_7__4__Impl )
+            // InternalSpear.g:11566:2: rule__RelationalOp__Group_7__4__Impl
             {
             pushFollow(FOLLOW_2);
             rule__RelationalOp__Group_7__4__Impl();
@@ -31661,22 +33202,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_7__4__Impl"
-    // InternalSpear.g:10998:1: rule__RelationalOp__Group_7__4__Impl : ( 'to' ) ;
+    // InternalSpear.g:11572:1: rule__RelationalOp__Group_7__4__Impl : ( 'to' ) ;
     public final void rule__RelationalOp__Group_7__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11002:1: ( ( 'to' ) )
-            // InternalSpear.g:11003:1: ( 'to' )
+            // InternalSpear.g:11576:1: ( ( 'to' ) )
+            // InternalSpear.g:11577:1: ( 'to' )
             {
-            // InternalSpear.g:11003:1: ( 'to' )
-            // InternalSpear.g:11004:1: 'to'
+            // InternalSpear.g:11577:1: ( 'to' )
+            // InternalSpear.g:11578:1: 'to'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalOpAccess().getToKeyword_7_4()); 
             }
-            match(input,99,FOLLOW_2); if (state.failed) return ;
+            match(input,100,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getRelationalOpAccess().getToKeyword_7_4()); 
             }
@@ -31702,16 +33243,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_9__0"
-    // InternalSpear.g:11027:1: rule__RelationalOp__Group_9__0 : rule__RelationalOp__Group_9__0__Impl rule__RelationalOp__Group_9__1 ;
+    // InternalSpear.g:11601:1: rule__RelationalOp__Group_9__0 : rule__RelationalOp__Group_9__0__Impl rule__RelationalOp__Group_9__1 ;
     public final void rule__RelationalOp__Group_9__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11031:1: ( rule__RelationalOp__Group_9__0__Impl rule__RelationalOp__Group_9__1 )
-            // InternalSpear.g:11032:2: rule__RelationalOp__Group_9__0__Impl rule__RelationalOp__Group_9__1
+            // InternalSpear.g:11605:1: ( rule__RelationalOp__Group_9__0__Impl rule__RelationalOp__Group_9__1 )
+            // InternalSpear.g:11606:2: rule__RelationalOp__Group_9__0__Impl rule__RelationalOp__Group_9__1
             {
-            pushFollow(FOLLOW_58);
+            pushFollow(FOLLOW_61);
             rule__RelationalOp__Group_9__0__Impl();
 
             state._fsp--;
@@ -31740,22 +33281,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_9__0__Impl"
-    // InternalSpear.g:11039:1: rule__RelationalOp__Group_9__0__Impl : ( 'equal' ) ;
+    // InternalSpear.g:11613:1: rule__RelationalOp__Group_9__0__Impl : ( 'equal' ) ;
     public final void rule__RelationalOp__Group_9__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11043:1: ( ( 'equal' ) )
-            // InternalSpear.g:11044:1: ( 'equal' )
+            // InternalSpear.g:11617:1: ( ( 'equal' ) )
+            // InternalSpear.g:11618:1: ( 'equal' )
             {
-            // InternalSpear.g:11044:1: ( 'equal' )
-            // InternalSpear.g:11045:1: 'equal'
+            // InternalSpear.g:11618:1: ( 'equal' )
+            // InternalSpear.g:11619:1: 'equal'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalOpAccess().getEqualKeyword_9_0()); 
             }
-            match(input,98,FOLLOW_2); if (state.failed) return ;
+            match(input,99,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getRelationalOpAccess().getEqualKeyword_9_0()); 
             }
@@ -31781,14 +33322,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_9__1"
-    // InternalSpear.g:11058:1: rule__RelationalOp__Group_9__1 : rule__RelationalOp__Group_9__1__Impl ;
+    // InternalSpear.g:11632:1: rule__RelationalOp__Group_9__1 : rule__RelationalOp__Group_9__1__Impl ;
     public final void rule__RelationalOp__Group_9__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11062:1: ( rule__RelationalOp__Group_9__1__Impl )
-            // InternalSpear.g:11063:2: rule__RelationalOp__Group_9__1__Impl
+            // InternalSpear.g:11636:1: ( rule__RelationalOp__Group_9__1__Impl )
+            // InternalSpear.g:11637:2: rule__RelationalOp__Group_9__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__RelationalOp__Group_9__1__Impl();
@@ -31814,22 +33355,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_9__1__Impl"
-    // InternalSpear.g:11069:1: rule__RelationalOp__Group_9__1__Impl : ( 'to' ) ;
+    // InternalSpear.g:11643:1: rule__RelationalOp__Group_9__1__Impl : ( 'to' ) ;
     public final void rule__RelationalOp__Group_9__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11073:1: ( ( 'to' ) )
-            // InternalSpear.g:11074:1: ( 'to' )
+            // InternalSpear.g:11647:1: ( ( 'to' ) )
+            // InternalSpear.g:11648:1: ( 'to' )
             {
-            // InternalSpear.g:11074:1: ( 'to' )
-            // InternalSpear.g:11075:1: 'to'
+            // InternalSpear.g:11648:1: ( 'to' )
+            // InternalSpear.g:11649:1: 'to'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalOpAccess().getToKeyword_9_1()); 
             }
-            match(input,99,FOLLOW_2); if (state.failed) return ;
+            match(input,100,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getRelationalOpAccess().getToKeyword_9_1()); 
             }
@@ -31855,16 +33396,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_11__0"
-    // InternalSpear.g:11092:1: rule__RelationalOp__Group_11__0 : rule__RelationalOp__Group_11__0__Impl rule__RelationalOp__Group_11__1 ;
+    // InternalSpear.g:11666:1: rule__RelationalOp__Group_11__0 : rule__RelationalOp__Group_11__0__Impl rule__RelationalOp__Group_11__1 ;
     public final void rule__RelationalOp__Group_11__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11096:1: ( rule__RelationalOp__Group_11__0__Impl rule__RelationalOp__Group_11__1 )
-            // InternalSpear.g:11097:2: rule__RelationalOp__Group_11__0__Impl rule__RelationalOp__Group_11__1
+            // InternalSpear.g:11670:1: ( rule__RelationalOp__Group_11__0__Impl rule__RelationalOp__Group_11__1 )
+            // InternalSpear.g:11671:2: rule__RelationalOp__Group_11__0__Impl rule__RelationalOp__Group_11__1
             {
-            pushFollow(FOLLOW_57);
+            pushFollow(FOLLOW_60);
             rule__RelationalOp__Group_11__0__Impl();
 
             state._fsp--;
@@ -31893,17 +33434,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_11__0__Impl"
-    // InternalSpear.g:11104:1: rule__RelationalOp__Group_11__0__Impl : ( 'not' ) ;
+    // InternalSpear.g:11678:1: rule__RelationalOp__Group_11__0__Impl : ( 'not' ) ;
     public final void rule__RelationalOp__Group_11__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11108:1: ( ( 'not' ) )
-            // InternalSpear.g:11109:1: ( 'not' )
+            // InternalSpear.g:11682:1: ( ( 'not' ) )
+            // InternalSpear.g:11683:1: ( 'not' )
             {
-            // InternalSpear.g:11109:1: ( 'not' )
-            // InternalSpear.g:11110:1: 'not'
+            // InternalSpear.g:11683:1: ( 'not' )
+            // InternalSpear.g:11684:1: 'not'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalOpAccess().getNotKeyword_11_0()); 
@@ -31934,16 +33475,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_11__1"
-    // InternalSpear.g:11123:1: rule__RelationalOp__Group_11__1 : rule__RelationalOp__Group_11__1__Impl rule__RelationalOp__Group_11__2 ;
+    // InternalSpear.g:11697:1: rule__RelationalOp__Group_11__1 : rule__RelationalOp__Group_11__1__Impl rule__RelationalOp__Group_11__2 ;
     public final void rule__RelationalOp__Group_11__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11127:1: ( rule__RelationalOp__Group_11__1__Impl rule__RelationalOp__Group_11__2 )
-            // InternalSpear.g:11128:2: rule__RelationalOp__Group_11__1__Impl rule__RelationalOp__Group_11__2
+            // InternalSpear.g:11701:1: ( rule__RelationalOp__Group_11__1__Impl rule__RelationalOp__Group_11__2 )
+            // InternalSpear.g:11702:2: rule__RelationalOp__Group_11__1__Impl rule__RelationalOp__Group_11__2
             {
-            pushFollow(FOLLOW_58);
+            pushFollow(FOLLOW_61);
             rule__RelationalOp__Group_11__1__Impl();
 
             state._fsp--;
@@ -31972,22 +33513,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_11__1__Impl"
-    // InternalSpear.g:11135:1: rule__RelationalOp__Group_11__1__Impl : ( 'equal' ) ;
+    // InternalSpear.g:11709:1: rule__RelationalOp__Group_11__1__Impl : ( 'equal' ) ;
     public final void rule__RelationalOp__Group_11__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11139:1: ( ( 'equal' ) )
-            // InternalSpear.g:11140:1: ( 'equal' )
+            // InternalSpear.g:11713:1: ( ( 'equal' ) )
+            // InternalSpear.g:11714:1: ( 'equal' )
             {
-            // InternalSpear.g:11140:1: ( 'equal' )
-            // InternalSpear.g:11141:1: 'equal'
+            // InternalSpear.g:11714:1: ( 'equal' )
+            // InternalSpear.g:11715:1: 'equal'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalOpAccess().getEqualKeyword_11_1()); 
             }
-            match(input,98,FOLLOW_2); if (state.failed) return ;
+            match(input,99,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getRelationalOpAccess().getEqualKeyword_11_1()); 
             }
@@ -32013,14 +33554,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_11__2"
-    // InternalSpear.g:11154:1: rule__RelationalOp__Group_11__2 : rule__RelationalOp__Group_11__2__Impl ;
+    // InternalSpear.g:11728:1: rule__RelationalOp__Group_11__2 : rule__RelationalOp__Group_11__2__Impl ;
     public final void rule__RelationalOp__Group_11__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11158:1: ( rule__RelationalOp__Group_11__2__Impl )
-            // InternalSpear.g:11159:2: rule__RelationalOp__Group_11__2__Impl
+            // InternalSpear.g:11732:1: ( rule__RelationalOp__Group_11__2__Impl )
+            // InternalSpear.g:11733:2: rule__RelationalOp__Group_11__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__RelationalOp__Group_11__2__Impl();
@@ -32046,22 +33587,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalOp__Group_11__2__Impl"
-    // InternalSpear.g:11165:1: rule__RelationalOp__Group_11__2__Impl : ( 'to' ) ;
+    // InternalSpear.g:11739:1: rule__RelationalOp__Group_11__2__Impl : ( 'to' ) ;
     public final void rule__RelationalOp__Group_11__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11169:1: ( ( 'to' ) )
-            // InternalSpear.g:11170:1: ( 'to' )
+            // InternalSpear.g:11743:1: ( ( 'to' ) )
+            // InternalSpear.g:11744:1: ( 'to' )
             {
-            // InternalSpear.g:11170:1: ( 'to' )
-            // InternalSpear.g:11171:1: 'to'
+            // InternalSpear.g:11744:1: ( 'to' )
+            // InternalSpear.g:11745:1: 'to'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalOpAccess().getToKeyword_11_2()); 
             }
-            match(input,99,FOLLOW_2); if (state.failed) return ;
+            match(input,100,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getRelationalOpAccess().getToKeyword_11_2()); 
             }
@@ -32087,16 +33628,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PlusExpr__Group__0"
-    // InternalSpear.g:11190:1: rule__PlusExpr__Group__0 : rule__PlusExpr__Group__0__Impl rule__PlusExpr__Group__1 ;
+    // InternalSpear.g:11764:1: rule__PlusExpr__Group__0 : rule__PlusExpr__Group__0__Impl rule__PlusExpr__Group__1 ;
     public final void rule__PlusExpr__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11194:1: ( rule__PlusExpr__Group__0__Impl rule__PlusExpr__Group__1 )
-            // InternalSpear.g:11195:2: rule__PlusExpr__Group__0__Impl rule__PlusExpr__Group__1
+            // InternalSpear.g:11768:1: ( rule__PlusExpr__Group__0__Impl rule__PlusExpr__Group__1 )
+            // InternalSpear.g:11769:2: rule__PlusExpr__Group__0__Impl rule__PlusExpr__Group__1
             {
-            pushFollow(FOLLOW_59);
+            pushFollow(FOLLOW_62);
             rule__PlusExpr__Group__0__Impl();
 
             state._fsp--;
@@ -32125,17 +33666,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PlusExpr__Group__0__Impl"
-    // InternalSpear.g:11202:1: rule__PlusExpr__Group__0__Impl : ( ruleMultiplyExpr ) ;
+    // InternalSpear.g:11776:1: rule__PlusExpr__Group__0__Impl : ( ruleMultiplyExpr ) ;
     public final void rule__PlusExpr__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11206:1: ( ( ruleMultiplyExpr ) )
-            // InternalSpear.g:11207:1: ( ruleMultiplyExpr )
+            // InternalSpear.g:11780:1: ( ( ruleMultiplyExpr ) )
+            // InternalSpear.g:11781:1: ( ruleMultiplyExpr )
             {
-            // InternalSpear.g:11207:1: ( ruleMultiplyExpr )
-            // InternalSpear.g:11208:1: ruleMultiplyExpr
+            // InternalSpear.g:11781:1: ( ruleMultiplyExpr )
+            // InternalSpear.g:11782:1: ruleMultiplyExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPlusExprAccess().getMultiplyExprParserRuleCall_0()); 
@@ -32170,14 +33711,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PlusExpr__Group__1"
-    // InternalSpear.g:11219:1: rule__PlusExpr__Group__1 : rule__PlusExpr__Group__1__Impl ;
+    // InternalSpear.g:11793:1: rule__PlusExpr__Group__1 : rule__PlusExpr__Group__1__Impl ;
     public final void rule__PlusExpr__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11223:1: ( rule__PlusExpr__Group__1__Impl )
-            // InternalSpear.g:11224:2: rule__PlusExpr__Group__1__Impl
+            // InternalSpear.g:11797:1: ( rule__PlusExpr__Group__1__Impl )
+            // InternalSpear.g:11798:2: rule__PlusExpr__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__PlusExpr__Group__1__Impl();
@@ -32203,42 +33744,42 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PlusExpr__Group__1__Impl"
-    // InternalSpear.g:11230:1: rule__PlusExpr__Group__1__Impl : ( ( rule__PlusExpr__Group_1__0 )? ) ;
+    // InternalSpear.g:11804:1: rule__PlusExpr__Group__1__Impl : ( ( rule__PlusExpr__Group_1__0 )? ) ;
     public final void rule__PlusExpr__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11234:1: ( ( ( rule__PlusExpr__Group_1__0 )? ) )
-            // InternalSpear.g:11235:1: ( ( rule__PlusExpr__Group_1__0 )? )
+            // InternalSpear.g:11808:1: ( ( ( rule__PlusExpr__Group_1__0 )? ) )
+            // InternalSpear.g:11809:1: ( ( rule__PlusExpr__Group_1__0 )? )
             {
-            // InternalSpear.g:11235:1: ( ( rule__PlusExpr__Group_1__0 )? )
-            // InternalSpear.g:11236:1: ( rule__PlusExpr__Group_1__0 )?
+            // InternalSpear.g:11809:1: ( ( rule__PlusExpr__Group_1__0 )? )
+            // InternalSpear.g:11810:1: ( rule__PlusExpr__Group_1__0 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPlusExprAccess().getGroup_1()); 
             }
-            // InternalSpear.g:11237:1: ( rule__PlusExpr__Group_1__0 )?
-            int alt89=2;
-            int LA89_0 = input.LA(1);
+            // InternalSpear.g:11811:1: ( rule__PlusExpr__Group_1__0 )?
+            int alt93=2;
+            int LA93_0 = input.LA(1);
 
-            if ( (LA89_0==45) ) {
-                int LA89_1 = input.LA(2);
+            if ( (LA93_0==45) ) {
+                int LA93_1 = input.LA(2);
 
-                if ( (synpred129_InternalSpear()) ) {
-                    alt89=1;
+                if ( (synpred133_InternalSpear()) ) {
+                    alt93=1;
                 }
             }
-            else if ( (LA89_0==46) ) {
-                int LA89_2 = input.LA(2);
+            else if ( (LA93_0==46) ) {
+                int LA93_2 = input.LA(2);
 
-                if ( (synpred129_InternalSpear()) ) {
-                    alt89=1;
+                if ( (synpred133_InternalSpear()) ) {
+                    alt93=1;
                 }
             }
-            switch (alt89) {
+            switch (alt93) {
                 case 1 :
-                    // InternalSpear.g:11237:2: rule__PlusExpr__Group_1__0
+                    // InternalSpear.g:11811:2: rule__PlusExpr__Group_1__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__PlusExpr__Group_1__0();
@@ -32276,14 +33817,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PlusExpr__Group_1__0"
-    // InternalSpear.g:11251:1: rule__PlusExpr__Group_1__0 : rule__PlusExpr__Group_1__0__Impl rule__PlusExpr__Group_1__1 ;
+    // InternalSpear.g:11825:1: rule__PlusExpr__Group_1__0 : rule__PlusExpr__Group_1__0__Impl rule__PlusExpr__Group_1__1 ;
     public final void rule__PlusExpr__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11255:1: ( rule__PlusExpr__Group_1__0__Impl rule__PlusExpr__Group_1__1 )
-            // InternalSpear.g:11256:2: rule__PlusExpr__Group_1__0__Impl rule__PlusExpr__Group_1__1
+            // InternalSpear.g:11829:1: ( rule__PlusExpr__Group_1__0__Impl rule__PlusExpr__Group_1__1 )
+            // InternalSpear.g:11830:2: rule__PlusExpr__Group_1__0__Impl rule__PlusExpr__Group_1__1
             {
             pushFollow(FOLLOW_26);
             rule__PlusExpr__Group_1__0__Impl();
@@ -32314,23 +33855,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PlusExpr__Group_1__0__Impl"
-    // InternalSpear.g:11263:1: rule__PlusExpr__Group_1__0__Impl : ( ( rule__PlusExpr__Group_1_0__0 ) ) ;
+    // InternalSpear.g:11837:1: rule__PlusExpr__Group_1__0__Impl : ( ( rule__PlusExpr__Group_1_0__0 ) ) ;
     public final void rule__PlusExpr__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11267:1: ( ( ( rule__PlusExpr__Group_1_0__0 ) ) )
-            // InternalSpear.g:11268:1: ( ( rule__PlusExpr__Group_1_0__0 ) )
+            // InternalSpear.g:11841:1: ( ( ( rule__PlusExpr__Group_1_0__0 ) ) )
+            // InternalSpear.g:11842:1: ( ( rule__PlusExpr__Group_1_0__0 ) )
             {
-            // InternalSpear.g:11268:1: ( ( rule__PlusExpr__Group_1_0__0 ) )
-            // InternalSpear.g:11269:1: ( rule__PlusExpr__Group_1_0__0 )
+            // InternalSpear.g:11842:1: ( ( rule__PlusExpr__Group_1_0__0 ) )
+            // InternalSpear.g:11843:1: ( rule__PlusExpr__Group_1_0__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPlusExprAccess().getGroup_1_0()); 
             }
-            // InternalSpear.g:11270:1: ( rule__PlusExpr__Group_1_0__0 )
-            // InternalSpear.g:11270:2: rule__PlusExpr__Group_1_0__0
+            // InternalSpear.g:11844:1: ( rule__PlusExpr__Group_1_0__0 )
+            // InternalSpear.g:11844:2: rule__PlusExpr__Group_1_0__0
             {
             pushFollow(FOLLOW_2);
             rule__PlusExpr__Group_1_0__0();
@@ -32365,14 +33906,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PlusExpr__Group_1__1"
-    // InternalSpear.g:11280:1: rule__PlusExpr__Group_1__1 : rule__PlusExpr__Group_1__1__Impl ;
+    // InternalSpear.g:11854:1: rule__PlusExpr__Group_1__1 : rule__PlusExpr__Group_1__1__Impl ;
     public final void rule__PlusExpr__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11284:1: ( rule__PlusExpr__Group_1__1__Impl )
-            // InternalSpear.g:11285:2: rule__PlusExpr__Group_1__1__Impl
+            // InternalSpear.g:11858:1: ( rule__PlusExpr__Group_1__1__Impl )
+            // InternalSpear.g:11859:2: rule__PlusExpr__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__PlusExpr__Group_1__1__Impl();
@@ -32398,23 +33939,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PlusExpr__Group_1__1__Impl"
-    // InternalSpear.g:11291:1: rule__PlusExpr__Group_1__1__Impl : ( ( rule__PlusExpr__RightAssignment_1_1 ) ) ;
+    // InternalSpear.g:11865:1: rule__PlusExpr__Group_1__1__Impl : ( ( rule__PlusExpr__RightAssignment_1_1 ) ) ;
     public final void rule__PlusExpr__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11295:1: ( ( ( rule__PlusExpr__RightAssignment_1_1 ) ) )
-            // InternalSpear.g:11296:1: ( ( rule__PlusExpr__RightAssignment_1_1 ) )
+            // InternalSpear.g:11869:1: ( ( ( rule__PlusExpr__RightAssignment_1_1 ) ) )
+            // InternalSpear.g:11870:1: ( ( rule__PlusExpr__RightAssignment_1_1 ) )
             {
-            // InternalSpear.g:11296:1: ( ( rule__PlusExpr__RightAssignment_1_1 ) )
-            // InternalSpear.g:11297:1: ( rule__PlusExpr__RightAssignment_1_1 )
+            // InternalSpear.g:11870:1: ( ( rule__PlusExpr__RightAssignment_1_1 ) )
+            // InternalSpear.g:11871:1: ( rule__PlusExpr__RightAssignment_1_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPlusExprAccess().getRightAssignment_1_1()); 
             }
-            // InternalSpear.g:11298:1: ( rule__PlusExpr__RightAssignment_1_1 )
-            // InternalSpear.g:11298:2: rule__PlusExpr__RightAssignment_1_1
+            // InternalSpear.g:11872:1: ( rule__PlusExpr__RightAssignment_1_1 )
+            // InternalSpear.g:11872:2: rule__PlusExpr__RightAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__PlusExpr__RightAssignment_1_1();
@@ -32449,14 +33990,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PlusExpr__Group_1_0__0"
-    // InternalSpear.g:11312:1: rule__PlusExpr__Group_1_0__0 : rule__PlusExpr__Group_1_0__0__Impl ;
+    // InternalSpear.g:11886:1: rule__PlusExpr__Group_1_0__0 : rule__PlusExpr__Group_1_0__0__Impl ;
     public final void rule__PlusExpr__Group_1_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11316:1: ( rule__PlusExpr__Group_1_0__0__Impl )
-            // InternalSpear.g:11317:2: rule__PlusExpr__Group_1_0__0__Impl
+            // InternalSpear.g:11890:1: ( rule__PlusExpr__Group_1_0__0__Impl )
+            // InternalSpear.g:11891:2: rule__PlusExpr__Group_1_0__0__Impl
             {
             pushFollow(FOLLOW_2);
             rule__PlusExpr__Group_1_0__0__Impl();
@@ -32482,23 +34023,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PlusExpr__Group_1_0__0__Impl"
-    // InternalSpear.g:11323:1: rule__PlusExpr__Group_1_0__0__Impl : ( ( rule__PlusExpr__Group_1_0_0__0 ) ) ;
+    // InternalSpear.g:11897:1: rule__PlusExpr__Group_1_0__0__Impl : ( ( rule__PlusExpr__Group_1_0_0__0 ) ) ;
     public final void rule__PlusExpr__Group_1_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11327:1: ( ( ( rule__PlusExpr__Group_1_0_0__0 ) ) )
-            // InternalSpear.g:11328:1: ( ( rule__PlusExpr__Group_1_0_0__0 ) )
+            // InternalSpear.g:11901:1: ( ( ( rule__PlusExpr__Group_1_0_0__0 ) ) )
+            // InternalSpear.g:11902:1: ( ( rule__PlusExpr__Group_1_0_0__0 ) )
             {
-            // InternalSpear.g:11328:1: ( ( rule__PlusExpr__Group_1_0_0__0 ) )
-            // InternalSpear.g:11329:1: ( rule__PlusExpr__Group_1_0_0__0 )
+            // InternalSpear.g:11902:1: ( ( rule__PlusExpr__Group_1_0_0__0 ) )
+            // InternalSpear.g:11903:1: ( rule__PlusExpr__Group_1_0_0__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPlusExprAccess().getGroup_1_0_0()); 
             }
-            // InternalSpear.g:11330:1: ( rule__PlusExpr__Group_1_0_0__0 )
-            // InternalSpear.g:11330:2: rule__PlusExpr__Group_1_0_0__0
+            // InternalSpear.g:11904:1: ( rule__PlusExpr__Group_1_0_0__0 )
+            // InternalSpear.g:11904:2: rule__PlusExpr__Group_1_0_0__0
             {
             pushFollow(FOLLOW_2);
             rule__PlusExpr__Group_1_0_0__0();
@@ -32533,16 +34074,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PlusExpr__Group_1_0_0__0"
-    // InternalSpear.g:11342:1: rule__PlusExpr__Group_1_0_0__0 : rule__PlusExpr__Group_1_0_0__0__Impl rule__PlusExpr__Group_1_0_0__1 ;
+    // InternalSpear.g:11916:1: rule__PlusExpr__Group_1_0_0__0 : rule__PlusExpr__Group_1_0_0__0__Impl rule__PlusExpr__Group_1_0_0__1 ;
     public final void rule__PlusExpr__Group_1_0_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11346:1: ( rule__PlusExpr__Group_1_0_0__0__Impl rule__PlusExpr__Group_1_0_0__1 )
-            // InternalSpear.g:11347:2: rule__PlusExpr__Group_1_0_0__0__Impl rule__PlusExpr__Group_1_0_0__1
+            // InternalSpear.g:11920:1: ( rule__PlusExpr__Group_1_0_0__0__Impl rule__PlusExpr__Group_1_0_0__1 )
+            // InternalSpear.g:11921:2: rule__PlusExpr__Group_1_0_0__0__Impl rule__PlusExpr__Group_1_0_0__1
             {
-            pushFollow(FOLLOW_59);
+            pushFollow(FOLLOW_62);
             rule__PlusExpr__Group_1_0_0__0__Impl();
 
             state._fsp--;
@@ -32571,23 +34112,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PlusExpr__Group_1_0_0__0__Impl"
-    // InternalSpear.g:11354:1: rule__PlusExpr__Group_1_0_0__0__Impl : ( () ) ;
+    // InternalSpear.g:11928:1: rule__PlusExpr__Group_1_0_0__0__Impl : ( () ) ;
     public final void rule__PlusExpr__Group_1_0_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11358:1: ( ( () ) )
-            // InternalSpear.g:11359:1: ( () )
+            // InternalSpear.g:11932:1: ( ( () ) )
+            // InternalSpear.g:11933:1: ( () )
             {
-            // InternalSpear.g:11359:1: ( () )
-            // InternalSpear.g:11360:1: ()
+            // InternalSpear.g:11933:1: ( () )
+            // InternalSpear.g:11934:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPlusExprAccess().getBinaryExprLeftAction_1_0_0_0()); 
             }
-            // InternalSpear.g:11361:1: ()
-            // InternalSpear.g:11363:1: 
+            // InternalSpear.g:11935:1: ()
+            // InternalSpear.g:11937:1: 
             {
             }
 
@@ -32612,14 +34153,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PlusExpr__Group_1_0_0__1"
-    // InternalSpear.g:11373:1: rule__PlusExpr__Group_1_0_0__1 : rule__PlusExpr__Group_1_0_0__1__Impl ;
+    // InternalSpear.g:11947:1: rule__PlusExpr__Group_1_0_0__1 : rule__PlusExpr__Group_1_0_0__1__Impl ;
     public final void rule__PlusExpr__Group_1_0_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11377:1: ( rule__PlusExpr__Group_1_0_0__1__Impl )
-            // InternalSpear.g:11378:2: rule__PlusExpr__Group_1_0_0__1__Impl
+            // InternalSpear.g:11951:1: ( rule__PlusExpr__Group_1_0_0__1__Impl )
+            // InternalSpear.g:11952:2: rule__PlusExpr__Group_1_0_0__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__PlusExpr__Group_1_0_0__1__Impl();
@@ -32645,23 +34186,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PlusExpr__Group_1_0_0__1__Impl"
-    // InternalSpear.g:11384:1: rule__PlusExpr__Group_1_0_0__1__Impl : ( ( rule__PlusExpr__OpAssignment_1_0_0_1 ) ) ;
+    // InternalSpear.g:11958:1: rule__PlusExpr__Group_1_0_0__1__Impl : ( ( rule__PlusExpr__OpAssignment_1_0_0_1 ) ) ;
     public final void rule__PlusExpr__Group_1_0_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11388:1: ( ( ( rule__PlusExpr__OpAssignment_1_0_0_1 ) ) )
-            // InternalSpear.g:11389:1: ( ( rule__PlusExpr__OpAssignment_1_0_0_1 ) )
+            // InternalSpear.g:11962:1: ( ( ( rule__PlusExpr__OpAssignment_1_0_0_1 ) ) )
+            // InternalSpear.g:11963:1: ( ( rule__PlusExpr__OpAssignment_1_0_0_1 ) )
             {
-            // InternalSpear.g:11389:1: ( ( rule__PlusExpr__OpAssignment_1_0_0_1 ) )
-            // InternalSpear.g:11390:1: ( rule__PlusExpr__OpAssignment_1_0_0_1 )
+            // InternalSpear.g:11963:1: ( ( rule__PlusExpr__OpAssignment_1_0_0_1 ) )
+            // InternalSpear.g:11964:1: ( rule__PlusExpr__OpAssignment_1_0_0_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPlusExprAccess().getOpAssignment_1_0_0_1()); 
             }
-            // InternalSpear.g:11391:1: ( rule__PlusExpr__OpAssignment_1_0_0_1 )
-            // InternalSpear.g:11391:2: rule__PlusExpr__OpAssignment_1_0_0_1
+            // InternalSpear.g:11965:1: ( rule__PlusExpr__OpAssignment_1_0_0_1 )
+            // InternalSpear.g:11965:2: rule__PlusExpr__OpAssignment_1_0_0_1
             {
             pushFollow(FOLLOW_2);
             rule__PlusExpr__OpAssignment_1_0_0_1();
@@ -32696,16 +34237,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplyExpr__Group__0"
-    // InternalSpear.g:11405:1: rule__MultiplyExpr__Group__0 : rule__MultiplyExpr__Group__0__Impl rule__MultiplyExpr__Group__1 ;
+    // InternalSpear.g:11979:1: rule__MultiplyExpr__Group__0 : rule__MultiplyExpr__Group__0__Impl rule__MultiplyExpr__Group__1 ;
     public final void rule__MultiplyExpr__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11409:1: ( rule__MultiplyExpr__Group__0__Impl rule__MultiplyExpr__Group__1 )
-            // InternalSpear.g:11410:2: rule__MultiplyExpr__Group__0__Impl rule__MultiplyExpr__Group__1
+            // InternalSpear.g:11983:1: ( rule__MultiplyExpr__Group__0__Impl rule__MultiplyExpr__Group__1 )
+            // InternalSpear.g:11984:2: rule__MultiplyExpr__Group__0__Impl rule__MultiplyExpr__Group__1
             {
-            pushFollow(FOLLOW_60);
+            pushFollow(FOLLOW_63);
             rule__MultiplyExpr__Group__0__Impl();
 
             state._fsp--;
@@ -32734,17 +34275,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplyExpr__Group__0__Impl"
-    // InternalSpear.g:11417:1: rule__MultiplyExpr__Group__0__Impl : ( ruleArrowExpr ) ;
+    // InternalSpear.g:11991:1: rule__MultiplyExpr__Group__0__Impl : ( ruleArrowExpr ) ;
     public final void rule__MultiplyExpr__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11421:1: ( ( ruleArrowExpr ) )
-            // InternalSpear.g:11422:1: ( ruleArrowExpr )
+            // InternalSpear.g:11995:1: ( ( ruleArrowExpr ) )
+            // InternalSpear.g:11996:1: ( ruleArrowExpr )
             {
-            // InternalSpear.g:11422:1: ( ruleArrowExpr )
-            // InternalSpear.g:11423:1: ruleArrowExpr
+            // InternalSpear.g:11996:1: ( ruleArrowExpr )
+            // InternalSpear.g:11997:1: ruleArrowExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMultiplyExprAccess().getArrowExprParserRuleCall_0()); 
@@ -32779,14 +34320,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplyExpr__Group__1"
-    // InternalSpear.g:11434:1: rule__MultiplyExpr__Group__1 : rule__MultiplyExpr__Group__1__Impl ;
+    // InternalSpear.g:12008:1: rule__MultiplyExpr__Group__1 : rule__MultiplyExpr__Group__1__Impl ;
     public final void rule__MultiplyExpr__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11438:1: ( rule__MultiplyExpr__Group__1__Impl )
-            // InternalSpear.g:11439:2: rule__MultiplyExpr__Group__1__Impl
+            // InternalSpear.g:12012:1: ( rule__MultiplyExpr__Group__1__Impl )
+            // InternalSpear.g:12013:2: rule__MultiplyExpr__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__MultiplyExpr__Group__1__Impl();
@@ -32812,56 +34353,56 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplyExpr__Group__1__Impl"
-    // InternalSpear.g:11445:1: rule__MultiplyExpr__Group__1__Impl : ( ( rule__MultiplyExpr__Group_1__0 )? ) ;
+    // InternalSpear.g:12019:1: rule__MultiplyExpr__Group__1__Impl : ( ( rule__MultiplyExpr__Group_1__0 )? ) ;
     public final void rule__MultiplyExpr__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11449:1: ( ( ( rule__MultiplyExpr__Group_1__0 )? ) )
-            // InternalSpear.g:11450:1: ( ( rule__MultiplyExpr__Group_1__0 )? )
+            // InternalSpear.g:12023:1: ( ( ( rule__MultiplyExpr__Group_1__0 )? ) )
+            // InternalSpear.g:12024:1: ( ( rule__MultiplyExpr__Group_1__0 )? )
             {
-            // InternalSpear.g:11450:1: ( ( rule__MultiplyExpr__Group_1__0 )? )
-            // InternalSpear.g:11451:1: ( rule__MultiplyExpr__Group_1__0 )?
+            // InternalSpear.g:12024:1: ( ( rule__MultiplyExpr__Group_1__0 )? )
+            // InternalSpear.g:12025:1: ( rule__MultiplyExpr__Group_1__0 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMultiplyExprAccess().getGroup_1()); 
             }
-            // InternalSpear.g:11452:1: ( rule__MultiplyExpr__Group_1__0 )?
-            int alt90=2;
+            // InternalSpear.g:12026:1: ( rule__MultiplyExpr__Group_1__0 )?
+            int alt94=2;
             switch ( input.LA(1) ) {
                 case 47:
                     {
-                    int LA90_1 = input.LA(2);
+                    int LA94_1 = input.LA(2);
 
-                    if ( (synpred130_InternalSpear()) ) {
-                        alt90=1;
+                    if ( (synpred134_InternalSpear()) ) {
+                        alt94=1;
                     }
                     }
                     break;
                 case 48:
                     {
-                    int LA90_2 = input.LA(2);
+                    int LA94_2 = input.LA(2);
 
-                    if ( (synpred130_InternalSpear()) ) {
-                        alt90=1;
+                    if ( (synpred134_InternalSpear()) ) {
+                        alt94=1;
                     }
                     }
                     break;
                 case 49:
                     {
-                    int LA90_3 = input.LA(2);
+                    int LA94_3 = input.LA(2);
 
-                    if ( (synpred130_InternalSpear()) ) {
-                        alt90=1;
+                    if ( (synpred134_InternalSpear()) ) {
+                        alt94=1;
                     }
                     }
                     break;
             }
 
-            switch (alt90) {
+            switch (alt94) {
                 case 1 :
-                    // InternalSpear.g:11452:2: rule__MultiplyExpr__Group_1__0
+                    // InternalSpear.g:12026:2: rule__MultiplyExpr__Group_1__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__MultiplyExpr__Group_1__0();
@@ -32899,14 +34440,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplyExpr__Group_1__0"
-    // InternalSpear.g:11466:1: rule__MultiplyExpr__Group_1__0 : rule__MultiplyExpr__Group_1__0__Impl rule__MultiplyExpr__Group_1__1 ;
+    // InternalSpear.g:12040:1: rule__MultiplyExpr__Group_1__0 : rule__MultiplyExpr__Group_1__0__Impl rule__MultiplyExpr__Group_1__1 ;
     public final void rule__MultiplyExpr__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11470:1: ( rule__MultiplyExpr__Group_1__0__Impl rule__MultiplyExpr__Group_1__1 )
-            // InternalSpear.g:11471:2: rule__MultiplyExpr__Group_1__0__Impl rule__MultiplyExpr__Group_1__1
+            // InternalSpear.g:12044:1: ( rule__MultiplyExpr__Group_1__0__Impl rule__MultiplyExpr__Group_1__1 )
+            // InternalSpear.g:12045:2: rule__MultiplyExpr__Group_1__0__Impl rule__MultiplyExpr__Group_1__1
             {
             pushFollow(FOLLOW_26);
             rule__MultiplyExpr__Group_1__0__Impl();
@@ -32937,23 +34478,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplyExpr__Group_1__0__Impl"
-    // InternalSpear.g:11478:1: rule__MultiplyExpr__Group_1__0__Impl : ( ( rule__MultiplyExpr__Group_1_0__0 ) ) ;
+    // InternalSpear.g:12052:1: rule__MultiplyExpr__Group_1__0__Impl : ( ( rule__MultiplyExpr__Group_1_0__0 ) ) ;
     public final void rule__MultiplyExpr__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11482:1: ( ( ( rule__MultiplyExpr__Group_1_0__0 ) ) )
-            // InternalSpear.g:11483:1: ( ( rule__MultiplyExpr__Group_1_0__0 ) )
+            // InternalSpear.g:12056:1: ( ( ( rule__MultiplyExpr__Group_1_0__0 ) ) )
+            // InternalSpear.g:12057:1: ( ( rule__MultiplyExpr__Group_1_0__0 ) )
             {
-            // InternalSpear.g:11483:1: ( ( rule__MultiplyExpr__Group_1_0__0 ) )
-            // InternalSpear.g:11484:1: ( rule__MultiplyExpr__Group_1_0__0 )
+            // InternalSpear.g:12057:1: ( ( rule__MultiplyExpr__Group_1_0__0 ) )
+            // InternalSpear.g:12058:1: ( rule__MultiplyExpr__Group_1_0__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMultiplyExprAccess().getGroup_1_0()); 
             }
-            // InternalSpear.g:11485:1: ( rule__MultiplyExpr__Group_1_0__0 )
-            // InternalSpear.g:11485:2: rule__MultiplyExpr__Group_1_0__0
+            // InternalSpear.g:12059:1: ( rule__MultiplyExpr__Group_1_0__0 )
+            // InternalSpear.g:12059:2: rule__MultiplyExpr__Group_1_0__0
             {
             pushFollow(FOLLOW_2);
             rule__MultiplyExpr__Group_1_0__0();
@@ -32988,14 +34529,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplyExpr__Group_1__1"
-    // InternalSpear.g:11495:1: rule__MultiplyExpr__Group_1__1 : rule__MultiplyExpr__Group_1__1__Impl ;
+    // InternalSpear.g:12069:1: rule__MultiplyExpr__Group_1__1 : rule__MultiplyExpr__Group_1__1__Impl ;
     public final void rule__MultiplyExpr__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11499:1: ( rule__MultiplyExpr__Group_1__1__Impl )
-            // InternalSpear.g:11500:2: rule__MultiplyExpr__Group_1__1__Impl
+            // InternalSpear.g:12073:1: ( rule__MultiplyExpr__Group_1__1__Impl )
+            // InternalSpear.g:12074:2: rule__MultiplyExpr__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__MultiplyExpr__Group_1__1__Impl();
@@ -33021,23 +34562,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplyExpr__Group_1__1__Impl"
-    // InternalSpear.g:11506:1: rule__MultiplyExpr__Group_1__1__Impl : ( ( rule__MultiplyExpr__RightAssignment_1_1 ) ) ;
+    // InternalSpear.g:12080:1: rule__MultiplyExpr__Group_1__1__Impl : ( ( rule__MultiplyExpr__RightAssignment_1_1 ) ) ;
     public final void rule__MultiplyExpr__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11510:1: ( ( ( rule__MultiplyExpr__RightAssignment_1_1 ) ) )
-            // InternalSpear.g:11511:1: ( ( rule__MultiplyExpr__RightAssignment_1_1 ) )
+            // InternalSpear.g:12084:1: ( ( ( rule__MultiplyExpr__RightAssignment_1_1 ) ) )
+            // InternalSpear.g:12085:1: ( ( rule__MultiplyExpr__RightAssignment_1_1 ) )
             {
-            // InternalSpear.g:11511:1: ( ( rule__MultiplyExpr__RightAssignment_1_1 ) )
-            // InternalSpear.g:11512:1: ( rule__MultiplyExpr__RightAssignment_1_1 )
+            // InternalSpear.g:12085:1: ( ( rule__MultiplyExpr__RightAssignment_1_1 ) )
+            // InternalSpear.g:12086:1: ( rule__MultiplyExpr__RightAssignment_1_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMultiplyExprAccess().getRightAssignment_1_1()); 
             }
-            // InternalSpear.g:11513:1: ( rule__MultiplyExpr__RightAssignment_1_1 )
-            // InternalSpear.g:11513:2: rule__MultiplyExpr__RightAssignment_1_1
+            // InternalSpear.g:12087:1: ( rule__MultiplyExpr__RightAssignment_1_1 )
+            // InternalSpear.g:12087:2: rule__MultiplyExpr__RightAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__MultiplyExpr__RightAssignment_1_1();
@@ -33072,14 +34613,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplyExpr__Group_1_0__0"
-    // InternalSpear.g:11527:1: rule__MultiplyExpr__Group_1_0__0 : rule__MultiplyExpr__Group_1_0__0__Impl ;
+    // InternalSpear.g:12101:1: rule__MultiplyExpr__Group_1_0__0 : rule__MultiplyExpr__Group_1_0__0__Impl ;
     public final void rule__MultiplyExpr__Group_1_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11531:1: ( rule__MultiplyExpr__Group_1_0__0__Impl )
-            // InternalSpear.g:11532:2: rule__MultiplyExpr__Group_1_0__0__Impl
+            // InternalSpear.g:12105:1: ( rule__MultiplyExpr__Group_1_0__0__Impl )
+            // InternalSpear.g:12106:2: rule__MultiplyExpr__Group_1_0__0__Impl
             {
             pushFollow(FOLLOW_2);
             rule__MultiplyExpr__Group_1_0__0__Impl();
@@ -33105,23 +34646,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplyExpr__Group_1_0__0__Impl"
-    // InternalSpear.g:11538:1: rule__MultiplyExpr__Group_1_0__0__Impl : ( ( rule__MultiplyExpr__Group_1_0_0__0 ) ) ;
+    // InternalSpear.g:12112:1: rule__MultiplyExpr__Group_1_0__0__Impl : ( ( rule__MultiplyExpr__Group_1_0_0__0 ) ) ;
     public final void rule__MultiplyExpr__Group_1_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11542:1: ( ( ( rule__MultiplyExpr__Group_1_0_0__0 ) ) )
-            // InternalSpear.g:11543:1: ( ( rule__MultiplyExpr__Group_1_0_0__0 ) )
+            // InternalSpear.g:12116:1: ( ( ( rule__MultiplyExpr__Group_1_0_0__0 ) ) )
+            // InternalSpear.g:12117:1: ( ( rule__MultiplyExpr__Group_1_0_0__0 ) )
             {
-            // InternalSpear.g:11543:1: ( ( rule__MultiplyExpr__Group_1_0_0__0 ) )
-            // InternalSpear.g:11544:1: ( rule__MultiplyExpr__Group_1_0_0__0 )
+            // InternalSpear.g:12117:1: ( ( rule__MultiplyExpr__Group_1_0_0__0 ) )
+            // InternalSpear.g:12118:1: ( rule__MultiplyExpr__Group_1_0_0__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMultiplyExprAccess().getGroup_1_0_0()); 
             }
-            // InternalSpear.g:11545:1: ( rule__MultiplyExpr__Group_1_0_0__0 )
-            // InternalSpear.g:11545:2: rule__MultiplyExpr__Group_1_0_0__0
+            // InternalSpear.g:12119:1: ( rule__MultiplyExpr__Group_1_0_0__0 )
+            // InternalSpear.g:12119:2: rule__MultiplyExpr__Group_1_0_0__0
             {
             pushFollow(FOLLOW_2);
             rule__MultiplyExpr__Group_1_0_0__0();
@@ -33156,16 +34697,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplyExpr__Group_1_0_0__0"
-    // InternalSpear.g:11557:1: rule__MultiplyExpr__Group_1_0_0__0 : rule__MultiplyExpr__Group_1_0_0__0__Impl rule__MultiplyExpr__Group_1_0_0__1 ;
+    // InternalSpear.g:12131:1: rule__MultiplyExpr__Group_1_0_0__0 : rule__MultiplyExpr__Group_1_0_0__0__Impl rule__MultiplyExpr__Group_1_0_0__1 ;
     public final void rule__MultiplyExpr__Group_1_0_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11561:1: ( rule__MultiplyExpr__Group_1_0_0__0__Impl rule__MultiplyExpr__Group_1_0_0__1 )
-            // InternalSpear.g:11562:2: rule__MultiplyExpr__Group_1_0_0__0__Impl rule__MultiplyExpr__Group_1_0_0__1
+            // InternalSpear.g:12135:1: ( rule__MultiplyExpr__Group_1_0_0__0__Impl rule__MultiplyExpr__Group_1_0_0__1 )
+            // InternalSpear.g:12136:2: rule__MultiplyExpr__Group_1_0_0__0__Impl rule__MultiplyExpr__Group_1_0_0__1
             {
-            pushFollow(FOLLOW_60);
+            pushFollow(FOLLOW_63);
             rule__MultiplyExpr__Group_1_0_0__0__Impl();
 
             state._fsp--;
@@ -33194,23 +34735,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplyExpr__Group_1_0_0__0__Impl"
-    // InternalSpear.g:11569:1: rule__MultiplyExpr__Group_1_0_0__0__Impl : ( () ) ;
+    // InternalSpear.g:12143:1: rule__MultiplyExpr__Group_1_0_0__0__Impl : ( () ) ;
     public final void rule__MultiplyExpr__Group_1_0_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11573:1: ( ( () ) )
-            // InternalSpear.g:11574:1: ( () )
+            // InternalSpear.g:12147:1: ( ( () ) )
+            // InternalSpear.g:12148:1: ( () )
             {
-            // InternalSpear.g:11574:1: ( () )
-            // InternalSpear.g:11575:1: ()
+            // InternalSpear.g:12148:1: ( () )
+            // InternalSpear.g:12149:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMultiplyExprAccess().getBinaryExprLeftAction_1_0_0_0()); 
             }
-            // InternalSpear.g:11576:1: ()
-            // InternalSpear.g:11578:1: 
+            // InternalSpear.g:12150:1: ()
+            // InternalSpear.g:12152:1: 
             {
             }
 
@@ -33235,14 +34776,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplyExpr__Group_1_0_0__1"
-    // InternalSpear.g:11588:1: rule__MultiplyExpr__Group_1_0_0__1 : rule__MultiplyExpr__Group_1_0_0__1__Impl ;
+    // InternalSpear.g:12162:1: rule__MultiplyExpr__Group_1_0_0__1 : rule__MultiplyExpr__Group_1_0_0__1__Impl ;
     public final void rule__MultiplyExpr__Group_1_0_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11592:1: ( rule__MultiplyExpr__Group_1_0_0__1__Impl )
-            // InternalSpear.g:11593:2: rule__MultiplyExpr__Group_1_0_0__1__Impl
+            // InternalSpear.g:12166:1: ( rule__MultiplyExpr__Group_1_0_0__1__Impl )
+            // InternalSpear.g:12167:2: rule__MultiplyExpr__Group_1_0_0__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__MultiplyExpr__Group_1_0_0__1__Impl();
@@ -33268,23 +34809,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplyExpr__Group_1_0_0__1__Impl"
-    // InternalSpear.g:11599:1: rule__MultiplyExpr__Group_1_0_0__1__Impl : ( ( rule__MultiplyExpr__OpAssignment_1_0_0_1 ) ) ;
+    // InternalSpear.g:12173:1: rule__MultiplyExpr__Group_1_0_0__1__Impl : ( ( rule__MultiplyExpr__OpAssignment_1_0_0_1 ) ) ;
     public final void rule__MultiplyExpr__Group_1_0_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11603:1: ( ( ( rule__MultiplyExpr__OpAssignment_1_0_0_1 ) ) )
-            // InternalSpear.g:11604:1: ( ( rule__MultiplyExpr__OpAssignment_1_0_0_1 ) )
+            // InternalSpear.g:12177:1: ( ( ( rule__MultiplyExpr__OpAssignment_1_0_0_1 ) ) )
+            // InternalSpear.g:12178:1: ( ( rule__MultiplyExpr__OpAssignment_1_0_0_1 ) )
             {
-            // InternalSpear.g:11604:1: ( ( rule__MultiplyExpr__OpAssignment_1_0_0_1 ) )
-            // InternalSpear.g:11605:1: ( rule__MultiplyExpr__OpAssignment_1_0_0_1 )
+            // InternalSpear.g:12178:1: ( ( rule__MultiplyExpr__OpAssignment_1_0_0_1 ) )
+            // InternalSpear.g:12179:1: ( rule__MultiplyExpr__OpAssignment_1_0_0_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMultiplyExprAccess().getOpAssignment_1_0_0_1()); 
             }
-            // InternalSpear.g:11606:1: ( rule__MultiplyExpr__OpAssignment_1_0_0_1 )
-            // InternalSpear.g:11606:2: rule__MultiplyExpr__OpAssignment_1_0_0_1
+            // InternalSpear.g:12180:1: ( rule__MultiplyExpr__OpAssignment_1_0_0_1 )
+            // InternalSpear.g:12180:2: rule__MultiplyExpr__OpAssignment_1_0_0_1
             {
             pushFollow(FOLLOW_2);
             rule__MultiplyExpr__OpAssignment_1_0_0_1();
@@ -33319,16 +34860,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ArrowExpr__Group__0"
-    // InternalSpear.g:11620:1: rule__ArrowExpr__Group__0 : rule__ArrowExpr__Group__0__Impl rule__ArrowExpr__Group__1 ;
+    // InternalSpear.g:12194:1: rule__ArrowExpr__Group__0 : rule__ArrowExpr__Group__0__Impl rule__ArrowExpr__Group__1 ;
     public final void rule__ArrowExpr__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11624:1: ( rule__ArrowExpr__Group__0__Impl rule__ArrowExpr__Group__1 )
-            // InternalSpear.g:11625:2: rule__ArrowExpr__Group__0__Impl rule__ArrowExpr__Group__1
+            // InternalSpear.g:12198:1: ( rule__ArrowExpr__Group__0__Impl rule__ArrowExpr__Group__1 )
+            // InternalSpear.g:12199:2: rule__ArrowExpr__Group__0__Impl rule__ArrowExpr__Group__1
             {
-            pushFollow(FOLLOW_61);
+            pushFollow(FOLLOW_64);
             rule__ArrowExpr__Group__0__Impl();
 
             state._fsp--;
@@ -33357,17 +34898,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ArrowExpr__Group__0__Impl"
-    // InternalSpear.g:11632:1: rule__ArrowExpr__Group__0__Impl : ( rulePrefixExpr ) ;
+    // InternalSpear.g:12206:1: rule__ArrowExpr__Group__0__Impl : ( rulePrefixExpr ) ;
     public final void rule__ArrowExpr__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11636:1: ( ( rulePrefixExpr ) )
-            // InternalSpear.g:11637:1: ( rulePrefixExpr )
+            // InternalSpear.g:12210:1: ( ( rulePrefixExpr ) )
+            // InternalSpear.g:12211:1: ( rulePrefixExpr )
             {
-            // InternalSpear.g:11637:1: ( rulePrefixExpr )
-            // InternalSpear.g:11638:1: rulePrefixExpr
+            // InternalSpear.g:12211:1: ( rulePrefixExpr )
+            // InternalSpear.g:12212:1: rulePrefixExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrowExprAccess().getPrefixExprParserRuleCall_0()); 
@@ -33402,14 +34943,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ArrowExpr__Group__1"
-    // InternalSpear.g:11649:1: rule__ArrowExpr__Group__1 : rule__ArrowExpr__Group__1__Impl ;
+    // InternalSpear.g:12223:1: rule__ArrowExpr__Group__1 : rule__ArrowExpr__Group__1__Impl ;
     public final void rule__ArrowExpr__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11653:1: ( rule__ArrowExpr__Group__1__Impl )
-            // InternalSpear.g:11654:2: rule__ArrowExpr__Group__1__Impl
+            // InternalSpear.g:12227:1: ( rule__ArrowExpr__Group__1__Impl )
+            // InternalSpear.g:12228:2: rule__ArrowExpr__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ArrowExpr__Group__1__Impl();
@@ -33435,42 +34976,42 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ArrowExpr__Group__1__Impl"
-    // InternalSpear.g:11660:1: rule__ArrowExpr__Group__1__Impl : ( ( rule__ArrowExpr__Group_1__0 )? ) ;
+    // InternalSpear.g:12234:1: rule__ArrowExpr__Group__1__Impl : ( ( rule__ArrowExpr__Group_1__0 )? ) ;
     public final void rule__ArrowExpr__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11664:1: ( ( ( rule__ArrowExpr__Group_1__0 )? ) )
-            // InternalSpear.g:11665:1: ( ( rule__ArrowExpr__Group_1__0 )? )
+            // InternalSpear.g:12238:1: ( ( ( rule__ArrowExpr__Group_1__0 )? ) )
+            // InternalSpear.g:12239:1: ( ( rule__ArrowExpr__Group_1__0 )? )
             {
-            // InternalSpear.g:11665:1: ( ( rule__ArrowExpr__Group_1__0 )? )
-            // InternalSpear.g:11666:1: ( rule__ArrowExpr__Group_1__0 )?
+            // InternalSpear.g:12239:1: ( ( rule__ArrowExpr__Group_1__0 )? )
+            // InternalSpear.g:12240:1: ( rule__ArrowExpr__Group_1__0 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrowExprAccess().getGroup_1()); 
             }
-            // InternalSpear.g:11667:1: ( rule__ArrowExpr__Group_1__0 )?
-            int alt91=2;
-            int LA91_0 = input.LA(1);
+            // InternalSpear.g:12241:1: ( rule__ArrowExpr__Group_1__0 )?
+            int alt95=2;
+            int LA95_0 = input.LA(1);
 
-            if ( (LA91_0==50) ) {
-                int LA91_1 = input.LA(2);
+            if ( (LA95_0==50) ) {
+                int LA95_1 = input.LA(2);
 
-                if ( (synpred131_InternalSpear()) ) {
-                    alt91=1;
+                if ( (synpred135_InternalSpear()) ) {
+                    alt95=1;
                 }
             }
-            else if ( (LA91_0==51) ) {
-                int LA91_2 = input.LA(2);
+            else if ( (LA95_0==51) ) {
+                int LA95_2 = input.LA(2);
 
-                if ( (synpred131_InternalSpear()) ) {
-                    alt91=1;
+                if ( (synpred135_InternalSpear()) ) {
+                    alt95=1;
                 }
             }
-            switch (alt91) {
+            switch (alt95) {
                 case 1 :
-                    // InternalSpear.g:11667:2: rule__ArrowExpr__Group_1__0
+                    // InternalSpear.g:12241:2: rule__ArrowExpr__Group_1__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__ArrowExpr__Group_1__0();
@@ -33508,14 +35049,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ArrowExpr__Group_1__0"
-    // InternalSpear.g:11681:1: rule__ArrowExpr__Group_1__0 : rule__ArrowExpr__Group_1__0__Impl rule__ArrowExpr__Group_1__1 ;
+    // InternalSpear.g:12255:1: rule__ArrowExpr__Group_1__0 : rule__ArrowExpr__Group_1__0__Impl rule__ArrowExpr__Group_1__1 ;
     public final void rule__ArrowExpr__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11685:1: ( rule__ArrowExpr__Group_1__0__Impl rule__ArrowExpr__Group_1__1 )
-            // InternalSpear.g:11686:2: rule__ArrowExpr__Group_1__0__Impl rule__ArrowExpr__Group_1__1
+            // InternalSpear.g:12259:1: ( rule__ArrowExpr__Group_1__0__Impl rule__ArrowExpr__Group_1__1 )
+            // InternalSpear.g:12260:2: rule__ArrowExpr__Group_1__0__Impl rule__ArrowExpr__Group_1__1
             {
             pushFollow(FOLLOW_26);
             rule__ArrowExpr__Group_1__0__Impl();
@@ -33546,23 +35087,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ArrowExpr__Group_1__0__Impl"
-    // InternalSpear.g:11693:1: rule__ArrowExpr__Group_1__0__Impl : ( ( rule__ArrowExpr__Group_1_0__0 ) ) ;
+    // InternalSpear.g:12267:1: rule__ArrowExpr__Group_1__0__Impl : ( ( rule__ArrowExpr__Group_1_0__0 ) ) ;
     public final void rule__ArrowExpr__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11697:1: ( ( ( rule__ArrowExpr__Group_1_0__0 ) ) )
-            // InternalSpear.g:11698:1: ( ( rule__ArrowExpr__Group_1_0__0 ) )
+            // InternalSpear.g:12271:1: ( ( ( rule__ArrowExpr__Group_1_0__0 ) ) )
+            // InternalSpear.g:12272:1: ( ( rule__ArrowExpr__Group_1_0__0 ) )
             {
-            // InternalSpear.g:11698:1: ( ( rule__ArrowExpr__Group_1_0__0 ) )
-            // InternalSpear.g:11699:1: ( rule__ArrowExpr__Group_1_0__0 )
+            // InternalSpear.g:12272:1: ( ( rule__ArrowExpr__Group_1_0__0 ) )
+            // InternalSpear.g:12273:1: ( rule__ArrowExpr__Group_1_0__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrowExprAccess().getGroup_1_0()); 
             }
-            // InternalSpear.g:11700:1: ( rule__ArrowExpr__Group_1_0__0 )
-            // InternalSpear.g:11700:2: rule__ArrowExpr__Group_1_0__0
+            // InternalSpear.g:12274:1: ( rule__ArrowExpr__Group_1_0__0 )
+            // InternalSpear.g:12274:2: rule__ArrowExpr__Group_1_0__0
             {
             pushFollow(FOLLOW_2);
             rule__ArrowExpr__Group_1_0__0();
@@ -33597,14 +35138,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ArrowExpr__Group_1__1"
-    // InternalSpear.g:11710:1: rule__ArrowExpr__Group_1__1 : rule__ArrowExpr__Group_1__1__Impl ;
+    // InternalSpear.g:12284:1: rule__ArrowExpr__Group_1__1 : rule__ArrowExpr__Group_1__1__Impl ;
     public final void rule__ArrowExpr__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11714:1: ( rule__ArrowExpr__Group_1__1__Impl )
-            // InternalSpear.g:11715:2: rule__ArrowExpr__Group_1__1__Impl
+            // InternalSpear.g:12288:1: ( rule__ArrowExpr__Group_1__1__Impl )
+            // InternalSpear.g:12289:2: rule__ArrowExpr__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ArrowExpr__Group_1__1__Impl();
@@ -33630,23 +35171,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ArrowExpr__Group_1__1__Impl"
-    // InternalSpear.g:11721:1: rule__ArrowExpr__Group_1__1__Impl : ( ( rule__ArrowExpr__RightAssignment_1_1 ) ) ;
+    // InternalSpear.g:12295:1: rule__ArrowExpr__Group_1__1__Impl : ( ( rule__ArrowExpr__RightAssignment_1_1 ) ) ;
     public final void rule__ArrowExpr__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11725:1: ( ( ( rule__ArrowExpr__RightAssignment_1_1 ) ) )
-            // InternalSpear.g:11726:1: ( ( rule__ArrowExpr__RightAssignment_1_1 ) )
+            // InternalSpear.g:12299:1: ( ( ( rule__ArrowExpr__RightAssignment_1_1 ) ) )
+            // InternalSpear.g:12300:1: ( ( rule__ArrowExpr__RightAssignment_1_1 ) )
             {
-            // InternalSpear.g:11726:1: ( ( rule__ArrowExpr__RightAssignment_1_1 ) )
-            // InternalSpear.g:11727:1: ( rule__ArrowExpr__RightAssignment_1_1 )
+            // InternalSpear.g:12300:1: ( ( rule__ArrowExpr__RightAssignment_1_1 ) )
+            // InternalSpear.g:12301:1: ( rule__ArrowExpr__RightAssignment_1_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrowExprAccess().getRightAssignment_1_1()); 
             }
-            // InternalSpear.g:11728:1: ( rule__ArrowExpr__RightAssignment_1_1 )
-            // InternalSpear.g:11728:2: rule__ArrowExpr__RightAssignment_1_1
+            // InternalSpear.g:12302:1: ( rule__ArrowExpr__RightAssignment_1_1 )
+            // InternalSpear.g:12302:2: rule__ArrowExpr__RightAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__ArrowExpr__RightAssignment_1_1();
@@ -33681,14 +35222,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ArrowExpr__Group_1_0__0"
-    // InternalSpear.g:11742:1: rule__ArrowExpr__Group_1_0__0 : rule__ArrowExpr__Group_1_0__0__Impl ;
+    // InternalSpear.g:12316:1: rule__ArrowExpr__Group_1_0__0 : rule__ArrowExpr__Group_1_0__0__Impl ;
     public final void rule__ArrowExpr__Group_1_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11746:1: ( rule__ArrowExpr__Group_1_0__0__Impl )
-            // InternalSpear.g:11747:2: rule__ArrowExpr__Group_1_0__0__Impl
+            // InternalSpear.g:12320:1: ( rule__ArrowExpr__Group_1_0__0__Impl )
+            // InternalSpear.g:12321:2: rule__ArrowExpr__Group_1_0__0__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ArrowExpr__Group_1_0__0__Impl();
@@ -33714,23 +35255,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ArrowExpr__Group_1_0__0__Impl"
-    // InternalSpear.g:11753:1: rule__ArrowExpr__Group_1_0__0__Impl : ( ( rule__ArrowExpr__Group_1_0_0__0 ) ) ;
+    // InternalSpear.g:12327:1: rule__ArrowExpr__Group_1_0__0__Impl : ( ( rule__ArrowExpr__Group_1_0_0__0 ) ) ;
     public final void rule__ArrowExpr__Group_1_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11757:1: ( ( ( rule__ArrowExpr__Group_1_0_0__0 ) ) )
-            // InternalSpear.g:11758:1: ( ( rule__ArrowExpr__Group_1_0_0__0 ) )
+            // InternalSpear.g:12331:1: ( ( ( rule__ArrowExpr__Group_1_0_0__0 ) ) )
+            // InternalSpear.g:12332:1: ( ( rule__ArrowExpr__Group_1_0_0__0 ) )
             {
-            // InternalSpear.g:11758:1: ( ( rule__ArrowExpr__Group_1_0_0__0 ) )
-            // InternalSpear.g:11759:1: ( rule__ArrowExpr__Group_1_0_0__0 )
+            // InternalSpear.g:12332:1: ( ( rule__ArrowExpr__Group_1_0_0__0 ) )
+            // InternalSpear.g:12333:1: ( rule__ArrowExpr__Group_1_0_0__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrowExprAccess().getGroup_1_0_0()); 
             }
-            // InternalSpear.g:11760:1: ( rule__ArrowExpr__Group_1_0_0__0 )
-            // InternalSpear.g:11760:2: rule__ArrowExpr__Group_1_0_0__0
+            // InternalSpear.g:12334:1: ( rule__ArrowExpr__Group_1_0_0__0 )
+            // InternalSpear.g:12334:2: rule__ArrowExpr__Group_1_0_0__0
             {
             pushFollow(FOLLOW_2);
             rule__ArrowExpr__Group_1_0_0__0();
@@ -33765,16 +35306,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ArrowExpr__Group_1_0_0__0"
-    // InternalSpear.g:11772:1: rule__ArrowExpr__Group_1_0_0__0 : rule__ArrowExpr__Group_1_0_0__0__Impl rule__ArrowExpr__Group_1_0_0__1 ;
+    // InternalSpear.g:12346:1: rule__ArrowExpr__Group_1_0_0__0 : rule__ArrowExpr__Group_1_0_0__0__Impl rule__ArrowExpr__Group_1_0_0__1 ;
     public final void rule__ArrowExpr__Group_1_0_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11776:1: ( rule__ArrowExpr__Group_1_0_0__0__Impl rule__ArrowExpr__Group_1_0_0__1 )
-            // InternalSpear.g:11777:2: rule__ArrowExpr__Group_1_0_0__0__Impl rule__ArrowExpr__Group_1_0_0__1
+            // InternalSpear.g:12350:1: ( rule__ArrowExpr__Group_1_0_0__0__Impl rule__ArrowExpr__Group_1_0_0__1 )
+            // InternalSpear.g:12351:2: rule__ArrowExpr__Group_1_0_0__0__Impl rule__ArrowExpr__Group_1_0_0__1
             {
-            pushFollow(FOLLOW_61);
+            pushFollow(FOLLOW_64);
             rule__ArrowExpr__Group_1_0_0__0__Impl();
 
             state._fsp--;
@@ -33803,23 +35344,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ArrowExpr__Group_1_0_0__0__Impl"
-    // InternalSpear.g:11784:1: rule__ArrowExpr__Group_1_0_0__0__Impl : ( () ) ;
+    // InternalSpear.g:12358:1: rule__ArrowExpr__Group_1_0_0__0__Impl : ( () ) ;
     public final void rule__ArrowExpr__Group_1_0_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11788:1: ( ( () ) )
-            // InternalSpear.g:11789:1: ( () )
+            // InternalSpear.g:12362:1: ( ( () ) )
+            // InternalSpear.g:12363:1: ( () )
             {
-            // InternalSpear.g:11789:1: ( () )
-            // InternalSpear.g:11790:1: ()
+            // InternalSpear.g:12363:1: ( () )
+            // InternalSpear.g:12364:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrowExprAccess().getBinaryExprLeftAction_1_0_0_0()); 
             }
-            // InternalSpear.g:11791:1: ()
-            // InternalSpear.g:11793:1: 
+            // InternalSpear.g:12365:1: ()
+            // InternalSpear.g:12367:1: 
             {
             }
 
@@ -33844,14 +35385,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ArrowExpr__Group_1_0_0__1"
-    // InternalSpear.g:11803:1: rule__ArrowExpr__Group_1_0_0__1 : rule__ArrowExpr__Group_1_0_0__1__Impl ;
+    // InternalSpear.g:12377:1: rule__ArrowExpr__Group_1_0_0__1 : rule__ArrowExpr__Group_1_0_0__1__Impl ;
     public final void rule__ArrowExpr__Group_1_0_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11807:1: ( rule__ArrowExpr__Group_1_0_0__1__Impl )
-            // InternalSpear.g:11808:2: rule__ArrowExpr__Group_1_0_0__1__Impl
+            // InternalSpear.g:12381:1: ( rule__ArrowExpr__Group_1_0_0__1__Impl )
+            // InternalSpear.g:12382:2: rule__ArrowExpr__Group_1_0_0__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ArrowExpr__Group_1_0_0__1__Impl();
@@ -33877,23 +35418,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ArrowExpr__Group_1_0_0__1__Impl"
-    // InternalSpear.g:11814:1: rule__ArrowExpr__Group_1_0_0__1__Impl : ( ( rule__ArrowExpr__OpAssignment_1_0_0_1 ) ) ;
+    // InternalSpear.g:12388:1: rule__ArrowExpr__Group_1_0_0__1__Impl : ( ( rule__ArrowExpr__OpAssignment_1_0_0_1 ) ) ;
     public final void rule__ArrowExpr__Group_1_0_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11818:1: ( ( ( rule__ArrowExpr__OpAssignment_1_0_0_1 ) ) )
-            // InternalSpear.g:11819:1: ( ( rule__ArrowExpr__OpAssignment_1_0_0_1 ) )
+            // InternalSpear.g:12392:1: ( ( ( rule__ArrowExpr__OpAssignment_1_0_0_1 ) ) )
+            // InternalSpear.g:12393:1: ( ( rule__ArrowExpr__OpAssignment_1_0_0_1 ) )
             {
-            // InternalSpear.g:11819:1: ( ( rule__ArrowExpr__OpAssignment_1_0_0_1 ) )
-            // InternalSpear.g:11820:1: ( rule__ArrowExpr__OpAssignment_1_0_0_1 )
+            // InternalSpear.g:12393:1: ( ( rule__ArrowExpr__OpAssignment_1_0_0_1 ) )
+            // InternalSpear.g:12394:1: ( rule__ArrowExpr__OpAssignment_1_0_0_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrowExprAccess().getOpAssignment_1_0_0_1()); 
             }
-            // InternalSpear.g:11821:1: ( rule__ArrowExpr__OpAssignment_1_0_0_1 )
-            // InternalSpear.g:11821:2: rule__ArrowExpr__OpAssignment_1_0_0_1
+            // InternalSpear.g:12395:1: ( rule__ArrowExpr__OpAssignment_1_0_0_1 )
+            // InternalSpear.g:12395:2: rule__ArrowExpr__OpAssignment_1_0_0_1
             {
             pushFollow(FOLLOW_2);
             rule__ArrowExpr__OpAssignment_1_0_0_1();
@@ -33928,16 +35469,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixExpr__Group_0__0"
-    // InternalSpear.g:11835:1: rule__PrefixExpr__Group_0__0 : rule__PrefixExpr__Group_0__0__Impl rule__PrefixExpr__Group_0__1 ;
+    // InternalSpear.g:12409:1: rule__PrefixExpr__Group_0__0 : rule__PrefixExpr__Group_0__0__Impl rule__PrefixExpr__Group_0__1 ;
     public final void rule__PrefixExpr__Group_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11839:1: ( rule__PrefixExpr__Group_0__0__Impl rule__PrefixExpr__Group_0__1 )
-            // InternalSpear.g:11840:2: rule__PrefixExpr__Group_0__0__Impl rule__PrefixExpr__Group_0__1
+            // InternalSpear.g:12413:1: ( rule__PrefixExpr__Group_0__0__Impl rule__PrefixExpr__Group_0__1 )
+            // InternalSpear.g:12414:2: rule__PrefixExpr__Group_0__0__Impl rule__PrefixExpr__Group_0__1
             {
-            pushFollow(FOLLOW_62);
+            pushFollow(FOLLOW_65);
             rule__PrefixExpr__Group_0__0__Impl();
 
             state._fsp--;
@@ -33966,23 +35507,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixExpr__Group_0__0__Impl"
-    // InternalSpear.g:11847:1: rule__PrefixExpr__Group_0__0__Impl : ( () ) ;
+    // InternalSpear.g:12421:1: rule__PrefixExpr__Group_0__0__Impl : ( () ) ;
     public final void rule__PrefixExpr__Group_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11851:1: ( ( () ) )
-            // InternalSpear.g:11852:1: ( () )
+            // InternalSpear.g:12425:1: ( ( () ) )
+            // InternalSpear.g:12426:1: ( () )
             {
-            // InternalSpear.g:11852:1: ( () )
-            // InternalSpear.g:11853:1: ()
+            // InternalSpear.g:12426:1: ( () )
+            // InternalSpear.g:12427:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPrefixExprAccess().getUnaryExprAction_0_0()); 
             }
-            // InternalSpear.g:11854:1: ()
-            // InternalSpear.g:11856:1: 
+            // InternalSpear.g:12428:1: ()
+            // InternalSpear.g:12430:1: 
             {
             }
 
@@ -34007,14 +35548,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixExpr__Group_0__1"
-    // InternalSpear.g:11866:1: rule__PrefixExpr__Group_0__1 : rule__PrefixExpr__Group_0__1__Impl rule__PrefixExpr__Group_0__2 ;
+    // InternalSpear.g:12440:1: rule__PrefixExpr__Group_0__1 : rule__PrefixExpr__Group_0__1__Impl rule__PrefixExpr__Group_0__2 ;
     public final void rule__PrefixExpr__Group_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11870:1: ( rule__PrefixExpr__Group_0__1__Impl rule__PrefixExpr__Group_0__2 )
-            // InternalSpear.g:11871:2: rule__PrefixExpr__Group_0__1__Impl rule__PrefixExpr__Group_0__2
+            // InternalSpear.g:12444:1: ( rule__PrefixExpr__Group_0__1__Impl rule__PrefixExpr__Group_0__2 )
+            // InternalSpear.g:12445:2: rule__PrefixExpr__Group_0__1__Impl rule__PrefixExpr__Group_0__2
             {
             pushFollow(FOLLOW_26);
             rule__PrefixExpr__Group_0__1__Impl();
@@ -34045,23 +35586,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixExpr__Group_0__1__Impl"
-    // InternalSpear.g:11878:1: rule__PrefixExpr__Group_0__1__Impl : ( ( rule__PrefixExpr__OpAssignment_0_1 ) ) ;
+    // InternalSpear.g:12452:1: rule__PrefixExpr__Group_0__1__Impl : ( ( rule__PrefixExpr__OpAssignment_0_1 ) ) ;
     public final void rule__PrefixExpr__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11882:1: ( ( ( rule__PrefixExpr__OpAssignment_0_1 ) ) )
-            // InternalSpear.g:11883:1: ( ( rule__PrefixExpr__OpAssignment_0_1 ) )
+            // InternalSpear.g:12456:1: ( ( ( rule__PrefixExpr__OpAssignment_0_1 ) ) )
+            // InternalSpear.g:12457:1: ( ( rule__PrefixExpr__OpAssignment_0_1 ) )
             {
-            // InternalSpear.g:11883:1: ( ( rule__PrefixExpr__OpAssignment_0_1 ) )
-            // InternalSpear.g:11884:1: ( rule__PrefixExpr__OpAssignment_0_1 )
+            // InternalSpear.g:12457:1: ( ( rule__PrefixExpr__OpAssignment_0_1 ) )
+            // InternalSpear.g:12458:1: ( rule__PrefixExpr__OpAssignment_0_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPrefixExprAccess().getOpAssignment_0_1()); 
             }
-            // InternalSpear.g:11885:1: ( rule__PrefixExpr__OpAssignment_0_1 )
-            // InternalSpear.g:11885:2: rule__PrefixExpr__OpAssignment_0_1
+            // InternalSpear.g:12459:1: ( rule__PrefixExpr__OpAssignment_0_1 )
+            // InternalSpear.g:12459:2: rule__PrefixExpr__OpAssignment_0_1
             {
             pushFollow(FOLLOW_2);
             rule__PrefixExpr__OpAssignment_0_1();
@@ -34096,14 +35637,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixExpr__Group_0__2"
-    // InternalSpear.g:11895:1: rule__PrefixExpr__Group_0__2 : rule__PrefixExpr__Group_0__2__Impl ;
+    // InternalSpear.g:12469:1: rule__PrefixExpr__Group_0__2 : rule__PrefixExpr__Group_0__2__Impl ;
     public final void rule__PrefixExpr__Group_0__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11899:1: ( rule__PrefixExpr__Group_0__2__Impl )
-            // InternalSpear.g:11900:2: rule__PrefixExpr__Group_0__2__Impl
+            // InternalSpear.g:12473:1: ( rule__PrefixExpr__Group_0__2__Impl )
+            // InternalSpear.g:12474:2: rule__PrefixExpr__Group_0__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__PrefixExpr__Group_0__2__Impl();
@@ -34129,23 +35670,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixExpr__Group_0__2__Impl"
-    // InternalSpear.g:11906:1: rule__PrefixExpr__Group_0__2__Impl : ( ( rule__PrefixExpr__ExprAssignment_0_2 ) ) ;
+    // InternalSpear.g:12480:1: rule__PrefixExpr__Group_0__2__Impl : ( ( rule__PrefixExpr__ExprAssignment_0_2 ) ) ;
     public final void rule__PrefixExpr__Group_0__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11910:1: ( ( ( rule__PrefixExpr__ExprAssignment_0_2 ) ) )
-            // InternalSpear.g:11911:1: ( ( rule__PrefixExpr__ExprAssignment_0_2 ) )
+            // InternalSpear.g:12484:1: ( ( ( rule__PrefixExpr__ExprAssignment_0_2 ) ) )
+            // InternalSpear.g:12485:1: ( ( rule__PrefixExpr__ExprAssignment_0_2 ) )
             {
-            // InternalSpear.g:11911:1: ( ( rule__PrefixExpr__ExprAssignment_0_2 ) )
-            // InternalSpear.g:11912:1: ( rule__PrefixExpr__ExprAssignment_0_2 )
+            // InternalSpear.g:12485:1: ( ( rule__PrefixExpr__ExprAssignment_0_2 ) )
+            // InternalSpear.g:12486:1: ( rule__PrefixExpr__ExprAssignment_0_2 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPrefixExprAccess().getExprAssignment_0_2()); 
             }
-            // InternalSpear.g:11913:1: ( rule__PrefixExpr__ExprAssignment_0_2 )
-            // InternalSpear.g:11913:2: rule__PrefixExpr__ExprAssignment_0_2
+            // InternalSpear.g:12487:1: ( rule__PrefixExpr__ExprAssignment_0_2 )
+            // InternalSpear.g:12487:2: rule__PrefixExpr__ExprAssignment_0_2
             {
             pushFollow(FOLLOW_2);
             rule__PrefixExpr__ExprAssignment_0_2();
@@ -34180,16 +35721,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixExpr__Group_1__0"
-    // InternalSpear.g:11929:1: rule__PrefixExpr__Group_1__0 : rule__PrefixExpr__Group_1__0__Impl rule__PrefixExpr__Group_1__1 ;
+    // InternalSpear.g:12503:1: rule__PrefixExpr__Group_1__0 : rule__PrefixExpr__Group_1__0__Impl rule__PrefixExpr__Group_1__1 ;
     public final void rule__PrefixExpr__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11933:1: ( rule__PrefixExpr__Group_1__0__Impl rule__PrefixExpr__Group_1__1 )
-            // InternalSpear.g:11934:2: rule__PrefixExpr__Group_1__0__Impl rule__PrefixExpr__Group_1__1
+            // InternalSpear.g:12507:1: ( rule__PrefixExpr__Group_1__0__Impl rule__PrefixExpr__Group_1__1 )
+            // InternalSpear.g:12508:2: rule__PrefixExpr__Group_1__0__Impl rule__PrefixExpr__Group_1__1
             {
-            pushFollow(FOLLOW_63);
+            pushFollow(FOLLOW_66);
             rule__PrefixExpr__Group_1__0__Impl();
 
             state._fsp--;
@@ -34218,23 +35759,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixExpr__Group_1__0__Impl"
-    // InternalSpear.g:11941:1: rule__PrefixExpr__Group_1__0__Impl : ( () ) ;
+    // InternalSpear.g:12515:1: rule__PrefixExpr__Group_1__0__Impl : ( () ) ;
     public final void rule__PrefixExpr__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11945:1: ( ( () ) )
-            // InternalSpear.g:11946:1: ( () )
+            // InternalSpear.g:12519:1: ( ( () ) )
+            // InternalSpear.g:12520:1: ( () )
             {
-            // InternalSpear.g:11946:1: ( () )
-            // InternalSpear.g:11947:1: ()
+            // InternalSpear.g:12520:1: ( () )
+            // InternalSpear.g:12521:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPrefixExprAccess().getPreviousExprAction_1_0()); 
             }
-            // InternalSpear.g:11948:1: ()
-            // InternalSpear.g:11950:1: 
+            // InternalSpear.g:12522:1: ()
+            // InternalSpear.g:12524:1: 
             {
             }
 
@@ -34259,14 +35800,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixExpr__Group_1__1"
-    // InternalSpear.g:11960:1: rule__PrefixExpr__Group_1__1 : rule__PrefixExpr__Group_1__1__Impl rule__PrefixExpr__Group_1__2 ;
+    // InternalSpear.g:12534:1: rule__PrefixExpr__Group_1__1 : rule__PrefixExpr__Group_1__1__Impl rule__PrefixExpr__Group_1__2 ;
     public final void rule__PrefixExpr__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11964:1: ( rule__PrefixExpr__Group_1__1__Impl rule__PrefixExpr__Group_1__2 )
-            // InternalSpear.g:11965:2: rule__PrefixExpr__Group_1__1__Impl rule__PrefixExpr__Group_1__2
+            // InternalSpear.g:12538:1: ( rule__PrefixExpr__Group_1__1__Impl rule__PrefixExpr__Group_1__2 )
+            // InternalSpear.g:12539:2: rule__PrefixExpr__Group_1__1__Impl rule__PrefixExpr__Group_1__2
             {
             pushFollow(FOLLOW_26);
             rule__PrefixExpr__Group_1__1__Impl();
@@ -34297,22 +35838,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixExpr__Group_1__1__Impl"
-    // InternalSpear.g:11972:1: rule__PrefixExpr__Group_1__1__Impl : ( 'previous' ) ;
+    // InternalSpear.g:12546:1: rule__PrefixExpr__Group_1__1__Impl : ( 'previous' ) ;
     public final void rule__PrefixExpr__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11976:1: ( ( 'previous' ) )
-            // InternalSpear.g:11977:1: ( 'previous' )
+            // InternalSpear.g:12550:1: ( ( 'previous' ) )
+            // InternalSpear.g:12551:1: ( 'previous' )
             {
-            // InternalSpear.g:11977:1: ( 'previous' )
-            // InternalSpear.g:11978:1: 'previous'
+            // InternalSpear.g:12551:1: ( 'previous' )
+            // InternalSpear.g:12552:1: 'previous'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPrefixExprAccess().getPreviousKeyword_1_1()); 
             }
-            match(input,101,FOLLOW_2); if (state.failed) return ;
+            match(input,102,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getPrefixExprAccess().getPreviousKeyword_1_1()); 
             }
@@ -34338,16 +35879,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixExpr__Group_1__2"
-    // InternalSpear.g:11991:1: rule__PrefixExpr__Group_1__2 : rule__PrefixExpr__Group_1__2__Impl rule__PrefixExpr__Group_1__3 ;
+    // InternalSpear.g:12565:1: rule__PrefixExpr__Group_1__2 : rule__PrefixExpr__Group_1__2__Impl rule__PrefixExpr__Group_1__3 ;
     public final void rule__PrefixExpr__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:11995:1: ( rule__PrefixExpr__Group_1__2__Impl rule__PrefixExpr__Group_1__3 )
-            // InternalSpear.g:11996:2: rule__PrefixExpr__Group_1__2__Impl rule__PrefixExpr__Group_1__3
+            // InternalSpear.g:12569:1: ( rule__PrefixExpr__Group_1__2__Impl rule__PrefixExpr__Group_1__3 )
+            // InternalSpear.g:12570:2: rule__PrefixExpr__Group_1__2__Impl rule__PrefixExpr__Group_1__3
             {
-            pushFollow(FOLLOW_64);
+            pushFollow(FOLLOW_67);
             rule__PrefixExpr__Group_1__2__Impl();
 
             state._fsp--;
@@ -34376,23 +35917,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixExpr__Group_1__2__Impl"
-    // InternalSpear.g:12003:1: rule__PrefixExpr__Group_1__2__Impl : ( ( rule__PrefixExpr__VarAssignment_1_2 ) ) ;
+    // InternalSpear.g:12577:1: rule__PrefixExpr__Group_1__2__Impl : ( ( rule__PrefixExpr__VarAssignment_1_2 ) ) ;
     public final void rule__PrefixExpr__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12007:1: ( ( ( rule__PrefixExpr__VarAssignment_1_2 ) ) )
-            // InternalSpear.g:12008:1: ( ( rule__PrefixExpr__VarAssignment_1_2 ) )
+            // InternalSpear.g:12581:1: ( ( ( rule__PrefixExpr__VarAssignment_1_2 ) ) )
+            // InternalSpear.g:12582:1: ( ( rule__PrefixExpr__VarAssignment_1_2 ) )
             {
-            // InternalSpear.g:12008:1: ( ( rule__PrefixExpr__VarAssignment_1_2 ) )
-            // InternalSpear.g:12009:1: ( rule__PrefixExpr__VarAssignment_1_2 )
+            // InternalSpear.g:12582:1: ( ( rule__PrefixExpr__VarAssignment_1_2 ) )
+            // InternalSpear.g:12583:1: ( rule__PrefixExpr__VarAssignment_1_2 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPrefixExprAccess().getVarAssignment_1_2()); 
             }
-            // InternalSpear.g:12010:1: ( rule__PrefixExpr__VarAssignment_1_2 )
-            // InternalSpear.g:12010:2: rule__PrefixExpr__VarAssignment_1_2
+            // InternalSpear.g:12584:1: ( rule__PrefixExpr__VarAssignment_1_2 )
+            // InternalSpear.g:12584:2: rule__PrefixExpr__VarAssignment_1_2
             {
             pushFollow(FOLLOW_2);
             rule__PrefixExpr__VarAssignment_1_2();
@@ -34427,14 +35968,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixExpr__Group_1__3"
-    // InternalSpear.g:12020:1: rule__PrefixExpr__Group_1__3 : rule__PrefixExpr__Group_1__3__Impl ;
+    // InternalSpear.g:12594:1: rule__PrefixExpr__Group_1__3 : rule__PrefixExpr__Group_1__3__Impl ;
     public final void rule__PrefixExpr__Group_1__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12024:1: ( rule__PrefixExpr__Group_1__3__Impl )
-            // InternalSpear.g:12025:2: rule__PrefixExpr__Group_1__3__Impl
+            // InternalSpear.g:12598:1: ( rule__PrefixExpr__Group_1__3__Impl )
+            // InternalSpear.g:12599:2: rule__PrefixExpr__Group_1__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__PrefixExpr__Group_1__3__Impl();
@@ -34460,35 +36001,35 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixExpr__Group_1__3__Impl"
-    // InternalSpear.g:12031:1: rule__PrefixExpr__Group_1__3__Impl : ( ( rule__PrefixExpr__Group_1_3__0 )? ) ;
+    // InternalSpear.g:12605:1: rule__PrefixExpr__Group_1__3__Impl : ( ( rule__PrefixExpr__Group_1_3__0 )? ) ;
     public final void rule__PrefixExpr__Group_1__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12035:1: ( ( ( rule__PrefixExpr__Group_1_3__0 )? ) )
-            // InternalSpear.g:12036:1: ( ( rule__PrefixExpr__Group_1_3__0 )? )
+            // InternalSpear.g:12609:1: ( ( ( rule__PrefixExpr__Group_1_3__0 )? ) )
+            // InternalSpear.g:12610:1: ( ( rule__PrefixExpr__Group_1_3__0 )? )
             {
-            // InternalSpear.g:12036:1: ( ( rule__PrefixExpr__Group_1_3__0 )? )
-            // InternalSpear.g:12037:1: ( rule__PrefixExpr__Group_1_3__0 )?
+            // InternalSpear.g:12610:1: ( ( rule__PrefixExpr__Group_1_3__0 )? )
+            // InternalSpear.g:12611:1: ( rule__PrefixExpr__Group_1_3__0 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPrefixExprAccess().getGroup_1_3()); 
             }
-            // InternalSpear.g:12038:1: ( rule__PrefixExpr__Group_1_3__0 )?
-            int alt92=2;
-            int LA92_0 = input.LA(1);
+            // InternalSpear.g:12612:1: ( rule__PrefixExpr__Group_1_3__0 )?
+            int alt96=2;
+            int LA96_0 = input.LA(1);
 
-            if ( (LA92_0==102) ) {
-                int LA92_1 = input.LA(2);
+            if ( (LA96_0==103) ) {
+                int LA96_1 = input.LA(2);
 
-                if ( (synpred132_InternalSpear()) ) {
-                    alt92=1;
+                if ( (synpred136_InternalSpear()) ) {
+                    alt96=1;
                 }
             }
-            switch (alt92) {
+            switch (alt96) {
                 case 1 :
-                    // InternalSpear.g:12038:2: rule__PrefixExpr__Group_1_3__0
+                    // InternalSpear.g:12612:2: rule__PrefixExpr__Group_1_3__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__PrefixExpr__Group_1_3__0();
@@ -34526,16 +36067,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixExpr__Group_1_3__0"
-    // InternalSpear.g:12056:1: rule__PrefixExpr__Group_1_3__0 : rule__PrefixExpr__Group_1_3__0__Impl rule__PrefixExpr__Group_1_3__1 ;
+    // InternalSpear.g:12630:1: rule__PrefixExpr__Group_1_3__0 : rule__PrefixExpr__Group_1_3__0__Impl rule__PrefixExpr__Group_1_3__1 ;
     public final void rule__PrefixExpr__Group_1_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12060:1: ( rule__PrefixExpr__Group_1_3__0__Impl rule__PrefixExpr__Group_1_3__1 )
-            // InternalSpear.g:12061:2: rule__PrefixExpr__Group_1_3__0__Impl rule__PrefixExpr__Group_1_3__1
+            // InternalSpear.g:12634:1: ( rule__PrefixExpr__Group_1_3__0__Impl rule__PrefixExpr__Group_1_3__1 )
+            // InternalSpear.g:12635:2: rule__PrefixExpr__Group_1_3__0__Impl rule__PrefixExpr__Group_1_3__1
             {
-            pushFollow(FOLLOW_65);
+            pushFollow(FOLLOW_68);
             rule__PrefixExpr__Group_1_3__0__Impl();
 
             state._fsp--;
@@ -34564,25 +36105,25 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixExpr__Group_1_3__0__Impl"
-    // InternalSpear.g:12068:1: rule__PrefixExpr__Group_1_3__0__Impl : ( ( 'with' ) ) ;
+    // InternalSpear.g:12642:1: rule__PrefixExpr__Group_1_3__0__Impl : ( ( 'with' ) ) ;
     public final void rule__PrefixExpr__Group_1_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12072:1: ( ( ( 'with' ) ) )
-            // InternalSpear.g:12073:1: ( ( 'with' ) )
+            // InternalSpear.g:12646:1: ( ( ( 'with' ) ) )
+            // InternalSpear.g:12647:1: ( ( 'with' ) )
             {
-            // InternalSpear.g:12073:1: ( ( 'with' ) )
-            // InternalSpear.g:12074:1: ( 'with' )
+            // InternalSpear.g:12647:1: ( ( 'with' ) )
+            // InternalSpear.g:12648:1: ( 'with' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPrefixExprAccess().getWithKeyword_1_3_0()); 
             }
-            // InternalSpear.g:12075:1: ( 'with' )
-            // InternalSpear.g:12076:2: 'with'
+            // InternalSpear.g:12649:1: ( 'with' )
+            // InternalSpear.g:12650:2: 'with'
             {
-            match(input,102,FOLLOW_2); if (state.failed) return ;
+            match(input,103,FOLLOW_2); if (state.failed) return ;
 
             }
 
@@ -34611,16 +36152,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixExpr__Group_1_3__1"
-    // InternalSpear.g:12087:1: rule__PrefixExpr__Group_1_3__1 : rule__PrefixExpr__Group_1_3__1__Impl rule__PrefixExpr__Group_1_3__2 ;
+    // InternalSpear.g:12661:1: rule__PrefixExpr__Group_1_3__1 : rule__PrefixExpr__Group_1_3__1__Impl rule__PrefixExpr__Group_1_3__2 ;
     public final void rule__PrefixExpr__Group_1_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12091:1: ( rule__PrefixExpr__Group_1_3__1__Impl rule__PrefixExpr__Group_1_3__2 )
-            // InternalSpear.g:12092:2: rule__PrefixExpr__Group_1_3__1__Impl rule__PrefixExpr__Group_1_3__2
+            // InternalSpear.g:12665:1: ( rule__PrefixExpr__Group_1_3__1__Impl rule__PrefixExpr__Group_1_3__2 )
+            // InternalSpear.g:12666:2: rule__PrefixExpr__Group_1_3__1__Impl rule__PrefixExpr__Group_1_3__2
             {
-            pushFollow(FOLLOW_66);
+            pushFollow(FOLLOW_69);
             rule__PrefixExpr__Group_1_3__1__Impl();
 
             state._fsp--;
@@ -34649,22 +36190,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixExpr__Group_1_3__1__Impl"
-    // InternalSpear.g:12099:1: rule__PrefixExpr__Group_1_3__1__Impl : ( 'initial' ) ;
+    // InternalSpear.g:12673:1: rule__PrefixExpr__Group_1_3__1__Impl : ( 'initial' ) ;
     public final void rule__PrefixExpr__Group_1_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12103:1: ( ( 'initial' ) )
-            // InternalSpear.g:12104:1: ( 'initial' )
+            // InternalSpear.g:12677:1: ( ( 'initial' ) )
+            // InternalSpear.g:12678:1: ( 'initial' )
             {
-            // InternalSpear.g:12104:1: ( 'initial' )
-            // InternalSpear.g:12105:1: 'initial'
+            // InternalSpear.g:12678:1: ( 'initial' )
+            // InternalSpear.g:12679:1: 'initial'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPrefixExprAccess().getInitialKeyword_1_3_1()); 
             }
-            match(input,103,FOLLOW_2); if (state.failed) return ;
+            match(input,104,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getPrefixExprAccess().getInitialKeyword_1_3_1()); 
             }
@@ -34690,14 +36231,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixExpr__Group_1_3__2"
-    // InternalSpear.g:12118:1: rule__PrefixExpr__Group_1_3__2 : rule__PrefixExpr__Group_1_3__2__Impl rule__PrefixExpr__Group_1_3__3 ;
+    // InternalSpear.g:12692:1: rule__PrefixExpr__Group_1_3__2 : rule__PrefixExpr__Group_1_3__2__Impl rule__PrefixExpr__Group_1_3__3 ;
     public final void rule__PrefixExpr__Group_1_3__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12122:1: ( rule__PrefixExpr__Group_1_3__2__Impl rule__PrefixExpr__Group_1_3__3 )
-            // InternalSpear.g:12123:2: rule__PrefixExpr__Group_1_3__2__Impl rule__PrefixExpr__Group_1_3__3
+            // InternalSpear.g:12696:1: ( rule__PrefixExpr__Group_1_3__2__Impl rule__PrefixExpr__Group_1_3__3 )
+            // InternalSpear.g:12697:2: rule__PrefixExpr__Group_1_3__2__Impl rule__PrefixExpr__Group_1_3__3
             {
             pushFollow(FOLLOW_26);
             rule__PrefixExpr__Group_1_3__2__Impl();
@@ -34728,22 +36269,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixExpr__Group_1_3__2__Impl"
-    // InternalSpear.g:12130:1: rule__PrefixExpr__Group_1_3__2__Impl : ( 'value' ) ;
+    // InternalSpear.g:12704:1: rule__PrefixExpr__Group_1_3__2__Impl : ( 'value' ) ;
     public final void rule__PrefixExpr__Group_1_3__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12134:1: ( ( 'value' ) )
-            // InternalSpear.g:12135:1: ( 'value' )
+            // InternalSpear.g:12708:1: ( ( 'value' ) )
+            // InternalSpear.g:12709:1: ( 'value' )
             {
-            // InternalSpear.g:12135:1: ( 'value' )
-            // InternalSpear.g:12136:1: 'value'
+            // InternalSpear.g:12709:1: ( 'value' )
+            // InternalSpear.g:12710:1: 'value'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPrefixExprAccess().getValueKeyword_1_3_2()); 
             }
-            match(input,104,FOLLOW_2); if (state.failed) return ;
+            match(input,105,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getPrefixExprAccess().getValueKeyword_1_3_2()); 
             }
@@ -34769,14 +36310,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixExpr__Group_1_3__3"
-    // InternalSpear.g:12149:1: rule__PrefixExpr__Group_1_3__3 : rule__PrefixExpr__Group_1_3__3__Impl ;
+    // InternalSpear.g:12723:1: rule__PrefixExpr__Group_1_3__3 : rule__PrefixExpr__Group_1_3__3__Impl ;
     public final void rule__PrefixExpr__Group_1_3__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12153:1: ( rule__PrefixExpr__Group_1_3__3__Impl )
-            // InternalSpear.g:12154:2: rule__PrefixExpr__Group_1_3__3__Impl
+            // InternalSpear.g:12727:1: ( rule__PrefixExpr__Group_1_3__3__Impl )
+            // InternalSpear.g:12728:2: rule__PrefixExpr__Group_1_3__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__PrefixExpr__Group_1_3__3__Impl();
@@ -34802,23 +36343,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixExpr__Group_1_3__3__Impl"
-    // InternalSpear.g:12160:1: rule__PrefixExpr__Group_1_3__3__Impl : ( ( rule__PrefixExpr__InitAssignment_1_3_3 ) ) ;
+    // InternalSpear.g:12734:1: rule__PrefixExpr__Group_1_3__3__Impl : ( ( rule__PrefixExpr__InitAssignment_1_3_3 ) ) ;
     public final void rule__PrefixExpr__Group_1_3__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12164:1: ( ( ( rule__PrefixExpr__InitAssignment_1_3_3 ) ) )
-            // InternalSpear.g:12165:1: ( ( rule__PrefixExpr__InitAssignment_1_3_3 ) )
+            // InternalSpear.g:12738:1: ( ( ( rule__PrefixExpr__InitAssignment_1_3_3 ) ) )
+            // InternalSpear.g:12739:1: ( ( rule__PrefixExpr__InitAssignment_1_3_3 ) )
             {
-            // InternalSpear.g:12165:1: ( ( rule__PrefixExpr__InitAssignment_1_3_3 ) )
-            // InternalSpear.g:12166:1: ( rule__PrefixExpr__InitAssignment_1_3_3 )
+            // InternalSpear.g:12739:1: ( ( rule__PrefixExpr__InitAssignment_1_3_3 ) )
+            // InternalSpear.g:12740:1: ( rule__PrefixExpr__InitAssignment_1_3_3 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPrefixExprAccess().getInitAssignment_1_3_3()); 
             }
-            // InternalSpear.g:12167:1: ( rule__PrefixExpr__InitAssignment_1_3_3 )
-            // InternalSpear.g:12167:2: rule__PrefixExpr__InitAssignment_1_3_3
+            // InternalSpear.g:12741:1: ( rule__PrefixExpr__InitAssignment_1_3_3 )
+            // InternalSpear.g:12741:2: rule__PrefixExpr__InitAssignment_1_3_3
             {
             pushFollow(FOLLOW_2);
             rule__PrefixExpr__InitAssignment_1_3_3();
@@ -34853,16 +36394,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group__0"
-    // InternalSpear.g:12185:1: rule__AccessExpr__Group__0 : rule__AccessExpr__Group__0__Impl rule__AccessExpr__Group__1 ;
+    // InternalSpear.g:12759:1: rule__AccessExpr__Group__0 : rule__AccessExpr__Group__0__Impl rule__AccessExpr__Group__1 ;
     public final void rule__AccessExpr__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12189:1: ( rule__AccessExpr__Group__0__Impl rule__AccessExpr__Group__1 )
-            // InternalSpear.g:12190:2: rule__AccessExpr__Group__0__Impl rule__AccessExpr__Group__1
+            // InternalSpear.g:12763:1: ( rule__AccessExpr__Group__0__Impl rule__AccessExpr__Group__1 )
+            // InternalSpear.g:12764:2: rule__AccessExpr__Group__0__Impl rule__AccessExpr__Group__1
             {
-            pushFollow(FOLLOW_67);
+            pushFollow(FOLLOW_70);
             rule__AccessExpr__Group__0__Impl();
 
             state._fsp--;
@@ -34891,17 +36432,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group__0__Impl"
-    // InternalSpear.g:12197:1: rule__AccessExpr__Group__0__Impl : ( ruleAtomicExpr ) ;
+    // InternalSpear.g:12771:1: rule__AccessExpr__Group__0__Impl : ( ruleAtomicExpr ) ;
     public final void rule__AccessExpr__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12201:1: ( ( ruleAtomicExpr ) )
-            // InternalSpear.g:12202:1: ( ruleAtomicExpr )
+            // InternalSpear.g:12775:1: ( ( ruleAtomicExpr ) )
+            // InternalSpear.g:12776:1: ( ruleAtomicExpr )
             {
-            // InternalSpear.g:12202:1: ( ruleAtomicExpr )
-            // InternalSpear.g:12203:1: ruleAtomicExpr
+            // InternalSpear.g:12776:1: ( ruleAtomicExpr )
+            // InternalSpear.g:12777:1: ruleAtomicExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getAtomicExprParserRuleCall_0()); 
@@ -34936,14 +36477,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group__1"
-    // InternalSpear.g:12214:1: rule__AccessExpr__Group__1 : rule__AccessExpr__Group__1__Impl ;
+    // InternalSpear.g:12788:1: rule__AccessExpr__Group__1 : rule__AccessExpr__Group__1__Impl ;
     public final void rule__AccessExpr__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12218:1: ( rule__AccessExpr__Group__1__Impl )
-            // InternalSpear.g:12219:2: rule__AccessExpr__Group__1__Impl
+            // InternalSpear.g:12792:1: ( rule__AccessExpr__Group__1__Impl )
+            // InternalSpear.g:12793:2: rule__AccessExpr__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AccessExpr__Group__1__Impl();
@@ -34969,32 +36510,32 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group__1__Impl"
-    // InternalSpear.g:12225:1: rule__AccessExpr__Group__1__Impl : ( ( rule__AccessExpr__Alternatives_1 )* ) ;
+    // InternalSpear.g:12799:1: rule__AccessExpr__Group__1__Impl : ( ( rule__AccessExpr__Alternatives_1 )* ) ;
     public final void rule__AccessExpr__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12229:1: ( ( ( rule__AccessExpr__Alternatives_1 )* ) )
-            // InternalSpear.g:12230:1: ( ( rule__AccessExpr__Alternatives_1 )* )
+            // InternalSpear.g:12803:1: ( ( ( rule__AccessExpr__Alternatives_1 )* ) )
+            // InternalSpear.g:12804:1: ( ( rule__AccessExpr__Alternatives_1 )* )
             {
-            // InternalSpear.g:12230:1: ( ( rule__AccessExpr__Alternatives_1 )* )
-            // InternalSpear.g:12231:1: ( rule__AccessExpr__Alternatives_1 )*
+            // InternalSpear.g:12804:1: ( ( rule__AccessExpr__Alternatives_1 )* )
+            // InternalSpear.g:12805:1: ( rule__AccessExpr__Alternatives_1 )*
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getAlternatives_1()); 
             }
-            // InternalSpear.g:12232:1: ( rule__AccessExpr__Alternatives_1 )*
-            loop93:
+            // InternalSpear.g:12806:1: ( rule__AccessExpr__Alternatives_1 )*
+            loop97:
             do {
-                int alt93=2;
+                int alt97=2;
                 switch ( input.LA(1) ) {
-                case 105:
+                case 106:
                     {
-                    int LA93_2 = input.LA(2);
+                    int LA97_2 = input.LA(2);
 
-                    if ( (synpred133_InternalSpear()) ) {
-                        alt93=1;
+                    if ( (synpred137_InternalSpear()) ) {
+                        alt97=1;
                     }
 
 
@@ -35002,10 +36543,10 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                     break;
                 case 83:
                     {
-                    int LA93_3 = input.LA(2);
+                    int LA97_3 = input.LA(2);
 
-                    if ( (synpred133_InternalSpear()) ) {
-                        alt93=1;
+                    if ( (synpred137_InternalSpear()) ) {
+                        alt97=1;
                     }
 
 
@@ -35013,10 +36554,10 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                     break;
                 case 85:
                     {
-                    int LA93_4 = input.LA(2);
+                    int LA97_4 = input.LA(2);
 
-                    if ( (synpred133_InternalSpear()) ) {
-                        alt93=1;
+                    if ( (synpred137_InternalSpear()) ) {
+                        alt97=1;
                     }
 
 
@@ -35025,11 +36566,11 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
                 }
 
-                switch (alt93) {
+                switch (alt97) {
             	case 1 :
-            	    // InternalSpear.g:12232:2: rule__AccessExpr__Alternatives_1
+            	    // InternalSpear.g:12806:2: rule__AccessExpr__Alternatives_1
             	    {
-            	    pushFollow(FOLLOW_68);
+            	    pushFollow(FOLLOW_71);
             	    rule__AccessExpr__Alternatives_1();
 
             	    state._fsp--;
@@ -35039,7 +36580,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop93;
+            	    break loop97;
                 }
             } while (true);
 
@@ -35068,14 +36609,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_0__0"
-    // InternalSpear.g:12246:1: rule__AccessExpr__Group_1_0__0 : rule__AccessExpr__Group_1_0__0__Impl rule__AccessExpr__Group_1_0__1 ;
+    // InternalSpear.g:12820:1: rule__AccessExpr__Group_1_0__0 : rule__AccessExpr__Group_1_0__0__Impl rule__AccessExpr__Group_1_0__1 ;
     public final void rule__AccessExpr__Group_1_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12250:1: ( rule__AccessExpr__Group_1_0__0__Impl rule__AccessExpr__Group_1_0__1 )
-            // InternalSpear.g:12251:2: rule__AccessExpr__Group_1_0__0__Impl rule__AccessExpr__Group_1_0__1
+            // InternalSpear.g:12824:1: ( rule__AccessExpr__Group_1_0__0__Impl rule__AccessExpr__Group_1_0__1 )
+            // InternalSpear.g:12825:2: rule__AccessExpr__Group_1_0__0__Impl rule__AccessExpr__Group_1_0__1
             {
             pushFollow(FOLLOW_3);
             rule__AccessExpr__Group_1_0__0__Impl();
@@ -35106,23 +36647,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_0__0__Impl"
-    // InternalSpear.g:12258:1: rule__AccessExpr__Group_1_0__0__Impl : ( ( rule__AccessExpr__Group_1_0_0__0 ) ) ;
+    // InternalSpear.g:12832:1: rule__AccessExpr__Group_1_0__0__Impl : ( ( rule__AccessExpr__Group_1_0_0__0 ) ) ;
     public final void rule__AccessExpr__Group_1_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12262:1: ( ( ( rule__AccessExpr__Group_1_0_0__0 ) ) )
-            // InternalSpear.g:12263:1: ( ( rule__AccessExpr__Group_1_0_0__0 ) )
+            // InternalSpear.g:12836:1: ( ( ( rule__AccessExpr__Group_1_0_0__0 ) ) )
+            // InternalSpear.g:12837:1: ( ( rule__AccessExpr__Group_1_0_0__0 ) )
             {
-            // InternalSpear.g:12263:1: ( ( rule__AccessExpr__Group_1_0_0__0 ) )
-            // InternalSpear.g:12264:1: ( rule__AccessExpr__Group_1_0_0__0 )
+            // InternalSpear.g:12837:1: ( ( rule__AccessExpr__Group_1_0_0__0 ) )
+            // InternalSpear.g:12838:1: ( rule__AccessExpr__Group_1_0_0__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getGroup_1_0_0()); 
             }
-            // InternalSpear.g:12265:1: ( rule__AccessExpr__Group_1_0_0__0 )
-            // InternalSpear.g:12265:2: rule__AccessExpr__Group_1_0_0__0
+            // InternalSpear.g:12839:1: ( rule__AccessExpr__Group_1_0_0__0 )
+            // InternalSpear.g:12839:2: rule__AccessExpr__Group_1_0_0__0
             {
             pushFollow(FOLLOW_2);
             rule__AccessExpr__Group_1_0_0__0();
@@ -35157,14 +36698,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_0__1"
-    // InternalSpear.g:12275:1: rule__AccessExpr__Group_1_0__1 : rule__AccessExpr__Group_1_0__1__Impl ;
+    // InternalSpear.g:12849:1: rule__AccessExpr__Group_1_0__1 : rule__AccessExpr__Group_1_0__1__Impl ;
     public final void rule__AccessExpr__Group_1_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12279:1: ( rule__AccessExpr__Group_1_0__1__Impl )
-            // InternalSpear.g:12280:2: rule__AccessExpr__Group_1_0__1__Impl
+            // InternalSpear.g:12853:1: ( rule__AccessExpr__Group_1_0__1__Impl )
+            // InternalSpear.g:12854:2: rule__AccessExpr__Group_1_0__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AccessExpr__Group_1_0__1__Impl();
@@ -35190,23 +36731,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_0__1__Impl"
-    // InternalSpear.g:12286:1: rule__AccessExpr__Group_1_0__1__Impl : ( ( rule__AccessExpr__FieldAssignment_1_0_1 ) ) ;
+    // InternalSpear.g:12860:1: rule__AccessExpr__Group_1_0__1__Impl : ( ( rule__AccessExpr__FieldAssignment_1_0_1 ) ) ;
     public final void rule__AccessExpr__Group_1_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12290:1: ( ( ( rule__AccessExpr__FieldAssignment_1_0_1 ) ) )
-            // InternalSpear.g:12291:1: ( ( rule__AccessExpr__FieldAssignment_1_0_1 ) )
+            // InternalSpear.g:12864:1: ( ( ( rule__AccessExpr__FieldAssignment_1_0_1 ) ) )
+            // InternalSpear.g:12865:1: ( ( rule__AccessExpr__FieldAssignment_1_0_1 ) )
             {
-            // InternalSpear.g:12291:1: ( ( rule__AccessExpr__FieldAssignment_1_0_1 ) )
-            // InternalSpear.g:12292:1: ( rule__AccessExpr__FieldAssignment_1_0_1 )
+            // InternalSpear.g:12865:1: ( ( rule__AccessExpr__FieldAssignment_1_0_1 ) )
+            // InternalSpear.g:12866:1: ( rule__AccessExpr__FieldAssignment_1_0_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getFieldAssignment_1_0_1()); 
             }
-            // InternalSpear.g:12293:1: ( rule__AccessExpr__FieldAssignment_1_0_1 )
-            // InternalSpear.g:12293:2: rule__AccessExpr__FieldAssignment_1_0_1
+            // InternalSpear.g:12867:1: ( rule__AccessExpr__FieldAssignment_1_0_1 )
+            // InternalSpear.g:12867:2: rule__AccessExpr__FieldAssignment_1_0_1
             {
             pushFollow(FOLLOW_2);
             rule__AccessExpr__FieldAssignment_1_0_1();
@@ -35241,14 +36782,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_0_0__0"
-    // InternalSpear.g:12307:1: rule__AccessExpr__Group_1_0_0__0 : rule__AccessExpr__Group_1_0_0__0__Impl ;
+    // InternalSpear.g:12881:1: rule__AccessExpr__Group_1_0_0__0 : rule__AccessExpr__Group_1_0_0__0__Impl ;
     public final void rule__AccessExpr__Group_1_0_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12311:1: ( rule__AccessExpr__Group_1_0_0__0__Impl )
-            // InternalSpear.g:12312:2: rule__AccessExpr__Group_1_0_0__0__Impl
+            // InternalSpear.g:12885:1: ( rule__AccessExpr__Group_1_0_0__0__Impl )
+            // InternalSpear.g:12886:2: rule__AccessExpr__Group_1_0_0__0__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AccessExpr__Group_1_0_0__0__Impl();
@@ -35274,23 +36815,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_0_0__0__Impl"
-    // InternalSpear.g:12318:1: rule__AccessExpr__Group_1_0_0__0__Impl : ( ( rule__AccessExpr__Group_1_0_0_0__0 ) ) ;
+    // InternalSpear.g:12892:1: rule__AccessExpr__Group_1_0_0__0__Impl : ( ( rule__AccessExpr__Group_1_0_0_0__0 ) ) ;
     public final void rule__AccessExpr__Group_1_0_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12322:1: ( ( ( rule__AccessExpr__Group_1_0_0_0__0 ) ) )
-            // InternalSpear.g:12323:1: ( ( rule__AccessExpr__Group_1_0_0_0__0 ) )
+            // InternalSpear.g:12896:1: ( ( ( rule__AccessExpr__Group_1_0_0_0__0 ) ) )
+            // InternalSpear.g:12897:1: ( ( rule__AccessExpr__Group_1_0_0_0__0 ) )
             {
-            // InternalSpear.g:12323:1: ( ( rule__AccessExpr__Group_1_0_0_0__0 ) )
-            // InternalSpear.g:12324:1: ( rule__AccessExpr__Group_1_0_0_0__0 )
+            // InternalSpear.g:12897:1: ( ( rule__AccessExpr__Group_1_0_0_0__0 ) )
+            // InternalSpear.g:12898:1: ( rule__AccessExpr__Group_1_0_0_0__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getGroup_1_0_0_0()); 
             }
-            // InternalSpear.g:12325:1: ( rule__AccessExpr__Group_1_0_0_0__0 )
-            // InternalSpear.g:12325:2: rule__AccessExpr__Group_1_0_0_0__0
+            // InternalSpear.g:12899:1: ( rule__AccessExpr__Group_1_0_0_0__0 )
+            // InternalSpear.g:12899:2: rule__AccessExpr__Group_1_0_0_0__0
             {
             pushFollow(FOLLOW_2);
             rule__AccessExpr__Group_1_0_0_0__0();
@@ -35325,16 +36866,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_0_0_0__0"
-    // InternalSpear.g:12337:1: rule__AccessExpr__Group_1_0_0_0__0 : rule__AccessExpr__Group_1_0_0_0__0__Impl rule__AccessExpr__Group_1_0_0_0__1 ;
+    // InternalSpear.g:12911:1: rule__AccessExpr__Group_1_0_0_0__0 : rule__AccessExpr__Group_1_0_0_0__0__Impl rule__AccessExpr__Group_1_0_0_0__1 ;
     public final void rule__AccessExpr__Group_1_0_0_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12341:1: ( rule__AccessExpr__Group_1_0_0_0__0__Impl rule__AccessExpr__Group_1_0_0_0__1 )
-            // InternalSpear.g:12342:2: rule__AccessExpr__Group_1_0_0_0__0__Impl rule__AccessExpr__Group_1_0_0_0__1
+            // InternalSpear.g:12915:1: ( rule__AccessExpr__Group_1_0_0_0__0__Impl rule__AccessExpr__Group_1_0_0_0__1 )
+            // InternalSpear.g:12916:2: rule__AccessExpr__Group_1_0_0_0__0__Impl rule__AccessExpr__Group_1_0_0_0__1
             {
-            pushFollow(FOLLOW_69);
+            pushFollow(FOLLOW_72);
             rule__AccessExpr__Group_1_0_0_0__0__Impl();
 
             state._fsp--;
@@ -35363,23 +36904,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_0_0_0__0__Impl"
-    // InternalSpear.g:12349:1: rule__AccessExpr__Group_1_0_0_0__0__Impl : ( () ) ;
+    // InternalSpear.g:12923:1: rule__AccessExpr__Group_1_0_0_0__0__Impl : ( () ) ;
     public final void rule__AccessExpr__Group_1_0_0_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12353:1: ( ( () ) )
-            // InternalSpear.g:12354:1: ( () )
+            // InternalSpear.g:12927:1: ( ( () ) )
+            // InternalSpear.g:12928:1: ( () )
             {
-            // InternalSpear.g:12354:1: ( () )
-            // InternalSpear.g:12355:1: ()
+            // InternalSpear.g:12928:1: ( () )
+            // InternalSpear.g:12929:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getRecordAccessExprRecordAction_1_0_0_0_0()); 
             }
-            // InternalSpear.g:12356:1: ()
-            // InternalSpear.g:12358:1: 
+            // InternalSpear.g:12930:1: ()
+            // InternalSpear.g:12932:1: 
             {
             }
 
@@ -35404,14 +36945,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_0_0_0__1"
-    // InternalSpear.g:12368:1: rule__AccessExpr__Group_1_0_0_0__1 : rule__AccessExpr__Group_1_0_0_0__1__Impl ;
+    // InternalSpear.g:12942:1: rule__AccessExpr__Group_1_0_0_0__1 : rule__AccessExpr__Group_1_0_0_0__1__Impl ;
     public final void rule__AccessExpr__Group_1_0_0_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12372:1: ( rule__AccessExpr__Group_1_0_0_0__1__Impl )
-            // InternalSpear.g:12373:2: rule__AccessExpr__Group_1_0_0_0__1__Impl
+            // InternalSpear.g:12946:1: ( rule__AccessExpr__Group_1_0_0_0__1__Impl )
+            // InternalSpear.g:12947:2: rule__AccessExpr__Group_1_0_0_0__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AccessExpr__Group_1_0_0_0__1__Impl();
@@ -35437,22 +36978,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_0_0_0__1__Impl"
-    // InternalSpear.g:12379:1: rule__AccessExpr__Group_1_0_0_0__1__Impl : ( '.' ) ;
+    // InternalSpear.g:12953:1: rule__AccessExpr__Group_1_0_0_0__1__Impl : ( '.' ) ;
     public final void rule__AccessExpr__Group_1_0_0_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12383:1: ( ( '.' ) )
-            // InternalSpear.g:12384:1: ( '.' )
+            // InternalSpear.g:12957:1: ( ( '.' ) )
+            // InternalSpear.g:12958:1: ( '.' )
             {
-            // InternalSpear.g:12384:1: ( '.' )
-            // InternalSpear.g:12385:1: '.'
+            // InternalSpear.g:12958:1: ( '.' )
+            // InternalSpear.g:12959:1: '.'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getFullStopKeyword_1_0_0_0_1()); 
             }
-            match(input,105,FOLLOW_2); if (state.failed) return ;
+            match(input,106,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getAccessExprAccess().getFullStopKeyword_1_0_0_0_1()); 
             }
@@ -35478,14 +37019,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_1__0"
-    // InternalSpear.g:12402:1: rule__AccessExpr__Group_1_1__0 : rule__AccessExpr__Group_1_1__0__Impl rule__AccessExpr__Group_1_1__1 ;
+    // InternalSpear.g:12976:1: rule__AccessExpr__Group_1_1__0 : rule__AccessExpr__Group_1_1__0__Impl rule__AccessExpr__Group_1_1__1 ;
     public final void rule__AccessExpr__Group_1_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12406:1: ( rule__AccessExpr__Group_1_1__0__Impl rule__AccessExpr__Group_1_1__1 )
-            // InternalSpear.g:12407:2: rule__AccessExpr__Group_1_1__0__Impl rule__AccessExpr__Group_1_1__1
+            // InternalSpear.g:12980:1: ( rule__AccessExpr__Group_1_1__0__Impl rule__AccessExpr__Group_1_1__1 )
+            // InternalSpear.g:12981:2: rule__AccessExpr__Group_1_1__0__Impl rule__AccessExpr__Group_1_1__1
             {
             pushFollow(FOLLOW_26);
             rule__AccessExpr__Group_1_1__0__Impl();
@@ -35516,23 +37057,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_1__0__Impl"
-    // InternalSpear.g:12414:1: rule__AccessExpr__Group_1_1__0__Impl : ( ( rule__AccessExpr__Group_1_1_0__0 ) ) ;
+    // InternalSpear.g:12988:1: rule__AccessExpr__Group_1_1__0__Impl : ( ( rule__AccessExpr__Group_1_1_0__0 ) ) ;
     public final void rule__AccessExpr__Group_1_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12418:1: ( ( ( rule__AccessExpr__Group_1_1_0__0 ) ) )
-            // InternalSpear.g:12419:1: ( ( rule__AccessExpr__Group_1_1_0__0 ) )
+            // InternalSpear.g:12992:1: ( ( ( rule__AccessExpr__Group_1_1_0__0 ) ) )
+            // InternalSpear.g:12993:1: ( ( rule__AccessExpr__Group_1_1_0__0 ) )
             {
-            // InternalSpear.g:12419:1: ( ( rule__AccessExpr__Group_1_1_0__0 ) )
-            // InternalSpear.g:12420:1: ( rule__AccessExpr__Group_1_1_0__0 )
+            // InternalSpear.g:12993:1: ( ( rule__AccessExpr__Group_1_1_0__0 ) )
+            // InternalSpear.g:12994:1: ( rule__AccessExpr__Group_1_1_0__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getGroup_1_1_0()); 
             }
-            // InternalSpear.g:12421:1: ( rule__AccessExpr__Group_1_1_0__0 )
-            // InternalSpear.g:12421:2: rule__AccessExpr__Group_1_1_0__0
+            // InternalSpear.g:12995:1: ( rule__AccessExpr__Group_1_1_0__0 )
+            // InternalSpear.g:12995:2: rule__AccessExpr__Group_1_1_0__0
             {
             pushFollow(FOLLOW_2);
             rule__AccessExpr__Group_1_1_0__0();
@@ -35567,16 +37108,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_1__1"
-    // InternalSpear.g:12431:1: rule__AccessExpr__Group_1_1__1 : rule__AccessExpr__Group_1_1__1__Impl rule__AccessExpr__Group_1_1__2 ;
+    // InternalSpear.g:13005:1: rule__AccessExpr__Group_1_1__1 : rule__AccessExpr__Group_1_1__1__Impl rule__AccessExpr__Group_1_1__2 ;
     public final void rule__AccessExpr__Group_1_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12435:1: ( rule__AccessExpr__Group_1_1__1__Impl rule__AccessExpr__Group_1_1__2 )
-            // InternalSpear.g:12436:2: rule__AccessExpr__Group_1_1__1__Impl rule__AccessExpr__Group_1_1__2
+            // InternalSpear.g:13009:1: ( rule__AccessExpr__Group_1_1__1__Impl rule__AccessExpr__Group_1_1__2 )
+            // InternalSpear.g:13010:2: rule__AccessExpr__Group_1_1__1__Impl rule__AccessExpr__Group_1_1__2
             {
-            pushFollow(FOLLOW_70);
+            pushFollow(FOLLOW_73);
             rule__AccessExpr__Group_1_1__1__Impl();
 
             state._fsp--;
@@ -35605,23 +37146,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_1__1__Impl"
-    // InternalSpear.g:12443:1: rule__AccessExpr__Group_1_1__1__Impl : ( ( rule__AccessExpr__ValueAssignment_1_1_1 ) ) ;
+    // InternalSpear.g:13017:1: rule__AccessExpr__Group_1_1__1__Impl : ( ( rule__AccessExpr__ValueAssignment_1_1_1 ) ) ;
     public final void rule__AccessExpr__Group_1_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12447:1: ( ( ( rule__AccessExpr__ValueAssignment_1_1_1 ) ) )
-            // InternalSpear.g:12448:1: ( ( rule__AccessExpr__ValueAssignment_1_1_1 ) )
+            // InternalSpear.g:13021:1: ( ( ( rule__AccessExpr__ValueAssignment_1_1_1 ) ) )
+            // InternalSpear.g:13022:1: ( ( rule__AccessExpr__ValueAssignment_1_1_1 ) )
             {
-            // InternalSpear.g:12448:1: ( ( rule__AccessExpr__ValueAssignment_1_1_1 ) )
-            // InternalSpear.g:12449:1: ( rule__AccessExpr__ValueAssignment_1_1_1 )
+            // InternalSpear.g:13022:1: ( ( rule__AccessExpr__ValueAssignment_1_1_1 ) )
+            // InternalSpear.g:13023:1: ( rule__AccessExpr__ValueAssignment_1_1_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getValueAssignment_1_1_1()); 
             }
-            // InternalSpear.g:12450:1: ( rule__AccessExpr__ValueAssignment_1_1_1 )
-            // InternalSpear.g:12450:2: rule__AccessExpr__ValueAssignment_1_1_1
+            // InternalSpear.g:13024:1: ( rule__AccessExpr__ValueAssignment_1_1_1 )
+            // InternalSpear.g:13024:2: rule__AccessExpr__ValueAssignment_1_1_1
             {
             pushFollow(FOLLOW_2);
             rule__AccessExpr__ValueAssignment_1_1_1();
@@ -35656,14 +37197,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_1__2"
-    // InternalSpear.g:12460:1: rule__AccessExpr__Group_1_1__2 : rule__AccessExpr__Group_1_1__2__Impl ;
+    // InternalSpear.g:13034:1: rule__AccessExpr__Group_1_1__2 : rule__AccessExpr__Group_1_1__2__Impl ;
     public final void rule__AccessExpr__Group_1_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12464:1: ( rule__AccessExpr__Group_1_1__2__Impl )
-            // InternalSpear.g:12465:2: rule__AccessExpr__Group_1_1__2__Impl
+            // InternalSpear.g:13038:1: ( rule__AccessExpr__Group_1_1__2__Impl )
+            // InternalSpear.g:13039:2: rule__AccessExpr__Group_1_1__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AccessExpr__Group_1_1__2__Impl();
@@ -35689,17 +37230,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_1__2__Impl"
-    // InternalSpear.g:12471:1: rule__AccessExpr__Group_1_1__2__Impl : ( '}' ) ;
+    // InternalSpear.g:13045:1: rule__AccessExpr__Group_1_1__2__Impl : ( '}' ) ;
     public final void rule__AccessExpr__Group_1_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12475:1: ( ( '}' ) )
-            // InternalSpear.g:12476:1: ( '}' )
+            // InternalSpear.g:13049:1: ( ( '}' ) )
+            // InternalSpear.g:13050:1: ( '}' )
             {
-            // InternalSpear.g:12476:1: ( '}' )
-            // InternalSpear.g:12477:1: '}'
+            // InternalSpear.g:13050:1: ( '}' )
+            // InternalSpear.g:13051:1: '}'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getRightCurlyBracketKeyword_1_1_2()); 
@@ -35730,14 +37271,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_1_0__0"
-    // InternalSpear.g:12496:1: rule__AccessExpr__Group_1_1_0__0 : rule__AccessExpr__Group_1_1_0__0__Impl ;
+    // InternalSpear.g:13070:1: rule__AccessExpr__Group_1_1_0__0 : rule__AccessExpr__Group_1_1_0__0__Impl ;
     public final void rule__AccessExpr__Group_1_1_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12500:1: ( rule__AccessExpr__Group_1_1_0__0__Impl )
-            // InternalSpear.g:12501:2: rule__AccessExpr__Group_1_1_0__0__Impl
+            // InternalSpear.g:13074:1: ( rule__AccessExpr__Group_1_1_0__0__Impl )
+            // InternalSpear.g:13075:2: rule__AccessExpr__Group_1_1_0__0__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AccessExpr__Group_1_1_0__0__Impl();
@@ -35763,23 +37304,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_1_0__0__Impl"
-    // InternalSpear.g:12507:1: rule__AccessExpr__Group_1_1_0__0__Impl : ( ( rule__AccessExpr__Group_1_1_0_0__0 ) ) ;
+    // InternalSpear.g:13081:1: rule__AccessExpr__Group_1_1_0__0__Impl : ( ( rule__AccessExpr__Group_1_1_0_0__0 ) ) ;
     public final void rule__AccessExpr__Group_1_1_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12511:1: ( ( ( rule__AccessExpr__Group_1_1_0_0__0 ) ) )
-            // InternalSpear.g:12512:1: ( ( rule__AccessExpr__Group_1_1_0_0__0 ) )
+            // InternalSpear.g:13085:1: ( ( ( rule__AccessExpr__Group_1_1_0_0__0 ) ) )
+            // InternalSpear.g:13086:1: ( ( rule__AccessExpr__Group_1_1_0_0__0 ) )
             {
-            // InternalSpear.g:12512:1: ( ( rule__AccessExpr__Group_1_1_0_0__0 ) )
-            // InternalSpear.g:12513:1: ( rule__AccessExpr__Group_1_1_0_0__0 )
+            // InternalSpear.g:13086:1: ( ( rule__AccessExpr__Group_1_1_0_0__0 ) )
+            // InternalSpear.g:13087:1: ( rule__AccessExpr__Group_1_1_0_0__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getGroup_1_1_0_0()); 
             }
-            // InternalSpear.g:12514:1: ( rule__AccessExpr__Group_1_1_0_0__0 )
-            // InternalSpear.g:12514:2: rule__AccessExpr__Group_1_1_0_0__0
+            // InternalSpear.g:13088:1: ( rule__AccessExpr__Group_1_1_0_0__0 )
+            // InternalSpear.g:13088:2: rule__AccessExpr__Group_1_1_0_0__0
             {
             pushFollow(FOLLOW_2);
             rule__AccessExpr__Group_1_1_0_0__0();
@@ -35814,14 +37355,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_1_0_0__0"
-    // InternalSpear.g:12526:1: rule__AccessExpr__Group_1_1_0_0__0 : rule__AccessExpr__Group_1_1_0_0__0__Impl rule__AccessExpr__Group_1_1_0_0__1 ;
+    // InternalSpear.g:13100:1: rule__AccessExpr__Group_1_1_0_0__0 : rule__AccessExpr__Group_1_1_0_0__0__Impl rule__AccessExpr__Group_1_1_0_0__1 ;
     public final void rule__AccessExpr__Group_1_1_0_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12530:1: ( rule__AccessExpr__Group_1_1_0_0__0__Impl rule__AccessExpr__Group_1_1_0_0__1 )
-            // InternalSpear.g:12531:2: rule__AccessExpr__Group_1_1_0_0__0__Impl rule__AccessExpr__Group_1_1_0_0__1
+            // InternalSpear.g:13104:1: ( rule__AccessExpr__Group_1_1_0_0__0__Impl rule__AccessExpr__Group_1_1_0_0__1 )
+            // InternalSpear.g:13105:2: rule__AccessExpr__Group_1_1_0_0__0__Impl rule__AccessExpr__Group_1_1_0_0__1
             {
             pushFollow(FOLLOW_35);
             rule__AccessExpr__Group_1_1_0_0__0__Impl();
@@ -35852,23 +37393,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_1_0_0__0__Impl"
-    // InternalSpear.g:12538:1: rule__AccessExpr__Group_1_1_0_0__0__Impl : ( () ) ;
+    // InternalSpear.g:13112:1: rule__AccessExpr__Group_1_1_0_0__0__Impl : ( () ) ;
     public final void rule__AccessExpr__Group_1_1_0_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12542:1: ( ( () ) )
-            // InternalSpear.g:12543:1: ( () )
+            // InternalSpear.g:13116:1: ( ( () ) )
+            // InternalSpear.g:13117:1: ( () )
             {
-            // InternalSpear.g:12543:1: ( () )
-            // InternalSpear.g:12544:1: ()
+            // InternalSpear.g:13117:1: ( () )
+            // InternalSpear.g:13118:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getRecordUpdateExprRecordAction_1_1_0_0_0()); 
             }
-            // InternalSpear.g:12545:1: ()
-            // InternalSpear.g:12547:1: 
+            // InternalSpear.g:13119:1: ()
+            // InternalSpear.g:13121:1: 
             {
             }
 
@@ -35893,14 +37434,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_1_0_0__1"
-    // InternalSpear.g:12557:1: rule__AccessExpr__Group_1_1_0_0__1 : rule__AccessExpr__Group_1_1_0_0__1__Impl rule__AccessExpr__Group_1_1_0_0__2 ;
+    // InternalSpear.g:13131:1: rule__AccessExpr__Group_1_1_0_0__1 : rule__AccessExpr__Group_1_1_0_0__1__Impl rule__AccessExpr__Group_1_1_0_0__2 ;
     public final void rule__AccessExpr__Group_1_1_0_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12561:1: ( rule__AccessExpr__Group_1_1_0_0__1__Impl rule__AccessExpr__Group_1_1_0_0__2 )
-            // InternalSpear.g:12562:2: rule__AccessExpr__Group_1_1_0_0__1__Impl rule__AccessExpr__Group_1_1_0_0__2
+            // InternalSpear.g:13135:1: ( rule__AccessExpr__Group_1_1_0_0__1__Impl rule__AccessExpr__Group_1_1_0_0__2 )
+            // InternalSpear.g:13136:2: rule__AccessExpr__Group_1_1_0_0__1__Impl rule__AccessExpr__Group_1_1_0_0__2
             {
             pushFollow(FOLLOW_3);
             rule__AccessExpr__Group_1_1_0_0__1__Impl();
@@ -35931,17 +37472,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_1_0_0__1__Impl"
-    // InternalSpear.g:12569:1: rule__AccessExpr__Group_1_1_0_0__1__Impl : ( '{' ) ;
+    // InternalSpear.g:13143:1: rule__AccessExpr__Group_1_1_0_0__1__Impl : ( '{' ) ;
     public final void rule__AccessExpr__Group_1_1_0_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12573:1: ( ( '{' ) )
-            // InternalSpear.g:12574:1: ( '{' )
+            // InternalSpear.g:13147:1: ( ( '{' ) )
+            // InternalSpear.g:13148:1: ( '{' )
             {
-            // InternalSpear.g:12574:1: ( '{' )
-            // InternalSpear.g:12575:1: '{'
+            // InternalSpear.g:13148:1: ( '{' )
+            // InternalSpear.g:13149:1: '{'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getLeftCurlyBracketKeyword_1_1_0_0_1()); 
@@ -35972,16 +37513,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_1_0_0__2"
-    // InternalSpear.g:12588:1: rule__AccessExpr__Group_1_1_0_0__2 : rule__AccessExpr__Group_1_1_0_0__2__Impl rule__AccessExpr__Group_1_1_0_0__3 ;
+    // InternalSpear.g:13162:1: rule__AccessExpr__Group_1_1_0_0__2 : rule__AccessExpr__Group_1_1_0_0__2__Impl rule__AccessExpr__Group_1_1_0_0__3 ;
     public final void rule__AccessExpr__Group_1_1_0_0__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12592:1: ( rule__AccessExpr__Group_1_1_0_0__2__Impl rule__AccessExpr__Group_1_1_0_0__3 )
-            // InternalSpear.g:12593:2: rule__AccessExpr__Group_1_1_0_0__2__Impl rule__AccessExpr__Group_1_1_0_0__3
+            // InternalSpear.g:13166:1: ( rule__AccessExpr__Group_1_1_0_0__2__Impl rule__AccessExpr__Group_1_1_0_0__3 )
+            // InternalSpear.g:13167:2: rule__AccessExpr__Group_1_1_0_0__2__Impl rule__AccessExpr__Group_1_1_0_0__3
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_74);
             rule__AccessExpr__Group_1_1_0_0__2__Impl();
 
             state._fsp--;
@@ -36010,23 +37551,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_1_0_0__2__Impl"
-    // InternalSpear.g:12600:1: rule__AccessExpr__Group_1_1_0_0__2__Impl : ( ( rule__AccessExpr__FieldAssignment_1_1_0_0_2 ) ) ;
+    // InternalSpear.g:13174:1: rule__AccessExpr__Group_1_1_0_0__2__Impl : ( ( rule__AccessExpr__FieldAssignment_1_1_0_0_2 ) ) ;
     public final void rule__AccessExpr__Group_1_1_0_0__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12604:1: ( ( ( rule__AccessExpr__FieldAssignment_1_1_0_0_2 ) ) )
-            // InternalSpear.g:12605:1: ( ( rule__AccessExpr__FieldAssignment_1_1_0_0_2 ) )
+            // InternalSpear.g:13178:1: ( ( ( rule__AccessExpr__FieldAssignment_1_1_0_0_2 ) ) )
+            // InternalSpear.g:13179:1: ( ( rule__AccessExpr__FieldAssignment_1_1_0_0_2 ) )
             {
-            // InternalSpear.g:12605:1: ( ( rule__AccessExpr__FieldAssignment_1_1_0_0_2 ) )
-            // InternalSpear.g:12606:1: ( rule__AccessExpr__FieldAssignment_1_1_0_0_2 )
+            // InternalSpear.g:13179:1: ( ( rule__AccessExpr__FieldAssignment_1_1_0_0_2 ) )
+            // InternalSpear.g:13180:1: ( rule__AccessExpr__FieldAssignment_1_1_0_0_2 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getFieldAssignment_1_1_0_0_2()); 
             }
-            // InternalSpear.g:12607:1: ( rule__AccessExpr__FieldAssignment_1_1_0_0_2 )
-            // InternalSpear.g:12607:2: rule__AccessExpr__FieldAssignment_1_1_0_0_2
+            // InternalSpear.g:13181:1: ( rule__AccessExpr__FieldAssignment_1_1_0_0_2 )
+            // InternalSpear.g:13181:2: rule__AccessExpr__FieldAssignment_1_1_0_0_2
             {
             pushFollow(FOLLOW_2);
             rule__AccessExpr__FieldAssignment_1_1_0_0_2();
@@ -36061,14 +37602,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_1_0_0__3"
-    // InternalSpear.g:12617:1: rule__AccessExpr__Group_1_1_0_0__3 : rule__AccessExpr__Group_1_1_0_0__3__Impl ;
+    // InternalSpear.g:13191:1: rule__AccessExpr__Group_1_1_0_0__3 : rule__AccessExpr__Group_1_1_0_0__3__Impl ;
     public final void rule__AccessExpr__Group_1_1_0_0__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12621:1: ( rule__AccessExpr__Group_1_1_0_0__3__Impl )
-            // InternalSpear.g:12622:2: rule__AccessExpr__Group_1_1_0_0__3__Impl
+            // InternalSpear.g:13195:1: ( rule__AccessExpr__Group_1_1_0_0__3__Impl )
+            // InternalSpear.g:13196:2: rule__AccessExpr__Group_1_1_0_0__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AccessExpr__Group_1_1_0_0__3__Impl();
@@ -36094,22 +37635,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_1_0_0__3__Impl"
-    // InternalSpear.g:12628:1: rule__AccessExpr__Group_1_1_0_0__3__Impl : ( ':=' ) ;
+    // InternalSpear.g:13202:1: rule__AccessExpr__Group_1_1_0_0__3__Impl : ( ':=' ) ;
     public final void rule__AccessExpr__Group_1_1_0_0__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12632:1: ( ( ':=' ) )
-            // InternalSpear.g:12633:1: ( ':=' )
+            // InternalSpear.g:13206:1: ( ( ':=' ) )
+            // InternalSpear.g:13207:1: ( ':=' )
             {
-            // InternalSpear.g:12633:1: ( ':=' )
-            // InternalSpear.g:12634:1: ':='
+            // InternalSpear.g:13207:1: ( ':=' )
+            // InternalSpear.g:13208:1: ':='
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getColonEqualsSignKeyword_1_1_0_0_3()); 
             }
-            match(input,106,FOLLOW_2); if (state.failed) return ;
+            match(input,107,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getAccessExprAccess().getColonEqualsSignKeyword_1_1_0_0_3()); 
             }
@@ -36135,14 +37676,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_2__0"
-    // InternalSpear.g:12655:1: rule__AccessExpr__Group_1_2__0 : rule__AccessExpr__Group_1_2__0__Impl rule__AccessExpr__Group_1_2__1 ;
+    // InternalSpear.g:13229:1: rule__AccessExpr__Group_1_2__0 : rule__AccessExpr__Group_1_2__0__Impl rule__AccessExpr__Group_1_2__1 ;
     public final void rule__AccessExpr__Group_1_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12659:1: ( rule__AccessExpr__Group_1_2__0__Impl rule__AccessExpr__Group_1_2__1 )
-            // InternalSpear.g:12660:2: rule__AccessExpr__Group_1_2__0__Impl rule__AccessExpr__Group_1_2__1
+            // InternalSpear.g:13233:1: ( rule__AccessExpr__Group_1_2__0__Impl rule__AccessExpr__Group_1_2__1 )
+            // InternalSpear.g:13234:2: rule__AccessExpr__Group_1_2__0__Impl rule__AccessExpr__Group_1_2__1
             {
             pushFollow(FOLLOW_26);
             rule__AccessExpr__Group_1_2__0__Impl();
@@ -36173,23 +37714,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_2__0__Impl"
-    // InternalSpear.g:12667:1: rule__AccessExpr__Group_1_2__0__Impl : ( ( rule__AccessExpr__Group_1_2_0__0 ) ) ;
+    // InternalSpear.g:13241:1: rule__AccessExpr__Group_1_2__0__Impl : ( ( rule__AccessExpr__Group_1_2_0__0 ) ) ;
     public final void rule__AccessExpr__Group_1_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12671:1: ( ( ( rule__AccessExpr__Group_1_2_0__0 ) ) )
-            // InternalSpear.g:12672:1: ( ( rule__AccessExpr__Group_1_2_0__0 ) )
+            // InternalSpear.g:13245:1: ( ( ( rule__AccessExpr__Group_1_2_0__0 ) ) )
+            // InternalSpear.g:13246:1: ( ( rule__AccessExpr__Group_1_2_0__0 ) )
             {
-            // InternalSpear.g:12672:1: ( ( rule__AccessExpr__Group_1_2_0__0 ) )
-            // InternalSpear.g:12673:1: ( rule__AccessExpr__Group_1_2_0__0 )
+            // InternalSpear.g:13246:1: ( ( rule__AccessExpr__Group_1_2_0__0 ) )
+            // InternalSpear.g:13247:1: ( rule__AccessExpr__Group_1_2_0__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getGroup_1_2_0()); 
             }
-            // InternalSpear.g:12674:1: ( rule__AccessExpr__Group_1_2_0__0 )
-            // InternalSpear.g:12674:2: rule__AccessExpr__Group_1_2_0__0
+            // InternalSpear.g:13248:1: ( rule__AccessExpr__Group_1_2_0__0 )
+            // InternalSpear.g:13248:2: rule__AccessExpr__Group_1_2_0__0
             {
             pushFollow(FOLLOW_2);
             rule__AccessExpr__Group_1_2_0__0();
@@ -36224,16 +37765,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_2__1"
-    // InternalSpear.g:12684:1: rule__AccessExpr__Group_1_2__1 : rule__AccessExpr__Group_1_2__1__Impl rule__AccessExpr__Group_1_2__2 ;
+    // InternalSpear.g:13258:1: rule__AccessExpr__Group_1_2__1 : rule__AccessExpr__Group_1_2__1__Impl rule__AccessExpr__Group_1_2__2 ;
     public final void rule__AccessExpr__Group_1_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12688:1: ( rule__AccessExpr__Group_1_2__1__Impl rule__AccessExpr__Group_1_2__2 )
-            // InternalSpear.g:12689:2: rule__AccessExpr__Group_1_2__1__Impl rule__AccessExpr__Group_1_2__2
+            // InternalSpear.g:13262:1: ( rule__AccessExpr__Group_1_2__1__Impl rule__AccessExpr__Group_1_2__2 )
+            // InternalSpear.g:13263:2: rule__AccessExpr__Group_1_2__1__Impl rule__AccessExpr__Group_1_2__2
             {
-            pushFollow(FOLLOW_72);
+            pushFollow(FOLLOW_75);
             rule__AccessExpr__Group_1_2__1__Impl();
 
             state._fsp--;
@@ -36262,23 +37803,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_2__1__Impl"
-    // InternalSpear.g:12696:1: rule__AccessExpr__Group_1_2__1__Impl : ( ( rule__AccessExpr__IndexAssignment_1_2_1 ) ) ;
+    // InternalSpear.g:13270:1: rule__AccessExpr__Group_1_2__1__Impl : ( ( rule__AccessExpr__IndexAssignment_1_2_1 ) ) ;
     public final void rule__AccessExpr__Group_1_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12700:1: ( ( ( rule__AccessExpr__IndexAssignment_1_2_1 ) ) )
-            // InternalSpear.g:12701:1: ( ( rule__AccessExpr__IndexAssignment_1_2_1 ) )
+            // InternalSpear.g:13274:1: ( ( ( rule__AccessExpr__IndexAssignment_1_2_1 ) ) )
+            // InternalSpear.g:13275:1: ( ( rule__AccessExpr__IndexAssignment_1_2_1 ) )
             {
-            // InternalSpear.g:12701:1: ( ( rule__AccessExpr__IndexAssignment_1_2_1 ) )
-            // InternalSpear.g:12702:1: ( rule__AccessExpr__IndexAssignment_1_2_1 )
+            // InternalSpear.g:13275:1: ( ( rule__AccessExpr__IndexAssignment_1_2_1 ) )
+            // InternalSpear.g:13276:1: ( rule__AccessExpr__IndexAssignment_1_2_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getIndexAssignment_1_2_1()); 
             }
-            // InternalSpear.g:12703:1: ( rule__AccessExpr__IndexAssignment_1_2_1 )
-            // InternalSpear.g:12703:2: rule__AccessExpr__IndexAssignment_1_2_1
+            // InternalSpear.g:13277:1: ( rule__AccessExpr__IndexAssignment_1_2_1 )
+            // InternalSpear.g:13277:2: rule__AccessExpr__IndexAssignment_1_2_1
             {
             pushFollow(FOLLOW_2);
             rule__AccessExpr__IndexAssignment_1_2_1();
@@ -36313,16 +37854,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_2__2"
-    // InternalSpear.g:12713:1: rule__AccessExpr__Group_1_2__2 : rule__AccessExpr__Group_1_2__2__Impl rule__AccessExpr__Group_1_2__3 ;
+    // InternalSpear.g:13287:1: rule__AccessExpr__Group_1_2__2 : rule__AccessExpr__Group_1_2__2__Impl rule__AccessExpr__Group_1_2__3 ;
     public final void rule__AccessExpr__Group_1_2__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12717:1: ( rule__AccessExpr__Group_1_2__2__Impl rule__AccessExpr__Group_1_2__3 )
-            // InternalSpear.g:12718:2: rule__AccessExpr__Group_1_2__2__Impl rule__AccessExpr__Group_1_2__3
+            // InternalSpear.g:13291:1: ( rule__AccessExpr__Group_1_2__2__Impl rule__AccessExpr__Group_1_2__3 )
+            // InternalSpear.g:13292:2: rule__AccessExpr__Group_1_2__2__Impl rule__AccessExpr__Group_1_2__3
             {
-            pushFollow(FOLLOW_72);
+            pushFollow(FOLLOW_75);
             rule__AccessExpr__Group_1_2__2__Impl();
 
             state._fsp--;
@@ -36351,31 +37892,31 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_2__2__Impl"
-    // InternalSpear.g:12725:1: rule__AccessExpr__Group_1_2__2__Impl : ( ( rule__AccessExpr__Group_1_2_2__0 )? ) ;
+    // InternalSpear.g:13299:1: rule__AccessExpr__Group_1_2__2__Impl : ( ( rule__AccessExpr__Group_1_2_2__0 )? ) ;
     public final void rule__AccessExpr__Group_1_2__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12729:1: ( ( ( rule__AccessExpr__Group_1_2_2__0 )? ) )
-            // InternalSpear.g:12730:1: ( ( rule__AccessExpr__Group_1_2_2__0 )? )
+            // InternalSpear.g:13303:1: ( ( ( rule__AccessExpr__Group_1_2_2__0 )? ) )
+            // InternalSpear.g:13304:1: ( ( rule__AccessExpr__Group_1_2_2__0 )? )
             {
-            // InternalSpear.g:12730:1: ( ( rule__AccessExpr__Group_1_2_2__0 )? )
-            // InternalSpear.g:12731:1: ( rule__AccessExpr__Group_1_2_2__0 )?
+            // InternalSpear.g:13304:1: ( ( rule__AccessExpr__Group_1_2_2__0 )? )
+            // InternalSpear.g:13305:1: ( rule__AccessExpr__Group_1_2_2__0 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getGroup_1_2_2()); 
             }
-            // InternalSpear.g:12732:1: ( rule__AccessExpr__Group_1_2_2__0 )?
-            int alt94=2;
-            int LA94_0 = input.LA(1);
+            // InternalSpear.g:13306:1: ( rule__AccessExpr__Group_1_2_2__0 )?
+            int alt98=2;
+            int LA98_0 = input.LA(1);
 
-            if ( (LA94_0==106) ) {
-                alt94=1;
+            if ( (LA98_0==107) ) {
+                alt98=1;
             }
-            switch (alt94) {
+            switch (alt98) {
                 case 1 :
-                    // InternalSpear.g:12732:2: rule__AccessExpr__Group_1_2_2__0
+                    // InternalSpear.g:13306:2: rule__AccessExpr__Group_1_2_2__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__AccessExpr__Group_1_2_2__0();
@@ -36413,14 +37954,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_2__3"
-    // InternalSpear.g:12742:1: rule__AccessExpr__Group_1_2__3 : rule__AccessExpr__Group_1_2__3__Impl ;
+    // InternalSpear.g:13316:1: rule__AccessExpr__Group_1_2__3 : rule__AccessExpr__Group_1_2__3__Impl ;
     public final void rule__AccessExpr__Group_1_2__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12746:1: ( rule__AccessExpr__Group_1_2__3__Impl )
-            // InternalSpear.g:12747:2: rule__AccessExpr__Group_1_2__3__Impl
+            // InternalSpear.g:13320:1: ( rule__AccessExpr__Group_1_2__3__Impl )
+            // InternalSpear.g:13321:2: rule__AccessExpr__Group_1_2__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AccessExpr__Group_1_2__3__Impl();
@@ -36446,17 +37987,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_2__3__Impl"
-    // InternalSpear.g:12753:1: rule__AccessExpr__Group_1_2__3__Impl : ( ']' ) ;
+    // InternalSpear.g:13327:1: rule__AccessExpr__Group_1_2__3__Impl : ( ']' ) ;
     public final void rule__AccessExpr__Group_1_2__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12757:1: ( ( ']' ) )
-            // InternalSpear.g:12758:1: ( ']' )
+            // InternalSpear.g:13331:1: ( ( ']' ) )
+            // InternalSpear.g:13332:1: ( ']' )
             {
-            // InternalSpear.g:12758:1: ( ']' )
-            // InternalSpear.g:12759:1: ']'
+            // InternalSpear.g:13332:1: ( ']' )
+            // InternalSpear.g:13333:1: ']'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getRightSquareBracketKeyword_1_2_3()); 
@@ -36487,14 +38028,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_2_0__0"
-    // InternalSpear.g:12780:1: rule__AccessExpr__Group_1_2_0__0 : rule__AccessExpr__Group_1_2_0__0__Impl ;
+    // InternalSpear.g:13354:1: rule__AccessExpr__Group_1_2_0__0 : rule__AccessExpr__Group_1_2_0__0__Impl ;
     public final void rule__AccessExpr__Group_1_2_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12784:1: ( rule__AccessExpr__Group_1_2_0__0__Impl )
-            // InternalSpear.g:12785:2: rule__AccessExpr__Group_1_2_0__0__Impl
+            // InternalSpear.g:13358:1: ( rule__AccessExpr__Group_1_2_0__0__Impl )
+            // InternalSpear.g:13359:2: rule__AccessExpr__Group_1_2_0__0__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AccessExpr__Group_1_2_0__0__Impl();
@@ -36520,23 +38061,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_2_0__0__Impl"
-    // InternalSpear.g:12791:1: rule__AccessExpr__Group_1_2_0__0__Impl : ( ( rule__AccessExpr__Group_1_2_0_0__0 ) ) ;
+    // InternalSpear.g:13365:1: rule__AccessExpr__Group_1_2_0__0__Impl : ( ( rule__AccessExpr__Group_1_2_0_0__0 ) ) ;
     public final void rule__AccessExpr__Group_1_2_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12795:1: ( ( ( rule__AccessExpr__Group_1_2_0_0__0 ) ) )
-            // InternalSpear.g:12796:1: ( ( rule__AccessExpr__Group_1_2_0_0__0 ) )
+            // InternalSpear.g:13369:1: ( ( ( rule__AccessExpr__Group_1_2_0_0__0 ) ) )
+            // InternalSpear.g:13370:1: ( ( rule__AccessExpr__Group_1_2_0_0__0 ) )
             {
-            // InternalSpear.g:12796:1: ( ( rule__AccessExpr__Group_1_2_0_0__0 ) )
-            // InternalSpear.g:12797:1: ( rule__AccessExpr__Group_1_2_0_0__0 )
+            // InternalSpear.g:13370:1: ( ( rule__AccessExpr__Group_1_2_0_0__0 ) )
+            // InternalSpear.g:13371:1: ( rule__AccessExpr__Group_1_2_0_0__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getGroup_1_2_0_0()); 
             }
-            // InternalSpear.g:12798:1: ( rule__AccessExpr__Group_1_2_0_0__0 )
-            // InternalSpear.g:12798:2: rule__AccessExpr__Group_1_2_0_0__0
+            // InternalSpear.g:13372:1: ( rule__AccessExpr__Group_1_2_0_0__0 )
+            // InternalSpear.g:13372:2: rule__AccessExpr__Group_1_2_0_0__0
             {
             pushFollow(FOLLOW_2);
             rule__AccessExpr__Group_1_2_0_0__0();
@@ -36571,16 +38112,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_2_0_0__0"
-    // InternalSpear.g:12810:1: rule__AccessExpr__Group_1_2_0_0__0 : rule__AccessExpr__Group_1_2_0_0__0__Impl rule__AccessExpr__Group_1_2_0_0__1 ;
+    // InternalSpear.g:13384:1: rule__AccessExpr__Group_1_2_0_0__0 : rule__AccessExpr__Group_1_2_0_0__0__Impl rule__AccessExpr__Group_1_2_0_0__1 ;
     public final void rule__AccessExpr__Group_1_2_0_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12814:1: ( rule__AccessExpr__Group_1_2_0_0__0__Impl rule__AccessExpr__Group_1_2_0_0__1 )
-            // InternalSpear.g:12815:2: rule__AccessExpr__Group_1_2_0_0__0__Impl rule__AccessExpr__Group_1_2_0_0__1
+            // InternalSpear.g:13388:1: ( rule__AccessExpr__Group_1_2_0_0__0__Impl rule__AccessExpr__Group_1_2_0_0__1 )
+            // InternalSpear.g:13389:2: rule__AccessExpr__Group_1_2_0_0__0__Impl rule__AccessExpr__Group_1_2_0_0__1
             {
-            pushFollow(FOLLOW_67);
+            pushFollow(FOLLOW_70);
             rule__AccessExpr__Group_1_2_0_0__0__Impl();
 
             state._fsp--;
@@ -36609,23 +38150,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_2_0_0__0__Impl"
-    // InternalSpear.g:12822:1: rule__AccessExpr__Group_1_2_0_0__0__Impl : ( () ) ;
+    // InternalSpear.g:13396:1: rule__AccessExpr__Group_1_2_0_0__0__Impl : ( () ) ;
     public final void rule__AccessExpr__Group_1_2_0_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12826:1: ( ( () ) )
-            // InternalSpear.g:12827:1: ( () )
+            // InternalSpear.g:13400:1: ( ( () ) )
+            // InternalSpear.g:13401:1: ( () )
             {
-            // InternalSpear.g:12827:1: ( () )
-            // InternalSpear.g:12828:1: ()
+            // InternalSpear.g:13401:1: ( () )
+            // InternalSpear.g:13402:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getArrayAccessExprArrayAction_1_2_0_0_0()); 
             }
-            // InternalSpear.g:12829:1: ()
-            // InternalSpear.g:12831:1: 
+            // InternalSpear.g:13403:1: ()
+            // InternalSpear.g:13405:1: 
             {
             }
 
@@ -36650,14 +38191,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_2_0_0__1"
-    // InternalSpear.g:12841:1: rule__AccessExpr__Group_1_2_0_0__1 : rule__AccessExpr__Group_1_2_0_0__1__Impl ;
+    // InternalSpear.g:13415:1: rule__AccessExpr__Group_1_2_0_0__1 : rule__AccessExpr__Group_1_2_0_0__1__Impl ;
     public final void rule__AccessExpr__Group_1_2_0_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12845:1: ( rule__AccessExpr__Group_1_2_0_0__1__Impl )
-            // InternalSpear.g:12846:2: rule__AccessExpr__Group_1_2_0_0__1__Impl
+            // InternalSpear.g:13419:1: ( rule__AccessExpr__Group_1_2_0_0__1__Impl )
+            // InternalSpear.g:13420:2: rule__AccessExpr__Group_1_2_0_0__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AccessExpr__Group_1_2_0_0__1__Impl();
@@ -36683,17 +38224,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_2_0_0__1__Impl"
-    // InternalSpear.g:12852:1: rule__AccessExpr__Group_1_2_0_0__1__Impl : ( '[' ) ;
+    // InternalSpear.g:13426:1: rule__AccessExpr__Group_1_2_0_0__1__Impl : ( '[' ) ;
     public final void rule__AccessExpr__Group_1_2_0_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12856:1: ( ( '[' ) )
-            // InternalSpear.g:12857:1: ( '[' )
+            // InternalSpear.g:13430:1: ( ( '[' ) )
+            // InternalSpear.g:13431:1: ( '[' )
             {
-            // InternalSpear.g:12857:1: ( '[' )
-            // InternalSpear.g:12858:1: '['
+            // InternalSpear.g:13431:1: ( '[' )
+            // InternalSpear.g:13432:1: '['
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getLeftSquareBracketKeyword_1_2_0_0_1()); 
@@ -36724,14 +38265,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_2_2__0"
-    // InternalSpear.g:12875:1: rule__AccessExpr__Group_1_2_2__0 : rule__AccessExpr__Group_1_2_2__0__Impl rule__AccessExpr__Group_1_2_2__1 ;
+    // InternalSpear.g:13449:1: rule__AccessExpr__Group_1_2_2__0 : rule__AccessExpr__Group_1_2_2__0__Impl rule__AccessExpr__Group_1_2_2__1 ;
     public final void rule__AccessExpr__Group_1_2_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12879:1: ( rule__AccessExpr__Group_1_2_2__0__Impl rule__AccessExpr__Group_1_2_2__1 )
-            // InternalSpear.g:12880:2: rule__AccessExpr__Group_1_2_2__0__Impl rule__AccessExpr__Group_1_2_2__1
+            // InternalSpear.g:13453:1: ( rule__AccessExpr__Group_1_2_2__0__Impl rule__AccessExpr__Group_1_2_2__1 )
+            // InternalSpear.g:13454:2: rule__AccessExpr__Group_1_2_2__0__Impl rule__AccessExpr__Group_1_2_2__1
             {
             pushFollow(FOLLOW_26);
             rule__AccessExpr__Group_1_2_2__0__Impl();
@@ -36762,23 +38303,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_2_2__0__Impl"
-    // InternalSpear.g:12887:1: rule__AccessExpr__Group_1_2_2__0__Impl : ( ( rule__AccessExpr__Group_1_2_2_0__0 ) ) ;
+    // InternalSpear.g:13461:1: rule__AccessExpr__Group_1_2_2__0__Impl : ( ( rule__AccessExpr__Group_1_2_2_0__0 ) ) ;
     public final void rule__AccessExpr__Group_1_2_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12891:1: ( ( ( rule__AccessExpr__Group_1_2_2_0__0 ) ) )
-            // InternalSpear.g:12892:1: ( ( rule__AccessExpr__Group_1_2_2_0__0 ) )
+            // InternalSpear.g:13465:1: ( ( ( rule__AccessExpr__Group_1_2_2_0__0 ) ) )
+            // InternalSpear.g:13466:1: ( ( rule__AccessExpr__Group_1_2_2_0__0 ) )
             {
-            // InternalSpear.g:12892:1: ( ( rule__AccessExpr__Group_1_2_2_0__0 ) )
-            // InternalSpear.g:12893:1: ( rule__AccessExpr__Group_1_2_2_0__0 )
+            // InternalSpear.g:13466:1: ( ( rule__AccessExpr__Group_1_2_2_0__0 ) )
+            // InternalSpear.g:13467:1: ( rule__AccessExpr__Group_1_2_2_0__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getGroup_1_2_2_0()); 
             }
-            // InternalSpear.g:12894:1: ( rule__AccessExpr__Group_1_2_2_0__0 )
-            // InternalSpear.g:12894:2: rule__AccessExpr__Group_1_2_2_0__0
+            // InternalSpear.g:13468:1: ( rule__AccessExpr__Group_1_2_2_0__0 )
+            // InternalSpear.g:13468:2: rule__AccessExpr__Group_1_2_2_0__0
             {
             pushFollow(FOLLOW_2);
             rule__AccessExpr__Group_1_2_2_0__0();
@@ -36813,14 +38354,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_2_2__1"
-    // InternalSpear.g:12904:1: rule__AccessExpr__Group_1_2_2__1 : rule__AccessExpr__Group_1_2_2__1__Impl ;
+    // InternalSpear.g:13478:1: rule__AccessExpr__Group_1_2_2__1 : rule__AccessExpr__Group_1_2_2__1__Impl ;
     public final void rule__AccessExpr__Group_1_2_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12908:1: ( rule__AccessExpr__Group_1_2_2__1__Impl )
-            // InternalSpear.g:12909:2: rule__AccessExpr__Group_1_2_2__1__Impl
+            // InternalSpear.g:13482:1: ( rule__AccessExpr__Group_1_2_2__1__Impl )
+            // InternalSpear.g:13483:2: rule__AccessExpr__Group_1_2_2__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AccessExpr__Group_1_2_2__1__Impl();
@@ -36846,23 +38387,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_2_2__1__Impl"
-    // InternalSpear.g:12915:1: rule__AccessExpr__Group_1_2_2__1__Impl : ( ( rule__AccessExpr__ValueAssignment_1_2_2_1 ) ) ;
+    // InternalSpear.g:13489:1: rule__AccessExpr__Group_1_2_2__1__Impl : ( ( rule__AccessExpr__ValueAssignment_1_2_2_1 ) ) ;
     public final void rule__AccessExpr__Group_1_2_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12919:1: ( ( ( rule__AccessExpr__ValueAssignment_1_2_2_1 ) ) )
-            // InternalSpear.g:12920:1: ( ( rule__AccessExpr__ValueAssignment_1_2_2_1 ) )
+            // InternalSpear.g:13493:1: ( ( ( rule__AccessExpr__ValueAssignment_1_2_2_1 ) ) )
+            // InternalSpear.g:13494:1: ( ( rule__AccessExpr__ValueAssignment_1_2_2_1 ) )
             {
-            // InternalSpear.g:12920:1: ( ( rule__AccessExpr__ValueAssignment_1_2_2_1 ) )
-            // InternalSpear.g:12921:1: ( rule__AccessExpr__ValueAssignment_1_2_2_1 )
+            // InternalSpear.g:13494:1: ( ( rule__AccessExpr__ValueAssignment_1_2_2_1 ) )
+            // InternalSpear.g:13495:1: ( rule__AccessExpr__ValueAssignment_1_2_2_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getValueAssignment_1_2_2_1()); 
             }
-            // InternalSpear.g:12922:1: ( rule__AccessExpr__ValueAssignment_1_2_2_1 )
-            // InternalSpear.g:12922:2: rule__AccessExpr__ValueAssignment_1_2_2_1
+            // InternalSpear.g:13496:1: ( rule__AccessExpr__ValueAssignment_1_2_2_1 )
+            // InternalSpear.g:13496:2: rule__AccessExpr__ValueAssignment_1_2_2_1
             {
             pushFollow(FOLLOW_2);
             rule__AccessExpr__ValueAssignment_1_2_2_1();
@@ -36897,14 +38438,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_2_2_0__0"
-    // InternalSpear.g:12936:1: rule__AccessExpr__Group_1_2_2_0__0 : rule__AccessExpr__Group_1_2_2_0__0__Impl ;
+    // InternalSpear.g:13510:1: rule__AccessExpr__Group_1_2_2_0__0 : rule__AccessExpr__Group_1_2_2_0__0__Impl ;
     public final void rule__AccessExpr__Group_1_2_2_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12940:1: ( rule__AccessExpr__Group_1_2_2_0__0__Impl )
-            // InternalSpear.g:12941:2: rule__AccessExpr__Group_1_2_2_0__0__Impl
+            // InternalSpear.g:13514:1: ( rule__AccessExpr__Group_1_2_2_0__0__Impl )
+            // InternalSpear.g:13515:2: rule__AccessExpr__Group_1_2_2_0__0__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AccessExpr__Group_1_2_2_0__0__Impl();
@@ -36930,23 +38471,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_2_2_0__0__Impl"
-    // InternalSpear.g:12947:1: rule__AccessExpr__Group_1_2_2_0__0__Impl : ( ( rule__AccessExpr__Group_1_2_2_0_0__0 ) ) ;
+    // InternalSpear.g:13521:1: rule__AccessExpr__Group_1_2_2_0__0__Impl : ( ( rule__AccessExpr__Group_1_2_2_0_0__0 ) ) ;
     public final void rule__AccessExpr__Group_1_2_2_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12951:1: ( ( ( rule__AccessExpr__Group_1_2_2_0_0__0 ) ) )
-            // InternalSpear.g:12952:1: ( ( rule__AccessExpr__Group_1_2_2_0_0__0 ) )
+            // InternalSpear.g:13525:1: ( ( ( rule__AccessExpr__Group_1_2_2_0_0__0 ) ) )
+            // InternalSpear.g:13526:1: ( ( rule__AccessExpr__Group_1_2_2_0_0__0 ) )
             {
-            // InternalSpear.g:12952:1: ( ( rule__AccessExpr__Group_1_2_2_0_0__0 ) )
-            // InternalSpear.g:12953:1: ( rule__AccessExpr__Group_1_2_2_0_0__0 )
+            // InternalSpear.g:13526:1: ( ( rule__AccessExpr__Group_1_2_2_0_0__0 ) )
+            // InternalSpear.g:13527:1: ( rule__AccessExpr__Group_1_2_2_0_0__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getGroup_1_2_2_0_0()); 
             }
-            // InternalSpear.g:12954:1: ( rule__AccessExpr__Group_1_2_2_0_0__0 )
-            // InternalSpear.g:12954:2: rule__AccessExpr__Group_1_2_2_0_0__0
+            // InternalSpear.g:13528:1: ( rule__AccessExpr__Group_1_2_2_0_0__0 )
+            // InternalSpear.g:13528:2: rule__AccessExpr__Group_1_2_2_0_0__0
             {
             pushFollow(FOLLOW_2);
             rule__AccessExpr__Group_1_2_2_0_0__0();
@@ -36981,16 +38522,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_2_2_0_0__0"
-    // InternalSpear.g:12966:1: rule__AccessExpr__Group_1_2_2_0_0__0 : rule__AccessExpr__Group_1_2_2_0_0__0__Impl rule__AccessExpr__Group_1_2_2_0_0__1 ;
+    // InternalSpear.g:13540:1: rule__AccessExpr__Group_1_2_2_0_0__0 : rule__AccessExpr__Group_1_2_2_0_0__0__Impl rule__AccessExpr__Group_1_2_2_0_0__1 ;
     public final void rule__AccessExpr__Group_1_2_2_0_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12970:1: ( rule__AccessExpr__Group_1_2_2_0_0__0__Impl rule__AccessExpr__Group_1_2_2_0_0__1 )
-            // InternalSpear.g:12971:2: rule__AccessExpr__Group_1_2_2_0_0__0__Impl rule__AccessExpr__Group_1_2_2_0_0__1
+            // InternalSpear.g:13544:1: ( rule__AccessExpr__Group_1_2_2_0_0__0__Impl rule__AccessExpr__Group_1_2_2_0_0__1 )
+            // InternalSpear.g:13545:2: rule__AccessExpr__Group_1_2_2_0_0__0__Impl rule__AccessExpr__Group_1_2_2_0_0__1
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_74);
             rule__AccessExpr__Group_1_2_2_0_0__0__Impl();
 
             state._fsp--;
@@ -37019,23 +38560,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_2_2_0_0__0__Impl"
-    // InternalSpear.g:12978:1: rule__AccessExpr__Group_1_2_2_0_0__0__Impl : ( () ) ;
+    // InternalSpear.g:13552:1: rule__AccessExpr__Group_1_2_2_0_0__0__Impl : ( () ) ;
     public final void rule__AccessExpr__Group_1_2_2_0_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12982:1: ( ( () ) )
-            // InternalSpear.g:12983:1: ( () )
+            // InternalSpear.g:13556:1: ( ( () ) )
+            // InternalSpear.g:13557:1: ( () )
             {
-            // InternalSpear.g:12983:1: ( () )
-            // InternalSpear.g:12984:1: ()
+            // InternalSpear.g:13557:1: ( () )
+            // InternalSpear.g:13558:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getArrayUpdateExprAccessAction_1_2_2_0_0_0()); 
             }
-            // InternalSpear.g:12985:1: ()
-            // InternalSpear.g:12987:1: 
+            // InternalSpear.g:13559:1: ()
+            // InternalSpear.g:13561:1: 
             {
             }
 
@@ -37060,14 +38601,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_2_2_0_0__1"
-    // InternalSpear.g:12997:1: rule__AccessExpr__Group_1_2_2_0_0__1 : rule__AccessExpr__Group_1_2_2_0_0__1__Impl ;
+    // InternalSpear.g:13571:1: rule__AccessExpr__Group_1_2_2_0_0__1 : rule__AccessExpr__Group_1_2_2_0_0__1__Impl ;
     public final void rule__AccessExpr__Group_1_2_2_0_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13001:1: ( rule__AccessExpr__Group_1_2_2_0_0__1__Impl )
-            // InternalSpear.g:13002:2: rule__AccessExpr__Group_1_2_2_0_0__1__Impl
+            // InternalSpear.g:13575:1: ( rule__AccessExpr__Group_1_2_2_0_0__1__Impl )
+            // InternalSpear.g:13576:2: rule__AccessExpr__Group_1_2_2_0_0__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AccessExpr__Group_1_2_2_0_0__1__Impl();
@@ -37093,22 +38634,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__Group_1_2_2_0_0__1__Impl"
-    // InternalSpear.g:13008:1: rule__AccessExpr__Group_1_2_2_0_0__1__Impl : ( ':=' ) ;
+    // InternalSpear.g:13582:1: rule__AccessExpr__Group_1_2_2_0_0__1__Impl : ( ':=' ) ;
     public final void rule__AccessExpr__Group_1_2_2_0_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13012:1: ( ( ':=' ) )
-            // InternalSpear.g:13013:1: ( ':=' )
+            // InternalSpear.g:13586:1: ( ( ':=' ) )
+            // InternalSpear.g:13587:1: ( ':=' )
             {
-            // InternalSpear.g:13013:1: ( ':=' )
-            // InternalSpear.g:13014:1: ':='
+            // InternalSpear.g:13587:1: ( ':=' )
+            // InternalSpear.g:13588:1: ':='
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getColonEqualsSignKeyword_1_2_2_0_0_1()); 
             }
-            match(input,106,FOLLOW_2); if (state.failed) return ;
+            match(input,107,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getAccessExprAccess().getColonEqualsSignKeyword_1_2_2_0_0_1()); 
             }
@@ -37134,14 +38675,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_1__0"
-    // InternalSpear.g:13031:1: rule__AtomicExpr__Group_1__0 : rule__AtomicExpr__Group_1__0__Impl rule__AtomicExpr__Group_1__1 ;
+    // InternalSpear.g:13605:1: rule__AtomicExpr__Group_1__0 : rule__AtomicExpr__Group_1__0__Impl rule__AtomicExpr__Group_1__1 ;
     public final void rule__AtomicExpr__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13035:1: ( rule__AtomicExpr__Group_1__0__Impl rule__AtomicExpr__Group_1__1 )
-            // InternalSpear.g:13036:2: rule__AtomicExpr__Group_1__0__Impl rule__AtomicExpr__Group_1__1
+            // InternalSpear.g:13609:1: ( rule__AtomicExpr__Group_1__0__Impl rule__AtomicExpr__Group_1__1 )
+            // InternalSpear.g:13610:2: rule__AtomicExpr__Group_1__0__Impl rule__AtomicExpr__Group_1__1
             {
             pushFollow(FOLLOW_3);
             rule__AtomicExpr__Group_1__0__Impl();
@@ -37172,23 +38713,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_1__0__Impl"
-    // InternalSpear.g:13043:1: rule__AtomicExpr__Group_1__0__Impl : ( () ) ;
+    // InternalSpear.g:13617:1: rule__AtomicExpr__Group_1__0__Impl : ( () ) ;
     public final void rule__AtomicExpr__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13047:1: ( ( () ) )
-            // InternalSpear.g:13048:1: ( () )
+            // InternalSpear.g:13621:1: ( ( () ) )
+            // InternalSpear.g:13622:1: ( () )
             {
-            // InternalSpear.g:13048:1: ( () )
-            // InternalSpear.g:13049:1: ()
+            // InternalSpear.g:13622:1: ( () )
+            // InternalSpear.g:13623:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getIdExprAction_1_0()); 
             }
-            // InternalSpear.g:13050:1: ()
-            // InternalSpear.g:13052:1: 
+            // InternalSpear.g:13624:1: ()
+            // InternalSpear.g:13626:1: 
             {
             }
 
@@ -37213,14 +38754,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_1__1"
-    // InternalSpear.g:13062:1: rule__AtomicExpr__Group_1__1 : rule__AtomicExpr__Group_1__1__Impl ;
+    // InternalSpear.g:13636:1: rule__AtomicExpr__Group_1__1 : rule__AtomicExpr__Group_1__1__Impl ;
     public final void rule__AtomicExpr__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13066:1: ( rule__AtomicExpr__Group_1__1__Impl )
-            // InternalSpear.g:13067:2: rule__AtomicExpr__Group_1__1__Impl
+            // InternalSpear.g:13640:1: ( rule__AtomicExpr__Group_1__1__Impl )
+            // InternalSpear.g:13641:2: rule__AtomicExpr__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__Group_1__1__Impl();
@@ -37246,23 +38787,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_1__1__Impl"
-    // InternalSpear.g:13073:1: rule__AtomicExpr__Group_1__1__Impl : ( ( rule__AtomicExpr__IdAssignment_1_1 ) ) ;
+    // InternalSpear.g:13647:1: rule__AtomicExpr__Group_1__1__Impl : ( ( rule__AtomicExpr__IdAssignment_1_1 ) ) ;
     public final void rule__AtomicExpr__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13077:1: ( ( ( rule__AtomicExpr__IdAssignment_1_1 ) ) )
-            // InternalSpear.g:13078:1: ( ( rule__AtomicExpr__IdAssignment_1_1 ) )
+            // InternalSpear.g:13651:1: ( ( ( rule__AtomicExpr__IdAssignment_1_1 ) ) )
+            // InternalSpear.g:13652:1: ( ( rule__AtomicExpr__IdAssignment_1_1 ) )
             {
-            // InternalSpear.g:13078:1: ( ( rule__AtomicExpr__IdAssignment_1_1 ) )
-            // InternalSpear.g:13079:1: ( rule__AtomicExpr__IdAssignment_1_1 )
+            // InternalSpear.g:13652:1: ( ( rule__AtomicExpr__IdAssignment_1_1 ) )
+            // InternalSpear.g:13653:1: ( rule__AtomicExpr__IdAssignment_1_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getIdAssignment_1_1()); 
             }
-            // InternalSpear.g:13080:1: ( rule__AtomicExpr__IdAssignment_1_1 )
-            // InternalSpear.g:13080:2: rule__AtomicExpr__IdAssignment_1_1
+            // InternalSpear.g:13654:1: ( rule__AtomicExpr__IdAssignment_1_1 )
+            // InternalSpear.g:13654:2: rule__AtomicExpr__IdAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__IdAssignment_1_1();
@@ -37297,16 +38838,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_2__0"
-    // InternalSpear.g:13094:1: rule__AtomicExpr__Group_2__0 : rule__AtomicExpr__Group_2__0__Impl rule__AtomicExpr__Group_2__1 ;
+    // InternalSpear.g:13668:1: rule__AtomicExpr__Group_2__0 : rule__AtomicExpr__Group_2__0__Impl rule__AtomicExpr__Group_2__1 ;
     public final void rule__AtomicExpr__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13098:1: ( rule__AtomicExpr__Group_2__0__Impl rule__AtomicExpr__Group_2__1 )
-            // InternalSpear.g:13099:2: rule__AtomicExpr__Group_2__0__Impl rule__AtomicExpr__Group_2__1
+            // InternalSpear.g:13672:1: ( rule__AtomicExpr__Group_2__0__Impl rule__AtomicExpr__Group_2__1 )
+            // InternalSpear.g:13673:2: rule__AtomicExpr__Group_2__0__Impl rule__AtomicExpr__Group_2__1
             {
-            pushFollow(FOLLOW_73);
+            pushFollow(FOLLOW_76);
             rule__AtomicExpr__Group_2__0__Impl();
 
             state._fsp--;
@@ -37335,23 +38876,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_2__0__Impl"
-    // InternalSpear.g:13106:1: rule__AtomicExpr__Group_2__0__Impl : ( () ) ;
+    // InternalSpear.g:13680:1: rule__AtomicExpr__Group_2__0__Impl : ( () ) ;
     public final void rule__AtomicExpr__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13110:1: ( ( () ) )
-            // InternalSpear.g:13111:1: ( () )
+            // InternalSpear.g:13684:1: ( ( () ) )
+            // InternalSpear.g:13685:1: ( () )
             {
-            // InternalSpear.g:13111:1: ( () )
-            // InternalSpear.g:13112:1: ()
+            // InternalSpear.g:13685:1: ( () )
+            // InternalSpear.g:13686:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getMultipleIdExprAction_2_0()); 
             }
-            // InternalSpear.g:13113:1: ()
-            // InternalSpear.g:13115:1: 
+            // InternalSpear.g:13687:1: ()
+            // InternalSpear.g:13689:1: 
             {
             }
 
@@ -37376,14 +38917,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_2__1"
-    // InternalSpear.g:13125:1: rule__AtomicExpr__Group_2__1 : rule__AtomicExpr__Group_2__1__Impl rule__AtomicExpr__Group_2__2 ;
+    // InternalSpear.g:13699:1: rule__AtomicExpr__Group_2__1 : rule__AtomicExpr__Group_2__1__Impl rule__AtomicExpr__Group_2__2 ;
     public final void rule__AtomicExpr__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13129:1: ( rule__AtomicExpr__Group_2__1__Impl rule__AtomicExpr__Group_2__2 )
-            // InternalSpear.g:13130:2: rule__AtomicExpr__Group_2__1__Impl rule__AtomicExpr__Group_2__2
+            // InternalSpear.g:13703:1: ( rule__AtomicExpr__Group_2__1__Impl rule__AtomicExpr__Group_2__2 )
+            // InternalSpear.g:13704:2: rule__AtomicExpr__Group_2__1__Impl rule__AtomicExpr__Group_2__2
             {
             pushFollow(FOLLOW_3);
             rule__AtomicExpr__Group_2__1__Impl();
@@ -37414,17 +38955,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_2__1__Impl"
-    // InternalSpear.g:13137:1: rule__AtomicExpr__Group_2__1__Impl : ( '|' ) ;
+    // InternalSpear.g:13711:1: rule__AtomicExpr__Group_2__1__Impl : ( '|' ) ;
     public final void rule__AtomicExpr__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13141:1: ( ( '|' ) )
-            // InternalSpear.g:13142:1: ( '|' )
+            // InternalSpear.g:13715:1: ( ( '|' ) )
+            // InternalSpear.g:13716:1: ( '|' )
             {
-            // InternalSpear.g:13142:1: ( '|' )
-            // InternalSpear.g:13143:1: '|'
+            // InternalSpear.g:13716:1: ( '|' )
+            // InternalSpear.g:13717:1: '|'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getVerticalLineKeyword_2_1()); 
@@ -37455,14 +38996,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_2__2"
-    // InternalSpear.g:13156:1: rule__AtomicExpr__Group_2__2 : rule__AtomicExpr__Group_2__2__Impl rule__AtomicExpr__Group_2__3 ;
+    // InternalSpear.g:13730:1: rule__AtomicExpr__Group_2__2 : rule__AtomicExpr__Group_2__2__Impl rule__AtomicExpr__Group_2__3 ;
     public final void rule__AtomicExpr__Group_2__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13160:1: ( rule__AtomicExpr__Group_2__2__Impl rule__AtomicExpr__Group_2__3 )
-            // InternalSpear.g:13161:2: rule__AtomicExpr__Group_2__2__Impl rule__AtomicExpr__Group_2__3
+            // InternalSpear.g:13734:1: ( rule__AtomicExpr__Group_2__2__Impl rule__AtomicExpr__Group_2__3 )
+            // InternalSpear.g:13735:2: rule__AtomicExpr__Group_2__2__Impl rule__AtomicExpr__Group_2__3
             {
             pushFollow(FOLLOW_24);
             rule__AtomicExpr__Group_2__2__Impl();
@@ -37493,23 +39034,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_2__2__Impl"
-    // InternalSpear.g:13168:1: rule__AtomicExpr__Group_2__2__Impl : ( ( rule__AtomicExpr__IdsAssignment_2_2 ) ) ;
+    // InternalSpear.g:13742:1: rule__AtomicExpr__Group_2__2__Impl : ( ( rule__AtomicExpr__IdsAssignment_2_2 ) ) ;
     public final void rule__AtomicExpr__Group_2__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13172:1: ( ( ( rule__AtomicExpr__IdsAssignment_2_2 ) ) )
-            // InternalSpear.g:13173:1: ( ( rule__AtomicExpr__IdsAssignment_2_2 ) )
+            // InternalSpear.g:13746:1: ( ( ( rule__AtomicExpr__IdsAssignment_2_2 ) ) )
+            // InternalSpear.g:13747:1: ( ( rule__AtomicExpr__IdsAssignment_2_2 ) )
             {
-            // InternalSpear.g:13173:1: ( ( rule__AtomicExpr__IdsAssignment_2_2 ) )
-            // InternalSpear.g:13174:1: ( rule__AtomicExpr__IdsAssignment_2_2 )
+            // InternalSpear.g:13747:1: ( ( rule__AtomicExpr__IdsAssignment_2_2 ) )
+            // InternalSpear.g:13748:1: ( rule__AtomicExpr__IdsAssignment_2_2 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getIdsAssignment_2_2()); 
             }
-            // InternalSpear.g:13175:1: ( rule__AtomicExpr__IdsAssignment_2_2 )
-            // InternalSpear.g:13175:2: rule__AtomicExpr__IdsAssignment_2_2
+            // InternalSpear.g:13749:1: ( rule__AtomicExpr__IdsAssignment_2_2 )
+            // InternalSpear.g:13749:2: rule__AtomicExpr__IdsAssignment_2_2
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__IdsAssignment_2_2();
@@ -37544,14 +39085,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_2__3"
-    // InternalSpear.g:13185:1: rule__AtomicExpr__Group_2__3 : rule__AtomicExpr__Group_2__3__Impl rule__AtomicExpr__Group_2__4 ;
+    // InternalSpear.g:13759:1: rule__AtomicExpr__Group_2__3 : rule__AtomicExpr__Group_2__3__Impl rule__AtomicExpr__Group_2__4 ;
     public final void rule__AtomicExpr__Group_2__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13189:1: ( rule__AtomicExpr__Group_2__3__Impl rule__AtomicExpr__Group_2__4 )
-            // InternalSpear.g:13190:2: rule__AtomicExpr__Group_2__3__Impl rule__AtomicExpr__Group_2__4
+            // InternalSpear.g:13763:1: ( rule__AtomicExpr__Group_2__3__Impl rule__AtomicExpr__Group_2__4 )
+            // InternalSpear.g:13764:2: rule__AtomicExpr__Group_2__3__Impl rule__AtomicExpr__Group_2__4
             {
             pushFollow(FOLLOW_24);
             rule__AtomicExpr__Group_2__3__Impl();
@@ -37582,35 +39123,35 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_2__3__Impl"
-    // InternalSpear.g:13197:1: rule__AtomicExpr__Group_2__3__Impl : ( ( rule__AtomicExpr__Group_2_3__0 )* ) ;
+    // InternalSpear.g:13771:1: rule__AtomicExpr__Group_2__3__Impl : ( ( rule__AtomicExpr__Group_2_3__0 )* ) ;
     public final void rule__AtomicExpr__Group_2__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13201:1: ( ( ( rule__AtomicExpr__Group_2_3__0 )* ) )
-            // InternalSpear.g:13202:1: ( ( rule__AtomicExpr__Group_2_3__0 )* )
+            // InternalSpear.g:13775:1: ( ( ( rule__AtomicExpr__Group_2_3__0 )* ) )
+            // InternalSpear.g:13776:1: ( ( rule__AtomicExpr__Group_2_3__0 )* )
             {
-            // InternalSpear.g:13202:1: ( ( rule__AtomicExpr__Group_2_3__0 )* )
-            // InternalSpear.g:13203:1: ( rule__AtomicExpr__Group_2_3__0 )*
+            // InternalSpear.g:13776:1: ( ( rule__AtomicExpr__Group_2_3__0 )* )
+            // InternalSpear.g:13777:1: ( rule__AtomicExpr__Group_2_3__0 )*
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getGroup_2_3()); 
             }
-            // InternalSpear.g:13204:1: ( rule__AtomicExpr__Group_2_3__0 )*
-            loop95:
+            // InternalSpear.g:13778:1: ( rule__AtomicExpr__Group_2_3__0 )*
+            loop99:
             do {
-                int alt95=2;
-                int LA95_0 = input.LA(1);
+                int alt99=2;
+                int LA99_0 = input.LA(1);
 
-                if ( (LA95_0==75) ) {
-                    alt95=1;
+                if ( (LA99_0==75) ) {
+                    alt99=1;
                 }
 
 
-                switch (alt95) {
+                switch (alt99) {
             	case 1 :
-            	    // InternalSpear.g:13204:2: rule__AtomicExpr__Group_2_3__0
+            	    // InternalSpear.g:13778:2: rule__AtomicExpr__Group_2_3__0
             	    {
             	    pushFollow(FOLLOW_23);
             	    rule__AtomicExpr__Group_2_3__0();
@@ -37622,7 +39163,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop95;
+            	    break loop99;
                 }
             } while (true);
 
@@ -37651,14 +39192,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_2__4"
-    // InternalSpear.g:13214:1: rule__AtomicExpr__Group_2__4 : rule__AtomicExpr__Group_2__4__Impl ;
+    // InternalSpear.g:13788:1: rule__AtomicExpr__Group_2__4 : rule__AtomicExpr__Group_2__4__Impl ;
     public final void rule__AtomicExpr__Group_2__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13218:1: ( rule__AtomicExpr__Group_2__4__Impl )
-            // InternalSpear.g:13219:2: rule__AtomicExpr__Group_2__4__Impl
+            // InternalSpear.g:13792:1: ( rule__AtomicExpr__Group_2__4__Impl )
+            // InternalSpear.g:13793:2: rule__AtomicExpr__Group_2__4__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__Group_2__4__Impl();
@@ -37684,17 +39225,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_2__4__Impl"
-    // InternalSpear.g:13225:1: rule__AtomicExpr__Group_2__4__Impl : ( '|' ) ;
+    // InternalSpear.g:13799:1: rule__AtomicExpr__Group_2__4__Impl : ( '|' ) ;
     public final void rule__AtomicExpr__Group_2__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13229:1: ( ( '|' ) )
-            // InternalSpear.g:13230:1: ( '|' )
+            // InternalSpear.g:13803:1: ( ( '|' ) )
+            // InternalSpear.g:13804:1: ( '|' )
             {
-            // InternalSpear.g:13230:1: ( '|' )
-            // InternalSpear.g:13231:1: '|'
+            // InternalSpear.g:13804:1: ( '|' )
+            // InternalSpear.g:13805:1: '|'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getVerticalLineKeyword_2_4()); 
@@ -37725,14 +39266,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_2_3__0"
-    // InternalSpear.g:13254:1: rule__AtomicExpr__Group_2_3__0 : rule__AtomicExpr__Group_2_3__0__Impl rule__AtomicExpr__Group_2_3__1 ;
+    // InternalSpear.g:13828:1: rule__AtomicExpr__Group_2_3__0 : rule__AtomicExpr__Group_2_3__0__Impl rule__AtomicExpr__Group_2_3__1 ;
     public final void rule__AtomicExpr__Group_2_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13258:1: ( rule__AtomicExpr__Group_2_3__0__Impl rule__AtomicExpr__Group_2_3__1 )
-            // InternalSpear.g:13259:2: rule__AtomicExpr__Group_2_3__0__Impl rule__AtomicExpr__Group_2_3__1
+            // InternalSpear.g:13832:1: ( rule__AtomicExpr__Group_2_3__0__Impl rule__AtomicExpr__Group_2_3__1 )
+            // InternalSpear.g:13833:2: rule__AtomicExpr__Group_2_3__0__Impl rule__AtomicExpr__Group_2_3__1
             {
             pushFollow(FOLLOW_3);
             rule__AtomicExpr__Group_2_3__0__Impl();
@@ -37763,17 +39304,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_2_3__0__Impl"
-    // InternalSpear.g:13266:1: rule__AtomicExpr__Group_2_3__0__Impl : ( ',' ) ;
+    // InternalSpear.g:13840:1: rule__AtomicExpr__Group_2_3__0__Impl : ( ',' ) ;
     public final void rule__AtomicExpr__Group_2_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13270:1: ( ( ',' ) )
-            // InternalSpear.g:13271:1: ( ',' )
+            // InternalSpear.g:13844:1: ( ( ',' ) )
+            // InternalSpear.g:13845:1: ( ',' )
             {
-            // InternalSpear.g:13271:1: ( ',' )
-            // InternalSpear.g:13272:1: ','
+            // InternalSpear.g:13845:1: ( ',' )
+            // InternalSpear.g:13846:1: ','
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getCommaKeyword_2_3_0()); 
@@ -37804,14 +39345,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_2_3__1"
-    // InternalSpear.g:13285:1: rule__AtomicExpr__Group_2_3__1 : rule__AtomicExpr__Group_2_3__1__Impl ;
+    // InternalSpear.g:13859:1: rule__AtomicExpr__Group_2_3__1 : rule__AtomicExpr__Group_2_3__1__Impl ;
     public final void rule__AtomicExpr__Group_2_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13289:1: ( rule__AtomicExpr__Group_2_3__1__Impl )
-            // InternalSpear.g:13290:2: rule__AtomicExpr__Group_2_3__1__Impl
+            // InternalSpear.g:13863:1: ( rule__AtomicExpr__Group_2_3__1__Impl )
+            // InternalSpear.g:13864:2: rule__AtomicExpr__Group_2_3__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__Group_2_3__1__Impl();
@@ -37837,23 +39378,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_2_3__1__Impl"
-    // InternalSpear.g:13296:1: rule__AtomicExpr__Group_2_3__1__Impl : ( ( rule__AtomicExpr__IdsAssignment_2_3_1 ) ) ;
+    // InternalSpear.g:13870:1: rule__AtomicExpr__Group_2_3__1__Impl : ( ( rule__AtomicExpr__IdsAssignment_2_3_1 ) ) ;
     public final void rule__AtomicExpr__Group_2_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13300:1: ( ( ( rule__AtomicExpr__IdsAssignment_2_3_1 ) ) )
-            // InternalSpear.g:13301:1: ( ( rule__AtomicExpr__IdsAssignment_2_3_1 ) )
+            // InternalSpear.g:13874:1: ( ( ( rule__AtomicExpr__IdsAssignment_2_3_1 ) ) )
+            // InternalSpear.g:13875:1: ( ( rule__AtomicExpr__IdsAssignment_2_3_1 ) )
             {
-            // InternalSpear.g:13301:1: ( ( rule__AtomicExpr__IdsAssignment_2_3_1 ) )
-            // InternalSpear.g:13302:1: ( rule__AtomicExpr__IdsAssignment_2_3_1 )
+            // InternalSpear.g:13875:1: ( ( rule__AtomicExpr__IdsAssignment_2_3_1 ) )
+            // InternalSpear.g:13876:1: ( rule__AtomicExpr__IdsAssignment_2_3_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getIdsAssignment_2_3_1()); 
             }
-            // InternalSpear.g:13303:1: ( rule__AtomicExpr__IdsAssignment_2_3_1 )
-            // InternalSpear.g:13303:2: rule__AtomicExpr__IdsAssignment_2_3_1
+            // InternalSpear.g:13877:1: ( rule__AtomicExpr__IdsAssignment_2_3_1 )
+            // InternalSpear.g:13877:2: rule__AtomicExpr__IdsAssignment_2_3_1
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__IdsAssignment_2_3_1();
@@ -37888,16 +39429,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_3__0"
-    // InternalSpear.g:13317:1: rule__AtomicExpr__Group_3__0 : rule__AtomicExpr__Group_3__0__Impl rule__AtomicExpr__Group_3__1 ;
+    // InternalSpear.g:13891:1: rule__AtomicExpr__Group_3__0 : rule__AtomicExpr__Group_3__0__Impl rule__AtomicExpr__Group_3__1 ;
     public final void rule__AtomicExpr__Group_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13321:1: ( rule__AtomicExpr__Group_3__0__Impl rule__AtomicExpr__Group_3__1 )
-            // InternalSpear.g:13322:2: rule__AtomicExpr__Group_3__0__Impl rule__AtomicExpr__Group_3__1
+            // InternalSpear.g:13895:1: ( rule__AtomicExpr__Group_3__0__Impl rule__AtomicExpr__Group_3__1 )
+            // InternalSpear.g:13896:2: rule__AtomicExpr__Group_3__0__Impl rule__AtomicExpr__Group_3__1
             {
-            pushFollow(FOLLOW_74);
+            pushFollow(FOLLOW_77);
             rule__AtomicExpr__Group_3__0__Impl();
 
             state._fsp--;
@@ -37926,23 +39467,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_3__0__Impl"
-    // InternalSpear.g:13329:1: rule__AtomicExpr__Group_3__0__Impl : ( () ) ;
+    // InternalSpear.g:13903:1: rule__AtomicExpr__Group_3__0__Impl : ( () ) ;
     public final void rule__AtomicExpr__Group_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13333:1: ( ( () ) )
-            // InternalSpear.g:13334:1: ( () )
+            // InternalSpear.g:13907:1: ( ( () ) )
+            // InternalSpear.g:13908:1: ( () )
             {
-            // InternalSpear.g:13334:1: ( () )
-            // InternalSpear.g:13335:1: ()
+            // InternalSpear.g:13908:1: ( () )
+            // InternalSpear.g:13909:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getIfThenElseExprAction_3_0()); 
             }
-            // InternalSpear.g:13336:1: ()
-            // InternalSpear.g:13338:1: 
+            // InternalSpear.g:13910:1: ()
+            // InternalSpear.g:13912:1: 
             {
             }
 
@@ -37967,14 +39508,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_3__1"
-    // InternalSpear.g:13348:1: rule__AtomicExpr__Group_3__1 : rule__AtomicExpr__Group_3__1__Impl rule__AtomicExpr__Group_3__2 ;
+    // InternalSpear.g:13922:1: rule__AtomicExpr__Group_3__1 : rule__AtomicExpr__Group_3__1__Impl rule__AtomicExpr__Group_3__2 ;
     public final void rule__AtomicExpr__Group_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13352:1: ( rule__AtomicExpr__Group_3__1__Impl rule__AtomicExpr__Group_3__2 )
-            // InternalSpear.g:13353:2: rule__AtomicExpr__Group_3__1__Impl rule__AtomicExpr__Group_3__2
+            // InternalSpear.g:13926:1: ( rule__AtomicExpr__Group_3__1__Impl rule__AtomicExpr__Group_3__2 )
+            // InternalSpear.g:13927:2: rule__AtomicExpr__Group_3__1__Impl rule__AtomicExpr__Group_3__2
             {
             pushFollow(FOLLOW_26);
             rule__AtomicExpr__Group_3__1__Impl();
@@ -38005,22 +39546,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_3__1__Impl"
-    // InternalSpear.g:13360:1: rule__AtomicExpr__Group_3__1__Impl : ( 'if' ) ;
+    // InternalSpear.g:13934:1: rule__AtomicExpr__Group_3__1__Impl : ( 'if' ) ;
     public final void rule__AtomicExpr__Group_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13364:1: ( ( 'if' ) )
-            // InternalSpear.g:13365:1: ( 'if' )
+            // InternalSpear.g:13938:1: ( ( 'if' ) )
+            // InternalSpear.g:13939:1: ( 'if' )
             {
-            // InternalSpear.g:13365:1: ( 'if' )
-            // InternalSpear.g:13366:1: 'if'
+            // InternalSpear.g:13939:1: ( 'if' )
+            // InternalSpear.g:13940:1: 'if'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getIfKeyword_3_1()); 
             }
-            match(input,107,FOLLOW_2); if (state.failed) return ;
+            match(input,108,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getAtomicExprAccess().getIfKeyword_3_1()); 
             }
@@ -38046,16 +39587,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_3__2"
-    // InternalSpear.g:13379:1: rule__AtomicExpr__Group_3__2 : rule__AtomicExpr__Group_3__2__Impl rule__AtomicExpr__Group_3__3 ;
+    // InternalSpear.g:13953:1: rule__AtomicExpr__Group_3__2 : rule__AtomicExpr__Group_3__2__Impl rule__AtomicExpr__Group_3__3 ;
     public final void rule__AtomicExpr__Group_3__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13383:1: ( rule__AtomicExpr__Group_3__2__Impl rule__AtomicExpr__Group_3__3 )
-            // InternalSpear.g:13384:2: rule__AtomicExpr__Group_3__2__Impl rule__AtomicExpr__Group_3__3
+            // InternalSpear.g:13957:1: ( rule__AtomicExpr__Group_3__2__Impl rule__AtomicExpr__Group_3__3 )
+            // InternalSpear.g:13958:2: rule__AtomicExpr__Group_3__2__Impl rule__AtomicExpr__Group_3__3
             {
-            pushFollow(FOLLOW_45);
+            pushFollow(FOLLOW_48);
             rule__AtomicExpr__Group_3__2__Impl();
 
             state._fsp--;
@@ -38084,23 +39625,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_3__2__Impl"
-    // InternalSpear.g:13391:1: rule__AtomicExpr__Group_3__2__Impl : ( ( rule__AtomicExpr__CondAssignment_3_2 ) ) ;
+    // InternalSpear.g:13965:1: rule__AtomicExpr__Group_3__2__Impl : ( ( rule__AtomicExpr__CondAssignment_3_2 ) ) ;
     public final void rule__AtomicExpr__Group_3__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13395:1: ( ( ( rule__AtomicExpr__CondAssignment_3_2 ) ) )
-            // InternalSpear.g:13396:1: ( ( rule__AtomicExpr__CondAssignment_3_2 ) )
+            // InternalSpear.g:13969:1: ( ( ( rule__AtomicExpr__CondAssignment_3_2 ) ) )
+            // InternalSpear.g:13970:1: ( ( rule__AtomicExpr__CondAssignment_3_2 ) )
             {
-            // InternalSpear.g:13396:1: ( ( rule__AtomicExpr__CondAssignment_3_2 ) )
-            // InternalSpear.g:13397:1: ( rule__AtomicExpr__CondAssignment_3_2 )
+            // InternalSpear.g:13970:1: ( ( rule__AtomicExpr__CondAssignment_3_2 ) )
+            // InternalSpear.g:13971:1: ( rule__AtomicExpr__CondAssignment_3_2 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getCondAssignment_3_2()); 
             }
-            // InternalSpear.g:13398:1: ( rule__AtomicExpr__CondAssignment_3_2 )
-            // InternalSpear.g:13398:2: rule__AtomicExpr__CondAssignment_3_2
+            // InternalSpear.g:13972:1: ( rule__AtomicExpr__CondAssignment_3_2 )
+            // InternalSpear.g:13972:2: rule__AtomicExpr__CondAssignment_3_2
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__CondAssignment_3_2();
@@ -38135,14 +39676,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_3__3"
-    // InternalSpear.g:13408:1: rule__AtomicExpr__Group_3__3 : rule__AtomicExpr__Group_3__3__Impl rule__AtomicExpr__Group_3__4 ;
+    // InternalSpear.g:13982:1: rule__AtomicExpr__Group_3__3 : rule__AtomicExpr__Group_3__3__Impl rule__AtomicExpr__Group_3__4 ;
     public final void rule__AtomicExpr__Group_3__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13412:1: ( rule__AtomicExpr__Group_3__3__Impl rule__AtomicExpr__Group_3__4 )
-            // InternalSpear.g:13413:2: rule__AtomicExpr__Group_3__3__Impl rule__AtomicExpr__Group_3__4
+            // InternalSpear.g:13986:1: ( rule__AtomicExpr__Group_3__3__Impl rule__AtomicExpr__Group_3__4 )
+            // InternalSpear.g:13987:2: rule__AtomicExpr__Group_3__3__Impl rule__AtomicExpr__Group_3__4
             {
             pushFollow(FOLLOW_26);
             rule__AtomicExpr__Group_3__3__Impl();
@@ -38173,22 +39714,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_3__3__Impl"
-    // InternalSpear.g:13420:1: rule__AtomicExpr__Group_3__3__Impl : ( 'then' ) ;
+    // InternalSpear.g:13994:1: rule__AtomicExpr__Group_3__3__Impl : ( 'then' ) ;
     public final void rule__AtomicExpr__Group_3__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13424:1: ( ( 'then' ) )
-            // InternalSpear.g:13425:1: ( 'then' )
+            // InternalSpear.g:13998:1: ( ( 'then' ) )
+            // InternalSpear.g:13999:1: ( 'then' )
             {
-            // InternalSpear.g:13425:1: ( 'then' )
-            // InternalSpear.g:13426:1: 'then'
+            // InternalSpear.g:13999:1: ( 'then' )
+            // InternalSpear.g:14000:1: 'then'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getThenKeyword_3_3()); 
             }
-            match(input,93,FOLLOW_2); if (state.failed) return ;
+            match(input,94,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getAtomicExprAccess().getThenKeyword_3_3()); 
             }
@@ -38214,16 +39755,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_3__4"
-    // InternalSpear.g:13439:1: rule__AtomicExpr__Group_3__4 : rule__AtomicExpr__Group_3__4__Impl rule__AtomicExpr__Group_3__5 ;
+    // InternalSpear.g:14013:1: rule__AtomicExpr__Group_3__4 : rule__AtomicExpr__Group_3__4__Impl rule__AtomicExpr__Group_3__5 ;
     public final void rule__AtomicExpr__Group_3__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13443:1: ( rule__AtomicExpr__Group_3__4__Impl rule__AtomicExpr__Group_3__5 )
-            // InternalSpear.g:13444:2: rule__AtomicExpr__Group_3__4__Impl rule__AtomicExpr__Group_3__5
+            // InternalSpear.g:14017:1: ( rule__AtomicExpr__Group_3__4__Impl rule__AtomicExpr__Group_3__5 )
+            // InternalSpear.g:14018:2: rule__AtomicExpr__Group_3__4__Impl rule__AtomicExpr__Group_3__5
             {
-            pushFollow(FOLLOW_75);
+            pushFollow(FOLLOW_78);
             rule__AtomicExpr__Group_3__4__Impl();
 
             state._fsp--;
@@ -38252,23 +39793,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_3__4__Impl"
-    // InternalSpear.g:13451:1: rule__AtomicExpr__Group_3__4__Impl : ( ( rule__AtomicExpr__ThenAssignment_3_4 ) ) ;
+    // InternalSpear.g:14025:1: rule__AtomicExpr__Group_3__4__Impl : ( ( rule__AtomicExpr__ThenAssignment_3_4 ) ) ;
     public final void rule__AtomicExpr__Group_3__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13455:1: ( ( ( rule__AtomicExpr__ThenAssignment_3_4 ) ) )
-            // InternalSpear.g:13456:1: ( ( rule__AtomicExpr__ThenAssignment_3_4 ) )
+            // InternalSpear.g:14029:1: ( ( ( rule__AtomicExpr__ThenAssignment_3_4 ) ) )
+            // InternalSpear.g:14030:1: ( ( rule__AtomicExpr__ThenAssignment_3_4 ) )
             {
-            // InternalSpear.g:13456:1: ( ( rule__AtomicExpr__ThenAssignment_3_4 ) )
-            // InternalSpear.g:13457:1: ( rule__AtomicExpr__ThenAssignment_3_4 )
+            // InternalSpear.g:14030:1: ( ( rule__AtomicExpr__ThenAssignment_3_4 ) )
+            // InternalSpear.g:14031:1: ( rule__AtomicExpr__ThenAssignment_3_4 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getThenAssignment_3_4()); 
             }
-            // InternalSpear.g:13458:1: ( rule__AtomicExpr__ThenAssignment_3_4 )
-            // InternalSpear.g:13458:2: rule__AtomicExpr__ThenAssignment_3_4
+            // InternalSpear.g:14032:1: ( rule__AtomicExpr__ThenAssignment_3_4 )
+            // InternalSpear.g:14032:2: rule__AtomicExpr__ThenAssignment_3_4
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__ThenAssignment_3_4();
@@ -38303,14 +39844,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_3__5"
-    // InternalSpear.g:13468:1: rule__AtomicExpr__Group_3__5 : rule__AtomicExpr__Group_3__5__Impl ;
+    // InternalSpear.g:14042:1: rule__AtomicExpr__Group_3__5 : rule__AtomicExpr__Group_3__5__Impl ;
     public final void rule__AtomicExpr__Group_3__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13472:1: ( rule__AtomicExpr__Group_3__5__Impl )
-            // InternalSpear.g:13473:2: rule__AtomicExpr__Group_3__5__Impl
+            // InternalSpear.g:14046:1: ( rule__AtomicExpr__Group_3__5__Impl )
+            // InternalSpear.g:14047:2: rule__AtomicExpr__Group_3__5__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__Group_3__5__Impl();
@@ -38336,35 +39877,35 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_3__5__Impl"
-    // InternalSpear.g:13479:1: rule__AtomicExpr__Group_3__5__Impl : ( ( rule__AtomicExpr__Group_3_5__0 )? ) ;
+    // InternalSpear.g:14053:1: rule__AtomicExpr__Group_3__5__Impl : ( ( rule__AtomicExpr__Group_3_5__0 )? ) ;
     public final void rule__AtomicExpr__Group_3__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13483:1: ( ( ( rule__AtomicExpr__Group_3_5__0 )? ) )
-            // InternalSpear.g:13484:1: ( ( rule__AtomicExpr__Group_3_5__0 )? )
+            // InternalSpear.g:14057:1: ( ( ( rule__AtomicExpr__Group_3_5__0 )? ) )
+            // InternalSpear.g:14058:1: ( ( rule__AtomicExpr__Group_3_5__0 )? )
             {
-            // InternalSpear.g:13484:1: ( ( rule__AtomicExpr__Group_3_5__0 )? )
-            // InternalSpear.g:13485:1: ( rule__AtomicExpr__Group_3_5__0 )?
+            // InternalSpear.g:14058:1: ( ( rule__AtomicExpr__Group_3_5__0 )? )
+            // InternalSpear.g:14059:1: ( rule__AtomicExpr__Group_3_5__0 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getGroup_3_5()); 
             }
-            // InternalSpear.g:13486:1: ( rule__AtomicExpr__Group_3_5__0 )?
-            int alt96=2;
-            int LA96_0 = input.LA(1);
+            // InternalSpear.g:14060:1: ( rule__AtomicExpr__Group_3_5__0 )?
+            int alt100=2;
+            int LA100_0 = input.LA(1);
 
-            if ( (LA96_0==108) ) {
-                int LA96_1 = input.LA(2);
+            if ( (LA100_0==109) ) {
+                int LA100_1 = input.LA(2);
 
-                if ( (synpred136_InternalSpear()) ) {
-                    alt96=1;
+                if ( (synpred140_InternalSpear()) ) {
+                    alt100=1;
                 }
             }
-            switch (alt96) {
+            switch (alt100) {
                 case 1 :
-                    // InternalSpear.g:13486:2: rule__AtomicExpr__Group_3_5__0
+                    // InternalSpear.g:14060:2: rule__AtomicExpr__Group_3_5__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__AtomicExpr__Group_3_5__0();
@@ -38402,14 +39943,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_3_5__0"
-    // InternalSpear.g:13508:1: rule__AtomicExpr__Group_3_5__0 : rule__AtomicExpr__Group_3_5__0__Impl rule__AtomicExpr__Group_3_5__1 ;
+    // InternalSpear.g:14082:1: rule__AtomicExpr__Group_3_5__0 : rule__AtomicExpr__Group_3_5__0__Impl rule__AtomicExpr__Group_3_5__1 ;
     public final void rule__AtomicExpr__Group_3_5__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13512:1: ( rule__AtomicExpr__Group_3_5__0__Impl rule__AtomicExpr__Group_3_5__1 )
-            // InternalSpear.g:13513:2: rule__AtomicExpr__Group_3_5__0__Impl rule__AtomicExpr__Group_3_5__1
+            // InternalSpear.g:14086:1: ( rule__AtomicExpr__Group_3_5__0__Impl rule__AtomicExpr__Group_3_5__1 )
+            // InternalSpear.g:14087:2: rule__AtomicExpr__Group_3_5__0__Impl rule__AtomicExpr__Group_3_5__1
             {
             pushFollow(FOLLOW_26);
             rule__AtomicExpr__Group_3_5__0__Impl();
@@ -38440,25 +39981,25 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_3_5__0__Impl"
-    // InternalSpear.g:13520:1: rule__AtomicExpr__Group_3_5__0__Impl : ( ( 'else' ) ) ;
+    // InternalSpear.g:14094:1: rule__AtomicExpr__Group_3_5__0__Impl : ( ( 'else' ) ) ;
     public final void rule__AtomicExpr__Group_3_5__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13524:1: ( ( ( 'else' ) ) )
-            // InternalSpear.g:13525:1: ( ( 'else' ) )
+            // InternalSpear.g:14098:1: ( ( ( 'else' ) ) )
+            // InternalSpear.g:14099:1: ( ( 'else' ) )
             {
-            // InternalSpear.g:13525:1: ( ( 'else' ) )
-            // InternalSpear.g:13526:1: ( 'else' )
+            // InternalSpear.g:14099:1: ( ( 'else' ) )
+            // InternalSpear.g:14100:1: ( 'else' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getElseKeyword_3_5_0()); 
             }
-            // InternalSpear.g:13527:1: ( 'else' )
-            // InternalSpear.g:13528:2: 'else'
+            // InternalSpear.g:14101:1: ( 'else' )
+            // InternalSpear.g:14102:2: 'else'
             {
-            match(input,108,FOLLOW_2); if (state.failed) return ;
+            match(input,109,FOLLOW_2); if (state.failed) return ;
 
             }
 
@@ -38487,14 +40028,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_3_5__1"
-    // InternalSpear.g:13539:1: rule__AtomicExpr__Group_3_5__1 : rule__AtomicExpr__Group_3_5__1__Impl ;
+    // InternalSpear.g:14113:1: rule__AtomicExpr__Group_3_5__1 : rule__AtomicExpr__Group_3_5__1__Impl ;
     public final void rule__AtomicExpr__Group_3_5__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13543:1: ( rule__AtomicExpr__Group_3_5__1__Impl )
-            // InternalSpear.g:13544:2: rule__AtomicExpr__Group_3_5__1__Impl
+            // InternalSpear.g:14117:1: ( rule__AtomicExpr__Group_3_5__1__Impl )
+            // InternalSpear.g:14118:2: rule__AtomicExpr__Group_3_5__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__Group_3_5__1__Impl();
@@ -38520,23 +40061,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_3_5__1__Impl"
-    // InternalSpear.g:13550:1: rule__AtomicExpr__Group_3_5__1__Impl : ( ( rule__AtomicExpr__ElseAssignment_3_5_1 ) ) ;
+    // InternalSpear.g:14124:1: rule__AtomicExpr__Group_3_5__1__Impl : ( ( rule__AtomicExpr__ElseAssignment_3_5_1 ) ) ;
     public final void rule__AtomicExpr__Group_3_5__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13554:1: ( ( ( rule__AtomicExpr__ElseAssignment_3_5_1 ) ) )
-            // InternalSpear.g:13555:1: ( ( rule__AtomicExpr__ElseAssignment_3_5_1 ) )
+            // InternalSpear.g:14128:1: ( ( ( rule__AtomicExpr__ElseAssignment_3_5_1 ) ) )
+            // InternalSpear.g:14129:1: ( ( rule__AtomicExpr__ElseAssignment_3_5_1 ) )
             {
-            // InternalSpear.g:13555:1: ( ( rule__AtomicExpr__ElseAssignment_3_5_1 ) )
-            // InternalSpear.g:13556:1: ( rule__AtomicExpr__ElseAssignment_3_5_1 )
+            // InternalSpear.g:14129:1: ( ( rule__AtomicExpr__ElseAssignment_3_5_1 ) )
+            // InternalSpear.g:14130:1: ( rule__AtomicExpr__ElseAssignment_3_5_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getElseAssignment_3_5_1()); 
             }
-            // InternalSpear.g:13557:1: ( rule__AtomicExpr__ElseAssignment_3_5_1 )
-            // InternalSpear.g:13557:2: rule__AtomicExpr__ElseAssignment_3_5_1
+            // InternalSpear.g:14131:1: ( rule__AtomicExpr__ElseAssignment_3_5_1 )
+            // InternalSpear.g:14131:2: rule__AtomicExpr__ElseAssignment_3_5_1
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__ElseAssignment_3_5_1();
@@ -38571,16 +40112,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_4__0"
-    // InternalSpear.g:13571:1: rule__AtomicExpr__Group_4__0 : rule__AtomicExpr__Group_4__0__Impl rule__AtomicExpr__Group_4__1 ;
+    // InternalSpear.g:14145:1: rule__AtomicExpr__Group_4__0 : rule__AtomicExpr__Group_4__0__Impl rule__AtomicExpr__Group_4__1 ;
     public final void rule__AtomicExpr__Group_4__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13575:1: ( rule__AtomicExpr__Group_4__0__Impl rule__AtomicExpr__Group_4__1 )
-            // InternalSpear.g:13576:2: rule__AtomicExpr__Group_4__0__Impl rule__AtomicExpr__Group_4__1
+            // InternalSpear.g:14149:1: ( rule__AtomicExpr__Group_4__0__Impl rule__AtomicExpr__Group_4__1 )
+            // InternalSpear.g:14150:2: rule__AtomicExpr__Group_4__0__Impl rule__AtomicExpr__Group_4__1
             {
-            pushFollow(FOLLOW_76);
+            pushFollow(FOLLOW_79);
             rule__AtomicExpr__Group_4__0__Impl();
 
             state._fsp--;
@@ -38609,23 +40150,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_4__0__Impl"
-    // InternalSpear.g:13583:1: rule__AtomicExpr__Group_4__0__Impl : ( () ) ;
+    // InternalSpear.g:14157:1: rule__AtomicExpr__Group_4__0__Impl : ( () ) ;
     public final void rule__AtomicExpr__Group_4__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13587:1: ( ( () ) )
-            // InternalSpear.g:13588:1: ( () )
+            // InternalSpear.g:14161:1: ( ( () ) )
+            // InternalSpear.g:14162:1: ( () )
             {
-            // InternalSpear.g:13588:1: ( () )
-            // InternalSpear.g:13589:1: ()
+            // InternalSpear.g:14162:1: ( () )
+            // InternalSpear.g:14163:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getRecordExprAction_4_0()); 
             }
-            // InternalSpear.g:13590:1: ()
-            // InternalSpear.g:13592:1: 
+            // InternalSpear.g:14164:1: ()
+            // InternalSpear.g:14166:1: 
             {
             }
 
@@ -38650,14 +40191,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_4__1"
-    // InternalSpear.g:13602:1: rule__AtomicExpr__Group_4__1 : rule__AtomicExpr__Group_4__1__Impl rule__AtomicExpr__Group_4__2 ;
+    // InternalSpear.g:14176:1: rule__AtomicExpr__Group_4__1 : rule__AtomicExpr__Group_4__1__Impl rule__AtomicExpr__Group_4__2 ;
     public final void rule__AtomicExpr__Group_4__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13606:1: ( rule__AtomicExpr__Group_4__1__Impl rule__AtomicExpr__Group_4__2 )
-            // InternalSpear.g:13607:2: rule__AtomicExpr__Group_4__1__Impl rule__AtomicExpr__Group_4__2
+            // InternalSpear.g:14180:1: ( rule__AtomicExpr__Group_4__1__Impl rule__AtomicExpr__Group_4__2 )
+            // InternalSpear.g:14181:2: rule__AtomicExpr__Group_4__1__Impl rule__AtomicExpr__Group_4__2
             {
             pushFollow(FOLLOW_3);
             rule__AtomicExpr__Group_4__1__Impl();
@@ -38688,22 +40229,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_4__1__Impl"
-    // InternalSpear.g:13614:1: rule__AtomicExpr__Group_4__1__Impl : ( 'new' ) ;
+    // InternalSpear.g:14188:1: rule__AtomicExpr__Group_4__1__Impl : ( 'new' ) ;
     public final void rule__AtomicExpr__Group_4__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13618:1: ( ( 'new' ) )
-            // InternalSpear.g:13619:1: ( 'new' )
+            // InternalSpear.g:14192:1: ( ( 'new' ) )
+            // InternalSpear.g:14193:1: ( 'new' )
             {
-            // InternalSpear.g:13619:1: ( 'new' )
-            // InternalSpear.g:13620:1: 'new'
+            // InternalSpear.g:14193:1: ( 'new' )
+            // InternalSpear.g:14194:1: 'new'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getNewKeyword_4_1()); 
             }
-            match(input,109,FOLLOW_2); if (state.failed) return ;
+            match(input,110,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getAtomicExprAccess().getNewKeyword_4_1()); 
             }
@@ -38729,14 +40270,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_4__2"
-    // InternalSpear.g:13633:1: rule__AtomicExpr__Group_4__2 : rule__AtomicExpr__Group_4__2__Impl rule__AtomicExpr__Group_4__3 ;
+    // InternalSpear.g:14207:1: rule__AtomicExpr__Group_4__2 : rule__AtomicExpr__Group_4__2__Impl rule__AtomicExpr__Group_4__3 ;
     public final void rule__AtomicExpr__Group_4__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13637:1: ( rule__AtomicExpr__Group_4__2__Impl rule__AtomicExpr__Group_4__3 )
-            // InternalSpear.g:13638:2: rule__AtomicExpr__Group_4__2__Impl rule__AtomicExpr__Group_4__3
+            // InternalSpear.g:14211:1: ( rule__AtomicExpr__Group_4__2__Impl rule__AtomicExpr__Group_4__3 )
+            // InternalSpear.g:14212:2: rule__AtomicExpr__Group_4__2__Impl rule__AtomicExpr__Group_4__3
             {
             pushFollow(FOLLOW_35);
             rule__AtomicExpr__Group_4__2__Impl();
@@ -38767,23 +40308,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_4__2__Impl"
-    // InternalSpear.g:13645:1: rule__AtomicExpr__Group_4__2__Impl : ( ( rule__AtomicExpr__TypeAssignment_4_2 ) ) ;
+    // InternalSpear.g:14219:1: rule__AtomicExpr__Group_4__2__Impl : ( ( rule__AtomicExpr__TypeAssignment_4_2 ) ) ;
     public final void rule__AtomicExpr__Group_4__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13649:1: ( ( ( rule__AtomicExpr__TypeAssignment_4_2 ) ) )
-            // InternalSpear.g:13650:1: ( ( rule__AtomicExpr__TypeAssignment_4_2 ) )
+            // InternalSpear.g:14223:1: ( ( ( rule__AtomicExpr__TypeAssignment_4_2 ) ) )
+            // InternalSpear.g:14224:1: ( ( rule__AtomicExpr__TypeAssignment_4_2 ) )
             {
-            // InternalSpear.g:13650:1: ( ( rule__AtomicExpr__TypeAssignment_4_2 ) )
-            // InternalSpear.g:13651:1: ( rule__AtomicExpr__TypeAssignment_4_2 )
+            // InternalSpear.g:14224:1: ( ( rule__AtomicExpr__TypeAssignment_4_2 ) )
+            // InternalSpear.g:14225:1: ( rule__AtomicExpr__TypeAssignment_4_2 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getTypeAssignment_4_2()); 
             }
-            // InternalSpear.g:13652:1: ( rule__AtomicExpr__TypeAssignment_4_2 )
-            // InternalSpear.g:13652:2: rule__AtomicExpr__TypeAssignment_4_2
+            // InternalSpear.g:14226:1: ( rule__AtomicExpr__TypeAssignment_4_2 )
+            // InternalSpear.g:14226:2: rule__AtomicExpr__TypeAssignment_4_2
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__TypeAssignment_4_2();
@@ -38818,14 +40359,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_4__3"
-    // InternalSpear.g:13662:1: rule__AtomicExpr__Group_4__3 : rule__AtomicExpr__Group_4__3__Impl rule__AtomicExpr__Group_4__4 ;
+    // InternalSpear.g:14236:1: rule__AtomicExpr__Group_4__3 : rule__AtomicExpr__Group_4__3__Impl rule__AtomicExpr__Group_4__4 ;
     public final void rule__AtomicExpr__Group_4__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13666:1: ( rule__AtomicExpr__Group_4__3__Impl rule__AtomicExpr__Group_4__4 )
-            // InternalSpear.g:13667:2: rule__AtomicExpr__Group_4__3__Impl rule__AtomicExpr__Group_4__4
+            // InternalSpear.g:14240:1: ( rule__AtomicExpr__Group_4__3__Impl rule__AtomicExpr__Group_4__4 )
+            // InternalSpear.g:14241:2: rule__AtomicExpr__Group_4__3__Impl rule__AtomicExpr__Group_4__4
             {
             pushFollow(FOLLOW_3);
             rule__AtomicExpr__Group_4__3__Impl();
@@ -38856,17 +40397,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_4__3__Impl"
-    // InternalSpear.g:13674:1: rule__AtomicExpr__Group_4__3__Impl : ( '{' ) ;
+    // InternalSpear.g:14248:1: rule__AtomicExpr__Group_4__3__Impl : ( '{' ) ;
     public final void rule__AtomicExpr__Group_4__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13678:1: ( ( '{' ) )
-            // InternalSpear.g:13679:1: ( '{' )
+            // InternalSpear.g:14252:1: ( ( '{' ) )
+            // InternalSpear.g:14253:1: ( '{' )
             {
-            // InternalSpear.g:13679:1: ( '{' )
-            // InternalSpear.g:13680:1: '{'
+            // InternalSpear.g:14253:1: ( '{' )
+            // InternalSpear.g:14254:1: '{'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getLeftCurlyBracketKeyword_4_3()); 
@@ -38897,14 +40438,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_4__4"
-    // InternalSpear.g:13693:1: rule__AtomicExpr__Group_4__4 : rule__AtomicExpr__Group_4__4__Impl rule__AtomicExpr__Group_4__5 ;
+    // InternalSpear.g:14267:1: rule__AtomicExpr__Group_4__4 : rule__AtomicExpr__Group_4__4__Impl rule__AtomicExpr__Group_4__5 ;
     public final void rule__AtomicExpr__Group_4__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13697:1: ( rule__AtomicExpr__Group_4__4__Impl rule__AtomicExpr__Group_4__5 )
-            // InternalSpear.g:13698:2: rule__AtomicExpr__Group_4__4__Impl rule__AtomicExpr__Group_4__5
+            // InternalSpear.g:14271:1: ( rule__AtomicExpr__Group_4__4__Impl rule__AtomicExpr__Group_4__5 )
+            // InternalSpear.g:14272:2: rule__AtomicExpr__Group_4__4__Impl rule__AtomicExpr__Group_4__5
             {
             pushFollow(FOLLOW_36);
             rule__AtomicExpr__Group_4__4__Impl();
@@ -38935,23 +40476,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_4__4__Impl"
-    // InternalSpear.g:13705:1: rule__AtomicExpr__Group_4__4__Impl : ( ( rule__AtomicExpr__FieldExprsAssignment_4_4 ) ) ;
+    // InternalSpear.g:14279:1: rule__AtomicExpr__Group_4__4__Impl : ( ( rule__AtomicExpr__FieldExprsAssignment_4_4 ) ) ;
     public final void rule__AtomicExpr__Group_4__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13709:1: ( ( ( rule__AtomicExpr__FieldExprsAssignment_4_4 ) ) )
-            // InternalSpear.g:13710:1: ( ( rule__AtomicExpr__FieldExprsAssignment_4_4 ) )
+            // InternalSpear.g:14283:1: ( ( ( rule__AtomicExpr__FieldExprsAssignment_4_4 ) ) )
+            // InternalSpear.g:14284:1: ( ( rule__AtomicExpr__FieldExprsAssignment_4_4 ) )
             {
-            // InternalSpear.g:13710:1: ( ( rule__AtomicExpr__FieldExprsAssignment_4_4 ) )
-            // InternalSpear.g:13711:1: ( rule__AtomicExpr__FieldExprsAssignment_4_4 )
+            // InternalSpear.g:14284:1: ( ( rule__AtomicExpr__FieldExprsAssignment_4_4 ) )
+            // InternalSpear.g:14285:1: ( rule__AtomicExpr__FieldExprsAssignment_4_4 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getFieldExprsAssignment_4_4()); 
             }
-            // InternalSpear.g:13712:1: ( rule__AtomicExpr__FieldExprsAssignment_4_4 )
-            // InternalSpear.g:13712:2: rule__AtomicExpr__FieldExprsAssignment_4_4
+            // InternalSpear.g:14286:1: ( rule__AtomicExpr__FieldExprsAssignment_4_4 )
+            // InternalSpear.g:14286:2: rule__AtomicExpr__FieldExprsAssignment_4_4
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__FieldExprsAssignment_4_4();
@@ -38986,14 +40527,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_4__5"
-    // InternalSpear.g:13722:1: rule__AtomicExpr__Group_4__5 : rule__AtomicExpr__Group_4__5__Impl rule__AtomicExpr__Group_4__6 ;
+    // InternalSpear.g:14296:1: rule__AtomicExpr__Group_4__5 : rule__AtomicExpr__Group_4__5__Impl rule__AtomicExpr__Group_4__6 ;
     public final void rule__AtomicExpr__Group_4__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13726:1: ( rule__AtomicExpr__Group_4__5__Impl rule__AtomicExpr__Group_4__6 )
-            // InternalSpear.g:13727:2: rule__AtomicExpr__Group_4__5__Impl rule__AtomicExpr__Group_4__6
+            // InternalSpear.g:14300:1: ( rule__AtomicExpr__Group_4__5__Impl rule__AtomicExpr__Group_4__6 )
+            // InternalSpear.g:14301:2: rule__AtomicExpr__Group_4__5__Impl rule__AtomicExpr__Group_4__6
             {
             pushFollow(FOLLOW_36);
             rule__AtomicExpr__Group_4__5__Impl();
@@ -39024,35 +40565,35 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_4__5__Impl"
-    // InternalSpear.g:13734:1: rule__AtomicExpr__Group_4__5__Impl : ( ( rule__AtomicExpr__Group_4_5__0 )* ) ;
+    // InternalSpear.g:14308:1: rule__AtomicExpr__Group_4__5__Impl : ( ( rule__AtomicExpr__Group_4_5__0 )* ) ;
     public final void rule__AtomicExpr__Group_4__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13738:1: ( ( ( rule__AtomicExpr__Group_4_5__0 )* ) )
-            // InternalSpear.g:13739:1: ( ( rule__AtomicExpr__Group_4_5__0 )* )
+            // InternalSpear.g:14312:1: ( ( ( rule__AtomicExpr__Group_4_5__0 )* ) )
+            // InternalSpear.g:14313:1: ( ( rule__AtomicExpr__Group_4_5__0 )* )
             {
-            // InternalSpear.g:13739:1: ( ( rule__AtomicExpr__Group_4_5__0 )* )
-            // InternalSpear.g:13740:1: ( rule__AtomicExpr__Group_4_5__0 )*
+            // InternalSpear.g:14313:1: ( ( rule__AtomicExpr__Group_4_5__0 )* )
+            // InternalSpear.g:14314:1: ( rule__AtomicExpr__Group_4_5__0 )*
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getGroup_4_5()); 
             }
-            // InternalSpear.g:13741:1: ( rule__AtomicExpr__Group_4_5__0 )*
-            loop97:
+            // InternalSpear.g:14315:1: ( rule__AtomicExpr__Group_4_5__0 )*
+            loop101:
             do {
-                int alt97=2;
-                int LA97_0 = input.LA(1);
+                int alt101=2;
+                int LA101_0 = input.LA(1);
 
-                if ( (LA97_0==75) ) {
-                    alt97=1;
+                if ( (LA101_0==75) ) {
+                    alt101=1;
                 }
 
 
-                switch (alt97) {
+                switch (alt101) {
             	case 1 :
-            	    // InternalSpear.g:13741:2: rule__AtomicExpr__Group_4_5__0
+            	    // InternalSpear.g:14315:2: rule__AtomicExpr__Group_4_5__0
             	    {
             	    pushFollow(FOLLOW_23);
             	    rule__AtomicExpr__Group_4_5__0();
@@ -39064,7 +40605,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop97;
+            	    break loop101;
                 }
             } while (true);
 
@@ -39093,14 +40634,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_4__6"
-    // InternalSpear.g:13751:1: rule__AtomicExpr__Group_4__6 : rule__AtomicExpr__Group_4__6__Impl ;
+    // InternalSpear.g:14325:1: rule__AtomicExpr__Group_4__6 : rule__AtomicExpr__Group_4__6__Impl ;
     public final void rule__AtomicExpr__Group_4__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13755:1: ( rule__AtomicExpr__Group_4__6__Impl )
-            // InternalSpear.g:13756:2: rule__AtomicExpr__Group_4__6__Impl
+            // InternalSpear.g:14329:1: ( rule__AtomicExpr__Group_4__6__Impl )
+            // InternalSpear.g:14330:2: rule__AtomicExpr__Group_4__6__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__Group_4__6__Impl();
@@ -39126,17 +40667,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_4__6__Impl"
-    // InternalSpear.g:13762:1: rule__AtomicExpr__Group_4__6__Impl : ( '}' ) ;
+    // InternalSpear.g:14336:1: rule__AtomicExpr__Group_4__6__Impl : ( '}' ) ;
     public final void rule__AtomicExpr__Group_4__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13766:1: ( ( '}' ) )
-            // InternalSpear.g:13767:1: ( '}' )
+            // InternalSpear.g:14340:1: ( ( '}' ) )
+            // InternalSpear.g:14341:1: ( '}' )
             {
-            // InternalSpear.g:13767:1: ( '}' )
-            // InternalSpear.g:13768:1: '}'
+            // InternalSpear.g:14341:1: ( '}' )
+            // InternalSpear.g:14342:1: '}'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getRightCurlyBracketKeyword_4_6()); 
@@ -39167,14 +40708,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_4_5__0"
-    // InternalSpear.g:13795:1: rule__AtomicExpr__Group_4_5__0 : rule__AtomicExpr__Group_4_5__0__Impl rule__AtomicExpr__Group_4_5__1 ;
+    // InternalSpear.g:14369:1: rule__AtomicExpr__Group_4_5__0 : rule__AtomicExpr__Group_4_5__0__Impl rule__AtomicExpr__Group_4_5__1 ;
     public final void rule__AtomicExpr__Group_4_5__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13799:1: ( rule__AtomicExpr__Group_4_5__0__Impl rule__AtomicExpr__Group_4_5__1 )
-            // InternalSpear.g:13800:2: rule__AtomicExpr__Group_4_5__0__Impl rule__AtomicExpr__Group_4_5__1
+            // InternalSpear.g:14373:1: ( rule__AtomicExpr__Group_4_5__0__Impl rule__AtomicExpr__Group_4_5__1 )
+            // InternalSpear.g:14374:2: rule__AtomicExpr__Group_4_5__0__Impl rule__AtomicExpr__Group_4_5__1
             {
             pushFollow(FOLLOW_3);
             rule__AtomicExpr__Group_4_5__0__Impl();
@@ -39205,17 +40746,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_4_5__0__Impl"
-    // InternalSpear.g:13807:1: rule__AtomicExpr__Group_4_5__0__Impl : ( ',' ) ;
+    // InternalSpear.g:14381:1: rule__AtomicExpr__Group_4_5__0__Impl : ( ',' ) ;
     public final void rule__AtomicExpr__Group_4_5__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13811:1: ( ( ',' ) )
-            // InternalSpear.g:13812:1: ( ',' )
+            // InternalSpear.g:14385:1: ( ( ',' ) )
+            // InternalSpear.g:14386:1: ( ',' )
             {
-            // InternalSpear.g:13812:1: ( ',' )
-            // InternalSpear.g:13813:1: ','
+            // InternalSpear.g:14386:1: ( ',' )
+            // InternalSpear.g:14387:1: ','
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getCommaKeyword_4_5_0()); 
@@ -39246,14 +40787,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_4_5__1"
-    // InternalSpear.g:13826:1: rule__AtomicExpr__Group_4_5__1 : rule__AtomicExpr__Group_4_5__1__Impl ;
+    // InternalSpear.g:14400:1: rule__AtomicExpr__Group_4_5__1 : rule__AtomicExpr__Group_4_5__1__Impl ;
     public final void rule__AtomicExpr__Group_4_5__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13830:1: ( rule__AtomicExpr__Group_4_5__1__Impl )
-            // InternalSpear.g:13831:2: rule__AtomicExpr__Group_4_5__1__Impl
+            // InternalSpear.g:14404:1: ( rule__AtomicExpr__Group_4_5__1__Impl )
+            // InternalSpear.g:14405:2: rule__AtomicExpr__Group_4_5__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__Group_4_5__1__Impl();
@@ -39279,23 +40820,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_4_5__1__Impl"
-    // InternalSpear.g:13837:1: rule__AtomicExpr__Group_4_5__1__Impl : ( ( rule__AtomicExpr__FieldExprsAssignment_4_5_1 ) ) ;
+    // InternalSpear.g:14411:1: rule__AtomicExpr__Group_4_5__1__Impl : ( ( rule__AtomicExpr__FieldExprsAssignment_4_5_1 ) ) ;
     public final void rule__AtomicExpr__Group_4_5__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13841:1: ( ( ( rule__AtomicExpr__FieldExprsAssignment_4_5_1 ) ) )
-            // InternalSpear.g:13842:1: ( ( rule__AtomicExpr__FieldExprsAssignment_4_5_1 ) )
+            // InternalSpear.g:14415:1: ( ( ( rule__AtomicExpr__FieldExprsAssignment_4_5_1 ) ) )
+            // InternalSpear.g:14416:1: ( ( rule__AtomicExpr__FieldExprsAssignment_4_5_1 ) )
             {
-            // InternalSpear.g:13842:1: ( ( rule__AtomicExpr__FieldExprsAssignment_4_5_1 ) )
-            // InternalSpear.g:13843:1: ( rule__AtomicExpr__FieldExprsAssignment_4_5_1 )
+            // InternalSpear.g:14416:1: ( ( rule__AtomicExpr__FieldExprsAssignment_4_5_1 ) )
+            // InternalSpear.g:14417:1: ( rule__AtomicExpr__FieldExprsAssignment_4_5_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getFieldExprsAssignment_4_5_1()); 
             }
-            // InternalSpear.g:13844:1: ( rule__AtomicExpr__FieldExprsAssignment_4_5_1 )
-            // InternalSpear.g:13844:2: rule__AtomicExpr__FieldExprsAssignment_4_5_1
+            // InternalSpear.g:14418:1: ( rule__AtomicExpr__FieldExprsAssignment_4_5_1 )
+            // InternalSpear.g:14418:2: rule__AtomicExpr__FieldExprsAssignment_4_5_1
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__FieldExprsAssignment_4_5_1();
@@ -39330,16 +40871,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_5__0"
-    // InternalSpear.g:13858:1: rule__AtomicExpr__Group_5__0 : rule__AtomicExpr__Group_5__0__Impl rule__AtomicExpr__Group_5__1 ;
+    // InternalSpear.g:14432:1: rule__AtomicExpr__Group_5__0 : rule__AtomicExpr__Group_5__0__Impl rule__AtomicExpr__Group_5__1 ;
     public final void rule__AtomicExpr__Group_5__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13862:1: ( rule__AtomicExpr__Group_5__0__Impl rule__AtomicExpr__Group_5__1 )
-            // InternalSpear.g:13863:2: rule__AtomicExpr__Group_5__0__Impl rule__AtomicExpr__Group_5__1
+            // InternalSpear.g:14436:1: ( rule__AtomicExpr__Group_5__0__Impl rule__AtomicExpr__Group_5__1 )
+            // InternalSpear.g:14437:2: rule__AtomicExpr__Group_5__0__Impl rule__AtomicExpr__Group_5__1
             {
-            pushFollow(FOLLOW_76);
+            pushFollow(FOLLOW_79);
             rule__AtomicExpr__Group_5__0__Impl();
 
             state._fsp--;
@@ -39368,23 +40909,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_5__0__Impl"
-    // InternalSpear.g:13870:1: rule__AtomicExpr__Group_5__0__Impl : ( () ) ;
+    // InternalSpear.g:14444:1: rule__AtomicExpr__Group_5__0__Impl : ( () ) ;
     public final void rule__AtomicExpr__Group_5__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13874:1: ( ( () ) )
-            // InternalSpear.g:13875:1: ( () )
+            // InternalSpear.g:14448:1: ( ( () ) )
+            // InternalSpear.g:14449:1: ( () )
             {
-            // InternalSpear.g:13875:1: ( () )
-            // InternalSpear.g:13876:1: ()
+            // InternalSpear.g:14449:1: ( () )
+            // InternalSpear.g:14450:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getFieldlessRecordExprAction_5_0()); 
             }
-            // InternalSpear.g:13877:1: ()
-            // InternalSpear.g:13879:1: 
+            // InternalSpear.g:14451:1: ()
+            // InternalSpear.g:14453:1: 
             {
             }
 
@@ -39409,14 +40950,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_5__1"
-    // InternalSpear.g:13889:1: rule__AtomicExpr__Group_5__1 : rule__AtomicExpr__Group_5__1__Impl rule__AtomicExpr__Group_5__2 ;
+    // InternalSpear.g:14463:1: rule__AtomicExpr__Group_5__1 : rule__AtomicExpr__Group_5__1__Impl rule__AtomicExpr__Group_5__2 ;
     public final void rule__AtomicExpr__Group_5__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13893:1: ( rule__AtomicExpr__Group_5__1__Impl rule__AtomicExpr__Group_5__2 )
-            // InternalSpear.g:13894:2: rule__AtomicExpr__Group_5__1__Impl rule__AtomicExpr__Group_5__2
+            // InternalSpear.g:14467:1: ( rule__AtomicExpr__Group_5__1__Impl rule__AtomicExpr__Group_5__2 )
+            // InternalSpear.g:14468:2: rule__AtomicExpr__Group_5__1__Impl rule__AtomicExpr__Group_5__2
             {
             pushFollow(FOLLOW_3);
             rule__AtomicExpr__Group_5__1__Impl();
@@ -39447,22 +40988,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_5__1__Impl"
-    // InternalSpear.g:13901:1: rule__AtomicExpr__Group_5__1__Impl : ( 'new' ) ;
+    // InternalSpear.g:14475:1: rule__AtomicExpr__Group_5__1__Impl : ( 'new' ) ;
     public final void rule__AtomicExpr__Group_5__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13905:1: ( ( 'new' ) )
-            // InternalSpear.g:13906:1: ( 'new' )
+            // InternalSpear.g:14479:1: ( ( 'new' ) )
+            // InternalSpear.g:14480:1: ( 'new' )
             {
-            // InternalSpear.g:13906:1: ( 'new' )
-            // InternalSpear.g:13907:1: 'new'
+            // InternalSpear.g:14480:1: ( 'new' )
+            // InternalSpear.g:14481:1: 'new'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getNewKeyword_5_1()); 
             }
-            match(input,109,FOLLOW_2); if (state.failed) return ;
+            match(input,110,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getAtomicExprAccess().getNewKeyword_5_1()); 
             }
@@ -39488,14 +41029,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_5__2"
-    // InternalSpear.g:13920:1: rule__AtomicExpr__Group_5__2 : rule__AtomicExpr__Group_5__2__Impl rule__AtomicExpr__Group_5__3 ;
+    // InternalSpear.g:14494:1: rule__AtomicExpr__Group_5__2 : rule__AtomicExpr__Group_5__2__Impl rule__AtomicExpr__Group_5__3 ;
     public final void rule__AtomicExpr__Group_5__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13924:1: ( rule__AtomicExpr__Group_5__2__Impl rule__AtomicExpr__Group_5__3 )
-            // InternalSpear.g:13925:2: rule__AtomicExpr__Group_5__2__Impl rule__AtomicExpr__Group_5__3
+            // InternalSpear.g:14498:1: ( rule__AtomicExpr__Group_5__2__Impl rule__AtomicExpr__Group_5__3 )
+            // InternalSpear.g:14499:2: rule__AtomicExpr__Group_5__2__Impl rule__AtomicExpr__Group_5__3
             {
             pushFollow(FOLLOW_35);
             rule__AtomicExpr__Group_5__2__Impl();
@@ -39526,23 +41067,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_5__2__Impl"
-    // InternalSpear.g:13932:1: rule__AtomicExpr__Group_5__2__Impl : ( ( rule__AtomicExpr__TypeAssignment_5_2 ) ) ;
+    // InternalSpear.g:14506:1: rule__AtomicExpr__Group_5__2__Impl : ( ( rule__AtomicExpr__TypeAssignment_5_2 ) ) ;
     public final void rule__AtomicExpr__Group_5__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13936:1: ( ( ( rule__AtomicExpr__TypeAssignment_5_2 ) ) )
-            // InternalSpear.g:13937:1: ( ( rule__AtomicExpr__TypeAssignment_5_2 ) )
+            // InternalSpear.g:14510:1: ( ( ( rule__AtomicExpr__TypeAssignment_5_2 ) ) )
+            // InternalSpear.g:14511:1: ( ( rule__AtomicExpr__TypeAssignment_5_2 ) )
             {
-            // InternalSpear.g:13937:1: ( ( rule__AtomicExpr__TypeAssignment_5_2 ) )
-            // InternalSpear.g:13938:1: ( rule__AtomicExpr__TypeAssignment_5_2 )
+            // InternalSpear.g:14511:1: ( ( rule__AtomicExpr__TypeAssignment_5_2 ) )
+            // InternalSpear.g:14512:1: ( rule__AtomicExpr__TypeAssignment_5_2 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getTypeAssignment_5_2()); 
             }
-            // InternalSpear.g:13939:1: ( rule__AtomicExpr__TypeAssignment_5_2 )
-            // InternalSpear.g:13939:2: rule__AtomicExpr__TypeAssignment_5_2
+            // InternalSpear.g:14513:1: ( rule__AtomicExpr__TypeAssignment_5_2 )
+            // InternalSpear.g:14513:2: rule__AtomicExpr__TypeAssignment_5_2
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__TypeAssignment_5_2();
@@ -39577,14 +41118,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_5__3"
-    // InternalSpear.g:13949:1: rule__AtomicExpr__Group_5__3 : rule__AtomicExpr__Group_5__3__Impl rule__AtomicExpr__Group_5__4 ;
+    // InternalSpear.g:14523:1: rule__AtomicExpr__Group_5__3 : rule__AtomicExpr__Group_5__3__Impl rule__AtomicExpr__Group_5__4 ;
     public final void rule__AtomicExpr__Group_5__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13953:1: ( rule__AtomicExpr__Group_5__3__Impl rule__AtomicExpr__Group_5__4 )
-            // InternalSpear.g:13954:2: rule__AtomicExpr__Group_5__3__Impl rule__AtomicExpr__Group_5__4
+            // InternalSpear.g:14527:1: ( rule__AtomicExpr__Group_5__3__Impl rule__AtomicExpr__Group_5__4 )
+            // InternalSpear.g:14528:2: rule__AtomicExpr__Group_5__3__Impl rule__AtomicExpr__Group_5__4
             {
             pushFollow(FOLLOW_26);
             rule__AtomicExpr__Group_5__3__Impl();
@@ -39615,17 +41156,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_5__3__Impl"
-    // InternalSpear.g:13961:1: rule__AtomicExpr__Group_5__3__Impl : ( '{' ) ;
+    // InternalSpear.g:14535:1: rule__AtomicExpr__Group_5__3__Impl : ( '{' ) ;
     public final void rule__AtomicExpr__Group_5__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13965:1: ( ( '{' ) )
-            // InternalSpear.g:13966:1: ( '{' )
+            // InternalSpear.g:14539:1: ( ( '{' ) )
+            // InternalSpear.g:14540:1: ( '{' )
             {
-            // InternalSpear.g:13966:1: ( '{' )
-            // InternalSpear.g:13967:1: '{'
+            // InternalSpear.g:14540:1: ( '{' )
+            // InternalSpear.g:14541:1: '{'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getLeftCurlyBracketKeyword_5_3()); 
@@ -39656,14 +41197,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_5__4"
-    // InternalSpear.g:13980:1: rule__AtomicExpr__Group_5__4 : rule__AtomicExpr__Group_5__4__Impl rule__AtomicExpr__Group_5__5 ;
+    // InternalSpear.g:14554:1: rule__AtomicExpr__Group_5__4 : rule__AtomicExpr__Group_5__4__Impl rule__AtomicExpr__Group_5__5 ;
     public final void rule__AtomicExpr__Group_5__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13984:1: ( rule__AtomicExpr__Group_5__4__Impl rule__AtomicExpr__Group_5__5 )
-            // InternalSpear.g:13985:2: rule__AtomicExpr__Group_5__4__Impl rule__AtomicExpr__Group_5__5
+            // InternalSpear.g:14558:1: ( rule__AtomicExpr__Group_5__4__Impl rule__AtomicExpr__Group_5__5 )
+            // InternalSpear.g:14559:2: rule__AtomicExpr__Group_5__4__Impl rule__AtomicExpr__Group_5__5
             {
             pushFollow(FOLLOW_36);
             rule__AtomicExpr__Group_5__4__Impl();
@@ -39694,23 +41235,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_5__4__Impl"
-    // InternalSpear.g:13992:1: rule__AtomicExpr__Group_5__4__Impl : ( ( rule__AtomicExpr__ExprsAssignment_5_4 ) ) ;
+    // InternalSpear.g:14566:1: rule__AtomicExpr__Group_5__4__Impl : ( ( rule__AtomicExpr__ExprsAssignment_5_4 ) ) ;
     public final void rule__AtomicExpr__Group_5__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13996:1: ( ( ( rule__AtomicExpr__ExprsAssignment_5_4 ) ) )
-            // InternalSpear.g:13997:1: ( ( rule__AtomicExpr__ExprsAssignment_5_4 ) )
+            // InternalSpear.g:14570:1: ( ( ( rule__AtomicExpr__ExprsAssignment_5_4 ) ) )
+            // InternalSpear.g:14571:1: ( ( rule__AtomicExpr__ExprsAssignment_5_4 ) )
             {
-            // InternalSpear.g:13997:1: ( ( rule__AtomicExpr__ExprsAssignment_5_4 ) )
-            // InternalSpear.g:13998:1: ( rule__AtomicExpr__ExprsAssignment_5_4 )
+            // InternalSpear.g:14571:1: ( ( rule__AtomicExpr__ExprsAssignment_5_4 ) )
+            // InternalSpear.g:14572:1: ( rule__AtomicExpr__ExprsAssignment_5_4 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getExprsAssignment_5_4()); 
             }
-            // InternalSpear.g:13999:1: ( rule__AtomicExpr__ExprsAssignment_5_4 )
-            // InternalSpear.g:13999:2: rule__AtomicExpr__ExprsAssignment_5_4
+            // InternalSpear.g:14573:1: ( rule__AtomicExpr__ExprsAssignment_5_4 )
+            // InternalSpear.g:14573:2: rule__AtomicExpr__ExprsAssignment_5_4
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__ExprsAssignment_5_4();
@@ -39745,14 +41286,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_5__5"
-    // InternalSpear.g:14009:1: rule__AtomicExpr__Group_5__5 : rule__AtomicExpr__Group_5__5__Impl rule__AtomicExpr__Group_5__6 ;
+    // InternalSpear.g:14583:1: rule__AtomicExpr__Group_5__5 : rule__AtomicExpr__Group_5__5__Impl rule__AtomicExpr__Group_5__6 ;
     public final void rule__AtomicExpr__Group_5__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14013:1: ( rule__AtomicExpr__Group_5__5__Impl rule__AtomicExpr__Group_5__6 )
-            // InternalSpear.g:14014:2: rule__AtomicExpr__Group_5__5__Impl rule__AtomicExpr__Group_5__6
+            // InternalSpear.g:14587:1: ( rule__AtomicExpr__Group_5__5__Impl rule__AtomicExpr__Group_5__6 )
+            // InternalSpear.g:14588:2: rule__AtomicExpr__Group_5__5__Impl rule__AtomicExpr__Group_5__6
             {
             pushFollow(FOLLOW_36);
             rule__AtomicExpr__Group_5__5__Impl();
@@ -39783,35 +41324,35 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_5__5__Impl"
-    // InternalSpear.g:14021:1: rule__AtomicExpr__Group_5__5__Impl : ( ( rule__AtomicExpr__Group_5_5__0 )* ) ;
+    // InternalSpear.g:14595:1: rule__AtomicExpr__Group_5__5__Impl : ( ( rule__AtomicExpr__Group_5_5__0 )* ) ;
     public final void rule__AtomicExpr__Group_5__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14025:1: ( ( ( rule__AtomicExpr__Group_5_5__0 )* ) )
-            // InternalSpear.g:14026:1: ( ( rule__AtomicExpr__Group_5_5__0 )* )
+            // InternalSpear.g:14599:1: ( ( ( rule__AtomicExpr__Group_5_5__0 )* ) )
+            // InternalSpear.g:14600:1: ( ( rule__AtomicExpr__Group_5_5__0 )* )
             {
-            // InternalSpear.g:14026:1: ( ( rule__AtomicExpr__Group_5_5__0 )* )
-            // InternalSpear.g:14027:1: ( rule__AtomicExpr__Group_5_5__0 )*
+            // InternalSpear.g:14600:1: ( ( rule__AtomicExpr__Group_5_5__0 )* )
+            // InternalSpear.g:14601:1: ( rule__AtomicExpr__Group_5_5__0 )*
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getGroup_5_5()); 
             }
-            // InternalSpear.g:14028:1: ( rule__AtomicExpr__Group_5_5__0 )*
-            loop98:
+            // InternalSpear.g:14602:1: ( rule__AtomicExpr__Group_5_5__0 )*
+            loop102:
             do {
-                int alt98=2;
-                int LA98_0 = input.LA(1);
+                int alt102=2;
+                int LA102_0 = input.LA(1);
 
-                if ( (LA98_0==75) ) {
-                    alt98=1;
+                if ( (LA102_0==75) ) {
+                    alt102=1;
                 }
 
 
-                switch (alt98) {
+                switch (alt102) {
             	case 1 :
-            	    // InternalSpear.g:14028:2: rule__AtomicExpr__Group_5_5__0
+            	    // InternalSpear.g:14602:2: rule__AtomicExpr__Group_5_5__0
             	    {
             	    pushFollow(FOLLOW_23);
             	    rule__AtomicExpr__Group_5_5__0();
@@ -39823,7 +41364,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop98;
+            	    break loop102;
                 }
             } while (true);
 
@@ -39852,14 +41393,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_5__6"
-    // InternalSpear.g:14038:1: rule__AtomicExpr__Group_5__6 : rule__AtomicExpr__Group_5__6__Impl ;
+    // InternalSpear.g:14612:1: rule__AtomicExpr__Group_5__6 : rule__AtomicExpr__Group_5__6__Impl ;
     public final void rule__AtomicExpr__Group_5__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14042:1: ( rule__AtomicExpr__Group_5__6__Impl )
-            // InternalSpear.g:14043:2: rule__AtomicExpr__Group_5__6__Impl
+            // InternalSpear.g:14616:1: ( rule__AtomicExpr__Group_5__6__Impl )
+            // InternalSpear.g:14617:2: rule__AtomicExpr__Group_5__6__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__Group_5__6__Impl();
@@ -39885,17 +41426,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_5__6__Impl"
-    // InternalSpear.g:14049:1: rule__AtomicExpr__Group_5__6__Impl : ( '}' ) ;
+    // InternalSpear.g:14623:1: rule__AtomicExpr__Group_5__6__Impl : ( '}' ) ;
     public final void rule__AtomicExpr__Group_5__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14053:1: ( ( '}' ) )
-            // InternalSpear.g:14054:1: ( '}' )
+            // InternalSpear.g:14627:1: ( ( '}' ) )
+            // InternalSpear.g:14628:1: ( '}' )
             {
-            // InternalSpear.g:14054:1: ( '}' )
-            // InternalSpear.g:14055:1: '}'
+            // InternalSpear.g:14628:1: ( '}' )
+            // InternalSpear.g:14629:1: '}'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getRightCurlyBracketKeyword_5_6()); 
@@ -39926,14 +41467,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_5_5__0"
-    // InternalSpear.g:14082:1: rule__AtomicExpr__Group_5_5__0 : rule__AtomicExpr__Group_5_5__0__Impl rule__AtomicExpr__Group_5_5__1 ;
+    // InternalSpear.g:14656:1: rule__AtomicExpr__Group_5_5__0 : rule__AtomicExpr__Group_5_5__0__Impl rule__AtomicExpr__Group_5_5__1 ;
     public final void rule__AtomicExpr__Group_5_5__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14086:1: ( rule__AtomicExpr__Group_5_5__0__Impl rule__AtomicExpr__Group_5_5__1 )
-            // InternalSpear.g:14087:2: rule__AtomicExpr__Group_5_5__0__Impl rule__AtomicExpr__Group_5_5__1
+            // InternalSpear.g:14660:1: ( rule__AtomicExpr__Group_5_5__0__Impl rule__AtomicExpr__Group_5_5__1 )
+            // InternalSpear.g:14661:2: rule__AtomicExpr__Group_5_5__0__Impl rule__AtomicExpr__Group_5_5__1
             {
             pushFollow(FOLLOW_26);
             rule__AtomicExpr__Group_5_5__0__Impl();
@@ -39964,17 +41505,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_5_5__0__Impl"
-    // InternalSpear.g:14094:1: rule__AtomicExpr__Group_5_5__0__Impl : ( ',' ) ;
+    // InternalSpear.g:14668:1: rule__AtomicExpr__Group_5_5__0__Impl : ( ',' ) ;
     public final void rule__AtomicExpr__Group_5_5__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14098:1: ( ( ',' ) )
-            // InternalSpear.g:14099:1: ( ',' )
+            // InternalSpear.g:14672:1: ( ( ',' ) )
+            // InternalSpear.g:14673:1: ( ',' )
             {
-            // InternalSpear.g:14099:1: ( ',' )
-            // InternalSpear.g:14100:1: ','
+            // InternalSpear.g:14673:1: ( ',' )
+            // InternalSpear.g:14674:1: ','
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getCommaKeyword_5_5_0()); 
@@ -40005,14 +41546,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_5_5__1"
-    // InternalSpear.g:14113:1: rule__AtomicExpr__Group_5_5__1 : rule__AtomicExpr__Group_5_5__1__Impl ;
+    // InternalSpear.g:14687:1: rule__AtomicExpr__Group_5_5__1 : rule__AtomicExpr__Group_5_5__1__Impl ;
     public final void rule__AtomicExpr__Group_5_5__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14117:1: ( rule__AtomicExpr__Group_5_5__1__Impl )
-            // InternalSpear.g:14118:2: rule__AtomicExpr__Group_5_5__1__Impl
+            // InternalSpear.g:14691:1: ( rule__AtomicExpr__Group_5_5__1__Impl )
+            // InternalSpear.g:14692:2: rule__AtomicExpr__Group_5_5__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__Group_5_5__1__Impl();
@@ -40038,23 +41579,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_5_5__1__Impl"
-    // InternalSpear.g:14124:1: rule__AtomicExpr__Group_5_5__1__Impl : ( ( rule__AtomicExpr__ExprsAssignment_5_5_1 ) ) ;
+    // InternalSpear.g:14698:1: rule__AtomicExpr__Group_5_5__1__Impl : ( ( rule__AtomicExpr__ExprsAssignment_5_5_1 ) ) ;
     public final void rule__AtomicExpr__Group_5_5__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14128:1: ( ( ( rule__AtomicExpr__ExprsAssignment_5_5_1 ) ) )
-            // InternalSpear.g:14129:1: ( ( rule__AtomicExpr__ExprsAssignment_5_5_1 ) )
+            // InternalSpear.g:14702:1: ( ( ( rule__AtomicExpr__ExprsAssignment_5_5_1 ) ) )
+            // InternalSpear.g:14703:1: ( ( rule__AtomicExpr__ExprsAssignment_5_5_1 ) )
             {
-            // InternalSpear.g:14129:1: ( ( rule__AtomicExpr__ExprsAssignment_5_5_1 ) )
-            // InternalSpear.g:14130:1: ( rule__AtomicExpr__ExprsAssignment_5_5_1 )
+            // InternalSpear.g:14703:1: ( ( rule__AtomicExpr__ExprsAssignment_5_5_1 ) )
+            // InternalSpear.g:14704:1: ( rule__AtomicExpr__ExprsAssignment_5_5_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getExprsAssignment_5_5_1()); 
             }
-            // InternalSpear.g:14131:1: ( rule__AtomicExpr__ExprsAssignment_5_5_1 )
-            // InternalSpear.g:14131:2: rule__AtomicExpr__ExprsAssignment_5_5_1
+            // InternalSpear.g:14705:1: ( rule__AtomicExpr__ExprsAssignment_5_5_1 )
+            // InternalSpear.g:14705:2: rule__AtomicExpr__ExprsAssignment_5_5_1
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__ExprsAssignment_5_5_1();
@@ -40089,16 +41630,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_6__0"
-    // InternalSpear.g:14145:1: rule__AtomicExpr__Group_6__0 : rule__AtomicExpr__Group_6__0__Impl rule__AtomicExpr__Group_6__1 ;
+    // InternalSpear.g:14719:1: rule__AtomicExpr__Group_6__0 : rule__AtomicExpr__Group_6__0__Impl rule__AtomicExpr__Group_6__1 ;
     public final void rule__AtomicExpr__Group_6__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14149:1: ( rule__AtomicExpr__Group_6__0__Impl rule__AtomicExpr__Group_6__1 )
-            // InternalSpear.g:14150:2: rule__AtomicExpr__Group_6__0__Impl rule__AtomicExpr__Group_6__1
+            // InternalSpear.g:14723:1: ( rule__AtomicExpr__Group_6__0__Impl rule__AtomicExpr__Group_6__1 )
+            // InternalSpear.g:14724:2: rule__AtomicExpr__Group_6__0__Impl rule__AtomicExpr__Group_6__1
             {
-            pushFollow(FOLLOW_76);
+            pushFollow(FOLLOW_79);
             rule__AtomicExpr__Group_6__0__Impl();
 
             state._fsp--;
@@ -40127,23 +41668,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_6__0__Impl"
-    // InternalSpear.g:14157:1: rule__AtomicExpr__Group_6__0__Impl : ( () ) ;
+    // InternalSpear.g:14731:1: rule__AtomicExpr__Group_6__0__Impl : ( () ) ;
     public final void rule__AtomicExpr__Group_6__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14161:1: ( ( () ) )
-            // InternalSpear.g:14162:1: ( () )
+            // InternalSpear.g:14735:1: ( ( () ) )
+            // InternalSpear.g:14736:1: ( () )
             {
-            // InternalSpear.g:14162:1: ( () )
-            // InternalSpear.g:14163:1: ()
+            // InternalSpear.g:14736:1: ( () )
+            // InternalSpear.g:14737:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getArrayExprAction_6_0()); 
             }
-            // InternalSpear.g:14164:1: ()
-            // InternalSpear.g:14166:1: 
+            // InternalSpear.g:14738:1: ()
+            // InternalSpear.g:14740:1: 
             {
             }
 
@@ -40168,14 +41709,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_6__1"
-    // InternalSpear.g:14176:1: rule__AtomicExpr__Group_6__1 : rule__AtomicExpr__Group_6__1__Impl rule__AtomicExpr__Group_6__2 ;
+    // InternalSpear.g:14750:1: rule__AtomicExpr__Group_6__1 : rule__AtomicExpr__Group_6__1__Impl rule__AtomicExpr__Group_6__2 ;
     public final void rule__AtomicExpr__Group_6__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14180:1: ( rule__AtomicExpr__Group_6__1__Impl rule__AtomicExpr__Group_6__2 )
-            // InternalSpear.g:14181:2: rule__AtomicExpr__Group_6__1__Impl rule__AtomicExpr__Group_6__2
+            // InternalSpear.g:14754:1: ( rule__AtomicExpr__Group_6__1__Impl rule__AtomicExpr__Group_6__2 )
+            // InternalSpear.g:14755:2: rule__AtomicExpr__Group_6__1__Impl rule__AtomicExpr__Group_6__2
             {
             pushFollow(FOLLOW_3);
             rule__AtomicExpr__Group_6__1__Impl();
@@ -40206,22 +41747,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_6__1__Impl"
-    // InternalSpear.g:14188:1: rule__AtomicExpr__Group_6__1__Impl : ( 'new' ) ;
+    // InternalSpear.g:14762:1: rule__AtomicExpr__Group_6__1__Impl : ( 'new' ) ;
     public final void rule__AtomicExpr__Group_6__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14192:1: ( ( 'new' ) )
-            // InternalSpear.g:14193:1: ( 'new' )
+            // InternalSpear.g:14766:1: ( ( 'new' ) )
+            // InternalSpear.g:14767:1: ( 'new' )
             {
-            // InternalSpear.g:14193:1: ( 'new' )
-            // InternalSpear.g:14194:1: 'new'
+            // InternalSpear.g:14767:1: ( 'new' )
+            // InternalSpear.g:14768:1: 'new'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getNewKeyword_6_1()); 
             }
-            match(input,109,FOLLOW_2); if (state.failed) return ;
+            match(input,110,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getAtomicExprAccess().getNewKeyword_6_1()); 
             }
@@ -40247,14 +41788,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_6__2"
-    // InternalSpear.g:14207:1: rule__AtomicExpr__Group_6__2 : rule__AtomicExpr__Group_6__2__Impl rule__AtomicExpr__Group_6__3 ;
+    // InternalSpear.g:14781:1: rule__AtomicExpr__Group_6__2 : rule__AtomicExpr__Group_6__2__Impl rule__AtomicExpr__Group_6__3 ;
     public final void rule__AtomicExpr__Group_6__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14211:1: ( rule__AtomicExpr__Group_6__2__Impl rule__AtomicExpr__Group_6__3 )
-            // InternalSpear.g:14212:2: rule__AtomicExpr__Group_6__2__Impl rule__AtomicExpr__Group_6__3
+            // InternalSpear.g:14785:1: ( rule__AtomicExpr__Group_6__2__Impl rule__AtomicExpr__Group_6__3 )
+            // InternalSpear.g:14786:2: rule__AtomicExpr__Group_6__2__Impl rule__AtomicExpr__Group_6__3
             {
             pushFollow(FOLLOW_37);
             rule__AtomicExpr__Group_6__2__Impl();
@@ -40285,23 +41826,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_6__2__Impl"
-    // InternalSpear.g:14219:1: rule__AtomicExpr__Group_6__2__Impl : ( ( rule__AtomicExpr__TypeAssignment_6_2 ) ) ;
+    // InternalSpear.g:14793:1: rule__AtomicExpr__Group_6__2__Impl : ( ( rule__AtomicExpr__TypeAssignment_6_2 ) ) ;
     public final void rule__AtomicExpr__Group_6__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14223:1: ( ( ( rule__AtomicExpr__TypeAssignment_6_2 ) ) )
-            // InternalSpear.g:14224:1: ( ( rule__AtomicExpr__TypeAssignment_6_2 ) )
+            // InternalSpear.g:14797:1: ( ( ( rule__AtomicExpr__TypeAssignment_6_2 ) ) )
+            // InternalSpear.g:14798:1: ( ( rule__AtomicExpr__TypeAssignment_6_2 ) )
             {
-            // InternalSpear.g:14224:1: ( ( rule__AtomicExpr__TypeAssignment_6_2 ) )
-            // InternalSpear.g:14225:1: ( rule__AtomicExpr__TypeAssignment_6_2 )
+            // InternalSpear.g:14798:1: ( ( rule__AtomicExpr__TypeAssignment_6_2 ) )
+            // InternalSpear.g:14799:1: ( rule__AtomicExpr__TypeAssignment_6_2 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getTypeAssignment_6_2()); 
             }
-            // InternalSpear.g:14226:1: ( rule__AtomicExpr__TypeAssignment_6_2 )
-            // InternalSpear.g:14226:2: rule__AtomicExpr__TypeAssignment_6_2
+            // InternalSpear.g:14800:1: ( rule__AtomicExpr__TypeAssignment_6_2 )
+            // InternalSpear.g:14800:2: rule__AtomicExpr__TypeAssignment_6_2
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__TypeAssignment_6_2();
@@ -40336,14 +41877,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_6__3"
-    // InternalSpear.g:14236:1: rule__AtomicExpr__Group_6__3 : rule__AtomicExpr__Group_6__3__Impl rule__AtomicExpr__Group_6__4 ;
+    // InternalSpear.g:14810:1: rule__AtomicExpr__Group_6__3 : rule__AtomicExpr__Group_6__3__Impl rule__AtomicExpr__Group_6__4 ;
     public final void rule__AtomicExpr__Group_6__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14240:1: ( rule__AtomicExpr__Group_6__3__Impl rule__AtomicExpr__Group_6__4 )
-            // InternalSpear.g:14241:2: rule__AtomicExpr__Group_6__3__Impl rule__AtomicExpr__Group_6__4
+            // InternalSpear.g:14814:1: ( rule__AtomicExpr__Group_6__3__Impl rule__AtomicExpr__Group_6__4 )
+            // InternalSpear.g:14815:2: rule__AtomicExpr__Group_6__3__Impl rule__AtomicExpr__Group_6__4
             {
             pushFollow(FOLLOW_26);
             rule__AtomicExpr__Group_6__3__Impl();
@@ -40374,17 +41915,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_6__3__Impl"
-    // InternalSpear.g:14248:1: rule__AtomicExpr__Group_6__3__Impl : ( '[' ) ;
+    // InternalSpear.g:14822:1: rule__AtomicExpr__Group_6__3__Impl : ( '[' ) ;
     public final void rule__AtomicExpr__Group_6__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14252:1: ( ( '[' ) )
-            // InternalSpear.g:14253:1: ( '[' )
+            // InternalSpear.g:14826:1: ( ( '[' ) )
+            // InternalSpear.g:14827:1: ( '[' )
             {
-            // InternalSpear.g:14253:1: ( '[' )
-            // InternalSpear.g:14254:1: '['
+            // InternalSpear.g:14827:1: ( '[' )
+            // InternalSpear.g:14828:1: '['
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getLeftSquareBracketKeyword_6_3()); 
@@ -40415,16 +41956,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_6__4"
-    // InternalSpear.g:14267:1: rule__AtomicExpr__Group_6__4 : rule__AtomicExpr__Group_6__4__Impl rule__AtomicExpr__Group_6__5 ;
+    // InternalSpear.g:14841:1: rule__AtomicExpr__Group_6__4 : rule__AtomicExpr__Group_6__4__Impl rule__AtomicExpr__Group_6__5 ;
     public final void rule__AtomicExpr__Group_6__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14271:1: ( rule__AtomicExpr__Group_6__4__Impl rule__AtomicExpr__Group_6__5 )
-            // InternalSpear.g:14272:2: rule__AtomicExpr__Group_6__4__Impl rule__AtomicExpr__Group_6__5
+            // InternalSpear.g:14845:1: ( rule__AtomicExpr__Group_6__4__Impl rule__AtomicExpr__Group_6__5 )
+            // InternalSpear.g:14846:2: rule__AtomicExpr__Group_6__4__Impl rule__AtomicExpr__Group_6__5
             {
-            pushFollow(FOLLOW_77);
+            pushFollow(FOLLOW_45);
             rule__AtomicExpr__Group_6__4__Impl();
 
             state._fsp--;
@@ -40453,23 +41994,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_6__4__Impl"
-    // InternalSpear.g:14279:1: rule__AtomicExpr__Group_6__4__Impl : ( ( rule__AtomicExpr__ExprsAssignment_6_4 ) ) ;
+    // InternalSpear.g:14853:1: rule__AtomicExpr__Group_6__4__Impl : ( ( rule__AtomicExpr__ExprsAssignment_6_4 ) ) ;
     public final void rule__AtomicExpr__Group_6__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14283:1: ( ( ( rule__AtomicExpr__ExprsAssignment_6_4 ) ) )
-            // InternalSpear.g:14284:1: ( ( rule__AtomicExpr__ExprsAssignment_6_4 ) )
+            // InternalSpear.g:14857:1: ( ( ( rule__AtomicExpr__ExprsAssignment_6_4 ) ) )
+            // InternalSpear.g:14858:1: ( ( rule__AtomicExpr__ExprsAssignment_6_4 ) )
             {
-            // InternalSpear.g:14284:1: ( ( rule__AtomicExpr__ExprsAssignment_6_4 ) )
-            // InternalSpear.g:14285:1: ( rule__AtomicExpr__ExprsAssignment_6_4 )
+            // InternalSpear.g:14858:1: ( ( rule__AtomicExpr__ExprsAssignment_6_4 ) )
+            // InternalSpear.g:14859:1: ( rule__AtomicExpr__ExprsAssignment_6_4 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getExprsAssignment_6_4()); 
             }
-            // InternalSpear.g:14286:1: ( rule__AtomicExpr__ExprsAssignment_6_4 )
-            // InternalSpear.g:14286:2: rule__AtomicExpr__ExprsAssignment_6_4
+            // InternalSpear.g:14860:1: ( rule__AtomicExpr__ExprsAssignment_6_4 )
+            // InternalSpear.g:14860:2: rule__AtomicExpr__ExprsAssignment_6_4
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__ExprsAssignment_6_4();
@@ -40504,16 +42045,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_6__5"
-    // InternalSpear.g:14296:1: rule__AtomicExpr__Group_6__5 : rule__AtomicExpr__Group_6__5__Impl rule__AtomicExpr__Group_6__6 ;
+    // InternalSpear.g:14870:1: rule__AtomicExpr__Group_6__5 : rule__AtomicExpr__Group_6__5__Impl rule__AtomicExpr__Group_6__6 ;
     public final void rule__AtomicExpr__Group_6__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14300:1: ( rule__AtomicExpr__Group_6__5__Impl rule__AtomicExpr__Group_6__6 )
-            // InternalSpear.g:14301:2: rule__AtomicExpr__Group_6__5__Impl rule__AtomicExpr__Group_6__6
+            // InternalSpear.g:14874:1: ( rule__AtomicExpr__Group_6__5__Impl rule__AtomicExpr__Group_6__6 )
+            // InternalSpear.g:14875:2: rule__AtomicExpr__Group_6__5__Impl rule__AtomicExpr__Group_6__6
             {
-            pushFollow(FOLLOW_77);
+            pushFollow(FOLLOW_45);
             rule__AtomicExpr__Group_6__5__Impl();
 
             state._fsp--;
@@ -40542,35 +42083,35 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_6__5__Impl"
-    // InternalSpear.g:14308:1: rule__AtomicExpr__Group_6__5__Impl : ( ( rule__AtomicExpr__Group_6_5__0 )* ) ;
+    // InternalSpear.g:14882:1: rule__AtomicExpr__Group_6__5__Impl : ( ( rule__AtomicExpr__Group_6_5__0 )* ) ;
     public final void rule__AtomicExpr__Group_6__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14312:1: ( ( ( rule__AtomicExpr__Group_6_5__0 )* ) )
-            // InternalSpear.g:14313:1: ( ( rule__AtomicExpr__Group_6_5__0 )* )
+            // InternalSpear.g:14886:1: ( ( ( rule__AtomicExpr__Group_6_5__0 )* ) )
+            // InternalSpear.g:14887:1: ( ( rule__AtomicExpr__Group_6_5__0 )* )
             {
-            // InternalSpear.g:14313:1: ( ( rule__AtomicExpr__Group_6_5__0 )* )
-            // InternalSpear.g:14314:1: ( rule__AtomicExpr__Group_6_5__0 )*
+            // InternalSpear.g:14887:1: ( ( rule__AtomicExpr__Group_6_5__0 )* )
+            // InternalSpear.g:14888:1: ( rule__AtomicExpr__Group_6_5__0 )*
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getGroup_6_5()); 
             }
-            // InternalSpear.g:14315:1: ( rule__AtomicExpr__Group_6_5__0 )*
-            loop99:
+            // InternalSpear.g:14889:1: ( rule__AtomicExpr__Group_6_5__0 )*
+            loop103:
             do {
-                int alt99=2;
-                int LA99_0 = input.LA(1);
+                int alt103=2;
+                int LA103_0 = input.LA(1);
 
-                if ( (LA99_0==75) ) {
-                    alt99=1;
+                if ( (LA103_0==75) ) {
+                    alt103=1;
                 }
 
 
-                switch (alt99) {
+                switch (alt103) {
             	case 1 :
-            	    // InternalSpear.g:14315:2: rule__AtomicExpr__Group_6_5__0
+            	    // InternalSpear.g:14889:2: rule__AtomicExpr__Group_6_5__0
             	    {
             	    pushFollow(FOLLOW_23);
             	    rule__AtomicExpr__Group_6_5__0();
@@ -40582,7 +42123,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop99;
+            	    break loop103;
                 }
             } while (true);
 
@@ -40611,14 +42152,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_6__6"
-    // InternalSpear.g:14325:1: rule__AtomicExpr__Group_6__6 : rule__AtomicExpr__Group_6__6__Impl ;
+    // InternalSpear.g:14899:1: rule__AtomicExpr__Group_6__6 : rule__AtomicExpr__Group_6__6__Impl ;
     public final void rule__AtomicExpr__Group_6__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14329:1: ( rule__AtomicExpr__Group_6__6__Impl )
-            // InternalSpear.g:14330:2: rule__AtomicExpr__Group_6__6__Impl
+            // InternalSpear.g:14903:1: ( rule__AtomicExpr__Group_6__6__Impl )
+            // InternalSpear.g:14904:2: rule__AtomicExpr__Group_6__6__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__Group_6__6__Impl();
@@ -40644,17 +42185,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_6__6__Impl"
-    // InternalSpear.g:14336:1: rule__AtomicExpr__Group_6__6__Impl : ( ']' ) ;
+    // InternalSpear.g:14910:1: rule__AtomicExpr__Group_6__6__Impl : ( ']' ) ;
     public final void rule__AtomicExpr__Group_6__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14340:1: ( ( ']' ) )
-            // InternalSpear.g:14341:1: ( ']' )
+            // InternalSpear.g:14914:1: ( ( ']' ) )
+            // InternalSpear.g:14915:1: ( ']' )
             {
-            // InternalSpear.g:14341:1: ( ']' )
-            // InternalSpear.g:14342:1: ']'
+            // InternalSpear.g:14915:1: ( ']' )
+            // InternalSpear.g:14916:1: ']'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getRightSquareBracketKeyword_6_6()); 
@@ -40685,14 +42226,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_6_5__0"
-    // InternalSpear.g:14369:1: rule__AtomicExpr__Group_6_5__0 : rule__AtomicExpr__Group_6_5__0__Impl rule__AtomicExpr__Group_6_5__1 ;
+    // InternalSpear.g:14943:1: rule__AtomicExpr__Group_6_5__0 : rule__AtomicExpr__Group_6_5__0__Impl rule__AtomicExpr__Group_6_5__1 ;
     public final void rule__AtomicExpr__Group_6_5__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14373:1: ( rule__AtomicExpr__Group_6_5__0__Impl rule__AtomicExpr__Group_6_5__1 )
-            // InternalSpear.g:14374:2: rule__AtomicExpr__Group_6_5__0__Impl rule__AtomicExpr__Group_6_5__1
+            // InternalSpear.g:14947:1: ( rule__AtomicExpr__Group_6_5__0__Impl rule__AtomicExpr__Group_6_5__1 )
+            // InternalSpear.g:14948:2: rule__AtomicExpr__Group_6_5__0__Impl rule__AtomicExpr__Group_6_5__1
             {
             pushFollow(FOLLOW_26);
             rule__AtomicExpr__Group_6_5__0__Impl();
@@ -40723,17 +42264,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_6_5__0__Impl"
-    // InternalSpear.g:14381:1: rule__AtomicExpr__Group_6_5__0__Impl : ( ',' ) ;
+    // InternalSpear.g:14955:1: rule__AtomicExpr__Group_6_5__0__Impl : ( ',' ) ;
     public final void rule__AtomicExpr__Group_6_5__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14385:1: ( ( ',' ) )
-            // InternalSpear.g:14386:1: ( ',' )
+            // InternalSpear.g:14959:1: ( ( ',' ) )
+            // InternalSpear.g:14960:1: ( ',' )
             {
-            // InternalSpear.g:14386:1: ( ',' )
-            // InternalSpear.g:14387:1: ','
+            // InternalSpear.g:14960:1: ( ',' )
+            // InternalSpear.g:14961:1: ','
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getCommaKeyword_6_5_0()); 
@@ -40764,14 +42305,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_6_5__1"
-    // InternalSpear.g:14400:1: rule__AtomicExpr__Group_6_5__1 : rule__AtomicExpr__Group_6_5__1__Impl ;
+    // InternalSpear.g:14974:1: rule__AtomicExpr__Group_6_5__1 : rule__AtomicExpr__Group_6_5__1__Impl ;
     public final void rule__AtomicExpr__Group_6_5__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14404:1: ( rule__AtomicExpr__Group_6_5__1__Impl )
-            // InternalSpear.g:14405:2: rule__AtomicExpr__Group_6_5__1__Impl
+            // InternalSpear.g:14978:1: ( rule__AtomicExpr__Group_6_5__1__Impl )
+            // InternalSpear.g:14979:2: rule__AtomicExpr__Group_6_5__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__Group_6_5__1__Impl();
@@ -40797,23 +42338,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_6_5__1__Impl"
-    // InternalSpear.g:14411:1: rule__AtomicExpr__Group_6_5__1__Impl : ( ( rule__AtomicExpr__ExprsAssignment_6_5_1 ) ) ;
+    // InternalSpear.g:14985:1: rule__AtomicExpr__Group_6_5__1__Impl : ( ( rule__AtomicExpr__ExprsAssignment_6_5_1 ) ) ;
     public final void rule__AtomicExpr__Group_6_5__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14415:1: ( ( ( rule__AtomicExpr__ExprsAssignment_6_5_1 ) ) )
-            // InternalSpear.g:14416:1: ( ( rule__AtomicExpr__ExprsAssignment_6_5_1 ) )
+            // InternalSpear.g:14989:1: ( ( ( rule__AtomicExpr__ExprsAssignment_6_5_1 ) ) )
+            // InternalSpear.g:14990:1: ( ( rule__AtomicExpr__ExprsAssignment_6_5_1 ) )
             {
-            // InternalSpear.g:14416:1: ( ( rule__AtomicExpr__ExprsAssignment_6_5_1 ) )
-            // InternalSpear.g:14417:1: ( rule__AtomicExpr__ExprsAssignment_6_5_1 )
+            // InternalSpear.g:14990:1: ( ( rule__AtomicExpr__ExprsAssignment_6_5_1 ) )
+            // InternalSpear.g:14991:1: ( rule__AtomicExpr__ExprsAssignment_6_5_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getExprsAssignment_6_5_1()); 
             }
-            // InternalSpear.g:14418:1: ( rule__AtomicExpr__ExprsAssignment_6_5_1 )
-            // InternalSpear.g:14418:2: rule__AtomicExpr__ExprsAssignment_6_5_1
+            // InternalSpear.g:14992:1: ( rule__AtomicExpr__ExprsAssignment_6_5_1 )
+            // InternalSpear.g:14992:2: rule__AtomicExpr__ExprsAssignment_6_5_1
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__ExprsAssignment_6_5_1();
@@ -40848,14 +42389,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_7__0"
-    // InternalSpear.g:14432:1: rule__AtomicExpr__Group_7__0 : rule__AtomicExpr__Group_7__0__Impl rule__AtomicExpr__Group_7__1 ;
+    // InternalSpear.g:15006:1: rule__AtomicExpr__Group_7__0 : rule__AtomicExpr__Group_7__0__Impl rule__AtomicExpr__Group_7__1 ;
     public final void rule__AtomicExpr__Group_7__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14436:1: ( rule__AtomicExpr__Group_7__0__Impl rule__AtomicExpr__Group_7__1 )
-            // InternalSpear.g:14437:2: rule__AtomicExpr__Group_7__0__Impl rule__AtomicExpr__Group_7__1
+            // InternalSpear.g:15010:1: ( rule__AtomicExpr__Group_7__0__Impl rule__AtomicExpr__Group_7__1 )
+            // InternalSpear.g:15011:2: rule__AtomicExpr__Group_7__0__Impl rule__AtomicExpr__Group_7__1
             {
             pushFollow(FOLLOW_3);
             rule__AtomicExpr__Group_7__0__Impl();
@@ -40886,23 +42427,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_7__0__Impl"
-    // InternalSpear.g:14444:1: rule__AtomicExpr__Group_7__0__Impl : ( () ) ;
+    // InternalSpear.g:15018:1: rule__AtomicExpr__Group_7__0__Impl : ( () ) ;
     public final void rule__AtomicExpr__Group_7__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14448:1: ( ( () ) )
-            // InternalSpear.g:14449:1: ( () )
+            // InternalSpear.g:15022:1: ( ( () ) )
+            // InternalSpear.g:15023:1: ( () )
             {
-            // InternalSpear.g:14449:1: ( () )
-            // InternalSpear.g:14450:1: ()
+            // InternalSpear.g:15023:1: ( () )
+            // InternalSpear.g:15024:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getPatternCallAction_7_0()); 
             }
-            // InternalSpear.g:14451:1: ()
-            // InternalSpear.g:14453:1: 
+            // InternalSpear.g:15025:1: ()
+            // InternalSpear.g:15027:1: 
             {
             }
 
@@ -40927,14 +42468,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_7__1"
-    // InternalSpear.g:14463:1: rule__AtomicExpr__Group_7__1 : rule__AtomicExpr__Group_7__1__Impl rule__AtomicExpr__Group_7__2 ;
+    // InternalSpear.g:15037:1: rule__AtomicExpr__Group_7__1 : rule__AtomicExpr__Group_7__1__Impl rule__AtomicExpr__Group_7__2 ;
     public final void rule__AtomicExpr__Group_7__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14467:1: ( rule__AtomicExpr__Group_7__1__Impl rule__AtomicExpr__Group_7__2 )
-            // InternalSpear.g:14468:2: rule__AtomicExpr__Group_7__1__Impl rule__AtomicExpr__Group_7__2
+            // InternalSpear.g:15041:1: ( rule__AtomicExpr__Group_7__1__Impl rule__AtomicExpr__Group_7__2 )
+            // InternalSpear.g:15042:2: rule__AtomicExpr__Group_7__1__Impl rule__AtomicExpr__Group_7__2
             {
             pushFollow(FOLLOW_16);
             rule__AtomicExpr__Group_7__1__Impl();
@@ -40965,23 +42506,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_7__1__Impl"
-    // InternalSpear.g:14475:1: rule__AtomicExpr__Group_7__1__Impl : ( ( rule__AtomicExpr__PatternAssignment_7_1 ) ) ;
+    // InternalSpear.g:15049:1: rule__AtomicExpr__Group_7__1__Impl : ( ( rule__AtomicExpr__PatternAssignment_7_1 ) ) ;
     public final void rule__AtomicExpr__Group_7__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14479:1: ( ( ( rule__AtomicExpr__PatternAssignment_7_1 ) ) )
-            // InternalSpear.g:14480:1: ( ( rule__AtomicExpr__PatternAssignment_7_1 ) )
+            // InternalSpear.g:15053:1: ( ( ( rule__AtomicExpr__PatternAssignment_7_1 ) ) )
+            // InternalSpear.g:15054:1: ( ( rule__AtomicExpr__PatternAssignment_7_1 ) )
             {
-            // InternalSpear.g:14480:1: ( ( rule__AtomicExpr__PatternAssignment_7_1 ) )
-            // InternalSpear.g:14481:1: ( rule__AtomicExpr__PatternAssignment_7_1 )
+            // InternalSpear.g:15054:1: ( ( rule__AtomicExpr__PatternAssignment_7_1 ) )
+            // InternalSpear.g:15055:1: ( rule__AtomicExpr__PatternAssignment_7_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getPatternAssignment_7_1()); 
             }
-            // InternalSpear.g:14482:1: ( rule__AtomicExpr__PatternAssignment_7_1 )
-            // InternalSpear.g:14482:2: rule__AtomicExpr__PatternAssignment_7_1
+            // InternalSpear.g:15056:1: ( rule__AtomicExpr__PatternAssignment_7_1 )
+            // InternalSpear.g:15056:2: rule__AtomicExpr__PatternAssignment_7_1
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__PatternAssignment_7_1();
@@ -41016,16 +42557,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_7__2"
-    // InternalSpear.g:14492:1: rule__AtomicExpr__Group_7__2 : rule__AtomicExpr__Group_7__2__Impl rule__AtomicExpr__Group_7__3 ;
+    // InternalSpear.g:15066:1: rule__AtomicExpr__Group_7__2 : rule__AtomicExpr__Group_7__2__Impl rule__AtomicExpr__Group_7__3 ;
     public final void rule__AtomicExpr__Group_7__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14496:1: ( rule__AtomicExpr__Group_7__2__Impl rule__AtomicExpr__Group_7__3 )
-            // InternalSpear.g:14497:2: rule__AtomicExpr__Group_7__2__Impl rule__AtomicExpr__Group_7__3
+            // InternalSpear.g:15070:1: ( rule__AtomicExpr__Group_7__2__Impl rule__AtomicExpr__Group_7__3 )
+            // InternalSpear.g:15071:2: rule__AtomicExpr__Group_7__2__Impl rule__AtomicExpr__Group_7__3
             {
-            pushFollow(FOLLOW_78);
+            pushFollow(FOLLOW_80);
             rule__AtomicExpr__Group_7__2__Impl();
 
             state._fsp--;
@@ -41054,17 +42595,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_7__2__Impl"
-    // InternalSpear.g:14504:1: rule__AtomicExpr__Group_7__2__Impl : ( '(' ) ;
+    // InternalSpear.g:15078:1: rule__AtomicExpr__Group_7__2__Impl : ( '(' ) ;
     public final void rule__AtomicExpr__Group_7__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14508:1: ( ( '(' ) )
-            // InternalSpear.g:14509:1: ( '(' )
+            // InternalSpear.g:15082:1: ( ( '(' ) )
+            // InternalSpear.g:15083:1: ( '(' )
             {
-            // InternalSpear.g:14509:1: ( '(' )
-            // InternalSpear.g:14510:1: '('
+            // InternalSpear.g:15083:1: ( '(' )
+            // InternalSpear.g:15084:1: '('
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getLeftParenthesisKeyword_7_2()); 
@@ -41095,16 +42636,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_7__3"
-    // InternalSpear.g:14523:1: rule__AtomicExpr__Group_7__3 : rule__AtomicExpr__Group_7__3__Impl rule__AtomicExpr__Group_7__4 ;
+    // InternalSpear.g:15097:1: rule__AtomicExpr__Group_7__3 : rule__AtomicExpr__Group_7__3__Impl rule__AtomicExpr__Group_7__4 ;
     public final void rule__AtomicExpr__Group_7__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14527:1: ( rule__AtomicExpr__Group_7__3__Impl rule__AtomicExpr__Group_7__4 )
-            // InternalSpear.g:14528:2: rule__AtomicExpr__Group_7__3__Impl rule__AtomicExpr__Group_7__4
+            // InternalSpear.g:15101:1: ( rule__AtomicExpr__Group_7__3__Impl rule__AtomicExpr__Group_7__4 )
+            // InternalSpear.g:15102:2: rule__AtomicExpr__Group_7__3__Impl rule__AtomicExpr__Group_7__4
             {
-            pushFollow(FOLLOW_78);
+            pushFollow(FOLLOW_80);
             rule__AtomicExpr__Group_7__3__Impl();
 
             state._fsp--;
@@ -41133,31 +42674,31 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_7__3__Impl"
-    // InternalSpear.g:14535:1: rule__AtomicExpr__Group_7__3__Impl : ( ( rule__AtomicExpr__Group_7_3__0 )? ) ;
+    // InternalSpear.g:15109:1: rule__AtomicExpr__Group_7__3__Impl : ( ( rule__AtomicExpr__Group_7_3__0 )? ) ;
     public final void rule__AtomicExpr__Group_7__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14539:1: ( ( ( rule__AtomicExpr__Group_7_3__0 )? ) )
-            // InternalSpear.g:14540:1: ( ( rule__AtomicExpr__Group_7_3__0 )? )
+            // InternalSpear.g:15113:1: ( ( ( rule__AtomicExpr__Group_7_3__0 )? ) )
+            // InternalSpear.g:15114:1: ( ( rule__AtomicExpr__Group_7_3__0 )? )
             {
-            // InternalSpear.g:14540:1: ( ( rule__AtomicExpr__Group_7_3__0 )? )
-            // InternalSpear.g:14541:1: ( rule__AtomicExpr__Group_7_3__0 )?
+            // InternalSpear.g:15114:1: ( ( rule__AtomicExpr__Group_7_3__0 )? )
+            // InternalSpear.g:15115:1: ( rule__AtomicExpr__Group_7_3__0 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getGroup_7_3()); 
             }
-            // InternalSpear.g:14542:1: ( rule__AtomicExpr__Group_7_3__0 )?
-            int alt100=2;
-            int LA100_0 = input.LA(1);
+            // InternalSpear.g:15116:1: ( rule__AtomicExpr__Group_7_3__0 )?
+            int alt104=2;
+            int LA104_0 = input.LA(1);
 
-            if ( ((LA100_0>=RULE_INT && LA100_0<=RULE_ID)||(LA100_0>=32 && LA100_0<=38)||LA100_0==46||(LA100_0>=52 && LA100_0<=56)||LA100_0==70||LA100_0==77||LA100_0==92||LA100_0==94||LA100_0==101||LA100_0==107||(LA100_0>=109 && LA100_0<=111)) ) {
-                alt100=1;
+            if ( ((LA104_0>=RULE_INT && LA104_0<=RULE_ID)||(LA104_0>=32 && LA104_0<=38)||LA104_0==46||(LA104_0>=52 && LA104_0<=56)||LA104_0==70||LA104_0==77||LA104_0==93||LA104_0==95||LA104_0==102||LA104_0==108||(LA104_0>=110 && LA104_0<=112)) ) {
+                alt104=1;
             }
-            switch (alt100) {
+            switch (alt104) {
                 case 1 :
-                    // InternalSpear.g:14542:2: rule__AtomicExpr__Group_7_3__0
+                    // InternalSpear.g:15116:2: rule__AtomicExpr__Group_7_3__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__AtomicExpr__Group_7_3__0();
@@ -41195,14 +42736,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_7__4"
-    // InternalSpear.g:14552:1: rule__AtomicExpr__Group_7__4 : rule__AtomicExpr__Group_7__4__Impl ;
+    // InternalSpear.g:15126:1: rule__AtomicExpr__Group_7__4 : rule__AtomicExpr__Group_7__4__Impl ;
     public final void rule__AtomicExpr__Group_7__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14556:1: ( rule__AtomicExpr__Group_7__4__Impl )
-            // InternalSpear.g:14557:2: rule__AtomicExpr__Group_7__4__Impl
+            // InternalSpear.g:15130:1: ( rule__AtomicExpr__Group_7__4__Impl )
+            // InternalSpear.g:15131:2: rule__AtomicExpr__Group_7__4__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__Group_7__4__Impl();
@@ -41228,17 +42769,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_7__4__Impl"
-    // InternalSpear.g:14563:1: rule__AtomicExpr__Group_7__4__Impl : ( ')' ) ;
+    // InternalSpear.g:15137:1: rule__AtomicExpr__Group_7__4__Impl : ( ')' ) ;
     public final void rule__AtomicExpr__Group_7__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14567:1: ( ( ')' ) )
-            // InternalSpear.g:14568:1: ( ')' )
+            // InternalSpear.g:15141:1: ( ( ')' ) )
+            // InternalSpear.g:15142:1: ( ')' )
             {
-            // InternalSpear.g:14568:1: ( ')' )
-            // InternalSpear.g:14569:1: ')'
+            // InternalSpear.g:15142:1: ( ')' )
+            // InternalSpear.g:15143:1: ')'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getRightParenthesisKeyword_7_4()); 
@@ -41269,14 +42810,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_7_3__0"
-    // InternalSpear.g:14592:1: rule__AtomicExpr__Group_7_3__0 : rule__AtomicExpr__Group_7_3__0__Impl rule__AtomicExpr__Group_7_3__1 ;
+    // InternalSpear.g:15166:1: rule__AtomicExpr__Group_7_3__0 : rule__AtomicExpr__Group_7_3__0__Impl rule__AtomicExpr__Group_7_3__1 ;
     public final void rule__AtomicExpr__Group_7_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14596:1: ( rule__AtomicExpr__Group_7_3__0__Impl rule__AtomicExpr__Group_7_3__1 )
-            // InternalSpear.g:14597:2: rule__AtomicExpr__Group_7_3__0__Impl rule__AtomicExpr__Group_7_3__1
+            // InternalSpear.g:15170:1: ( rule__AtomicExpr__Group_7_3__0__Impl rule__AtomicExpr__Group_7_3__1 )
+            // InternalSpear.g:15171:2: rule__AtomicExpr__Group_7_3__0__Impl rule__AtomicExpr__Group_7_3__1
             {
             pushFollow(FOLLOW_22);
             rule__AtomicExpr__Group_7_3__0__Impl();
@@ -41307,23 +42848,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_7_3__0__Impl"
-    // InternalSpear.g:14604:1: rule__AtomicExpr__Group_7_3__0__Impl : ( ( rule__AtomicExpr__ArgsAssignment_7_3_0 ) ) ;
+    // InternalSpear.g:15178:1: rule__AtomicExpr__Group_7_3__0__Impl : ( ( rule__AtomicExpr__ArgsAssignment_7_3_0 ) ) ;
     public final void rule__AtomicExpr__Group_7_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14608:1: ( ( ( rule__AtomicExpr__ArgsAssignment_7_3_0 ) ) )
-            // InternalSpear.g:14609:1: ( ( rule__AtomicExpr__ArgsAssignment_7_3_0 ) )
+            // InternalSpear.g:15182:1: ( ( ( rule__AtomicExpr__ArgsAssignment_7_3_0 ) ) )
+            // InternalSpear.g:15183:1: ( ( rule__AtomicExpr__ArgsAssignment_7_3_0 ) )
             {
-            // InternalSpear.g:14609:1: ( ( rule__AtomicExpr__ArgsAssignment_7_3_0 ) )
-            // InternalSpear.g:14610:1: ( rule__AtomicExpr__ArgsAssignment_7_3_0 )
+            // InternalSpear.g:15183:1: ( ( rule__AtomicExpr__ArgsAssignment_7_3_0 ) )
+            // InternalSpear.g:15184:1: ( rule__AtomicExpr__ArgsAssignment_7_3_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getArgsAssignment_7_3_0()); 
             }
-            // InternalSpear.g:14611:1: ( rule__AtomicExpr__ArgsAssignment_7_3_0 )
-            // InternalSpear.g:14611:2: rule__AtomicExpr__ArgsAssignment_7_3_0
+            // InternalSpear.g:15185:1: ( rule__AtomicExpr__ArgsAssignment_7_3_0 )
+            // InternalSpear.g:15185:2: rule__AtomicExpr__ArgsAssignment_7_3_0
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__ArgsAssignment_7_3_0();
@@ -41358,14 +42899,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_7_3__1"
-    // InternalSpear.g:14621:1: rule__AtomicExpr__Group_7_3__1 : rule__AtomicExpr__Group_7_3__1__Impl ;
+    // InternalSpear.g:15195:1: rule__AtomicExpr__Group_7_3__1 : rule__AtomicExpr__Group_7_3__1__Impl ;
     public final void rule__AtomicExpr__Group_7_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14625:1: ( rule__AtomicExpr__Group_7_3__1__Impl )
-            // InternalSpear.g:14626:2: rule__AtomicExpr__Group_7_3__1__Impl
+            // InternalSpear.g:15199:1: ( rule__AtomicExpr__Group_7_3__1__Impl )
+            // InternalSpear.g:15200:2: rule__AtomicExpr__Group_7_3__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__Group_7_3__1__Impl();
@@ -41391,35 +42932,35 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_7_3__1__Impl"
-    // InternalSpear.g:14632:1: rule__AtomicExpr__Group_7_3__1__Impl : ( ( rule__AtomicExpr__Group_7_3_1__0 )* ) ;
+    // InternalSpear.g:15206:1: rule__AtomicExpr__Group_7_3__1__Impl : ( ( rule__AtomicExpr__Group_7_3_1__0 )* ) ;
     public final void rule__AtomicExpr__Group_7_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14636:1: ( ( ( rule__AtomicExpr__Group_7_3_1__0 )* ) )
-            // InternalSpear.g:14637:1: ( ( rule__AtomicExpr__Group_7_3_1__0 )* )
+            // InternalSpear.g:15210:1: ( ( ( rule__AtomicExpr__Group_7_3_1__0 )* ) )
+            // InternalSpear.g:15211:1: ( ( rule__AtomicExpr__Group_7_3_1__0 )* )
             {
-            // InternalSpear.g:14637:1: ( ( rule__AtomicExpr__Group_7_3_1__0 )* )
-            // InternalSpear.g:14638:1: ( rule__AtomicExpr__Group_7_3_1__0 )*
+            // InternalSpear.g:15211:1: ( ( rule__AtomicExpr__Group_7_3_1__0 )* )
+            // InternalSpear.g:15212:1: ( rule__AtomicExpr__Group_7_3_1__0 )*
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getGroup_7_3_1()); 
             }
-            // InternalSpear.g:14639:1: ( rule__AtomicExpr__Group_7_3_1__0 )*
-            loop101:
+            // InternalSpear.g:15213:1: ( rule__AtomicExpr__Group_7_3_1__0 )*
+            loop105:
             do {
-                int alt101=2;
-                int LA101_0 = input.LA(1);
+                int alt105=2;
+                int LA105_0 = input.LA(1);
 
-                if ( (LA101_0==75) ) {
-                    alt101=1;
+                if ( (LA105_0==75) ) {
+                    alt105=1;
                 }
 
 
-                switch (alt101) {
+                switch (alt105) {
             	case 1 :
-            	    // InternalSpear.g:14639:2: rule__AtomicExpr__Group_7_3_1__0
+            	    // InternalSpear.g:15213:2: rule__AtomicExpr__Group_7_3_1__0
             	    {
             	    pushFollow(FOLLOW_23);
             	    rule__AtomicExpr__Group_7_3_1__0();
@@ -41431,7 +42972,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop101;
+            	    break loop105;
                 }
             } while (true);
 
@@ -41460,14 +43001,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_7_3_1__0"
-    // InternalSpear.g:14653:1: rule__AtomicExpr__Group_7_3_1__0 : rule__AtomicExpr__Group_7_3_1__0__Impl rule__AtomicExpr__Group_7_3_1__1 ;
+    // InternalSpear.g:15227:1: rule__AtomicExpr__Group_7_3_1__0 : rule__AtomicExpr__Group_7_3_1__0__Impl rule__AtomicExpr__Group_7_3_1__1 ;
     public final void rule__AtomicExpr__Group_7_3_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14657:1: ( rule__AtomicExpr__Group_7_3_1__0__Impl rule__AtomicExpr__Group_7_3_1__1 )
-            // InternalSpear.g:14658:2: rule__AtomicExpr__Group_7_3_1__0__Impl rule__AtomicExpr__Group_7_3_1__1
+            // InternalSpear.g:15231:1: ( rule__AtomicExpr__Group_7_3_1__0__Impl rule__AtomicExpr__Group_7_3_1__1 )
+            // InternalSpear.g:15232:2: rule__AtomicExpr__Group_7_3_1__0__Impl rule__AtomicExpr__Group_7_3_1__1
             {
             pushFollow(FOLLOW_26);
             rule__AtomicExpr__Group_7_3_1__0__Impl();
@@ -41498,17 +43039,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_7_3_1__0__Impl"
-    // InternalSpear.g:14665:1: rule__AtomicExpr__Group_7_3_1__0__Impl : ( ',' ) ;
+    // InternalSpear.g:15239:1: rule__AtomicExpr__Group_7_3_1__0__Impl : ( ',' ) ;
     public final void rule__AtomicExpr__Group_7_3_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14669:1: ( ( ',' ) )
-            // InternalSpear.g:14670:1: ( ',' )
+            // InternalSpear.g:15243:1: ( ( ',' ) )
+            // InternalSpear.g:15244:1: ( ',' )
             {
-            // InternalSpear.g:14670:1: ( ',' )
-            // InternalSpear.g:14671:1: ','
+            // InternalSpear.g:15244:1: ( ',' )
+            // InternalSpear.g:15245:1: ','
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getCommaKeyword_7_3_1_0()); 
@@ -41539,14 +43080,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_7_3_1__1"
-    // InternalSpear.g:14684:1: rule__AtomicExpr__Group_7_3_1__1 : rule__AtomicExpr__Group_7_3_1__1__Impl ;
+    // InternalSpear.g:15258:1: rule__AtomicExpr__Group_7_3_1__1 : rule__AtomicExpr__Group_7_3_1__1__Impl ;
     public final void rule__AtomicExpr__Group_7_3_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14688:1: ( rule__AtomicExpr__Group_7_3_1__1__Impl )
-            // InternalSpear.g:14689:2: rule__AtomicExpr__Group_7_3_1__1__Impl
+            // InternalSpear.g:15262:1: ( rule__AtomicExpr__Group_7_3_1__1__Impl )
+            // InternalSpear.g:15263:2: rule__AtomicExpr__Group_7_3_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__Group_7_3_1__1__Impl();
@@ -41572,23 +43113,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_7_3_1__1__Impl"
-    // InternalSpear.g:14695:1: rule__AtomicExpr__Group_7_3_1__1__Impl : ( ( rule__AtomicExpr__ArgsAssignment_7_3_1_1 ) ) ;
+    // InternalSpear.g:15269:1: rule__AtomicExpr__Group_7_3_1__1__Impl : ( ( rule__AtomicExpr__ArgsAssignment_7_3_1_1 ) ) ;
     public final void rule__AtomicExpr__Group_7_3_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14699:1: ( ( ( rule__AtomicExpr__ArgsAssignment_7_3_1_1 ) ) )
-            // InternalSpear.g:14700:1: ( ( rule__AtomicExpr__ArgsAssignment_7_3_1_1 ) )
+            // InternalSpear.g:15273:1: ( ( ( rule__AtomicExpr__ArgsAssignment_7_3_1_1 ) ) )
+            // InternalSpear.g:15274:1: ( ( rule__AtomicExpr__ArgsAssignment_7_3_1_1 ) )
             {
-            // InternalSpear.g:14700:1: ( ( rule__AtomicExpr__ArgsAssignment_7_3_1_1 ) )
-            // InternalSpear.g:14701:1: ( rule__AtomicExpr__ArgsAssignment_7_3_1_1 )
+            // InternalSpear.g:15274:1: ( ( rule__AtomicExpr__ArgsAssignment_7_3_1_1 ) )
+            // InternalSpear.g:15275:1: ( rule__AtomicExpr__ArgsAssignment_7_3_1_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getArgsAssignment_7_3_1_1()); 
             }
-            // InternalSpear.g:14702:1: ( rule__AtomicExpr__ArgsAssignment_7_3_1_1 )
-            // InternalSpear.g:14702:2: rule__AtomicExpr__ArgsAssignment_7_3_1_1
+            // InternalSpear.g:15276:1: ( rule__AtomicExpr__ArgsAssignment_7_3_1_1 )
+            // InternalSpear.g:15276:2: rule__AtomicExpr__ArgsAssignment_7_3_1_1
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__ArgsAssignment_7_3_1_1();
@@ -41623,16 +43164,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_8__0"
-    // InternalSpear.g:14716:1: rule__AtomicExpr__Group_8__0 : rule__AtomicExpr__Group_8__0__Impl rule__AtomicExpr__Group_8__1 ;
+    // InternalSpear.g:15290:1: rule__AtomicExpr__Group_8__0 : rule__AtomicExpr__Group_8__0__Impl rule__AtomicExpr__Group_8__1 ;
     public final void rule__AtomicExpr__Group_8__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14720:1: ( rule__AtomicExpr__Group_8__0__Impl rule__AtomicExpr__Group_8__1 )
-            // InternalSpear.g:14721:2: rule__AtomicExpr__Group_8__0__Impl rule__AtomicExpr__Group_8__1
+            // InternalSpear.g:15294:1: ( rule__AtomicExpr__Group_8__0__Impl rule__AtomicExpr__Group_8__1 )
+            // InternalSpear.g:15295:2: rule__AtomicExpr__Group_8__0__Impl rule__AtomicExpr__Group_8__1
             {
-            pushFollow(FOLLOW_79);
+            pushFollow(FOLLOW_81);
             rule__AtomicExpr__Group_8__0__Impl();
 
             state._fsp--;
@@ -41661,23 +43202,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_8__0__Impl"
-    // InternalSpear.g:14728:1: rule__AtomicExpr__Group_8__0__Impl : ( () ) ;
+    // InternalSpear.g:15302:1: rule__AtomicExpr__Group_8__0__Impl : ( () ) ;
     public final void rule__AtomicExpr__Group_8__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14732:1: ( ( () ) )
-            // InternalSpear.g:14733:1: ( () )
+            // InternalSpear.g:15306:1: ( ( () ) )
+            // InternalSpear.g:15307:1: ( () )
             {
-            // InternalSpear.g:14733:1: ( () )
-            // InternalSpear.g:14734:1: ()
+            // InternalSpear.g:15307:1: ( () )
+            // InternalSpear.g:15308:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getSpecificationCallAction_8_0()); 
             }
-            // InternalSpear.g:14735:1: ()
-            // InternalSpear.g:14737:1: 
+            // InternalSpear.g:15309:1: ()
+            // InternalSpear.g:15311:1: 
             {
             }
 
@@ -41702,14 +43243,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_8__1"
-    // InternalSpear.g:14747:1: rule__AtomicExpr__Group_8__1 : rule__AtomicExpr__Group_8__1__Impl rule__AtomicExpr__Group_8__2 ;
+    // InternalSpear.g:15321:1: rule__AtomicExpr__Group_8__1 : rule__AtomicExpr__Group_8__1__Impl rule__AtomicExpr__Group_8__2 ;
     public final void rule__AtomicExpr__Group_8__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14751:1: ( rule__AtomicExpr__Group_8__1__Impl rule__AtomicExpr__Group_8__2 )
-            // InternalSpear.g:14752:2: rule__AtomicExpr__Group_8__1__Impl rule__AtomicExpr__Group_8__2
+            // InternalSpear.g:15325:1: ( rule__AtomicExpr__Group_8__1__Impl rule__AtomicExpr__Group_8__2 )
+            // InternalSpear.g:15326:2: rule__AtomicExpr__Group_8__1__Impl rule__AtomicExpr__Group_8__2
             {
             pushFollow(FOLLOW_3);
             rule__AtomicExpr__Group_8__1__Impl();
@@ -41740,22 +43281,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_8__1__Impl"
-    // InternalSpear.g:14759:1: rule__AtomicExpr__Group_8__1__Impl : ( 'spec' ) ;
+    // InternalSpear.g:15333:1: rule__AtomicExpr__Group_8__1__Impl : ( 'spec' ) ;
     public final void rule__AtomicExpr__Group_8__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14763:1: ( ( 'spec' ) )
-            // InternalSpear.g:14764:1: ( 'spec' )
+            // InternalSpear.g:15337:1: ( ( 'spec' ) )
+            // InternalSpear.g:15338:1: ( 'spec' )
             {
-            // InternalSpear.g:14764:1: ( 'spec' )
-            // InternalSpear.g:14765:1: 'spec'
+            // InternalSpear.g:15338:1: ( 'spec' )
+            // InternalSpear.g:15339:1: 'spec'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getSpecKeyword_8_1()); 
             }
-            match(input,110,FOLLOW_2); if (state.failed) return ;
+            match(input,111,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getAtomicExprAccess().getSpecKeyword_8_1()); 
             }
@@ -41781,14 +43322,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_8__2"
-    // InternalSpear.g:14778:1: rule__AtomicExpr__Group_8__2 : rule__AtomicExpr__Group_8__2__Impl rule__AtomicExpr__Group_8__3 ;
+    // InternalSpear.g:15352:1: rule__AtomicExpr__Group_8__2 : rule__AtomicExpr__Group_8__2__Impl rule__AtomicExpr__Group_8__3 ;
     public final void rule__AtomicExpr__Group_8__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14782:1: ( rule__AtomicExpr__Group_8__2__Impl rule__AtomicExpr__Group_8__3 )
-            // InternalSpear.g:14783:2: rule__AtomicExpr__Group_8__2__Impl rule__AtomicExpr__Group_8__3
+            // InternalSpear.g:15356:1: ( rule__AtomicExpr__Group_8__2__Impl rule__AtomicExpr__Group_8__3 )
+            // InternalSpear.g:15357:2: rule__AtomicExpr__Group_8__2__Impl rule__AtomicExpr__Group_8__3
             {
             pushFollow(FOLLOW_16);
             rule__AtomicExpr__Group_8__2__Impl();
@@ -41819,23 +43360,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_8__2__Impl"
-    // InternalSpear.g:14790:1: rule__AtomicExpr__Group_8__2__Impl : ( ( rule__AtomicExpr__SpecAssignment_8_2 ) ) ;
+    // InternalSpear.g:15364:1: rule__AtomicExpr__Group_8__2__Impl : ( ( rule__AtomicExpr__SpecAssignment_8_2 ) ) ;
     public final void rule__AtomicExpr__Group_8__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14794:1: ( ( ( rule__AtomicExpr__SpecAssignment_8_2 ) ) )
-            // InternalSpear.g:14795:1: ( ( rule__AtomicExpr__SpecAssignment_8_2 ) )
+            // InternalSpear.g:15368:1: ( ( ( rule__AtomicExpr__SpecAssignment_8_2 ) ) )
+            // InternalSpear.g:15369:1: ( ( rule__AtomicExpr__SpecAssignment_8_2 ) )
             {
-            // InternalSpear.g:14795:1: ( ( rule__AtomicExpr__SpecAssignment_8_2 ) )
-            // InternalSpear.g:14796:1: ( rule__AtomicExpr__SpecAssignment_8_2 )
+            // InternalSpear.g:15369:1: ( ( rule__AtomicExpr__SpecAssignment_8_2 ) )
+            // InternalSpear.g:15370:1: ( rule__AtomicExpr__SpecAssignment_8_2 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getSpecAssignment_8_2()); 
             }
-            // InternalSpear.g:14797:1: ( rule__AtomicExpr__SpecAssignment_8_2 )
-            // InternalSpear.g:14797:2: rule__AtomicExpr__SpecAssignment_8_2
+            // InternalSpear.g:15371:1: ( rule__AtomicExpr__SpecAssignment_8_2 )
+            // InternalSpear.g:15371:2: rule__AtomicExpr__SpecAssignment_8_2
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__SpecAssignment_8_2();
@@ -41870,16 +43411,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_8__3"
-    // InternalSpear.g:14807:1: rule__AtomicExpr__Group_8__3 : rule__AtomicExpr__Group_8__3__Impl rule__AtomicExpr__Group_8__4 ;
+    // InternalSpear.g:15381:1: rule__AtomicExpr__Group_8__3 : rule__AtomicExpr__Group_8__3__Impl rule__AtomicExpr__Group_8__4 ;
     public final void rule__AtomicExpr__Group_8__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14811:1: ( rule__AtomicExpr__Group_8__3__Impl rule__AtomicExpr__Group_8__4 )
-            // InternalSpear.g:14812:2: rule__AtomicExpr__Group_8__3__Impl rule__AtomicExpr__Group_8__4
+            // InternalSpear.g:15385:1: ( rule__AtomicExpr__Group_8__3__Impl rule__AtomicExpr__Group_8__4 )
+            // InternalSpear.g:15386:2: rule__AtomicExpr__Group_8__3__Impl rule__AtomicExpr__Group_8__4
             {
-            pushFollow(FOLLOW_78);
+            pushFollow(FOLLOW_80);
             rule__AtomicExpr__Group_8__3__Impl();
 
             state._fsp--;
@@ -41908,17 +43449,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_8__3__Impl"
-    // InternalSpear.g:14819:1: rule__AtomicExpr__Group_8__3__Impl : ( '(' ) ;
+    // InternalSpear.g:15393:1: rule__AtomicExpr__Group_8__3__Impl : ( '(' ) ;
     public final void rule__AtomicExpr__Group_8__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14823:1: ( ( '(' ) )
-            // InternalSpear.g:14824:1: ( '(' )
+            // InternalSpear.g:15397:1: ( ( '(' ) )
+            // InternalSpear.g:15398:1: ( '(' )
             {
-            // InternalSpear.g:14824:1: ( '(' )
-            // InternalSpear.g:14825:1: '('
+            // InternalSpear.g:15398:1: ( '(' )
+            // InternalSpear.g:15399:1: '('
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getLeftParenthesisKeyword_8_3()); 
@@ -41949,16 +43490,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_8__4"
-    // InternalSpear.g:14838:1: rule__AtomicExpr__Group_8__4 : rule__AtomicExpr__Group_8__4__Impl rule__AtomicExpr__Group_8__5 ;
+    // InternalSpear.g:15412:1: rule__AtomicExpr__Group_8__4 : rule__AtomicExpr__Group_8__4__Impl rule__AtomicExpr__Group_8__5 ;
     public final void rule__AtomicExpr__Group_8__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14842:1: ( rule__AtomicExpr__Group_8__4__Impl rule__AtomicExpr__Group_8__5 )
-            // InternalSpear.g:14843:2: rule__AtomicExpr__Group_8__4__Impl rule__AtomicExpr__Group_8__5
+            // InternalSpear.g:15416:1: ( rule__AtomicExpr__Group_8__4__Impl rule__AtomicExpr__Group_8__5 )
+            // InternalSpear.g:15417:2: rule__AtomicExpr__Group_8__4__Impl rule__AtomicExpr__Group_8__5
             {
-            pushFollow(FOLLOW_78);
+            pushFollow(FOLLOW_80);
             rule__AtomicExpr__Group_8__4__Impl();
 
             state._fsp--;
@@ -41987,31 +43528,31 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_8__4__Impl"
-    // InternalSpear.g:14850:1: rule__AtomicExpr__Group_8__4__Impl : ( ( rule__AtomicExpr__Group_8_4__0 )? ) ;
+    // InternalSpear.g:15424:1: rule__AtomicExpr__Group_8__4__Impl : ( ( rule__AtomicExpr__Group_8_4__0 )? ) ;
     public final void rule__AtomicExpr__Group_8__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14854:1: ( ( ( rule__AtomicExpr__Group_8_4__0 )? ) )
-            // InternalSpear.g:14855:1: ( ( rule__AtomicExpr__Group_8_4__0 )? )
+            // InternalSpear.g:15428:1: ( ( ( rule__AtomicExpr__Group_8_4__0 )? ) )
+            // InternalSpear.g:15429:1: ( ( rule__AtomicExpr__Group_8_4__0 )? )
             {
-            // InternalSpear.g:14855:1: ( ( rule__AtomicExpr__Group_8_4__0 )? )
-            // InternalSpear.g:14856:1: ( rule__AtomicExpr__Group_8_4__0 )?
+            // InternalSpear.g:15429:1: ( ( rule__AtomicExpr__Group_8_4__0 )? )
+            // InternalSpear.g:15430:1: ( rule__AtomicExpr__Group_8_4__0 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getGroup_8_4()); 
             }
-            // InternalSpear.g:14857:1: ( rule__AtomicExpr__Group_8_4__0 )?
-            int alt102=2;
-            int LA102_0 = input.LA(1);
+            // InternalSpear.g:15431:1: ( rule__AtomicExpr__Group_8_4__0 )?
+            int alt106=2;
+            int LA106_0 = input.LA(1);
 
-            if ( ((LA102_0>=RULE_INT && LA102_0<=RULE_ID)||(LA102_0>=32 && LA102_0<=38)||LA102_0==46||(LA102_0>=52 && LA102_0<=56)||LA102_0==70||LA102_0==77||LA102_0==92||LA102_0==94||LA102_0==101||LA102_0==107||(LA102_0>=109 && LA102_0<=111)) ) {
-                alt102=1;
+            if ( ((LA106_0>=RULE_INT && LA106_0<=RULE_ID)||(LA106_0>=32 && LA106_0<=38)||LA106_0==46||(LA106_0>=52 && LA106_0<=56)||LA106_0==70||LA106_0==77||LA106_0==93||LA106_0==95||LA106_0==102||LA106_0==108||(LA106_0>=110 && LA106_0<=112)) ) {
+                alt106=1;
             }
-            switch (alt102) {
+            switch (alt106) {
                 case 1 :
-                    // InternalSpear.g:14857:2: rule__AtomicExpr__Group_8_4__0
+                    // InternalSpear.g:15431:2: rule__AtomicExpr__Group_8_4__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__AtomicExpr__Group_8_4__0();
@@ -42049,14 +43590,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_8__5"
-    // InternalSpear.g:14867:1: rule__AtomicExpr__Group_8__5 : rule__AtomicExpr__Group_8__5__Impl ;
+    // InternalSpear.g:15441:1: rule__AtomicExpr__Group_8__5 : rule__AtomicExpr__Group_8__5__Impl ;
     public final void rule__AtomicExpr__Group_8__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14871:1: ( rule__AtomicExpr__Group_8__5__Impl )
-            // InternalSpear.g:14872:2: rule__AtomicExpr__Group_8__5__Impl
+            // InternalSpear.g:15445:1: ( rule__AtomicExpr__Group_8__5__Impl )
+            // InternalSpear.g:15446:2: rule__AtomicExpr__Group_8__5__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__Group_8__5__Impl();
@@ -42082,17 +43623,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_8__5__Impl"
-    // InternalSpear.g:14878:1: rule__AtomicExpr__Group_8__5__Impl : ( ')' ) ;
+    // InternalSpear.g:15452:1: rule__AtomicExpr__Group_8__5__Impl : ( ')' ) ;
     public final void rule__AtomicExpr__Group_8__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14882:1: ( ( ')' ) )
-            // InternalSpear.g:14883:1: ( ')' )
+            // InternalSpear.g:15456:1: ( ( ')' ) )
+            // InternalSpear.g:15457:1: ( ')' )
             {
-            // InternalSpear.g:14883:1: ( ')' )
-            // InternalSpear.g:14884:1: ')'
+            // InternalSpear.g:15457:1: ( ')' )
+            // InternalSpear.g:15458:1: ')'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getRightParenthesisKeyword_8_5()); 
@@ -42123,14 +43664,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_8_4__0"
-    // InternalSpear.g:14909:1: rule__AtomicExpr__Group_8_4__0 : rule__AtomicExpr__Group_8_4__0__Impl rule__AtomicExpr__Group_8_4__1 ;
+    // InternalSpear.g:15483:1: rule__AtomicExpr__Group_8_4__0 : rule__AtomicExpr__Group_8_4__0__Impl rule__AtomicExpr__Group_8_4__1 ;
     public final void rule__AtomicExpr__Group_8_4__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14913:1: ( rule__AtomicExpr__Group_8_4__0__Impl rule__AtomicExpr__Group_8_4__1 )
-            // InternalSpear.g:14914:2: rule__AtomicExpr__Group_8_4__0__Impl rule__AtomicExpr__Group_8_4__1
+            // InternalSpear.g:15487:1: ( rule__AtomicExpr__Group_8_4__0__Impl rule__AtomicExpr__Group_8_4__1 )
+            // InternalSpear.g:15488:2: rule__AtomicExpr__Group_8_4__0__Impl rule__AtomicExpr__Group_8_4__1
             {
             pushFollow(FOLLOW_22);
             rule__AtomicExpr__Group_8_4__0__Impl();
@@ -42161,23 +43702,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_8_4__0__Impl"
-    // InternalSpear.g:14921:1: rule__AtomicExpr__Group_8_4__0__Impl : ( ( rule__AtomicExpr__ArgsAssignment_8_4_0 ) ) ;
+    // InternalSpear.g:15495:1: rule__AtomicExpr__Group_8_4__0__Impl : ( ( rule__AtomicExpr__ArgsAssignment_8_4_0 ) ) ;
     public final void rule__AtomicExpr__Group_8_4__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14925:1: ( ( ( rule__AtomicExpr__ArgsAssignment_8_4_0 ) ) )
-            // InternalSpear.g:14926:1: ( ( rule__AtomicExpr__ArgsAssignment_8_4_0 ) )
+            // InternalSpear.g:15499:1: ( ( ( rule__AtomicExpr__ArgsAssignment_8_4_0 ) ) )
+            // InternalSpear.g:15500:1: ( ( rule__AtomicExpr__ArgsAssignment_8_4_0 ) )
             {
-            // InternalSpear.g:14926:1: ( ( rule__AtomicExpr__ArgsAssignment_8_4_0 ) )
-            // InternalSpear.g:14927:1: ( rule__AtomicExpr__ArgsAssignment_8_4_0 )
+            // InternalSpear.g:15500:1: ( ( rule__AtomicExpr__ArgsAssignment_8_4_0 ) )
+            // InternalSpear.g:15501:1: ( rule__AtomicExpr__ArgsAssignment_8_4_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getArgsAssignment_8_4_0()); 
             }
-            // InternalSpear.g:14928:1: ( rule__AtomicExpr__ArgsAssignment_8_4_0 )
-            // InternalSpear.g:14928:2: rule__AtomicExpr__ArgsAssignment_8_4_0
+            // InternalSpear.g:15502:1: ( rule__AtomicExpr__ArgsAssignment_8_4_0 )
+            // InternalSpear.g:15502:2: rule__AtomicExpr__ArgsAssignment_8_4_0
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__ArgsAssignment_8_4_0();
@@ -42212,14 +43753,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_8_4__1"
-    // InternalSpear.g:14938:1: rule__AtomicExpr__Group_8_4__1 : rule__AtomicExpr__Group_8_4__1__Impl ;
+    // InternalSpear.g:15512:1: rule__AtomicExpr__Group_8_4__1 : rule__AtomicExpr__Group_8_4__1__Impl ;
     public final void rule__AtomicExpr__Group_8_4__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14942:1: ( rule__AtomicExpr__Group_8_4__1__Impl )
-            // InternalSpear.g:14943:2: rule__AtomicExpr__Group_8_4__1__Impl
+            // InternalSpear.g:15516:1: ( rule__AtomicExpr__Group_8_4__1__Impl )
+            // InternalSpear.g:15517:2: rule__AtomicExpr__Group_8_4__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__Group_8_4__1__Impl();
@@ -42245,35 +43786,35 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_8_4__1__Impl"
-    // InternalSpear.g:14949:1: rule__AtomicExpr__Group_8_4__1__Impl : ( ( rule__AtomicExpr__Group_8_4_1__0 )* ) ;
+    // InternalSpear.g:15523:1: rule__AtomicExpr__Group_8_4__1__Impl : ( ( rule__AtomicExpr__Group_8_4_1__0 )* ) ;
     public final void rule__AtomicExpr__Group_8_4__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14953:1: ( ( ( rule__AtomicExpr__Group_8_4_1__0 )* ) )
-            // InternalSpear.g:14954:1: ( ( rule__AtomicExpr__Group_8_4_1__0 )* )
+            // InternalSpear.g:15527:1: ( ( ( rule__AtomicExpr__Group_8_4_1__0 )* ) )
+            // InternalSpear.g:15528:1: ( ( rule__AtomicExpr__Group_8_4_1__0 )* )
             {
-            // InternalSpear.g:14954:1: ( ( rule__AtomicExpr__Group_8_4_1__0 )* )
-            // InternalSpear.g:14955:1: ( rule__AtomicExpr__Group_8_4_1__0 )*
+            // InternalSpear.g:15528:1: ( ( rule__AtomicExpr__Group_8_4_1__0 )* )
+            // InternalSpear.g:15529:1: ( rule__AtomicExpr__Group_8_4_1__0 )*
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getGroup_8_4_1()); 
             }
-            // InternalSpear.g:14956:1: ( rule__AtomicExpr__Group_8_4_1__0 )*
-            loop103:
+            // InternalSpear.g:15530:1: ( rule__AtomicExpr__Group_8_4_1__0 )*
+            loop107:
             do {
-                int alt103=2;
-                int LA103_0 = input.LA(1);
+                int alt107=2;
+                int LA107_0 = input.LA(1);
 
-                if ( (LA103_0==75) ) {
-                    alt103=1;
+                if ( (LA107_0==75) ) {
+                    alt107=1;
                 }
 
 
-                switch (alt103) {
+                switch (alt107) {
             	case 1 :
-            	    // InternalSpear.g:14956:2: rule__AtomicExpr__Group_8_4_1__0
+            	    // InternalSpear.g:15530:2: rule__AtomicExpr__Group_8_4_1__0
             	    {
             	    pushFollow(FOLLOW_23);
             	    rule__AtomicExpr__Group_8_4_1__0();
@@ -42285,7 +43826,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop103;
+            	    break loop107;
                 }
             } while (true);
 
@@ -42314,14 +43855,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_8_4_1__0"
-    // InternalSpear.g:14970:1: rule__AtomicExpr__Group_8_4_1__0 : rule__AtomicExpr__Group_8_4_1__0__Impl rule__AtomicExpr__Group_8_4_1__1 ;
+    // InternalSpear.g:15544:1: rule__AtomicExpr__Group_8_4_1__0 : rule__AtomicExpr__Group_8_4_1__0__Impl rule__AtomicExpr__Group_8_4_1__1 ;
     public final void rule__AtomicExpr__Group_8_4_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14974:1: ( rule__AtomicExpr__Group_8_4_1__0__Impl rule__AtomicExpr__Group_8_4_1__1 )
-            // InternalSpear.g:14975:2: rule__AtomicExpr__Group_8_4_1__0__Impl rule__AtomicExpr__Group_8_4_1__1
+            // InternalSpear.g:15548:1: ( rule__AtomicExpr__Group_8_4_1__0__Impl rule__AtomicExpr__Group_8_4_1__1 )
+            // InternalSpear.g:15549:2: rule__AtomicExpr__Group_8_4_1__0__Impl rule__AtomicExpr__Group_8_4_1__1
             {
             pushFollow(FOLLOW_26);
             rule__AtomicExpr__Group_8_4_1__0__Impl();
@@ -42352,17 +43893,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_8_4_1__0__Impl"
-    // InternalSpear.g:14982:1: rule__AtomicExpr__Group_8_4_1__0__Impl : ( ',' ) ;
+    // InternalSpear.g:15556:1: rule__AtomicExpr__Group_8_4_1__0__Impl : ( ',' ) ;
     public final void rule__AtomicExpr__Group_8_4_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14986:1: ( ( ',' ) )
-            // InternalSpear.g:14987:1: ( ',' )
+            // InternalSpear.g:15560:1: ( ( ',' ) )
+            // InternalSpear.g:15561:1: ( ',' )
             {
-            // InternalSpear.g:14987:1: ( ',' )
-            // InternalSpear.g:14988:1: ','
+            // InternalSpear.g:15561:1: ( ',' )
+            // InternalSpear.g:15562:1: ','
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getCommaKeyword_8_4_1_0()); 
@@ -42393,14 +43934,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_8_4_1__1"
-    // InternalSpear.g:15001:1: rule__AtomicExpr__Group_8_4_1__1 : rule__AtomicExpr__Group_8_4_1__1__Impl ;
+    // InternalSpear.g:15575:1: rule__AtomicExpr__Group_8_4_1__1 : rule__AtomicExpr__Group_8_4_1__1__Impl ;
     public final void rule__AtomicExpr__Group_8_4_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15005:1: ( rule__AtomicExpr__Group_8_4_1__1__Impl )
-            // InternalSpear.g:15006:2: rule__AtomicExpr__Group_8_4_1__1__Impl
+            // InternalSpear.g:15579:1: ( rule__AtomicExpr__Group_8_4_1__1__Impl )
+            // InternalSpear.g:15580:2: rule__AtomicExpr__Group_8_4_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__Group_8_4_1__1__Impl();
@@ -42426,23 +43967,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_8_4_1__1__Impl"
-    // InternalSpear.g:15012:1: rule__AtomicExpr__Group_8_4_1__1__Impl : ( ( rule__AtomicExpr__ArgsAssignment_8_4_1_1 ) ) ;
+    // InternalSpear.g:15586:1: rule__AtomicExpr__Group_8_4_1__1__Impl : ( ( rule__AtomicExpr__ArgsAssignment_8_4_1_1 ) ) ;
     public final void rule__AtomicExpr__Group_8_4_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15016:1: ( ( ( rule__AtomicExpr__ArgsAssignment_8_4_1_1 ) ) )
-            // InternalSpear.g:15017:1: ( ( rule__AtomicExpr__ArgsAssignment_8_4_1_1 ) )
+            // InternalSpear.g:15590:1: ( ( ( rule__AtomicExpr__ArgsAssignment_8_4_1_1 ) ) )
+            // InternalSpear.g:15591:1: ( ( rule__AtomicExpr__ArgsAssignment_8_4_1_1 ) )
             {
-            // InternalSpear.g:15017:1: ( ( rule__AtomicExpr__ArgsAssignment_8_4_1_1 ) )
-            // InternalSpear.g:15018:1: ( rule__AtomicExpr__ArgsAssignment_8_4_1_1 )
+            // InternalSpear.g:15591:1: ( ( rule__AtomicExpr__ArgsAssignment_8_4_1_1 ) )
+            // InternalSpear.g:15592:1: ( rule__AtomicExpr__ArgsAssignment_8_4_1_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getArgsAssignment_8_4_1_1()); 
             }
-            // InternalSpear.g:15019:1: ( rule__AtomicExpr__ArgsAssignment_8_4_1_1 )
-            // InternalSpear.g:15019:2: rule__AtomicExpr__ArgsAssignment_8_4_1_1
+            // InternalSpear.g:15593:1: ( rule__AtomicExpr__ArgsAssignment_8_4_1_1 )
+            // InternalSpear.g:15593:2: rule__AtomicExpr__ArgsAssignment_8_4_1_1
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__ArgsAssignment_8_4_1_1();
@@ -42477,14 +44018,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_10__0"
-    // InternalSpear.g:15033:1: rule__AtomicExpr__Group_10__0 : rule__AtomicExpr__Group_10__0__Impl rule__AtomicExpr__Group_10__1 ;
+    // InternalSpear.g:15607:1: rule__AtomicExpr__Group_10__0 : rule__AtomicExpr__Group_10__0__Impl rule__AtomicExpr__Group_10__1 ;
     public final void rule__AtomicExpr__Group_10__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15037:1: ( rule__AtomicExpr__Group_10__0__Impl rule__AtomicExpr__Group_10__1 )
-            // InternalSpear.g:15038:2: rule__AtomicExpr__Group_10__0__Impl rule__AtomicExpr__Group_10__1
+            // InternalSpear.g:15611:1: ( rule__AtomicExpr__Group_10__0__Impl rule__AtomicExpr__Group_10__1 )
+            // InternalSpear.g:15612:2: rule__AtomicExpr__Group_10__0__Impl rule__AtomicExpr__Group_10__1
             {
             pushFollow(FOLLOW_26);
             rule__AtomicExpr__Group_10__0__Impl();
@@ -42515,17 +44056,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_10__0__Impl"
-    // InternalSpear.g:15045:1: rule__AtomicExpr__Group_10__0__Impl : ( '(' ) ;
+    // InternalSpear.g:15619:1: rule__AtomicExpr__Group_10__0__Impl : ( '(' ) ;
     public final void rule__AtomicExpr__Group_10__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15049:1: ( ( '(' ) )
-            // InternalSpear.g:15050:1: ( '(' )
+            // InternalSpear.g:15623:1: ( ( '(' ) )
+            // InternalSpear.g:15624:1: ( '(' )
             {
-            // InternalSpear.g:15050:1: ( '(' )
-            // InternalSpear.g:15051:1: '('
+            // InternalSpear.g:15624:1: ( '(' )
+            // InternalSpear.g:15625:1: '('
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getLeftParenthesisKeyword_10_0()); 
@@ -42556,14 +44097,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_10__1"
-    // InternalSpear.g:15064:1: rule__AtomicExpr__Group_10__1 : rule__AtomicExpr__Group_10__1__Impl rule__AtomicExpr__Group_10__2 ;
+    // InternalSpear.g:15638:1: rule__AtomicExpr__Group_10__1 : rule__AtomicExpr__Group_10__1__Impl rule__AtomicExpr__Group_10__2 ;
     public final void rule__AtomicExpr__Group_10__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15068:1: ( rule__AtomicExpr__Group_10__1__Impl rule__AtomicExpr__Group_10__2 )
-            // InternalSpear.g:15069:2: rule__AtomicExpr__Group_10__1__Impl rule__AtomicExpr__Group_10__2
+            // InternalSpear.g:15642:1: ( rule__AtomicExpr__Group_10__1__Impl rule__AtomicExpr__Group_10__2 )
+            // InternalSpear.g:15643:2: rule__AtomicExpr__Group_10__1__Impl rule__AtomicExpr__Group_10__2
             {
             pushFollow(FOLLOW_31);
             rule__AtomicExpr__Group_10__1__Impl();
@@ -42594,17 +44135,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_10__1__Impl"
-    // InternalSpear.g:15076:1: rule__AtomicExpr__Group_10__1__Impl : ( ruleExpr ) ;
+    // InternalSpear.g:15650:1: rule__AtomicExpr__Group_10__1__Impl : ( ruleExpr ) ;
     public final void rule__AtomicExpr__Group_10__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15080:1: ( ( ruleExpr ) )
-            // InternalSpear.g:15081:1: ( ruleExpr )
+            // InternalSpear.g:15654:1: ( ( ruleExpr ) )
+            // InternalSpear.g:15655:1: ( ruleExpr )
             {
-            // InternalSpear.g:15081:1: ( ruleExpr )
-            // InternalSpear.g:15082:1: ruleExpr
+            // InternalSpear.g:15655:1: ( ruleExpr )
+            // InternalSpear.g:15656:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getExprParserRuleCall_10_1()); 
@@ -42639,14 +44180,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_10__2"
-    // InternalSpear.g:15093:1: rule__AtomicExpr__Group_10__2 : rule__AtomicExpr__Group_10__2__Impl ;
+    // InternalSpear.g:15667:1: rule__AtomicExpr__Group_10__2 : rule__AtomicExpr__Group_10__2__Impl ;
     public final void rule__AtomicExpr__Group_10__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15097:1: ( rule__AtomicExpr__Group_10__2__Impl )
-            // InternalSpear.g:15098:2: rule__AtomicExpr__Group_10__2__Impl
+            // InternalSpear.g:15671:1: ( rule__AtomicExpr__Group_10__2__Impl )
+            // InternalSpear.g:15672:2: rule__AtomicExpr__Group_10__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AtomicExpr__Group_10__2__Impl();
@@ -42672,17 +44213,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__Group_10__2__Impl"
-    // InternalSpear.g:15104:1: rule__AtomicExpr__Group_10__2__Impl : ( ')' ) ;
+    // InternalSpear.g:15678:1: rule__AtomicExpr__Group_10__2__Impl : ( ')' ) ;
     public final void rule__AtomicExpr__Group_10__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15108:1: ( ( ')' ) )
-            // InternalSpear.g:15109:1: ( ')' )
+            // InternalSpear.g:15682:1: ( ( ')' ) )
+            // InternalSpear.g:15683:1: ( ')' )
             {
-            // InternalSpear.g:15109:1: ( ')' )
-            // InternalSpear.g:15110:1: ')'
+            // InternalSpear.g:15683:1: ( ')' )
+            // InternalSpear.g:15684:1: ')'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getRightParenthesisKeyword_10_2()); 
@@ -42713,16 +44254,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralExpr__Group_0__0"
-    // InternalSpear.g:15129:1: rule__LiteralExpr__Group_0__0 : rule__LiteralExpr__Group_0__0__Impl rule__LiteralExpr__Group_0__1 ;
+    // InternalSpear.g:15703:1: rule__LiteralExpr__Group_0__0 : rule__LiteralExpr__Group_0__0__Impl rule__LiteralExpr__Group_0__1 ;
     public final void rule__LiteralExpr__Group_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15133:1: ( rule__LiteralExpr__Group_0__0__Impl rule__LiteralExpr__Group_0__1 )
-            // InternalSpear.g:15134:2: rule__LiteralExpr__Group_0__0__Impl rule__LiteralExpr__Group_0__1
+            // InternalSpear.g:15707:1: ( rule__LiteralExpr__Group_0__0__Impl rule__LiteralExpr__Group_0__1 )
+            // InternalSpear.g:15708:2: rule__LiteralExpr__Group_0__0__Impl rule__LiteralExpr__Group_0__1
             {
-            pushFollow(FOLLOW_80);
+            pushFollow(FOLLOW_82);
             rule__LiteralExpr__Group_0__0__Impl();
 
             state._fsp--;
@@ -42751,23 +44292,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralExpr__Group_0__0__Impl"
-    // InternalSpear.g:15141:1: rule__LiteralExpr__Group_0__0__Impl : ( () ) ;
+    // InternalSpear.g:15715:1: rule__LiteralExpr__Group_0__0__Impl : ( () ) ;
     public final void rule__LiteralExpr__Group_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15145:1: ( ( () ) )
-            // InternalSpear.g:15146:1: ( () )
+            // InternalSpear.g:15719:1: ( ( () ) )
+            // InternalSpear.g:15720:1: ( () )
             {
-            // InternalSpear.g:15146:1: ( () )
-            // InternalSpear.g:15147:1: ()
+            // InternalSpear.g:15720:1: ( () )
+            // InternalSpear.g:15721:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLiteralExprAccess().getIntLiteralAction_0_0()); 
             }
-            // InternalSpear.g:15148:1: ()
-            // InternalSpear.g:15150:1: 
+            // InternalSpear.g:15722:1: ()
+            // InternalSpear.g:15724:1: 
             {
             }
 
@@ -42792,14 +44333,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralExpr__Group_0__1"
-    // InternalSpear.g:15160:1: rule__LiteralExpr__Group_0__1 : rule__LiteralExpr__Group_0__1__Impl rule__LiteralExpr__Group_0__2 ;
+    // InternalSpear.g:15734:1: rule__LiteralExpr__Group_0__1 : rule__LiteralExpr__Group_0__1__Impl rule__LiteralExpr__Group_0__2 ;
     public final void rule__LiteralExpr__Group_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15164:1: ( rule__LiteralExpr__Group_0__1__Impl rule__LiteralExpr__Group_0__2 )
-            // InternalSpear.g:15165:2: rule__LiteralExpr__Group_0__1__Impl rule__LiteralExpr__Group_0__2
+            // InternalSpear.g:15738:1: ( rule__LiteralExpr__Group_0__1__Impl rule__LiteralExpr__Group_0__2 )
+            // InternalSpear.g:15739:2: rule__LiteralExpr__Group_0__1__Impl rule__LiteralExpr__Group_0__2
             {
             pushFollow(FOLLOW_3);
             rule__LiteralExpr__Group_0__1__Impl();
@@ -42830,23 +44371,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralExpr__Group_0__1__Impl"
-    // InternalSpear.g:15172:1: rule__LiteralExpr__Group_0__1__Impl : ( ( rule__LiteralExpr__ValueAssignment_0_1 ) ) ;
+    // InternalSpear.g:15746:1: rule__LiteralExpr__Group_0__1__Impl : ( ( rule__LiteralExpr__ValueAssignment_0_1 ) ) ;
     public final void rule__LiteralExpr__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15176:1: ( ( ( rule__LiteralExpr__ValueAssignment_0_1 ) ) )
-            // InternalSpear.g:15177:1: ( ( rule__LiteralExpr__ValueAssignment_0_1 ) )
+            // InternalSpear.g:15750:1: ( ( ( rule__LiteralExpr__ValueAssignment_0_1 ) ) )
+            // InternalSpear.g:15751:1: ( ( rule__LiteralExpr__ValueAssignment_0_1 ) )
             {
-            // InternalSpear.g:15177:1: ( ( rule__LiteralExpr__ValueAssignment_0_1 ) )
-            // InternalSpear.g:15178:1: ( rule__LiteralExpr__ValueAssignment_0_1 )
+            // InternalSpear.g:15751:1: ( ( rule__LiteralExpr__ValueAssignment_0_1 ) )
+            // InternalSpear.g:15752:1: ( rule__LiteralExpr__ValueAssignment_0_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLiteralExprAccess().getValueAssignment_0_1()); 
             }
-            // InternalSpear.g:15179:1: ( rule__LiteralExpr__ValueAssignment_0_1 )
-            // InternalSpear.g:15179:2: rule__LiteralExpr__ValueAssignment_0_1
+            // InternalSpear.g:15753:1: ( rule__LiteralExpr__ValueAssignment_0_1 )
+            // InternalSpear.g:15753:2: rule__LiteralExpr__ValueAssignment_0_1
             {
             pushFollow(FOLLOW_2);
             rule__LiteralExpr__ValueAssignment_0_1();
@@ -42881,14 +44422,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralExpr__Group_0__2"
-    // InternalSpear.g:15189:1: rule__LiteralExpr__Group_0__2 : rule__LiteralExpr__Group_0__2__Impl ;
+    // InternalSpear.g:15763:1: rule__LiteralExpr__Group_0__2 : rule__LiteralExpr__Group_0__2__Impl ;
     public final void rule__LiteralExpr__Group_0__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15193:1: ( rule__LiteralExpr__Group_0__2__Impl )
-            // InternalSpear.g:15194:2: rule__LiteralExpr__Group_0__2__Impl
+            // InternalSpear.g:15767:1: ( rule__LiteralExpr__Group_0__2__Impl )
+            // InternalSpear.g:15768:2: rule__LiteralExpr__Group_0__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__LiteralExpr__Group_0__2__Impl();
@@ -42914,35 +44455,35 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralExpr__Group_0__2__Impl"
-    // InternalSpear.g:15200:1: rule__LiteralExpr__Group_0__2__Impl : ( ( rule__LiteralExpr__UnitAssignment_0_2 )? ) ;
+    // InternalSpear.g:15774:1: rule__LiteralExpr__Group_0__2__Impl : ( ( rule__LiteralExpr__UnitAssignment_0_2 )? ) ;
     public final void rule__LiteralExpr__Group_0__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15204:1: ( ( ( rule__LiteralExpr__UnitAssignment_0_2 )? ) )
-            // InternalSpear.g:15205:1: ( ( rule__LiteralExpr__UnitAssignment_0_2 )? )
+            // InternalSpear.g:15778:1: ( ( ( rule__LiteralExpr__UnitAssignment_0_2 )? ) )
+            // InternalSpear.g:15779:1: ( ( rule__LiteralExpr__UnitAssignment_0_2 )? )
             {
-            // InternalSpear.g:15205:1: ( ( rule__LiteralExpr__UnitAssignment_0_2 )? )
-            // InternalSpear.g:15206:1: ( rule__LiteralExpr__UnitAssignment_0_2 )?
+            // InternalSpear.g:15779:1: ( ( rule__LiteralExpr__UnitAssignment_0_2 )? )
+            // InternalSpear.g:15780:1: ( rule__LiteralExpr__UnitAssignment_0_2 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLiteralExprAccess().getUnitAssignment_0_2()); 
             }
-            // InternalSpear.g:15207:1: ( rule__LiteralExpr__UnitAssignment_0_2 )?
-            int alt104=2;
-            int LA104_0 = input.LA(1);
+            // InternalSpear.g:15781:1: ( rule__LiteralExpr__UnitAssignment_0_2 )?
+            int alt108=2;
+            int LA108_0 = input.LA(1);
 
-            if ( (LA104_0==RULE_ID) ) {
-                int LA104_1 = input.LA(2);
+            if ( (LA108_0==RULE_ID) ) {
+                int LA108_1 = input.LA(2);
 
-                if ( (LA104_1==EOF||LA104_1==RULE_ID||(LA104_1>=11 && LA104_1<=20)||(LA104_1>=24 && LA104_1<=31)||(LA104_1>=39 && LA104_1<=52)||LA104_1==58||LA104_1==64||LA104_1==71||(LA104_1>=74 && LA104_1<=75)||LA104_1==77||(LA104_1>=79 && LA104_1<=80)||(LA104_1>=83 && LA104_1<=86)||LA104_1==91||LA104_1==93||(LA104_1>=95 && LA104_1<=96)||LA104_1==98||LA104_1==100||LA104_1==102||(LA104_1>=105 && LA104_1<=106)||LA104_1==108||LA104_1==112) ) {
-                    alt104=1;
+                if ( (LA108_1==EOF||LA108_1==RULE_ID||(LA108_1>=11 && LA108_1<=20)||(LA108_1>=24 && LA108_1<=31)||(LA108_1>=39 && LA108_1<=52)||LA108_1==58||LA108_1==64||LA108_1==71||(LA108_1>=74 && LA108_1<=75)||LA108_1==77||(LA108_1>=79 && LA108_1<=80)||(LA108_1>=83 && LA108_1<=86)||(LA108_1>=91 && LA108_1<=92)||LA108_1==94||(LA108_1>=96 && LA108_1<=97)||LA108_1==99||LA108_1==101||LA108_1==103||(LA108_1>=106 && LA108_1<=107)||LA108_1==109||LA108_1==113) ) {
+                    alt108=1;
                 }
             }
-            switch (alt104) {
+            switch (alt108) {
                 case 1 :
-                    // InternalSpear.g:15207:2: rule__LiteralExpr__UnitAssignment_0_2
+                    // InternalSpear.g:15781:2: rule__LiteralExpr__UnitAssignment_0_2
                     {
                     pushFollow(FOLLOW_2);
                     rule__LiteralExpr__UnitAssignment_0_2();
@@ -42980,16 +44521,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralExpr__Group_1__0"
-    // InternalSpear.g:15223:1: rule__LiteralExpr__Group_1__0 : rule__LiteralExpr__Group_1__0__Impl rule__LiteralExpr__Group_1__1 ;
+    // InternalSpear.g:15797:1: rule__LiteralExpr__Group_1__0 : rule__LiteralExpr__Group_1__0__Impl rule__LiteralExpr__Group_1__1 ;
     public final void rule__LiteralExpr__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15227:1: ( rule__LiteralExpr__Group_1__0__Impl rule__LiteralExpr__Group_1__1 )
-            // InternalSpear.g:15228:2: rule__LiteralExpr__Group_1__0__Impl rule__LiteralExpr__Group_1__1
+            // InternalSpear.g:15801:1: ( rule__LiteralExpr__Group_1__0__Impl rule__LiteralExpr__Group_1__1 )
+            // InternalSpear.g:15802:2: rule__LiteralExpr__Group_1__0__Impl rule__LiteralExpr__Group_1__1
             {
-            pushFollow(FOLLOW_81);
+            pushFollow(FOLLOW_83);
             rule__LiteralExpr__Group_1__0__Impl();
 
             state._fsp--;
@@ -43018,23 +44559,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralExpr__Group_1__0__Impl"
-    // InternalSpear.g:15235:1: rule__LiteralExpr__Group_1__0__Impl : ( () ) ;
+    // InternalSpear.g:15809:1: rule__LiteralExpr__Group_1__0__Impl : ( () ) ;
     public final void rule__LiteralExpr__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15239:1: ( ( () ) )
-            // InternalSpear.g:15240:1: ( () )
+            // InternalSpear.g:15813:1: ( ( () ) )
+            // InternalSpear.g:15814:1: ( () )
             {
-            // InternalSpear.g:15240:1: ( () )
-            // InternalSpear.g:15241:1: ()
+            // InternalSpear.g:15814:1: ( () )
+            // InternalSpear.g:15815:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLiteralExprAccess().getBoolLiteralAction_1_0()); 
             }
-            // InternalSpear.g:15242:1: ()
-            // InternalSpear.g:15244:1: 
+            // InternalSpear.g:15816:1: ()
+            // InternalSpear.g:15818:1: 
             {
             }
 
@@ -43059,14 +44600,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralExpr__Group_1__1"
-    // InternalSpear.g:15254:1: rule__LiteralExpr__Group_1__1 : rule__LiteralExpr__Group_1__1__Impl ;
+    // InternalSpear.g:15828:1: rule__LiteralExpr__Group_1__1 : rule__LiteralExpr__Group_1__1__Impl ;
     public final void rule__LiteralExpr__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15258:1: ( rule__LiteralExpr__Group_1__1__Impl )
-            // InternalSpear.g:15259:2: rule__LiteralExpr__Group_1__1__Impl
+            // InternalSpear.g:15832:1: ( rule__LiteralExpr__Group_1__1__Impl )
+            // InternalSpear.g:15833:2: rule__LiteralExpr__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__LiteralExpr__Group_1__1__Impl();
@@ -43092,23 +44633,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralExpr__Group_1__1__Impl"
-    // InternalSpear.g:15265:1: rule__LiteralExpr__Group_1__1__Impl : ( ( rule__LiteralExpr__ValueAssignment_1_1 ) ) ;
+    // InternalSpear.g:15839:1: rule__LiteralExpr__Group_1__1__Impl : ( ( rule__LiteralExpr__ValueAssignment_1_1 ) ) ;
     public final void rule__LiteralExpr__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15269:1: ( ( ( rule__LiteralExpr__ValueAssignment_1_1 ) ) )
-            // InternalSpear.g:15270:1: ( ( rule__LiteralExpr__ValueAssignment_1_1 ) )
+            // InternalSpear.g:15843:1: ( ( ( rule__LiteralExpr__ValueAssignment_1_1 ) ) )
+            // InternalSpear.g:15844:1: ( ( rule__LiteralExpr__ValueAssignment_1_1 ) )
             {
-            // InternalSpear.g:15270:1: ( ( rule__LiteralExpr__ValueAssignment_1_1 ) )
-            // InternalSpear.g:15271:1: ( rule__LiteralExpr__ValueAssignment_1_1 )
+            // InternalSpear.g:15844:1: ( ( rule__LiteralExpr__ValueAssignment_1_1 ) )
+            // InternalSpear.g:15845:1: ( rule__LiteralExpr__ValueAssignment_1_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLiteralExprAccess().getValueAssignment_1_1()); 
             }
-            // InternalSpear.g:15272:1: ( rule__LiteralExpr__ValueAssignment_1_1 )
-            // InternalSpear.g:15272:2: rule__LiteralExpr__ValueAssignment_1_1
+            // InternalSpear.g:15846:1: ( rule__LiteralExpr__ValueAssignment_1_1 )
+            // InternalSpear.g:15846:2: rule__LiteralExpr__ValueAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__LiteralExpr__ValueAssignment_1_1();
@@ -43143,16 +44684,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralExpr__Group_2__0"
-    // InternalSpear.g:15286:1: rule__LiteralExpr__Group_2__0 : rule__LiteralExpr__Group_2__0__Impl rule__LiteralExpr__Group_2__1 ;
+    // InternalSpear.g:15860:1: rule__LiteralExpr__Group_2__0 : rule__LiteralExpr__Group_2__0__Impl rule__LiteralExpr__Group_2__1 ;
     public final void rule__LiteralExpr__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15290:1: ( rule__LiteralExpr__Group_2__0__Impl rule__LiteralExpr__Group_2__1 )
-            // InternalSpear.g:15291:2: rule__LiteralExpr__Group_2__0__Impl rule__LiteralExpr__Group_2__1
+            // InternalSpear.g:15864:1: ( rule__LiteralExpr__Group_2__0__Impl rule__LiteralExpr__Group_2__1 )
+            // InternalSpear.g:15865:2: rule__LiteralExpr__Group_2__0__Impl rule__LiteralExpr__Group_2__1
             {
-            pushFollow(FOLLOW_82);
+            pushFollow(FOLLOW_84);
             rule__LiteralExpr__Group_2__0__Impl();
 
             state._fsp--;
@@ -43181,23 +44722,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralExpr__Group_2__0__Impl"
-    // InternalSpear.g:15298:1: rule__LiteralExpr__Group_2__0__Impl : ( () ) ;
+    // InternalSpear.g:15872:1: rule__LiteralExpr__Group_2__0__Impl : ( () ) ;
     public final void rule__LiteralExpr__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15302:1: ( ( () ) )
-            // InternalSpear.g:15303:1: ( () )
+            // InternalSpear.g:15876:1: ( ( () ) )
+            // InternalSpear.g:15877:1: ( () )
             {
-            // InternalSpear.g:15303:1: ( () )
-            // InternalSpear.g:15304:1: ()
+            // InternalSpear.g:15877:1: ( () )
+            // InternalSpear.g:15878:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLiteralExprAccess().getRealLiteralAction_2_0()); 
             }
-            // InternalSpear.g:15305:1: ()
-            // InternalSpear.g:15307:1: 
+            // InternalSpear.g:15879:1: ()
+            // InternalSpear.g:15881:1: 
             {
             }
 
@@ -43222,14 +44763,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralExpr__Group_2__1"
-    // InternalSpear.g:15317:1: rule__LiteralExpr__Group_2__1 : rule__LiteralExpr__Group_2__1__Impl rule__LiteralExpr__Group_2__2 ;
+    // InternalSpear.g:15891:1: rule__LiteralExpr__Group_2__1 : rule__LiteralExpr__Group_2__1__Impl rule__LiteralExpr__Group_2__2 ;
     public final void rule__LiteralExpr__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15321:1: ( rule__LiteralExpr__Group_2__1__Impl rule__LiteralExpr__Group_2__2 )
-            // InternalSpear.g:15322:2: rule__LiteralExpr__Group_2__1__Impl rule__LiteralExpr__Group_2__2
+            // InternalSpear.g:15895:1: ( rule__LiteralExpr__Group_2__1__Impl rule__LiteralExpr__Group_2__2 )
+            // InternalSpear.g:15896:2: rule__LiteralExpr__Group_2__1__Impl rule__LiteralExpr__Group_2__2
             {
             pushFollow(FOLLOW_3);
             rule__LiteralExpr__Group_2__1__Impl();
@@ -43260,23 +44801,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralExpr__Group_2__1__Impl"
-    // InternalSpear.g:15329:1: rule__LiteralExpr__Group_2__1__Impl : ( ( rule__LiteralExpr__ValueAssignment_2_1 ) ) ;
+    // InternalSpear.g:15903:1: rule__LiteralExpr__Group_2__1__Impl : ( ( rule__LiteralExpr__ValueAssignment_2_1 ) ) ;
     public final void rule__LiteralExpr__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15333:1: ( ( ( rule__LiteralExpr__ValueAssignment_2_1 ) ) )
-            // InternalSpear.g:15334:1: ( ( rule__LiteralExpr__ValueAssignment_2_1 ) )
+            // InternalSpear.g:15907:1: ( ( ( rule__LiteralExpr__ValueAssignment_2_1 ) ) )
+            // InternalSpear.g:15908:1: ( ( rule__LiteralExpr__ValueAssignment_2_1 ) )
             {
-            // InternalSpear.g:15334:1: ( ( rule__LiteralExpr__ValueAssignment_2_1 ) )
-            // InternalSpear.g:15335:1: ( rule__LiteralExpr__ValueAssignment_2_1 )
+            // InternalSpear.g:15908:1: ( ( rule__LiteralExpr__ValueAssignment_2_1 ) )
+            // InternalSpear.g:15909:1: ( rule__LiteralExpr__ValueAssignment_2_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLiteralExprAccess().getValueAssignment_2_1()); 
             }
-            // InternalSpear.g:15336:1: ( rule__LiteralExpr__ValueAssignment_2_1 )
-            // InternalSpear.g:15336:2: rule__LiteralExpr__ValueAssignment_2_1
+            // InternalSpear.g:15910:1: ( rule__LiteralExpr__ValueAssignment_2_1 )
+            // InternalSpear.g:15910:2: rule__LiteralExpr__ValueAssignment_2_1
             {
             pushFollow(FOLLOW_2);
             rule__LiteralExpr__ValueAssignment_2_1();
@@ -43311,14 +44852,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralExpr__Group_2__2"
-    // InternalSpear.g:15346:1: rule__LiteralExpr__Group_2__2 : rule__LiteralExpr__Group_2__2__Impl ;
+    // InternalSpear.g:15920:1: rule__LiteralExpr__Group_2__2 : rule__LiteralExpr__Group_2__2__Impl ;
     public final void rule__LiteralExpr__Group_2__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15350:1: ( rule__LiteralExpr__Group_2__2__Impl )
-            // InternalSpear.g:15351:2: rule__LiteralExpr__Group_2__2__Impl
+            // InternalSpear.g:15924:1: ( rule__LiteralExpr__Group_2__2__Impl )
+            // InternalSpear.g:15925:2: rule__LiteralExpr__Group_2__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__LiteralExpr__Group_2__2__Impl();
@@ -43344,35 +44885,35 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralExpr__Group_2__2__Impl"
-    // InternalSpear.g:15357:1: rule__LiteralExpr__Group_2__2__Impl : ( ( rule__LiteralExpr__UnitAssignment_2_2 )? ) ;
+    // InternalSpear.g:15931:1: rule__LiteralExpr__Group_2__2__Impl : ( ( rule__LiteralExpr__UnitAssignment_2_2 )? ) ;
     public final void rule__LiteralExpr__Group_2__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15361:1: ( ( ( rule__LiteralExpr__UnitAssignment_2_2 )? ) )
-            // InternalSpear.g:15362:1: ( ( rule__LiteralExpr__UnitAssignment_2_2 )? )
+            // InternalSpear.g:15935:1: ( ( ( rule__LiteralExpr__UnitAssignment_2_2 )? ) )
+            // InternalSpear.g:15936:1: ( ( rule__LiteralExpr__UnitAssignment_2_2 )? )
             {
-            // InternalSpear.g:15362:1: ( ( rule__LiteralExpr__UnitAssignment_2_2 )? )
-            // InternalSpear.g:15363:1: ( rule__LiteralExpr__UnitAssignment_2_2 )?
+            // InternalSpear.g:15936:1: ( ( rule__LiteralExpr__UnitAssignment_2_2 )? )
+            // InternalSpear.g:15937:1: ( rule__LiteralExpr__UnitAssignment_2_2 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLiteralExprAccess().getUnitAssignment_2_2()); 
             }
-            // InternalSpear.g:15364:1: ( rule__LiteralExpr__UnitAssignment_2_2 )?
-            int alt105=2;
-            int LA105_0 = input.LA(1);
+            // InternalSpear.g:15938:1: ( rule__LiteralExpr__UnitAssignment_2_2 )?
+            int alt109=2;
+            int LA109_0 = input.LA(1);
 
-            if ( (LA105_0==RULE_ID) ) {
-                int LA105_1 = input.LA(2);
+            if ( (LA109_0==RULE_ID) ) {
+                int LA109_1 = input.LA(2);
 
-                if ( (LA105_1==EOF||LA105_1==RULE_ID||(LA105_1>=11 && LA105_1<=20)||(LA105_1>=24 && LA105_1<=31)||(LA105_1>=39 && LA105_1<=52)||LA105_1==58||LA105_1==64||LA105_1==71||(LA105_1>=74 && LA105_1<=75)||LA105_1==77||(LA105_1>=79 && LA105_1<=80)||(LA105_1>=83 && LA105_1<=86)||LA105_1==91||LA105_1==93||(LA105_1>=95 && LA105_1<=96)||LA105_1==98||LA105_1==100||LA105_1==102||(LA105_1>=105 && LA105_1<=106)||LA105_1==108||LA105_1==112) ) {
-                    alt105=1;
+                if ( (LA109_1==EOF||LA109_1==RULE_ID||(LA109_1>=11 && LA109_1<=20)||(LA109_1>=24 && LA109_1<=31)||(LA109_1>=39 && LA109_1<=52)||LA109_1==58||LA109_1==64||LA109_1==71||(LA109_1>=74 && LA109_1<=75)||LA109_1==77||(LA109_1>=79 && LA109_1<=80)||(LA109_1>=83 && LA109_1<=86)||(LA109_1>=91 && LA109_1<=92)||LA109_1==94||(LA109_1>=96 && LA109_1<=97)||LA109_1==99||LA109_1==101||LA109_1==103||(LA109_1>=106 && LA109_1<=107)||LA109_1==109||LA109_1==113) ) {
+                    alt109=1;
                 }
             }
-            switch (alt105) {
+            switch (alt109) {
                 case 1 :
-                    // InternalSpear.g:15364:2: rule__LiteralExpr__UnitAssignment_2_2
+                    // InternalSpear.g:15938:2: rule__LiteralExpr__UnitAssignment_2_2
                     {
                     pushFollow(FOLLOW_2);
                     rule__LiteralExpr__UnitAssignment_2_2();
@@ -43410,16 +44951,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group__0"
-    // InternalSpear.g:15380:1: rule__UnusedExpr__Group__0 : rule__UnusedExpr__Group__0__Impl rule__UnusedExpr__Group__1 ;
+    // InternalSpear.g:15954:1: rule__UnusedExpr__Group__0 : rule__UnusedExpr__Group__0__Impl rule__UnusedExpr__Group__1 ;
     public final void rule__UnusedExpr__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15384:1: ( rule__UnusedExpr__Group__0__Impl rule__UnusedExpr__Group__1 )
-            // InternalSpear.g:15385:2: rule__UnusedExpr__Group__0__Impl rule__UnusedExpr__Group__1
+            // InternalSpear.g:15958:1: ( rule__UnusedExpr__Group__0__Impl rule__UnusedExpr__Group__1 )
+            // InternalSpear.g:15959:2: rule__UnusedExpr__Group__0__Impl rule__UnusedExpr__Group__1
             {
-            pushFollow(FOLLOW_83);
+            pushFollow(FOLLOW_85);
             rule__UnusedExpr__Group__0__Impl();
 
             state._fsp--;
@@ -43448,23 +44989,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group__0__Impl"
-    // InternalSpear.g:15392:1: rule__UnusedExpr__Group__0__Impl : ( () ) ;
+    // InternalSpear.g:15966:1: rule__UnusedExpr__Group__0__Impl : ( () ) ;
     public final void rule__UnusedExpr__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15396:1: ( ( () ) )
-            // InternalSpear.g:15397:1: ( () )
+            // InternalSpear.g:15970:1: ( ( () ) )
+            // InternalSpear.g:15971:1: ( () )
             {
-            // InternalSpear.g:15397:1: ( () )
-            // InternalSpear.g:15398:1: ()
+            // InternalSpear.g:15971:1: ( () )
+            // InternalSpear.g:15972:1: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getNormalizedCallAction_0()); 
             }
-            // InternalSpear.g:15399:1: ()
-            // InternalSpear.g:15401:1: 
+            // InternalSpear.g:15973:1: ()
+            // InternalSpear.g:15975:1: 
             {
             }
 
@@ -43489,14 +45030,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group__1"
-    // InternalSpear.g:15411:1: rule__UnusedExpr__Group__1 : rule__UnusedExpr__Group__1__Impl rule__UnusedExpr__Group__2 ;
+    // InternalSpear.g:15985:1: rule__UnusedExpr__Group__1 : rule__UnusedExpr__Group__1__Impl rule__UnusedExpr__Group__2 ;
     public final void rule__UnusedExpr__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15415:1: ( rule__UnusedExpr__Group__1__Impl rule__UnusedExpr__Group__2 )
-            // InternalSpear.g:15416:2: rule__UnusedExpr__Group__1__Impl rule__UnusedExpr__Group__2
+            // InternalSpear.g:15989:1: ( rule__UnusedExpr__Group__1__Impl rule__UnusedExpr__Group__2 )
+            // InternalSpear.g:15990:2: rule__UnusedExpr__Group__1__Impl rule__UnusedExpr__Group__2
             {
             pushFollow(FOLLOW_3);
             rule__UnusedExpr__Group__1__Impl();
@@ -43527,22 +45068,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group__1__Impl"
-    // InternalSpear.g:15423:1: rule__UnusedExpr__Group__1__Impl : ( '#' ) ;
+    // InternalSpear.g:15997:1: rule__UnusedExpr__Group__1__Impl : ( '#' ) ;
     public final void rule__UnusedExpr__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15427:1: ( ( '#' ) )
-            // InternalSpear.g:15428:1: ( '#' )
+            // InternalSpear.g:16001:1: ( ( '#' ) )
+            // InternalSpear.g:16002:1: ( '#' )
             {
-            // InternalSpear.g:15428:1: ( '#' )
-            // InternalSpear.g:15429:1: '#'
+            // InternalSpear.g:16002:1: ( '#' )
+            // InternalSpear.g:16003:1: '#'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getNumberSignKeyword_1()); 
             }
-            match(input,111,FOLLOW_2); if (state.failed) return ;
+            match(input,112,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getUnusedExprAccess().getNumberSignKeyword_1()); 
             }
@@ -43568,16 +45109,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group__2"
-    // InternalSpear.g:15442:1: rule__UnusedExpr__Group__2 : rule__UnusedExpr__Group__2__Impl rule__UnusedExpr__Group__3 ;
+    // InternalSpear.g:16016:1: rule__UnusedExpr__Group__2 : rule__UnusedExpr__Group__2__Impl rule__UnusedExpr__Group__3 ;
     public final void rule__UnusedExpr__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15446:1: ( rule__UnusedExpr__Group__2__Impl rule__UnusedExpr__Group__3 )
-            // InternalSpear.g:15447:2: rule__UnusedExpr__Group__2__Impl rule__UnusedExpr__Group__3
+            // InternalSpear.g:16020:1: ( rule__UnusedExpr__Group__2__Impl rule__UnusedExpr__Group__3 )
+            // InternalSpear.g:16021:2: rule__UnusedExpr__Group__2__Impl rule__UnusedExpr__Group__3
             {
-            pushFollow(FOLLOW_84);
+            pushFollow(FOLLOW_86);
             rule__UnusedExpr__Group__2__Impl();
 
             state._fsp--;
@@ -43606,23 +45147,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group__2__Impl"
-    // InternalSpear.g:15454:1: rule__UnusedExpr__Group__2__Impl : ( ( rule__UnusedExpr__IdsAssignment_2 ) ) ;
+    // InternalSpear.g:16028:1: rule__UnusedExpr__Group__2__Impl : ( ( rule__UnusedExpr__IdsAssignment_2 ) ) ;
     public final void rule__UnusedExpr__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15458:1: ( ( ( rule__UnusedExpr__IdsAssignment_2 ) ) )
-            // InternalSpear.g:15459:1: ( ( rule__UnusedExpr__IdsAssignment_2 ) )
+            // InternalSpear.g:16032:1: ( ( ( rule__UnusedExpr__IdsAssignment_2 ) ) )
+            // InternalSpear.g:16033:1: ( ( rule__UnusedExpr__IdsAssignment_2 ) )
             {
-            // InternalSpear.g:15459:1: ( ( rule__UnusedExpr__IdsAssignment_2 ) )
-            // InternalSpear.g:15460:1: ( rule__UnusedExpr__IdsAssignment_2 )
+            // InternalSpear.g:16033:1: ( ( rule__UnusedExpr__IdsAssignment_2 ) )
+            // InternalSpear.g:16034:1: ( rule__UnusedExpr__IdsAssignment_2 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getIdsAssignment_2()); 
             }
-            // InternalSpear.g:15461:1: ( rule__UnusedExpr__IdsAssignment_2 )
-            // InternalSpear.g:15461:2: rule__UnusedExpr__IdsAssignment_2
+            // InternalSpear.g:16035:1: ( rule__UnusedExpr__IdsAssignment_2 )
+            // InternalSpear.g:16035:2: rule__UnusedExpr__IdsAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__UnusedExpr__IdsAssignment_2();
@@ -43657,16 +45198,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group__3"
-    // InternalSpear.g:15471:1: rule__UnusedExpr__Group__3 : rule__UnusedExpr__Group__3__Impl rule__UnusedExpr__Group__4 ;
+    // InternalSpear.g:16045:1: rule__UnusedExpr__Group__3 : rule__UnusedExpr__Group__3__Impl rule__UnusedExpr__Group__4 ;
     public final void rule__UnusedExpr__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15475:1: ( rule__UnusedExpr__Group__3__Impl rule__UnusedExpr__Group__4 )
-            // InternalSpear.g:15476:2: rule__UnusedExpr__Group__3__Impl rule__UnusedExpr__Group__4
+            // InternalSpear.g:16049:1: ( rule__UnusedExpr__Group__3__Impl rule__UnusedExpr__Group__4 )
+            // InternalSpear.g:16050:2: rule__UnusedExpr__Group__3__Impl rule__UnusedExpr__Group__4
             {
-            pushFollow(FOLLOW_84);
+            pushFollow(FOLLOW_86);
             rule__UnusedExpr__Group__3__Impl();
 
             state._fsp--;
@@ -43695,35 +45236,35 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group__3__Impl"
-    // InternalSpear.g:15483:1: rule__UnusedExpr__Group__3__Impl : ( ( rule__UnusedExpr__Group_3__0 )* ) ;
+    // InternalSpear.g:16057:1: rule__UnusedExpr__Group__3__Impl : ( ( rule__UnusedExpr__Group_3__0 )* ) ;
     public final void rule__UnusedExpr__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15487:1: ( ( ( rule__UnusedExpr__Group_3__0 )* ) )
-            // InternalSpear.g:15488:1: ( ( rule__UnusedExpr__Group_3__0 )* )
+            // InternalSpear.g:16061:1: ( ( ( rule__UnusedExpr__Group_3__0 )* ) )
+            // InternalSpear.g:16062:1: ( ( rule__UnusedExpr__Group_3__0 )* )
             {
-            // InternalSpear.g:15488:1: ( ( rule__UnusedExpr__Group_3__0 )* )
-            // InternalSpear.g:15489:1: ( rule__UnusedExpr__Group_3__0 )*
+            // InternalSpear.g:16062:1: ( ( rule__UnusedExpr__Group_3__0 )* )
+            // InternalSpear.g:16063:1: ( rule__UnusedExpr__Group_3__0 )*
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getGroup_3()); 
             }
-            // InternalSpear.g:15490:1: ( rule__UnusedExpr__Group_3__0 )*
-            loop106:
+            // InternalSpear.g:16064:1: ( rule__UnusedExpr__Group_3__0 )*
+            loop110:
             do {
-                int alt106=2;
-                int LA106_0 = input.LA(1);
+                int alt110=2;
+                int LA110_0 = input.LA(1);
 
-                if ( (LA106_0==75) ) {
-                    alt106=1;
+                if ( (LA110_0==75) ) {
+                    alt110=1;
                 }
 
 
-                switch (alt106) {
+                switch (alt110) {
             	case 1 :
-            	    // InternalSpear.g:15490:2: rule__UnusedExpr__Group_3__0
+            	    // InternalSpear.g:16064:2: rule__UnusedExpr__Group_3__0
             	    {
             	    pushFollow(FOLLOW_23);
             	    rule__UnusedExpr__Group_3__0();
@@ -43735,7 +45276,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop106;
+            	    break loop110;
                 }
             } while (true);
 
@@ -43764,16 +45305,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group__4"
-    // InternalSpear.g:15500:1: rule__UnusedExpr__Group__4 : rule__UnusedExpr__Group__4__Impl rule__UnusedExpr__Group__5 ;
+    // InternalSpear.g:16074:1: rule__UnusedExpr__Group__4 : rule__UnusedExpr__Group__4__Impl rule__UnusedExpr__Group__5 ;
     public final void rule__UnusedExpr__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15504:1: ( rule__UnusedExpr__Group__4__Impl rule__UnusedExpr__Group__5 )
-            // InternalSpear.g:15505:2: rule__UnusedExpr__Group__4__Impl rule__UnusedExpr__Group__5
+            // InternalSpear.g:16078:1: ( rule__UnusedExpr__Group__4__Impl rule__UnusedExpr__Group__5 )
+            // InternalSpear.g:16079:2: rule__UnusedExpr__Group__4__Impl rule__UnusedExpr__Group__5
             {
-            pushFollow(FOLLOW_85);
+            pushFollow(FOLLOW_87);
             rule__UnusedExpr__Group__4__Impl();
 
             state._fsp--;
@@ -43802,22 +45343,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group__4__Impl"
-    // InternalSpear.g:15512:1: rule__UnusedExpr__Group__4__Impl : ( '#' ) ;
+    // InternalSpear.g:16086:1: rule__UnusedExpr__Group__4__Impl : ( '#' ) ;
     public final void rule__UnusedExpr__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15516:1: ( ( '#' ) )
-            // InternalSpear.g:15517:1: ( '#' )
+            // InternalSpear.g:16090:1: ( ( '#' ) )
+            // InternalSpear.g:16091:1: ( '#' )
             {
-            // InternalSpear.g:15517:1: ( '#' )
-            // InternalSpear.g:15518:1: '#'
+            // InternalSpear.g:16091:1: ( '#' )
+            // InternalSpear.g:16092:1: '#'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getNumberSignKeyword_4()); 
             }
-            match(input,111,FOLLOW_2); if (state.failed) return ;
+            match(input,112,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getUnusedExprAccess().getNumberSignKeyword_4()); 
             }
@@ -43843,16 +45384,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group__5"
-    // InternalSpear.g:15531:1: rule__UnusedExpr__Group__5 : rule__UnusedExpr__Group__5__Impl rule__UnusedExpr__Group__6 ;
+    // InternalSpear.g:16105:1: rule__UnusedExpr__Group__5 : rule__UnusedExpr__Group__5__Impl rule__UnusedExpr__Group__6 ;
     public final void rule__UnusedExpr__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15535:1: ( rule__UnusedExpr__Group__5__Impl rule__UnusedExpr__Group__6 )
-            // InternalSpear.g:15536:2: rule__UnusedExpr__Group__5__Impl rule__UnusedExpr__Group__6
+            // InternalSpear.g:16109:1: ( rule__UnusedExpr__Group__5__Impl rule__UnusedExpr__Group__6 )
+            // InternalSpear.g:16110:2: rule__UnusedExpr__Group__5__Impl rule__UnusedExpr__Group__6
             {
-            pushFollow(FOLLOW_79);
+            pushFollow(FOLLOW_81);
             rule__UnusedExpr__Group__5__Impl();
 
             state._fsp--;
@@ -43881,17 +45422,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group__5__Impl"
-    // InternalSpear.g:15543:1: rule__UnusedExpr__Group__5__Impl : ( '==' ) ;
+    // InternalSpear.g:16117:1: rule__UnusedExpr__Group__5__Impl : ( '==' ) ;
     public final void rule__UnusedExpr__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15547:1: ( ( '==' ) )
-            // InternalSpear.g:15548:1: ( '==' )
+            // InternalSpear.g:16121:1: ( ( '==' ) )
+            // InternalSpear.g:16122:1: ( '==' )
             {
-            // InternalSpear.g:15548:1: ( '==' )
-            // InternalSpear.g:15549:1: '=='
+            // InternalSpear.g:16122:1: ( '==' )
+            // InternalSpear.g:16123:1: '=='
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getEqualsSignEqualsSignKeyword_5()); 
@@ -43922,14 +45463,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group__6"
-    // InternalSpear.g:15562:1: rule__UnusedExpr__Group__6 : rule__UnusedExpr__Group__6__Impl rule__UnusedExpr__Group__7 ;
+    // InternalSpear.g:16136:1: rule__UnusedExpr__Group__6 : rule__UnusedExpr__Group__6__Impl rule__UnusedExpr__Group__7 ;
     public final void rule__UnusedExpr__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15566:1: ( rule__UnusedExpr__Group__6__Impl rule__UnusedExpr__Group__7 )
-            // InternalSpear.g:15567:2: rule__UnusedExpr__Group__6__Impl rule__UnusedExpr__Group__7
+            // InternalSpear.g:16140:1: ( rule__UnusedExpr__Group__6__Impl rule__UnusedExpr__Group__7 )
+            // InternalSpear.g:16141:2: rule__UnusedExpr__Group__6__Impl rule__UnusedExpr__Group__7
             {
             pushFollow(FOLLOW_3);
             rule__UnusedExpr__Group__6__Impl();
@@ -43960,22 +45501,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group__6__Impl"
-    // InternalSpear.g:15574:1: rule__UnusedExpr__Group__6__Impl : ( 'spec' ) ;
+    // InternalSpear.g:16148:1: rule__UnusedExpr__Group__6__Impl : ( 'spec' ) ;
     public final void rule__UnusedExpr__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15578:1: ( ( 'spec' ) )
-            // InternalSpear.g:15579:1: ( 'spec' )
+            // InternalSpear.g:16152:1: ( ( 'spec' ) )
+            // InternalSpear.g:16153:1: ( 'spec' )
             {
-            // InternalSpear.g:15579:1: ( 'spec' )
-            // InternalSpear.g:15580:1: 'spec'
+            // InternalSpear.g:16153:1: ( 'spec' )
+            // InternalSpear.g:16154:1: 'spec'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getSpecKeyword_6()); 
             }
-            match(input,110,FOLLOW_2); if (state.failed) return ;
+            match(input,111,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getUnusedExprAccess().getSpecKeyword_6()); 
             }
@@ -44001,14 +45542,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group__7"
-    // InternalSpear.g:15593:1: rule__UnusedExpr__Group__7 : rule__UnusedExpr__Group__7__Impl rule__UnusedExpr__Group__8 ;
+    // InternalSpear.g:16167:1: rule__UnusedExpr__Group__7 : rule__UnusedExpr__Group__7__Impl rule__UnusedExpr__Group__8 ;
     public final void rule__UnusedExpr__Group__7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15597:1: ( rule__UnusedExpr__Group__7__Impl rule__UnusedExpr__Group__8 )
-            // InternalSpear.g:15598:2: rule__UnusedExpr__Group__7__Impl rule__UnusedExpr__Group__8
+            // InternalSpear.g:16171:1: ( rule__UnusedExpr__Group__7__Impl rule__UnusedExpr__Group__8 )
+            // InternalSpear.g:16172:2: rule__UnusedExpr__Group__7__Impl rule__UnusedExpr__Group__8
             {
             pushFollow(FOLLOW_16);
             rule__UnusedExpr__Group__7__Impl();
@@ -44039,23 +45580,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group__7__Impl"
-    // InternalSpear.g:15605:1: rule__UnusedExpr__Group__7__Impl : ( ( rule__UnusedExpr__SpecAssignment_7 ) ) ;
+    // InternalSpear.g:16179:1: rule__UnusedExpr__Group__7__Impl : ( ( rule__UnusedExpr__SpecAssignment_7 ) ) ;
     public final void rule__UnusedExpr__Group__7__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15609:1: ( ( ( rule__UnusedExpr__SpecAssignment_7 ) ) )
-            // InternalSpear.g:15610:1: ( ( rule__UnusedExpr__SpecAssignment_7 ) )
+            // InternalSpear.g:16183:1: ( ( ( rule__UnusedExpr__SpecAssignment_7 ) ) )
+            // InternalSpear.g:16184:1: ( ( rule__UnusedExpr__SpecAssignment_7 ) )
             {
-            // InternalSpear.g:15610:1: ( ( rule__UnusedExpr__SpecAssignment_7 ) )
-            // InternalSpear.g:15611:1: ( rule__UnusedExpr__SpecAssignment_7 )
+            // InternalSpear.g:16184:1: ( ( rule__UnusedExpr__SpecAssignment_7 ) )
+            // InternalSpear.g:16185:1: ( rule__UnusedExpr__SpecAssignment_7 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getSpecAssignment_7()); 
             }
-            // InternalSpear.g:15612:1: ( rule__UnusedExpr__SpecAssignment_7 )
-            // InternalSpear.g:15612:2: rule__UnusedExpr__SpecAssignment_7
+            // InternalSpear.g:16186:1: ( rule__UnusedExpr__SpecAssignment_7 )
+            // InternalSpear.g:16186:2: rule__UnusedExpr__SpecAssignment_7
             {
             pushFollow(FOLLOW_2);
             rule__UnusedExpr__SpecAssignment_7();
@@ -44090,14 +45631,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group__8"
-    // InternalSpear.g:15622:1: rule__UnusedExpr__Group__8 : rule__UnusedExpr__Group__8__Impl rule__UnusedExpr__Group__9 ;
+    // InternalSpear.g:16196:1: rule__UnusedExpr__Group__8 : rule__UnusedExpr__Group__8__Impl rule__UnusedExpr__Group__9 ;
     public final void rule__UnusedExpr__Group__8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15626:1: ( rule__UnusedExpr__Group__8__Impl rule__UnusedExpr__Group__9 )
-            // InternalSpear.g:15627:2: rule__UnusedExpr__Group__8__Impl rule__UnusedExpr__Group__9
+            // InternalSpear.g:16200:1: ( rule__UnusedExpr__Group__8__Impl rule__UnusedExpr__Group__9 )
+            // InternalSpear.g:16201:2: rule__UnusedExpr__Group__8__Impl rule__UnusedExpr__Group__9
             {
             pushFollow(FOLLOW_26);
             rule__UnusedExpr__Group__8__Impl();
@@ -44128,17 +45669,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group__8__Impl"
-    // InternalSpear.g:15634:1: rule__UnusedExpr__Group__8__Impl : ( '(' ) ;
+    // InternalSpear.g:16208:1: rule__UnusedExpr__Group__8__Impl : ( '(' ) ;
     public final void rule__UnusedExpr__Group__8__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15638:1: ( ( '(' ) )
-            // InternalSpear.g:15639:1: ( '(' )
+            // InternalSpear.g:16212:1: ( ( '(' ) )
+            // InternalSpear.g:16213:1: ( '(' )
             {
-            // InternalSpear.g:15639:1: ( '(' )
-            // InternalSpear.g:15640:1: '('
+            // InternalSpear.g:16213:1: ( '(' )
+            // InternalSpear.g:16214:1: '('
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getLeftParenthesisKeyword_8()); 
@@ -44169,16 +45710,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group__9"
-    // InternalSpear.g:15653:1: rule__UnusedExpr__Group__9 : rule__UnusedExpr__Group__9__Impl rule__UnusedExpr__Group__10 ;
+    // InternalSpear.g:16227:1: rule__UnusedExpr__Group__9 : rule__UnusedExpr__Group__9__Impl rule__UnusedExpr__Group__10 ;
     public final void rule__UnusedExpr__Group__9() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15657:1: ( rule__UnusedExpr__Group__9__Impl rule__UnusedExpr__Group__10 )
-            // InternalSpear.g:15658:2: rule__UnusedExpr__Group__9__Impl rule__UnusedExpr__Group__10
+            // InternalSpear.g:16231:1: ( rule__UnusedExpr__Group__9__Impl rule__UnusedExpr__Group__10 )
+            // InternalSpear.g:16232:2: rule__UnusedExpr__Group__9__Impl rule__UnusedExpr__Group__10
             {
-            pushFollow(FOLLOW_86);
+            pushFollow(FOLLOW_88);
             rule__UnusedExpr__Group__9__Impl();
 
             state._fsp--;
@@ -44207,23 +45748,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group__9__Impl"
-    // InternalSpear.g:15665:1: rule__UnusedExpr__Group__9__Impl : ( ( rule__UnusedExpr__ArgsAssignment_9 ) ) ;
+    // InternalSpear.g:16239:1: rule__UnusedExpr__Group__9__Impl : ( ( rule__UnusedExpr__ArgsAssignment_9 ) ) ;
     public final void rule__UnusedExpr__Group__9__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15669:1: ( ( ( rule__UnusedExpr__ArgsAssignment_9 ) ) )
-            // InternalSpear.g:15670:1: ( ( rule__UnusedExpr__ArgsAssignment_9 ) )
+            // InternalSpear.g:16243:1: ( ( ( rule__UnusedExpr__ArgsAssignment_9 ) ) )
+            // InternalSpear.g:16244:1: ( ( rule__UnusedExpr__ArgsAssignment_9 ) )
             {
-            // InternalSpear.g:15670:1: ( ( rule__UnusedExpr__ArgsAssignment_9 ) )
-            // InternalSpear.g:15671:1: ( rule__UnusedExpr__ArgsAssignment_9 )
+            // InternalSpear.g:16244:1: ( ( rule__UnusedExpr__ArgsAssignment_9 ) )
+            // InternalSpear.g:16245:1: ( rule__UnusedExpr__ArgsAssignment_9 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getArgsAssignment_9()); 
             }
-            // InternalSpear.g:15672:1: ( rule__UnusedExpr__ArgsAssignment_9 )
-            // InternalSpear.g:15672:2: rule__UnusedExpr__ArgsAssignment_9
+            // InternalSpear.g:16246:1: ( rule__UnusedExpr__ArgsAssignment_9 )
+            // InternalSpear.g:16246:2: rule__UnusedExpr__ArgsAssignment_9
             {
             pushFollow(FOLLOW_2);
             rule__UnusedExpr__ArgsAssignment_9();
@@ -44258,16 +45799,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group__10"
-    // InternalSpear.g:15682:1: rule__UnusedExpr__Group__10 : rule__UnusedExpr__Group__10__Impl rule__UnusedExpr__Group__11 ;
+    // InternalSpear.g:16256:1: rule__UnusedExpr__Group__10 : rule__UnusedExpr__Group__10__Impl rule__UnusedExpr__Group__11 ;
     public final void rule__UnusedExpr__Group__10() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15686:1: ( rule__UnusedExpr__Group__10__Impl rule__UnusedExpr__Group__11 )
-            // InternalSpear.g:15687:2: rule__UnusedExpr__Group__10__Impl rule__UnusedExpr__Group__11
+            // InternalSpear.g:16260:1: ( rule__UnusedExpr__Group__10__Impl rule__UnusedExpr__Group__11 )
+            // InternalSpear.g:16261:2: rule__UnusedExpr__Group__10__Impl rule__UnusedExpr__Group__11
             {
-            pushFollow(FOLLOW_86);
+            pushFollow(FOLLOW_88);
             rule__UnusedExpr__Group__10__Impl();
 
             state._fsp--;
@@ -44296,35 +45837,35 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group__10__Impl"
-    // InternalSpear.g:15694:1: rule__UnusedExpr__Group__10__Impl : ( ( rule__UnusedExpr__Group_10__0 )* ) ;
+    // InternalSpear.g:16268:1: rule__UnusedExpr__Group__10__Impl : ( ( rule__UnusedExpr__Group_10__0 )* ) ;
     public final void rule__UnusedExpr__Group__10__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15698:1: ( ( ( rule__UnusedExpr__Group_10__0 )* ) )
-            // InternalSpear.g:15699:1: ( ( rule__UnusedExpr__Group_10__0 )* )
+            // InternalSpear.g:16272:1: ( ( ( rule__UnusedExpr__Group_10__0 )* ) )
+            // InternalSpear.g:16273:1: ( ( rule__UnusedExpr__Group_10__0 )* )
             {
-            // InternalSpear.g:15699:1: ( ( rule__UnusedExpr__Group_10__0 )* )
-            // InternalSpear.g:15700:1: ( rule__UnusedExpr__Group_10__0 )*
+            // InternalSpear.g:16273:1: ( ( rule__UnusedExpr__Group_10__0 )* )
+            // InternalSpear.g:16274:1: ( rule__UnusedExpr__Group_10__0 )*
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getGroup_10()); 
             }
-            // InternalSpear.g:15701:1: ( rule__UnusedExpr__Group_10__0 )*
-            loop107:
+            // InternalSpear.g:16275:1: ( rule__UnusedExpr__Group_10__0 )*
+            loop111:
             do {
-                int alt107=2;
-                int LA107_0 = input.LA(1);
+                int alt111=2;
+                int LA111_0 = input.LA(1);
 
-                if ( (LA107_0==75) ) {
-                    alt107=1;
+                if ( (LA111_0==75) ) {
+                    alt111=1;
                 }
 
 
-                switch (alt107) {
+                switch (alt111) {
             	case 1 :
-            	    // InternalSpear.g:15701:2: rule__UnusedExpr__Group_10__0
+            	    // InternalSpear.g:16275:2: rule__UnusedExpr__Group_10__0
             	    {
             	    pushFollow(FOLLOW_23);
             	    rule__UnusedExpr__Group_10__0();
@@ -44336,7 +45877,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop107;
+            	    break loop111;
                 }
             } while (true);
 
@@ -44365,14 +45906,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group__11"
-    // InternalSpear.g:15711:1: rule__UnusedExpr__Group__11 : rule__UnusedExpr__Group__11__Impl ;
+    // InternalSpear.g:16285:1: rule__UnusedExpr__Group__11 : rule__UnusedExpr__Group__11__Impl ;
     public final void rule__UnusedExpr__Group__11() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15715:1: ( rule__UnusedExpr__Group__11__Impl )
-            // InternalSpear.g:15716:2: rule__UnusedExpr__Group__11__Impl
+            // InternalSpear.g:16289:1: ( rule__UnusedExpr__Group__11__Impl )
+            // InternalSpear.g:16290:2: rule__UnusedExpr__Group__11__Impl
             {
             pushFollow(FOLLOW_2);
             rule__UnusedExpr__Group__11__Impl();
@@ -44398,17 +45939,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group__11__Impl"
-    // InternalSpear.g:15722:1: rule__UnusedExpr__Group__11__Impl : ( ')' ) ;
+    // InternalSpear.g:16296:1: rule__UnusedExpr__Group__11__Impl : ( ')' ) ;
     public final void rule__UnusedExpr__Group__11__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15726:1: ( ( ')' ) )
-            // InternalSpear.g:15727:1: ( ')' )
+            // InternalSpear.g:16300:1: ( ( ')' ) )
+            // InternalSpear.g:16301:1: ( ')' )
             {
-            // InternalSpear.g:15727:1: ( ')' )
-            // InternalSpear.g:15728:1: ')'
+            // InternalSpear.g:16301:1: ( ')' )
+            // InternalSpear.g:16302:1: ')'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getRightParenthesisKeyword_11()); 
@@ -44439,14 +45980,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group_3__0"
-    // InternalSpear.g:15765:1: rule__UnusedExpr__Group_3__0 : rule__UnusedExpr__Group_3__0__Impl rule__UnusedExpr__Group_3__1 ;
+    // InternalSpear.g:16339:1: rule__UnusedExpr__Group_3__0 : rule__UnusedExpr__Group_3__0__Impl rule__UnusedExpr__Group_3__1 ;
     public final void rule__UnusedExpr__Group_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15769:1: ( rule__UnusedExpr__Group_3__0__Impl rule__UnusedExpr__Group_3__1 )
-            // InternalSpear.g:15770:2: rule__UnusedExpr__Group_3__0__Impl rule__UnusedExpr__Group_3__1
+            // InternalSpear.g:16343:1: ( rule__UnusedExpr__Group_3__0__Impl rule__UnusedExpr__Group_3__1 )
+            // InternalSpear.g:16344:2: rule__UnusedExpr__Group_3__0__Impl rule__UnusedExpr__Group_3__1
             {
             pushFollow(FOLLOW_3);
             rule__UnusedExpr__Group_3__0__Impl();
@@ -44477,17 +46018,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group_3__0__Impl"
-    // InternalSpear.g:15777:1: rule__UnusedExpr__Group_3__0__Impl : ( ',' ) ;
+    // InternalSpear.g:16351:1: rule__UnusedExpr__Group_3__0__Impl : ( ',' ) ;
     public final void rule__UnusedExpr__Group_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15781:1: ( ( ',' ) )
-            // InternalSpear.g:15782:1: ( ',' )
+            // InternalSpear.g:16355:1: ( ( ',' ) )
+            // InternalSpear.g:16356:1: ( ',' )
             {
-            // InternalSpear.g:15782:1: ( ',' )
-            // InternalSpear.g:15783:1: ','
+            // InternalSpear.g:16356:1: ( ',' )
+            // InternalSpear.g:16357:1: ','
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getCommaKeyword_3_0()); 
@@ -44518,14 +46059,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group_3__1"
-    // InternalSpear.g:15796:1: rule__UnusedExpr__Group_3__1 : rule__UnusedExpr__Group_3__1__Impl ;
+    // InternalSpear.g:16370:1: rule__UnusedExpr__Group_3__1 : rule__UnusedExpr__Group_3__1__Impl ;
     public final void rule__UnusedExpr__Group_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15800:1: ( rule__UnusedExpr__Group_3__1__Impl )
-            // InternalSpear.g:15801:2: rule__UnusedExpr__Group_3__1__Impl
+            // InternalSpear.g:16374:1: ( rule__UnusedExpr__Group_3__1__Impl )
+            // InternalSpear.g:16375:2: rule__UnusedExpr__Group_3__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__UnusedExpr__Group_3__1__Impl();
@@ -44551,23 +46092,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group_3__1__Impl"
-    // InternalSpear.g:15807:1: rule__UnusedExpr__Group_3__1__Impl : ( ( rule__UnusedExpr__IdsAssignment_3_1 ) ) ;
+    // InternalSpear.g:16381:1: rule__UnusedExpr__Group_3__1__Impl : ( ( rule__UnusedExpr__IdsAssignment_3_1 ) ) ;
     public final void rule__UnusedExpr__Group_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15811:1: ( ( ( rule__UnusedExpr__IdsAssignment_3_1 ) ) )
-            // InternalSpear.g:15812:1: ( ( rule__UnusedExpr__IdsAssignment_3_1 ) )
+            // InternalSpear.g:16385:1: ( ( ( rule__UnusedExpr__IdsAssignment_3_1 ) ) )
+            // InternalSpear.g:16386:1: ( ( rule__UnusedExpr__IdsAssignment_3_1 ) )
             {
-            // InternalSpear.g:15812:1: ( ( rule__UnusedExpr__IdsAssignment_3_1 ) )
-            // InternalSpear.g:15813:1: ( rule__UnusedExpr__IdsAssignment_3_1 )
+            // InternalSpear.g:16386:1: ( ( rule__UnusedExpr__IdsAssignment_3_1 ) )
+            // InternalSpear.g:16387:1: ( rule__UnusedExpr__IdsAssignment_3_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getIdsAssignment_3_1()); 
             }
-            // InternalSpear.g:15814:1: ( rule__UnusedExpr__IdsAssignment_3_1 )
-            // InternalSpear.g:15814:2: rule__UnusedExpr__IdsAssignment_3_1
+            // InternalSpear.g:16388:1: ( rule__UnusedExpr__IdsAssignment_3_1 )
+            // InternalSpear.g:16388:2: rule__UnusedExpr__IdsAssignment_3_1
             {
             pushFollow(FOLLOW_2);
             rule__UnusedExpr__IdsAssignment_3_1();
@@ -44602,14 +46143,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group_10__0"
-    // InternalSpear.g:15828:1: rule__UnusedExpr__Group_10__0 : rule__UnusedExpr__Group_10__0__Impl rule__UnusedExpr__Group_10__1 ;
+    // InternalSpear.g:16402:1: rule__UnusedExpr__Group_10__0 : rule__UnusedExpr__Group_10__0__Impl rule__UnusedExpr__Group_10__1 ;
     public final void rule__UnusedExpr__Group_10__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15832:1: ( rule__UnusedExpr__Group_10__0__Impl rule__UnusedExpr__Group_10__1 )
-            // InternalSpear.g:15833:2: rule__UnusedExpr__Group_10__0__Impl rule__UnusedExpr__Group_10__1
+            // InternalSpear.g:16406:1: ( rule__UnusedExpr__Group_10__0__Impl rule__UnusedExpr__Group_10__1 )
+            // InternalSpear.g:16407:2: rule__UnusedExpr__Group_10__0__Impl rule__UnusedExpr__Group_10__1
             {
             pushFollow(FOLLOW_26);
             rule__UnusedExpr__Group_10__0__Impl();
@@ -44640,17 +46181,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group_10__0__Impl"
-    // InternalSpear.g:15840:1: rule__UnusedExpr__Group_10__0__Impl : ( ',' ) ;
+    // InternalSpear.g:16414:1: rule__UnusedExpr__Group_10__0__Impl : ( ',' ) ;
     public final void rule__UnusedExpr__Group_10__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15844:1: ( ( ',' ) )
-            // InternalSpear.g:15845:1: ( ',' )
+            // InternalSpear.g:16418:1: ( ( ',' ) )
+            // InternalSpear.g:16419:1: ( ',' )
             {
-            // InternalSpear.g:15845:1: ( ',' )
-            // InternalSpear.g:15846:1: ','
+            // InternalSpear.g:16419:1: ( ',' )
+            // InternalSpear.g:16420:1: ','
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getCommaKeyword_10_0()); 
@@ -44681,14 +46222,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group_10__1"
-    // InternalSpear.g:15859:1: rule__UnusedExpr__Group_10__1 : rule__UnusedExpr__Group_10__1__Impl ;
+    // InternalSpear.g:16433:1: rule__UnusedExpr__Group_10__1 : rule__UnusedExpr__Group_10__1__Impl ;
     public final void rule__UnusedExpr__Group_10__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15863:1: ( rule__UnusedExpr__Group_10__1__Impl )
-            // InternalSpear.g:15864:2: rule__UnusedExpr__Group_10__1__Impl
+            // InternalSpear.g:16437:1: ( rule__UnusedExpr__Group_10__1__Impl )
+            // InternalSpear.g:16438:2: rule__UnusedExpr__Group_10__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__UnusedExpr__Group_10__1__Impl();
@@ -44714,23 +46255,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__Group_10__1__Impl"
-    // InternalSpear.g:15870:1: rule__UnusedExpr__Group_10__1__Impl : ( ( rule__UnusedExpr__ArgsAssignment_10_1 ) ) ;
+    // InternalSpear.g:16444:1: rule__UnusedExpr__Group_10__1__Impl : ( ( rule__UnusedExpr__ArgsAssignment_10_1 ) ) ;
     public final void rule__UnusedExpr__Group_10__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15874:1: ( ( ( rule__UnusedExpr__ArgsAssignment_10_1 ) ) )
-            // InternalSpear.g:15875:1: ( ( rule__UnusedExpr__ArgsAssignment_10_1 ) )
+            // InternalSpear.g:16448:1: ( ( ( rule__UnusedExpr__ArgsAssignment_10_1 ) ) )
+            // InternalSpear.g:16449:1: ( ( rule__UnusedExpr__ArgsAssignment_10_1 ) )
             {
-            // InternalSpear.g:15875:1: ( ( rule__UnusedExpr__ArgsAssignment_10_1 ) )
-            // InternalSpear.g:15876:1: ( rule__UnusedExpr__ArgsAssignment_10_1 )
+            // InternalSpear.g:16449:1: ( ( rule__UnusedExpr__ArgsAssignment_10_1 ) )
+            // InternalSpear.g:16450:1: ( rule__UnusedExpr__ArgsAssignment_10_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getArgsAssignment_10_1()); 
             }
-            // InternalSpear.g:15877:1: ( rule__UnusedExpr__ArgsAssignment_10_1 )
-            // InternalSpear.g:15877:2: rule__UnusedExpr__ArgsAssignment_10_1
+            // InternalSpear.g:16451:1: ( rule__UnusedExpr__ArgsAssignment_10_1 )
+            // InternalSpear.g:16451:2: rule__UnusedExpr__ArgsAssignment_10_1
             {
             pushFollow(FOLLOW_2);
             rule__UnusedExpr__ArgsAssignment_10_1();
@@ -44765,14 +46306,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FieldExpr__Group__0"
-    // InternalSpear.g:15891:1: rule__FieldExpr__Group__0 : rule__FieldExpr__Group__0__Impl rule__FieldExpr__Group__1 ;
+    // InternalSpear.g:16465:1: rule__FieldExpr__Group__0 : rule__FieldExpr__Group__0__Impl rule__FieldExpr__Group__1 ;
     public final void rule__FieldExpr__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15895:1: ( rule__FieldExpr__Group__0__Impl rule__FieldExpr__Group__1 )
-            // InternalSpear.g:15896:2: rule__FieldExpr__Group__0__Impl rule__FieldExpr__Group__1
+            // InternalSpear.g:16469:1: ( rule__FieldExpr__Group__0__Impl rule__FieldExpr__Group__1 )
+            // InternalSpear.g:16470:2: rule__FieldExpr__Group__0__Impl rule__FieldExpr__Group__1
             {
             pushFollow(FOLLOW_25);
             rule__FieldExpr__Group__0__Impl();
@@ -44803,23 +46344,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FieldExpr__Group__0__Impl"
-    // InternalSpear.g:15903:1: rule__FieldExpr__Group__0__Impl : ( ( rule__FieldExpr__FieldAssignment_0 ) ) ;
+    // InternalSpear.g:16477:1: rule__FieldExpr__Group__0__Impl : ( ( rule__FieldExpr__FieldAssignment_0 ) ) ;
     public final void rule__FieldExpr__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15907:1: ( ( ( rule__FieldExpr__FieldAssignment_0 ) ) )
-            // InternalSpear.g:15908:1: ( ( rule__FieldExpr__FieldAssignment_0 ) )
+            // InternalSpear.g:16481:1: ( ( ( rule__FieldExpr__FieldAssignment_0 ) ) )
+            // InternalSpear.g:16482:1: ( ( rule__FieldExpr__FieldAssignment_0 ) )
             {
-            // InternalSpear.g:15908:1: ( ( rule__FieldExpr__FieldAssignment_0 ) )
-            // InternalSpear.g:15909:1: ( rule__FieldExpr__FieldAssignment_0 )
+            // InternalSpear.g:16482:1: ( ( rule__FieldExpr__FieldAssignment_0 ) )
+            // InternalSpear.g:16483:1: ( rule__FieldExpr__FieldAssignment_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFieldExprAccess().getFieldAssignment_0()); 
             }
-            // InternalSpear.g:15910:1: ( rule__FieldExpr__FieldAssignment_0 )
-            // InternalSpear.g:15910:2: rule__FieldExpr__FieldAssignment_0
+            // InternalSpear.g:16484:1: ( rule__FieldExpr__FieldAssignment_0 )
+            // InternalSpear.g:16484:2: rule__FieldExpr__FieldAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__FieldExpr__FieldAssignment_0();
@@ -44854,14 +46395,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FieldExpr__Group__1"
-    // InternalSpear.g:15920:1: rule__FieldExpr__Group__1 : rule__FieldExpr__Group__1__Impl rule__FieldExpr__Group__2 ;
+    // InternalSpear.g:16494:1: rule__FieldExpr__Group__1 : rule__FieldExpr__Group__1__Impl rule__FieldExpr__Group__2 ;
     public final void rule__FieldExpr__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15924:1: ( rule__FieldExpr__Group__1__Impl rule__FieldExpr__Group__2 )
-            // InternalSpear.g:15925:2: rule__FieldExpr__Group__1__Impl rule__FieldExpr__Group__2
+            // InternalSpear.g:16498:1: ( rule__FieldExpr__Group__1__Impl rule__FieldExpr__Group__2 )
+            // InternalSpear.g:16499:2: rule__FieldExpr__Group__1__Impl rule__FieldExpr__Group__2
             {
             pushFollow(FOLLOW_26);
             rule__FieldExpr__Group__1__Impl();
@@ -44892,17 +46433,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FieldExpr__Group__1__Impl"
-    // InternalSpear.g:15932:1: rule__FieldExpr__Group__1__Impl : ( '=' ) ;
+    // InternalSpear.g:16506:1: rule__FieldExpr__Group__1__Impl : ( '=' ) ;
     public final void rule__FieldExpr__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15936:1: ( ( '=' ) )
-            // InternalSpear.g:15937:1: ( '=' )
+            // InternalSpear.g:16510:1: ( ( '=' ) )
+            // InternalSpear.g:16511:1: ( '=' )
             {
-            // InternalSpear.g:15937:1: ( '=' )
-            // InternalSpear.g:15938:1: '='
+            // InternalSpear.g:16511:1: ( '=' )
+            // InternalSpear.g:16512:1: '='
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFieldExprAccess().getEqualsSignKeyword_1()); 
@@ -44933,14 +46474,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FieldExpr__Group__2"
-    // InternalSpear.g:15951:1: rule__FieldExpr__Group__2 : rule__FieldExpr__Group__2__Impl ;
+    // InternalSpear.g:16525:1: rule__FieldExpr__Group__2 : rule__FieldExpr__Group__2__Impl ;
     public final void rule__FieldExpr__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15955:1: ( rule__FieldExpr__Group__2__Impl )
-            // InternalSpear.g:15956:2: rule__FieldExpr__Group__2__Impl
+            // InternalSpear.g:16529:1: ( rule__FieldExpr__Group__2__Impl )
+            // InternalSpear.g:16530:2: rule__FieldExpr__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__FieldExpr__Group__2__Impl();
@@ -44966,23 +46507,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FieldExpr__Group__2__Impl"
-    // InternalSpear.g:15962:1: rule__FieldExpr__Group__2__Impl : ( ( rule__FieldExpr__ExprAssignment_2 ) ) ;
+    // InternalSpear.g:16536:1: rule__FieldExpr__Group__2__Impl : ( ( rule__FieldExpr__ExprAssignment_2 ) ) ;
     public final void rule__FieldExpr__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15966:1: ( ( ( rule__FieldExpr__ExprAssignment_2 ) ) )
-            // InternalSpear.g:15967:1: ( ( rule__FieldExpr__ExprAssignment_2 ) )
+            // InternalSpear.g:16540:1: ( ( ( rule__FieldExpr__ExprAssignment_2 ) ) )
+            // InternalSpear.g:16541:1: ( ( rule__FieldExpr__ExprAssignment_2 ) )
             {
-            // InternalSpear.g:15967:1: ( ( rule__FieldExpr__ExprAssignment_2 ) )
-            // InternalSpear.g:15968:1: ( rule__FieldExpr__ExprAssignment_2 )
+            // InternalSpear.g:16541:1: ( ( rule__FieldExpr__ExprAssignment_2 ) )
+            // InternalSpear.g:16542:1: ( rule__FieldExpr__ExprAssignment_2 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFieldExprAccess().getExprAssignment_2()); 
             }
-            // InternalSpear.g:15969:1: ( rule__FieldExpr__ExprAssignment_2 )
-            // InternalSpear.g:15969:2: rule__FieldExpr__ExprAssignment_2
+            // InternalSpear.g:16543:1: ( rule__FieldExpr__ExprAssignment_2 )
+            // InternalSpear.g:16543:2: rule__FieldExpr__ExprAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__FieldExpr__ExprAssignment_2();
@@ -45017,16 +46558,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__REAL__Group__0"
-    // InternalSpear.g:15985:1: rule__REAL__Group__0 : rule__REAL__Group__0__Impl rule__REAL__Group__1 ;
+    // InternalSpear.g:16559:1: rule__REAL__Group__0 : rule__REAL__Group__0__Impl rule__REAL__Group__1 ;
     public final void rule__REAL__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:15989:1: ( rule__REAL__Group__0__Impl rule__REAL__Group__1 )
-            // InternalSpear.g:15990:2: rule__REAL__Group__0__Impl rule__REAL__Group__1
+            // InternalSpear.g:16563:1: ( rule__REAL__Group__0__Impl rule__REAL__Group__1 )
+            // InternalSpear.g:16564:2: rule__REAL__Group__0__Impl rule__REAL__Group__1
             {
-            pushFollow(FOLLOW_69);
+            pushFollow(FOLLOW_72);
             rule__REAL__Group__0__Impl();
 
             state._fsp--;
@@ -45055,17 +46596,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__REAL__Group__0__Impl"
-    // InternalSpear.g:15997:1: rule__REAL__Group__0__Impl : ( RULE_INT ) ;
+    // InternalSpear.g:16571:1: rule__REAL__Group__0__Impl : ( RULE_INT ) ;
     public final void rule__REAL__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16001:1: ( ( RULE_INT ) )
-            // InternalSpear.g:16002:1: ( RULE_INT )
+            // InternalSpear.g:16575:1: ( ( RULE_INT ) )
+            // InternalSpear.g:16576:1: ( RULE_INT )
             {
-            // InternalSpear.g:16002:1: ( RULE_INT )
-            // InternalSpear.g:16003:1: RULE_INT
+            // InternalSpear.g:16576:1: ( RULE_INT )
+            // InternalSpear.g:16577:1: RULE_INT
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getREALAccess().getINTTerminalRuleCall_0()); 
@@ -45096,16 +46637,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__REAL__Group__1"
-    // InternalSpear.g:16014:1: rule__REAL__Group__1 : rule__REAL__Group__1__Impl rule__REAL__Group__2 ;
+    // InternalSpear.g:16588:1: rule__REAL__Group__1 : rule__REAL__Group__1__Impl rule__REAL__Group__2 ;
     public final void rule__REAL__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16018:1: ( rule__REAL__Group__1__Impl rule__REAL__Group__2 )
-            // InternalSpear.g:16019:2: rule__REAL__Group__1__Impl rule__REAL__Group__2
+            // InternalSpear.g:16592:1: ( rule__REAL__Group__1__Impl rule__REAL__Group__2 )
+            // InternalSpear.g:16593:2: rule__REAL__Group__1__Impl rule__REAL__Group__2
             {
-            pushFollow(FOLLOW_80);
+            pushFollow(FOLLOW_82);
             rule__REAL__Group__1__Impl();
 
             state._fsp--;
@@ -45134,22 +46675,22 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__REAL__Group__1__Impl"
-    // InternalSpear.g:16026:1: rule__REAL__Group__1__Impl : ( '.' ) ;
+    // InternalSpear.g:16600:1: rule__REAL__Group__1__Impl : ( '.' ) ;
     public final void rule__REAL__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16030:1: ( ( '.' ) )
-            // InternalSpear.g:16031:1: ( '.' )
+            // InternalSpear.g:16604:1: ( ( '.' ) )
+            // InternalSpear.g:16605:1: ( '.' )
             {
-            // InternalSpear.g:16031:1: ( '.' )
-            // InternalSpear.g:16032:1: '.'
+            // InternalSpear.g:16605:1: ( '.' )
+            // InternalSpear.g:16606:1: '.'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getREALAccess().getFullStopKeyword_1()); 
             }
-            match(input,105,FOLLOW_2); if (state.failed) return ;
+            match(input,106,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getREALAccess().getFullStopKeyword_1()); 
             }
@@ -45175,14 +46716,14 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__REAL__Group__2"
-    // InternalSpear.g:16045:1: rule__REAL__Group__2 : rule__REAL__Group__2__Impl ;
+    // InternalSpear.g:16619:1: rule__REAL__Group__2 : rule__REAL__Group__2__Impl ;
     public final void rule__REAL__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16049:1: ( rule__REAL__Group__2__Impl )
-            // InternalSpear.g:16050:2: rule__REAL__Group__2__Impl
+            // InternalSpear.g:16623:1: ( rule__REAL__Group__2__Impl )
+            // InternalSpear.g:16624:2: rule__REAL__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__REAL__Group__2__Impl();
@@ -45208,17 +46749,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__REAL__Group__2__Impl"
-    // InternalSpear.g:16056:1: rule__REAL__Group__2__Impl : ( RULE_INT ) ;
+    // InternalSpear.g:16630:1: rule__REAL__Group__2__Impl : ( RULE_INT ) ;
     public final void rule__REAL__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16060:1: ( ( RULE_INT ) )
-            // InternalSpear.g:16061:1: ( RULE_INT )
+            // InternalSpear.g:16634:1: ( ( RULE_INT ) )
+            // InternalSpear.g:16635:1: ( RULE_INT )
             {
-            // InternalSpear.g:16061:1: ( RULE_INT )
-            // InternalSpear.g:16062:1: RULE_INT
+            // InternalSpear.g:16635:1: ( RULE_INT )
+            // InternalSpear.g:16636:1: RULE_INT
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getREALAccess().getINTTerminalRuleCall_2()); 
@@ -45249,17 +46790,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__NameAssignment_1"
-    // InternalSpear.g:16080:1: rule__Specification__NameAssignment_1 : ( RULE_ID ) ;
+    // InternalSpear.g:16654:1: rule__Specification__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__Specification__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16084:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16085:1: ( RULE_ID )
+            // InternalSpear.g:16658:1: ( ( RULE_ID ) )
+            // InternalSpear.g:16659:1: ( RULE_ID )
             {
-            // InternalSpear.g:16085:1: ( RULE_ID )
-            // InternalSpear.g:16086:1: RULE_ID
+            // InternalSpear.g:16659:1: ( RULE_ID )
+            // InternalSpear.g:16660:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSpecificationAccess().getNameIDTerminalRuleCall_1_0()); 
@@ -45290,17 +46831,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__ImportsAssignment_2_1"
-    // InternalSpear.g:16095:1: rule__Specification__ImportsAssignment_2_1 : ( ruleImport ) ;
+    // InternalSpear.g:16669:1: rule__Specification__ImportsAssignment_2_1 : ( ruleImport ) ;
     public final void rule__Specification__ImportsAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16099:1: ( ( ruleImport ) )
-            // InternalSpear.g:16100:1: ( ruleImport )
+            // InternalSpear.g:16673:1: ( ( ruleImport ) )
+            // InternalSpear.g:16674:1: ( ruleImport )
             {
-            // InternalSpear.g:16100:1: ( ruleImport )
-            // InternalSpear.g:16101:1: ruleImport
+            // InternalSpear.g:16674:1: ( ruleImport )
+            // InternalSpear.g:16675:1: ruleImport
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSpecificationAccess().getImportsImportParserRuleCall_2_1_0()); 
@@ -45335,17 +46876,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__UnitsAssignment_3_1"
-    // InternalSpear.g:16110:1: rule__Specification__UnitsAssignment_3_1 : ( ruleUnitDef ) ;
+    // InternalSpear.g:16684:1: rule__Specification__UnitsAssignment_3_1 : ( ruleUnitDef ) ;
     public final void rule__Specification__UnitsAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16114:1: ( ( ruleUnitDef ) )
-            // InternalSpear.g:16115:1: ( ruleUnitDef )
+            // InternalSpear.g:16688:1: ( ( ruleUnitDef ) )
+            // InternalSpear.g:16689:1: ( ruleUnitDef )
             {
-            // InternalSpear.g:16115:1: ( ruleUnitDef )
-            // InternalSpear.g:16116:1: ruleUnitDef
+            // InternalSpear.g:16689:1: ( ruleUnitDef )
+            // InternalSpear.g:16690:1: ruleUnitDef
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSpecificationAccess().getUnitsUnitDefParserRuleCall_3_1_0()); 
@@ -45380,17 +46921,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__TypedefsAssignment_4_1"
-    // InternalSpear.g:16125:1: rule__Specification__TypedefsAssignment_4_1 : ( ruleTypeDef ) ;
+    // InternalSpear.g:16699:1: rule__Specification__TypedefsAssignment_4_1 : ( ruleTypeDef ) ;
     public final void rule__Specification__TypedefsAssignment_4_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16129:1: ( ( ruleTypeDef ) )
-            // InternalSpear.g:16130:1: ( ruleTypeDef )
+            // InternalSpear.g:16703:1: ( ( ruleTypeDef ) )
+            // InternalSpear.g:16704:1: ( ruleTypeDef )
             {
-            // InternalSpear.g:16130:1: ( ruleTypeDef )
-            // InternalSpear.g:16131:1: ruleTypeDef
+            // InternalSpear.g:16704:1: ( ruleTypeDef )
+            // InternalSpear.g:16705:1: ruleTypeDef
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSpecificationAccess().getTypedefsTypeDefParserRuleCall_4_1_0()); 
@@ -45425,17 +46966,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__ConstantsAssignment_5_1"
-    // InternalSpear.g:16140:1: rule__Specification__ConstantsAssignment_5_1 : ( ruleConstant ) ;
+    // InternalSpear.g:16714:1: rule__Specification__ConstantsAssignment_5_1 : ( ruleConstant ) ;
     public final void rule__Specification__ConstantsAssignment_5_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16144:1: ( ( ruleConstant ) )
-            // InternalSpear.g:16145:1: ( ruleConstant )
+            // InternalSpear.g:16718:1: ( ( ruleConstant ) )
+            // InternalSpear.g:16719:1: ( ruleConstant )
             {
-            // InternalSpear.g:16145:1: ( ruleConstant )
-            // InternalSpear.g:16146:1: ruleConstant
+            // InternalSpear.g:16719:1: ( ruleConstant )
+            // InternalSpear.g:16720:1: ruleConstant
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSpecificationAccess().getConstantsConstantParserRuleCall_5_1_0()); 
@@ -45470,17 +47011,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__PatternsAssignment_6_1"
-    // InternalSpear.g:16155:1: rule__Specification__PatternsAssignment_6_1 : ( rulePattern ) ;
+    // InternalSpear.g:16729:1: rule__Specification__PatternsAssignment_6_1 : ( rulePattern ) ;
     public final void rule__Specification__PatternsAssignment_6_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16159:1: ( ( rulePattern ) )
-            // InternalSpear.g:16160:1: ( rulePattern )
+            // InternalSpear.g:16733:1: ( ( rulePattern ) )
+            // InternalSpear.g:16734:1: ( rulePattern )
             {
-            // InternalSpear.g:16160:1: ( rulePattern )
-            // InternalSpear.g:16161:1: rulePattern
+            // InternalSpear.g:16734:1: ( rulePattern )
+            // InternalSpear.g:16735:1: rulePattern
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSpecificationAccess().getPatternsPatternParserRuleCall_6_1_0()); 
@@ -45515,17 +47056,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__InputsAssignment_8"
-    // InternalSpear.g:16170:1: rule__Specification__InputsAssignment_8 : ( ruleVariable ) ;
+    // InternalSpear.g:16744:1: rule__Specification__InputsAssignment_8 : ( ruleVariable ) ;
     public final void rule__Specification__InputsAssignment_8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16174:1: ( ( ruleVariable ) )
-            // InternalSpear.g:16175:1: ( ruleVariable )
+            // InternalSpear.g:16748:1: ( ( ruleVariable ) )
+            // InternalSpear.g:16749:1: ( ruleVariable )
             {
-            // InternalSpear.g:16175:1: ( ruleVariable )
-            // InternalSpear.g:16176:1: ruleVariable
+            // InternalSpear.g:16749:1: ( ruleVariable )
+            // InternalSpear.g:16750:1: ruleVariable
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSpecificationAccess().getInputsVariableParserRuleCall_8_0()); 
@@ -45560,17 +47101,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__OutputsAssignment_10"
-    // InternalSpear.g:16185:1: rule__Specification__OutputsAssignment_10 : ( ruleVariable ) ;
+    // InternalSpear.g:16759:1: rule__Specification__OutputsAssignment_10 : ( ruleVariable ) ;
     public final void rule__Specification__OutputsAssignment_10() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16189:1: ( ( ruleVariable ) )
-            // InternalSpear.g:16190:1: ( ruleVariable )
+            // InternalSpear.g:16763:1: ( ( ruleVariable ) )
+            // InternalSpear.g:16764:1: ( ruleVariable )
             {
-            // InternalSpear.g:16190:1: ( ruleVariable )
-            // InternalSpear.g:16191:1: ruleVariable
+            // InternalSpear.g:16764:1: ( ruleVariable )
+            // InternalSpear.g:16765:1: ruleVariable
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSpecificationAccess().getOutputsVariableParserRuleCall_10_0()); 
@@ -45605,17 +47146,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__StateAssignment_11_1"
-    // InternalSpear.g:16200:1: rule__Specification__StateAssignment_11_1 : ( ruleVariable ) ;
+    // InternalSpear.g:16774:1: rule__Specification__StateAssignment_11_1 : ( ruleVariable ) ;
     public final void rule__Specification__StateAssignment_11_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16204:1: ( ( ruleVariable ) )
-            // InternalSpear.g:16205:1: ( ruleVariable )
+            // InternalSpear.g:16778:1: ( ( ruleVariable ) )
+            // InternalSpear.g:16779:1: ( ruleVariable )
             {
-            // InternalSpear.g:16205:1: ( ruleVariable )
-            // InternalSpear.g:16206:1: ruleVariable
+            // InternalSpear.g:16779:1: ( ruleVariable )
+            // InternalSpear.g:16780:1: ruleVariable
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSpecificationAccess().getStateVariableParserRuleCall_11_1_0()); 
@@ -45650,17 +47191,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__MacrosAssignment_12_1"
-    // InternalSpear.g:16215:1: rule__Specification__MacrosAssignment_12_1 : ( ruleMacro ) ;
+    // InternalSpear.g:16789:1: rule__Specification__MacrosAssignment_12_1 : ( ruleMacro ) ;
     public final void rule__Specification__MacrosAssignment_12_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16219:1: ( ( ruleMacro ) )
-            // InternalSpear.g:16220:1: ( ruleMacro )
+            // InternalSpear.g:16793:1: ( ( ruleMacro ) )
+            // InternalSpear.g:16794:1: ( ruleMacro )
             {
-            // InternalSpear.g:16220:1: ( ruleMacro )
-            // InternalSpear.g:16221:1: ruleMacro
+            // InternalSpear.g:16794:1: ( ruleMacro )
+            // InternalSpear.g:16795:1: ruleMacro
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSpecificationAccess().getMacrosMacroParserRuleCall_12_1_0()); 
@@ -45695,17 +47236,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__AssumptionsKeywordAssignment_13_0"
-    // InternalSpear.g:16230:1: rule__Specification__AssumptionsKeywordAssignment_13_0 : ( ruleAssumptionsHeader ) ;
+    // InternalSpear.g:16804:1: rule__Specification__AssumptionsKeywordAssignment_13_0 : ( ruleAssumptionsHeader ) ;
     public final void rule__Specification__AssumptionsKeywordAssignment_13_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16234:1: ( ( ruleAssumptionsHeader ) )
-            // InternalSpear.g:16235:1: ( ruleAssumptionsHeader )
+            // InternalSpear.g:16808:1: ( ( ruleAssumptionsHeader ) )
+            // InternalSpear.g:16809:1: ( ruleAssumptionsHeader )
             {
-            // InternalSpear.g:16235:1: ( ruleAssumptionsHeader )
-            // InternalSpear.g:16236:1: ruleAssumptionsHeader
+            // InternalSpear.g:16809:1: ( ruleAssumptionsHeader )
+            // InternalSpear.g:16810:1: ruleAssumptionsHeader
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSpecificationAccess().getAssumptionsKeywordAssumptionsHeaderParserRuleCall_13_0_0()); 
@@ -45740,17 +47281,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__AssumptionsAssignment_13_2"
-    // InternalSpear.g:16245:1: rule__Specification__AssumptionsAssignment_13_2 : ( ruleConstraint ) ;
+    // InternalSpear.g:16819:1: rule__Specification__AssumptionsAssignment_13_2 : ( ruleConstraint ) ;
     public final void rule__Specification__AssumptionsAssignment_13_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16249:1: ( ( ruleConstraint ) )
-            // InternalSpear.g:16250:1: ( ruleConstraint )
+            // InternalSpear.g:16823:1: ( ( ruleConstraint ) )
+            // InternalSpear.g:16824:1: ( ruleConstraint )
             {
-            // InternalSpear.g:16250:1: ( ruleConstraint )
-            // InternalSpear.g:16251:1: ruleConstraint
+            // InternalSpear.g:16824:1: ( ruleConstraint )
+            // InternalSpear.g:16825:1: ruleConstraint
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSpecificationAccess().getAssumptionsConstraintParserRuleCall_13_2_0()); 
@@ -45785,17 +47326,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__RequirementsKeywordAssignment_14"
-    // InternalSpear.g:16260:1: rule__Specification__RequirementsKeywordAssignment_14 : ( ruleRequirementsHeader ) ;
+    // InternalSpear.g:16834:1: rule__Specification__RequirementsKeywordAssignment_14 : ( ruleRequirementsHeader ) ;
     public final void rule__Specification__RequirementsKeywordAssignment_14() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16264:1: ( ( ruleRequirementsHeader ) )
-            // InternalSpear.g:16265:1: ( ruleRequirementsHeader )
+            // InternalSpear.g:16838:1: ( ( ruleRequirementsHeader ) )
+            // InternalSpear.g:16839:1: ( ruleRequirementsHeader )
             {
-            // InternalSpear.g:16265:1: ( ruleRequirementsHeader )
-            // InternalSpear.g:16266:1: ruleRequirementsHeader
+            // InternalSpear.g:16839:1: ( ruleRequirementsHeader )
+            // InternalSpear.g:16840:1: ruleRequirementsHeader
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSpecificationAccess().getRequirementsKeywordRequirementsHeaderParserRuleCall_14_0()); 
@@ -45830,17 +47371,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__RequirementsAssignment_16"
-    // InternalSpear.g:16275:1: rule__Specification__RequirementsAssignment_16 : ( ruleConstraint ) ;
+    // InternalSpear.g:16849:1: rule__Specification__RequirementsAssignment_16 : ( ruleConstraint ) ;
     public final void rule__Specification__RequirementsAssignment_16() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16279:1: ( ( ruleConstraint ) )
-            // InternalSpear.g:16280:1: ( ruleConstraint )
+            // InternalSpear.g:16853:1: ( ( ruleConstraint ) )
+            // InternalSpear.g:16854:1: ( ruleConstraint )
             {
-            // InternalSpear.g:16280:1: ( ruleConstraint )
-            // InternalSpear.g:16281:1: ruleConstraint
+            // InternalSpear.g:16854:1: ( ruleConstraint )
+            // InternalSpear.g:16855:1: ruleConstraint
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSpecificationAccess().getRequirementsConstraintParserRuleCall_16_0()); 
@@ -45875,17 +47416,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__PropertiesKeywordAssignment_17_0"
-    // InternalSpear.g:16290:1: rule__Specification__PropertiesKeywordAssignment_17_0 : ( rulePropertiesHeader ) ;
+    // InternalSpear.g:16864:1: rule__Specification__PropertiesKeywordAssignment_17_0 : ( rulePropertiesHeader ) ;
     public final void rule__Specification__PropertiesKeywordAssignment_17_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16294:1: ( ( rulePropertiesHeader ) )
-            // InternalSpear.g:16295:1: ( rulePropertiesHeader )
+            // InternalSpear.g:16868:1: ( ( rulePropertiesHeader ) )
+            // InternalSpear.g:16869:1: ( rulePropertiesHeader )
             {
-            // InternalSpear.g:16295:1: ( rulePropertiesHeader )
-            // InternalSpear.g:16296:1: rulePropertiesHeader
+            // InternalSpear.g:16869:1: ( rulePropertiesHeader )
+            // InternalSpear.g:16870:1: rulePropertiesHeader
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSpecificationAccess().getPropertiesKeywordPropertiesHeaderParserRuleCall_17_0_0()); 
@@ -45920,17 +47461,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__BehaviorsAssignment_17_2"
-    // InternalSpear.g:16305:1: rule__Specification__BehaviorsAssignment_17_2 : ( ruleConstraint ) ;
+    // InternalSpear.g:16879:1: rule__Specification__BehaviorsAssignment_17_2 : ( ruleConstraint ) ;
     public final void rule__Specification__BehaviorsAssignment_17_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16309:1: ( ( ruleConstraint ) )
-            // InternalSpear.g:16310:1: ( ruleConstraint )
+            // InternalSpear.g:16883:1: ( ( ruleConstraint ) )
+            // InternalSpear.g:16884:1: ( ruleConstraint )
             {
-            // InternalSpear.g:16310:1: ( ruleConstraint )
-            // InternalSpear.g:16311:1: ruleConstraint
+            // InternalSpear.g:16884:1: ( ruleConstraint )
+            // InternalSpear.g:16885:1: ruleConstraint
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSpecificationAccess().getBehaviorsConstraintParserRuleCall_17_2_0()); 
@@ -45965,17 +47506,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Import__ImportURIAssignment_1"
-    // InternalSpear.g:16320:1: rule__Import__ImportURIAssignment_1 : ( RULE_STRING ) ;
+    // InternalSpear.g:16894:1: rule__Import__ImportURIAssignment_1 : ( RULE_STRING ) ;
     public final void rule__Import__ImportURIAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16324:1: ( ( RULE_STRING ) )
-            // InternalSpear.g:16325:1: ( RULE_STRING )
+            // InternalSpear.g:16898:1: ( ( RULE_STRING ) )
+            // InternalSpear.g:16899:1: ( RULE_STRING )
             {
-            // InternalSpear.g:16325:1: ( RULE_STRING )
-            // InternalSpear.g:16326:1: RULE_STRING
+            // InternalSpear.g:16899:1: ( RULE_STRING )
+            // InternalSpear.g:16900:1: RULE_STRING
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getImportAccess().getImportURISTRINGTerminalRuleCall_1_0()); 
@@ -46006,17 +47547,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Definitions__NameAssignment_1"
-    // InternalSpear.g:16335:1: rule__Definitions__NameAssignment_1 : ( RULE_ID ) ;
+    // InternalSpear.g:16909:1: rule__Definitions__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__Definitions__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16339:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16340:1: ( RULE_ID )
+            // InternalSpear.g:16913:1: ( ( RULE_ID ) )
+            // InternalSpear.g:16914:1: ( RULE_ID )
             {
-            // InternalSpear.g:16340:1: ( RULE_ID )
-            // InternalSpear.g:16341:1: RULE_ID
+            // InternalSpear.g:16914:1: ( RULE_ID )
+            // InternalSpear.g:16915:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDefinitionsAccess().getNameIDTerminalRuleCall_1_0()); 
@@ -46047,17 +47588,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Definitions__ImportsAssignment_2_1"
-    // InternalSpear.g:16350:1: rule__Definitions__ImportsAssignment_2_1 : ( ruleImport ) ;
+    // InternalSpear.g:16924:1: rule__Definitions__ImportsAssignment_2_1 : ( ruleImport ) ;
     public final void rule__Definitions__ImportsAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16354:1: ( ( ruleImport ) )
-            // InternalSpear.g:16355:1: ( ruleImport )
+            // InternalSpear.g:16928:1: ( ( ruleImport ) )
+            // InternalSpear.g:16929:1: ( ruleImport )
             {
-            // InternalSpear.g:16355:1: ( ruleImport )
-            // InternalSpear.g:16356:1: ruleImport
+            // InternalSpear.g:16929:1: ( ruleImport )
+            // InternalSpear.g:16930:1: ruleImport
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDefinitionsAccess().getImportsImportParserRuleCall_2_1_0()); 
@@ -46092,17 +47633,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Definitions__UnitdefsAssignment_3_1"
-    // InternalSpear.g:16365:1: rule__Definitions__UnitdefsAssignment_3_1 : ( ruleUnitDef ) ;
+    // InternalSpear.g:16939:1: rule__Definitions__UnitdefsAssignment_3_1 : ( ruleUnitDef ) ;
     public final void rule__Definitions__UnitdefsAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16369:1: ( ( ruleUnitDef ) )
-            // InternalSpear.g:16370:1: ( ruleUnitDef )
+            // InternalSpear.g:16943:1: ( ( ruleUnitDef ) )
+            // InternalSpear.g:16944:1: ( ruleUnitDef )
             {
-            // InternalSpear.g:16370:1: ( ruleUnitDef )
-            // InternalSpear.g:16371:1: ruleUnitDef
+            // InternalSpear.g:16944:1: ( ruleUnitDef )
+            // InternalSpear.g:16945:1: ruleUnitDef
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDefinitionsAccess().getUnitdefsUnitDefParserRuleCall_3_1_0()); 
@@ -46137,17 +47678,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Definitions__TypedefsAssignment_4_1"
-    // InternalSpear.g:16380:1: rule__Definitions__TypedefsAssignment_4_1 : ( ruleTypeDef ) ;
+    // InternalSpear.g:16954:1: rule__Definitions__TypedefsAssignment_4_1 : ( ruleTypeDef ) ;
     public final void rule__Definitions__TypedefsAssignment_4_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16384:1: ( ( ruleTypeDef ) )
-            // InternalSpear.g:16385:1: ( ruleTypeDef )
+            // InternalSpear.g:16958:1: ( ( ruleTypeDef ) )
+            // InternalSpear.g:16959:1: ( ruleTypeDef )
             {
-            // InternalSpear.g:16385:1: ( ruleTypeDef )
-            // InternalSpear.g:16386:1: ruleTypeDef
+            // InternalSpear.g:16959:1: ( ruleTypeDef )
+            // InternalSpear.g:16960:1: ruleTypeDef
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDefinitionsAccess().getTypedefsTypeDefParserRuleCall_4_1_0()); 
@@ -46182,17 +47723,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Definitions__ConstantsAssignment_5_1"
-    // InternalSpear.g:16395:1: rule__Definitions__ConstantsAssignment_5_1 : ( ruleConstant ) ;
+    // InternalSpear.g:16969:1: rule__Definitions__ConstantsAssignment_5_1 : ( ruleConstant ) ;
     public final void rule__Definitions__ConstantsAssignment_5_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16399:1: ( ( ruleConstant ) )
-            // InternalSpear.g:16400:1: ( ruleConstant )
+            // InternalSpear.g:16973:1: ( ( ruleConstant ) )
+            // InternalSpear.g:16974:1: ( ruleConstant )
             {
-            // InternalSpear.g:16400:1: ( ruleConstant )
-            // InternalSpear.g:16401:1: ruleConstant
+            // InternalSpear.g:16974:1: ( ruleConstant )
+            // InternalSpear.g:16975:1: ruleConstant
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDefinitionsAccess().getConstantsConstantParserRuleCall_5_1_0()); 
@@ -46227,17 +47768,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Definitions__PatternsAssignment_6_1"
-    // InternalSpear.g:16410:1: rule__Definitions__PatternsAssignment_6_1 : ( rulePattern ) ;
+    // InternalSpear.g:16984:1: rule__Definitions__PatternsAssignment_6_1 : ( rulePattern ) ;
     public final void rule__Definitions__PatternsAssignment_6_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16414:1: ( ( rulePattern ) )
-            // InternalSpear.g:16415:1: ( rulePattern )
+            // InternalSpear.g:16988:1: ( ( rulePattern ) )
+            // InternalSpear.g:16989:1: ( rulePattern )
             {
-            // InternalSpear.g:16415:1: ( rulePattern )
-            // InternalSpear.g:16416:1: rulePattern
+            // InternalSpear.g:16989:1: ( rulePattern )
+            // InternalSpear.g:16990:1: rulePattern
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDefinitionsAccess().getPatternsPatternParserRuleCall_6_1_0()); 
@@ -46272,17 +47813,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Pattern__NameAssignment_1"
-    // InternalSpear.g:16425:1: rule__Pattern__NameAssignment_1 : ( RULE_ID ) ;
+    // InternalSpear.g:16999:1: rule__Pattern__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__Pattern__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16429:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16430:1: ( RULE_ID )
+            // InternalSpear.g:17003:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17004:1: ( RULE_ID )
             {
-            // InternalSpear.g:16430:1: ( RULE_ID )
-            // InternalSpear.g:16431:1: RULE_ID
+            // InternalSpear.g:17004:1: ( RULE_ID )
+            // InternalSpear.g:17005:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternAccess().getNameIDTerminalRuleCall_1_0()); 
@@ -46313,17 +47854,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Pattern__InputsAssignment_3_0"
-    // InternalSpear.g:16440:1: rule__Pattern__InputsAssignment_3_0 : ( ruleVariable ) ;
+    // InternalSpear.g:17014:1: rule__Pattern__InputsAssignment_3_0 : ( ruleVariable ) ;
     public final void rule__Pattern__InputsAssignment_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16444:1: ( ( ruleVariable ) )
-            // InternalSpear.g:16445:1: ( ruleVariable )
+            // InternalSpear.g:17018:1: ( ( ruleVariable ) )
+            // InternalSpear.g:17019:1: ( ruleVariable )
             {
-            // InternalSpear.g:16445:1: ( ruleVariable )
-            // InternalSpear.g:16446:1: ruleVariable
+            // InternalSpear.g:17019:1: ( ruleVariable )
+            // InternalSpear.g:17020:1: ruleVariable
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternAccess().getInputsVariableParserRuleCall_3_0_0()); 
@@ -46358,17 +47899,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Pattern__InputsAssignment_3_1_1"
-    // InternalSpear.g:16455:1: rule__Pattern__InputsAssignment_3_1_1 : ( ruleVariable ) ;
+    // InternalSpear.g:17029:1: rule__Pattern__InputsAssignment_3_1_1 : ( ruleVariable ) ;
     public final void rule__Pattern__InputsAssignment_3_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16459:1: ( ( ruleVariable ) )
-            // InternalSpear.g:16460:1: ( ruleVariable )
+            // InternalSpear.g:17033:1: ( ( ruleVariable ) )
+            // InternalSpear.g:17034:1: ( ruleVariable )
             {
-            // InternalSpear.g:16460:1: ( ruleVariable )
-            // InternalSpear.g:16461:1: ruleVariable
+            // InternalSpear.g:17034:1: ( ruleVariable )
+            // InternalSpear.g:17035:1: ruleVariable
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternAccess().getInputsVariableParserRuleCall_3_1_1_0()); 
@@ -46403,17 +47944,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Pattern__OutputsAssignment_7_0"
-    // InternalSpear.g:16470:1: rule__Pattern__OutputsAssignment_7_0 : ( ruleVariable ) ;
+    // InternalSpear.g:17044:1: rule__Pattern__OutputsAssignment_7_0 : ( ruleVariable ) ;
     public final void rule__Pattern__OutputsAssignment_7_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16474:1: ( ( ruleVariable ) )
-            // InternalSpear.g:16475:1: ( ruleVariable )
+            // InternalSpear.g:17048:1: ( ( ruleVariable ) )
+            // InternalSpear.g:17049:1: ( ruleVariable )
             {
-            // InternalSpear.g:16475:1: ( ruleVariable )
-            // InternalSpear.g:16476:1: ruleVariable
+            // InternalSpear.g:17049:1: ( ruleVariable )
+            // InternalSpear.g:17050:1: ruleVariable
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternAccess().getOutputsVariableParserRuleCall_7_0_0()); 
@@ -46448,17 +47989,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Pattern__OutputsAssignment_7_1_1"
-    // InternalSpear.g:16485:1: rule__Pattern__OutputsAssignment_7_1_1 : ( ruleVariable ) ;
+    // InternalSpear.g:17059:1: rule__Pattern__OutputsAssignment_7_1_1 : ( ruleVariable ) ;
     public final void rule__Pattern__OutputsAssignment_7_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16489:1: ( ( ruleVariable ) )
-            // InternalSpear.g:16490:1: ( ruleVariable )
+            // InternalSpear.g:17063:1: ( ( ruleVariable ) )
+            // InternalSpear.g:17064:1: ( ruleVariable )
             {
-            // InternalSpear.g:16490:1: ( ruleVariable )
-            // InternalSpear.g:16491:1: ruleVariable
+            // InternalSpear.g:17064:1: ( ruleVariable )
+            // InternalSpear.g:17065:1: ruleVariable
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternAccess().getOutputsVariableParserRuleCall_7_1_1_0()); 
@@ -46493,17 +48034,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Pattern__LocalsAssignment_9_1"
-    // InternalSpear.g:16500:1: rule__Pattern__LocalsAssignment_9_1 : ( ruleVariable ) ;
+    // InternalSpear.g:17074:1: rule__Pattern__LocalsAssignment_9_1 : ( ruleVariable ) ;
     public final void rule__Pattern__LocalsAssignment_9_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16504:1: ( ( ruleVariable ) )
-            // InternalSpear.g:16505:1: ( ruleVariable )
+            // InternalSpear.g:17078:1: ( ( ruleVariable ) )
+            // InternalSpear.g:17079:1: ( ruleVariable )
             {
-            // InternalSpear.g:16505:1: ( ruleVariable )
-            // InternalSpear.g:16506:1: ruleVariable
+            // InternalSpear.g:17079:1: ( ruleVariable )
+            // InternalSpear.g:17080:1: ruleVariable
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternAccess().getLocalsVariableParserRuleCall_9_1_0()); 
@@ -46538,17 +48079,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Pattern__EquationsAssignment_11_0"
-    // InternalSpear.g:16515:1: rule__Pattern__EquationsAssignment_11_0 : ( ruleLustreEquation ) ;
+    // InternalSpear.g:17089:1: rule__Pattern__EquationsAssignment_11_0 : ( ruleLustreEquation ) ;
     public final void rule__Pattern__EquationsAssignment_11_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16519:1: ( ( ruleLustreEquation ) )
-            // InternalSpear.g:16520:1: ( ruleLustreEquation )
+            // InternalSpear.g:17093:1: ( ( ruleLustreEquation ) )
+            // InternalSpear.g:17094:1: ( ruleLustreEquation )
             {
-            // InternalSpear.g:16520:1: ( ruleLustreEquation )
-            // InternalSpear.g:16521:1: ruleLustreEquation
+            // InternalSpear.g:17094:1: ( ruleLustreEquation )
+            // InternalSpear.g:17095:1: ruleLustreEquation
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternAccess().getEquationsLustreEquationParserRuleCall_11_0_0()); 
@@ -46583,17 +48124,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Pattern__PropertiesAssignment_11_1"
-    // InternalSpear.g:16530:1: rule__Pattern__PropertiesAssignment_11_1 : ( ruleLustreProperty ) ;
+    // InternalSpear.g:17104:1: rule__Pattern__PropertiesAssignment_11_1 : ( ruleLustreProperty ) ;
     public final void rule__Pattern__PropertiesAssignment_11_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16534:1: ( ( ruleLustreProperty ) )
-            // InternalSpear.g:16535:1: ( ruleLustreProperty )
+            // InternalSpear.g:17108:1: ( ( ruleLustreProperty ) )
+            // InternalSpear.g:17109:1: ( ruleLustreProperty )
             {
-            // InternalSpear.g:16535:1: ( ruleLustreProperty )
-            // InternalSpear.g:16536:1: ruleLustreProperty
+            // InternalSpear.g:17109:1: ( ruleLustreProperty )
+            // InternalSpear.g:17110:1: ruleLustreProperty
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternAccess().getPropertiesLustrePropertyParserRuleCall_11_1_0()); 
@@ -46628,17 +48169,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Pattern__AssertionsAssignment_11_2"
-    // InternalSpear.g:16545:1: rule__Pattern__AssertionsAssignment_11_2 : ( ruleLustreAssertion ) ;
+    // InternalSpear.g:17119:1: rule__Pattern__AssertionsAssignment_11_2 : ( ruleLustreAssertion ) ;
     public final void rule__Pattern__AssertionsAssignment_11_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16549:1: ( ( ruleLustreAssertion ) )
-            // InternalSpear.g:16550:1: ( ruleLustreAssertion )
+            // InternalSpear.g:17123:1: ( ( ruleLustreAssertion ) )
+            // InternalSpear.g:17124:1: ( ruleLustreAssertion )
             {
-            // InternalSpear.g:16550:1: ( ruleLustreAssertion )
-            // InternalSpear.g:16551:1: ruleLustreAssertion
+            // InternalSpear.g:17124:1: ( ruleLustreAssertion )
+            // InternalSpear.g:17125:1: ruleLustreAssertion
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternAccess().getAssertionsLustreAssertionParserRuleCall_11_2_0()); 
@@ -46673,23 +48214,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LustreEquation__IdsAssignment_0_1"
-    // InternalSpear.g:16560:1: rule__LustreEquation__IdsAssignment_0_1 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:17134:1: rule__LustreEquation__IdsAssignment_0_1 : ( ( RULE_ID ) ) ;
     public final void rule__LustreEquation__IdsAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16564:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:16565:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17138:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:17139:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:16565:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16566:1: ( RULE_ID )
+            // InternalSpear.g:17139:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17140:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLustreEquationAccess().getIdsVariableCrossReference_0_1_0()); 
             }
-            // InternalSpear.g:16567:1: ( RULE_ID )
-            // InternalSpear.g:16568:1: RULE_ID
+            // InternalSpear.g:17141:1: ( RULE_ID )
+            // InternalSpear.g:17142:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLustreEquationAccess().getIdsVariableIDTerminalRuleCall_0_1_0_1()); 
@@ -46726,23 +48267,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LustreEquation__IdsAssignment_0_2_1"
-    // InternalSpear.g:16579:1: rule__LustreEquation__IdsAssignment_0_2_1 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:17153:1: rule__LustreEquation__IdsAssignment_0_2_1 : ( ( RULE_ID ) ) ;
     public final void rule__LustreEquation__IdsAssignment_0_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16583:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:16584:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17157:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:17158:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:16584:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16585:1: ( RULE_ID )
+            // InternalSpear.g:17158:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17159:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLustreEquationAccess().getIdsVariableCrossReference_0_2_1_0()); 
             }
-            // InternalSpear.g:16586:1: ( RULE_ID )
-            // InternalSpear.g:16587:1: RULE_ID
+            // InternalSpear.g:17160:1: ( RULE_ID )
+            // InternalSpear.g:17161:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLustreEquationAccess().getIdsVariableIDTerminalRuleCall_0_2_1_0_1()); 
@@ -46779,17 +48320,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LustreEquation__RhsAssignment_0_5"
-    // InternalSpear.g:16598:1: rule__LustreEquation__RhsAssignment_0_5 : ( ruleExpr ) ;
+    // InternalSpear.g:17172:1: rule__LustreEquation__RhsAssignment_0_5 : ( ruleExpr ) ;
     public final void rule__LustreEquation__RhsAssignment_0_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16602:1: ( ( ruleExpr ) )
-            // InternalSpear.g:16603:1: ( ruleExpr )
+            // InternalSpear.g:17176:1: ( ( ruleExpr ) )
+            // InternalSpear.g:17177:1: ( ruleExpr )
             {
-            // InternalSpear.g:16603:1: ( ruleExpr )
-            // InternalSpear.g:16604:1: ruleExpr
+            // InternalSpear.g:17177:1: ( ruleExpr )
+            // InternalSpear.g:17178:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLustreEquationAccess().getRhsExprParserRuleCall_0_5_0()); 
@@ -46824,23 +48365,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LustreEquation__IdsAssignment_1_0"
-    // InternalSpear.g:16613:1: rule__LustreEquation__IdsAssignment_1_0 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:17187:1: rule__LustreEquation__IdsAssignment_1_0 : ( ( RULE_ID ) ) ;
     public final void rule__LustreEquation__IdsAssignment_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16617:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:16618:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17191:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:17192:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:16618:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16619:1: ( RULE_ID )
+            // InternalSpear.g:17192:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17193:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLustreEquationAccess().getIdsVariableCrossReference_1_0_0()); 
             }
-            // InternalSpear.g:16620:1: ( RULE_ID )
-            // InternalSpear.g:16621:1: RULE_ID
+            // InternalSpear.g:17194:1: ( RULE_ID )
+            // InternalSpear.g:17195:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLustreEquationAccess().getIdsVariableIDTerminalRuleCall_1_0_0_1()); 
@@ -46877,17 +48418,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LustreEquation__RhsAssignment_1_2"
-    // InternalSpear.g:16632:1: rule__LustreEquation__RhsAssignment_1_2 : ( ruleExpr ) ;
+    // InternalSpear.g:17206:1: rule__LustreEquation__RhsAssignment_1_2 : ( ruleExpr ) ;
     public final void rule__LustreEquation__RhsAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16636:1: ( ( ruleExpr ) )
-            // InternalSpear.g:16637:1: ( ruleExpr )
+            // InternalSpear.g:17210:1: ( ( ruleExpr ) )
+            // InternalSpear.g:17211:1: ( ruleExpr )
             {
-            // InternalSpear.g:16637:1: ( ruleExpr )
-            // InternalSpear.g:16638:1: ruleExpr
+            // InternalSpear.g:17211:1: ( ruleExpr )
+            // InternalSpear.g:17212:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLustreEquationAccess().getRhsExprParserRuleCall_1_2_0()); 
@@ -46922,23 +48463,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LustreProperty__PropertyIdAssignment_1"
-    // InternalSpear.g:16647:1: rule__LustreProperty__PropertyIdAssignment_1 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:17221:1: rule__LustreProperty__PropertyIdAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__LustreProperty__PropertyIdAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16651:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:16652:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17225:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:17226:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:16652:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16653:1: ( RULE_ID )
+            // InternalSpear.g:17226:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17227:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLustrePropertyAccess().getPropertyIdVariableCrossReference_1_0()); 
             }
-            // InternalSpear.g:16654:1: ( RULE_ID )
-            // InternalSpear.g:16655:1: RULE_ID
+            // InternalSpear.g:17228:1: ( RULE_ID )
+            // InternalSpear.g:17229:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLustrePropertyAccess().getPropertyIdVariableIDTerminalRuleCall_1_0_1()); 
@@ -46975,17 +48516,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LustreAssertion__AssertionExprAssignment_1"
-    // InternalSpear.g:16666:1: rule__LustreAssertion__AssertionExprAssignment_1 : ( ruleExpr ) ;
+    // InternalSpear.g:17240:1: rule__LustreAssertion__AssertionExprAssignment_1 : ( ruleExpr ) ;
     public final void rule__LustreAssertion__AssertionExprAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16670:1: ( ( ruleExpr ) )
-            // InternalSpear.g:16671:1: ( ruleExpr )
+            // InternalSpear.g:17244:1: ( ( ruleExpr ) )
+            // InternalSpear.g:17245:1: ( ruleExpr )
             {
-            // InternalSpear.g:16671:1: ( ruleExpr )
-            // InternalSpear.g:16672:1: ruleExpr
+            // InternalSpear.g:17245:1: ( ruleExpr )
+            // InternalSpear.g:17246:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLustreAssertionAccess().getAssertionExprExprParserRuleCall_1_0()); 
@@ -47020,17 +48561,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnitDef__NameAssignment_0_1"
-    // InternalSpear.g:16681:1: rule__UnitDef__NameAssignment_0_1 : ( RULE_ID ) ;
+    // InternalSpear.g:17255:1: rule__UnitDef__NameAssignment_0_1 : ( RULE_ID ) ;
     public final void rule__UnitDef__NameAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16685:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16686:1: ( RULE_ID )
+            // InternalSpear.g:17259:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17260:1: ( RULE_ID )
             {
-            // InternalSpear.g:16686:1: ( RULE_ID )
-            // InternalSpear.g:16687:1: RULE_ID
+            // InternalSpear.g:17260:1: ( RULE_ID )
+            // InternalSpear.g:17261:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitDefAccess().getNameIDTerminalRuleCall_0_1_0()); 
@@ -47061,17 +48602,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnitDef__DescriptionAssignment_0_2"
-    // InternalSpear.g:16696:1: rule__UnitDef__DescriptionAssignment_0_2 : ( RULE_STRING ) ;
+    // InternalSpear.g:17270:1: rule__UnitDef__DescriptionAssignment_0_2 : ( RULE_STRING ) ;
     public final void rule__UnitDef__DescriptionAssignment_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16700:1: ( ( RULE_STRING ) )
-            // InternalSpear.g:16701:1: ( RULE_STRING )
+            // InternalSpear.g:17274:1: ( ( RULE_STRING ) )
+            // InternalSpear.g:17275:1: ( RULE_STRING )
             {
-            // InternalSpear.g:16701:1: ( RULE_STRING )
-            // InternalSpear.g:16702:1: RULE_STRING
+            // InternalSpear.g:17275:1: ( RULE_STRING )
+            // InternalSpear.g:17276:1: RULE_STRING
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitDefAccess().getDescriptionSTRINGTerminalRuleCall_0_2_0()); 
@@ -47102,17 +48643,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnitDef__NameAssignment_1_1"
-    // InternalSpear.g:16711:1: rule__UnitDef__NameAssignment_1_1 : ( RULE_ID ) ;
+    // InternalSpear.g:17285:1: rule__UnitDef__NameAssignment_1_1 : ( RULE_ID ) ;
     public final void rule__UnitDef__NameAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16715:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16716:1: ( RULE_ID )
+            // InternalSpear.g:17289:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17290:1: ( RULE_ID )
             {
-            // InternalSpear.g:16716:1: ( RULE_ID )
-            // InternalSpear.g:16717:1: RULE_ID
+            // InternalSpear.g:17290:1: ( RULE_ID )
+            // InternalSpear.g:17291:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitDefAccess().getNameIDTerminalRuleCall_1_1_0()); 
@@ -47143,17 +48684,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnitDef__UnitAssignment_1_3"
-    // InternalSpear.g:16726:1: rule__UnitDef__UnitAssignment_1_3 : ( ruleUnitExpr ) ;
+    // InternalSpear.g:17300:1: rule__UnitDef__UnitAssignment_1_3 : ( ruleUnitExpr ) ;
     public final void rule__UnitDef__UnitAssignment_1_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16730:1: ( ( ruleUnitExpr ) )
-            // InternalSpear.g:16731:1: ( ruleUnitExpr )
+            // InternalSpear.g:17304:1: ( ( ruleUnitExpr ) )
+            // InternalSpear.g:17305:1: ( ruleUnitExpr )
             {
-            // InternalSpear.g:16731:1: ( ruleUnitExpr )
-            // InternalSpear.g:16732:1: ruleUnitExpr
+            // InternalSpear.g:17305:1: ( ruleUnitExpr )
+            // InternalSpear.g:17306:1: ruleUnitExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitDefAccess().getUnitUnitExprParserRuleCall_1_3_0()); 
@@ -47188,17 +48729,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnitDef__DescriptionAssignment_1_4"
-    // InternalSpear.g:16741:1: rule__UnitDef__DescriptionAssignment_1_4 : ( RULE_STRING ) ;
+    // InternalSpear.g:17315:1: rule__UnitDef__DescriptionAssignment_1_4 : ( RULE_STRING ) ;
     public final void rule__UnitDef__DescriptionAssignment_1_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16745:1: ( ( RULE_STRING ) )
-            // InternalSpear.g:16746:1: ( RULE_STRING )
+            // InternalSpear.g:17319:1: ( ( RULE_STRING ) )
+            // InternalSpear.g:17320:1: ( RULE_STRING )
             {
-            // InternalSpear.g:16746:1: ( RULE_STRING )
-            // InternalSpear.g:16747:1: RULE_STRING
+            // InternalSpear.g:17320:1: ( RULE_STRING )
+            // InternalSpear.g:17321:1: RULE_STRING
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitDefAccess().getDescriptionSTRINGTerminalRuleCall_1_4_0()); 
@@ -47229,23 +48770,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProductUnitExpr__OpAssignment_1_0_0_1"
-    // InternalSpear.g:16756:1: rule__ProductUnitExpr__OpAssignment_1_0_0_1 : ( ( '*' ) ) ;
+    // InternalSpear.g:17330:1: rule__ProductUnitExpr__OpAssignment_1_0_0_1 : ( ( '*' ) ) ;
     public final void rule__ProductUnitExpr__OpAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16760:1: ( ( ( '*' ) ) )
-            // InternalSpear.g:16761:1: ( ( '*' ) )
+            // InternalSpear.g:17334:1: ( ( ( '*' ) ) )
+            // InternalSpear.g:17335:1: ( ( '*' ) )
             {
-            // InternalSpear.g:16761:1: ( ( '*' ) )
-            // InternalSpear.g:16762:1: ( '*' )
+            // InternalSpear.g:17335:1: ( ( '*' ) )
+            // InternalSpear.g:17336:1: ( '*' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProductUnitExprAccess().getOpAsteriskKeyword_1_0_0_1_0()); 
             }
-            // InternalSpear.g:16763:1: ( '*' )
-            // InternalSpear.g:16764:1: '*'
+            // InternalSpear.g:17337:1: ( '*' )
+            // InternalSpear.g:17338:1: '*'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProductUnitExprAccess().getOpAsteriskKeyword_1_0_0_1_0()); 
@@ -47282,17 +48823,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProductUnitExpr__RightAssignment_1_1"
-    // InternalSpear.g:16779:1: rule__ProductUnitExpr__RightAssignment_1_1 : ( ruleProductUnitExpr ) ;
+    // InternalSpear.g:17353:1: rule__ProductUnitExpr__RightAssignment_1_1 : ( ruleProductUnitExpr ) ;
     public final void rule__ProductUnitExpr__RightAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16783:1: ( ( ruleProductUnitExpr ) )
-            // InternalSpear.g:16784:1: ( ruleProductUnitExpr )
+            // InternalSpear.g:17357:1: ( ( ruleProductUnitExpr ) )
+            // InternalSpear.g:17358:1: ( ruleProductUnitExpr )
             {
-            // InternalSpear.g:16784:1: ( ruleProductUnitExpr )
-            // InternalSpear.g:16785:1: ruleProductUnitExpr
+            // InternalSpear.g:17358:1: ( ruleProductUnitExpr )
+            // InternalSpear.g:17359:1: ruleProductUnitExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProductUnitExprAccess().getRightProductUnitExprParserRuleCall_1_1_0()); 
@@ -47327,23 +48868,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DivisionUnitExpr__OpAssignment_1_0_0_1"
-    // InternalSpear.g:16794:1: rule__DivisionUnitExpr__OpAssignment_1_0_0_1 : ( ( '/' ) ) ;
+    // InternalSpear.g:17368:1: rule__DivisionUnitExpr__OpAssignment_1_0_0_1 : ( ( '/' ) ) ;
     public final void rule__DivisionUnitExpr__OpAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16798:1: ( ( ( '/' ) ) )
-            // InternalSpear.g:16799:1: ( ( '/' ) )
+            // InternalSpear.g:17372:1: ( ( ( '/' ) ) )
+            // InternalSpear.g:17373:1: ( ( '/' ) )
             {
-            // InternalSpear.g:16799:1: ( ( '/' ) )
-            // InternalSpear.g:16800:1: ( '/' )
+            // InternalSpear.g:17373:1: ( ( '/' ) )
+            // InternalSpear.g:17374:1: ( '/' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDivisionUnitExprAccess().getOpSolidusKeyword_1_0_0_1_0()); 
             }
-            // InternalSpear.g:16801:1: ( '/' )
-            // InternalSpear.g:16802:1: '/'
+            // InternalSpear.g:17375:1: ( '/' )
+            // InternalSpear.g:17376:1: '/'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDivisionUnitExprAccess().getOpSolidusKeyword_1_0_0_1_0()); 
@@ -47380,17 +48921,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DivisionUnitExpr__RightAssignment_1_1"
-    // InternalSpear.g:16817:1: rule__DivisionUnitExpr__RightAssignment_1_1 : ( ruleAtomicUnitExpr ) ;
+    // InternalSpear.g:17391:1: rule__DivisionUnitExpr__RightAssignment_1_1 : ( ruleAtomicUnitExpr ) ;
     public final void rule__DivisionUnitExpr__RightAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16821:1: ( ( ruleAtomicUnitExpr ) )
-            // InternalSpear.g:16822:1: ( ruleAtomicUnitExpr )
+            // InternalSpear.g:17395:1: ( ( ruleAtomicUnitExpr ) )
+            // InternalSpear.g:17396:1: ( ruleAtomicUnitExpr )
             {
-            // InternalSpear.g:16822:1: ( ruleAtomicUnitExpr )
-            // InternalSpear.g:16823:1: ruleAtomicUnitExpr
+            // InternalSpear.g:17396:1: ( ruleAtomicUnitExpr )
+            // InternalSpear.g:17397:1: ruleAtomicUnitExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDivisionUnitExprAccess().getRightAtomicUnitExprParserRuleCall_1_1_0()); 
@@ -47425,23 +48966,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicUnitExpr__UnitAssignment_0_1"
-    // InternalSpear.g:16832:1: rule__AtomicUnitExpr__UnitAssignment_0_1 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:17406:1: rule__AtomicUnitExpr__UnitAssignment_0_1 : ( ( RULE_ID ) ) ;
     public final void rule__AtomicUnitExpr__UnitAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16836:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:16837:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17410:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:17411:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:16837:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16838:1: ( RULE_ID )
+            // InternalSpear.g:17411:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17412:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicUnitExprAccess().getUnitUnitDefCrossReference_0_1_0()); 
             }
-            // InternalSpear.g:16839:1: ( RULE_ID )
-            // InternalSpear.g:16840:1: RULE_ID
+            // InternalSpear.g:17413:1: ( RULE_ID )
+            // InternalSpear.g:17414:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicUnitExprAccess().getUnitUnitDefIDTerminalRuleCall_0_1_0_1()); 
@@ -47478,17 +49019,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDef__NameAssignment_0_1"
-    // InternalSpear.g:16851:1: rule__TypeDef__NameAssignment_0_1 : ( RULE_ID ) ;
+    // InternalSpear.g:17425:1: rule__TypeDef__NameAssignment_0_1 : ( RULE_ID ) ;
     public final void rule__TypeDef__NameAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16855:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16856:1: ( RULE_ID )
+            // InternalSpear.g:17429:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17430:1: ( RULE_ID )
             {
-            // InternalSpear.g:16856:1: ( RULE_ID )
-            // InternalSpear.g:16857:1: RULE_ID
+            // InternalSpear.g:17430:1: ( RULE_ID )
+            // InternalSpear.g:17431:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeDefAccess().getNameIDTerminalRuleCall_0_1_0()); 
@@ -47519,17 +49060,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDef__TypeAssignment_0_3"
-    // InternalSpear.g:16866:1: rule__TypeDef__TypeAssignment_0_3 : ( ruleType ) ;
+    // InternalSpear.g:17440:1: rule__TypeDef__TypeAssignment_0_3 : ( ruleType ) ;
     public final void rule__TypeDef__TypeAssignment_0_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16870:1: ( ( ruleType ) )
-            // InternalSpear.g:16871:1: ( ruleType )
+            // InternalSpear.g:17444:1: ( ( ruleType ) )
+            // InternalSpear.g:17445:1: ( ruleType )
             {
-            // InternalSpear.g:16871:1: ( ruleType )
-            // InternalSpear.g:16872:1: ruleType
+            // InternalSpear.g:17445:1: ( ruleType )
+            // InternalSpear.g:17446:1: ruleType
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeDefAccess().getTypeTypeParserRuleCall_0_3_0()); 
@@ -47564,23 +49105,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDef__UnitAssignment_0_4"
-    // InternalSpear.g:16881:1: rule__TypeDef__UnitAssignment_0_4 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:17455:1: rule__TypeDef__UnitAssignment_0_4 : ( ( RULE_ID ) ) ;
     public final void rule__TypeDef__UnitAssignment_0_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16885:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:16886:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17459:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:17460:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:16886:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16887:1: ( RULE_ID )
+            // InternalSpear.g:17460:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17461:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeDefAccess().getUnitUnitDefCrossReference_0_4_0()); 
             }
-            // InternalSpear.g:16888:1: ( RULE_ID )
-            // InternalSpear.g:16889:1: RULE_ID
+            // InternalSpear.g:17462:1: ( RULE_ID )
+            // InternalSpear.g:17463:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeDefAccess().getUnitUnitDefIDTerminalRuleCall_0_4_0_1()); 
@@ -47617,17 +49158,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDef__NameAssignment_1_1"
-    // InternalSpear.g:16900:1: rule__TypeDef__NameAssignment_1_1 : ( RULE_ID ) ;
+    // InternalSpear.g:17474:1: rule__TypeDef__NameAssignment_1_1 : ( RULE_ID ) ;
     public final void rule__TypeDef__NameAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16904:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16905:1: ( RULE_ID )
+            // InternalSpear.g:17478:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17479:1: ( RULE_ID )
             {
-            // InternalSpear.g:16905:1: ( RULE_ID )
-            // InternalSpear.g:16906:1: RULE_ID
+            // InternalSpear.g:17479:1: ( RULE_ID )
+            // InternalSpear.g:17480:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeDefAccess().getNameIDTerminalRuleCall_1_1_0()); 
@@ -47658,17 +49199,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDef__NameAssignment_2_1"
-    // InternalSpear.g:16915:1: rule__TypeDef__NameAssignment_2_1 : ( RULE_ID ) ;
+    // InternalSpear.g:17489:1: rule__TypeDef__NameAssignment_2_1 : ( RULE_ID ) ;
     public final void rule__TypeDef__NameAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16919:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16920:1: ( RULE_ID )
+            // InternalSpear.g:17493:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17494:1: ( RULE_ID )
             {
-            // InternalSpear.g:16920:1: ( RULE_ID )
-            // InternalSpear.g:16921:1: RULE_ID
+            // InternalSpear.g:17494:1: ( RULE_ID )
+            // InternalSpear.g:17495:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeDefAccess().getNameIDTerminalRuleCall_2_1_0()); 
@@ -47699,17 +49240,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDef__FieldsAssignment_2_5"
-    // InternalSpear.g:16930:1: rule__TypeDef__FieldsAssignment_2_5 : ( ruleFieldType ) ;
+    // InternalSpear.g:17504:1: rule__TypeDef__FieldsAssignment_2_5 : ( ruleFieldType ) ;
     public final void rule__TypeDef__FieldsAssignment_2_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16934:1: ( ( ruleFieldType ) )
-            // InternalSpear.g:16935:1: ( ruleFieldType )
+            // InternalSpear.g:17508:1: ( ( ruleFieldType ) )
+            // InternalSpear.g:17509:1: ( ruleFieldType )
             {
-            // InternalSpear.g:16935:1: ( ruleFieldType )
-            // InternalSpear.g:16936:1: ruleFieldType
+            // InternalSpear.g:17509:1: ( ruleFieldType )
+            // InternalSpear.g:17510:1: ruleFieldType
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeDefAccess().getFieldsFieldTypeParserRuleCall_2_5_0()); 
@@ -47744,17 +49285,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDef__FieldsAssignment_2_6_1"
-    // InternalSpear.g:16945:1: rule__TypeDef__FieldsAssignment_2_6_1 : ( ruleFieldType ) ;
+    // InternalSpear.g:17519:1: rule__TypeDef__FieldsAssignment_2_6_1 : ( ruleFieldType ) ;
     public final void rule__TypeDef__FieldsAssignment_2_6_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16949:1: ( ( ruleFieldType ) )
-            // InternalSpear.g:16950:1: ( ruleFieldType )
+            // InternalSpear.g:17523:1: ( ( ruleFieldType ) )
+            // InternalSpear.g:17524:1: ( ruleFieldType )
             {
-            // InternalSpear.g:16950:1: ( ruleFieldType )
-            // InternalSpear.g:16951:1: ruleFieldType
+            // InternalSpear.g:17524:1: ( ruleFieldType )
+            // InternalSpear.g:17525:1: ruleFieldType
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeDefAccess().getFieldsFieldTypeParserRuleCall_2_6_1_0()); 
@@ -47789,17 +49330,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDef__NameAssignment_3_1"
-    // InternalSpear.g:16960:1: rule__TypeDef__NameAssignment_3_1 : ( RULE_ID ) ;
+    // InternalSpear.g:17534:1: rule__TypeDef__NameAssignment_3_1 : ( RULE_ID ) ;
     public final void rule__TypeDef__NameAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16964:1: ( ( RULE_ID ) )
-            // InternalSpear.g:16965:1: ( RULE_ID )
+            // InternalSpear.g:17538:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17539:1: ( RULE_ID )
             {
-            // InternalSpear.g:16965:1: ( RULE_ID )
-            // InternalSpear.g:16966:1: RULE_ID
+            // InternalSpear.g:17539:1: ( RULE_ID )
+            // InternalSpear.g:17540:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeDefAccess().getNameIDTerminalRuleCall_3_1_0()); 
@@ -47830,17 +49371,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDef__BaseAssignment_3_3"
-    // InternalSpear.g:16975:1: rule__TypeDef__BaseAssignment_3_3 : ( ruleType ) ;
+    // InternalSpear.g:17549:1: rule__TypeDef__BaseAssignment_3_3 : ( ruleType ) ;
     public final void rule__TypeDef__BaseAssignment_3_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16979:1: ( ( ruleType ) )
-            // InternalSpear.g:16980:1: ( ruleType )
+            // InternalSpear.g:17553:1: ( ( ruleType ) )
+            // InternalSpear.g:17554:1: ( ruleType )
             {
-            // InternalSpear.g:16980:1: ( ruleType )
-            // InternalSpear.g:16981:1: ruleType
+            // InternalSpear.g:17554:1: ( ruleType )
+            // InternalSpear.g:17555:1: ruleType
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeDefAccess().getBaseTypeParserRuleCall_3_3_0()); 
@@ -47875,17 +49416,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDef__SizeAssignment_3_5"
-    // InternalSpear.g:16990:1: rule__TypeDef__SizeAssignment_3_5 : ( ruleExpr ) ;
+    // InternalSpear.g:17564:1: rule__TypeDef__SizeAssignment_3_5 : ( ruleExpr ) ;
     public final void rule__TypeDef__SizeAssignment_3_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:16994:1: ( ( ruleExpr ) )
-            // InternalSpear.g:16995:1: ( ruleExpr )
+            // InternalSpear.g:17568:1: ( ( ruleExpr ) )
+            // InternalSpear.g:17569:1: ( ruleExpr )
             {
-            // InternalSpear.g:16995:1: ( ruleExpr )
-            // InternalSpear.g:16996:1: ruleExpr
+            // InternalSpear.g:17569:1: ( ruleExpr )
+            // InternalSpear.g:17570:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeDefAccess().getSizeExprParserRuleCall_3_5_0()); 
@@ -47920,17 +49461,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDef__NameAssignment_4_1"
-    // InternalSpear.g:17005:1: rule__TypeDef__NameAssignment_4_1 : ( RULE_ID ) ;
+    // InternalSpear.g:17579:1: rule__TypeDef__NameAssignment_4_1 : ( RULE_ID ) ;
     public final void rule__TypeDef__NameAssignment_4_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17009:1: ( ( RULE_ID ) )
-            // InternalSpear.g:17010:1: ( RULE_ID )
+            // InternalSpear.g:17583:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17584:1: ( RULE_ID )
             {
-            // InternalSpear.g:17010:1: ( RULE_ID )
-            // InternalSpear.g:17011:1: RULE_ID
+            // InternalSpear.g:17584:1: ( RULE_ID )
+            // InternalSpear.g:17585:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeDefAccess().getNameIDTerminalRuleCall_4_1_0()); 
@@ -47961,17 +49502,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDef__ValuesAssignment_4_5"
-    // InternalSpear.g:17020:1: rule__TypeDef__ValuesAssignment_4_5 : ( ruleEnumValue ) ;
+    // InternalSpear.g:17594:1: rule__TypeDef__ValuesAssignment_4_5 : ( ruleEnumValue ) ;
     public final void rule__TypeDef__ValuesAssignment_4_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17024:1: ( ( ruleEnumValue ) )
-            // InternalSpear.g:17025:1: ( ruleEnumValue )
+            // InternalSpear.g:17598:1: ( ( ruleEnumValue ) )
+            // InternalSpear.g:17599:1: ( ruleEnumValue )
             {
-            // InternalSpear.g:17025:1: ( ruleEnumValue )
-            // InternalSpear.g:17026:1: ruleEnumValue
+            // InternalSpear.g:17599:1: ( ruleEnumValue )
+            // InternalSpear.g:17600:1: ruleEnumValue
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeDefAccess().getValuesEnumValueParserRuleCall_4_5_0()); 
@@ -48006,17 +49547,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDef__ValuesAssignment_4_6_1"
-    // InternalSpear.g:17035:1: rule__TypeDef__ValuesAssignment_4_6_1 : ( ruleEnumValue ) ;
+    // InternalSpear.g:17609:1: rule__TypeDef__ValuesAssignment_4_6_1 : ( ruleEnumValue ) ;
     public final void rule__TypeDef__ValuesAssignment_4_6_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17039:1: ( ( ruleEnumValue ) )
-            // InternalSpear.g:17040:1: ( ruleEnumValue )
+            // InternalSpear.g:17613:1: ( ( ruleEnumValue ) )
+            // InternalSpear.g:17614:1: ( ruleEnumValue )
             {
-            // InternalSpear.g:17040:1: ( ruleEnumValue )
-            // InternalSpear.g:17041:1: ruleEnumValue
+            // InternalSpear.g:17614:1: ( ruleEnumValue )
+            // InternalSpear.g:17615:1: ruleEnumValue
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeDefAccess().getValuesEnumValueParserRuleCall_4_6_1_0()); 
@@ -48051,17 +49592,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FieldType__NameAssignment_0"
-    // InternalSpear.g:17053:1: rule__FieldType__NameAssignment_0 : ( RULE_ID ) ;
+    // InternalSpear.g:17627:1: rule__FieldType__NameAssignment_0 : ( RULE_ID ) ;
     public final void rule__FieldType__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17057:1: ( ( RULE_ID ) )
-            // InternalSpear.g:17058:1: ( RULE_ID )
+            // InternalSpear.g:17631:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17632:1: ( RULE_ID )
             {
-            // InternalSpear.g:17058:1: ( RULE_ID )
-            // InternalSpear.g:17059:1: RULE_ID
+            // InternalSpear.g:17632:1: ( RULE_ID )
+            // InternalSpear.g:17633:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFieldTypeAccess().getNameIDTerminalRuleCall_0_0()); 
@@ -48092,17 +49633,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FieldType__TypeAssignment_2"
-    // InternalSpear.g:17068:1: rule__FieldType__TypeAssignment_2 : ( ruleType ) ;
+    // InternalSpear.g:17642:1: rule__FieldType__TypeAssignment_2 : ( ruleType ) ;
     public final void rule__FieldType__TypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17072:1: ( ( ruleType ) )
-            // InternalSpear.g:17073:1: ( ruleType )
+            // InternalSpear.g:17646:1: ( ( ruleType ) )
+            // InternalSpear.g:17647:1: ( ruleType )
             {
-            // InternalSpear.g:17073:1: ( ruleType )
-            // InternalSpear.g:17074:1: ruleType
+            // InternalSpear.g:17647:1: ( ruleType )
+            // InternalSpear.g:17648:1: ruleType
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFieldTypeAccess().getTypeTypeParserRuleCall_2_0()); 
@@ -48137,17 +49678,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EnumValue__NameAssignment"
-    // InternalSpear.g:17083:1: rule__EnumValue__NameAssignment : ( RULE_ID ) ;
+    // InternalSpear.g:17657:1: rule__EnumValue__NameAssignment : ( RULE_ID ) ;
     public final void rule__EnumValue__NameAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17087:1: ( ( RULE_ID ) )
-            // InternalSpear.g:17088:1: ( RULE_ID )
+            // InternalSpear.g:17661:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17662:1: ( RULE_ID )
             {
-            // InternalSpear.g:17088:1: ( RULE_ID )
-            // InternalSpear.g:17089:1: RULE_ID
+            // InternalSpear.g:17662:1: ( RULE_ID )
+            // InternalSpear.g:17663:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getEnumValueAccess().getNameIDTerminalRuleCall_0()); 
@@ -48178,23 +49719,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Type__DefAssignment_3_1"
-    // InternalSpear.g:17098:1: rule__Type__DefAssignment_3_1 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:17672:1: rule__Type__DefAssignment_3_1 : ( ( RULE_ID ) ) ;
     public final void rule__Type__DefAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17102:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:17103:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17676:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:17677:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:17103:1: ( ( RULE_ID ) )
-            // InternalSpear.g:17104:1: ( RULE_ID )
+            // InternalSpear.g:17677:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17678:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeAccess().getDefTypeDefCrossReference_3_1_0()); 
             }
-            // InternalSpear.g:17105:1: ( RULE_ID )
-            // InternalSpear.g:17106:1: RULE_ID
+            // InternalSpear.g:17679:1: ( RULE_ID )
+            // InternalSpear.g:17680:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeAccess().getDefTypeDefIDTerminalRuleCall_3_1_0_1()); 
@@ -48231,17 +49772,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constant__NameAssignment_0"
-    // InternalSpear.g:17117:1: rule__Constant__NameAssignment_0 : ( RULE_ID ) ;
+    // InternalSpear.g:17691:1: rule__Constant__NameAssignment_0 : ( RULE_ID ) ;
     public final void rule__Constant__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17121:1: ( ( RULE_ID ) )
-            // InternalSpear.g:17122:1: ( RULE_ID )
+            // InternalSpear.g:17695:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17696:1: ( RULE_ID )
             {
-            // InternalSpear.g:17122:1: ( RULE_ID )
-            // InternalSpear.g:17123:1: RULE_ID
+            // InternalSpear.g:17696:1: ( RULE_ID )
+            // InternalSpear.g:17697:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConstantAccess().getNameIDTerminalRuleCall_0_0()); 
@@ -48272,17 +49813,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constant__TypeAssignment_2"
-    // InternalSpear.g:17132:1: rule__Constant__TypeAssignment_2 : ( ruleType ) ;
+    // InternalSpear.g:17706:1: rule__Constant__TypeAssignment_2 : ( ruleType ) ;
     public final void rule__Constant__TypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17136:1: ( ( ruleType ) )
-            // InternalSpear.g:17137:1: ( ruleType )
+            // InternalSpear.g:17710:1: ( ( ruleType ) )
+            // InternalSpear.g:17711:1: ( ruleType )
             {
-            // InternalSpear.g:17137:1: ( ruleType )
-            // InternalSpear.g:17138:1: ruleType
+            // InternalSpear.g:17711:1: ( ruleType )
+            // InternalSpear.g:17712:1: ruleType
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConstantAccess().getTypeTypeParserRuleCall_2_0()); 
@@ -48317,17 +49858,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constant__ExprAssignment_4"
-    // InternalSpear.g:17147:1: rule__Constant__ExprAssignment_4 : ( ruleExpr ) ;
+    // InternalSpear.g:17721:1: rule__Constant__ExprAssignment_4 : ( ruleExpr ) ;
     public final void rule__Constant__ExprAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17151:1: ( ( ruleExpr ) )
-            // InternalSpear.g:17152:1: ( ruleExpr )
+            // InternalSpear.g:17725:1: ( ( ruleExpr ) )
+            // InternalSpear.g:17726:1: ( ruleExpr )
             {
-            // InternalSpear.g:17152:1: ( ruleExpr )
-            // InternalSpear.g:17153:1: ruleExpr
+            // InternalSpear.g:17726:1: ( ruleExpr )
+            // InternalSpear.g:17727:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConstantAccess().getExprExprParserRuleCall_4_0()); 
@@ -48362,17 +49903,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constant__DescriptorAssignment_5_2"
-    // InternalSpear.g:17162:1: rule__Constant__DescriptorAssignment_5_2 : ( RULE_STRING ) ;
+    // InternalSpear.g:17736:1: rule__Constant__DescriptorAssignment_5_2 : ( RULE_STRING ) ;
     public final void rule__Constant__DescriptorAssignment_5_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17166:1: ( ( RULE_STRING ) )
-            // InternalSpear.g:17167:1: ( RULE_STRING )
+            // InternalSpear.g:17740:1: ( ( RULE_STRING ) )
+            // InternalSpear.g:17741:1: ( RULE_STRING )
             {
-            // InternalSpear.g:17167:1: ( RULE_STRING )
-            // InternalSpear.g:17168:1: RULE_STRING
+            // InternalSpear.g:17741:1: ( RULE_STRING )
+            // InternalSpear.g:17742:1: RULE_STRING
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConstantAccess().getDescriptorSTRINGTerminalRuleCall_5_2_0()); 
@@ -48403,17 +49944,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Variable__NameAssignment_0"
-    // InternalSpear.g:17177:1: rule__Variable__NameAssignment_0 : ( RULE_ID ) ;
+    // InternalSpear.g:17751:1: rule__Variable__NameAssignment_0 : ( RULE_ID ) ;
     public final void rule__Variable__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17181:1: ( ( RULE_ID ) )
-            // InternalSpear.g:17182:1: ( RULE_ID )
+            // InternalSpear.g:17755:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17756:1: ( RULE_ID )
             {
-            // InternalSpear.g:17182:1: ( RULE_ID )
-            // InternalSpear.g:17183:1: RULE_ID
+            // InternalSpear.g:17756:1: ( RULE_ID )
+            // InternalSpear.g:17757:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVariableAccess().getNameIDTerminalRuleCall_0_0()); 
@@ -48444,17 +49985,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Variable__TypeAssignment_2"
-    // InternalSpear.g:17192:1: rule__Variable__TypeAssignment_2 : ( ruleType ) ;
+    // InternalSpear.g:17766:1: rule__Variable__TypeAssignment_2 : ( ruleType ) ;
     public final void rule__Variable__TypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17196:1: ( ( ruleType ) )
-            // InternalSpear.g:17197:1: ( ruleType )
+            // InternalSpear.g:17770:1: ( ( ruleType ) )
+            // InternalSpear.g:17771:1: ( ruleType )
             {
-            // InternalSpear.g:17197:1: ( ruleType )
-            // InternalSpear.g:17198:1: ruleType
+            // InternalSpear.g:17771:1: ( ruleType )
+            // InternalSpear.g:17772:1: ruleType
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVariableAccess().getTypeTypeParserRuleCall_2_0()); 
@@ -48489,17 +50030,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Macro__NameAssignment_0"
-    // InternalSpear.g:17207:1: rule__Macro__NameAssignment_0 : ( RULE_ID ) ;
+    // InternalSpear.g:17781:1: rule__Macro__NameAssignment_0 : ( RULE_ID ) ;
     public final void rule__Macro__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17211:1: ( ( RULE_ID ) )
-            // InternalSpear.g:17212:1: ( RULE_ID )
+            // InternalSpear.g:17785:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17786:1: ( RULE_ID )
             {
-            // InternalSpear.g:17212:1: ( RULE_ID )
-            // InternalSpear.g:17213:1: RULE_ID
+            // InternalSpear.g:17786:1: ( RULE_ID )
+            // InternalSpear.g:17787:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMacroAccess().getNameIDTerminalRuleCall_0_0()); 
@@ -48530,17 +50071,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Macro__TypeAssignment_2"
-    // InternalSpear.g:17222:1: rule__Macro__TypeAssignment_2 : ( ruleType ) ;
+    // InternalSpear.g:17796:1: rule__Macro__TypeAssignment_2 : ( ruleType ) ;
     public final void rule__Macro__TypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17226:1: ( ( ruleType ) )
-            // InternalSpear.g:17227:1: ( ruleType )
+            // InternalSpear.g:17800:1: ( ( ruleType ) )
+            // InternalSpear.g:17801:1: ( ruleType )
             {
-            // InternalSpear.g:17227:1: ( ruleType )
-            // InternalSpear.g:17228:1: ruleType
+            // InternalSpear.g:17801:1: ( ruleType )
+            // InternalSpear.g:17802:1: ruleType
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMacroAccess().getTypeTypeParserRuleCall_2_0()); 
@@ -48575,17 +50116,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Macro__ExprAssignment_4"
-    // InternalSpear.g:17237:1: rule__Macro__ExprAssignment_4 : ( ruleExpr ) ;
+    // InternalSpear.g:17811:1: rule__Macro__ExprAssignment_4 : ( ruleExpr ) ;
     public final void rule__Macro__ExprAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17241:1: ( ( ruleExpr ) )
-            // InternalSpear.g:17242:1: ( ruleExpr )
+            // InternalSpear.g:17815:1: ( ( ruleExpr ) )
+            // InternalSpear.g:17816:1: ( ruleExpr )
             {
-            // InternalSpear.g:17242:1: ( ruleExpr )
-            // InternalSpear.g:17243:1: ruleExpr
+            // InternalSpear.g:17816:1: ( ruleExpr )
+            // InternalSpear.g:17817:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMacroAccess().getExprExprParserRuleCall_4_0()); 
@@ -48620,17 +50161,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Macro__DescriptorAssignment_5_2"
-    // InternalSpear.g:17252:1: rule__Macro__DescriptorAssignment_5_2 : ( RULE_STRING ) ;
+    // InternalSpear.g:17826:1: rule__Macro__DescriptorAssignment_5_2 : ( RULE_STRING ) ;
     public final void rule__Macro__DescriptorAssignment_5_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17256:1: ( ( RULE_STRING ) )
-            // InternalSpear.g:17257:1: ( RULE_STRING )
+            // InternalSpear.g:17830:1: ( ( RULE_STRING ) )
+            // InternalSpear.g:17831:1: ( RULE_STRING )
             {
-            // InternalSpear.g:17257:1: ( RULE_STRING )
-            // InternalSpear.g:17258:1: RULE_STRING
+            // InternalSpear.g:17831:1: ( RULE_STRING )
+            // InternalSpear.g:17832:1: RULE_STRING
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMacroAccess().getDescriptorSTRINGTerminalRuleCall_5_2_0()); 
@@ -48661,17 +50202,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FormalConstraint__NameAssignment_0"
-    // InternalSpear.g:17267:1: rule__FormalConstraint__NameAssignment_0 : ( RULE_ID ) ;
+    // InternalSpear.g:17841:1: rule__FormalConstraint__NameAssignment_0 : ( RULE_ID ) ;
     public final void rule__FormalConstraint__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17271:1: ( ( RULE_ID ) )
-            // InternalSpear.g:17272:1: ( RULE_ID )
+            // InternalSpear.g:17845:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17846:1: ( RULE_ID )
             {
-            // InternalSpear.g:17272:1: ( RULE_ID )
-            // InternalSpear.g:17273:1: RULE_ID
+            // InternalSpear.g:17846:1: ( RULE_ID )
+            // InternalSpear.g:17847:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFormalConstraintAccess().getNameIDTerminalRuleCall_0_0()); 
@@ -48702,17 +50243,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FormalConstraint__ExprAssignment_2"
-    // InternalSpear.g:17282:1: rule__FormalConstraint__ExprAssignment_2 : ( ruleExpr ) ;
+    // InternalSpear.g:17856:1: rule__FormalConstraint__ExprAssignment_2 : ( ruleExpr ) ;
     public final void rule__FormalConstraint__ExprAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17286:1: ( ( ruleExpr ) )
-            // InternalSpear.g:17287:1: ( ruleExpr )
+            // InternalSpear.g:17860:1: ( ( ruleExpr ) )
+            // InternalSpear.g:17861:1: ( ruleExpr )
             {
-            // InternalSpear.g:17287:1: ( ruleExpr )
-            // InternalSpear.g:17288:1: ruleExpr
+            // InternalSpear.g:17861:1: ( ruleExpr )
+            // InternalSpear.g:17862:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFormalConstraintAccess().getExprExprParserRuleCall_2_0()); 
@@ -48747,17 +50288,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FormalConstraint__DescriptorAssignment_3_2"
-    // InternalSpear.g:17297:1: rule__FormalConstraint__DescriptorAssignment_3_2 : ( RULE_STRING ) ;
+    // InternalSpear.g:17871:1: rule__FormalConstraint__DescriptorAssignment_3_2 : ( RULE_STRING ) ;
     public final void rule__FormalConstraint__DescriptorAssignment_3_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17301:1: ( ( RULE_STRING ) )
-            // InternalSpear.g:17302:1: ( RULE_STRING )
+            // InternalSpear.g:17875:1: ( ( RULE_STRING ) )
+            // InternalSpear.g:17876:1: ( RULE_STRING )
             {
-            // InternalSpear.g:17302:1: ( RULE_STRING )
-            // InternalSpear.g:17303:1: RULE_STRING
+            // InternalSpear.g:17876:1: ( RULE_STRING )
+            // InternalSpear.g:17877:1: RULE_STRING
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFormalConstraintAccess().getDescriptorSTRINGTerminalRuleCall_3_2_0()); 
@@ -48787,18 +50328,100 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__FormalConstraint__DescriptorAssignment_3_2"
 
 
+    // $ANTLR start "rule__FormalConstraint__IdsAssignment_4_3"
+    // InternalSpear.g:17886:1: rule__FormalConstraint__IdsAssignment_4_3 : ( RULE_ID ) ;
+    public final void rule__FormalConstraint__IdsAssignment_4_3() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:17890:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17891:1: ( RULE_ID )
+            {
+            // InternalSpear.g:17891:1: ( RULE_ID )
+            // InternalSpear.g:17892:1: RULE_ID
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getFormalConstraintAccess().getIdsIDTerminalRuleCall_4_3_0()); 
+            }
+            match(input,RULE_ID,FOLLOW_2); if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getFormalConstraintAccess().getIdsIDTerminalRuleCall_4_3_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__FormalConstraint__IdsAssignment_4_3"
+
+
+    // $ANTLR start "rule__FormalConstraint__IdsAssignment_4_4_1"
+    // InternalSpear.g:17901:1: rule__FormalConstraint__IdsAssignment_4_4_1 : ( RULE_ID ) ;
+    public final void rule__FormalConstraint__IdsAssignment_4_4_1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:17905:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17906:1: ( RULE_ID )
+            {
+            // InternalSpear.g:17906:1: ( RULE_ID )
+            // InternalSpear.g:17907:1: RULE_ID
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getFormalConstraintAccess().getIdsIDTerminalRuleCall_4_4_1_0()); 
+            }
+            match(input,RULE_ID,FOLLOW_2); if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getFormalConstraintAccess().getIdsIDTerminalRuleCall_4_4_1_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__FormalConstraint__IdsAssignment_4_4_1"
+
+
     // $ANTLR start "rule__EnglishConstraint__NameAssignment_0"
-    // InternalSpear.g:17312:1: rule__EnglishConstraint__NameAssignment_0 : ( RULE_ID ) ;
+    // InternalSpear.g:17916:1: rule__EnglishConstraint__NameAssignment_0 : ( RULE_ID ) ;
     public final void rule__EnglishConstraint__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17316:1: ( ( RULE_ID ) )
-            // InternalSpear.g:17317:1: ( RULE_ID )
+            // InternalSpear.g:17920:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17921:1: ( RULE_ID )
             {
-            // InternalSpear.g:17317:1: ( RULE_ID )
-            // InternalSpear.g:17318:1: RULE_ID
+            // InternalSpear.g:17921:1: ( RULE_ID )
+            // InternalSpear.g:17922:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getEnglishConstraintAccess().getNameIDTerminalRuleCall_0_0()); 
@@ -48829,17 +50452,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EnglishConstraint__TextAssignment_2"
-    // InternalSpear.g:17327:1: rule__EnglishConstraint__TextAssignment_2 : ( RULE_STRING ) ;
+    // InternalSpear.g:17931:1: rule__EnglishConstraint__TextAssignment_2 : ( RULE_STRING ) ;
     public final void rule__EnglishConstraint__TextAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17331:1: ( ( RULE_STRING ) )
-            // InternalSpear.g:17332:1: ( RULE_STRING )
+            // InternalSpear.g:17935:1: ( ( RULE_STRING ) )
+            // InternalSpear.g:17936:1: ( RULE_STRING )
             {
-            // InternalSpear.g:17332:1: ( RULE_STRING )
-            // InternalSpear.g:17333:1: RULE_STRING
+            // InternalSpear.g:17936:1: ( RULE_STRING )
+            // InternalSpear.g:17937:1: RULE_STRING
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getEnglishConstraintAccess().getTextSTRINGTerminalRuleCall_2_0()); 
@@ -48869,18 +50492,100 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__EnglishConstraint__TextAssignment_2"
 
 
+    // $ANTLR start "rule__EnglishConstraint__IdsAssignment_3_3"
+    // InternalSpear.g:17946:1: rule__EnglishConstraint__IdsAssignment_3_3 : ( RULE_ID ) ;
+    public final void rule__EnglishConstraint__IdsAssignment_3_3() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:17950:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17951:1: ( RULE_ID )
+            {
+            // InternalSpear.g:17951:1: ( RULE_ID )
+            // InternalSpear.g:17952:1: RULE_ID
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getEnglishConstraintAccess().getIdsIDTerminalRuleCall_3_3_0()); 
+            }
+            match(input,RULE_ID,FOLLOW_2); if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getEnglishConstraintAccess().getIdsIDTerminalRuleCall_3_3_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__EnglishConstraint__IdsAssignment_3_3"
+
+
+    // $ANTLR start "rule__EnglishConstraint__IdsAssignment_3_4_1"
+    // InternalSpear.g:17961:1: rule__EnglishConstraint__IdsAssignment_3_4_1 : ( RULE_ID ) ;
+    public final void rule__EnglishConstraint__IdsAssignment_3_4_1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalSpear.g:17965:1: ( ( RULE_ID ) )
+            // InternalSpear.g:17966:1: ( RULE_ID )
+            {
+            // InternalSpear.g:17966:1: ( RULE_ID )
+            // InternalSpear.g:17967:1: RULE_ID
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getEnglishConstraintAccess().getIdsIDTerminalRuleCall_3_4_1_0()); 
+            }
+            match(input,RULE_ID,FOLLOW_2); if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getEnglishConstraintAccess().getIdsIDTerminalRuleCall_3_4_1_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__EnglishConstraint__IdsAssignment_3_4_1"
+
+
     // $ANTLR start "rule__WhileExpr__CondAssignment_0_2"
-    // InternalSpear.g:17342:1: rule__WhileExpr__CondAssignment_0_2 : ( ruleExpr ) ;
+    // InternalSpear.g:17976:1: rule__WhileExpr__CondAssignment_0_2 : ( ruleExpr ) ;
     public final void rule__WhileExpr__CondAssignment_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17346:1: ( ( ruleExpr ) )
-            // InternalSpear.g:17347:1: ( ruleExpr )
+            // InternalSpear.g:17980:1: ( ( ruleExpr ) )
+            // InternalSpear.g:17981:1: ( ruleExpr )
             {
-            // InternalSpear.g:17347:1: ( ruleExpr )
-            // InternalSpear.g:17348:1: ruleExpr
+            // InternalSpear.g:17981:1: ( ruleExpr )
+            // InternalSpear.g:17982:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getWhileExprAccess().getCondExprParserRuleCall_0_2_0()); 
@@ -48915,17 +50620,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__WhileExpr__ThenAssignment_0_4"
-    // InternalSpear.g:17357:1: rule__WhileExpr__ThenAssignment_0_4 : ( ruleExpr ) ;
+    // InternalSpear.g:17991:1: rule__WhileExpr__ThenAssignment_0_4 : ( ruleExpr ) ;
     public final void rule__WhileExpr__ThenAssignment_0_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17361:1: ( ( ruleExpr ) )
-            // InternalSpear.g:17362:1: ( ruleExpr )
+            // InternalSpear.g:17995:1: ( ( ruleExpr ) )
+            // InternalSpear.g:17996:1: ( ruleExpr )
             {
-            // InternalSpear.g:17362:1: ( ruleExpr )
-            // InternalSpear.g:17363:1: ruleExpr
+            // InternalSpear.g:17996:1: ( ruleExpr )
+            // InternalSpear.g:17997:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getWhileExprAccess().getThenExprParserRuleCall_0_4_0()); 
@@ -48960,23 +50665,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ImpliesExpr__OpAssignment_1_0_0_1"
-    // InternalSpear.g:17372:1: rule__ImpliesExpr__OpAssignment_1_0_0_1 : ( ( rule__ImpliesExpr__OpAlternatives_1_0_0_1_0 ) ) ;
+    // InternalSpear.g:18006:1: rule__ImpliesExpr__OpAssignment_1_0_0_1 : ( ( rule__ImpliesExpr__OpAlternatives_1_0_0_1_0 ) ) ;
     public final void rule__ImpliesExpr__OpAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17376:1: ( ( ( rule__ImpliesExpr__OpAlternatives_1_0_0_1_0 ) ) )
-            // InternalSpear.g:17377:1: ( ( rule__ImpliesExpr__OpAlternatives_1_0_0_1_0 ) )
+            // InternalSpear.g:18010:1: ( ( ( rule__ImpliesExpr__OpAlternatives_1_0_0_1_0 ) ) )
+            // InternalSpear.g:18011:1: ( ( rule__ImpliesExpr__OpAlternatives_1_0_0_1_0 ) )
             {
-            // InternalSpear.g:17377:1: ( ( rule__ImpliesExpr__OpAlternatives_1_0_0_1_0 ) )
-            // InternalSpear.g:17378:1: ( rule__ImpliesExpr__OpAlternatives_1_0_0_1_0 )
+            // InternalSpear.g:18011:1: ( ( rule__ImpliesExpr__OpAlternatives_1_0_0_1_0 ) )
+            // InternalSpear.g:18012:1: ( rule__ImpliesExpr__OpAlternatives_1_0_0_1_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getImpliesExprAccess().getOpAlternatives_1_0_0_1_0()); 
             }
-            // InternalSpear.g:17379:1: ( rule__ImpliesExpr__OpAlternatives_1_0_0_1_0 )
-            // InternalSpear.g:17379:2: rule__ImpliesExpr__OpAlternatives_1_0_0_1_0
+            // InternalSpear.g:18013:1: ( rule__ImpliesExpr__OpAlternatives_1_0_0_1_0 )
+            // InternalSpear.g:18013:2: rule__ImpliesExpr__OpAlternatives_1_0_0_1_0
             {
             pushFollow(FOLLOW_2);
             rule__ImpliesExpr__OpAlternatives_1_0_0_1_0();
@@ -49011,17 +50716,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ImpliesExpr__RightAssignment_1_1"
-    // InternalSpear.g:17388:1: rule__ImpliesExpr__RightAssignment_1_1 : ( ruleImpliesExpr ) ;
+    // InternalSpear.g:18022:1: rule__ImpliesExpr__RightAssignment_1_1 : ( ruleImpliesExpr ) ;
     public final void rule__ImpliesExpr__RightAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17392:1: ( ( ruleImpliesExpr ) )
-            // InternalSpear.g:17393:1: ( ruleImpliesExpr )
+            // InternalSpear.g:18026:1: ( ( ruleImpliesExpr ) )
+            // InternalSpear.g:18027:1: ( ruleImpliesExpr )
             {
-            // InternalSpear.g:17393:1: ( ruleImpliesExpr )
-            // InternalSpear.g:17394:1: ruleImpliesExpr
+            // InternalSpear.g:18027:1: ( ruleImpliesExpr )
+            // InternalSpear.g:18028:1: ruleImpliesExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getImpliesExprAccess().getRightImpliesExprParserRuleCall_1_1_0()); 
@@ -49056,23 +50761,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpr__OpAssignment_1_0_0_1"
-    // InternalSpear.g:17403:1: rule__OrExpr__OpAssignment_1_0_0_1 : ( ( rule__OrExpr__OpAlternatives_1_0_0_1_0 ) ) ;
+    // InternalSpear.g:18037:1: rule__OrExpr__OpAssignment_1_0_0_1 : ( ( rule__OrExpr__OpAlternatives_1_0_0_1_0 ) ) ;
     public final void rule__OrExpr__OpAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17407:1: ( ( ( rule__OrExpr__OpAlternatives_1_0_0_1_0 ) ) )
-            // InternalSpear.g:17408:1: ( ( rule__OrExpr__OpAlternatives_1_0_0_1_0 ) )
+            // InternalSpear.g:18041:1: ( ( ( rule__OrExpr__OpAlternatives_1_0_0_1_0 ) ) )
+            // InternalSpear.g:18042:1: ( ( rule__OrExpr__OpAlternatives_1_0_0_1_0 ) )
             {
-            // InternalSpear.g:17408:1: ( ( rule__OrExpr__OpAlternatives_1_0_0_1_0 ) )
-            // InternalSpear.g:17409:1: ( rule__OrExpr__OpAlternatives_1_0_0_1_0 )
+            // InternalSpear.g:18042:1: ( ( rule__OrExpr__OpAlternatives_1_0_0_1_0 ) )
+            // InternalSpear.g:18043:1: ( rule__OrExpr__OpAlternatives_1_0_0_1_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOrExprAccess().getOpAlternatives_1_0_0_1_0()); 
             }
-            // InternalSpear.g:17410:1: ( rule__OrExpr__OpAlternatives_1_0_0_1_0 )
-            // InternalSpear.g:17410:2: rule__OrExpr__OpAlternatives_1_0_0_1_0
+            // InternalSpear.g:18044:1: ( rule__OrExpr__OpAlternatives_1_0_0_1_0 )
+            // InternalSpear.g:18044:2: rule__OrExpr__OpAlternatives_1_0_0_1_0
             {
             pushFollow(FOLLOW_2);
             rule__OrExpr__OpAlternatives_1_0_0_1_0();
@@ -49107,17 +50812,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpr__RightAssignment_1_1"
-    // InternalSpear.g:17419:1: rule__OrExpr__RightAssignment_1_1 : ( ruleOrExpr ) ;
+    // InternalSpear.g:18053:1: rule__OrExpr__RightAssignment_1_1 : ( ruleOrExpr ) ;
     public final void rule__OrExpr__RightAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17423:1: ( ( ruleOrExpr ) )
-            // InternalSpear.g:17424:1: ( ruleOrExpr )
+            // InternalSpear.g:18057:1: ( ( ruleOrExpr ) )
+            // InternalSpear.g:18058:1: ( ruleOrExpr )
             {
-            // InternalSpear.g:17424:1: ( ruleOrExpr )
-            // InternalSpear.g:17425:1: ruleOrExpr
+            // InternalSpear.g:18058:1: ( ruleOrExpr )
+            // InternalSpear.g:18059:1: ruleOrExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOrExprAccess().getRightOrExprParserRuleCall_1_1_0()); 
@@ -49152,28 +50857,28 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpr__OpAssignment_1_0_0_1"
-    // InternalSpear.g:17434:1: rule__AndExpr__OpAssignment_1_0_0_1 : ( ( 'and' ) ) ;
+    // InternalSpear.g:18068:1: rule__AndExpr__OpAssignment_1_0_0_1 : ( ( 'and' ) ) ;
     public final void rule__AndExpr__OpAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17438:1: ( ( ( 'and' ) ) )
-            // InternalSpear.g:17439:1: ( ( 'and' ) )
+            // InternalSpear.g:18072:1: ( ( ( 'and' ) ) )
+            // InternalSpear.g:18073:1: ( ( 'and' ) )
             {
-            // InternalSpear.g:17439:1: ( ( 'and' ) )
-            // InternalSpear.g:17440:1: ( 'and' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getAndExprAccess().getOpAndKeyword_1_0_0_1_0()); 
-            }
-            // InternalSpear.g:17441:1: ( 'and' )
-            // InternalSpear.g:17442:1: 'and'
+            // InternalSpear.g:18073:1: ( ( 'and' ) )
+            // InternalSpear.g:18074:1: ( 'and' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAndExprAccess().getOpAndKeyword_1_0_0_1_0()); 
             }
-            match(input,112,FOLLOW_2); if (state.failed) return ;
+            // InternalSpear.g:18075:1: ( 'and' )
+            // InternalSpear.g:18076:1: 'and'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getAndExprAccess().getOpAndKeyword_1_0_0_1_0()); 
+            }
+            match(input,113,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getAndExprAccess().getOpAndKeyword_1_0_0_1_0()); 
             }
@@ -49205,17 +50910,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpr__RightAssignment_1_1"
-    // InternalSpear.g:17457:1: rule__AndExpr__RightAssignment_1_1 : ( ruleAndExpr ) ;
+    // InternalSpear.g:18091:1: rule__AndExpr__RightAssignment_1_1 : ( ruleAndExpr ) ;
     public final void rule__AndExpr__RightAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17461:1: ( ( ruleAndExpr ) )
-            // InternalSpear.g:17462:1: ( ruleAndExpr )
+            // InternalSpear.g:18095:1: ( ( ruleAndExpr ) )
+            // InternalSpear.g:18096:1: ( ruleAndExpr )
             {
-            // InternalSpear.g:17462:1: ( ruleAndExpr )
-            // InternalSpear.g:17463:1: ruleAndExpr
+            // InternalSpear.g:18096:1: ( ruleAndExpr )
+            // InternalSpear.g:18097:1: ruleAndExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAndExprAccess().getRightAndExprParserRuleCall_1_1_0()); 
@@ -49250,17 +50955,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AfterUntilExpr__AfterAssignment_0_2"
-    // InternalSpear.g:17472:1: rule__AfterUntilExpr__AfterAssignment_0_2 : ( ruleTriggersExpr ) ;
+    // InternalSpear.g:18106:1: rule__AfterUntilExpr__AfterAssignment_0_2 : ( ruleTriggersExpr ) ;
     public final void rule__AfterUntilExpr__AfterAssignment_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17476:1: ( ( ruleTriggersExpr ) )
-            // InternalSpear.g:17477:1: ( ruleTriggersExpr )
+            // InternalSpear.g:18110:1: ( ( ruleTriggersExpr ) )
+            // InternalSpear.g:18111:1: ( ruleTriggersExpr )
             {
-            // InternalSpear.g:17477:1: ( ruleTriggersExpr )
-            // InternalSpear.g:17478:1: ruleTriggersExpr
+            // InternalSpear.g:18111:1: ( ruleTriggersExpr )
+            // InternalSpear.g:18112:1: ruleTriggersExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAfterUntilExprAccess().getAfterTriggersExprParserRuleCall_0_2_0()); 
@@ -49295,17 +51000,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AfterUntilExpr__UntilAssignment_0_3_1"
-    // InternalSpear.g:17487:1: rule__AfterUntilExpr__UntilAssignment_0_3_1 : ( ruleTriggersExpr ) ;
+    // InternalSpear.g:18121:1: rule__AfterUntilExpr__UntilAssignment_0_3_1 : ( ruleTriggersExpr ) ;
     public final void rule__AfterUntilExpr__UntilAssignment_0_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17491:1: ( ( ruleTriggersExpr ) )
-            // InternalSpear.g:17492:1: ( ruleTriggersExpr )
+            // InternalSpear.g:18125:1: ( ( ruleTriggersExpr ) )
+            // InternalSpear.g:18126:1: ( ruleTriggersExpr )
             {
-            // InternalSpear.g:17492:1: ( ruleTriggersExpr )
-            // InternalSpear.g:17493:1: ruleTriggersExpr
+            // InternalSpear.g:18126:1: ( ruleTriggersExpr )
+            // InternalSpear.g:18127:1: ruleTriggersExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAfterUntilExprAccess().getUntilTriggersExprParserRuleCall_0_3_1_0()); 
@@ -49340,23 +51045,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TriggersExpr__OpAssignment_1_0_0_1"
-    // InternalSpear.g:17502:1: rule__TriggersExpr__OpAssignment_1_0_0_1 : ( ( rule__TriggersExpr__OpAlternatives_1_0_0_1_0 ) ) ;
+    // InternalSpear.g:18136:1: rule__TriggersExpr__OpAssignment_1_0_0_1 : ( ( rule__TriggersExpr__OpAlternatives_1_0_0_1_0 ) ) ;
     public final void rule__TriggersExpr__OpAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17506:1: ( ( ( rule__TriggersExpr__OpAlternatives_1_0_0_1_0 ) ) )
-            // InternalSpear.g:17507:1: ( ( rule__TriggersExpr__OpAlternatives_1_0_0_1_0 ) )
+            // InternalSpear.g:18140:1: ( ( ( rule__TriggersExpr__OpAlternatives_1_0_0_1_0 ) ) )
+            // InternalSpear.g:18141:1: ( ( rule__TriggersExpr__OpAlternatives_1_0_0_1_0 ) )
             {
-            // InternalSpear.g:17507:1: ( ( rule__TriggersExpr__OpAlternatives_1_0_0_1_0 ) )
-            // InternalSpear.g:17508:1: ( rule__TriggersExpr__OpAlternatives_1_0_0_1_0 )
+            // InternalSpear.g:18141:1: ( ( rule__TriggersExpr__OpAlternatives_1_0_0_1_0 ) )
+            // InternalSpear.g:18142:1: ( rule__TriggersExpr__OpAlternatives_1_0_0_1_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTriggersExprAccess().getOpAlternatives_1_0_0_1_0()); 
             }
-            // InternalSpear.g:17509:1: ( rule__TriggersExpr__OpAlternatives_1_0_0_1_0 )
-            // InternalSpear.g:17509:2: rule__TriggersExpr__OpAlternatives_1_0_0_1_0
+            // InternalSpear.g:18143:1: ( rule__TriggersExpr__OpAlternatives_1_0_0_1_0 )
+            // InternalSpear.g:18143:2: rule__TriggersExpr__OpAlternatives_1_0_0_1_0
             {
             pushFollow(FOLLOW_2);
             rule__TriggersExpr__OpAlternatives_1_0_0_1_0();
@@ -49391,17 +51096,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TriggersExpr__RightAssignment_1_1"
-    // InternalSpear.g:17518:1: rule__TriggersExpr__RightAssignment_1_1 : ( ruleTriggersExpr ) ;
+    // InternalSpear.g:18152:1: rule__TriggersExpr__RightAssignment_1_1 : ( ruleTriggersExpr ) ;
     public final void rule__TriggersExpr__RightAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17522:1: ( ( ruleTriggersExpr ) )
-            // InternalSpear.g:17523:1: ( ruleTriggersExpr )
+            // InternalSpear.g:18156:1: ( ( ruleTriggersExpr ) )
+            // InternalSpear.g:18157:1: ( ruleTriggersExpr )
             {
-            // InternalSpear.g:17523:1: ( ruleTriggersExpr )
-            // InternalSpear.g:17524:1: ruleTriggersExpr
+            // InternalSpear.g:18157:1: ( ruleTriggersExpr )
+            // InternalSpear.g:18158:1: ruleTriggersExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTriggersExprAccess().getRightTriggersExprParserRuleCall_1_1_0()); 
@@ -49436,23 +51141,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SinceExpr__OpAssignment_1_0_0_1"
-    // InternalSpear.g:17533:1: rule__SinceExpr__OpAssignment_1_0_0_1 : ( ( rule__SinceExpr__OpAlternatives_1_0_0_1_0 ) ) ;
+    // InternalSpear.g:18167:1: rule__SinceExpr__OpAssignment_1_0_0_1 : ( ( rule__SinceExpr__OpAlternatives_1_0_0_1_0 ) ) ;
     public final void rule__SinceExpr__OpAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17537:1: ( ( ( rule__SinceExpr__OpAlternatives_1_0_0_1_0 ) ) )
-            // InternalSpear.g:17538:1: ( ( rule__SinceExpr__OpAlternatives_1_0_0_1_0 ) )
+            // InternalSpear.g:18171:1: ( ( ( rule__SinceExpr__OpAlternatives_1_0_0_1_0 ) ) )
+            // InternalSpear.g:18172:1: ( ( rule__SinceExpr__OpAlternatives_1_0_0_1_0 ) )
             {
-            // InternalSpear.g:17538:1: ( ( rule__SinceExpr__OpAlternatives_1_0_0_1_0 ) )
-            // InternalSpear.g:17539:1: ( rule__SinceExpr__OpAlternatives_1_0_0_1_0 )
+            // InternalSpear.g:18172:1: ( ( rule__SinceExpr__OpAlternatives_1_0_0_1_0 ) )
+            // InternalSpear.g:18173:1: ( rule__SinceExpr__OpAlternatives_1_0_0_1_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSinceExprAccess().getOpAlternatives_1_0_0_1_0()); 
             }
-            // InternalSpear.g:17540:1: ( rule__SinceExpr__OpAlternatives_1_0_0_1_0 )
-            // InternalSpear.g:17540:2: rule__SinceExpr__OpAlternatives_1_0_0_1_0
+            // InternalSpear.g:18174:1: ( rule__SinceExpr__OpAlternatives_1_0_0_1_0 )
+            // InternalSpear.g:18174:2: rule__SinceExpr__OpAlternatives_1_0_0_1_0
             {
             pushFollow(FOLLOW_2);
             rule__SinceExpr__OpAlternatives_1_0_0_1_0();
@@ -49487,17 +51192,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SinceExpr__RightAssignment_1_1"
-    // InternalSpear.g:17549:1: rule__SinceExpr__RightAssignment_1_1 : ( ruleSinceExpr ) ;
+    // InternalSpear.g:18183:1: rule__SinceExpr__RightAssignment_1_1 : ( ruleSinceExpr ) ;
     public final void rule__SinceExpr__RightAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17553:1: ( ( ruleSinceExpr ) )
-            // InternalSpear.g:17554:1: ( ruleSinceExpr )
+            // InternalSpear.g:18187:1: ( ( ruleSinceExpr ) )
+            // InternalSpear.g:18188:1: ( ruleSinceExpr )
             {
-            // InternalSpear.g:17554:1: ( ruleSinceExpr )
-            // InternalSpear.g:17555:1: ruleSinceExpr
+            // InternalSpear.g:18188:1: ( ruleSinceExpr )
+            // InternalSpear.g:18189:1: ruleSinceExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSinceExprAccess().getRightSinceExprParserRuleCall_1_1_0()); 
@@ -49532,23 +51237,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TemporalPrefixExpr__OpAssignment_0_1"
-    // InternalSpear.g:17564:1: rule__TemporalPrefixExpr__OpAssignment_0_1 : ( ( rule__TemporalPrefixExpr__OpAlternatives_0_1_0 ) ) ;
+    // InternalSpear.g:18198:1: rule__TemporalPrefixExpr__OpAssignment_0_1 : ( ( rule__TemporalPrefixExpr__OpAlternatives_0_1_0 ) ) ;
     public final void rule__TemporalPrefixExpr__OpAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17568:1: ( ( ( rule__TemporalPrefixExpr__OpAlternatives_0_1_0 ) ) )
-            // InternalSpear.g:17569:1: ( ( rule__TemporalPrefixExpr__OpAlternatives_0_1_0 ) )
+            // InternalSpear.g:18202:1: ( ( ( rule__TemporalPrefixExpr__OpAlternatives_0_1_0 ) ) )
+            // InternalSpear.g:18203:1: ( ( rule__TemporalPrefixExpr__OpAlternatives_0_1_0 ) )
             {
-            // InternalSpear.g:17569:1: ( ( rule__TemporalPrefixExpr__OpAlternatives_0_1_0 ) )
-            // InternalSpear.g:17570:1: ( rule__TemporalPrefixExpr__OpAlternatives_0_1_0 )
+            // InternalSpear.g:18203:1: ( ( rule__TemporalPrefixExpr__OpAlternatives_0_1_0 ) )
+            // InternalSpear.g:18204:1: ( rule__TemporalPrefixExpr__OpAlternatives_0_1_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTemporalPrefixExprAccess().getOpAlternatives_0_1_0()); 
             }
-            // InternalSpear.g:17571:1: ( rule__TemporalPrefixExpr__OpAlternatives_0_1_0 )
-            // InternalSpear.g:17571:2: rule__TemporalPrefixExpr__OpAlternatives_0_1_0
+            // InternalSpear.g:18205:1: ( rule__TemporalPrefixExpr__OpAlternatives_0_1_0 )
+            // InternalSpear.g:18205:2: rule__TemporalPrefixExpr__OpAlternatives_0_1_0
             {
             pushFollow(FOLLOW_2);
             rule__TemporalPrefixExpr__OpAlternatives_0_1_0();
@@ -49583,17 +51288,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TemporalPrefixExpr__ExprAssignment_0_2"
-    // InternalSpear.g:17580:1: rule__TemporalPrefixExpr__ExprAssignment_0_2 : ( ruleTemporalPrefixExpr ) ;
+    // InternalSpear.g:18214:1: rule__TemporalPrefixExpr__ExprAssignment_0_2 : ( ruleTemporalPrefixExpr ) ;
     public final void rule__TemporalPrefixExpr__ExprAssignment_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17584:1: ( ( ruleTemporalPrefixExpr ) )
-            // InternalSpear.g:17585:1: ( ruleTemporalPrefixExpr )
+            // InternalSpear.g:18218:1: ( ( ruleTemporalPrefixExpr ) )
+            // InternalSpear.g:18219:1: ( ruleTemporalPrefixExpr )
             {
-            // InternalSpear.g:17585:1: ( ruleTemporalPrefixExpr )
-            // InternalSpear.g:17586:1: ruleTemporalPrefixExpr
+            // InternalSpear.g:18219:1: ( ruleTemporalPrefixExpr )
+            // InternalSpear.g:18220:1: ruleTemporalPrefixExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTemporalPrefixExprAccess().getExprTemporalPrefixExprParserRuleCall_0_2_0()); 
@@ -49628,17 +51333,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalExpr__OpAssignment_1_0_0_1"
-    // InternalSpear.g:17595:1: rule__RelationalExpr__OpAssignment_1_0_0_1 : ( ruleRelationalOp ) ;
+    // InternalSpear.g:18229:1: rule__RelationalExpr__OpAssignment_1_0_0_1 : ( ruleRelationalOp ) ;
     public final void rule__RelationalExpr__OpAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17599:1: ( ( ruleRelationalOp ) )
-            // InternalSpear.g:17600:1: ( ruleRelationalOp )
+            // InternalSpear.g:18233:1: ( ( ruleRelationalOp ) )
+            // InternalSpear.g:18234:1: ( ruleRelationalOp )
             {
-            // InternalSpear.g:17600:1: ( ruleRelationalOp )
-            // InternalSpear.g:17601:1: ruleRelationalOp
+            // InternalSpear.g:18234:1: ( ruleRelationalOp )
+            // InternalSpear.g:18235:1: ruleRelationalOp
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalExprAccess().getOpRelationalOpParserRuleCall_1_0_0_1_0()); 
@@ -49673,17 +51378,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalExpr__RightAssignment_1_1"
-    // InternalSpear.g:17610:1: rule__RelationalExpr__RightAssignment_1_1 : ( ruleRelationalExpr ) ;
+    // InternalSpear.g:18244:1: rule__RelationalExpr__RightAssignment_1_1 : ( ruleRelationalExpr ) ;
     public final void rule__RelationalExpr__RightAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17614:1: ( ( ruleRelationalExpr ) )
-            // InternalSpear.g:17615:1: ( ruleRelationalExpr )
+            // InternalSpear.g:18248:1: ( ( ruleRelationalExpr ) )
+            // InternalSpear.g:18249:1: ( ruleRelationalExpr )
             {
-            // InternalSpear.g:17615:1: ( ruleRelationalExpr )
-            // InternalSpear.g:17616:1: ruleRelationalExpr
+            // InternalSpear.g:18249:1: ( ruleRelationalExpr )
+            // InternalSpear.g:18250:1: ruleRelationalExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalExprAccess().getRightRelationalExprParserRuleCall_1_1_0()); 
@@ -49718,23 +51423,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PlusExpr__OpAssignment_1_0_0_1"
-    // InternalSpear.g:17625:1: rule__PlusExpr__OpAssignment_1_0_0_1 : ( ( rule__PlusExpr__OpAlternatives_1_0_0_1_0 ) ) ;
+    // InternalSpear.g:18259:1: rule__PlusExpr__OpAssignment_1_0_0_1 : ( ( rule__PlusExpr__OpAlternatives_1_0_0_1_0 ) ) ;
     public final void rule__PlusExpr__OpAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17629:1: ( ( ( rule__PlusExpr__OpAlternatives_1_0_0_1_0 ) ) )
-            // InternalSpear.g:17630:1: ( ( rule__PlusExpr__OpAlternatives_1_0_0_1_0 ) )
+            // InternalSpear.g:18263:1: ( ( ( rule__PlusExpr__OpAlternatives_1_0_0_1_0 ) ) )
+            // InternalSpear.g:18264:1: ( ( rule__PlusExpr__OpAlternatives_1_0_0_1_0 ) )
             {
-            // InternalSpear.g:17630:1: ( ( rule__PlusExpr__OpAlternatives_1_0_0_1_0 ) )
-            // InternalSpear.g:17631:1: ( rule__PlusExpr__OpAlternatives_1_0_0_1_0 )
+            // InternalSpear.g:18264:1: ( ( rule__PlusExpr__OpAlternatives_1_0_0_1_0 ) )
+            // InternalSpear.g:18265:1: ( rule__PlusExpr__OpAlternatives_1_0_0_1_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPlusExprAccess().getOpAlternatives_1_0_0_1_0()); 
             }
-            // InternalSpear.g:17632:1: ( rule__PlusExpr__OpAlternatives_1_0_0_1_0 )
-            // InternalSpear.g:17632:2: rule__PlusExpr__OpAlternatives_1_0_0_1_0
+            // InternalSpear.g:18266:1: ( rule__PlusExpr__OpAlternatives_1_0_0_1_0 )
+            // InternalSpear.g:18266:2: rule__PlusExpr__OpAlternatives_1_0_0_1_0
             {
             pushFollow(FOLLOW_2);
             rule__PlusExpr__OpAlternatives_1_0_0_1_0();
@@ -49769,17 +51474,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PlusExpr__RightAssignment_1_1"
-    // InternalSpear.g:17641:1: rule__PlusExpr__RightAssignment_1_1 : ( rulePlusExpr ) ;
+    // InternalSpear.g:18275:1: rule__PlusExpr__RightAssignment_1_1 : ( rulePlusExpr ) ;
     public final void rule__PlusExpr__RightAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17645:1: ( ( rulePlusExpr ) )
-            // InternalSpear.g:17646:1: ( rulePlusExpr )
+            // InternalSpear.g:18279:1: ( ( rulePlusExpr ) )
+            // InternalSpear.g:18280:1: ( rulePlusExpr )
             {
-            // InternalSpear.g:17646:1: ( rulePlusExpr )
-            // InternalSpear.g:17647:1: rulePlusExpr
+            // InternalSpear.g:18280:1: ( rulePlusExpr )
+            // InternalSpear.g:18281:1: rulePlusExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPlusExprAccess().getRightPlusExprParserRuleCall_1_1_0()); 
@@ -49814,23 +51519,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplyExpr__OpAssignment_1_0_0_1"
-    // InternalSpear.g:17656:1: rule__MultiplyExpr__OpAssignment_1_0_0_1 : ( ( rule__MultiplyExpr__OpAlternatives_1_0_0_1_0 ) ) ;
+    // InternalSpear.g:18290:1: rule__MultiplyExpr__OpAssignment_1_0_0_1 : ( ( rule__MultiplyExpr__OpAlternatives_1_0_0_1_0 ) ) ;
     public final void rule__MultiplyExpr__OpAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17660:1: ( ( ( rule__MultiplyExpr__OpAlternatives_1_0_0_1_0 ) ) )
-            // InternalSpear.g:17661:1: ( ( rule__MultiplyExpr__OpAlternatives_1_0_0_1_0 ) )
+            // InternalSpear.g:18294:1: ( ( ( rule__MultiplyExpr__OpAlternatives_1_0_0_1_0 ) ) )
+            // InternalSpear.g:18295:1: ( ( rule__MultiplyExpr__OpAlternatives_1_0_0_1_0 ) )
             {
-            // InternalSpear.g:17661:1: ( ( rule__MultiplyExpr__OpAlternatives_1_0_0_1_0 ) )
-            // InternalSpear.g:17662:1: ( rule__MultiplyExpr__OpAlternatives_1_0_0_1_0 )
+            // InternalSpear.g:18295:1: ( ( rule__MultiplyExpr__OpAlternatives_1_0_0_1_0 ) )
+            // InternalSpear.g:18296:1: ( rule__MultiplyExpr__OpAlternatives_1_0_0_1_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMultiplyExprAccess().getOpAlternatives_1_0_0_1_0()); 
             }
-            // InternalSpear.g:17663:1: ( rule__MultiplyExpr__OpAlternatives_1_0_0_1_0 )
-            // InternalSpear.g:17663:2: rule__MultiplyExpr__OpAlternatives_1_0_0_1_0
+            // InternalSpear.g:18297:1: ( rule__MultiplyExpr__OpAlternatives_1_0_0_1_0 )
+            // InternalSpear.g:18297:2: rule__MultiplyExpr__OpAlternatives_1_0_0_1_0
             {
             pushFollow(FOLLOW_2);
             rule__MultiplyExpr__OpAlternatives_1_0_0_1_0();
@@ -49865,17 +51570,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplyExpr__RightAssignment_1_1"
-    // InternalSpear.g:17672:1: rule__MultiplyExpr__RightAssignment_1_1 : ( ruleMultiplyExpr ) ;
+    // InternalSpear.g:18306:1: rule__MultiplyExpr__RightAssignment_1_1 : ( ruleMultiplyExpr ) ;
     public final void rule__MultiplyExpr__RightAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17676:1: ( ( ruleMultiplyExpr ) )
-            // InternalSpear.g:17677:1: ( ruleMultiplyExpr )
+            // InternalSpear.g:18310:1: ( ( ruleMultiplyExpr ) )
+            // InternalSpear.g:18311:1: ( ruleMultiplyExpr )
             {
-            // InternalSpear.g:17677:1: ( ruleMultiplyExpr )
-            // InternalSpear.g:17678:1: ruleMultiplyExpr
+            // InternalSpear.g:18311:1: ( ruleMultiplyExpr )
+            // InternalSpear.g:18312:1: ruleMultiplyExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMultiplyExprAccess().getRightMultiplyExprParserRuleCall_1_1_0()); 
@@ -49910,23 +51615,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ArrowExpr__OpAssignment_1_0_0_1"
-    // InternalSpear.g:17687:1: rule__ArrowExpr__OpAssignment_1_0_0_1 : ( ( rule__ArrowExpr__OpAlternatives_1_0_0_1_0 ) ) ;
+    // InternalSpear.g:18321:1: rule__ArrowExpr__OpAssignment_1_0_0_1 : ( ( rule__ArrowExpr__OpAlternatives_1_0_0_1_0 ) ) ;
     public final void rule__ArrowExpr__OpAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17691:1: ( ( ( rule__ArrowExpr__OpAlternatives_1_0_0_1_0 ) ) )
-            // InternalSpear.g:17692:1: ( ( rule__ArrowExpr__OpAlternatives_1_0_0_1_0 ) )
+            // InternalSpear.g:18325:1: ( ( ( rule__ArrowExpr__OpAlternatives_1_0_0_1_0 ) ) )
+            // InternalSpear.g:18326:1: ( ( rule__ArrowExpr__OpAlternatives_1_0_0_1_0 ) )
             {
-            // InternalSpear.g:17692:1: ( ( rule__ArrowExpr__OpAlternatives_1_0_0_1_0 ) )
-            // InternalSpear.g:17693:1: ( rule__ArrowExpr__OpAlternatives_1_0_0_1_0 )
+            // InternalSpear.g:18326:1: ( ( rule__ArrowExpr__OpAlternatives_1_0_0_1_0 ) )
+            // InternalSpear.g:18327:1: ( rule__ArrowExpr__OpAlternatives_1_0_0_1_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrowExprAccess().getOpAlternatives_1_0_0_1_0()); 
             }
-            // InternalSpear.g:17694:1: ( rule__ArrowExpr__OpAlternatives_1_0_0_1_0 )
-            // InternalSpear.g:17694:2: rule__ArrowExpr__OpAlternatives_1_0_0_1_0
+            // InternalSpear.g:18328:1: ( rule__ArrowExpr__OpAlternatives_1_0_0_1_0 )
+            // InternalSpear.g:18328:2: rule__ArrowExpr__OpAlternatives_1_0_0_1_0
             {
             pushFollow(FOLLOW_2);
             rule__ArrowExpr__OpAlternatives_1_0_0_1_0();
@@ -49961,17 +51666,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ArrowExpr__RightAssignment_1_1"
-    // InternalSpear.g:17703:1: rule__ArrowExpr__RightAssignment_1_1 : ( ruleArrowExpr ) ;
+    // InternalSpear.g:18337:1: rule__ArrowExpr__RightAssignment_1_1 : ( ruleArrowExpr ) ;
     public final void rule__ArrowExpr__RightAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17707:1: ( ( ruleArrowExpr ) )
-            // InternalSpear.g:17708:1: ( ruleArrowExpr )
+            // InternalSpear.g:18341:1: ( ( ruleArrowExpr ) )
+            // InternalSpear.g:18342:1: ( ruleArrowExpr )
             {
-            // InternalSpear.g:17708:1: ( ruleArrowExpr )
-            // InternalSpear.g:17709:1: ruleArrowExpr
+            // InternalSpear.g:18342:1: ( ruleArrowExpr )
+            // InternalSpear.g:18343:1: ruleArrowExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrowExprAccess().getRightArrowExprParserRuleCall_1_1_0()); 
@@ -50006,23 +51711,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixExpr__OpAssignment_0_1"
-    // InternalSpear.g:17718:1: rule__PrefixExpr__OpAssignment_0_1 : ( ( rule__PrefixExpr__OpAlternatives_0_1_0 ) ) ;
+    // InternalSpear.g:18352:1: rule__PrefixExpr__OpAssignment_0_1 : ( ( rule__PrefixExpr__OpAlternatives_0_1_0 ) ) ;
     public final void rule__PrefixExpr__OpAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17722:1: ( ( ( rule__PrefixExpr__OpAlternatives_0_1_0 ) ) )
-            // InternalSpear.g:17723:1: ( ( rule__PrefixExpr__OpAlternatives_0_1_0 ) )
+            // InternalSpear.g:18356:1: ( ( ( rule__PrefixExpr__OpAlternatives_0_1_0 ) ) )
+            // InternalSpear.g:18357:1: ( ( rule__PrefixExpr__OpAlternatives_0_1_0 ) )
             {
-            // InternalSpear.g:17723:1: ( ( rule__PrefixExpr__OpAlternatives_0_1_0 ) )
-            // InternalSpear.g:17724:1: ( rule__PrefixExpr__OpAlternatives_0_1_0 )
+            // InternalSpear.g:18357:1: ( ( rule__PrefixExpr__OpAlternatives_0_1_0 ) )
+            // InternalSpear.g:18358:1: ( rule__PrefixExpr__OpAlternatives_0_1_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPrefixExprAccess().getOpAlternatives_0_1_0()); 
             }
-            // InternalSpear.g:17725:1: ( rule__PrefixExpr__OpAlternatives_0_1_0 )
-            // InternalSpear.g:17725:2: rule__PrefixExpr__OpAlternatives_0_1_0
+            // InternalSpear.g:18359:1: ( rule__PrefixExpr__OpAlternatives_0_1_0 )
+            // InternalSpear.g:18359:2: rule__PrefixExpr__OpAlternatives_0_1_0
             {
             pushFollow(FOLLOW_2);
             rule__PrefixExpr__OpAlternatives_0_1_0();
@@ -50057,17 +51762,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixExpr__ExprAssignment_0_2"
-    // InternalSpear.g:17734:1: rule__PrefixExpr__ExprAssignment_0_2 : ( rulePrefixExpr ) ;
+    // InternalSpear.g:18368:1: rule__PrefixExpr__ExprAssignment_0_2 : ( rulePrefixExpr ) ;
     public final void rule__PrefixExpr__ExprAssignment_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17738:1: ( ( rulePrefixExpr ) )
-            // InternalSpear.g:17739:1: ( rulePrefixExpr )
+            // InternalSpear.g:18372:1: ( ( rulePrefixExpr ) )
+            // InternalSpear.g:18373:1: ( rulePrefixExpr )
             {
-            // InternalSpear.g:17739:1: ( rulePrefixExpr )
-            // InternalSpear.g:17740:1: rulePrefixExpr
+            // InternalSpear.g:18373:1: ( rulePrefixExpr )
+            // InternalSpear.g:18374:1: rulePrefixExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPrefixExprAccess().getExprPrefixExprParserRuleCall_0_2_0()); 
@@ -50102,17 +51807,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixExpr__VarAssignment_1_2"
-    // InternalSpear.g:17749:1: rule__PrefixExpr__VarAssignment_1_2 : ( rulePrefixExpr ) ;
+    // InternalSpear.g:18383:1: rule__PrefixExpr__VarAssignment_1_2 : ( rulePrefixExpr ) ;
     public final void rule__PrefixExpr__VarAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17753:1: ( ( rulePrefixExpr ) )
-            // InternalSpear.g:17754:1: ( rulePrefixExpr )
+            // InternalSpear.g:18387:1: ( ( rulePrefixExpr ) )
+            // InternalSpear.g:18388:1: ( rulePrefixExpr )
             {
-            // InternalSpear.g:17754:1: ( rulePrefixExpr )
-            // InternalSpear.g:17755:1: rulePrefixExpr
+            // InternalSpear.g:18388:1: ( rulePrefixExpr )
+            // InternalSpear.g:18389:1: rulePrefixExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPrefixExprAccess().getVarPrefixExprParserRuleCall_1_2_0()); 
@@ -50147,17 +51852,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrefixExpr__InitAssignment_1_3_3"
-    // InternalSpear.g:17764:1: rule__PrefixExpr__InitAssignment_1_3_3 : ( rulePrefixExpr ) ;
+    // InternalSpear.g:18398:1: rule__PrefixExpr__InitAssignment_1_3_3 : ( rulePrefixExpr ) ;
     public final void rule__PrefixExpr__InitAssignment_1_3_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17768:1: ( ( rulePrefixExpr ) )
-            // InternalSpear.g:17769:1: ( rulePrefixExpr )
+            // InternalSpear.g:18402:1: ( ( rulePrefixExpr ) )
+            // InternalSpear.g:18403:1: ( rulePrefixExpr )
             {
-            // InternalSpear.g:17769:1: ( rulePrefixExpr )
-            // InternalSpear.g:17770:1: rulePrefixExpr
+            // InternalSpear.g:18403:1: ( rulePrefixExpr )
+            // InternalSpear.g:18404:1: rulePrefixExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPrefixExprAccess().getInitPrefixExprParserRuleCall_1_3_3_0()); 
@@ -50192,23 +51897,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__FieldAssignment_1_0_1"
-    // InternalSpear.g:17779:1: rule__AccessExpr__FieldAssignment_1_0_1 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:18413:1: rule__AccessExpr__FieldAssignment_1_0_1 : ( ( RULE_ID ) ) ;
     public final void rule__AccessExpr__FieldAssignment_1_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17783:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:17784:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18417:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:18418:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:17784:1: ( ( RULE_ID ) )
-            // InternalSpear.g:17785:1: ( RULE_ID )
+            // InternalSpear.g:18418:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18419:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getFieldFieldTypeCrossReference_1_0_1_0()); 
             }
-            // InternalSpear.g:17786:1: ( RULE_ID )
-            // InternalSpear.g:17787:1: RULE_ID
+            // InternalSpear.g:18420:1: ( RULE_ID )
+            // InternalSpear.g:18421:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getFieldFieldTypeIDTerminalRuleCall_1_0_1_0_1()); 
@@ -50245,23 +51950,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__FieldAssignment_1_1_0_0_2"
-    // InternalSpear.g:17798:1: rule__AccessExpr__FieldAssignment_1_1_0_0_2 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:18432:1: rule__AccessExpr__FieldAssignment_1_1_0_0_2 : ( ( RULE_ID ) ) ;
     public final void rule__AccessExpr__FieldAssignment_1_1_0_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17802:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:17803:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18436:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:18437:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:17803:1: ( ( RULE_ID ) )
-            // InternalSpear.g:17804:1: ( RULE_ID )
+            // InternalSpear.g:18437:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18438:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getFieldFieldTypeCrossReference_1_1_0_0_2_0()); 
             }
-            // InternalSpear.g:17805:1: ( RULE_ID )
-            // InternalSpear.g:17806:1: RULE_ID
+            // InternalSpear.g:18439:1: ( RULE_ID )
+            // InternalSpear.g:18440:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getFieldFieldTypeIDTerminalRuleCall_1_1_0_0_2_0_1()); 
@@ -50298,17 +52003,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__ValueAssignment_1_1_1"
-    // InternalSpear.g:17817:1: rule__AccessExpr__ValueAssignment_1_1_1 : ( ruleExpr ) ;
+    // InternalSpear.g:18451:1: rule__AccessExpr__ValueAssignment_1_1_1 : ( ruleExpr ) ;
     public final void rule__AccessExpr__ValueAssignment_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17821:1: ( ( ruleExpr ) )
-            // InternalSpear.g:17822:1: ( ruleExpr )
+            // InternalSpear.g:18455:1: ( ( ruleExpr ) )
+            // InternalSpear.g:18456:1: ( ruleExpr )
             {
-            // InternalSpear.g:17822:1: ( ruleExpr )
-            // InternalSpear.g:17823:1: ruleExpr
+            // InternalSpear.g:18456:1: ( ruleExpr )
+            // InternalSpear.g:18457:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getValueExprParserRuleCall_1_1_1_0()); 
@@ -50343,17 +52048,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__IndexAssignment_1_2_1"
-    // InternalSpear.g:17832:1: rule__AccessExpr__IndexAssignment_1_2_1 : ( ruleExpr ) ;
+    // InternalSpear.g:18466:1: rule__AccessExpr__IndexAssignment_1_2_1 : ( ruleExpr ) ;
     public final void rule__AccessExpr__IndexAssignment_1_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17836:1: ( ( ruleExpr ) )
-            // InternalSpear.g:17837:1: ( ruleExpr )
+            // InternalSpear.g:18470:1: ( ( ruleExpr ) )
+            // InternalSpear.g:18471:1: ( ruleExpr )
             {
-            // InternalSpear.g:17837:1: ( ruleExpr )
-            // InternalSpear.g:17838:1: ruleExpr
+            // InternalSpear.g:18471:1: ( ruleExpr )
+            // InternalSpear.g:18472:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getIndexExprParserRuleCall_1_2_1_0()); 
@@ -50388,17 +52093,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AccessExpr__ValueAssignment_1_2_2_1"
-    // InternalSpear.g:17847:1: rule__AccessExpr__ValueAssignment_1_2_2_1 : ( ruleExpr ) ;
+    // InternalSpear.g:18481:1: rule__AccessExpr__ValueAssignment_1_2_2_1 : ( ruleExpr ) ;
     public final void rule__AccessExpr__ValueAssignment_1_2_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17851:1: ( ( ruleExpr ) )
-            // InternalSpear.g:17852:1: ( ruleExpr )
+            // InternalSpear.g:18485:1: ( ( ruleExpr ) )
+            // InternalSpear.g:18486:1: ( ruleExpr )
             {
-            // InternalSpear.g:17852:1: ( ruleExpr )
-            // InternalSpear.g:17853:1: ruleExpr
+            // InternalSpear.g:18486:1: ( ruleExpr )
+            // InternalSpear.g:18487:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAccessExprAccess().getValueExprParserRuleCall_1_2_2_1_0()); 
@@ -50433,23 +52138,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__IdAssignment_1_1"
-    // InternalSpear.g:17862:1: rule__AtomicExpr__IdAssignment_1_1 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:18496:1: rule__AtomicExpr__IdAssignment_1_1 : ( ( RULE_ID ) ) ;
     public final void rule__AtomicExpr__IdAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17866:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:17867:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18500:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:18501:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:17867:1: ( ( RULE_ID ) )
-            // InternalSpear.g:17868:1: ( RULE_ID )
+            // InternalSpear.g:18501:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18502:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getIdIdRefCrossReference_1_1_0()); 
             }
-            // InternalSpear.g:17869:1: ( RULE_ID )
-            // InternalSpear.g:17870:1: RULE_ID
+            // InternalSpear.g:18503:1: ( RULE_ID )
+            // InternalSpear.g:18504:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getIdIdRefIDTerminalRuleCall_1_1_0_1()); 
@@ -50486,23 +52191,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__IdsAssignment_2_2"
-    // InternalSpear.g:17881:1: rule__AtomicExpr__IdsAssignment_2_2 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:18515:1: rule__AtomicExpr__IdsAssignment_2_2 : ( ( RULE_ID ) ) ;
     public final void rule__AtomicExpr__IdsAssignment_2_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17885:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:17886:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18519:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:18520:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:17886:1: ( ( RULE_ID ) )
-            // InternalSpear.g:17887:1: ( RULE_ID )
+            // InternalSpear.g:18520:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18521:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getIdsIdRefCrossReference_2_2_0()); 
             }
-            // InternalSpear.g:17888:1: ( RULE_ID )
-            // InternalSpear.g:17889:1: RULE_ID
+            // InternalSpear.g:18522:1: ( RULE_ID )
+            // InternalSpear.g:18523:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getIdsIdRefIDTerminalRuleCall_2_2_0_1()); 
@@ -50539,23 +52244,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__IdsAssignment_2_3_1"
-    // InternalSpear.g:17900:1: rule__AtomicExpr__IdsAssignment_2_3_1 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:18534:1: rule__AtomicExpr__IdsAssignment_2_3_1 : ( ( RULE_ID ) ) ;
     public final void rule__AtomicExpr__IdsAssignment_2_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17904:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:17905:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18538:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:18539:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:17905:1: ( ( RULE_ID ) )
-            // InternalSpear.g:17906:1: ( RULE_ID )
+            // InternalSpear.g:18539:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18540:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getIdsIdRefCrossReference_2_3_1_0()); 
             }
-            // InternalSpear.g:17907:1: ( RULE_ID )
-            // InternalSpear.g:17908:1: RULE_ID
+            // InternalSpear.g:18541:1: ( RULE_ID )
+            // InternalSpear.g:18542:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getIdsIdRefIDTerminalRuleCall_2_3_1_0_1()); 
@@ -50592,17 +52297,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__CondAssignment_3_2"
-    // InternalSpear.g:17919:1: rule__AtomicExpr__CondAssignment_3_2 : ( ruleExpr ) ;
+    // InternalSpear.g:18553:1: rule__AtomicExpr__CondAssignment_3_2 : ( ruleExpr ) ;
     public final void rule__AtomicExpr__CondAssignment_3_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17923:1: ( ( ruleExpr ) )
-            // InternalSpear.g:17924:1: ( ruleExpr )
+            // InternalSpear.g:18557:1: ( ( ruleExpr ) )
+            // InternalSpear.g:18558:1: ( ruleExpr )
             {
-            // InternalSpear.g:17924:1: ( ruleExpr )
-            // InternalSpear.g:17925:1: ruleExpr
+            // InternalSpear.g:18558:1: ( ruleExpr )
+            // InternalSpear.g:18559:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getCondExprParserRuleCall_3_2_0()); 
@@ -50637,17 +52342,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__ThenAssignment_3_4"
-    // InternalSpear.g:17934:1: rule__AtomicExpr__ThenAssignment_3_4 : ( ruleExpr ) ;
+    // InternalSpear.g:18568:1: rule__AtomicExpr__ThenAssignment_3_4 : ( ruleExpr ) ;
     public final void rule__AtomicExpr__ThenAssignment_3_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17938:1: ( ( ruleExpr ) )
-            // InternalSpear.g:17939:1: ( ruleExpr )
+            // InternalSpear.g:18572:1: ( ( ruleExpr ) )
+            // InternalSpear.g:18573:1: ( ruleExpr )
             {
-            // InternalSpear.g:17939:1: ( ruleExpr )
-            // InternalSpear.g:17940:1: ruleExpr
+            // InternalSpear.g:18573:1: ( ruleExpr )
+            // InternalSpear.g:18574:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getThenExprParserRuleCall_3_4_0()); 
@@ -50682,17 +52387,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__ElseAssignment_3_5_1"
-    // InternalSpear.g:17949:1: rule__AtomicExpr__ElseAssignment_3_5_1 : ( ruleExpr ) ;
+    // InternalSpear.g:18583:1: rule__AtomicExpr__ElseAssignment_3_5_1 : ( ruleExpr ) ;
     public final void rule__AtomicExpr__ElseAssignment_3_5_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17953:1: ( ( ruleExpr ) )
-            // InternalSpear.g:17954:1: ( ruleExpr )
+            // InternalSpear.g:18587:1: ( ( ruleExpr ) )
+            // InternalSpear.g:18588:1: ( ruleExpr )
             {
-            // InternalSpear.g:17954:1: ( ruleExpr )
-            // InternalSpear.g:17955:1: ruleExpr
+            // InternalSpear.g:18588:1: ( ruleExpr )
+            // InternalSpear.g:18589:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getElseExprParserRuleCall_3_5_1_0()); 
@@ -50727,23 +52432,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__TypeAssignment_4_2"
-    // InternalSpear.g:17964:1: rule__AtomicExpr__TypeAssignment_4_2 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:18598:1: rule__AtomicExpr__TypeAssignment_4_2 : ( ( RULE_ID ) ) ;
     public final void rule__AtomicExpr__TypeAssignment_4_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17968:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:17969:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18602:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:18603:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:17969:1: ( ( RULE_ID ) )
-            // InternalSpear.g:17970:1: ( RULE_ID )
+            // InternalSpear.g:18603:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18604:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getTypeRecordTypeDefCrossReference_4_2_0()); 
             }
-            // InternalSpear.g:17971:1: ( RULE_ID )
-            // InternalSpear.g:17972:1: RULE_ID
+            // InternalSpear.g:18605:1: ( RULE_ID )
+            // InternalSpear.g:18606:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getTypeRecordTypeDefIDTerminalRuleCall_4_2_0_1()); 
@@ -50780,17 +52485,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__FieldExprsAssignment_4_4"
-    // InternalSpear.g:17983:1: rule__AtomicExpr__FieldExprsAssignment_4_4 : ( ruleFieldExpr ) ;
+    // InternalSpear.g:18617:1: rule__AtomicExpr__FieldExprsAssignment_4_4 : ( ruleFieldExpr ) ;
     public final void rule__AtomicExpr__FieldExprsAssignment_4_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:17987:1: ( ( ruleFieldExpr ) )
-            // InternalSpear.g:17988:1: ( ruleFieldExpr )
+            // InternalSpear.g:18621:1: ( ( ruleFieldExpr ) )
+            // InternalSpear.g:18622:1: ( ruleFieldExpr )
             {
-            // InternalSpear.g:17988:1: ( ruleFieldExpr )
-            // InternalSpear.g:17989:1: ruleFieldExpr
+            // InternalSpear.g:18622:1: ( ruleFieldExpr )
+            // InternalSpear.g:18623:1: ruleFieldExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getFieldExprsFieldExprParserRuleCall_4_4_0()); 
@@ -50825,17 +52530,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__FieldExprsAssignment_4_5_1"
-    // InternalSpear.g:17998:1: rule__AtomicExpr__FieldExprsAssignment_4_5_1 : ( ruleFieldExpr ) ;
+    // InternalSpear.g:18632:1: rule__AtomicExpr__FieldExprsAssignment_4_5_1 : ( ruleFieldExpr ) ;
     public final void rule__AtomicExpr__FieldExprsAssignment_4_5_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18002:1: ( ( ruleFieldExpr ) )
-            // InternalSpear.g:18003:1: ( ruleFieldExpr )
+            // InternalSpear.g:18636:1: ( ( ruleFieldExpr ) )
+            // InternalSpear.g:18637:1: ( ruleFieldExpr )
             {
-            // InternalSpear.g:18003:1: ( ruleFieldExpr )
-            // InternalSpear.g:18004:1: ruleFieldExpr
+            // InternalSpear.g:18637:1: ( ruleFieldExpr )
+            // InternalSpear.g:18638:1: ruleFieldExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getFieldExprsFieldExprParserRuleCall_4_5_1_0()); 
@@ -50870,23 +52575,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__TypeAssignment_5_2"
-    // InternalSpear.g:18013:1: rule__AtomicExpr__TypeAssignment_5_2 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:18647:1: rule__AtomicExpr__TypeAssignment_5_2 : ( ( RULE_ID ) ) ;
     public final void rule__AtomicExpr__TypeAssignment_5_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18017:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:18018:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18651:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:18652:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:18018:1: ( ( RULE_ID ) )
-            // InternalSpear.g:18019:1: ( RULE_ID )
+            // InternalSpear.g:18652:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18653:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getTypeRecordTypeDefCrossReference_5_2_0()); 
             }
-            // InternalSpear.g:18020:1: ( RULE_ID )
-            // InternalSpear.g:18021:1: RULE_ID
+            // InternalSpear.g:18654:1: ( RULE_ID )
+            // InternalSpear.g:18655:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getTypeRecordTypeDefIDTerminalRuleCall_5_2_0_1()); 
@@ -50923,17 +52628,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__ExprsAssignment_5_4"
-    // InternalSpear.g:18032:1: rule__AtomicExpr__ExprsAssignment_5_4 : ( ruleExpr ) ;
+    // InternalSpear.g:18666:1: rule__AtomicExpr__ExprsAssignment_5_4 : ( ruleExpr ) ;
     public final void rule__AtomicExpr__ExprsAssignment_5_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18036:1: ( ( ruleExpr ) )
-            // InternalSpear.g:18037:1: ( ruleExpr )
+            // InternalSpear.g:18670:1: ( ( ruleExpr ) )
+            // InternalSpear.g:18671:1: ( ruleExpr )
             {
-            // InternalSpear.g:18037:1: ( ruleExpr )
-            // InternalSpear.g:18038:1: ruleExpr
+            // InternalSpear.g:18671:1: ( ruleExpr )
+            // InternalSpear.g:18672:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getExprsExprParserRuleCall_5_4_0()); 
@@ -50968,17 +52673,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__ExprsAssignment_5_5_1"
-    // InternalSpear.g:18047:1: rule__AtomicExpr__ExprsAssignment_5_5_1 : ( ruleExpr ) ;
+    // InternalSpear.g:18681:1: rule__AtomicExpr__ExprsAssignment_5_5_1 : ( ruleExpr ) ;
     public final void rule__AtomicExpr__ExprsAssignment_5_5_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18051:1: ( ( ruleExpr ) )
-            // InternalSpear.g:18052:1: ( ruleExpr )
+            // InternalSpear.g:18685:1: ( ( ruleExpr ) )
+            // InternalSpear.g:18686:1: ( ruleExpr )
             {
-            // InternalSpear.g:18052:1: ( ruleExpr )
-            // InternalSpear.g:18053:1: ruleExpr
+            // InternalSpear.g:18686:1: ( ruleExpr )
+            // InternalSpear.g:18687:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getExprsExprParserRuleCall_5_5_1_0()); 
@@ -51013,23 +52718,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__TypeAssignment_6_2"
-    // InternalSpear.g:18062:1: rule__AtomicExpr__TypeAssignment_6_2 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:18696:1: rule__AtomicExpr__TypeAssignment_6_2 : ( ( RULE_ID ) ) ;
     public final void rule__AtomicExpr__TypeAssignment_6_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18066:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:18067:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18700:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:18701:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:18067:1: ( ( RULE_ID ) )
-            // InternalSpear.g:18068:1: ( RULE_ID )
+            // InternalSpear.g:18701:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18702:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getTypeArrayTypeDefCrossReference_6_2_0()); 
             }
-            // InternalSpear.g:18069:1: ( RULE_ID )
-            // InternalSpear.g:18070:1: RULE_ID
+            // InternalSpear.g:18703:1: ( RULE_ID )
+            // InternalSpear.g:18704:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getTypeArrayTypeDefIDTerminalRuleCall_6_2_0_1()); 
@@ -51066,17 +52771,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__ExprsAssignment_6_4"
-    // InternalSpear.g:18081:1: rule__AtomicExpr__ExprsAssignment_6_4 : ( ruleExpr ) ;
+    // InternalSpear.g:18715:1: rule__AtomicExpr__ExprsAssignment_6_4 : ( ruleExpr ) ;
     public final void rule__AtomicExpr__ExprsAssignment_6_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18085:1: ( ( ruleExpr ) )
-            // InternalSpear.g:18086:1: ( ruleExpr )
+            // InternalSpear.g:18719:1: ( ( ruleExpr ) )
+            // InternalSpear.g:18720:1: ( ruleExpr )
             {
-            // InternalSpear.g:18086:1: ( ruleExpr )
-            // InternalSpear.g:18087:1: ruleExpr
+            // InternalSpear.g:18720:1: ( ruleExpr )
+            // InternalSpear.g:18721:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getExprsExprParserRuleCall_6_4_0()); 
@@ -51111,17 +52816,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__ExprsAssignment_6_5_1"
-    // InternalSpear.g:18096:1: rule__AtomicExpr__ExprsAssignment_6_5_1 : ( ruleExpr ) ;
+    // InternalSpear.g:18730:1: rule__AtomicExpr__ExprsAssignment_6_5_1 : ( ruleExpr ) ;
     public final void rule__AtomicExpr__ExprsAssignment_6_5_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18100:1: ( ( ruleExpr ) )
-            // InternalSpear.g:18101:1: ( ruleExpr )
+            // InternalSpear.g:18734:1: ( ( ruleExpr ) )
+            // InternalSpear.g:18735:1: ( ruleExpr )
             {
-            // InternalSpear.g:18101:1: ( ruleExpr )
-            // InternalSpear.g:18102:1: ruleExpr
+            // InternalSpear.g:18735:1: ( ruleExpr )
+            // InternalSpear.g:18736:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getExprsExprParserRuleCall_6_5_1_0()); 
@@ -51156,23 +52861,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__PatternAssignment_7_1"
-    // InternalSpear.g:18111:1: rule__AtomicExpr__PatternAssignment_7_1 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:18745:1: rule__AtomicExpr__PatternAssignment_7_1 : ( ( RULE_ID ) ) ;
     public final void rule__AtomicExpr__PatternAssignment_7_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18115:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:18116:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18749:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:18750:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:18116:1: ( ( RULE_ID ) )
-            // InternalSpear.g:18117:1: ( RULE_ID )
+            // InternalSpear.g:18750:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18751:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getPatternPatternCrossReference_7_1_0()); 
             }
-            // InternalSpear.g:18118:1: ( RULE_ID )
-            // InternalSpear.g:18119:1: RULE_ID
+            // InternalSpear.g:18752:1: ( RULE_ID )
+            // InternalSpear.g:18753:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getPatternPatternIDTerminalRuleCall_7_1_0_1()); 
@@ -51209,17 +52914,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__ArgsAssignment_7_3_0"
-    // InternalSpear.g:18130:1: rule__AtomicExpr__ArgsAssignment_7_3_0 : ( ruleExpr ) ;
+    // InternalSpear.g:18764:1: rule__AtomicExpr__ArgsAssignment_7_3_0 : ( ruleExpr ) ;
     public final void rule__AtomicExpr__ArgsAssignment_7_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18134:1: ( ( ruleExpr ) )
-            // InternalSpear.g:18135:1: ( ruleExpr )
+            // InternalSpear.g:18768:1: ( ( ruleExpr ) )
+            // InternalSpear.g:18769:1: ( ruleExpr )
             {
-            // InternalSpear.g:18135:1: ( ruleExpr )
-            // InternalSpear.g:18136:1: ruleExpr
+            // InternalSpear.g:18769:1: ( ruleExpr )
+            // InternalSpear.g:18770:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getArgsExprParserRuleCall_7_3_0_0()); 
@@ -51254,17 +52959,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__ArgsAssignment_7_3_1_1"
-    // InternalSpear.g:18145:1: rule__AtomicExpr__ArgsAssignment_7_3_1_1 : ( ruleExpr ) ;
+    // InternalSpear.g:18779:1: rule__AtomicExpr__ArgsAssignment_7_3_1_1 : ( ruleExpr ) ;
     public final void rule__AtomicExpr__ArgsAssignment_7_3_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18149:1: ( ( ruleExpr ) )
-            // InternalSpear.g:18150:1: ( ruleExpr )
+            // InternalSpear.g:18783:1: ( ( ruleExpr ) )
+            // InternalSpear.g:18784:1: ( ruleExpr )
             {
-            // InternalSpear.g:18150:1: ( ruleExpr )
-            // InternalSpear.g:18151:1: ruleExpr
+            // InternalSpear.g:18784:1: ( ruleExpr )
+            // InternalSpear.g:18785:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getArgsExprParserRuleCall_7_3_1_1_0()); 
@@ -51299,23 +53004,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__SpecAssignment_8_2"
-    // InternalSpear.g:18160:1: rule__AtomicExpr__SpecAssignment_8_2 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:18794:1: rule__AtomicExpr__SpecAssignment_8_2 : ( ( RULE_ID ) ) ;
     public final void rule__AtomicExpr__SpecAssignment_8_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18164:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:18165:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18798:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:18799:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:18165:1: ( ( RULE_ID ) )
-            // InternalSpear.g:18166:1: ( RULE_ID )
+            // InternalSpear.g:18799:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18800:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getSpecSpecificationCrossReference_8_2_0()); 
             }
-            // InternalSpear.g:18167:1: ( RULE_ID )
-            // InternalSpear.g:18168:1: RULE_ID
+            // InternalSpear.g:18801:1: ( RULE_ID )
+            // InternalSpear.g:18802:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getSpecSpecificationIDTerminalRuleCall_8_2_0_1()); 
@@ -51352,17 +53057,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__ArgsAssignment_8_4_0"
-    // InternalSpear.g:18179:1: rule__AtomicExpr__ArgsAssignment_8_4_0 : ( ruleExpr ) ;
+    // InternalSpear.g:18813:1: rule__AtomicExpr__ArgsAssignment_8_4_0 : ( ruleExpr ) ;
     public final void rule__AtomicExpr__ArgsAssignment_8_4_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18183:1: ( ( ruleExpr ) )
-            // InternalSpear.g:18184:1: ( ruleExpr )
+            // InternalSpear.g:18817:1: ( ( ruleExpr ) )
+            // InternalSpear.g:18818:1: ( ruleExpr )
             {
-            // InternalSpear.g:18184:1: ( ruleExpr )
-            // InternalSpear.g:18185:1: ruleExpr
+            // InternalSpear.g:18818:1: ( ruleExpr )
+            // InternalSpear.g:18819:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getArgsExprParserRuleCall_8_4_0_0()); 
@@ -51397,17 +53102,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__ArgsAssignment_8_4_1_1"
-    // InternalSpear.g:18194:1: rule__AtomicExpr__ArgsAssignment_8_4_1_1 : ( ruleExpr ) ;
+    // InternalSpear.g:18828:1: rule__AtomicExpr__ArgsAssignment_8_4_1_1 : ( ruleExpr ) ;
     public final void rule__AtomicExpr__ArgsAssignment_8_4_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18198:1: ( ( ruleExpr ) )
-            // InternalSpear.g:18199:1: ( ruleExpr )
+            // InternalSpear.g:18832:1: ( ( ruleExpr ) )
+            // InternalSpear.g:18833:1: ( ruleExpr )
             {
-            // InternalSpear.g:18199:1: ( ruleExpr )
-            // InternalSpear.g:18200:1: ruleExpr
+            // InternalSpear.g:18833:1: ( ruleExpr )
+            // InternalSpear.g:18834:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getArgsExprParserRuleCall_8_4_1_1_0()); 
@@ -51442,17 +53147,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralExpr__ValueAssignment_0_1"
-    // InternalSpear.g:18209:1: rule__LiteralExpr__ValueAssignment_0_1 : ( RULE_INT ) ;
+    // InternalSpear.g:18843:1: rule__LiteralExpr__ValueAssignment_0_1 : ( RULE_INT ) ;
     public final void rule__LiteralExpr__ValueAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18213:1: ( ( RULE_INT ) )
-            // InternalSpear.g:18214:1: ( RULE_INT )
+            // InternalSpear.g:18847:1: ( ( RULE_INT ) )
+            // InternalSpear.g:18848:1: ( RULE_INT )
             {
-            // InternalSpear.g:18214:1: ( RULE_INT )
-            // InternalSpear.g:18215:1: RULE_INT
+            // InternalSpear.g:18848:1: ( RULE_INT )
+            // InternalSpear.g:18849:1: RULE_INT
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLiteralExprAccess().getValueINTTerminalRuleCall_0_1_0()); 
@@ -51483,23 +53188,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralExpr__UnitAssignment_0_2"
-    // InternalSpear.g:18224:1: rule__LiteralExpr__UnitAssignment_0_2 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:18858:1: rule__LiteralExpr__UnitAssignment_0_2 : ( ( RULE_ID ) ) ;
     public final void rule__LiteralExpr__UnitAssignment_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18228:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:18229:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18862:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:18863:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:18229:1: ( ( RULE_ID ) )
-            // InternalSpear.g:18230:1: ( RULE_ID )
+            // InternalSpear.g:18863:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18864:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLiteralExprAccess().getUnitUnitDefCrossReference_0_2_0()); 
             }
-            // InternalSpear.g:18231:1: ( RULE_ID )
-            // InternalSpear.g:18232:1: RULE_ID
+            // InternalSpear.g:18865:1: ( RULE_ID )
+            // InternalSpear.g:18866:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLiteralExprAccess().getUnitUnitDefIDTerminalRuleCall_0_2_0_1()); 
@@ -51536,17 +53241,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralExpr__ValueAssignment_1_1"
-    // InternalSpear.g:18243:1: rule__LiteralExpr__ValueAssignment_1_1 : ( ruleBOOL ) ;
+    // InternalSpear.g:18877:1: rule__LiteralExpr__ValueAssignment_1_1 : ( ruleBOOL ) ;
     public final void rule__LiteralExpr__ValueAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18247:1: ( ( ruleBOOL ) )
-            // InternalSpear.g:18248:1: ( ruleBOOL )
+            // InternalSpear.g:18881:1: ( ( ruleBOOL ) )
+            // InternalSpear.g:18882:1: ( ruleBOOL )
             {
-            // InternalSpear.g:18248:1: ( ruleBOOL )
-            // InternalSpear.g:18249:1: ruleBOOL
+            // InternalSpear.g:18882:1: ( ruleBOOL )
+            // InternalSpear.g:18883:1: ruleBOOL
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLiteralExprAccess().getValueBOOLParserRuleCall_1_1_0()); 
@@ -51581,17 +53286,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralExpr__ValueAssignment_2_1"
-    // InternalSpear.g:18258:1: rule__LiteralExpr__ValueAssignment_2_1 : ( ruleREAL ) ;
+    // InternalSpear.g:18892:1: rule__LiteralExpr__ValueAssignment_2_1 : ( ruleREAL ) ;
     public final void rule__LiteralExpr__ValueAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18262:1: ( ( ruleREAL ) )
-            // InternalSpear.g:18263:1: ( ruleREAL )
+            // InternalSpear.g:18896:1: ( ( ruleREAL ) )
+            // InternalSpear.g:18897:1: ( ruleREAL )
             {
-            // InternalSpear.g:18263:1: ( ruleREAL )
-            // InternalSpear.g:18264:1: ruleREAL
+            // InternalSpear.g:18897:1: ( ruleREAL )
+            // InternalSpear.g:18898:1: ruleREAL
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLiteralExprAccess().getValueREALParserRuleCall_2_1_0()); 
@@ -51626,23 +53331,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralExpr__UnitAssignment_2_2"
-    // InternalSpear.g:18273:1: rule__LiteralExpr__UnitAssignment_2_2 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:18907:1: rule__LiteralExpr__UnitAssignment_2_2 : ( ( RULE_ID ) ) ;
     public final void rule__LiteralExpr__UnitAssignment_2_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18277:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:18278:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18911:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:18912:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:18278:1: ( ( RULE_ID ) )
-            // InternalSpear.g:18279:1: ( RULE_ID )
+            // InternalSpear.g:18912:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18913:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLiteralExprAccess().getUnitUnitDefCrossReference_2_2_0()); 
             }
-            // InternalSpear.g:18280:1: ( RULE_ID )
-            // InternalSpear.g:18281:1: RULE_ID
+            // InternalSpear.g:18914:1: ( RULE_ID )
+            // InternalSpear.g:18915:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLiteralExprAccess().getUnitUnitDefIDTerminalRuleCall_2_2_0_1()); 
@@ -51679,23 +53384,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__IdsAssignment_2"
-    // InternalSpear.g:18292:1: rule__UnusedExpr__IdsAssignment_2 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:18926:1: rule__UnusedExpr__IdsAssignment_2 : ( ( RULE_ID ) ) ;
     public final void rule__UnusedExpr__IdsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18296:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:18297:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18930:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:18931:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:18297:1: ( ( RULE_ID ) )
-            // InternalSpear.g:18298:1: ( RULE_ID )
+            // InternalSpear.g:18931:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18932:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getIdsIdRefCrossReference_2_0()); 
             }
-            // InternalSpear.g:18299:1: ( RULE_ID )
-            // InternalSpear.g:18300:1: RULE_ID
+            // InternalSpear.g:18933:1: ( RULE_ID )
+            // InternalSpear.g:18934:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getIdsIdRefIDTerminalRuleCall_2_0_1()); 
@@ -51732,23 +53437,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__IdsAssignment_3_1"
-    // InternalSpear.g:18311:1: rule__UnusedExpr__IdsAssignment_3_1 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:18945:1: rule__UnusedExpr__IdsAssignment_3_1 : ( ( RULE_ID ) ) ;
     public final void rule__UnusedExpr__IdsAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18315:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:18316:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18949:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:18950:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:18316:1: ( ( RULE_ID ) )
-            // InternalSpear.g:18317:1: ( RULE_ID )
+            // InternalSpear.g:18950:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18951:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getIdsIdRefCrossReference_3_1_0()); 
             }
-            // InternalSpear.g:18318:1: ( RULE_ID )
-            // InternalSpear.g:18319:1: RULE_ID
+            // InternalSpear.g:18952:1: ( RULE_ID )
+            // InternalSpear.g:18953:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getIdsIdRefIDTerminalRuleCall_3_1_0_1()); 
@@ -51785,23 +53490,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__SpecAssignment_7"
-    // InternalSpear.g:18330:1: rule__UnusedExpr__SpecAssignment_7 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:18964:1: rule__UnusedExpr__SpecAssignment_7 : ( ( RULE_ID ) ) ;
     public final void rule__UnusedExpr__SpecAssignment_7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18334:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:18335:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18968:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:18969:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:18335:1: ( ( RULE_ID ) )
-            // InternalSpear.g:18336:1: ( RULE_ID )
+            // InternalSpear.g:18969:1: ( ( RULE_ID ) )
+            // InternalSpear.g:18970:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getSpecSpecificationCrossReference_7_0()); 
             }
-            // InternalSpear.g:18337:1: ( RULE_ID )
-            // InternalSpear.g:18338:1: RULE_ID
+            // InternalSpear.g:18971:1: ( RULE_ID )
+            // InternalSpear.g:18972:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getSpecSpecificationIDTerminalRuleCall_7_0_1()); 
@@ -51838,17 +53543,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__ArgsAssignment_9"
-    // InternalSpear.g:18349:1: rule__UnusedExpr__ArgsAssignment_9 : ( ruleExpr ) ;
+    // InternalSpear.g:18983:1: rule__UnusedExpr__ArgsAssignment_9 : ( ruleExpr ) ;
     public final void rule__UnusedExpr__ArgsAssignment_9() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18353:1: ( ( ruleExpr ) )
-            // InternalSpear.g:18354:1: ( ruleExpr )
+            // InternalSpear.g:18987:1: ( ( ruleExpr ) )
+            // InternalSpear.g:18988:1: ( ruleExpr )
             {
-            // InternalSpear.g:18354:1: ( ruleExpr )
-            // InternalSpear.g:18355:1: ruleExpr
+            // InternalSpear.g:18988:1: ( ruleExpr )
+            // InternalSpear.g:18989:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getArgsExprParserRuleCall_9_0()); 
@@ -51883,17 +53588,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnusedExpr__ArgsAssignment_10_1"
-    // InternalSpear.g:18364:1: rule__UnusedExpr__ArgsAssignment_10_1 : ( ruleExpr ) ;
+    // InternalSpear.g:18998:1: rule__UnusedExpr__ArgsAssignment_10_1 : ( ruleExpr ) ;
     public final void rule__UnusedExpr__ArgsAssignment_10_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18368:1: ( ( ruleExpr ) )
-            // InternalSpear.g:18369:1: ( ruleExpr )
+            // InternalSpear.g:19002:1: ( ( ruleExpr ) )
+            // InternalSpear.g:19003:1: ( ruleExpr )
             {
-            // InternalSpear.g:18369:1: ( ruleExpr )
-            // InternalSpear.g:18370:1: ruleExpr
+            // InternalSpear.g:19003:1: ( ruleExpr )
+            // InternalSpear.g:19004:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getArgsExprParserRuleCall_10_1_0()); 
@@ -51928,23 +53633,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FieldExpr__FieldAssignment_0"
-    // InternalSpear.g:18379:1: rule__FieldExpr__FieldAssignment_0 : ( ( RULE_ID ) ) ;
+    // InternalSpear.g:19013:1: rule__FieldExpr__FieldAssignment_0 : ( ( RULE_ID ) ) ;
     public final void rule__FieldExpr__FieldAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18383:1: ( ( ( RULE_ID ) ) )
-            // InternalSpear.g:18384:1: ( ( RULE_ID ) )
+            // InternalSpear.g:19017:1: ( ( ( RULE_ID ) ) )
+            // InternalSpear.g:19018:1: ( ( RULE_ID ) )
             {
-            // InternalSpear.g:18384:1: ( ( RULE_ID ) )
-            // InternalSpear.g:18385:1: ( RULE_ID )
+            // InternalSpear.g:19018:1: ( ( RULE_ID ) )
+            // InternalSpear.g:19019:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFieldExprAccess().getFieldFieldTypeCrossReference_0_0()); 
             }
-            // InternalSpear.g:18386:1: ( RULE_ID )
-            // InternalSpear.g:18387:1: RULE_ID
+            // InternalSpear.g:19020:1: ( RULE_ID )
+            // InternalSpear.g:19021:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFieldExprAccess().getFieldFieldTypeIDTerminalRuleCall_0_0_1()); 
@@ -51981,17 +53686,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FieldExpr__ExprAssignment_2"
-    // InternalSpear.g:18398:1: rule__FieldExpr__ExprAssignment_2 : ( ruleExpr ) ;
+    // InternalSpear.g:19032:1: rule__FieldExpr__ExprAssignment_2 : ( ruleExpr ) ;
     public final void rule__FieldExpr__ExprAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:18402:1: ( ( ruleExpr ) )
-            // InternalSpear.g:18403:1: ( ruleExpr )
+            // InternalSpear.g:19036:1: ( ( ruleExpr ) )
+            // InternalSpear.g:19037:1: ( ruleExpr )
             {
-            // InternalSpear.g:18403:1: ( ruleExpr )
-            // InternalSpear.g:18404:1: ruleExpr
+            // InternalSpear.g:19037:1: ( ruleExpr )
+            // InternalSpear.g:19038:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFieldExprAccess().getExprExprParserRuleCall_2_0()); 
@@ -52024,73 +53729,13 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     }
     // $ANTLR end "rule__FieldExpr__ExprAssignment_2"
 
-    // $ANTLR start synpred122_InternalSpear
-    public final void synpred122_InternalSpear_fragment() throws RecognitionException {   
-        // InternalSpear.g:9042:2: ( rule__ImpliesExpr__Group_1__0 )
-        // InternalSpear.g:9042:2: rule__ImpliesExpr__Group_1__0
+    // $ANTLR start synpred126_InternalSpear
+    public final void synpred126_InternalSpear_fragment() throws RecognitionException {   
+        // InternalSpear.g:9616:2: ( rule__ImpliesExpr__Group_1__0 )
+        // InternalSpear.g:9616:2: rule__ImpliesExpr__Group_1__0
         {
         pushFollow(FOLLOW_2);
         rule__ImpliesExpr__Group_1__0();
-
-        state._fsp--;
-        if (state.failed) return ;
-
-        }
-    }
-    // $ANTLR end synpred122_InternalSpear
-
-    // $ANTLR start synpred123_InternalSpear
-    public final void synpred123_InternalSpear_fragment() throws RecognitionException {   
-        // InternalSpear.g:9257:2: ( rule__OrExpr__Group_1__0 )
-        // InternalSpear.g:9257:2: rule__OrExpr__Group_1__0
-        {
-        pushFollow(FOLLOW_2);
-        rule__OrExpr__Group_1__0();
-
-        state._fsp--;
-        if (state.failed) return ;
-
-        }
-    }
-    // $ANTLR end synpred123_InternalSpear
-
-    // $ANTLR start synpred124_InternalSpear
-    public final void synpred124_InternalSpear_fragment() throws RecognitionException {   
-        // InternalSpear.g:9472:2: ( rule__AndExpr__Group_1__0 )
-        // InternalSpear.g:9472:2: rule__AndExpr__Group_1__0
-        {
-        pushFollow(FOLLOW_2);
-        rule__AndExpr__Group_1__0();
-
-        state._fsp--;
-        if (state.failed) return ;
-
-        }
-    }
-    // $ANTLR end synpred124_InternalSpear
-
-    // $ANTLR start synpred125_InternalSpear
-    public final void synpred125_InternalSpear_fragment() throws RecognitionException {   
-        // InternalSpear.g:9749:2: ( rule__AfterUntilExpr__Group_0_3__0 )
-        // InternalSpear.g:9749:2: rule__AfterUntilExpr__Group_0_3__0
-        {
-        pushFollow(FOLLOW_2);
-        rule__AfterUntilExpr__Group_0_3__0();
-
-        state._fsp--;
-        if (state.failed) return ;
-
-        }
-    }
-    // $ANTLR end synpred125_InternalSpear
-
-    // $ANTLR start synpred126_InternalSpear
-    public final void synpred126_InternalSpear_fragment() throws RecognitionException {   
-        // InternalSpear.g:9877:2: ( rule__TriggersExpr__Group_1__0 )
-        // InternalSpear.g:9877:2: rule__TriggersExpr__Group_1__0
-        {
-        pushFollow(FOLLOW_2);
-        rule__TriggersExpr__Group_1__0();
 
         state._fsp--;
         if (state.failed) return ;
@@ -52101,11 +53746,11 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
     // $ANTLR start synpred127_InternalSpear
     public final void synpred127_InternalSpear_fragment() throws RecognitionException {   
-        // InternalSpear.g:10092:2: ( rule__SinceExpr__Group_1__0 )
-        // InternalSpear.g:10092:2: rule__SinceExpr__Group_1__0
+        // InternalSpear.g:9831:2: ( rule__OrExpr__Group_1__0 )
+        // InternalSpear.g:9831:2: rule__OrExpr__Group_1__0
         {
         pushFollow(FOLLOW_2);
-        rule__SinceExpr__Group_1__0();
+        rule__OrExpr__Group_1__0();
 
         state._fsp--;
         if (state.failed) return ;
@@ -52116,11 +53761,11 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
     // $ANTLR start synpred128_InternalSpear
     public final void synpred128_InternalSpear_fragment() throws RecognitionException {   
-        // InternalSpear.g:10401:2: ( rule__RelationalExpr__Group_1__0 )
-        // InternalSpear.g:10401:2: rule__RelationalExpr__Group_1__0
+        // InternalSpear.g:10046:2: ( rule__AndExpr__Group_1__0 )
+        // InternalSpear.g:10046:2: rule__AndExpr__Group_1__0
         {
         pushFollow(FOLLOW_2);
-        rule__RelationalExpr__Group_1__0();
+        rule__AndExpr__Group_1__0();
 
         state._fsp--;
         if (state.failed) return ;
@@ -52131,11 +53776,11 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
     // $ANTLR start synpred129_InternalSpear
     public final void synpred129_InternalSpear_fragment() throws RecognitionException {   
-        // InternalSpear.g:11237:2: ( rule__PlusExpr__Group_1__0 )
-        // InternalSpear.g:11237:2: rule__PlusExpr__Group_1__0
+        // InternalSpear.g:10323:2: ( rule__AfterUntilExpr__Group_0_3__0 )
+        // InternalSpear.g:10323:2: rule__AfterUntilExpr__Group_0_3__0
         {
         pushFollow(FOLLOW_2);
-        rule__PlusExpr__Group_1__0();
+        rule__AfterUntilExpr__Group_0_3__0();
 
         state._fsp--;
         if (state.failed) return ;
@@ -52146,11 +53791,11 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
     // $ANTLR start synpred130_InternalSpear
     public final void synpred130_InternalSpear_fragment() throws RecognitionException {   
-        // InternalSpear.g:11452:2: ( rule__MultiplyExpr__Group_1__0 )
-        // InternalSpear.g:11452:2: rule__MultiplyExpr__Group_1__0
+        // InternalSpear.g:10451:2: ( rule__TriggersExpr__Group_1__0 )
+        // InternalSpear.g:10451:2: rule__TriggersExpr__Group_1__0
         {
         pushFollow(FOLLOW_2);
-        rule__MultiplyExpr__Group_1__0();
+        rule__TriggersExpr__Group_1__0();
 
         state._fsp--;
         if (state.failed) return ;
@@ -52161,11 +53806,11 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
     // $ANTLR start synpred131_InternalSpear
     public final void synpred131_InternalSpear_fragment() throws RecognitionException {   
-        // InternalSpear.g:11667:2: ( rule__ArrowExpr__Group_1__0 )
-        // InternalSpear.g:11667:2: rule__ArrowExpr__Group_1__0
+        // InternalSpear.g:10666:2: ( rule__SinceExpr__Group_1__0 )
+        // InternalSpear.g:10666:2: rule__SinceExpr__Group_1__0
         {
         pushFollow(FOLLOW_2);
-        rule__ArrowExpr__Group_1__0();
+        rule__SinceExpr__Group_1__0();
 
         state._fsp--;
         if (state.failed) return ;
@@ -52176,11 +53821,11 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
     // $ANTLR start synpred132_InternalSpear
     public final void synpred132_InternalSpear_fragment() throws RecognitionException {   
-        // InternalSpear.g:12038:2: ( rule__PrefixExpr__Group_1_3__0 )
-        // InternalSpear.g:12038:2: rule__PrefixExpr__Group_1_3__0
+        // InternalSpear.g:10975:2: ( rule__RelationalExpr__Group_1__0 )
+        // InternalSpear.g:10975:2: rule__RelationalExpr__Group_1__0
         {
         pushFollow(FOLLOW_2);
-        rule__PrefixExpr__Group_1_3__0();
+        rule__RelationalExpr__Group_1__0();
 
         state._fsp--;
         if (state.failed) return ;
@@ -52191,8 +53836,68 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
     // $ANTLR start synpred133_InternalSpear
     public final void synpred133_InternalSpear_fragment() throws RecognitionException {   
-        // InternalSpear.g:12232:2: ( rule__AccessExpr__Alternatives_1 )
-        // InternalSpear.g:12232:2: rule__AccessExpr__Alternatives_1
+        // InternalSpear.g:11811:2: ( rule__PlusExpr__Group_1__0 )
+        // InternalSpear.g:11811:2: rule__PlusExpr__Group_1__0
+        {
+        pushFollow(FOLLOW_2);
+        rule__PlusExpr__Group_1__0();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+    }
+    // $ANTLR end synpred133_InternalSpear
+
+    // $ANTLR start synpred134_InternalSpear
+    public final void synpred134_InternalSpear_fragment() throws RecognitionException {   
+        // InternalSpear.g:12026:2: ( rule__MultiplyExpr__Group_1__0 )
+        // InternalSpear.g:12026:2: rule__MultiplyExpr__Group_1__0
+        {
+        pushFollow(FOLLOW_2);
+        rule__MultiplyExpr__Group_1__0();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+    }
+    // $ANTLR end synpred134_InternalSpear
+
+    // $ANTLR start synpred135_InternalSpear
+    public final void synpred135_InternalSpear_fragment() throws RecognitionException {   
+        // InternalSpear.g:12241:2: ( rule__ArrowExpr__Group_1__0 )
+        // InternalSpear.g:12241:2: rule__ArrowExpr__Group_1__0
+        {
+        pushFollow(FOLLOW_2);
+        rule__ArrowExpr__Group_1__0();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+    }
+    // $ANTLR end synpred135_InternalSpear
+
+    // $ANTLR start synpred136_InternalSpear
+    public final void synpred136_InternalSpear_fragment() throws RecognitionException {   
+        // InternalSpear.g:12612:2: ( rule__PrefixExpr__Group_1_3__0 )
+        // InternalSpear.g:12612:2: rule__PrefixExpr__Group_1_3__0
+        {
+        pushFollow(FOLLOW_2);
+        rule__PrefixExpr__Group_1_3__0();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+    }
+    // $ANTLR end synpred136_InternalSpear
+
+    // $ANTLR start synpred137_InternalSpear
+    public final void synpred137_InternalSpear_fragment() throws RecognitionException {   
+        // InternalSpear.g:12806:2: ( rule__AccessExpr__Alternatives_1 )
+        // InternalSpear.g:12806:2: rule__AccessExpr__Alternatives_1
         {
         pushFollow(FOLLOW_2);
         rule__AccessExpr__Alternatives_1();
@@ -52202,12 +53907,12 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
         }
     }
-    // $ANTLR end synpred133_InternalSpear
+    // $ANTLR end synpred137_InternalSpear
 
-    // $ANTLR start synpred136_InternalSpear
-    public final void synpred136_InternalSpear_fragment() throws RecognitionException {   
-        // InternalSpear.g:13486:2: ( rule__AtomicExpr__Group_3_5__0 )
-        // InternalSpear.g:13486:2: rule__AtomicExpr__Group_3_5__0
+    // $ANTLR start synpred140_InternalSpear
+    public final void synpred140_InternalSpear_fragment() throws RecognitionException {   
+        // InternalSpear.g:14060:2: ( rule__AtomicExpr__Group_3_5__0 )
+        // InternalSpear.g:14060:2: rule__AtomicExpr__Group_3_5__0
         {
         pushFollow(FOLLOW_2);
         rule__AtomicExpr__Group_3_5__0();
@@ -52217,24 +53922,10 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
         }
     }
-    // $ANTLR end synpred136_InternalSpear
+    // $ANTLR end synpred140_InternalSpear
 
     // Delegated rules
 
-    public final boolean synpred123_InternalSpear() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred123_InternalSpear_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
     public final boolean synpred131_InternalSpear() {
         state.backtracking++;
         int start = input.mark();
@@ -52291,20 +53982,6 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred124_InternalSpear() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred124_InternalSpear_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
     public final boolean synpred129_InternalSpear() {
         state.backtracking++;
         int start = input.mark();
@@ -52319,11 +53996,25 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred122_InternalSpear() {
+    public final boolean synpred135_InternalSpear() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred122_InternalSpear_fragment(); // can never throw exception
+            synpred135_InternalSpear_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred137_InternalSpear() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred137_InternalSpear_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -52347,11 +54038,11 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred125_InternalSpear() {
+    public final boolean synpred134_InternalSpear() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred125_InternalSpear_fragment(); // can never throw exception
+            synpred134_InternalSpear_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -52366,6 +54057,20 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         int start = input.mark();
         try {
             synpred132_InternalSpear_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred140_InternalSpear() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred140_InternalSpear_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -52408,7 +54113,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     protected DFA9 dfa9 = new DFA9(this);
     protected DFA21 dfa21 = new DFA21(this);
     protected DFA28 dfa28 = new DFA28(this);
-    protected DFA88 dfa88 = new DFA88(this);
+    protected DFA92 dfa92 = new DFA92(this);
     static final String dfa_1s = "\16\uffff";
     static final String dfa_2s = "\5\uffff\4\14\5\uffff";
     static final String dfa_3s = "\1\5\1\25\7\5\5\uffff";
@@ -52458,13 +54163,13 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         }
     }
     static final String dfa_8s = "\21\uffff";
-    static final String dfa_9s = "\13\uffff\1\16\1\20\4\uffff";
-    static final String dfa_10s = "\1\47\1\uffff\1\141\2\uffff\1\141\5\uffff\2\4\4\uffff";
-    static final String dfa_11s = "\1\144\1\uffff\1\141\2\uffff\1\141\5\uffff\2\157\4\uffff";
-    static final String dfa_12s = "\1\uffff\1\1\1\uffff\1\3\1\5\1\uffff\1\7\1\11\1\12\1\13\1\14\2\uffff\1\4\1\2\1\10\1\6";
+    static final String dfa_9s = "\13\uffff\1\16\1\17\4\uffff";
+    static final String dfa_10s = "\1\47\1\uffff\1\142\2\uffff\1\142\5\uffff\2\4\4\uffff";
+    static final String dfa_11s = "\1\145\1\uffff\1\142\2\uffff\1\142\5\uffff\2\160\4\uffff";
+    static final String dfa_12s = "\1\uffff\1\1\1\uffff\1\3\1\5\1\uffff\1\7\1\11\1\12\1\13\1\14\2\uffff\1\4\1\2\1\6\1\10";
     static final String dfa_13s = "\21\uffff}>";
     static final String[] dfa_14s = {
-            "\1\1\1\3\1\4\1\6\1\7\1\11\7\uffff\1\12\53\uffff\1\2\1\uffff\1\10\1\uffff\1\5",
+            "\1\1\1\3\1\4\1\6\1\7\1\11\7\uffff\1\12\54\uffff\1\2\1\uffff\1\10\1\uffff\1\5",
             "",
             "\1\13",
             "",
@@ -52475,8 +54180,8 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             "",
             "",
             "",
-            "\2\16\24\uffff\1\15\23\uffff\1\16\5\uffff\5\16\15\uffff\1\16\6\uffff\1\16\27\uffff\1\16\5\uffff\1\16\1\uffff\3\16",
-            "\2\20\24\uffff\1\17\23\uffff\1\20\5\uffff\5\20\15\uffff\1\20\6\uffff\1\20\27\uffff\1\20\5\uffff\1\20\1\uffff\3\20",
+            "\2\16\24\uffff\1\15\23\uffff\1\16\5\uffff\5\16\15\uffff\1\16\6\uffff\1\16\30\uffff\1\16\5\uffff\1\16\1\uffff\3\16",
+            "\2\17\24\uffff\1\20\23\uffff\1\17\5\uffff\5\17\15\uffff\1\17\6\uffff\1\17\30\uffff\1\17\5\uffff\1\17\1\uffff\3\17",
             "",
             "",
             "",
@@ -52509,13 +54214,13 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         }
     }
     static final String dfa_15s = "\2\uffff\1\12\16\uffff";
-    static final String dfa_16s = "\1\4\1\uffff\1\5\2\uffff\1\5\5\uffff\1\123\1\4\2\uffff\1\30\1\uffff";
-    static final String dfa_17s = "\1\157\1\uffff\1\160\2\uffff\1\5\5\uffff\1\125\1\157\2\uffff\1\160\1\uffff";
-    static final String dfa_18s = "\1\uffff\1\1\1\uffff\1\3\1\4\1\uffff\1\11\1\12\1\13\1\10\1\2\2\uffff\1\7\1\6\1\uffff\1\5";
+    static final String dfa_16s = "\1\4\1\uffff\1\5\2\uffff\1\5\5\uffff\1\123\1\4\1\uffff\1\30\2\uffff";
+    static final String dfa_17s = "\1\160\1\uffff\1\161\2\uffff\1\5\5\uffff\1\125\1\160\1\uffff\1\161\2\uffff";
+    static final String dfa_18s = "\1\uffff\1\1\1\uffff\1\3\1\4\1\uffff\1\11\1\12\1\13\1\10\1\2\2\uffff\1\7\1\uffff\1\6\1\5";
     static final String[] dfa_19s = {
-            "\1\1\1\2\57\uffff\4\1\15\uffff\1\10\6\uffff\1\3\35\uffff\1\4\1\uffff\1\5\1\6\1\7",
+            "\1\1\1\2\57\uffff\4\1\15\uffff\1\10\6\uffff\1\3\36\uffff\1\4\1\uffff\1\5\1\6\1\7",
             "",
-            "\1\12\5\uffff\12\12\3\uffff\10\12\7\uffff\16\12\5\uffff\1\12\5\uffff\1\12\5\uffff\1\11\1\12\2\uffff\2\12\1\uffff\1\12\1\uffff\2\12\2\uffff\4\12\4\uffff\1\12\1\uffff\1\12\1\uffff\2\12\1\uffff\1\12\1\uffff\1\12\1\uffff\1\12\2\uffff\2\12\1\uffff\1\12\3\uffff\1\12",
+            "\1\12\5\uffff\12\12\3\uffff\10\12\7\uffff\16\12\5\uffff\1\12\5\uffff\1\12\5\uffff\1\11\1\12\2\uffff\2\12\1\uffff\1\12\1\uffff\2\12\2\uffff\4\12\4\uffff\2\12\1\uffff\1\12\1\uffff\2\12\1\uffff\1\12\1\uffff\1\12\1\uffff\1\12\2\uffff\2\12\1\uffff\1\12\3\uffff\1\12",
             "",
             "",
             "\1\13",
@@ -52525,10 +54230,10 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             "",
             "",
             "\1\14\1\uffff\1\15",
-            "\1\16\1\17\32\uffff\7\16\7\uffff\1\16\5\uffff\5\16\15\uffff\1\16\6\uffff\1\16\16\uffff\1\16\1\uffff\1\16\6\uffff\1\16\5\uffff\1\16\1\uffff\3\16",
+            "\1\17\1\16\32\uffff\7\17\7\uffff\1\17\5\uffff\5\17\15\uffff\1\17\6\uffff\1\17\17\uffff\1\17\1\uffff\1\17\6\uffff\1\17\5\uffff\1\17\1\uffff\3\17",
             "",
+            "\10\17\7\uffff\16\17\21\uffff\1\17\4\uffff\1\17\2\uffff\1\20\4\uffff\3\17\13\uffff\1\17\1\uffff\1\17\1\uffff\1\17\4\uffff\1\17\6\uffff\1\17",
             "",
-            "\10\16\7\uffff\16\16\21\uffff\1\16\4\uffff\1\16\2\uffff\1\20\4\uffff\3\16\12\uffff\1\16\1\uffff\1\16\1\uffff\1\16\4\uffff\1\16\6\uffff\1\16",
             ""
     };
     static final short[] dfa_15 = DFA.unpackEncodedString(dfa_15s);
@@ -52557,11 +54262,11 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     static final String dfa_20s = "\15\uffff";
     static final String dfa_21s = "\1\13\14\uffff";
     static final String dfa_22s = "\1\5\12\0\2\uffff";
-    static final String dfa_23s = "\1\160\12\0\2\uffff";
+    static final String dfa_23s = "\1\161\12\0\2\uffff";
     static final String dfa_24s = "\13\uffff\1\2\1\1";
-    static final String dfa_25s = "\1\uffff\1\1\1\10\1\11\1\0\1\2\1\6\1\7\1\4\1\3\1\5\2\uffff}>";
+    static final String dfa_25s = "\1\uffff\1\0\1\7\1\5\1\6\1\3\1\2\1\4\1\10\1\1\1\11\2\uffff}>";
     static final String[] dfa_26s = {
-            "\1\13\5\uffff\12\13\3\uffff\10\13\7\uffff\1\1\1\3\1\4\1\6\1\7\1\11\7\13\1\12\5\uffff\1\13\5\uffff\1\13\6\uffff\1\13\2\uffff\2\13\1\uffff\1\13\1\uffff\2\13\2\uffff\4\13\4\uffff\1\13\1\uffff\1\13\1\uffff\1\13\1\2\1\uffff\1\10\1\uffff\1\5\1\uffff\1\13\2\uffff\2\13\1\uffff\1\13\3\uffff\1\13",
+            "\1\13\5\uffff\12\13\3\uffff\10\13\7\uffff\1\1\1\3\1\4\1\6\1\7\1\11\7\13\1\12\5\uffff\1\13\5\uffff\1\13\6\uffff\1\13\2\uffff\2\13\1\uffff\1\13\1\uffff\2\13\2\uffff\4\13\4\uffff\2\13\1\uffff\1\13\1\uffff\1\13\1\2\1\uffff\1\10\1\uffff\1\5\1\uffff\1\13\2\uffff\2\13\1\uffff\1\13\3\uffff\1\13",
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
@@ -52584,11 +54289,11 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     static final short[] dfa_25 = DFA.unpackEncodedString(dfa_25s);
     static final short[][] dfa_26 = unpackEncodedStringArray(dfa_26s);
 
-    class DFA88 extends DFA {
+    class DFA92 extends DFA {
 
-        public DFA88(BaseRecognizer recognizer) {
+        public DFA92(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 88;
+            this.decisionNumber = 92;
             this.eot = dfa_20;
             this.eof = dfa_21;
             this.min = dfa_22;
@@ -52598,166 +54303,166 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             this.transition = dfa_26;
         }
         public String getDescription() {
-            return "10401:1: ( rule__RelationalExpr__Group_1__0 )?";
+            return "10975:1: ( rule__RelationalExpr__Group_1__0 )?";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA88_4 = input.LA(1);
+                        int LA92_1 = input.LA(1);
 
                          
-                        int index88_4 = input.index();
+                        int index92_1 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred128_InternalSpear()) ) {s = 12;}
+                        if ( (synpred132_InternalSpear()) ) {s = 12;}
 
                         else if ( (true) ) {s = 11;}
 
                          
-                        input.seek(index88_4);
+                        input.seek(index92_1);
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA88_1 = input.LA(1);
+                        int LA92_9 = input.LA(1);
 
                          
-                        int index88_1 = input.index();
+                        int index92_9 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred128_InternalSpear()) ) {s = 12;}
+                        if ( (synpred132_InternalSpear()) ) {s = 12;}
 
                         else if ( (true) ) {s = 11;}
 
                          
-                        input.seek(index88_1);
+                        input.seek(index92_9);
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA88_5 = input.LA(1);
+                        int LA92_6 = input.LA(1);
 
                          
-                        int index88_5 = input.index();
+                        int index92_6 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred128_InternalSpear()) ) {s = 12;}
+                        if ( (synpred132_InternalSpear()) ) {s = 12;}
 
                         else if ( (true) ) {s = 11;}
 
                          
-                        input.seek(index88_5);
+                        input.seek(index92_6);
                         if ( s>=0 ) return s;
                         break;
                     case 3 : 
-                        int LA88_9 = input.LA(1);
+                        int LA92_5 = input.LA(1);
 
                          
-                        int index88_9 = input.index();
+                        int index92_5 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred128_InternalSpear()) ) {s = 12;}
+                        if ( (synpred132_InternalSpear()) ) {s = 12;}
 
                         else if ( (true) ) {s = 11;}
 
                          
-                        input.seek(index88_9);
+                        input.seek(index92_5);
                         if ( s>=0 ) return s;
                         break;
                     case 4 : 
-                        int LA88_8 = input.LA(1);
+                        int LA92_7 = input.LA(1);
 
                          
-                        int index88_8 = input.index();
+                        int index92_7 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred128_InternalSpear()) ) {s = 12;}
+                        if ( (synpred132_InternalSpear()) ) {s = 12;}
 
                         else if ( (true) ) {s = 11;}
 
                          
-                        input.seek(index88_8);
+                        input.seek(index92_7);
                         if ( s>=0 ) return s;
                         break;
                     case 5 : 
-                        int LA88_10 = input.LA(1);
+                        int LA92_3 = input.LA(1);
 
                          
-                        int index88_10 = input.index();
+                        int index92_3 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred128_InternalSpear()) ) {s = 12;}
+                        if ( (synpred132_InternalSpear()) ) {s = 12;}
 
                         else if ( (true) ) {s = 11;}
 
                          
-                        input.seek(index88_10);
+                        input.seek(index92_3);
                         if ( s>=0 ) return s;
                         break;
                     case 6 : 
-                        int LA88_6 = input.LA(1);
+                        int LA92_4 = input.LA(1);
 
                          
-                        int index88_6 = input.index();
+                        int index92_4 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred128_InternalSpear()) ) {s = 12;}
+                        if ( (synpred132_InternalSpear()) ) {s = 12;}
 
                         else if ( (true) ) {s = 11;}
 
                          
-                        input.seek(index88_6);
+                        input.seek(index92_4);
                         if ( s>=0 ) return s;
                         break;
                     case 7 : 
-                        int LA88_7 = input.LA(1);
+                        int LA92_2 = input.LA(1);
 
                          
-                        int index88_7 = input.index();
+                        int index92_2 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred128_InternalSpear()) ) {s = 12;}
+                        if ( (synpred132_InternalSpear()) ) {s = 12;}
 
                         else if ( (true) ) {s = 11;}
 
                          
-                        input.seek(index88_7);
+                        input.seek(index92_2);
                         if ( s>=0 ) return s;
                         break;
                     case 8 : 
-                        int LA88_2 = input.LA(1);
+                        int LA92_8 = input.LA(1);
 
                          
-                        int index88_2 = input.index();
+                        int index92_8 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred128_InternalSpear()) ) {s = 12;}
+                        if ( (synpred132_InternalSpear()) ) {s = 12;}
 
                         else if ( (true) ) {s = 11;}
 
                          
-                        input.seek(index88_2);
+                        input.seek(index92_8);
                         if ( s>=0 ) return s;
                         break;
                     case 9 : 
-                        int LA88_3 = input.LA(1);
+                        int LA92_10 = input.LA(1);
 
                          
-                        int index88_3 = input.index();
+                        int index92_10 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred128_InternalSpear()) ) {s = 12;}
+                        if ( (synpred132_InternalSpear()) ) {s = 12;}
 
                         else if ( (true) ) {s = 11;}
 
                          
-                        input.seek(index88_3);
+                        input.seek(index92_10);
                         if ( s>=0 ) return s;
                         break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 88, _s, input);
+                new NoViableAltException(getDescription(), 92, _s, input);
             error(nvae);
             throw nvae;
         }
@@ -52789,7 +54494,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000800L});
     public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002800L});
     public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000000000000000L,0x0000000000004000L});
-    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x01F0407F00000030L,0x0000E82050002040L});
+    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x01F0407F00000030L,0x0001D040A0002040L});
     public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000000000E00000L});
     public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000000000000020L,0x0000000000000040L});
     public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000800000000000L});
@@ -52807,48 +54512,50 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
     public static final BitSet FOLLOW_42 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
     public static final BitSet FOLLOW_43 = new BitSet(new long[]{0x0000000000000000L,0x0000000008000000L});
-    public static final BitSet FOLLOW_44 = new BitSet(new long[]{0x0000000000000000L,0x0000000010000000L});
-    public static final BitSet FOLLOW_45 = new BitSet(new long[]{0x0000000000000000L,0x0000000020000000L});
-    public static final BitSet FOLLOW_46 = new BitSet(new long[]{0x0000000003000000L});
-    public static final BitSet FOLLOW_47 = new BitSet(new long[]{0x000000000C000000L});
-    public static final BitSet FOLLOW_48 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
-    public static final BitSet FOLLOW_49 = new BitSet(new long[]{0x0000000000000000L,0x0000000040000000L});
-    public static final BitSet FOLLOW_50 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
-    public static final BitSet FOLLOW_51 = new BitSet(new long[]{0x0000000030000000L});
-    public static final BitSet FOLLOW_52 = new BitSet(new long[]{0x00000000C0000000L});
-    public static final BitSet FOLLOW_53 = new BitSet(new long[]{0x0000007F00000000L});
-    public static final BitSet FOLLOW_54 = new BitSet(new long[]{0x00101F8000000000L,0x0000001500000000L});
-    public static final BitSet FOLLOW_55 = new BitSet(new long[]{0x0000000000000000L,0x0000000200000000L});
-    public static final BitSet FOLLOW_56 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_57 = new BitSet(new long[]{0x0000000000000000L,0x0000000400000000L});
-    public static final BitSet FOLLOW_58 = new BitSet(new long[]{0x0000000000000000L,0x0000000800000000L});
-    public static final BitSet FOLLOW_59 = new BitSet(new long[]{0x0000600000000000L});
-    public static final BitSet FOLLOW_60 = new BitSet(new long[]{0x0003800000000000L});
-    public static final BitSet FOLLOW_61 = new BitSet(new long[]{0x000C000000000000L});
-    public static final BitSet FOLLOW_62 = new BitSet(new long[]{0x0010400000000000L});
-    public static final BitSet FOLLOW_63 = new BitSet(new long[]{0x0000000000000000L,0x0000002000000000L});
-    public static final BitSet FOLLOW_64 = new BitSet(new long[]{0x0000000000000000L,0x0000004000000000L});
-    public static final BitSet FOLLOW_65 = new BitSet(new long[]{0x0000000000000000L,0x0000008000000000L});
-    public static final BitSet FOLLOW_66 = new BitSet(new long[]{0x0000000000000000L,0x0000010000000000L});
-    public static final BitSet FOLLOW_67 = new BitSet(new long[]{0x0000000000000000L,0x0000020000280000L});
-    public static final BitSet FOLLOW_68 = new BitSet(new long[]{0x0000000000000002L,0x0000020000280000L});
+    public static final BitSet FOLLOW_44 = new BitSet(new long[]{0x0000000000000000L,0x0000000018000000L});
+    public static final BitSet FOLLOW_45 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400800L});
+    public static final BitSet FOLLOW_46 = new BitSet(new long[]{0x0000000000000000L,0x0000000010000000L});
+    public static final BitSet FOLLOW_47 = new BitSet(new long[]{0x0000000000000000L,0x0000000020000000L});
+    public static final BitSet FOLLOW_48 = new BitSet(new long[]{0x0000000000000000L,0x0000000040000000L});
+    public static final BitSet FOLLOW_49 = new BitSet(new long[]{0x0000000003000000L});
+    public static final BitSet FOLLOW_50 = new BitSet(new long[]{0x000000000C000000L});
+    public static final BitSet FOLLOW_51 = new BitSet(new long[]{0x0000000000000000L,0x0002000000000000L});
+    public static final BitSet FOLLOW_52 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
+    public static final BitSet FOLLOW_53 = new BitSet(new long[]{0x0000000000000000L,0x0000000100000000L});
+    public static final BitSet FOLLOW_54 = new BitSet(new long[]{0x0000000030000000L});
+    public static final BitSet FOLLOW_55 = new BitSet(new long[]{0x00000000C0000000L});
+    public static final BitSet FOLLOW_56 = new BitSet(new long[]{0x0000007F00000000L});
+    public static final BitSet FOLLOW_57 = new BitSet(new long[]{0x00101F8000000000L,0x0000002A00000000L});
+    public static final BitSet FOLLOW_58 = new BitSet(new long[]{0x0000000000000000L,0x0000000400000000L});
+    public static final BitSet FOLLOW_59 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_60 = new BitSet(new long[]{0x0000000000000000L,0x0000000800000000L});
+    public static final BitSet FOLLOW_61 = new BitSet(new long[]{0x0000000000000000L,0x0000001000000000L});
+    public static final BitSet FOLLOW_62 = new BitSet(new long[]{0x0000600000000000L});
+    public static final BitSet FOLLOW_63 = new BitSet(new long[]{0x0003800000000000L});
+    public static final BitSet FOLLOW_64 = new BitSet(new long[]{0x000C000000000000L});
+    public static final BitSet FOLLOW_65 = new BitSet(new long[]{0x0010400000000000L});
+    public static final BitSet FOLLOW_66 = new BitSet(new long[]{0x0000000000000000L,0x0000004000000000L});
+    public static final BitSet FOLLOW_67 = new BitSet(new long[]{0x0000000000000000L,0x0000008000000000L});
+    public static final BitSet FOLLOW_68 = new BitSet(new long[]{0x0000000000000000L,0x0000010000000000L});
     public static final BitSet FOLLOW_69 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000000L});
-    public static final BitSet FOLLOW_70 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_71 = new BitSet(new long[]{0x0000000000000000L,0x0000040000000000L});
-    public static final BitSet FOLLOW_72 = new BitSet(new long[]{0x0000000000000000L,0x0000040000400000L});
-    public static final BitSet FOLLOW_73 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
+    public static final BitSet FOLLOW_70 = new BitSet(new long[]{0x0000000000000000L,0x0000040000280000L});
+    public static final BitSet FOLLOW_71 = new BitSet(new long[]{0x0000000000000002L,0x0000040000280000L});
+    public static final BitSet FOLLOW_72 = new BitSet(new long[]{0x0000000000000000L,0x0000040000000000L});
+    public static final BitSet FOLLOW_73 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
     public static final BitSet FOLLOW_74 = new BitSet(new long[]{0x0000000000000000L,0x0000080000000000L});
-    public static final BitSet FOLLOW_75 = new BitSet(new long[]{0x0000000000000000L,0x0000100000000000L});
-    public static final BitSet FOLLOW_76 = new BitSet(new long[]{0x0000000000000000L,0x0000200000000000L});
-    public static final BitSet FOLLOW_77 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400800L});
-    public static final BitSet FOLLOW_78 = new BitSet(new long[]{0x01F0407F00000030L,0x0000E820500020C0L});
+    public static final BitSet FOLLOW_75 = new BitSet(new long[]{0x0000000000000000L,0x0000080000400000L});
+    public static final BitSet FOLLOW_76 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
+    public static final BitSet FOLLOW_77 = new BitSet(new long[]{0x0000000000000000L,0x0000100000000000L});
+    public static final BitSet FOLLOW_78 = new BitSet(new long[]{0x0000000000000000L,0x0000200000000000L});
     public static final BitSet FOLLOW_79 = new BitSet(new long[]{0x0000000000000000L,0x0000400000000000L});
-    public static final BitSet FOLLOW_80 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_81 = new BitSet(new long[]{0x01E0000000000000L});
-    public static final BitSet FOLLOW_82 = new BitSet(new long[]{0x01E0000000000010L});
-    public static final BitSet FOLLOW_83 = new BitSet(new long[]{0x0000000000000000L,0x0000800000000000L});
-    public static final BitSet FOLLOW_84 = new BitSet(new long[]{0x0000000000000000L,0x0000800000000800L});
-    public static final BitSet FOLLOW_85 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_86 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000880L});
+    public static final BitSet FOLLOW_80 = new BitSet(new long[]{0x01F0407F00000030L,0x0001D040A00020C0L});
+    public static final BitSet FOLLOW_81 = new BitSet(new long[]{0x0000000000000000L,0x0000800000000000L});
+    public static final BitSet FOLLOW_82 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_83 = new BitSet(new long[]{0x01E0000000000000L});
+    public static final BitSet FOLLOW_84 = new BitSet(new long[]{0x01E0000000000010L});
+    public static final BitSet FOLLOW_85 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
+    public static final BitSet FOLLOW_86 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000800L});
+    public static final BitSet FOLLOW_87 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_88 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000880L});
 
 }

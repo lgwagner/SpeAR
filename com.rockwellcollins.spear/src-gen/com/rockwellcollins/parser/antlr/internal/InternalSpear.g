@@ -2591,7 +2591,63 @@ ruleFormalConstraint returns [EObject current=null]
 	    }
 
 )
-))?)
+))?(	otherlv_6='trace' 
+    {
+    	newLeafNode(otherlv_6, grammarAccess.getFormalConstraintAccess().getTraceKeyword_4_0());
+    }
+	otherlv_7='=' 
+    {
+    	newLeafNode(otherlv_7, grammarAccess.getFormalConstraintAccess().getEqualsSignKeyword_4_1());
+    }
+	otherlv_8='[' 
+    {
+    	newLeafNode(otherlv_8, grammarAccess.getFormalConstraintAccess().getLeftSquareBracketKeyword_4_2());
+    }
+(
+(
+		lv_ids_9_0=RULE_ID
+		{
+			newLeafNode(lv_ids_9_0, grammarAccess.getFormalConstraintAccess().getIdsIDTerminalRuleCall_4_3_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getFormalConstraintRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"ids",
+        		lv_ids_9_0, 
+        		"org.eclipse.xtext.common.Terminals.ID");
+	    }
+
+)
+)(	otherlv_10=',' 
+    {
+    	newLeafNode(otherlv_10, grammarAccess.getFormalConstraintAccess().getCommaKeyword_4_4_0());
+    }
+(
+(
+		lv_ids_11_0=RULE_ID
+		{
+			newLeafNode(lv_ids_11_0, grammarAccess.getFormalConstraintAccess().getIdsIDTerminalRuleCall_4_4_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getFormalConstraintRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"ids",
+        		lv_ids_11_0, 
+        		"org.eclipse.xtext.common.Terminals.ID");
+	    }
+
+)
+))*	otherlv_12=']' 
+    {
+    	newLeafNode(otherlv_12, grammarAccess.getFormalConstraintAccess().getRightSquareBracketKeyword_4_5());
+    }
+)?)
 ;
 
 
@@ -2652,7 +2708,63 @@ ruleEnglishConstraint returns [EObject current=null]
 	    }
 
 )
-))
+)(	otherlv_3='trace' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getEnglishConstraintAccess().getTraceKeyword_3_0());
+    }
+	otherlv_4='=' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getEnglishConstraintAccess().getEqualsSignKeyword_3_1());
+    }
+	otherlv_5='[' 
+    {
+    	newLeafNode(otherlv_5, grammarAccess.getEnglishConstraintAccess().getLeftSquareBracketKeyword_3_2());
+    }
+(
+(
+		lv_ids_6_0=RULE_ID
+		{
+			newLeafNode(lv_ids_6_0, grammarAccess.getEnglishConstraintAccess().getIdsIDTerminalRuleCall_3_3_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEnglishConstraintRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"ids",
+        		lv_ids_6_0, 
+        		"org.eclipse.xtext.common.Terminals.ID");
+	    }
+
+)
+)(	otherlv_7=',' 
+    {
+    	newLeafNode(otherlv_7, grammarAccess.getEnglishConstraintAccess().getCommaKeyword_3_4_0());
+    }
+(
+(
+		lv_ids_8_0=RULE_ID
+		{
+			newLeafNode(lv_ids_8_0, grammarAccess.getEnglishConstraintAccess().getIdsIDTerminalRuleCall_3_4_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEnglishConstraintRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"ids",
+        		lv_ids_8_0, 
+        		"org.eclipse.xtext.common.Terminals.ID");
+	    }
+
+)
+))*	otherlv_9=']' 
+    {
+    	newLeafNode(otherlv_9, grammarAccess.getEnglishConstraintAccess().getRightSquareBracketKeyword_3_5());
+    }
+)?)
 ;
 
 

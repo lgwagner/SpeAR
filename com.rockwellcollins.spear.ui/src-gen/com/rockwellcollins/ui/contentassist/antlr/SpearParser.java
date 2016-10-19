@@ -130,7 +130,11 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMacroAccess().getGroup_5(), "rule__Macro__Group_5__0");
 					put(grammarAccess.getFormalConstraintAccess().getGroup(), "rule__FormalConstraint__Group__0");
 					put(grammarAccess.getFormalConstraintAccess().getGroup_3(), "rule__FormalConstraint__Group_3__0");
+					put(grammarAccess.getFormalConstraintAccess().getGroup_4(), "rule__FormalConstraint__Group_4__0");
+					put(grammarAccess.getFormalConstraintAccess().getGroup_4_4(), "rule__FormalConstraint__Group_4_4__0");
 					put(grammarAccess.getEnglishConstraintAccess().getGroup(), "rule__EnglishConstraint__Group__0");
+					put(grammarAccess.getEnglishConstraintAccess().getGroup_3(), "rule__EnglishConstraint__Group_3__0");
+					put(grammarAccess.getEnglishConstraintAccess().getGroup_3_4(), "rule__EnglishConstraint__Group_3_4__0");
 					put(grammarAccess.getWhileExprAccess().getGroup_0(), "rule__WhileExpr__Group_0__0");
 					put(grammarAccess.getImpliesExprAccess().getGroup(), "rule__ImpliesExpr__Group__0");
 					put(grammarAccess.getImpliesExprAccess().getGroup_1(), "rule__ImpliesExpr__Group_1__0");
@@ -301,8 +305,12 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFormalConstraintAccess().getNameAssignment_0(), "rule__FormalConstraint__NameAssignment_0");
 					put(grammarAccess.getFormalConstraintAccess().getExprAssignment_2(), "rule__FormalConstraint__ExprAssignment_2");
 					put(grammarAccess.getFormalConstraintAccess().getDescriptorAssignment_3_2(), "rule__FormalConstraint__DescriptorAssignment_3_2");
+					put(grammarAccess.getFormalConstraintAccess().getIdsAssignment_4_3(), "rule__FormalConstraint__IdsAssignment_4_3");
+					put(grammarAccess.getFormalConstraintAccess().getIdsAssignment_4_4_1(), "rule__FormalConstraint__IdsAssignment_4_4_1");
 					put(grammarAccess.getEnglishConstraintAccess().getNameAssignment_0(), "rule__EnglishConstraint__NameAssignment_0");
 					put(grammarAccess.getEnglishConstraintAccess().getTextAssignment_2(), "rule__EnglishConstraint__TextAssignment_2");
+					put(grammarAccess.getEnglishConstraintAccess().getIdsAssignment_3_3(), "rule__EnglishConstraint__IdsAssignment_3_3");
+					put(grammarAccess.getEnglishConstraintAccess().getIdsAssignment_3_4_1(), "rule__EnglishConstraint__IdsAssignment_3_4_1");
 					put(grammarAccess.getWhileExprAccess().getCondAssignment_0_2(), "rule__WhileExpr__CondAssignment_0_2");
 					put(grammarAccess.getWhileExprAccess().getThenAssignment_0_4(), "rule__WhileExpr__ThenAssignment_0_4");
 					put(grammarAccess.getImpliesExprAccess().getOpAssignment_1_0_0_1(), "rule__ImpliesExpr__OpAssignment_1_0_0_1");

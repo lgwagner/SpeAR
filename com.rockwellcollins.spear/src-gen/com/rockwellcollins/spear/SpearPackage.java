@@ -922,13 +922,22 @@ public interface SpearPackage extends EPackage
   int CONSTRAINT__NAME = 0;
 
   /**
+   * The feature id for the '<em><b>Ids</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONSTRAINT__IDS = 1;
+
+  /**
    * The number of structural features of the '<em>Constraint</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONSTRAINT_FEATURE_COUNT = 1;
+  int CONSTRAINT_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link com.rockwellcollins.spear.impl.FormalConstraintImpl <em>Formal Constraint</em>}' class.
@@ -948,6 +957,15 @@ public interface SpearPackage extends EPackage
    * @ordered
    */
   int FORMAL_CONSTRAINT__NAME = CONSTRAINT__NAME;
+
+  /**
+   * The feature id for the '<em><b>Ids</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FORMAL_CONSTRAINT__IDS = CONSTRAINT__IDS;
 
   /**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -994,6 +1012,15 @@ public interface SpearPackage extends EPackage
    * @ordered
    */
   int ENGLISH_CONSTRAINT__NAME = CONSTRAINT__NAME;
+
+  /**
+   * The feature id for the '<em><b>Ids</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENGLISH_CONSTRAINT__IDS = CONSTRAINT__IDS;
 
   /**
    * The feature id for the '<em><b>Text</b></em>' attribute.
@@ -3000,6 +3027,17 @@ public interface SpearPackage extends EPackage
   EAttribute getConstraint_Name();
 
   /**
+   * Returns the meta object for the attribute list '{@link com.rockwellcollins.spear.Constraint#getIds <em>Ids</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Ids</em>'.
+   * @see com.rockwellcollins.spear.Constraint#getIds()
+   * @see #getConstraint()
+   * @generated
+   */
+  EAttribute getConstraint_Ids();
+
+  /**
    * Returns the meta object for class '{@link com.rockwellcollins.spear.FormalConstraint <em>Formal Constraint</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4640,6 +4678,14 @@ public interface SpearPackage extends EPackage
      * @generated
      */
     EAttribute CONSTRAINT__NAME = eINSTANCE.getConstraint_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Ids</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONSTRAINT__IDS = eINSTANCE.getConstraint_Ids();
 
     /**
      * The meta object literal for the '{@link com.rockwellcollins.spear.impl.FormalConstraintImpl <em>Formal Constraint</em>}' class.
