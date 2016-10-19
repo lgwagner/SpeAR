@@ -15,20 +15,19 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.Variable;
-import com.rockwellcollins.spear.translate.pdf.MakePDF.Status;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 /*
  * This class uses iText to generate PDFs. IText is free, but 
  */
-public class MakePDF extends SpearSwitch<Status> {
+public class MakePDF extends SpearSwitch<Integer> {
 
 	public static void toPDF(Specification s, File f) {
 		new MakePDF(s,f);
 	}
 	
 	//this is to keep from falling through to the default case on a null value.
-	public static enum Status {DONE}
+	public static final Integer DONE = 0;
 
 	private Document document;
 	private FontFamily fontFamily;
@@ -65,7 +64,7 @@ public class MakePDF extends SpearSwitch<Status> {
 	}
 	
 	@Override
-	public Status caseSpecification(Specification s) {
+	public Integer caseSpecification(Specification s) {
 		Paragraph specP = new Paragraph("Specification:" + s.getName(), new Font(fontFamily, 18, Font.BOLD, baseColor));
 		specP.setAlignment(Paragraph.ALIGN_CENTER);
 		this.addToDocument(specP);
@@ -81,6 +80,6 @@ public class MakePDF extends SpearSwitch<Status> {
 		}
 		this.addToDocument(list);
 		
-		return Status.DONE;
+		return DONE;
 	}
 }
