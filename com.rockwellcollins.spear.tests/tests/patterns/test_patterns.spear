@@ -23,7 +23,7 @@ Patterns:
 		
 		--%PROPERTY p1
 		--%PROPERTY p2
-	tel	
+	tel
 
 Inputs:
 	a : int

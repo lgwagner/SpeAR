@@ -1,0 +1,24 @@
+Specification specA
+
+Imports:
+	import "specB.spear"
+
+Inputs:
+	a : int
+
+Outputs:
+	y : int
+
+State:
+
+Assumptions:
+	a0: a > 0
+
+Requirements:
+	r0: if a > 0 
+		then y == spec specB(a*1) 
+		else y == spec specB(a*-1)
+
+Properties:
+	p0: y > 0
+

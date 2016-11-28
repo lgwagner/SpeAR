@@ -40,6 +40,12 @@ public class Utilities {
 			return name;
 		}
 	}
+	
+	public static String getFileBasedName(EObject o) {
+		String name = getName(o);
+		String filename = Utilities.getRoot(o).getName();
+		return filename + "." + name;
+	}
 
 	public static List<String> pullIdsOffVarDecls(List<VarDecl> decls) {
 		List<String> strings = new ArrayList<>();

@@ -1,6 +1,7 @@
 package com.rockwellcollins.spear.translate.master;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -9,7 +10,8 @@ import org.eclipse.xtext.EcoreUtil2;
 import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.actions.SpearRuntimeOptions;
-import com.rockwellcollins.spear.translate.naming.NameMap;
+import com.rockwellcollins.spear.translate.naming.Map;
+import com.rockwellcollins.spear.translate.naming.SpearMap;
 import com.rockwellcollins.spear.utilities.PLTL;
 
 import jkind.lustre.BinaryExpr;
@@ -27,8 +29,53 @@ import jkind.lustre.UnaryOp;
 import jkind.lustre.VarDecl;
 import jkind.lustre.builders.NodeBuilder;
 
-public class SSpecification extends SFile {
+public class SSpecification extends SMapElement {
 
+	public static List<String> addNames(Collection<Specification> list, SpearMap map) {
+		List<String> renamed = new ArrayList<>();
+		for(Specification  s : list) {
+			renamed.add(SSpecification.addName(s, map));
+		}
+		return renamed;
+	}
+	
+	public static String addName(Specification s, SpearMap map) {
+		return map.getProgramName(s.getName());
+	}
+	
+	public static List<SSpecification> build(Collection<Specification> list, SpearMap map) {
+		List<SSpecification> converted = new ArrayList<>();
+		for(Specification s : list) {
+			converted.add(SSpecification.build(s, map));
+		}
+		return converted;
+	}
+	
+	public static SSpecification build(Specification s, SpearMap map) {
+		return new SSpecification(s,map);
+	}
+	
+	public static SSpecification lookup(String name , List<SSpecification> specs) {
+		for(SSpecification s : specs) {
+			if(s.name.equals(name)) {
+				return s;
+			}
+		}
+		return null;
+	}
+	
+	public static Integer callId = 0;
+	
+	public static void resetCallID() {
+		SSpecification.callId = 0;
+	}
+	
+	public static Integer getAndIncrement() {
+		Integer val = SSpecification.callId;
+		SSpecification.callId++;
+		return val;
+	}
+	
 	private String assertionName;
 	private static final String ASSERTION = "assertions";
 
@@ -37,7 +84,8 @@ public class SSpecification extends SFile {
 	
 	private String consistencyName;
 	private static final String CONSISTENCY = "consistent";
-
+	
+	public String name;
 	public List<SMacro> macros = new ArrayList<>();
 	public List<SVariable> inputs = new ArrayList<>();
 	public List<SVariable> outputs = new ArrayList<>();
@@ -45,112 +93,109 @@ public class SSpecification extends SFile {
 	public List<SConstraint> assumptions = new ArrayList<>();
 	public List<SConstraint> requirements = new ArrayList<>();
 	public List<SConstraint> behaviors = new ArrayList<>();
+	
+	private List<NormalizedCall> spearCalls = new ArrayList<>();
 	public List<SCall> calls = new ArrayList<>();
 	
-	public SSpecification(Specification s, NameMap map) {
-		// this initializes the map to include an entry for this object
-		map.addFile(s, this);
-	
-		// set the name
-		this.name = map.getName(s);
-		this.typedefs.addAll(STypeDef.build(s.getTypedefs(), map));
-		this.constants.addAll(SConstant.build(s.getConstants(), map));
-		this.patterns.addAll(SPattern.build(s.getPatterns(), map));
-		this.inputs.addAll(SVariable.build(s.getInputs(), map));
-		this.outputs.addAll(SVariable.build(s.getOutputs(), map));
-		this.state.addAll(SVariable.build(s.getState(), map));
-		this.macros.addAll(SMacro.build(s.getMacros(), map));
-		this.assumptions.addAll(SConstraint.build(s.getAssumptions(), map));
-		this.requirements.addAll(SConstraint.build(s.getRequirements(), map));
-		this.behaviors.addAll(SConstraint.build(s.getBehaviors(), map));
-		this.calls.addAll(SCall.build(EcoreUtil2.getAllContentsOfType(s, NormalizedCall.class),map));		
+	public SSpecification(Specification s, SpearMap programMap) {
+		//get the name from the global map
+		this.name = programMap.lookupOriginalProgram(s.getName());
 		
-		this.assertionName = map.getName(s, ASSERTION);
-		this.counterName = map.getName(s, COUNTER);
-		this.consistencyName = map.getName(s, CONSISTENCY);
+		//copy the global map as the local
+		this.map = SpearMap.getModuleMap(programMap);
+		
+		// set the name
+		this.inputs.addAll(SVariable.build(s.getInputs(), this));
+		this.outputs.addAll(SVariable.build(s.getOutputs(), this));
+		this.state.addAll(SVariable.build(s.getState(), this));
+		this.macros.addAll(SMacro.build(s.getMacros(), this));
+		this.assumptions.addAll(SConstraint.build(s.getAssumptions(), this));
+		this.requirements.addAll(SConstraint.build(s.getRequirements(), this));
+		this.behaviors.addAll(SConstraint.build(s.getBehaviors(), this));
+		this.spearCalls.addAll(EcoreUtil2.getAllContentsOfType(s, NormalizedCall.class));
+		
+		this.assertionName = map.getModuleName(ASSERTION);
+		this.counterName = map.getModuleName(COUNTER);
+		this.consistencyName = map.getModuleName(CONSISTENCY);
 	}
 
-	public List<VarDecl> getAllCalledStateVariables(NameMap map) {
-		List<VarDecl> list = new ArrayList<>();
-		for(SCall thisCall : this.calls) {
-			list.addAll(thisCall.getNDLocals(map));
-			SSpecification s = (SSpecification) map.fileMapping.get(thisCall.call.getSpec());
-			list.addAll(s.getAllCalledStateVariables(map));
-		}
-		return list;
+	public void resolveCalls(List<SSpecification> specs) {
+		this.calls=SCall.build(spearCalls, specs, map);
 	}
 	
-	public Node toBaseLustre(NameMap map) {
+	public void resolveCallVars() {
+		for(SCall call : calls) {
+			call.resolveCallVars();
+		}
+	}
+	
+	public Node toBaseLustre() {
 		NodeBuilder builder = new NodeBuilder(name);
 
 		/*
 		 * We must add: 1. the true inputs 2. the shadow inputs for the outputs
 		 * 3. the shadow inputs for the state 4. the args from any calls that
-		 * also need shadow inputs 5. the args from any call's, calls that need
+		 * also need shadow inputs 5. the args from any calls, calls that need
 		 * shadow args
 		 */
-		builder.addInputs(SVariable.toVarDecl(inputs, map));
-		builder.addInputs(SVariable.toVarDecl(outputs, map));
-		builder.addInputs(SVariable.toVarDecl(state, map));
-		builder.addInputs(this.getAllCalledStateVariables(map));
+		builder.addInputs(SVariable.toVarDecl(inputs, this));
+		builder.addInputs(SVariable.toVarDecl(outputs, this));
+		builder.addInputs(SVariable.toVarDecl(state, this));
+		builder.addInputs(SCall.toVarDecl(calls, this));
+		
+		/*
+		 * We must add 
+		 	1. locals for the macros 
+		 	2. locals for the assumptions 
+		 	3. locals for the requirements 
+		 	4. locals for the behaviors
+		 */
+		builder.addLocals(SMacro.toVarDecls(macros, this));
+		builder.addLocals(SConstraint.toVarDecl(assumptions, this));
+		builder.addLocals(SConstraint.toVarDecl(requirements, this));
+		builder.addLocals(SConstraint.toVarDecl(behaviors, this));
 
 		/*
-		 * We must add 1. locals for the macros 2. locals for the assumptions 3.
-		 * locals for the requirements 4. locals for the behaviors
+		 * Add assertions as output.
 		 */
-		builder.addLocals(SMacro.toVarDecls(macros, map));
-		builder.addLocals(SConstraint.toVarDecl(assumptions, map));
-		builder.addLocals(SConstraint.toVarDecl(requirements, map));
-		builder.addLocals(SConstraint.toVarDecl(behaviors, map));
-
+		builder.addOutput(this.getAssertionVarDecl());
+		
 		/*
 		 * For now, we're not allowing Macros to contain specification calls
 		 */
-		builder.addEquations(SMacro.toEquations(macros, map));
-		builder.addEquations(SConstraint.toEquation(assumptions, map));
-		builder.addEquations(SConstraint.toEquation(requirements, map));
-		builder.addEquations(SConstraint.toPropertyEquations(behaviors, assertionName, map));
-
+		builder.addEquations(SMacro.toEquations(macros, this));
+		builder.addEquations(SConstraint.toEquation(assumptions, this));
+		builder.addEquations(SConstraint.toEquation(requirements, this));
+		builder.addEquations(SConstraint.toPropertyEquations(behaviors, assertionName, this));
 		return builder.build();
 	}
 
-	public Node getLogicalEntailmentMain(NameMap map) {
-		NodeBuilder builder = new NodeBuilder(this.toBaseLustre(map));
-		builder.addOutput(this.getAssertionVarDecl());
+	public Node getLogicalEntailmentMain() {
+		NodeBuilder builder = new NodeBuilder(this.toBaseLustre());
+
 		builder.addEquation(this.getAssertionMainEquation(requirements));
 
 		if (!assumptions.isEmpty()) {
 			builder.addAssertion(this.conjunctify(assumptions.iterator()));
 		}
 
-		builder.addProperties(SConstraint.toPropertyIds(behaviors, map));
+		builder.addProperties(SConstraint.toPropertyIds(behaviors, this));
 		return builder.build();
 	}
-
-	public Node getLogicalEntailmentCalled(NameMap map) {
-		NodeBuilder builder = new NodeBuilder(this.toBaseLustre(map));
-
-		/*
-		 * The nodes have only a single output, the assertions to be passed up
-		 * the chain.
-		 */
-		builder.addOutput(this.getAssertionVarDecl());
+	
+	public Node getLogicalEntailmentCalled() {
+		NodeBuilder builder = new NodeBuilder(this.toBaseLustre());
+		
 		builder.addEquation(this.getAssertionCalledEquation(requirements));
-
-//		builder.addProperties(SConstraint.toPropertyIds(assumptions, map));
-//		builder.addProperties(SConstraint.toPropertyIds(behaviors, map));
-
 		return builder.build();
 	}
 
-	public Node getLogicalConsistencyMain(NameMap map) {
-		NodeBuilder builder = new NodeBuilder(this.toBaseLustre(map));
+	public Node getLogicalConsistencyMain() {
+		NodeBuilder builder = new NodeBuilder(this.toBaseLustre());
 
 		builder.addLocal(this.getCounterVarDecl());
 		builder.addLocal(this.getConsistencyVarDecl());
 		
-		builder.addOutput(this.getAssertionVarDecl());
-
 		builder.addEquation(this.getCounterEquation());
 		builder.addEquation(this.getConsistencyEquation());
 		builder.addEquation(this.getAssertionMainEquation(getAssumptionsAndRequirements()));
@@ -160,21 +205,13 @@ public class SSpecification extends SFile {
 		List<SConstraint> list = new ArrayList<>();
 		list.addAll(assumptions);
 		list.addAll(requirements);
-		builder.addIvcs(SConstraint.toPropertyIds(list, map));
+		builder.addIvcs(SConstraint.toPropertyIds(list, this));
 		
 		return builder.build();
 	}
 	
-	public Node getLogicalConsistencyCalled(NameMap map) {
-		NodeBuilder builder = new NodeBuilder(this.toBaseLustre(map));
-
-		/*
-		 * The nodes have only a single output, the assertions to be passed up
-		 * the chain.
-		 */
-//		builder.addOutput(this.getAssertionVarDecl());
-//		builder.addEquation(this.getAssertionCalledEquation(requirements));
-		return builder.build();		
+	public Node getLogicalConsistencyCalled() {
+		return getLogicalEntailmentCalled();
 	}
 
 	private VarDecl getCounterVarDecl() {
@@ -232,8 +269,8 @@ public class SSpecification extends SFile {
 		}
 		return new Equation(new IdExpr(this.assertionName), new NodeCallExpr(PLTL.historically().id, RHS));
 	}
-
-	private Equation getAssertionCalledEquation(List<SConstraint> conjunct) {
+	
+	public Equation getAssertionCalledEquation(List<SConstraint> conjunct) {
 		Expr RHS;
 		if (conjunct.isEmpty()) {
 			RHS = new BoolExpr(true);
@@ -241,5 +278,9 @@ public class SSpecification extends SFile {
 			RHS = conjunctify(conjunct.iterator());
 		}
 		return new Equation(new IdExpr(this.assertionName), RHS);
+	}
+	
+	public String toString() {
+		return this.name;
 	}
 }

@@ -1,0 +1,14 @@
+Specification test
+
+Inputs:
+	a : int
+
+Outputs:
+	b : int
+
+Requirements:
+	r1: a==3 implies b==2
+	r2: a==3 implies b==3
+
+Properties:
+	bad_prop: not (a==3)

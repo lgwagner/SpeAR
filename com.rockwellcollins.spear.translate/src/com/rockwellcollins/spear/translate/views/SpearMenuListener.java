@@ -84,7 +84,7 @@ public class SpearMenuListener implements IMenuListener {
 			return;
 		}
 
-		manager.add(new Action("View Support") {
+		manager.add(new Action("Show Conflicting Constraints") {
 			@Override
 			public void run() {
 				viewSupport(support);
@@ -115,7 +115,7 @@ public class SpearMenuListener implements IMenuListener {
 	}
 
 	private void viewSupport(Set<String> support) {
-		MessageDialog.openInformation(window.getShell(), "Conflicting Assumptions and Requirements!", support.toString());
+		MessageDialog.openInformation(window.getShell(), "Conflicting Constraints!", support.toString());
 	}
 	
 	private static Set<String> getSupport(PropertyResult result) {

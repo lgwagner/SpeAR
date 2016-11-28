@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.validation.ValidationMessageAcceptor;
 
+import com.rockwellcollins.spear.AbstractTypeDef;
 import com.rockwellcollins.spear.AfterUntilExpr;
 import com.rockwellcollins.spear.ArrayAccessExpr;
 import com.rockwellcollins.spear.ArrayExpr;
@@ -52,6 +53,9 @@ import com.rockwellcollins.spear.UserType;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.WhileExpr;
 import com.rockwellcollins.spear.util.SpearSwitch;
+import com.rockwellcollins.spear.utilities.ConstantChecker;
+import com.rockwellcollins.spear.utilities.IntConstantFinder;
+import com.rockwellcollins.spear.utilities.IntegerConstantFinder;
 
 public class SpearTypeChecker extends SpearSwitch<Type> {
 
@@ -102,10 +106,15 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	/***************************************************************************************************/
 	// TYPES
 	/***************************************************************************************************/
-
+	
 	@Override
 	public Type caseNamedTypeDef(NamedTypeDef nt) {
 		return doSwitch(nt.getType());
+	}
+	
+	@Override
+	public Type caseAbstractTypeDef(AbstractTypeDef at) {
+		return new AbstractType(at.getName());
 	}
 
 	@Override
@@ -127,7 +136,24 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 			return ERROR;
 		}
 
-		return new ArrayType(at.getName(), doSwitch(at.getBase()), at.getSize());
+		Type sizeType = doSwitch(at.getSize());
+		if(!sizeType.equals(PrimitiveType.INT)) {
+			error(at.getName() + " must be given an integer size argument.", at, SpearPackage.Literals.ARRAY_TYPE_DEF__SIZE);
+			return ERROR;
+		}
+		
+		if(!ConstantChecker.isConstant(at.getSize())) {
+			error(at.getName() + " must be given a constant size argument.", at, SpearPackage.Literals.ARRAY_TYPE_DEF__SIZE);
+			return ERROR;
+		} 
+		
+		Integer size = IntConstantFinder.fetch(at);
+		if(size == null) {
+			error("A concrete size value cannot be determined for " + at.getName(), at, SpearPackage.Literals.ARRAY_TYPE_DEF__SIZE);
+			return ERROR;
+		}
+		
+		return new ArrayType(at.getName(), doSwitch(at.getBase()), size);
 	}
 
 	@Override
@@ -205,6 +231,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 
 		switch (be.getOp()) {
 		case "->":
+		case "arrow":
 			if (left.equals(right)) {
 				return left;
 			}
@@ -220,6 +247,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 			if (left == INT && right == INT) {
 				return INT;
 			}
+			
 			break;
 
 		case "mod":

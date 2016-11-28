@@ -1,65 +1,81 @@
 package com.rockwellcollins.spear.translate.master;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import com.rockwellcollins.spear.Pattern;
-import com.rockwellcollins.spear.translate.naming.NameMap;
+import com.rockwellcollins.spear.translate.naming.SpearMap;
 
 import jkind.lustre.Node;
 import jkind.lustre.builders.NodeBuilder;
 
-public class SPattern {
+public class SPattern extends SMapElement {
 
-	public static List<SPattern> build(List<Pattern> list, NameMap map) {
+	public static List<String> addNames(Collection<Pattern> list, SProgram program) {
+		List<String> renamed = new ArrayList<>();
+		for(Pattern p : list) {
+			renamed.add(SPattern.addName(p, program));
+		}
+		return renamed;
+	}
+	
+	public static String addName(Pattern p, SProgram program) {
+		return program.map.getProgramName(p.getName());
+	}
+	
+	public static List<SPattern> build(Collection<Pattern> list, SProgram program) {
 		List<SPattern> built = new ArrayList<>();
 		for(Pattern p : list) {
-			built.add(SPattern.build(p, map));
+			built.add(SPattern.build(p, program));
 		}
 		return built;
 	}
 	
-	public static List<Node> toLustre(List<SPattern> list, NameMap map) {
+	public static List<Node> toLustre(List<SPattern> list) {
 		List<Node> lustre = new ArrayList<>();
 		for(SPattern p : list) {
-			lustre.add(p.toLustre(map));
+			lustre.add(p.toLustre());
 		}
 		return lustre;
 	}
 	
-	public static SPattern build(Pattern p, NameMap map) {
-		return new SPattern(p,map);
+	public static SPattern build(Pattern p, SProgram program) {
+		return new SPattern(p,program);
 	}
 	
 	public String name;
-	private List<SPVariable> inputs;
-	private List<SPVariable> outputs;
-	private List<SPVariable> locals;
-	private List<SLustreEquation> equations;
-	private List<SLustreProperty> properties;
-	private List<SLustreAssertion> assertions;
+	public List<SPVariable> inputs;
+	public List<SPVariable> outputs;
+	public List<SPVariable> locals;
+	public List<SLustreEquation> equations;
+	public List<SLustreProperty> properties;
+	public List<SLustreAssertion> assertions;
 	
-	public SPattern(Pattern p, NameMap map) {
-		map.addPattern(p, this);
+	public SPattern(Pattern p, SProgram program) {
+		//we already added these names to the global map
+		this.name = program.map.lookupOriginalProgram(p.getName());
 		
-		this.name = map.getFileBasedName(p);
-		this.inputs = SPVariable.build(p.getInputs(), p, map);
-		this.outputs = SPVariable.build(p.getOutputs(), p, map);
-		this.locals = SPVariable.build(p.getLocals(), p, map);
-		this.equations = SLustreEquation.build(p.getEquations(), map);
-		this.properties = SLustreProperty.build(p.getProperties(), map);
+		//copy the global name map for the basis of the local
+		this.map = SpearMap.getModuleMap(program.map);
+		
+		//process everything
+		this.inputs = SPVariable.build(p.getInputs(), this);
+		this.outputs = SPVariable.build(p.getOutputs(), this);
+		this.locals = SPVariable.build(p.getLocals(), this);
+		this.equations = SLustreEquation.build(p.getEquations(), this);
+		this.properties = SLustreProperty.build(p.getProperties(), this);
 		this.assertions = SLustreAssertion.build(p.getAssertions());
 	}
 	
-	
-	public Node toLustre(NameMap map) {
+	public Node toLustre() {
 		NodeBuilder builder = new NodeBuilder(this.name);
-		builder.addInputs(SPVariable.toVarDecl(this.inputs, map));
-		builder.addOutputs(SPVariable.toVarDecl(this.outputs, map));
-		builder.addLocals(SPVariable.toVarDecl(this.locals, map));
-		builder.addEquations(SLustreEquation.toLustre(this.equations, map));
+		builder.addInputs(SPVariable.toVarDecl(this.inputs, this));
+		builder.addOutputs(SPVariable.toVarDecl(this.outputs, this));
+		builder.addLocals(SPVariable.toVarDecl(this.locals, this));
+		builder.addEquations(SLustreEquation.toLustre(this.equations, this));
 		builder.addProperties(SLustreProperty.toLustre(this.properties));
-		builder.addAssertions(SLustreAssertion.toLustre(this.assertions,map));
+		builder.addAssertions(SLustreAssertion.toLustre(this.assertions,this));
 		return builder.build();
 	}
 }

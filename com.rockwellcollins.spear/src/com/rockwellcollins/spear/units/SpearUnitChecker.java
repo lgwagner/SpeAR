@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.validation.ValidationMessageAcceptor;
 
+import com.rockwellcollins.spear.AbstractTypeDef;
 import com.rockwellcollins.spear.AfterUntilExpr;
 import com.rockwellcollins.spear.ArrayAccessExpr;
 import com.rockwellcollins.spear.ArrayExpr;
@@ -49,6 +50,7 @@ import com.rockwellcollins.spear.UserType;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.WhileExpr;
 import com.rockwellcollins.spear.util.SpearSwitch;
+import com.rockwellcollins.spear.utilities.IntConstantFinder;
 
 public class SpearUnitChecker extends SpearSwitch<Unit> {
 
@@ -191,6 +193,11 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	}
 
 	@Override
+	public Unit caseAbstractTypeDef(AbstractTypeDef at) {
+		return SCALAR;
+	}
+	
+	@Override
 	public Unit caseRecordTypeDef(RecordTypeDef rt) {
 		Map<String, Unit> fields = new HashMap<>();
 		for (FieldType rtf : rt.getFields()) {
@@ -200,8 +207,13 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	}
 
 	@Override
-	public ArrayUnit caseArrayTypeDef(ArrayTypeDef at) {
-		return new ArrayUnit(at.getName(), doSwitch(at.getBase()), at.getSize());
+	public Unit caseArrayTypeDef(ArrayTypeDef at) {
+		//this should just work because typechecking has presumably passed.
+		Integer size = IntConstantFinder.fetch(at);
+		if(size == null) {
+			return ERROR;
+		}
+		return new ArrayUnit(at.getName(), doSwitch(at.getBase()), size);
 	}
 
 	@Override

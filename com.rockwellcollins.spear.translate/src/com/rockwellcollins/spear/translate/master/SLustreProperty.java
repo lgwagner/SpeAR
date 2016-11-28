@@ -4,16 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.rockwellcollins.spear.LustreProperty;
-import com.rockwellcollins.spear.Pattern;
-import com.rockwellcollins.spear.translate.naming.NameMap;
-import com.rockwellcollins.spear.utilities.Utilities;
 
 public class SLustreProperty {
 
-	public static List<SLustreProperty> build(List<LustreProperty> list, NameMap map) {
+	public static List<SLustreProperty> build(List<LustreProperty> list, SPattern pattern) {
 		List<SLustreProperty> built = new ArrayList<>();
 		for(LustreProperty lp : list) {
-			built.add(SLustreProperty.build(lp,map));
+			built.add(SLustreProperty.build(lp,pattern));
 		}
 		return built;
 	}
@@ -26,15 +23,14 @@ public class SLustreProperty {
 		return lustre;
 	}
 	
-	public static SLustreProperty build(LustreProperty lp, NameMap map) {
-		return new SLustreProperty(lp,map);
+	public static SLustreProperty build(LustreProperty lp, SPattern pattern) {
+		return new SLustreProperty(lp,pattern);
 	}
 	
 	private String propertyId;
 
-	public SLustreProperty(LustreProperty lp, NameMap map) {
-		Pattern p = (Pattern) Utilities.getTopContainer(lp);
-		this.propertyId = map.lookup(p, lp.getPropertyId().getName());
+	public SLustreProperty(LustreProperty lp, SPattern pattern) {
+		this.propertyId = pattern.map.lookupOriginalModule(lp.getPropertyId().getName());
 	}
 	
 	public String toLustre() {

@@ -2,6 +2,7 @@
  */
 package com.rockwellcollins.spear.impl;
 
+import com.rockwellcollins.spear.AbstractTypeDef;
 import com.rockwellcollins.spear.AfterUntilExpr;
 import com.rockwellcollins.spear.ArrayAccessExpr;
 import com.rockwellcollins.spear.ArrayExpr;
@@ -12,6 +13,7 @@ import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.BinaryUnitExpr;
 import com.rockwellcollins.spear.BoolLiteral;
 import com.rockwellcollins.spear.BoolType;
+import com.rockwellcollins.spear.ConcreteArrayTypeDef;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Constraint;
 import com.rockwellcollins.spear.Definitions;
@@ -285,6 +287,13 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass abstractTypeDefEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass recordTypeDefEClass = null;
 
   /**
@@ -300,6 +309,13 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * @generated
    */
   private EClass enumTypeDefEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass concreteArrayTypeDefEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -664,9 +680,9 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSpecification_Assumptions()
+  public EAttribute getSpecification_AssumptionsKeyword()
   {
-    return (EReference)specificationEClass.getEStructuralFeatures().get(5);
+    return (EAttribute)specificationEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -674,7 +690,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSpecification_Requirements()
+  public EReference getSpecification_Assumptions()
   {
     return (EReference)specificationEClass.getEStructuralFeatures().get(6);
   }
@@ -684,9 +700,39 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getSpecification_RequirementsKeyword()
+  {
+    return (EAttribute)specificationEClass.getEStructuralFeatures().get(7);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSpecification_Requirements()
+  {
+    return (EReference)specificationEClass.getEStructuralFeatures().get(8);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getSpecification_PropertiesKeyword()
+  {
+    return (EAttribute)specificationEClass.getEStructuralFeatures().get(9);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getSpecification_Behaviors()
   {
-    return (EReference)specificationEClass.getEStructuralFeatures().get(7);
+    return (EReference)specificationEClass.getEStructuralFeatures().get(10);
   }
 
   /**
@@ -1354,6 +1400,16 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getAbstractTypeDef()
+  {
+    return abstractTypeDefEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getRecordTypeDef()
   {
     return recordTypeDefEClass;
@@ -1394,9 +1450,9 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getArrayTypeDef_Size()
+  public EReference getArrayTypeDef_Size()
   {
-    return (EAttribute)arrayTypeDefEClass.getEStructuralFeatures().get(1);
+    return (EReference)arrayTypeDefEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1417,6 +1473,36 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
   public EReference getEnumTypeDef_Values()
   {
     return (EReference)enumTypeDefEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getConcreteArrayTypeDef()
+  {
+    return concreteArrayTypeDefEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getConcreteArrayTypeDef_Base()
+  {
+    return (EReference)concreteArrayTypeDefEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getConcreteArrayTypeDef_Size()
+  {
+    return (EAttribute)concreteArrayTypeDefEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2152,8 +2238,11 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     createEReference(specificationEClass, SPECIFICATION__OUTPUTS);
     createEReference(specificationEClass, SPECIFICATION__STATE);
     createEReference(specificationEClass, SPECIFICATION__MACROS);
+    createEAttribute(specificationEClass, SPECIFICATION__ASSUMPTIONS_KEYWORD);
     createEReference(specificationEClass, SPECIFICATION__ASSUMPTIONS);
+    createEAttribute(specificationEClass, SPECIFICATION__REQUIREMENTS_KEYWORD);
     createEReference(specificationEClass, SPECIFICATION__REQUIREMENTS);
+    createEAttribute(specificationEClass, SPECIFICATION__PROPERTIES_KEYWORD);
     createEReference(specificationEClass, SPECIFICATION__BEHAVIORS);
 
     importEClass = createEClass(IMPORT);
@@ -2249,15 +2338,21 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     createEReference(namedTypeDefEClass, NAMED_TYPE_DEF__TYPE);
     createEReference(namedTypeDefEClass, NAMED_TYPE_DEF__UNIT);
 
+    abstractTypeDefEClass = createEClass(ABSTRACT_TYPE_DEF);
+
     recordTypeDefEClass = createEClass(RECORD_TYPE_DEF);
     createEReference(recordTypeDefEClass, RECORD_TYPE_DEF__FIELDS);
 
     arrayTypeDefEClass = createEClass(ARRAY_TYPE_DEF);
     createEReference(arrayTypeDefEClass, ARRAY_TYPE_DEF__BASE);
-    createEAttribute(arrayTypeDefEClass, ARRAY_TYPE_DEF__SIZE);
+    createEReference(arrayTypeDefEClass, ARRAY_TYPE_DEF__SIZE);
 
     enumTypeDefEClass = createEClass(ENUM_TYPE_DEF);
     createEReference(enumTypeDefEClass, ENUM_TYPE_DEF__VALUES);
+
+    concreteArrayTypeDefEClass = createEClass(CONCRETE_ARRAY_TYPE_DEF);
+    createEReference(concreteArrayTypeDefEClass, CONCRETE_ARRAY_TYPE_DEF__BASE);
+    createEAttribute(concreteArrayTypeDefEClass, CONCRETE_ARRAY_TYPE_DEF__SIZE);
 
     intTypeEClass = createEClass(INT_TYPE);
 
@@ -2397,9 +2492,11 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     binaryUnitExprEClass.getESuperTypes().add(this.getUnitExpr());
     namedUnitExprEClass.getESuperTypes().add(this.getUnitExpr());
     namedTypeDefEClass.getESuperTypes().add(this.getTypeDef());
+    abstractTypeDefEClass.getESuperTypes().add(this.getTypeDef());
     recordTypeDefEClass.getESuperTypes().add(this.getTypeDef());
     arrayTypeDefEClass.getESuperTypes().add(this.getTypeDef());
     enumTypeDefEClass.getESuperTypes().add(this.getTypeDef());
+    concreteArrayTypeDefEClass.getESuperTypes().add(this.getTypeDef());
     intTypeEClass.getESuperTypes().add(this.getType());
     boolTypeEClass.getESuperTypes().add(this.getType());
     realTypeEClass.getESuperTypes().add(this.getType());
@@ -2440,8 +2537,11 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     initEReference(getSpecification_Outputs(), this.getVariable(), null, "outputs", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSpecification_State(), this.getVariable(), null, "state", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSpecification_Macros(), this.getMacro(), null, "macros", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getSpecification_AssumptionsKeyword(), ecorePackage.getEString(), "assumptionsKeyword", null, 0, 1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSpecification_Assumptions(), this.getConstraint(), null, "assumptions", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getSpecification_RequirementsKeyword(), ecorePackage.getEString(), "requirementsKeyword", null, 0, 1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSpecification_Requirements(), this.getConstraint(), null, "requirements", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getSpecification_PropertiesKeyword(), ecorePackage.getEString(), "propertiesKeyword", null, 0, 1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSpecification_Behaviors(), this.getConstraint(), null, "behaviors", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(importEClass, Import.class, "Import", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2537,15 +2637,21 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     initEReference(getNamedTypeDef_Type(), this.getType(), null, "type", null, 0, 1, NamedTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getNamedTypeDef_Unit(), this.getUnitDef(), null, "unit", null, 0, 1, NamedTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(abstractTypeDefEClass, AbstractTypeDef.class, "AbstractTypeDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
     initEClass(recordTypeDefEClass, RecordTypeDef.class, "RecordTypeDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRecordTypeDef_Fields(), this.getFieldType(), null, "fields", null, 0, -1, RecordTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(arrayTypeDefEClass, ArrayTypeDef.class, "ArrayTypeDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getArrayTypeDef_Base(), this.getType(), null, "base", null, 0, 1, ArrayTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getArrayTypeDef_Size(), ecorePackage.getEInt(), "size", null, 0, 1, ArrayTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getArrayTypeDef_Size(), this.getExpr(), null, "size", null, 0, 1, ArrayTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(enumTypeDefEClass, EnumTypeDef.class, "EnumTypeDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getEnumTypeDef_Values(), this.getEnumValue(), null, "values", null, 0, -1, EnumTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(concreteArrayTypeDefEClass, ConcreteArrayTypeDef.class, "ConcreteArrayTypeDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getConcreteArrayTypeDef_Base(), this.getType(), null, "base", null, 0, 1, ConcreteArrayTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getConcreteArrayTypeDef_Size(), ecorePackage.getEInt(), "size", null, 0, 1, ConcreteArrayTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(intTypeEClass, IntType.class, "IntType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

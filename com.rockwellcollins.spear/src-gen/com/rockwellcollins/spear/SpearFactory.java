@@ -284,6 +284,15 @@ public interface SpearFactory extends EFactory
   NamedTypeDef createNamedTypeDef();
 
   /**
+   * Returns a new object of class '<em>Abstract Type Def</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Abstract Type Def</em>'.
+   * @generated
+   */
+  AbstractTypeDef createAbstractTypeDef();
+
+  /**
    * Returns a new object of class '<em>Record Type Def</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -309,6 +318,15 @@ public interface SpearFactory extends EFactory
    * @generated
    */
   EnumTypeDef createEnumTypeDef();
+
+  /**
+   * Returns a new object of class '<em>Concrete Array Type Def</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Concrete Array Type Def</em>'.
+   * @generated
+   */
+  ConcreteArrayTypeDef createConcreteArrayTypeDef();
 
   /**
    * Returns a new object of class '<em>Int Type</em>'.

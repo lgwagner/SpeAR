@@ -1,0 +1,21 @@
+Specification specB
+
+Inputs:
+	in : int
+
+Outputs:
+	out : int
+	
+State:
+	sb : int
+
+Assumptions:
+	a : in > 0
+
+Requirements:
+	r0: sb == 1
+	r1: out == 2
+
+Properties:
+	p0: out >= 0
+

@@ -6,42 +6,53 @@ import java.util.List;
 import com.rockwellcollins.spear.Type;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.translate.lustre.TranslateType;
-import com.rockwellcollins.spear.translate.naming.NameMap;
 
 import jkind.lustre.VarDecl;
 
 public class SVariable {
 
-	public static List<SVariable> build(List<Variable> list, NameMap map) {
+	public static List<SVariable> build(List<Variable> list, SSpecification s) {
 		List<SVariable> processed = new ArrayList<>();
 		for(Variable v : list) {
-			processed.add(SVariable.build(v, map));
+			processed.add(SVariable.build(v, s));
 		}
 		return processed;
 	}
 	
-	public static List<VarDecl> toVarDecl(List<SVariable> list, NameMap map) {
+	public static List<VarDecl> toVarDecl(List<SVariable> list, SSpecification s) {
 		List<VarDecl> lustre = new ArrayList<>();
 		for(SVariable svar : list) {
-			lustre.add(svar.toLustre(map));
+			lustre.add(svar.toLustre(s));
 		}
 		return lustre;
 	}
 	
-	public static SVariable build(Variable v, NameMap map) {
-		return new SVariable(v,map);
+	public static SVariable build(Variable v, SSpecification s) {
+		return new SVariable(v,s);
 	}
 	
+	public String original;
 	public String name;
 	public Type type;
 	
-	public SVariable(Variable v, NameMap map) {
-		this.name=map.getName(v);
+	public SVariable(Variable v, SSpecification s) {
+		this.original=v.getName();
+		this.name=s.map.getModuleName(original);
 		this.type=v.getType();
 	}
 	
-	public jkind.lustre.VarDecl toLustre(NameMap nameMap) {
-		jkind.lustre.Type type = TranslateType.translate(this.type, nameMap);
+	public SVariable(String name, Type t, SSpecification s) {
+		this.original=name;
+		this.name=s.map.getModuleName(original);
+		this.type=t;
+	}
+	
+	public jkind.lustre.VarDecl toLustre(SSpecification s) {
+		jkind.lustre.Type type = TranslateType.translate(this.type, s.map);
 		return new jkind.lustre.VarDecl(this.name,type);
+	}
+	
+	public String toString() {
+		return this.name;
 	}
 }

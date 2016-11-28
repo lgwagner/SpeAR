@@ -1,11 +1,15 @@
 package com.rockwellcollins.spear.translate.transformations;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 
 import com.rockwellcollins.spear.BinaryExpr;
-import com.rockwellcollins.spear.File;
+import com.rockwellcollins.spear.Pattern;
+import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.language.CreateExpr;
+import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
+import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 
 public class NormalizeOperators {
 
@@ -13,14 +17,24 @@ public class NormalizeOperators {
 		return s.replaceAll("\\s+", " ");
 	}
 	
-	public static void transform(SpearDocument p) {
-		for(File f : p.files) {
-			transform(f);
+	public static void transform(SpearDocument doc) {
+		for(Pattern p : doc.patterns.values()) {
+			transform(p);
+		}
+		
+		for(Specification s : doc.specifications.values()) {
+			transform(s);
 		}
 	}
 	
-	private static File transform(File f) {
-		for(UnaryExpr ue : EcoreUtil2.getAllContentsOfType(f, UnaryExpr.class)) {
+	public static void transform(PatternDocument doc) {
+		for(Pattern p : doc.patterns.values()) {
+			transform(p);
+		}
+	}
+	
+	private static EObject transform(EObject o) {
+		for(UnaryExpr ue : EcoreUtil2.getAllContentsOfType(o, UnaryExpr.class)) {
 			String normalizedOp = normalize(ue.getOp());
 			
 			switch(normalizedOp) {
@@ -34,7 +48,7 @@ public class NormalizeOperators {
 			}
 		}
 		
-		for(BinaryExpr be : EcoreUtil2.getAllContentsOfType(f, BinaryExpr.class)) {
+		for(BinaryExpr be : EcoreUtil2.getAllContentsOfType(o, BinaryExpr.class)) {
 			String normalizedOp = normalize(be.getOp());
 			
 			switch(normalizedOp) {
@@ -79,7 +93,6 @@ public class NormalizeOperators {
 					break;
 			}
 		}
-		
-		return f;
+		return o;
 	}
 }

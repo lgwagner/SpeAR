@@ -18,4 +18,10 @@ public class PreferenceBasedValidatorAdvisor implements IValidatorAdvisor {
 	public boolean isUnusedValidationsDisabled() {
 		return preferencesStore.getBoolean(PreferenceConstants.PREF_DISABLE_UNUSED_VALIDATIONS);
 	}
+	
+	@Override
+	public boolean isSolverNonlinear() {
+		String solver = preferencesStore.getString(PreferenceConstants.PREF_SOLVER);
+		return solver.equals(PreferenceConstants.SOLVER_Z3);
+	}
 }

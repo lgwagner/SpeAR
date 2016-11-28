@@ -3,54 +3,96 @@ package com.rockwellcollins.spear.translate.master;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.NormalizedCall;
-import com.rockwellcollins.spear.Variable;
-import com.rockwellcollins.spear.translate.naming.NameMap;
+import com.rockwellcollins.spear.translate.lustre.TranslateType;
+import com.rockwellcollins.spear.translate.naming.SpearMap;
+import com.rockwellcollins.spear.utilities.Utilities;
 
 import jkind.lustre.IdExpr;
 import jkind.lustre.VarDecl;
 
 public class SCall {
-	
-	public static int uniqueKey = 0;
-	
-	public static List<SCall> build(List<NormalizedCall> calls, NameMap map) {
-		List<SCall> scalls = new ArrayList<>();
+
+	public static List<SCall> build(List<NormalizedCall> calls, List<SSpecification> specs, SpearMap map) {
+		List<SCall> built = new ArrayList<>();
 		for(NormalizedCall call : calls) {
-			scalls.add(new SCall(call,map));
+			built.add(SCall.build(call,specs,map));
 		}
-		return scalls;
+		return built;
 	}
 	
-	public NormalizedCall call;
-	public int localKey;
-	public List<Expr> args = new ArrayList<>();
-	public List<SLocalFromCall> ndlocals = new ArrayList<>();
+	public static SCall build(NormalizedCall call, List<SSpecification> specs, SpearMap map) {
+		return new SCall(call,specs,map);
+	}
 	
-	public SCall(NormalizedCall call, NameMap map) {
-		this.call=call;
-		this.localKey = uniqueKey;
-		uniqueKey++;
-		args = new ArrayList<>(call.getArgs());
+	public static List<VarDecl> toVarDecl(List<SCall> calls, SSpecification s) {
+		List<VarDecl> decls = new ArrayList<>();
+		for(SCall call : calls) {
+			decls.addAll(call.toVarDecl(s));
+		}
+		return decls;
+	}
+	
+	public static SCall get(NormalizedCall call, List<SCall> calls) {
+		for(SCall scall : calls) {
+			if(scall.original.equals(call)) {
+				return scall;
+			}
+		}
+		return null;
+	}
+	
+	public String callerName;
+	public String calledName;
+	public SSpecification caller;
+	public SSpecification called;
+	private NormalizedCall original;
+	
+	public List<SVariable> variables = new ArrayList<>();
+	
+	private SCall(NormalizedCall call, List<SSpecification> specs, SpearMap map) {
+		this.original=call;
 		
-		for(Variable v : call.getSpec().getState()) {
-			ndlocals.add(new SLocalFromCall(call,this,v,map));
-		}
-		map.callMapping.put(call, this);
+		this.callerName=map.lookupOriginalProgram(Utilities.getRoot(call).getName());
+		this.caller=SSpecification.lookup(callerName, specs);
+		
+		this.calledName=map.lookupOriginalProgram(call.getSpec().getName());
+		this.called=SSpecification.lookup(this.calledName, specs);
 	}
 	
-	public List<VarDecl> getNDLocals(NameMap map) {
-		List<VarDecl> ndstate = new ArrayList<>(SLocalFromCall.getVarDecls(ndlocals, map));
-		return ndstate;
+	public void resolveCallVars() {
+		for(SVariable sv : called.state) {
+			String name = called.name + "_" + sv.name;
+			//the SVariable registers the name with the caller spec
+			variables.add(new SVariable(name,sv.type,caller));
+		}
 	}
 	
-	public List<IdExpr> getCallsArgs(NameMap map) {
-		List<IdExpr> thisCallsArgs = SLocalFromCall.getArgIds(ndlocals, map);
-		SSpecification calledSpec = (SSpecification) map.fileMapping.get(call.getSpec());
-		for(SCall calls : calledSpec.calls) {
-			thisCallsArgs.addAll(calls.getCallsArgs(map));
+	public List<VarDecl> toVarDecl(SSpecification s) {
+		List<VarDecl> decls = new ArrayList<>();
+		for(SVariable sv : variables) {
+			decls.add(new VarDecl(sv.name,TranslateType.translate(sv.type, caller.map)));
 		}
-		return thisCallsArgs;
+		
+		for(SCall call : called.calls) {
+			decls.addAll(call.toVarDecl(called));
+		}
+		return decls;
+	}
+	
+	public List<jkind.lustre.Expr> getCallArgs() {
+		List<jkind.lustre.Expr> args = new ArrayList<>();
+		for(SVariable sv : variables) {
+			args.add(new IdExpr(sv.name));
+		}
+		
+		for(SCall call : called.calls) {
+			args.addAll(call.getCallArgs());
+		}
+		return args;
+	}
+	
+	public String toString() {
+		return callerName + " -> " + calledName;
 	}
 }

@@ -221,13 +221,31 @@ public interface SpearPackage extends EPackage
   int SPECIFICATION__MACROS = FILE_FEATURE_COUNT + 4;
 
   /**
+   * The feature id for the '<em><b>Assumptions Keyword</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SPECIFICATION__ASSUMPTIONS_KEYWORD = FILE_FEATURE_COUNT + 5;
+
+  /**
    * The feature id for the '<em><b>Assumptions</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SPECIFICATION__ASSUMPTIONS = FILE_FEATURE_COUNT + 5;
+  int SPECIFICATION__ASSUMPTIONS = FILE_FEATURE_COUNT + 6;
+
+  /**
+   * The feature id for the '<em><b>Requirements Keyword</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SPECIFICATION__REQUIREMENTS_KEYWORD = FILE_FEATURE_COUNT + 7;
 
   /**
    * The feature id for the '<em><b>Requirements</b></em>' containment reference list.
@@ -236,7 +254,16 @@ public interface SpearPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SPECIFICATION__REQUIREMENTS = FILE_FEATURE_COUNT + 6;
+  int SPECIFICATION__REQUIREMENTS = FILE_FEATURE_COUNT + 8;
+
+  /**
+   * The feature id for the '<em><b>Properties Keyword</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SPECIFICATION__PROPERTIES_KEYWORD = FILE_FEATURE_COUNT + 9;
 
   /**
    * The feature id for the '<em><b>Behaviors</b></em>' containment reference list.
@@ -245,7 +272,7 @@ public interface SpearPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SPECIFICATION__BEHAVIORS = FILE_FEATURE_COUNT + 7;
+  int SPECIFICATION__BEHAVIORS = FILE_FEATURE_COUNT + 10;
 
   /**
    * The number of structural features of the '<em>Specification</em>' class.
@@ -254,7 +281,7 @@ public interface SpearPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SPECIFICATION_FEATURE_COUNT = FILE_FEATURE_COUNT + 8;
+  int SPECIFICATION_FEATURE_COUNT = FILE_FEATURE_COUNT + 11;
 
   /**
    * The meta object id for the '{@link com.rockwellcollins.spear.impl.ImportImpl <em>Import</em>}' class.
@@ -1265,6 +1292,34 @@ public interface SpearPackage extends EPackage
   int NAMED_TYPE_DEF_FEATURE_COUNT = TYPE_DEF_FEATURE_COUNT + 2;
 
   /**
+   * The meta object id for the '{@link com.rockwellcollins.spear.impl.AbstractTypeDefImpl <em>Abstract Type Def</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.rockwellcollins.spear.impl.AbstractTypeDefImpl
+   * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getAbstractTypeDef()
+   * @generated
+   */
+  int ABSTRACT_TYPE_DEF = 29;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_TYPE_DEF__NAME = TYPE_DEF__NAME;
+
+  /**
+   * The number of structural features of the '<em>Abstract Type Def</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_TYPE_DEF_FEATURE_COUNT = TYPE_DEF_FEATURE_COUNT + 0;
+
+  /**
    * The meta object id for the '{@link com.rockwellcollins.spear.impl.RecordTypeDefImpl <em>Record Type Def</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1272,7 +1327,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getRecordTypeDef()
    * @generated
    */
-  int RECORD_TYPE_DEF = 29;
+  int RECORD_TYPE_DEF = 30;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1309,7 +1364,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getArrayTypeDef()
    * @generated
    */
-  int ARRAY_TYPE_DEF = 30;
+  int ARRAY_TYPE_DEF = 31;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1330,7 +1385,7 @@ public interface SpearPackage extends EPackage
   int ARRAY_TYPE_DEF__BASE = TYPE_DEF_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Size</b></em>' attribute.
+   * The feature id for the '<em><b>Size</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -1355,7 +1410,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getEnumTypeDef()
    * @generated
    */
-  int ENUM_TYPE_DEF = 31;
+  int ENUM_TYPE_DEF = 32;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1385,6 +1440,52 @@ public interface SpearPackage extends EPackage
   int ENUM_TYPE_DEF_FEATURE_COUNT = TYPE_DEF_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link com.rockwellcollins.spear.impl.ConcreteArrayTypeDefImpl <em>Concrete Array Type Def</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.rockwellcollins.spear.impl.ConcreteArrayTypeDefImpl
+   * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getConcreteArrayTypeDef()
+   * @generated
+   */
+  int CONCRETE_ARRAY_TYPE_DEF = 33;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONCRETE_ARRAY_TYPE_DEF__NAME = TYPE_DEF__NAME;
+
+  /**
+   * The feature id for the '<em><b>Base</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONCRETE_ARRAY_TYPE_DEF__BASE = TYPE_DEF_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Size</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONCRETE_ARRAY_TYPE_DEF__SIZE = TYPE_DEF_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Concrete Array Type Def</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONCRETE_ARRAY_TYPE_DEF_FEATURE_COUNT = TYPE_DEF_FEATURE_COUNT + 2;
+
+  /**
    * The meta object id for the '{@link com.rockwellcollins.spear.impl.IntTypeImpl <em>Int Type</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1392,7 +1493,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getIntType()
    * @generated
    */
-  int INT_TYPE = 32;
+  int INT_TYPE = 34;
 
   /**
    * The number of structural features of the '<em>Int Type</em>' class.
@@ -1411,7 +1512,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getBoolType()
    * @generated
    */
-  int BOOL_TYPE = 33;
+  int BOOL_TYPE = 35;
 
   /**
    * The number of structural features of the '<em>Bool Type</em>' class.
@@ -1430,7 +1531,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getRealType()
    * @generated
    */
-  int REAL_TYPE = 34;
+  int REAL_TYPE = 36;
 
   /**
    * The number of structural features of the '<em>Real Type</em>' class.
@@ -1449,7 +1550,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getUserType()
    * @generated
    */
-  int USER_TYPE = 35;
+  int USER_TYPE = 37;
 
   /**
    * The feature id for the '<em><b>Def</b></em>' reference.
@@ -1477,7 +1578,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getWhileExpr()
    * @generated
    */
-  int WHILE_EXPR = 36;
+  int WHILE_EXPR = 38;
 
   /**
    * The feature id for the '<em><b>Cond</b></em>' containment reference.
@@ -1514,7 +1615,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getBinaryExpr()
    * @generated
    */
-  int BINARY_EXPR = 37;
+  int BINARY_EXPR = 39;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1560,7 +1661,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getAfterUntilExpr()
    * @generated
    */
-  int AFTER_UNTIL_EXPR = 38;
+  int AFTER_UNTIL_EXPR = 40;
 
   /**
    * The feature id for the '<em><b>After</b></em>' containment reference.
@@ -1597,7 +1698,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getUnaryExpr()
    * @generated
    */
-  int UNARY_EXPR = 39;
+  int UNARY_EXPR = 41;
 
   /**
    * The feature id for the '<em><b>Op</b></em>' attribute.
@@ -1634,7 +1735,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getPreviousExpr()
    * @generated
    */
-  int PREVIOUS_EXPR = 40;
+  int PREVIOUS_EXPR = 42;
 
   /**
    * The feature id for the '<em><b>Var</b></em>' containment reference.
@@ -1671,7 +1772,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getRecordAccessExpr()
    * @generated
    */
-  int RECORD_ACCESS_EXPR = 41;
+  int RECORD_ACCESS_EXPR = 43;
 
   /**
    * The feature id for the '<em><b>Record</b></em>' containment reference.
@@ -1708,7 +1809,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getRecordUpdateExpr()
    * @generated
    */
-  int RECORD_UPDATE_EXPR = 42;
+  int RECORD_UPDATE_EXPR = 44;
 
   /**
    * The feature id for the '<em><b>Record</b></em>' containment reference.
@@ -1754,7 +1855,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getArrayAccessExpr()
    * @generated
    */
-  int ARRAY_ACCESS_EXPR = 43;
+  int ARRAY_ACCESS_EXPR = 45;
 
   /**
    * The feature id for the '<em><b>Array</b></em>' containment reference.
@@ -1791,7 +1892,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getArrayUpdateExpr()
    * @generated
    */
-  int ARRAY_UPDATE_EXPR = 44;
+  int ARRAY_UPDATE_EXPR = 46;
 
   /**
    * The feature id for the '<em><b>Access</b></em>' containment reference.
@@ -1828,7 +1929,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getIdExpr()
    * @generated
    */
-  int ID_EXPR = 45;
+  int ID_EXPR = 47;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' reference.
@@ -1856,7 +1957,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getMultipleIdExpr()
    * @generated
    */
-  int MULTIPLE_ID_EXPR = 46;
+  int MULTIPLE_ID_EXPR = 48;
 
   /**
    * The feature id for the '<em><b>Ids</b></em>' reference list.
@@ -1884,7 +1985,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getIfThenElseExpr()
    * @generated
    */
-  int IF_THEN_ELSE_EXPR = 47;
+  int IF_THEN_ELSE_EXPR = 49;
 
   /**
    * The feature id for the '<em><b>Cond</b></em>' containment reference.
@@ -1930,7 +2031,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getRecordExpr()
    * @generated
    */
-  int RECORD_EXPR = 48;
+  int RECORD_EXPR = 50;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -1967,7 +2068,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getFieldlessRecordExpr()
    * @generated
    */
-  int FIELDLESS_RECORD_EXPR = 49;
+  int FIELDLESS_RECORD_EXPR = 51;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2004,7 +2105,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getArrayExpr()
    * @generated
    */
-  int ARRAY_EXPR = 50;
+  int ARRAY_EXPR = 52;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2041,7 +2142,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getPatternCall()
    * @generated
    */
-  int PATTERN_CALL = 51;
+  int PATTERN_CALL = 53;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' reference.
@@ -2078,7 +2179,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getSpecificationCall()
    * @generated
    */
-  int SPECIFICATION_CALL = 52;
+  int SPECIFICATION_CALL = 54;
 
   /**
    * The feature id for the '<em><b>Spec</b></em>' reference.
@@ -2115,7 +2216,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getIntLiteral()
    * @generated
    */
-  int INT_LITERAL = 53;
+  int INT_LITERAL = 55;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -2152,7 +2253,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getBoolLiteral()
    * @generated
    */
-  int BOOL_LITERAL = 54;
+  int BOOL_LITERAL = 56;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -2180,7 +2281,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getRealLiteral()
    * @generated
    */
-  int REAL_LITERAL = 55;
+  int REAL_LITERAL = 57;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -2217,7 +2318,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getNormalizedCall()
    * @generated
    */
-  int NORMALIZED_CALL = 56;
+  int NORMALIZED_CALL = 58;
 
   /**
    * The feature id for the '<em><b>Ids</b></em>' reference list.
@@ -2387,6 +2488,17 @@ public interface SpearPackage extends EPackage
   EReference getSpecification_Macros();
 
   /**
+   * Returns the meta object for the attribute '{@link com.rockwellcollins.spear.Specification#getAssumptionsKeyword <em>Assumptions Keyword</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Assumptions Keyword</em>'.
+   * @see com.rockwellcollins.spear.Specification#getAssumptionsKeyword()
+   * @see #getSpecification()
+   * @generated
+   */
+  EAttribute getSpecification_AssumptionsKeyword();
+
+  /**
    * Returns the meta object for the containment reference list '{@link com.rockwellcollins.spear.Specification#getAssumptions <em>Assumptions</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2398,6 +2510,17 @@ public interface SpearPackage extends EPackage
   EReference getSpecification_Assumptions();
 
   /**
+   * Returns the meta object for the attribute '{@link com.rockwellcollins.spear.Specification#getRequirementsKeyword <em>Requirements Keyword</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Requirements Keyword</em>'.
+   * @see com.rockwellcollins.spear.Specification#getRequirementsKeyword()
+   * @see #getSpecification()
+   * @generated
+   */
+  EAttribute getSpecification_RequirementsKeyword();
+
+  /**
    * Returns the meta object for the containment reference list '{@link com.rockwellcollins.spear.Specification#getRequirements <em>Requirements</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2407,6 +2530,17 @@ public interface SpearPackage extends EPackage
    * @generated
    */
   EReference getSpecification_Requirements();
+
+  /**
+   * Returns the meta object for the attribute '{@link com.rockwellcollins.spear.Specification#getPropertiesKeyword <em>Properties Keyword</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Properties Keyword</em>'.
+   * @see com.rockwellcollins.spear.Specification#getPropertiesKeyword()
+   * @see #getSpecification()
+   * @generated
+   */
+  EAttribute getSpecification_PropertiesKeyword();
 
   /**
    * Returns the meta object for the containment reference list '{@link com.rockwellcollins.spear.Specification#getBehaviors <em>Behaviors</em>}'.
@@ -3119,6 +3253,16 @@ public interface SpearPackage extends EPackage
   EReference getNamedTypeDef_Unit();
 
   /**
+   * Returns the meta object for class '{@link com.rockwellcollins.spear.AbstractTypeDef <em>Abstract Type Def</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Abstract Type Def</em>'.
+   * @see com.rockwellcollins.spear.AbstractTypeDef
+   * @generated
+   */
+  EClass getAbstractTypeDef();
+
+  /**
    * Returns the meta object for class '{@link com.rockwellcollins.spear.RecordTypeDef <em>Record Type Def</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3161,15 +3305,15 @@ public interface SpearPackage extends EPackage
   EReference getArrayTypeDef_Base();
 
   /**
-   * Returns the meta object for the attribute '{@link com.rockwellcollins.spear.ArrayTypeDef#getSize <em>Size</em>}'.
+   * Returns the meta object for the containment reference '{@link com.rockwellcollins.spear.ArrayTypeDef#getSize <em>Size</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Size</em>'.
+   * @return the meta object for the containment reference '<em>Size</em>'.
    * @see com.rockwellcollins.spear.ArrayTypeDef#getSize()
    * @see #getArrayTypeDef()
    * @generated
    */
-  EAttribute getArrayTypeDef_Size();
+  EReference getArrayTypeDef_Size();
 
   /**
    * Returns the meta object for class '{@link com.rockwellcollins.spear.EnumTypeDef <em>Enum Type Def</em>}'.
@@ -3191,6 +3335,38 @@ public interface SpearPackage extends EPackage
    * @generated
    */
   EReference getEnumTypeDef_Values();
+
+  /**
+   * Returns the meta object for class '{@link com.rockwellcollins.spear.ConcreteArrayTypeDef <em>Concrete Array Type Def</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Concrete Array Type Def</em>'.
+   * @see com.rockwellcollins.spear.ConcreteArrayTypeDef
+   * @generated
+   */
+  EClass getConcreteArrayTypeDef();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.rockwellcollins.spear.ConcreteArrayTypeDef#getBase <em>Base</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Base</em>'.
+   * @see com.rockwellcollins.spear.ConcreteArrayTypeDef#getBase()
+   * @see #getConcreteArrayTypeDef()
+   * @generated
+   */
+  EReference getConcreteArrayTypeDef_Base();
+
+  /**
+   * Returns the meta object for the attribute '{@link com.rockwellcollins.spear.ConcreteArrayTypeDef#getSize <em>Size</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Size</em>'.
+   * @see com.rockwellcollins.spear.ConcreteArrayTypeDef#getSize()
+   * @see #getConcreteArrayTypeDef()
+   * @generated
+   */
+  EAttribute getConcreteArrayTypeDef_Size();
 
   /**
    * Returns the meta object for class '{@link com.rockwellcollins.spear.IntType <em>Int Type</em>}'.
@@ -4050,6 +4226,14 @@ public interface SpearPackage extends EPackage
     EReference SPECIFICATION__MACROS = eINSTANCE.getSpecification_Macros();
 
     /**
+     * The meta object literal for the '<em><b>Assumptions Keyword</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SPECIFICATION__ASSUMPTIONS_KEYWORD = eINSTANCE.getSpecification_AssumptionsKeyword();
+
+    /**
      * The meta object literal for the '<em><b>Assumptions</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4058,12 +4242,28 @@ public interface SpearPackage extends EPackage
     EReference SPECIFICATION__ASSUMPTIONS = eINSTANCE.getSpecification_Assumptions();
 
     /**
+     * The meta object literal for the '<em><b>Requirements Keyword</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SPECIFICATION__REQUIREMENTS_KEYWORD = eINSTANCE.getSpecification_RequirementsKeyword();
+
+    /**
      * The meta object literal for the '<em><b>Requirements</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference SPECIFICATION__REQUIREMENTS = eINSTANCE.getSpecification_Requirements();
+
+    /**
+     * The meta object literal for the '<em><b>Properties Keyword</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SPECIFICATION__PROPERTIES_KEYWORD = eINSTANCE.getSpecification_PropertiesKeyword();
 
     /**
      * The meta object literal for the '<em><b>Behaviors</b></em>' containment reference list feature.
@@ -4656,6 +4856,16 @@ public interface SpearPackage extends EPackage
     EReference NAMED_TYPE_DEF__UNIT = eINSTANCE.getNamedTypeDef_Unit();
 
     /**
+     * The meta object literal for the '{@link com.rockwellcollins.spear.impl.AbstractTypeDefImpl <em>Abstract Type Def</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.rockwellcollins.spear.impl.AbstractTypeDefImpl
+     * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getAbstractTypeDef()
+     * @generated
+     */
+    EClass ABSTRACT_TYPE_DEF = eINSTANCE.getAbstractTypeDef();
+
+    /**
      * The meta object literal for the '{@link com.rockwellcollins.spear.impl.RecordTypeDefImpl <em>Record Type Def</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4692,12 +4902,12 @@ public interface SpearPackage extends EPackage
     EReference ARRAY_TYPE_DEF__BASE = eINSTANCE.getArrayTypeDef_Base();
 
     /**
-     * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Size</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ARRAY_TYPE_DEF__SIZE = eINSTANCE.getArrayTypeDef_Size();
+    EReference ARRAY_TYPE_DEF__SIZE = eINSTANCE.getArrayTypeDef_Size();
 
     /**
      * The meta object literal for the '{@link com.rockwellcollins.spear.impl.EnumTypeDefImpl <em>Enum Type Def</em>}' class.
@@ -4716,6 +4926,32 @@ public interface SpearPackage extends EPackage
      * @generated
      */
     EReference ENUM_TYPE_DEF__VALUES = eINSTANCE.getEnumTypeDef_Values();
+
+    /**
+     * The meta object literal for the '{@link com.rockwellcollins.spear.impl.ConcreteArrayTypeDefImpl <em>Concrete Array Type Def</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.rockwellcollins.spear.impl.ConcreteArrayTypeDefImpl
+     * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getConcreteArrayTypeDef()
+     * @generated
+     */
+    EClass CONCRETE_ARRAY_TYPE_DEF = eINSTANCE.getConcreteArrayTypeDef();
+
+    /**
+     * The meta object literal for the '<em><b>Base</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONCRETE_ARRAY_TYPE_DEF__BASE = eINSTANCE.getConcreteArrayTypeDef_Base();
+
+    /**
+     * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONCRETE_ARRAY_TYPE_DEF__SIZE = eINSTANCE.getConcreteArrayTypeDef_Size();
 
     /**
      * The meta object literal for the '{@link com.rockwellcollins.spear.impl.IntTypeImpl <em>Int Type</em>}' class.

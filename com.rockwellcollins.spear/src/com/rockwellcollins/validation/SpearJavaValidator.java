@@ -4,6 +4,7 @@
 package com.rockwellcollins.validation;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
@@ -11,14 +12,17 @@ import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.ComposedChecks;
 
+import com.google.inject.Inject;
 import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Constraint;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.IdExpr;
+import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.PreviousExpr;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.utilities.ConstantChecker;
@@ -31,13 +35,10 @@ import com.rockwellcollins.spear.utilities.Utilities;
  * validation
  */
 
-@ComposedChecks(validators = {TypesAcyclicValidator.class, 
-							  SpecificationsAcyclicValidator.class, 
-							  ConstantsAcyclicValidator.class,
-							  MacrosAcyclicValidator.class,
-							  VariablesAreUsedValidator.class,
-							  IllegalAnalysisValidations.class,
-							  TypeCheckingValidator.class})
+@ComposedChecks(validators = { SpecificationsAcyclicValidator.class,
+							   VariablesAreUsedValidator.class,
+							   IllegalAnalysisValidations.class,
+							   TypeCheckingValidator.class})
 
 public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractSpearJavaValidator {
 
@@ -99,14 +100,14 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 	@Check
 	public void checkPreviousExpressionsAreGuarded(PreviousExpr pe) {
 		if(pe.getInit() == null) {
-			error("The initial value must be specified for previous expressions.",pe,null);
+			warning("No initial value was specified. Analysis will consider all possible values for the initial state.",pe,null);
 		}
 	}
 	
 	@Check
 	public void checkForIllegalArrows(Specification s) {
 		for(BinaryExpr be : EcoreUtil2.getAllContentsOfType(s, BinaryExpr.class)) {
-			if(be.getOp().equals("->")) {
+			if(be.getOp().equals("->") || be.getOp().equals("arrow")) {
 				EObject container = Utilities.getTopContainer(be);
 				if(container instanceof Specification) {
 					error("Arrow operators are meant for use inside of patterns only.",be,SpearPackage.Literals.BINARY_EXPR__OP);
@@ -114,5 +115,71 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 			}
 		}
 	}
-
+	
+	@Check
+	public void checkTypesAreAcyclic(TypeDef td) {
+		List<EObject> deps = AcyclicValidator.validate(td);
+		if(deps.contains(td)) {
+			String message = "Cycle detected: " + td.getName() + " -> " + AcyclicValidator.getMessage(td,deps);
+			error(message, td, SpearPackage.Literals.TYPE_DEF__NAME);
+		}
+	}
+	
+	@Check
+	public void checkConstantsAreAcyclic(Constant c) {
+		List<EObject> deps = AcyclicValidator.validate(c);
+		if(deps.contains(c)) {
+			String message = "Cycle detected: " + c.getName() + " -> " + AcyclicValidator.getMessage(c,deps);
+			error(message, c, SpearPackage.Literals.ID_REF__NAME);
+		}
+	}
+	
+	@Check
+	public void checkMacrosAreAcyclic(Macro m) {
+		List<EObject> deps = AcyclicValidator.validate(m);
+		if(deps.contains(m)) {
+			String message = "Cycle detected: " + m.getName() + " -> " + AcyclicValidator.getMessage(m,deps);
+			error(message, m, SpearPackage.Literals.ID_REF__NAME);
+		}	
+	}
+	
+	@Check
+	public void checkForIllegalSectionheaders(Specification s) {
+		String requirements = s.getRequirementsKeyword();
+		String properties = s.getPropertiesKeyword();
+		if(requirements.equals(properties)) {
+			error("Duplicate section name used: " + requirements,s,SpearPackage.Literals.SPECIFICATION__REQUIREMENTS_KEYWORD);
+			error("Duplicate section name used: " + requirements,s,SpearPackage.Literals.SPECIFICATION__PROPERTIES_KEYWORD);
+		}
+	}
+	
+	@Inject
+	protected IValidatorAdvisor options;
+	
+	@Check
+	public void checkNonlinearDivision(BinaryExpr be) {
+		if(options.isSolverNonlinear()) {
+			return;
+		}
+		
+		boolean isLeftConstant = ConstantChecker.isConstant(be.getLeft());
+		boolean isRightConstant = ConstantChecker.isConstant(be.getRight());
+		
+		switch (be.getOp()) {
+			case "/":
+				if(!isRightConstant) {
+					error("Division by non-constant expressions is not supported.",be,SpearPackage.Literals.BINARY_EXPR__RIGHT);
+				}
+				break;
+				
+			case "*":
+				if(!isLeftConstant && !isRightConstant) {
+					error("Multiplication by non-constant expressions is not supported.",be,null);
+				}
+				break;
+				
+			default:
+				break;
+		}
+	}
 }

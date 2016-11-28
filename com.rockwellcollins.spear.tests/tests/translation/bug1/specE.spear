@@ -1,0 +1,24 @@
+Specification specE
+
+Inputs:
+	a : int
+
+Outputs:
+	y : int
+
+State:
+	r : int
+
+Macros:
+
+Assumptions:
+	a0: a > 0
+
+Requirements:
+	r0: r == a + 1
+	r1: y == r + 1
+
+Properties:
+	p0: r > a
+	p1: y > r and y > a
+

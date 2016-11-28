@@ -3,6 +3,7 @@
 package com.rockwellcollins.spear.impl;
 
 import com.rockwellcollins.spear.ArrayTypeDef;
+import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Type;
 
@@ -41,24 +42,14 @@ public class ArrayTypeDefImpl extends TypeDefImpl implements ArrayTypeDef
   protected Type base;
 
   /**
-   * The default value of the '{@link #getSize() <em>Size</em>}' attribute.
+   * The cached value of the '{@link #getSize() <em>Size</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getSize()
    * @generated
    * @ordered
    */
-  protected static final int SIZE_EDEFAULT = 0;
-
-  /**
-   * The cached value of the '{@link #getSize() <em>Size</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getSize()
-   * @generated
-   * @ordered
-   */
-  protected int size = SIZE_EDEFAULT;
+  protected Expr size;
 
   /**
    * <!-- begin-user-doc -->
@@ -134,7 +125,7 @@ public class ArrayTypeDefImpl extends TypeDefImpl implements ArrayTypeDef
    * <!-- end-user-doc -->
    * @generated
    */
-  public int getSize()
+  public Expr getSize()
   {
     return size;
   }
@@ -144,12 +135,37 @@ public class ArrayTypeDefImpl extends TypeDefImpl implements ArrayTypeDef
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setSize(int newSize)
+  public NotificationChain basicSetSize(Expr newSize, NotificationChain msgs)
   {
-    int oldSize = size;
+    Expr oldSize = size;
     size = newSize;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, SpearPackage.ARRAY_TYPE_DEF__SIZE, oldSize, size));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpearPackage.ARRAY_TYPE_DEF__SIZE, oldSize, newSize);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setSize(Expr newSize)
+  {
+    if (newSize != size)
+    {
+      NotificationChain msgs = null;
+      if (size != null)
+        msgs = ((InternalEObject)size).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpearPackage.ARRAY_TYPE_DEF__SIZE, null, msgs);
+      if (newSize != null)
+        msgs = ((InternalEObject)newSize).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpearPackage.ARRAY_TYPE_DEF__SIZE, null, msgs);
+      msgs = basicSetSize(newSize, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, SpearPackage.ARRAY_TYPE_DEF__SIZE, newSize, newSize));
   }
 
   /**
@@ -164,6 +180,8 @@ public class ArrayTypeDefImpl extends TypeDefImpl implements ArrayTypeDef
     {
       case SpearPackage.ARRAY_TYPE_DEF__BASE:
         return basicSetBase(null, msgs);
+      case SpearPackage.ARRAY_TYPE_DEF__SIZE:
+        return basicSetSize(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -200,7 +218,7 @@ public class ArrayTypeDefImpl extends TypeDefImpl implements ArrayTypeDef
         setBase((Type)newValue);
         return;
       case SpearPackage.ARRAY_TYPE_DEF__SIZE:
-        setSize((Integer)newValue);
+        setSize((Expr)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -220,7 +238,7 @@ public class ArrayTypeDefImpl extends TypeDefImpl implements ArrayTypeDef
         setBase((Type)null);
         return;
       case SpearPackage.ARRAY_TYPE_DEF__SIZE:
-        setSize(SIZE_EDEFAULT);
+        setSize((Expr)null);
         return;
     }
     super.eUnset(featureID);
@@ -239,26 +257,9 @@ public class ArrayTypeDefImpl extends TypeDefImpl implements ArrayTypeDef
       case SpearPackage.ARRAY_TYPE_DEF__BASE:
         return base != null;
       case SpearPackage.ARRAY_TYPE_DEF__SIZE:
-        return size != SIZE_EDEFAULT;
+        return size != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (size: ");
-    result.append(size);
-    result.append(')');
-    return result.toString();
   }
 
 } //ArrayTypeDefImpl

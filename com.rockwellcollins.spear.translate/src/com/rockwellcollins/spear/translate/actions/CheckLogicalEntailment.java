@@ -3,7 +3,6 @@ package com.rockwellcollins.spear.translate.actions;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Map;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
@@ -20,7 +19,6 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.XtextEditor;
@@ -33,12 +31,12 @@ import org.eclipse.xtext.validation.Issue;
 
 import com.google.inject.Injector;
 import com.rockwellcollins.SpearInjectorUtil;
+import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.translate.layout.SpearLayout;
 import com.rockwellcollins.spear.translate.master.SProgram;
-import com.rockwellcollins.spear.translate.transformations.PerformTransforms;
-import com.rockwellcollins.spear.translate.transformations.SpearDocument;
 import com.rockwellcollins.spear.translate.views.SpearResultsView;
 import com.rockwellcollins.spear.ui.preferences.PreferencesUtil;
 import com.rockwellcollins.ui.internal.SpearActivator;
@@ -73,7 +71,14 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 
 			@Override
 			public java.lang.Void exec(XtextResource state) throws Exception {
-				Specification specification = (Specification) state.getContents().get(0);
+				File f = (File) state.getContents().get(0);
+
+				Specification specification = null;
+				if (f instanceof Definitions) {
+					MessageDialog.openError(window.getShell(), "Error", "Cannot analyze a Definitions file.");	
+				} else {
+					specification = (Specification) f;
+				}
 
 				if (hasErrors(specification.eResource())) {
 					MessageDialog.openError(window.getShell(), "Error", "Specification contains errors.");
@@ -90,7 +95,8 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 				SpearRuntimeOptions.setRuntimeOptions();
 				
 				SpearDocument workingCopy = new SpearDocument(specification);
-				Map<File,Map<String,String>> renamed = PerformTransforms.apply(workingCopy);
+				workingCopy.transform();
+				
 				SProgram program = SProgram.build(workingCopy);
 
 				Program p = program.getLogicalEntailment();
@@ -107,7 +113,7 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 				root.refreshLocal(IResource.DEPTH_INFINITE, null);
 				KindApi api = PreferencesUtil.getKindApi();
 
-				Renaming renaming = new MapRenaming(renamed.get(workingCopy.getMain()), Mode.IDENTITY);
+				Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.getMain()), Mode.IDENTITY);
 				JKindResult result = new JKindResult("Spear Result", p.getMainNode().properties, renaming);
 
 				IProgressMonitor monitor = new NullProgressMonitor();
@@ -119,6 +125,7 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 					System.out.println(result.getText());
 					throw e;
 				}
+
 				return null;
 			}
 		});

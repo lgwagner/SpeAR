@@ -1,0 +1,16 @@
+Specification caller
+
+Imports:
+	import "callee.spear"
+
+Inputs:
+	x : int
+
+Outputs:
+	callee : int
+
+Requirements:
+	r0: callee == spec callee(x)
+
+Properties:
+	p1: callee > 0

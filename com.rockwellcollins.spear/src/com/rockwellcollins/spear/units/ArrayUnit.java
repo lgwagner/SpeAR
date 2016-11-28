@@ -21,7 +21,7 @@ public class ArrayUnit extends Unit {
 	public boolean equals(Object obj) {
 		if (obj instanceof ArrayUnit) {
 			ArrayUnit other = (ArrayUnit) obj;
-			return name.equals(other.name);
+			return size == other.size && base.equals(other.base);
 		}
 		return false;
 	}

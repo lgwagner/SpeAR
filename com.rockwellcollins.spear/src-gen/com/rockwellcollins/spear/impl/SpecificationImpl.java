@@ -11,12 +11,15 @@ import com.rockwellcollins.spear.Variable;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -34,8 +37,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.rockwellcollins.spear.impl.SpecificationImpl#getOutputs <em>Outputs</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.impl.SpecificationImpl#getState <em>State</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.impl.SpecificationImpl#getMacros <em>Macros</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.impl.SpecificationImpl#getAssumptionsKeyword <em>Assumptions Keyword</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.impl.SpecificationImpl#getAssumptions <em>Assumptions</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.impl.SpecificationImpl#getRequirementsKeyword <em>Requirements Keyword</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.impl.SpecificationImpl#getRequirements <em>Requirements</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.impl.SpecificationImpl#getPropertiesKeyword <em>Properties Keyword</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.impl.SpecificationImpl#getBehaviors <em>Behaviors</em>}</li>
  * </ul>
  *
@@ -94,6 +100,26 @@ public class SpecificationImpl extends FileImpl implements Specification
   protected EList<Macro> macros;
 
   /**
+   * The default value of the '{@link #getAssumptionsKeyword() <em>Assumptions Keyword</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getAssumptionsKeyword()
+   * @generated
+   * @ordered
+   */
+  protected static final String ASSUMPTIONS_KEYWORD_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getAssumptionsKeyword() <em>Assumptions Keyword</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getAssumptionsKeyword()
+   * @generated
+   * @ordered
+   */
+  protected String assumptionsKeyword = ASSUMPTIONS_KEYWORD_EDEFAULT;
+
+  /**
    * The cached value of the '{@link #getAssumptions() <em>Assumptions</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -104,6 +130,26 @@ public class SpecificationImpl extends FileImpl implements Specification
   protected EList<Constraint> assumptions;
 
   /**
+   * The default value of the '{@link #getRequirementsKeyword() <em>Requirements Keyword</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getRequirementsKeyword()
+   * @generated
+   * @ordered
+   */
+  protected static final String REQUIREMENTS_KEYWORD_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getRequirementsKeyword() <em>Requirements Keyword</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getRequirementsKeyword()
+   * @generated
+   * @ordered
+   */
+  protected String requirementsKeyword = REQUIREMENTS_KEYWORD_EDEFAULT;
+
+  /**
    * The cached value of the '{@link #getRequirements() <em>Requirements</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -112,6 +158,26 @@ public class SpecificationImpl extends FileImpl implements Specification
    * @ordered
    */
   protected EList<Constraint> requirements;
+
+  /**
+   * The default value of the '{@link #getPropertiesKeyword() <em>Properties Keyword</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getPropertiesKeyword()
+   * @generated
+   * @ordered
+   */
+  protected static final String PROPERTIES_KEYWORD_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getPropertiesKeyword() <em>Properties Keyword</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getPropertiesKeyword()
+   * @generated
+   * @ordered
+   */
+  protected String propertiesKeyword = PROPERTIES_KEYWORD_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getBehaviors() <em>Behaviors</em>}' containment reference list.
@@ -219,6 +285,29 @@ public class SpecificationImpl extends FileImpl implements Specification
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getAssumptionsKeyword()
+  {
+    return assumptionsKeyword;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setAssumptionsKeyword(String newAssumptionsKeyword)
+  {
+    String oldAssumptionsKeyword = assumptionsKeyword;
+    assumptionsKeyword = newAssumptionsKeyword;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, SpearPackage.SPECIFICATION__ASSUMPTIONS_KEYWORD, oldAssumptionsKeyword, assumptionsKeyword));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EList<Constraint> getAssumptions()
   {
     if (assumptions == null)
@@ -233,6 +322,29 @@ public class SpecificationImpl extends FileImpl implements Specification
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getRequirementsKeyword()
+  {
+    return requirementsKeyword;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setRequirementsKeyword(String newRequirementsKeyword)
+  {
+    String oldRequirementsKeyword = requirementsKeyword;
+    requirementsKeyword = newRequirementsKeyword;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, SpearPackage.SPECIFICATION__REQUIREMENTS_KEYWORD, oldRequirementsKeyword, requirementsKeyword));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EList<Constraint> getRequirements()
   {
     if (requirements == null)
@@ -240,6 +352,29 @@ public class SpecificationImpl extends FileImpl implements Specification
       requirements = new EObjectContainmentEList<Constraint>(Constraint.class, this, SpearPackage.SPECIFICATION__REQUIREMENTS);
     }
     return requirements;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getPropertiesKeyword()
+  {
+    return propertiesKeyword;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setPropertiesKeyword(String newPropertiesKeyword)
+  {
+    String oldPropertiesKeyword = propertiesKeyword;
+    propertiesKeyword = newPropertiesKeyword;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, SpearPackage.SPECIFICATION__PROPERTIES_KEYWORD, oldPropertiesKeyword, propertiesKeyword));
   }
 
   /**
@@ -306,10 +441,16 @@ public class SpecificationImpl extends FileImpl implements Specification
         return getState();
       case SpearPackage.SPECIFICATION__MACROS:
         return getMacros();
+      case SpearPackage.SPECIFICATION__ASSUMPTIONS_KEYWORD:
+        return getAssumptionsKeyword();
       case SpearPackage.SPECIFICATION__ASSUMPTIONS:
         return getAssumptions();
+      case SpearPackage.SPECIFICATION__REQUIREMENTS_KEYWORD:
+        return getRequirementsKeyword();
       case SpearPackage.SPECIFICATION__REQUIREMENTS:
         return getRequirements();
+      case SpearPackage.SPECIFICATION__PROPERTIES_KEYWORD:
+        return getPropertiesKeyword();
       case SpearPackage.SPECIFICATION__BEHAVIORS:
         return getBehaviors();
     }
@@ -347,13 +488,22 @@ public class SpecificationImpl extends FileImpl implements Specification
         getMacros().clear();
         getMacros().addAll((Collection<? extends Macro>)newValue);
         return;
+      case SpearPackage.SPECIFICATION__ASSUMPTIONS_KEYWORD:
+        setAssumptionsKeyword((String)newValue);
+        return;
       case SpearPackage.SPECIFICATION__ASSUMPTIONS:
         getAssumptions().clear();
         getAssumptions().addAll((Collection<? extends Constraint>)newValue);
         return;
+      case SpearPackage.SPECIFICATION__REQUIREMENTS_KEYWORD:
+        setRequirementsKeyword((String)newValue);
+        return;
       case SpearPackage.SPECIFICATION__REQUIREMENTS:
         getRequirements().clear();
         getRequirements().addAll((Collection<? extends Constraint>)newValue);
+        return;
+      case SpearPackage.SPECIFICATION__PROPERTIES_KEYWORD:
+        setPropertiesKeyword((String)newValue);
         return;
       case SpearPackage.SPECIFICATION__BEHAVIORS:
         getBehaviors().clear();
@@ -388,11 +538,20 @@ public class SpecificationImpl extends FileImpl implements Specification
       case SpearPackage.SPECIFICATION__MACROS:
         getMacros().clear();
         return;
+      case SpearPackage.SPECIFICATION__ASSUMPTIONS_KEYWORD:
+        setAssumptionsKeyword(ASSUMPTIONS_KEYWORD_EDEFAULT);
+        return;
       case SpearPackage.SPECIFICATION__ASSUMPTIONS:
         getAssumptions().clear();
         return;
+      case SpearPackage.SPECIFICATION__REQUIREMENTS_KEYWORD:
+        setRequirementsKeyword(REQUIREMENTS_KEYWORD_EDEFAULT);
+        return;
       case SpearPackage.SPECIFICATION__REQUIREMENTS:
         getRequirements().clear();
+        return;
+      case SpearPackage.SPECIFICATION__PROPERTIES_KEYWORD:
+        setPropertiesKeyword(PROPERTIES_KEYWORD_EDEFAULT);
         return;
       case SpearPackage.SPECIFICATION__BEHAVIORS:
         getBehaviors().clear();
@@ -421,14 +580,41 @@ public class SpecificationImpl extends FileImpl implements Specification
         return state != null && !state.isEmpty();
       case SpearPackage.SPECIFICATION__MACROS:
         return macros != null && !macros.isEmpty();
+      case SpearPackage.SPECIFICATION__ASSUMPTIONS_KEYWORD:
+        return ASSUMPTIONS_KEYWORD_EDEFAULT == null ? assumptionsKeyword != null : !ASSUMPTIONS_KEYWORD_EDEFAULT.equals(assumptionsKeyword);
       case SpearPackage.SPECIFICATION__ASSUMPTIONS:
         return assumptions != null && !assumptions.isEmpty();
+      case SpearPackage.SPECIFICATION__REQUIREMENTS_KEYWORD:
+        return REQUIREMENTS_KEYWORD_EDEFAULT == null ? requirementsKeyword != null : !REQUIREMENTS_KEYWORD_EDEFAULT.equals(requirementsKeyword);
       case SpearPackage.SPECIFICATION__REQUIREMENTS:
         return requirements != null && !requirements.isEmpty();
+      case SpearPackage.SPECIFICATION__PROPERTIES_KEYWORD:
+        return PROPERTIES_KEYWORD_EDEFAULT == null ? propertiesKeyword != null : !PROPERTIES_KEYWORD_EDEFAULT.equals(propertiesKeyword);
       case SpearPackage.SPECIFICATION__BEHAVIORS:
         return behaviors != null && !behaviors.isEmpty();
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (assumptionsKeyword: ");
+    result.append(assumptionsKeyword);
+    result.append(", requirementsKeyword: ");
+    result.append(requirementsKeyword);
+    result.append(", propertiesKeyword: ");
+    result.append(propertiesKeyword);
+    result.append(')');
+    return result.toString();
   }
 
 } //SpecificationImpl

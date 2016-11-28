@@ -3,7 +3,6 @@ package com.rockwellcollins.spear.translate.master;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.translate.lustre.TranslateExpr;
-import com.rockwellcollins.spear.translate.naming.NameMap;
 
 import jkind.lustre.BinaryExpr;
 import jkind.lustre.BinaryOp;
@@ -12,33 +11,33 @@ import jkind.lustre.NamedType;
 
 public class SFormalConstraint extends SConstraint {
 
-	public static SFormalConstraint build(FormalConstraint fc, NameMap map) {
-		return new SFormalConstraint(fc, map);
+	public static SFormalConstraint build(FormalConstraint fc, SSpecification s) {
+		return new SFormalConstraint(fc, s);
 	}
 
 	public Expr expression;
 
-	public SFormalConstraint(FormalConstraint fc, NameMap map) {
-		this.name = map.getName(fc);
+	public SFormalConstraint(FormalConstraint fc, SSpecification s) {
+		this.name = s.map.getModuleName(fc.getName());
 		this.expression = fc.getExpr();
 	}
 
 	@Override
-	public jkind.lustre.VarDecl toVarDecl(NameMap map) {
+	public jkind.lustre.VarDecl toVarDecl(SSpecification s) {
 		return new jkind.lustre.VarDecl(this.name, NamedType.BOOL);
 	}
 
 	@Override
-	public jkind.lustre.Equation toEquation(NameMap map) {
+	public jkind.lustre.Equation toEquation(SSpecification s) {
 		jkind.lustre.IdExpr lhs = new jkind.lustre.IdExpr(this.name);
-		jkind.lustre.Expr rhs = TranslateExpr.translate(this.expression, map);
+		jkind.lustre.Expr rhs = TranslateExpr.translate(this.expression, s);
 		return new jkind.lustre.Equation(lhs, rhs);
 	}
 
 	@Override
-	public jkind.lustre.Equation getPropertyEquation(String assertion, NameMap map) {
+	public jkind.lustre.Equation getPropertyEquation(String assertion, SSpecification spec) {
 		IdExpr lhs = new IdExpr(this.name);
-		jkind.lustre.Expr rhs = new BinaryExpr(new IdExpr(assertion),BinaryOp.IMPLIES,TranslateExpr.translate(this.expression, map));
+		jkind.lustre.Expr rhs = new BinaryExpr(new IdExpr(assertion),BinaryOp.IMPLIES,TranslateExpr.translate(this.expression,spec));
 		return new jkind.lustre.Equation(lhs,rhs);
 	}
 }

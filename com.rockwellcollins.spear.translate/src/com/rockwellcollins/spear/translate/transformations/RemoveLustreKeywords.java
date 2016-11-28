@@ -8,22 +8,38 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.util.SimpleAttributeResolver;
 
-import com.rockwellcollins.spear.File;
+import com.rockwellcollins.spear.Pattern;
+import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
+import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.utilities.LustreUtilities;
 
 public class RemoveLustreKeywords {
 
-	public static Map<File,Map<String,String>> transform(SpearDocument p) {
-		Map<File,Map<String,String>> filemap = new HashMap<>();
-		for(File f : p.files) {
-			filemap.put(f, transform(f));
+	public static Map<EObject,Map<String,String>> transform(SpearDocument doc) {
+		Map<EObject,Map<String,String>> map = new HashMap<>();
+		
+		for(Pattern p : doc.patterns.values()) {
+			map.put(p, transform(p));
 		}
-		return filemap;
+		
+		for(Specification s : doc.specifications.values()) {
+			map.put(s, transform(s));
+		}
+		return map;
 	}
 	
-	public static Map<String,String> transform(File f) {
+	public static Map<EObject,Map<String,String>> transform(PatternDocument doc) {
+		Map<EObject,Map<String,String>> map = new HashMap<>();
+		for(Pattern p : doc.patterns.values()) {
+			map.put(p, transform(p));
+		}
+		return map;		
+	}
+	
+	public static Map<String,String> transform(EObject o) {
 		RemoveLustreKeywords rlk = new RemoveLustreKeywords();
-		return rlk.processNames(f);
+		return rlk.processNames(o);
 	}
 
 	private final Set<String> keywords;

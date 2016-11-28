@@ -5,54 +5,50 @@ import java.util.List;
 
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.LustreEquation;
-import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.translate.lustre.TranslateExpr;
-import com.rockwellcollins.spear.translate.naming.NameMap;
-import com.rockwellcollins.spear.utilities.Utilities;
 
 import jkind.lustre.Equation;
 import jkind.lustre.IdExpr;
 
 public class SLustreEquation {
 
-	public static List<SLustreEquation> build(List<LustreEquation> list, NameMap map) {
+	public static List<SLustreEquation> build(List<LustreEquation> list, SPattern s) {
 		List<SLustreEquation> built = new ArrayList<>();
 		for(LustreEquation eq : list) {
-			built.add(SLustreEquation.build(eq, map));
+			built.add(SLustreEquation.build(eq, s));
 		}
 		return built;
 	}
 	
-	public static List<jkind.lustre.Equation> toLustre(List<SLustreEquation> list, NameMap map) {
+	public static List<jkind.lustre.Equation> toLustre(List<SLustreEquation> list, SPattern s) {
 		List<jkind.lustre.Equation> equations = new ArrayList<>();
 		for(SLustreEquation seq : list) {
-			equations.add(seq.toLustre(map));
+			equations.add(seq.toLustre(s));
 		}
 		return equations;
 	}
 	
-	public static SLustreEquation build(LustreEquation eq, NameMap map) {
-		return new SLustreEquation(eq,map);
+	public static SLustreEquation build(LustreEquation eq, SPattern s) {
+		return new SLustreEquation(eq,s);
 	}
 	
 	public List<String> ids = new ArrayList<>();
 	public Expr expression;
 
-	public SLustreEquation(LustreEquation eq, NameMap map) {
-		Pattern p = (Pattern) Utilities.getTopContainer(eq);
+	public SLustreEquation(LustreEquation eq, SPattern s) {
 		for(Variable v : eq.getIds()) {
-			this.ids.add(map.lookup(p, v.getName()));
+			this.ids.add(s.map.lookupOriginalModule(v.getName()));
 		}
 		this.expression = eq.getRhs();
 	}
 	
-	public Equation toLustre(NameMap map) {
+	public Equation toLustre(SPattern p) {
 		List<IdExpr> lhs = new ArrayList<>();
 		for(String id : ids) {
 			lhs.add(new IdExpr(id));
 		}
-		jkind.lustre.Expr rhs = TranslateExpr.translate(expression, map);
+		jkind.lustre.Expr rhs = TranslateExpr.translate(expression, p);
 		return new Equation(lhs,rhs);
 	}
 }

@@ -289,6 +289,14 @@ public class SpearSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case SpearPackage.ABSTRACT_TYPE_DEF:
+      {
+        AbstractTypeDef abstractTypeDef = (AbstractTypeDef)theEObject;
+        T result = caseAbstractTypeDef(abstractTypeDef);
+        if (result == null) result = caseTypeDef(abstractTypeDef);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case SpearPackage.RECORD_TYPE_DEF:
       {
         RecordTypeDef recordTypeDef = (RecordTypeDef)theEObject;
@@ -310,6 +318,14 @@ public class SpearSwitch<T> extends Switch<T>
         EnumTypeDef enumTypeDef = (EnumTypeDef)theEObject;
         T result = caseEnumTypeDef(enumTypeDef);
         if (result == null) result = caseTypeDef(enumTypeDef);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SpearPackage.CONCRETE_ARRAY_TYPE_DEF:
+      {
+        ConcreteArrayTypeDef concreteArrayTypeDef = (ConcreteArrayTypeDef)theEObject;
+        T result = caseConcreteArrayTypeDef(concreteArrayTypeDef);
+        if (result == null) result = caseTypeDef(concreteArrayTypeDef);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -985,6 +1001,22 @@ public class SpearSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Abstract Type Def</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Abstract Type Def</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAbstractTypeDef(AbstractTypeDef object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Record Type Def</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1028,6 +1060,22 @@ public class SpearSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseEnumTypeDef(EnumTypeDef object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Concrete Array Type Def</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Concrete Array Type Def</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseConcreteArrayTypeDef(ConcreteArrayTypeDef object)
   {
     return null;
   }

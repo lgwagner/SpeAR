@@ -1,0 +1,26 @@
+Specification abstract_
+
+Types:
+	abstract1: abstract
+	abstract2: abstract
+
+Inputs:
+	a : abstract1
+	b : abstract1
+	c : abstract2
+	d : abstract2
+
+Outputs:
+	x : bool
+	y : bool
+
+Assumptions:
+	a0: a == b
+
+Constraints:
+	c0: x == (c == d)
+	c1: y == (a == b)
+	
+Requirements:
+	p0: x
+

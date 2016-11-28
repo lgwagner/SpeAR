@@ -5,6 +5,7 @@ package com.rockwellcollins.serializer;
 
 import com.google.inject.Inject;
 import com.rockwellcollins.services.SpearGrammarAccess;
+import com.rockwellcollins.spear.AbstractTypeDef;
 import com.rockwellcollins.spear.AfterUntilExpr;
 import com.rockwellcollins.spear.ArrayAccessExpr;
 import com.rockwellcollins.spear.ArrayExpr;
@@ -15,6 +16,7 @@ import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.BinaryUnitExpr;
 import com.rockwellcollins.spear.BoolLiteral;
 import com.rockwellcollins.spear.BoolType;
+import com.rockwellcollins.spear.ConcreteArrayTypeDef;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.DerivedUnit;
@@ -79,6 +81,9 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == SpearPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case SpearPackage.ABSTRACT_TYPE_DEF:
+				sequence_TypeDef(context, (AbstractTypeDef) semanticObject); 
+				return; 
 			case SpearPackage.AFTER_UNTIL_EXPR:
 				sequence_AfterUntilExpr(context, (AfterUntilExpr) semanticObject); 
 				return; 
@@ -108,6 +113,9 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case SpearPackage.BOOL_TYPE:
 				sequence_Type(context, (BoolType) semanticObject); 
+				return; 
+			case SpearPackage.CONCRETE_ARRAY_TYPE_DEF:
+				sequence_UnusedTypeDef(context, (ConcreteArrayTypeDef) semanticObject); 
 				return; 
 			case SpearPackage.CONSTANT:
 				sequence_Constant(context, (Constant) semanticObject); 
@@ -1214,10 +1222,8 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 * Constraint:
 	 *     (
 	 *         name=ID 
-	 *         inputs+=Variable 
-	 *         inputs+=Variable* 
-	 *         outputs+=Variable 
-	 *         outputs+=Variable* 
+	 *         (inputs+=Variable inputs+=Variable*)? 
+	 *         (outputs+=Variable outputs+=Variable*)? 
 	 *         locals+=Variable* 
 	 *         (equations+=LustreEquation | properties+=LustreProperty | assertions+=LustreAssertion)*
 	 *     )
@@ -1336,9 +1342,10 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         outputs+=Variable* 
 	 *         state+=Variable* 
 	 *         macros+=Macro* 
-	 *         assumptions+=Constraint* 
+	 *         (assumptionsKeyword=AssumptionsHeader assumptions+=Constraint*)? 
+	 *         requirementsKeyword=RequirementsHeader 
 	 *         requirements+=Constraint* 
-	 *         behaviors+=Constraint*
+	 *         (propertiesKeyword=PropertiesHeader behaviors+=Constraint*)?
 	 *     )
 	 */
 	protected void sequence_Specification(ISerializationContext context, Specification semanticObject) {
@@ -1348,10 +1355,28 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     TypeDef returns AbstractTypeDef
+	 *
+	 * Constraint:
+	 *     name=ID
+	 */
+	protected void sequence_TypeDef(ISerializationContext context, AbstractTypeDef semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.TYPE_DEF__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.TYPE_DEF__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getTypeDefAccess().getNameIDTerminalRuleCall_1_1_0(), semanticObject.getName());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     TypeDef returns ArrayTypeDef
 	 *
 	 * Constraint:
-	 *     (name=ID base=Type size=INT)
+	 *     (name=ID base=Type size=Expr)
 	 */
 	protected void sequence_TypeDef(ISerializationContext context, ArrayTypeDef semanticObject) {
 		if (errorAcceptor != null) {
@@ -1363,9 +1388,9 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.ARRAY_TYPE_DEF__SIZE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTypeDefAccess().getNameIDTerminalRuleCall_2_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getTypeDefAccess().getBaseTypeParserRuleCall_2_3_0(), semanticObject.getBase());
-		feeder.accept(grammarAccess.getTypeDefAccess().getSizeINTTerminalRuleCall_2_5_0(), semanticObject.getSize());
+		feeder.accept(grammarAccess.getTypeDefAccess().getNameIDTerminalRuleCall_3_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getTypeDefAccess().getBaseTypeParserRuleCall_3_3_0(), semanticObject.getBase());
+		feeder.accept(grammarAccess.getTypeDefAccess().getSizeExprParserRuleCall_3_5_0(), semanticObject.getSize());
 		feeder.finish();
 	}
 	
@@ -1521,6 +1546,30 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 */
 	protected void sequence_UnusedExpr(ISerializationContext context, NormalizedCall semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     UnusedTypeDef returns ConcreteArrayTypeDef
+	 *
+	 * Constraint:
+	 *     (name=ID base=Type size=INT)
+	 */
+	protected void sequence_UnusedTypeDef(ISerializationContext context, ConcreteArrayTypeDef semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.TYPE_DEF__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.TYPE_DEF__NAME));
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.CONCRETE_ARRAY_TYPE_DEF__BASE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.CONCRETE_ARRAY_TYPE_DEF__BASE));
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.CONCRETE_ARRAY_TYPE_DEF__SIZE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.CONCRETE_ARRAY_TYPE_DEF__SIZE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getUnusedTypeDefAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getUnusedTypeDefAccess().getBaseTypeParserRuleCall_3_0(), semanticObject.getBase());
+		feeder.accept(grammarAccess.getUnusedTypeDefAccess().getSizeINTTerminalRuleCall_5_0(), semanticObject.getSize());
+		feeder.finish();
 	}
 	
 	

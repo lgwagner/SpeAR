@@ -5,7 +5,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
@@ -34,12 +33,12 @@ import org.eclipse.xtext.validation.Issue;
 
 import com.google.inject.Injector;
 import com.rockwellcollins.SpearInjectorUtil;
+import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.translate.layout.SpearLayout;
 import com.rockwellcollins.spear.translate.master.SProgram;
-import com.rockwellcollins.spear.translate.transformations.PerformTransforms;
-import com.rockwellcollins.spear.translate.transformations.SpearDocument;
 import com.rockwellcollins.spear.translate.views.SpearResultsView;
 import com.rockwellcollins.spear.ui.preferences.PreferencesUtil;
 import com.rockwellcollins.ui.internal.SpearActivator;
@@ -74,7 +73,14 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 
 			@Override
 			public java.lang.Void exec(XtextResource state) throws Exception {
-				Specification specification = (Specification) state.getContents().get(0);
+				File f = (File) state.getContents().get(0);
+
+				Specification specification = null;
+				if (f instanceof Definitions) {
+					MessageDialog.openError(window.getShell(), "Error", "Cannot analyze a Definitions file.");	
+				} else {
+					specification = (Specification) f;
+				}
 
 				if (hasErrors(specification.eResource())) {
 					MessageDialog.openError(window.getShell(), "Error", "Specification contains errors.");
@@ -84,14 +90,13 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 				//Set the runtime options
 				SpearRuntimeOptions.setRuntimeOptions();
 				
-				SpearDocument workingCopy = new SpearDocument(specification); 
-				Map<File,Map<String,String>> renamed = PerformTransforms.apply(workingCopy);
-				SProgram program = SProgram.build(workingCopy);
+				SpearDocument workingCopy = new SpearDocument(specification);
+				workingCopy.transform();
 				
-				// translate to Lustre
+				SProgram program = SProgram.build(workingCopy);
 				Program p = program.getLogicalConsistency();
+				
 				URI lustreURI = createURI(state.getURI(), "", "lus");
-
 				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 				
 				if(SpearRuntimeOptions.printFinalLustre) {
@@ -105,7 +110,7 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 				JKindApi api = (JKindApi) PreferencesUtil.getKindApi();
 				api.setIvcReduction();
 				
-				Renaming renaming = new MapRenaming(renamed.get(workingCopy.getMain()), Mode.IDENTITY);
+				Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.getMain()), Mode.IDENTITY);
 				List<Boolean> invert = new ArrayList<>();
 				for(@SuppressWarnings("unused") String prop : p.getMainNode().properties) {
 					invert.add(true);
@@ -121,7 +126,7 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 					System.out.println(result.getText());
 					throw e;
 				}
-
+				
 				return null;
 			}
 

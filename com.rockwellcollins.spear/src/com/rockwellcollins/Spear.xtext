@@ -16,20 +16,20 @@ Specification:
 	'Outputs:' outputs+=Variable*
 	('State:' state+=Variable*)?
 	('Macros:' macros+=Macro*)?
-	(AssumptionsHeader ':' assumptions+=Constraint*)?
-	RequirementsHeader ':' requirements+=Constraint*
-	(PropertiesHeader ':' behaviors+=Constraint*)?;
+	(assumptionsKeyword=AssumptionsHeader ':' assumptions+=Constraint*)?
+	requirementsKeyword=RequirementsHeader ':' requirements+=Constraint*
+	(propertiesKeyword=PropertiesHeader ':' behaviors+=Constraint*)?;
 
 AssumptionsHeader:
 	'Assumptions' | 'Environment'
 ;
 
 RequirementsHeader:
-	'DerivedRequirements' | 'Requirements' | 'Low-Level Requirements' | 'LLRs' | 'Implementation' | 'Design'
+	'DerivedRequirements' | 'Requirements' | 'Implementation' | 'Design' | 'Constraints'
 ;
 
 PropertiesHeader:
-	'Requirements' | 'Properties' | 'Guarantees' | 'High-level Requirements' | 'HLRs'
+	'Requirements' | 'Properties' | 'Guarantees' | 'Behaviors'
 ;
 
 Import:
@@ -44,7 +44,7 @@ Definitions:
 	('Patterns:' patterns+=Pattern*)?;
 
 Pattern:
-	'pattern' (name=ID) '(' inputs+=Variable (',' inputs+=Variable)* ')' 'returns' '(' outputs+=Variable (',' outputs+=Variable)* ')'
+	'pattern' (name=ID) '(' (inputs+=Variable (',' inputs+=Variable)*)? ')' 'returns' '(' (outputs+=Variable (',' outputs+=Variable)*)? ')'
 	 ('var' (locals+=Variable)* )?
 	 'let' 
 	 	( equations+=LustreEquation
@@ -85,10 +85,15 @@ AtomicUnitExpr returns UnitExpr:
 	| '(' UnitExpr ')';
 
 TypeDef:
-	{NamedTypeDef} name=ID IdTypeDelimiter type=Type (unit=[UnitDef])?
+	  {NamedTypeDef} name=ID IdTypeDelimiter type=Type (unit=[UnitDef])?
+	| {AbstractTypeDef} name=ID IdTypeDelimiter 'abstract'
 	| {RecordTypeDef} name=ID IdTypeDelimiter 'record' '{' fields+=FieldType (',' fields+=FieldType)* '}'
-	| {ArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=INT ']'
+	| {ArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=Expr ']'
 	| {EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{' values+=EnumValue (',' values+=EnumValue)* '}';
+	
+UnusedTypeDef returns TypeDef:
+	{ConcreteArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=INT ']'
+;
 
 FieldType:
 	name=ID ':' type=Type;
@@ -212,7 +217,7 @@ UnusedExpr returns Expr:
 	{NormalizedCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')';
 
 IdRef:
-	Variable
+	 Variable
 	| Macro
 	| Constant
 	| EnumValue;
