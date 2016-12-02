@@ -41,8 +41,9 @@ import com.rockwellcollins.spear.translate.views.SpearResultsView;
 import com.rockwellcollins.spear.ui.preferences.PreferencesUtil;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
-import jkind.api.KindApi;
+import jkind.api.JRealizabilityApi;
 import jkind.api.results.JKindResult;
+import jkind.api.results.JRealizabilityResult;
 import jkind.api.results.MapRenaming;
 import jkind.api.results.MapRenaming.Mode;
 import jkind.api.results.Renaming;
@@ -111,10 +112,18 @@ public class CheckRealizability implements IWorkbenchWindowActionDelegate {
 
 				// refresh the workspace
 				root.refreshLocal(IResource.DEPTH_INFINITE, null);
-				KindApi api = PreferencesUtil.getKindApi();
+				
+				//TODO: figure out how to get the API
+				JRealizabilityApi api = new JRealizabilityApi();
+				try {
+					api.checkAvailable();
+				} catch (Exception e) {
+					System.err.println("Error executing JRealizaiblity");
+					throw e;
+				}
 
 				Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.getMain()), Mode.IDENTITY);
-				JKindResult result = new JKindResult("Spear Result", p.getMainNode().properties, renaming);
+				JRealizabilityResult result = new JRealizabilityResult("SpeAR Realizability Result", renaming);
 
 				IProgressMonitor monitor = new NullProgressMonitor();
 				showView(result, new SpearLayout(specification));
