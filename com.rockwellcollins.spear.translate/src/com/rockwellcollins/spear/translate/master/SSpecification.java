@@ -210,6 +210,14 @@ public class SSpecification extends SMapElement {
 		return builder.build();
 	}
 	
+	private List<String> getInputString() {
+		List<String> inputNames = new ArrayList<>();
+		for(SVariable sv : this.inputs) {
+			inputNames.add(sv.name);
+		}
+		return inputNames;
+	}
+	
 	public Node getRealizabilityMain() {
 		NodeBuilder builder = new NodeBuilder(this.toBaseLustre());
 
@@ -219,7 +227,9 @@ public class SSpecification extends SMapElement {
 			builder.addAssertion(this.conjunctify(assumptions.iterator()));
 		}
 
-		builder.addProperties(SConstraint.toPropertyIds(behaviors, this));
+		//builder.addProperties(SConstraint.toPropertyIds(behaviors, this));
+		builder.addProperty(assertionName);
+		builder.setRealizabilityInputs(getInputString());
 		return builder.build();
 	}
 	
