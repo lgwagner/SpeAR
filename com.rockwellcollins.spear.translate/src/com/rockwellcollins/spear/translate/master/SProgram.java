@@ -155,4 +155,18 @@ public class SProgram extends SMapElement {
 		program.setMain(this.mainName);
 		return program.build();
 	}
+	
+	public Program getRealizability() {
+		ProgramBuilder program = new ProgramBuilder(this.getBaseProgram());
+		
+		for(SSpecification spec : specifications) {
+			if(spec.name.equals(this.mainName)) {
+				program.addNode(spec.getRealizabilityMain());
+			} else {
+				program.addNode(spec.getLogicalEntailmentCalled());
+			}
+		}
+		program.setMain(this.mainName);
+		return program.build();
+	}
 }

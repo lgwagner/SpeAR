@@ -210,6 +210,19 @@ public class SSpecification extends SMapElement {
 		return builder.build();
 	}
 	
+	public Node getRealizabilityMain() {
+		NodeBuilder builder = new NodeBuilder(this.toBaseLustre());
+
+		builder.addEquation(this.getAssertionMainEquation(requirements));
+
+		if (!assumptions.isEmpty()) {
+			builder.addAssertion(this.conjunctify(assumptions.iterator()));
+		}
+
+		builder.addProperties(SConstraint.toPropertyIds(behaviors, this));
+		return builder.build();
+	}
+	
 	public Node getLogicalConsistencyCalled() {
 		return getLogicalEntailmentCalled();
 	}
