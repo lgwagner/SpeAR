@@ -113,13 +113,13 @@ IdTypeDelimiter:
 	| 'is an';
 
 Constant:
-	name=ID IdTypeDelimiter type=Type '=' expr=Expr ('text' '=' descriptor=STRING)?;
+	name=ID IdTypeDelimiter type=Type '=' expr=Expr ('text' '=' descriptor=STRING)? ('trace' '=' '[' ids+=ID (',' ids+= ID)* ']')?;
 
 Variable:
 	name=ID IdTypeDelimiter type=Type;
 
 Macro:
-	name=ID IdTypeDelimiter type=Type '=' expr=Expr ('text' '=' descriptor=STRING)?;
+	name=ID IdTypeDelimiter type=Type '=' expr=Expr ('text' '=' descriptor=STRING)? ('trace' '=' '[' ids+=ID (',' ids+= ID)* ']')?;
 
 Constraint:
 	FormalConstraint | EnglishConstraint;
