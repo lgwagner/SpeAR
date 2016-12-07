@@ -52,6 +52,8 @@ Pattern:
 	 	| assertions+=LustreAssertion
 	 	)*
 	 'tel'
+	 ('text' '=' descriptor=STRING)? 
+	 ('trace' '=' '[' ids+=ID (',' ids+= ID)* ']')?
 ;
 
 LustreEquation:
