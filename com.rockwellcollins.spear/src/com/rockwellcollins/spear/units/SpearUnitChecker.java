@@ -578,7 +578,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		TupleUnit inputs = this.processList(new ArrayList<>(sc.getSpec().getInputs()));
 
 		if (!args.equals(inputs)) {
-			error("Provided units of type " + args + ", but " + sc.getSpec().getName() + " expected units "
+			error("Provided units of type " + args + ", but spec " + sc.getSpec().getName() + " expected units "
 					+ inputs + ".", sc, SpearPackage.Literals.SPECIFICATION_CALL__ARGS);
 			return ERROR;
 		}
@@ -591,8 +591,13 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		TupleUnit inputs = this.processList(new ArrayList<>(pc.getPattern().getInputs()));
 
 		if (!args.equals(inputs)) {
-			error("Provided units of type " + args + ", but " + pc.getPattern().getName() + " expected units " + inputs
-					+ ".", pc, SpearPackage.Literals.PATTERN_CALL__ARGS);
+			if (pc.getPattern().getName() == null) {
+				error("Possible omission of 'spec' keyword in specification call.", pc, 
+						SpearPackage.Literals.PATTERN_CALL__ARGS);
+			} else {
+				error("Provided units of type " + args + ", but pattern " + pc.getPattern().getName() + " expected units " + inputs
+						+ ".", pc, SpearPackage.Literals.PATTERN_CALL__ARGS);
+			}
 		}
 
 		return compressTuple(this.processList(new ArrayList<>(pc.getPattern().getOutputs())));
