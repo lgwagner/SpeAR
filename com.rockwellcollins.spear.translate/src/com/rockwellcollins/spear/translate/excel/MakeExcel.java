@@ -26,6 +26,8 @@ public class MakeExcel extends SpearSwitch<Integer> {
 		new MakeExcel(s,f);
 	}
 	
+
+	
 	//this is to keep from falling through to the default case on a null value.
 	public static final Integer DONE = 0;
 
