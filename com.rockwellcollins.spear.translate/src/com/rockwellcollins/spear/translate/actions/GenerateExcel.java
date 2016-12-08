@@ -64,9 +64,9 @@ public class GenerateExcel implements IWorkbenchWindowActionDelegate {
 				IResource excelResource = root.getFile(new Path(excelURI.toPlatformString(true)));
 
 				//This is where you will create the excel file.				
-				//MakePDF.toPDF(workingCopy,pdfResource.getLocation().toFile());
+				//MakeExcel.toPDF(workingCopy,pdfResource.getLocation().toFile());
 				
-				//Turn this off / remove htis when you want to test your code.
+				//Turn this off / remove this when you want to test your code.
 				MessageDialog.openError(window.getShell(), "Feature Unsupported", "This feature is not yet supported.");
 
 				// refresh the workspace
