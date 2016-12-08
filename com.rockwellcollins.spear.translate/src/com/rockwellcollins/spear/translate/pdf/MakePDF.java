@@ -13,8 +13,6 @@ import com.itextpdf.text.List;
 import com.itextpdf.text.ListItem;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.rockwellcollins.spear.Constraint;
-import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.util.SpearSwitch;

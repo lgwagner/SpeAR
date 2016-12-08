@@ -29,7 +29,7 @@ import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.pdf.MakePDF;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
-public class GenerateDocumentation implements IWorkbenchWindowActionDelegate {
+public class GeneratePDF implements IWorkbenchWindowActionDelegate {
 	
 	private IWorkbenchWindow window;
 
