@@ -458,13 +458,31 @@ public interface SpearPackage extends EPackage
   int PATTERN__ASSERTIONS = 6;
 
   /**
+   * The feature id for the '<em><b>Descriptor</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN__DESCRIPTOR = 7;
+
+  /**
+   * The feature id for the '<em><b>Ids</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN__IDS = 8;
+
+  /**
    * The number of structural features of the '<em>Pattern</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PATTERN_FEATURE_COUNT = 7;
+  int PATTERN_FEATURE_COUNT = 9;
 
   /**
    * The meta object id for the '{@link com.rockwellcollins.spear.impl.LustreEquationImpl <em>Lustre Equation</em>}' class.
@@ -802,13 +820,22 @@ public interface SpearPackage extends EPackage
   int CONSTANT__DESCRIPTOR = ID_REF_FEATURE_COUNT + 2;
 
   /**
+   * The feature id for the '<em><b>Ids</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONSTANT__IDS = ID_REF_FEATURE_COUNT + 3;
+
+  /**
    * The number of structural features of the '<em>Constant</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONSTANT_FEATURE_COUNT = ID_REF_FEATURE_COUNT + 3;
+  int CONSTANT_FEATURE_COUNT = ID_REF_FEATURE_COUNT + 4;
 
   /**
    * The meta object id for the '{@link com.rockwellcollins.spear.impl.VariableImpl <em>Variable</em>}' class.
@@ -894,13 +921,22 @@ public interface SpearPackage extends EPackage
   int MACRO__DESCRIPTOR = ID_REF_FEATURE_COUNT + 2;
 
   /**
+   * The feature id for the '<em><b>Ids</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MACRO__IDS = ID_REF_FEATURE_COUNT + 3;
+
+  /**
    * The number of structural features of the '<em>Macro</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MACRO_FEATURE_COUNT = ID_REF_FEATURE_COUNT + 3;
+  int MACRO_FEATURE_COUNT = ID_REF_FEATURE_COUNT + 4;
 
   /**
    * The meta object id for the '{@link com.rockwellcollins.spear.impl.ConstraintImpl <em>Constraint</em>}' class.
@@ -2710,6 +2746,28 @@ public interface SpearPackage extends EPackage
   EReference getPattern_Assertions();
 
   /**
+   * Returns the meta object for the attribute '{@link com.rockwellcollins.spear.Pattern#getDescriptor <em>Descriptor</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Descriptor</em>'.
+   * @see com.rockwellcollins.spear.Pattern#getDescriptor()
+   * @see #getPattern()
+   * @generated
+   */
+  EAttribute getPattern_Descriptor();
+
+  /**
+   * Returns the meta object for the attribute list '{@link com.rockwellcollins.spear.Pattern#getIds <em>Ids</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Ids</em>'.
+   * @see com.rockwellcollins.spear.Pattern#getIds()
+   * @see #getPattern()
+   * @generated
+   */
+  EAttribute getPattern_Ids();
+
+  /**
    * Returns the meta object for class '{@link com.rockwellcollins.spear.LustreEquation <em>Lustre Equation</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2942,6 +3000,17 @@ public interface SpearPackage extends EPackage
   EAttribute getConstant_Descriptor();
 
   /**
+   * Returns the meta object for the attribute list '{@link com.rockwellcollins.spear.Constant#getIds <em>Ids</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Ids</em>'.
+   * @see com.rockwellcollins.spear.Constant#getIds()
+   * @see #getConstant()
+   * @generated
+   */
+  EAttribute getConstant_Ids();
+
+  /**
    * Returns the meta object for class '{@link com.rockwellcollins.spear.Variable <em>Variable</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3004,6 +3073,17 @@ public interface SpearPackage extends EPackage
    * @generated
    */
   EAttribute getMacro_Descriptor();
+
+  /**
+   * Returns the meta object for the attribute list '{@link com.rockwellcollins.spear.Macro#getIds <em>Ids</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Ids</em>'.
+   * @see com.rockwellcollins.spear.Macro#getIds()
+   * @see #getMacro()
+   * @generated
+   */
+  EAttribute getMacro_Ids();
 
   /**
    * Returns the meta object for class '{@link com.rockwellcollins.spear.Constraint <em>Constraint</em>}'.
@@ -4414,6 +4494,22 @@ public interface SpearPackage extends EPackage
     EReference PATTERN__ASSERTIONS = eINSTANCE.getPattern_Assertions();
 
     /**
+     * The meta object literal for the '<em><b>Descriptor</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PATTERN__DESCRIPTOR = eINSTANCE.getPattern_Descriptor();
+
+    /**
+     * The meta object literal for the '<em><b>Ids</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PATTERN__IDS = eINSTANCE.getPattern_Ids();
+
+    /**
      * The meta object literal for the '{@link com.rockwellcollins.spear.impl.LustreEquationImpl <em>Lustre Equation</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4610,6 +4706,14 @@ public interface SpearPackage extends EPackage
     EAttribute CONSTANT__DESCRIPTOR = eINSTANCE.getConstant_Descriptor();
 
     /**
+     * The meta object literal for the '<em><b>Ids</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONSTANT__IDS = eINSTANCE.getConstant_Ids();
+
+    /**
      * The meta object literal for the '{@link com.rockwellcollins.spear.impl.VariableImpl <em>Variable</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4660,6 +4764,14 @@ public interface SpearPackage extends EPackage
      * @generated
      */
     EAttribute MACRO__DESCRIPTOR = eINSTANCE.getMacro_Descriptor();
+
+    /**
+     * The meta object literal for the '<em><b>Ids</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MACRO__IDS = eINSTANCE.getMacro_Ids();
 
     /**
      * The meta object literal for the '{@link com.rockwellcollins.spear.impl.ConstraintImpl <em>Constraint</em>}' class.

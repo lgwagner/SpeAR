@@ -26,10 +26,9 @@ import org.eclipse.xtext.validation.Issue;
 import com.google.inject.Injector;
 import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Specification;
-import com.rockwellcollins.spear.translate.pdf.MakePDF;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
-public class GenerateDocumentation implements IWorkbenchWindowActionDelegate {
+public class GenerateExcel implements IWorkbenchWindowActionDelegate {
 	
 	private IWorkbenchWindow window;
 
@@ -58,17 +57,18 @@ public class GenerateDocumentation implements IWorkbenchWindowActionDelegate {
 				}
 				
 				Specification workingCopy = EcoreUtil2.copy(specification);
-				URI pdfURI = createURI(state.getURI(), "", "pdf");
+				// This is where you will create the URI for the excel file.
+				URI excelURI = createURI(state.getURI(), "", "xls");
 				
 				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-				IResource pdfResource = root.getFile(new Path(pdfURI.toPlatformString(true)));
+				IResource excelResource = root.getFile(new Path(excelURI.toPlatformString(true)));
 
-				//This is not yet supported so instead we'll comment it out.
-				MakePDF.toPDF(workingCopy,pdfResource.getLocation().toFile());
-
-				//Instead we throw this dialog and null out;
-				MessageDialog.openError(window.getShell(), "Unsupported Feature", "This feature is not yet supported.");
+				//This is where you will create the excel file.				
+				//MakePDF.toPDF(workingCopy,pdfResource.getLocation().toFile());
 				
+				//Turn this off / remove htis when you want to test your code.
+				MessageDialog.openError(window.getShell(), "Feature Unsupported", "This feature is not yet supported.");
+
 				// refresh the workspace
 				root.refreshLocal(IResource.DEPTH_INFINITE, null);
 				return null;

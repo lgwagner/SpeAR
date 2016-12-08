@@ -860,6 +860,26 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getPattern_Descriptor()
+  {
+    return (EAttribute)patternEClass.getEStructuralFeatures().get(7);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPattern_Ids()
+  {
+    return (EAttribute)patternEClass.getEStructuralFeatures().get(8);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getLustreEquation()
   {
     return lustreEquationEClass;
@@ -1080,6 +1100,16 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getConstant_Ids()
+  {
+    return (EAttribute)constantEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getVariable()
   {
     return variableEClass;
@@ -1133,6 +1163,16 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
   public EAttribute getMacro_Descriptor()
   {
     return (EAttribute)macroEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getMacro_Ids()
+  {
+    return (EAttribute)macroEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -2269,6 +2309,8 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     createEReference(patternEClass, PATTERN__EQUATIONS);
     createEReference(patternEClass, PATTERN__PROPERTIES);
     createEReference(patternEClass, PATTERN__ASSERTIONS);
+    createEAttribute(patternEClass, PATTERN__DESCRIPTOR);
+    createEAttribute(patternEClass, PATTERN__IDS);
 
     lustreEquationEClass = createEClass(LUSTRE_EQUATION);
     createEReference(lustreEquationEClass, LUSTRE_EQUATION__IDS);
@@ -2301,6 +2343,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     createEReference(constantEClass, CONSTANT__TYPE);
     createEReference(constantEClass, CONSTANT__EXPR);
     createEAttribute(constantEClass, CONSTANT__DESCRIPTOR);
+    createEAttribute(constantEClass, CONSTANT__IDS);
 
     variableEClass = createEClass(VARIABLE);
     createEReference(variableEClass, VARIABLE__TYPE);
@@ -2309,6 +2352,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     createEReference(macroEClass, MACRO__TYPE);
     createEReference(macroEClass, MACRO__EXPR);
     createEAttribute(macroEClass, MACRO__DESCRIPTOR);
+    createEAttribute(macroEClass, MACRO__IDS);
 
     constraintEClass = createEClass(CONSTRAINT);
     createEAttribute(constraintEClass, CONSTRAINT__NAME);
@@ -2569,6 +2613,8 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     initEReference(getPattern_Equations(), this.getLustreEquation(), null, "equations", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPattern_Properties(), this.getLustreProperty(), null, "properties", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPattern_Assertions(), this.getLustreAssertion(), null, "assertions", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPattern_Descriptor(), ecorePackage.getEString(), "descriptor", null, 0, 1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPattern_Ids(), ecorePackage.getEString(), "ids", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(lustreEquationEClass, LustreEquation.class, "LustreEquation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getLustreEquation_Ids(), this.getVariable(), null, "ids", null, 0, -1, LustreEquation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2601,6 +2647,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     initEReference(getConstant_Type(), this.getType(), null, "type", null, 0, 1, Constant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getConstant_Expr(), this.getExpr(), null, "expr", null, 0, 1, Constant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getConstant_Descriptor(), ecorePackage.getEString(), "descriptor", null, 0, 1, Constant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getConstant_Ids(), ecorePackage.getEString(), "ids", null, 0, -1, Constant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(variableEClass, Variable.class, "Variable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getVariable_Type(), this.getType(), null, "type", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2609,6 +2656,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     initEReference(getMacro_Type(), this.getType(), null, "type", null, 0, 1, Macro.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMacro_Expr(), this.getExpr(), null, "expr", null, 0, 1, Macro.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMacro_Descriptor(), ecorePackage.getEString(), "descriptor", null, 0, 1, Macro.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMacro_Ids(), ecorePackage.getEString(), "ids", null, 0, -1, Macro.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(constraintEClass, Constraint.class, "Constraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getConstraint_Name(), ecorePackage.getEString(), "name", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

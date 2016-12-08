@@ -15,6 +15,15 @@
             </separator>
          </menu>
          <action
+               label="&amp;Generate Excel"
+               icon="icons/spreadsheet.png"
+               class="com.rockwellcollins.spear.translate.actions.GenerateExcel"
+               tooltip="Generate Excel"
+               menubarPath="translateMenu/translateGroup"
+               toolbarPath="translateGroup"
+               id="com.rockwellcollins.spear.translate.GenerateExcel">
+         </action>
+         <action
                label="&amp;Generate PDF"
                icon="icons/document.png"
                class="com.rockwellcollins.spear.translate.actions.GenerateDocumentation"

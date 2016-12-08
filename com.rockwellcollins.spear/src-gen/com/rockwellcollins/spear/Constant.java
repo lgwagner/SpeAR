@@ -2,6 +2,7 @@
  */
 package com.rockwellcollins.spear;
 
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,6 +16,7 @@ package com.rockwellcollins.spear;
  *   <li>{@link com.rockwellcollins.spear.Constant#getType <em>Type</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.Constant#getExpr <em>Expr</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.Constant#getDescriptor <em>Descriptor</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.Constant#getIds <em>Ids</em>}</li>
  * </ul>
  *
  * @see com.rockwellcollins.spear.SpearPackage#getConstant()
@@ -100,5 +102,21 @@ public interface Constant extends IdRef
    * @generated
    */
   void setDescriptor(String value);
+
+  /**
+   * Returns the value of the '<em><b>Ids</b></em>' attribute list.
+   * The list contents are of type {@link java.lang.String}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Ids</em>' attribute list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Ids</em>' attribute list.
+   * @see com.rockwellcollins.spear.SpearPackage#getConstant_Ids()
+   * @model unique="false"
+   * @generated
+   */
+  EList<String> getIds();
 
 } // Constant

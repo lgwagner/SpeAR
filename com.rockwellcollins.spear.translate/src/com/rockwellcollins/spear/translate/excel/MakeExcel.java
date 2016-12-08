@@ -1,4 +1,4 @@
-package com.rockwellcollins.spear.translate.pdf;
+package com.rockwellcollins.spear.translate.excel;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -13,8 +13,6 @@ import com.itextpdf.text.List;
 import com.itextpdf.text.ListItem;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.rockwellcollins.spear.Constraint;
-import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.util.SpearSwitch;
@@ -22,10 +20,10 @@ import com.rockwellcollins.spear.util.SpearSwitch;
 /*
  * This class uses iText to generate PDFs. IText is free, but 
  */
-public class MakePDF extends SpearSwitch<Integer> {
+public class MakeExcel extends SpearSwitch<Integer> {
 
-	public static void toPDF(Specification s, File f) {
-		new MakePDF(s,f);
+	public static void toExcel(Specification s, File f) {
+		new MakeExcel(s,f);
 	}
 	
 	//this is to keep from falling through to the default case on a null value.
@@ -44,7 +42,7 @@ public class MakePDF extends SpearSwitch<Integer> {
 		}
 	}
 	
-	public MakePDF(Specification s, File f) {
+	public MakeExcel(Specification s, File f) {
 		this.document = new Document();
 		this.fontFamily=FontFamily.HELVETICA;
 		this.baseColor = BaseColor.BLACK;

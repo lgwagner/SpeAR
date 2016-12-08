@@ -7,13 +7,19 @@ import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Type;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,6 +32,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link com.rockwellcollins.spear.impl.ConstantImpl#getType <em>Type</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.impl.ConstantImpl#getExpr <em>Expr</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.impl.ConstantImpl#getDescriptor <em>Descriptor</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.impl.ConstantImpl#getIds <em>Ids</em>}</li>
  * </ul>
  *
  * @generated
@@ -71,6 +78,16 @@ public class ConstantImpl extends IdRefImpl implements Constant
    * @ordered
    */
   protected String descriptor = DESCRIPTOR_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getIds() <em>Ids</em>}' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getIds()
+   * @generated
+   * @ordered
+   */
+  protected EList<String> ids;
 
   /**
    * <!-- begin-user-doc -->
@@ -217,6 +234,20 @@ public class ConstantImpl extends IdRefImpl implements Constant
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<String> getIds()
+  {
+    if (ids == null)
+    {
+      ids = new EDataTypeEList<String>(String.class, this, SpearPackage.CONSTANT__IDS);
+    }
+    return ids;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -246,6 +277,8 @@ public class ConstantImpl extends IdRefImpl implements Constant
         return getExpr();
       case SpearPackage.CONSTANT__DESCRIPTOR:
         return getDescriptor();
+      case SpearPackage.CONSTANT__IDS:
+        return getIds();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -255,6 +288,7 @@ public class ConstantImpl extends IdRefImpl implements Constant
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -268,6 +302,10 @@ public class ConstantImpl extends IdRefImpl implements Constant
         return;
       case SpearPackage.CONSTANT__DESCRIPTOR:
         setDescriptor((String)newValue);
+        return;
+      case SpearPackage.CONSTANT__IDS:
+        getIds().clear();
+        getIds().addAll((Collection<? extends String>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -292,6 +330,9 @@ public class ConstantImpl extends IdRefImpl implements Constant
       case SpearPackage.CONSTANT__DESCRIPTOR:
         setDescriptor(DESCRIPTOR_EDEFAULT);
         return;
+      case SpearPackage.CONSTANT__IDS:
+        getIds().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -312,6 +353,8 @@ public class ConstantImpl extends IdRefImpl implements Constant
         return expr != null;
       case SpearPackage.CONSTANT__DESCRIPTOR:
         return DESCRIPTOR_EDEFAULT == null ? descriptor != null : !DESCRIPTOR_EDEFAULT.equals(descriptor);
+      case SpearPackage.CONSTANT__IDS:
+        return ids != null && !ids.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -329,6 +372,8 @@ public class ConstantImpl extends IdRefImpl implements Constant
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (descriptor: ");
     result.append(descriptor);
+    result.append(", ids: ");
+    result.append(ids);
     result.append(')');
     return result.toString();
   }

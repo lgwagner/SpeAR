@@ -867,7 +867,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     IdRef returns Constant
 	 *
 	 * Constraint:
-	 *     (name=ID type=Type expr=Expr descriptor=STRING?)
+	 *     (name=ID type=Type expr=Expr descriptor=STRING? (ids+=ID ids+=ID*)?)
 	 */
 	protected void sequence_Constant(ISerializationContext context, Constant semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1199,7 +1199,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     IdRef returns Macro
 	 *
 	 * Constraint:
-	 *     (name=ID type=Type expr=Expr descriptor=STRING?)
+	 *     (name=ID type=Type expr=Expr descriptor=STRING? (ids+=ID ids+=ID*)?)
 	 */
 	protected void sequence_Macro(ISerializationContext context, Macro semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1216,7 +1216,9 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (inputs+=Variable inputs+=Variable*)? 
 	 *         (outputs+=Variable outputs+=Variable*)? 
 	 *         locals+=Variable* 
-	 *         (equations+=LustreEquation | properties+=LustreProperty | assertions+=LustreAssertion)*
+	 *         (equations+=LustreEquation | properties+=LustreProperty | assertions+=LustreAssertion)* 
+	 *         descriptor=STRING? 
+	 *         (ids+=ID ids+=ID*)?
 	 *     )
 	 */
 	protected void sequence_Pattern(ISerializationContext context, Pattern semanticObject) {

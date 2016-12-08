@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -40,6 +41,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.rockwellcollins.spear.impl.PatternImpl#getEquations <em>Equations</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.impl.PatternImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.impl.PatternImpl#getAssertions <em>Assertions</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.impl.PatternImpl#getDescriptor <em>Descriptor</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.impl.PatternImpl#getIds <em>Ids</em>}</li>
  * </ul>
  *
  * @generated
@@ -125,6 +128,36 @@ public class PatternImpl extends MinimalEObjectImpl.Container implements Pattern
    * @ordered
    */
   protected EList<LustreAssertion> assertions;
+
+  /**
+   * The default value of the '{@link #getDescriptor() <em>Descriptor</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDescriptor()
+   * @generated
+   * @ordered
+   */
+  protected static final String DESCRIPTOR_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getDescriptor() <em>Descriptor</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDescriptor()
+   * @generated
+   * @ordered
+   */
+  protected String descriptor = DESCRIPTOR_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getIds() <em>Ids</em>}' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getIds()
+   * @generated
+   * @ordered
+   */
+  protected EList<String> ids;
 
   /**
    * <!-- begin-user-doc -->
@@ -259,6 +292,43 @@ public class PatternImpl extends MinimalEObjectImpl.Container implements Pattern
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getDescriptor()
+  {
+    return descriptor;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setDescriptor(String newDescriptor)
+  {
+    String oldDescriptor = descriptor;
+    descriptor = newDescriptor;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, SpearPackage.PATTERN__DESCRIPTOR, oldDescriptor, descriptor));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<String> getIds()
+  {
+    if (ids == null)
+    {
+      ids = new EDataTypeEList<String>(String.class, this, SpearPackage.PATTERN__IDS);
+    }
+    return ids;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -304,6 +374,10 @@ public class PatternImpl extends MinimalEObjectImpl.Container implements Pattern
         return getProperties();
       case SpearPackage.PATTERN__ASSERTIONS:
         return getAssertions();
+      case SpearPackage.PATTERN__DESCRIPTOR:
+        return getDescriptor();
+      case SpearPackage.PATTERN__IDS:
+        return getIds();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -346,6 +420,13 @@ public class PatternImpl extends MinimalEObjectImpl.Container implements Pattern
         getAssertions().clear();
         getAssertions().addAll((Collection<? extends LustreAssertion>)newValue);
         return;
+      case SpearPackage.PATTERN__DESCRIPTOR:
+        setDescriptor((String)newValue);
+        return;
+      case SpearPackage.PATTERN__IDS:
+        getIds().clear();
+        getIds().addAll((Collection<? extends String>)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -381,6 +462,12 @@ public class PatternImpl extends MinimalEObjectImpl.Container implements Pattern
       case SpearPackage.PATTERN__ASSERTIONS:
         getAssertions().clear();
         return;
+      case SpearPackage.PATTERN__DESCRIPTOR:
+        setDescriptor(DESCRIPTOR_EDEFAULT);
+        return;
+      case SpearPackage.PATTERN__IDS:
+        getIds().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -409,6 +496,10 @@ public class PatternImpl extends MinimalEObjectImpl.Container implements Pattern
         return properties != null && !properties.isEmpty();
       case SpearPackage.PATTERN__ASSERTIONS:
         return assertions != null && !assertions.isEmpty();
+      case SpearPackage.PATTERN__DESCRIPTOR:
+        return DESCRIPTOR_EDEFAULT == null ? descriptor != null : !DESCRIPTOR_EDEFAULT.equals(descriptor);
+      case SpearPackage.PATTERN__IDS:
+        return ids != null && !ids.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -426,6 +517,10 @@ public class PatternImpl extends MinimalEObjectImpl.Container implements Pattern
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");
     result.append(name);
+    result.append(", descriptor: ");
+    result.append(descriptor);
+    result.append(", ids: ");
+    result.append(ids);
     result.append(')');
     return result.toString();
   }
