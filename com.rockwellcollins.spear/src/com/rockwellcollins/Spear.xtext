@@ -236,6 +236,6 @@ BOOLEAN_TRUE:
 BOOLEAN_FALSE:
 	'FALSE' | 'false';
 
-REAL:
-	INT '.' INT;
+REAL hidden(): INT '.' (EXT_INT | INT);
+terminal EXT_INT: INT ('e'|'E')('-'|'+')? INT;
 
