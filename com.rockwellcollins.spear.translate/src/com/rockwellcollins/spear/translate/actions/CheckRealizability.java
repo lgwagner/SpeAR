@@ -112,12 +112,11 @@ public class CheckRealizability implements IWorkbenchWindowActionDelegate {
 				// refresh the workspace
 				root.refreshLocal(IResource.DEPTH_INFINITE, null);
 				
-				//TODO: figure out how to get the API
 				JRealizabilityApi api = new JRealizabilityApi();
 				try {
 					api.checkAvailable();
 				} catch (Exception e) {
-					System.err.println("Error executing JRealizaiblity");
+					System.err.println("Error executing JRealizability");
 					throw e;
 				}
 
