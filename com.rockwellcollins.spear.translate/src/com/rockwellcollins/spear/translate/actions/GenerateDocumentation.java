@@ -26,7 +26,6 @@ import org.eclipse.xtext.validation.Issue;
 import com.google.inject.Injector;
 import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Specification;
-import com.rockwellcollins.spear.translate.pdf.MakePDF;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
 public class GenerateDocumentation implements IWorkbenchWindowActionDelegate {
@@ -63,8 +62,10 @@ public class GenerateDocumentation implements IWorkbenchWindowActionDelegate {
 				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 				IResource pdfResource = root.getFile(new Path(pdfURI.toPlatformString(true)));
 
-				MakePDF.toPDF(workingCopy,pdfResource.getLocation().toFile());
-
+				//This does not do anything useful so, for now, we will just bring up a dialog.
+				//MakePDF.toPDF(workingCopy,pdfResource.getLocation().toFile());
+				MessageDialog.openError(window.getShell(), "Feature Unsupported.", "PDF Generation is not yet supported.");
+				
 				// refresh the workspace
 				root.refreshLocal(IResource.DEPTH_INFINITE, null);
 				return null;
