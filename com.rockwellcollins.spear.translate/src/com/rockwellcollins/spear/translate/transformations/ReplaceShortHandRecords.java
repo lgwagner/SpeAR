@@ -1,10 +1,9 @@
 package com.rockwellcollins.spear.translate.transformations;
 
-import java.util.List;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 
+import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FieldExpr;
 import com.rockwellcollins.spear.FieldType;
@@ -21,6 +20,10 @@ public class ReplaceShortHandRecords {
 	public static SpearFactory factory = SpearFactory.eINSTANCE;
 	
 	public static void transform(SpearDocument doc) {
+		for(Constant c : doc.constants.values()) {
+			transform(c);
+		}
+		
 		for(Pattern p : doc.patterns.values()) {
 			transform(p);
 		}
@@ -37,22 +40,26 @@ public class ReplaceShortHandRecords {
 	}
 	
 	public static EObject transform(EObject o) {
-		List<FieldlessRecordExpr> fieldlessRecords = EcoreUtil2.getAllContentsOfType(o, FieldlessRecordExpr.class);
-		for(FieldlessRecordExpr fre : fieldlessRecords) {
-			RecordExpr legit = factory.createRecordExpr();
-			legit.setType(fre.getType());
-			
-			int i=0;
-			for(Expr e : fre.getExprs()) {
-				FieldType ft = fre.getType().getFields().get(i);
-				FieldExpr fe = factory.createFieldExpr();
-				fe.setField(ft);
-				fe.setExpr(EcoreUtil2.copy(e));
-				legit.getFieldExprs().add(fe);
-				i++;
-			}
+		for(FieldlessRecordExpr fre : EcoreUtil2.getAllContentsOfType(o, FieldlessRecordExpr.class)) {
+			RecordExpr legit = create(fre);
 			EcoreUtil2.replace(fre, legit);
 		}
 		return o;
+	}
+	
+	private static RecordExpr create(FieldlessRecordExpr fre) {
+		RecordExpr legit = factory.createRecordExpr();
+		legit.setType(fre.getType());
+		
+		int i=0;
+		for(Expr e : fre.getExprs()) {
+			FieldType ft = fre.getType().getFields().get(i);
+			FieldExpr fe = factory.createFieldExpr();
+			fe.setField(ft);
+			fe.setExpr(e);
+			legit.getFieldExprs().add(fe);
+			i++;
+		}
+		return legit;
 	}
 }

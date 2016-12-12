@@ -38,6 +38,7 @@ import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.translate.layout.SpearLayout;
 import com.rockwellcollins.spear.translate.master.SProgram;
 import com.rockwellcollins.spear.translate.views.SpearRealizabilityResultsView;
+import com.rockwellcollins.spear.ui.preferences.PreferencesUtil;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
 import jkind.api.JRealizabilityApi;
@@ -112,7 +113,7 @@ public class CheckRealizability implements IWorkbenchWindowActionDelegate {
 				// refresh the workspace
 				root.refreshLocal(IResource.DEPTH_INFINITE, null);
 				
-				JRealizabilityApi api = new JRealizabilityApi();
+				JRealizabilityApi api = PreferencesUtil.getJRealizabilityApi();
 				try {
 					api.checkAvailable();
 				} catch (Exception e) {
