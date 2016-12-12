@@ -13,6 +13,7 @@ import com.rockwellcollins.ui.internal.SpearActivator;
 import jkind.JKindException;
 import jkind.SolverOption;
 import jkind.api.JKindApi;
+import jkind.api.JRealizabilityApi;
 import jkind.api.Kind2Api;
 import jkind.api.Kind2WebApi;
 import jkind.api.KindApi;
@@ -50,10 +51,6 @@ public class PreferencesUtil {
 		switch (modelChecker) {
 		case PreferenceConstants.MODEL_CHECKER_JKIND:
 			return getJKindApi();
-		case PreferenceConstants.MODEL_CHECKER_KIND2:
-			return getKind2Api();
-		case PreferenceConstants.MODEL_CHECKER_KIND2WEB:
-			return getKind2WebApi(remoteUrl);
 		default:
 			throw new IllegalArgumentException("Unknown model checker setting: " + modelChecker);
 		}
@@ -98,6 +95,12 @@ public class PreferencesUtil {
 
 		api.setN(prefs.getInt(PreferenceConstants.PREF_DEPTH));
 		api.setTimeout(prefs.getInt(PreferenceConstants.PREF_TIMEOUT));
+		return api;
+	}
+	
+	public static JRealizabilityApi getJRealizabilityApi() {
+		JRealizabilityApi api = new JRealizabilityApi();
+		api.setJKindJar(getJKindJar());
 		return api;
 	}
 

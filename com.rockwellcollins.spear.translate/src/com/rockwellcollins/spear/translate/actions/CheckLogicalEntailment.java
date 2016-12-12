@@ -37,10 +37,12 @@ import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.translate.layout.SpearLayout;
 import com.rockwellcollins.spear.translate.master.SProgram;
-import com.rockwellcollins.spear.translate.views.SpearResultsView;
+import com.rockwellcollins.spear.translate.views.SpearConsistencyResultsView;
+import com.rockwellcollins.spear.translate.views.SpearEntailmentResultsView;
 import com.rockwellcollins.spear.ui.preferences.PreferencesUtil;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
+import jkind.api.JKindApi;
 import jkind.api.KindApi;
 import jkind.api.results.JKindResult;
 import jkind.api.results.MapRenaming;
@@ -111,7 +113,9 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 
 				// refresh the workspace
 				root.refreshLocal(IResource.DEPTH_INFINITE, null);
-				KindApi api = PreferencesUtil.getKindApi();
+				
+				JKindApi api = (JKindApi) PreferencesUtil.getKindApi();
+				api.setIvcReduction();
 
 				Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.getMain()), Mode.IDENTITY);
 				JKindResult result = new JKindResult("Spear Result", p.getMainNode().properties, renaming);
@@ -162,7 +166,7 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 			@Override
 			public void run() {
 				try {
-					SpearResultsView page = (SpearResultsView) window.getActivePage().showView(SpearResultsView.ID);
+					SpearEntailmentResultsView page = (SpearEntailmentResultsView) window.getActivePage().showView(SpearEntailmentResultsView.ID);
 					page.setInput(result, layout, null);
 				} catch (PartInitException e) {
 					e.printStackTrace();

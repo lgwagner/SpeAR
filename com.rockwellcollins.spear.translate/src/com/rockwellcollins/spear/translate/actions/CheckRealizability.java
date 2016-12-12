@@ -37,7 +37,7 @@ import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.translate.layout.SpearLayout;
 import com.rockwellcollins.spear.translate.master.SProgram;
-import com.rockwellcollins.spear.translate.views.SpearResultsView;
+import com.rockwellcollins.spear.translate.views.SpearRealizabilityResultsView;
 import com.rockwellcollins.spear.ui.preferences.PreferencesUtil;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
@@ -113,12 +113,11 @@ public class CheckRealizability implements IWorkbenchWindowActionDelegate {
 				// refresh the workspace
 				root.refreshLocal(IResource.DEPTH_INFINITE, null);
 				
-				//TODO: figure out how to get the API
-				JRealizabilityApi api = new JRealizabilityApi();
+				JRealizabilityApi api = PreferencesUtil.getJRealizabilityApi();
 				try {
 					api.checkAvailable();
 				} catch (Exception e) {
-					System.err.println("Error executing JRealizaiblity");
+					System.err.println("Error executing JRealizability");
 					throw e;
 				}
 
@@ -171,7 +170,7 @@ public class CheckRealizability implements IWorkbenchWindowActionDelegate {
 			@Override
 			public void run() {
 				try {
-					SpearResultsView page = (SpearResultsView) window.getActivePage().showView(SpearResultsView.ID);
+					SpearRealizabilityResultsView page = (SpearRealizabilityResultsView) window.getActivePage().showView(SpearRealizabilityResultsView.ID);
 					page.setInput(result, layout, null);
 				} catch (PartInitException e) {
 					e.printStackTrace();

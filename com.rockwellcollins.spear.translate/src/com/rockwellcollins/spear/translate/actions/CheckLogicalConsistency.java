@@ -39,7 +39,7 @@ import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.translate.layout.SpearLayout;
 import com.rockwellcollins.spear.translate.master.SProgram;
-import com.rockwellcollins.spear.translate.views.SpearResultsView;
+import com.rockwellcollins.spear.translate.views.SpearConsistencyResultsView;
 import com.rockwellcollins.spear.ui.preferences.PreferencesUtil;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
@@ -164,7 +164,7 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 			@Override
 			public void run() {
 				try {
-					SpearResultsView page = (SpearResultsView) window.getActivePage().showView(SpearResultsView.ID);
+					SpearConsistencyResultsView page = (SpearConsistencyResultsView) window.getActivePage().showView(SpearConsistencyResultsView.ID);
 					page.setInput(result, layout, null);
 				} catch (PartInitException e) {
 					e.printStackTrace();
