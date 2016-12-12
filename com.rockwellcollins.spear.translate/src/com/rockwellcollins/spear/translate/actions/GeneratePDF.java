@@ -73,7 +73,6 @@ public class GeneratePDF implements IWorkbenchWindowActionDelegate {
 				root.refreshLocal(IResource.DEPTH_INFINITE, null);
 				return null;
 			}
-
 		});
 	}
 	
