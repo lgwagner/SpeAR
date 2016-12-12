@@ -605,7 +605,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		TupleType inputs = this.processList(new ArrayList<>(call.getSpec().getInputs()));
 
 		if (!args.equals(inputs)) {
-			error("Provided args of type " + args + ", but " + call.getSpec().getName() + " expected type " + inputs
+			error("Provided args of type " + args + ", but spec " + call.getSpec().getName() + " expected type " + inputs
 					+ ".", call, SpearPackage.Literals.SPECIFICATION_CALL__ARGS);
 			return ERROR;
 		}
@@ -625,8 +625,13 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		TupleType inputs = this.processList(new ArrayList<>(call.getPattern().getInputs()));
 
 		if (!args.equals(inputs)) {
-			error("Provided args of type " + args + ", but " + call.getPattern().getName() + " expected type " + inputs
-					+ ".", call, SpearPackage.Literals.PATTERN_CALL__ARGS);
+			if (call.getPattern().getName() == null) {
+				error("Possible omission of 'spec' keyword in specification call.", call, 
+						SpearPackage.Literals.PATTERN_CALL__ARGS);
+			} else {
+				error("Provided args of type " + args + ", but spec " + call.getPattern().getName() + " expected type " + inputs
+						+ ".", call, SpearPackage.Literals.PATTERN_CALL__ARGS);
+			}
 			return ERROR;
 		}
 
