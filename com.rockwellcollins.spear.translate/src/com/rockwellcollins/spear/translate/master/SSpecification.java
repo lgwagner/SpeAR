@@ -180,6 +180,11 @@ public class SSpecification extends SMapElement {
 		}
 
 		builder.addProperties(SConstraint.toPropertyIds(behaviors, this));
+		
+		List<SConstraint> list = new ArrayList<>();
+		list.addAll(assumptions);
+		list.addAll(requirements);
+		builder.addIvcs(SConstraint.toPropertyIds(list, this));
 		return builder.build();
 	}
 	

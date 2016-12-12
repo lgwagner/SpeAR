@@ -26,12 +26,12 @@ import jkind.results.layout.Layout;
 /**
  * JKindMenuListener is a class necessary to display the Analysis pulldown menu.
  */
-public class SpearMenuListener implements IMenuListener {
+public class SpearEntailmentMenuListener implements IMenuListener {
 	private final AnalysisResultColumnViewer columnViewer;
 	private Layout layout;
 	private IWorkbenchWindow window;
 
-	public SpearMenuListener(IWorkbenchWindow window, AnalysisResultTable columnViewer) {
+	public SpearEntailmentMenuListener(IWorkbenchWindow window, AnalysisResultTable columnViewer) {
 		this.window = window;
 		this.columnViewer = columnViewer;
 	}
@@ -77,17 +77,17 @@ public class SpearMenuListener implements IMenuListener {
 			}
 		});
 	}
-	
+
 	private void addViewSupport(IMenuManager manager, PropertyResult result) {
 		final Set<String> support = getSupport(result);
 		if (support == null || support.size() == 0) {
 			return;
 		}
 
-		manager.add(new Action("Show Conflicting Constraints") {
+		manager.add(new Action("Show supporting Assumptions/Requirements.") {
 			@Override
 			public void run() {
-				viewSupport(support);
+				viewSupport(support, result.getName());
 			}
 		});
 	}
@@ -114,8 +114,8 @@ public class SpearMenuListener implements IMenuListener {
 		}
 	}
 
-	private void viewSupport(Set<String> support) {
-		MessageDialog.openInformation(window.getShell(), "Conflicting Constraints!", support.toString());
+	private void viewSupport(Set<String> support, String name) {
+		MessageDialog.openInformation(window.getShell(), name + " supporting Assumptions/Requirements", support.toString());
 	}
 	
 	private static Set<String> getSupport(PropertyResult result) {

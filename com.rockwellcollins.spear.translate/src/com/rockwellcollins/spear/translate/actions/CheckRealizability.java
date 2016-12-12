@@ -37,7 +37,7 @@ import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.translate.layout.SpearLayout;
 import com.rockwellcollins.spear.translate.master.SProgram;
-import com.rockwellcollins.spear.translate.views.SpearResultsView;
+import com.rockwellcollins.spear.translate.views.SpearRealizabilityResultsView;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
 import jkind.api.JRealizabilityApi;
@@ -169,7 +169,7 @@ public class CheckRealizability implements IWorkbenchWindowActionDelegate {
 			@Override
 			public void run() {
 				try {
-					SpearResultsView page = (SpearResultsView) window.getActivePage().showView(SpearResultsView.ID);
+					SpearRealizabilityResultsView page = (SpearRealizabilityResultsView) window.getActivePage().showView(SpearRealizabilityResultsView.ID);
 					page.setInput(result, layout, null);
 				} catch (PartInitException e) {
 					e.printStackTrace();

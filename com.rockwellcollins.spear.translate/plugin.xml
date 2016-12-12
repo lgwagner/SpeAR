@@ -59,10 +59,22 @@
       </category>
         <view
               category="com.rockwellcollins.spear.translate"
-              class="com.rockwellcollins.spear.translate.views.SpearResultsView"
-              icon="icons/spear_icon.png"
-              id="com.rockwellcollins.spear.translate.views.SpearResultsView"
-              name="Analysis Results"/>
+              class="com.rockwellcollins.spear.translate.views.SpearEntailmentResultsView"
+              icon="icons/logical_entailment.png"
+              id="com.rockwellcollins.spear.translate.views.SpearEntailmentResultsView"
+              name="Entailment Analysis Results"/>
+        <view
+              category="com.rockwellcollins.spear.translate"
+              class="com.rockwellcollins.spear.translate.views.SpearConsistencyResultsView"
+              icon="icons/logical_consistency.png"
+              id="com.rockwellcollins.spear.translate.views.SpearConsistencyResultsView"
+              name="Consistency Analysis Results"/>
+        <view
+              category="com.rockwellcollins.spear.translate"
+              class="com.rockwellcollins.spear.translate.views.SpearRealizabilityResultsView"
+              icon="icons/realizability.png"
+              id="com.rockwellcollins.spear.translate.views.SpearRealizabilityResultsView"
+              name="Realizability Analysis Results"/>              
 		<view
               category="com.rockwellcollins.spear.translate.lustre"
               class="com.rockwellcollins.spear.translate.views.SpearCounterexampleView"

@@ -26,7 +26,7 @@ import com.google.inject.Injector;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
 import com.rockwellcollins.spear.translate.master.SProgram;
-import com.rockwellcollins.spear.translate.views.SpearResultsView;
+import com.rockwellcollins.spear.translate.views.SpearConsistencyResultsView;
 import com.rockwellcollins.spear.ui.preferences.PreferencesUtil;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
@@ -113,7 +113,7 @@ public class AnalyzePattern extends AbstractHandler {
 			@Override
 			public void run() {
 				try {
-					SpearResultsView page = (SpearResultsView) window.getActivePage().showView(SpearResultsView.ID);
+					SpearConsistencyResultsView page = (SpearConsistencyResultsView) window.getActivePage().showView(SpearConsistencyResultsView.ID);
 					page.setInput(result, layout, title);
 				} catch (PartInitException e) {
 					e.printStackTrace();
