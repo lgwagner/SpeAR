@@ -5771,7 +5771,7 @@ rule__UnitDef__Group_0__2__Impl
 :
 (
 { before(grammarAccess.getUnitDefAccess().getDescriptionAssignment_0_2()); }
-(rule__UnitDef__DescriptionAssignment_0_2)
+(rule__UnitDef__DescriptionAssignment_0_2)?
 { after(grammarAccess.getUnitDefAccess().getDescriptionAssignment_0_2()); }
 )
 
@@ -5923,7 +5923,7 @@ rule__UnitDef__Group_1__4__Impl
 :
 (
 { before(grammarAccess.getUnitDefAccess().getDescriptionAssignment_1_4()); }
-(rule__UnitDef__DescriptionAssignment_1_4)
+(rule__UnitDef__DescriptionAssignment_1_4)?
 { after(grammarAccess.getUnitDefAccess().getDescriptionAssignment_1_4()); }
 )
 

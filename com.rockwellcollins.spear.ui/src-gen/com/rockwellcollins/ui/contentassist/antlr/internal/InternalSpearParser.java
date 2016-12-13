@@ -5306,7 +5306,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             if ( (LA7_0==RULE_ID) ) {
                 int LA7_1 = input.LA(2);
 
-                if ( (LA7_1==RULE_STRING) ) {
+                if ( (LA7_1==EOF||(LA7_1>=RULE_ID && LA7_1<=RULE_STRING)||LA7_1==61||(LA7_1>=65 && LA7_1<=67)) ) {
                     alt7=1;
                 }
                 else if ( ((LA7_1>=22 && LA7_1<=24)) ) {
@@ -5973,11 +5973,11 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                 if ( (LA12_1==22) ) {
                     int LA12_2 = input.LA(3);
 
-                    if ( ((LA12_2>=RULE_INT && LA12_2<=RULE_ID)||(LA12_2>=35 && LA12_2<=41)||LA12_2==49||(LA12_2>=55 && LA12_2<=59)||LA12_2==73||LA12_2==80||LA12_2==100||LA12_2==102||LA12_2==109||LA12_2==115||(LA12_2>=117 && LA12_2<=119)) ) {
-                        alt12=1;
-                    }
-                    else if ( (LA12_2==RULE_STRING) ) {
+                    if ( (LA12_2==RULE_STRING) ) {
                         alt12=2;
+                    }
+                    else if ( ((LA12_2>=RULE_INT && LA12_2<=RULE_ID)||(LA12_2>=35 && LA12_2<=41)||LA12_2==49||(LA12_2>=55 && LA12_2<=59)||LA12_2==73||LA12_2==80||LA12_2==100||LA12_2==102||LA12_2==109||LA12_2==115||(LA12_2>=117 && LA12_2<=119)) ) {
+                        alt12=1;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return ;}
@@ -8522,25 +8522,25 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             if ( (LA31_0==RULE_INT) ) {
                 int LA31_1 = input.LA(2);
 
-                if ( (LA31_1==EOF||LA31_1==RULE_ID||(LA31_1>=12 && LA31_1<=21)||(LA31_1>=25 && LA31_1<=34)||(LA31_1>=42 && LA31_1<=55)||LA31_1==61||LA31_1==67||LA31_1==74||(LA31_1>=77 && LA31_1<=78)||LA31_1==80||(LA31_1>=82 && LA31_1<=83)||(LA31_1>=86 && LA31_1<=89)||(LA31_1>=94 && LA31_1<=99)||LA31_1==101||(LA31_1>=103 && LA31_1<=104)||LA31_1==106||LA31_1==108||LA31_1==110||LA31_1==114||LA31_1==116||LA31_1==120) ) {
-                    alt31=1;
-                }
-                else if ( (LA31_1==113) ) {
-                    int LA31_4 = input.LA(3);
+                if ( (LA31_1==113) ) {
+                    int LA31_3 = input.LA(3);
 
-                    if ( (LA31_4==RULE_ID) ) {
-                        alt31=1;
-                    }
-                    else if ( ((LA31_4>=RULE_EXT_INT && LA31_4<=RULE_INT)) ) {
+                    if ( ((LA31_3>=RULE_EXT_INT && LA31_3<=RULE_INT)) ) {
                         alt31=3;
+                    }
+                    else if ( (LA31_3==RULE_ID) ) {
+                        alt31=1;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return ;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 31, 4, input);
+                            new NoViableAltException("", 31, 3, input);
 
                         throw nvae;
                     }
+                }
+                else if ( (LA31_1==EOF||LA31_1==RULE_ID||(LA31_1>=12 && LA31_1<=21)||(LA31_1>=25 && LA31_1<=34)||(LA31_1>=42 && LA31_1<=55)||LA31_1==61||LA31_1==67||LA31_1==74||(LA31_1>=77 && LA31_1<=78)||LA31_1==80||(LA31_1>=82 && LA31_1<=83)||(LA31_1>=86 && LA31_1<=89)||(LA31_1>=94 && LA31_1<=99)||LA31_1==101||(LA31_1>=103 && LA31_1<=104)||LA31_1==106||LA31_1==108||LA31_1==110||LA31_1==114||LA31_1==116||LA31_1==120) ) {
+                    alt31=1;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -17820,29 +17820,40 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnitDef__Group_0__2__Impl"
-    // InternalSpear.g:5767:1: rule__UnitDef__Group_0__2__Impl : ( ( rule__UnitDef__DescriptionAssignment_0_2 ) ) ;
+    // InternalSpear.g:5767:1: rule__UnitDef__Group_0__2__Impl : ( ( rule__UnitDef__DescriptionAssignment_0_2 )? ) ;
     public final void rule__UnitDef__Group_0__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:5771:1: ( ( ( rule__UnitDef__DescriptionAssignment_0_2 ) ) )
-            // InternalSpear.g:5772:1: ( ( rule__UnitDef__DescriptionAssignment_0_2 ) )
+            // InternalSpear.g:5771:1: ( ( ( rule__UnitDef__DescriptionAssignment_0_2 )? ) )
+            // InternalSpear.g:5772:1: ( ( rule__UnitDef__DescriptionAssignment_0_2 )? )
             {
-            // InternalSpear.g:5772:1: ( ( rule__UnitDef__DescriptionAssignment_0_2 ) )
-            // InternalSpear.g:5773:1: ( rule__UnitDef__DescriptionAssignment_0_2 )
+            // InternalSpear.g:5772:1: ( ( rule__UnitDef__DescriptionAssignment_0_2 )? )
+            // InternalSpear.g:5773:1: ( rule__UnitDef__DescriptionAssignment_0_2 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitDefAccess().getDescriptionAssignment_0_2()); 
             }
-            // InternalSpear.g:5774:1: ( rule__UnitDef__DescriptionAssignment_0_2 )
-            // InternalSpear.g:5774:2: rule__UnitDef__DescriptionAssignment_0_2
-            {
-            pushFollow(FOLLOW_2);
-            rule__UnitDef__DescriptionAssignment_0_2();
+            // InternalSpear.g:5774:1: ( rule__UnitDef__DescriptionAssignment_0_2 )?
+            int alt76=2;
+            int LA76_0 = input.LA(1);
 
-            state._fsp--;
-            if (state.failed) return ;
+            if ( (LA76_0==RULE_STRING) ) {
+                alt76=1;
+            }
+            switch (alt76) {
+                case 1 :
+                    // InternalSpear.g:5774:2: rule__UnitDef__DescriptionAssignment_0_2
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__UnitDef__DescriptionAssignment_0_2();
+
+                    state._fsp--;
+                    if (state.failed) return ;
+
+                    }
+                    break;
 
             }
 
@@ -18244,29 +18255,40 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnitDef__Group_1__4__Impl"
-    // InternalSpear.g:5919:1: rule__UnitDef__Group_1__4__Impl : ( ( rule__UnitDef__DescriptionAssignment_1_4 ) ) ;
+    // InternalSpear.g:5919:1: rule__UnitDef__Group_1__4__Impl : ( ( rule__UnitDef__DescriptionAssignment_1_4 )? ) ;
     public final void rule__UnitDef__Group_1__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:5923:1: ( ( ( rule__UnitDef__DescriptionAssignment_1_4 ) ) )
-            // InternalSpear.g:5924:1: ( ( rule__UnitDef__DescriptionAssignment_1_4 ) )
+            // InternalSpear.g:5923:1: ( ( ( rule__UnitDef__DescriptionAssignment_1_4 )? ) )
+            // InternalSpear.g:5924:1: ( ( rule__UnitDef__DescriptionAssignment_1_4 )? )
             {
-            // InternalSpear.g:5924:1: ( ( rule__UnitDef__DescriptionAssignment_1_4 ) )
-            // InternalSpear.g:5925:1: ( rule__UnitDef__DescriptionAssignment_1_4 )
+            // InternalSpear.g:5924:1: ( ( rule__UnitDef__DescriptionAssignment_1_4 )? )
+            // InternalSpear.g:5925:1: ( rule__UnitDef__DescriptionAssignment_1_4 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitDefAccess().getDescriptionAssignment_1_4()); 
             }
-            // InternalSpear.g:5926:1: ( rule__UnitDef__DescriptionAssignment_1_4 )
-            // InternalSpear.g:5926:2: rule__UnitDef__DescriptionAssignment_1_4
-            {
-            pushFollow(FOLLOW_2);
-            rule__UnitDef__DescriptionAssignment_1_4();
+            // InternalSpear.g:5926:1: ( rule__UnitDef__DescriptionAssignment_1_4 )?
+            int alt77=2;
+            int LA77_0 = input.LA(1);
 
-            state._fsp--;
-            if (state.failed) return ;
+            if ( (LA77_0==RULE_STRING) ) {
+                alt77=1;
+            }
+            switch (alt77) {
+                case 1 :
+                    // InternalSpear.g:5926:2: rule__UnitDef__DescriptionAssignment_1_4
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__UnitDef__DescriptionAssignment_1_4();
+
+                    state._fsp--;
+                    if (state.failed) return ;
+
+                    }
+                    break;
 
             }
 
@@ -18427,13 +18449,13 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getProductUnitExprAccess().getGroup_1()); 
             }
             // InternalSpear.g:5993:1: ( rule__ProductUnitExpr__Group_1__0 )?
-            int alt76=2;
-            int LA76_0 = input.LA(1);
+            int alt78=2;
+            int LA78_0 = input.LA(1);
 
-            if ( (LA76_0==50) ) {
-                alt76=1;
+            if ( (LA78_0==50) ) {
+                alt78=1;
             }
-            switch (alt76) {
+            switch (alt78) {
                 case 1 :
                     // InternalSpear.g:5993:2: rule__ProductUnitExpr__Group_1__0
                     {
@@ -19025,13 +19047,13 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getDivisionUnitExprAccess().getGroup_1()); 
             }
             // InternalSpear.g:6208:1: ( rule__DivisionUnitExpr__Group_1__0 )?
-            int alt77=2;
-            int LA77_0 = input.LA(1);
+            int alt79=2;
+            int LA79_0 = input.LA(1);
 
-            if ( (LA77_0==51) ) {
-                alt77=1;
+            if ( (LA79_0==51) ) {
+                alt79=1;
             }
-            switch (alt77) {
+            switch (alt79) {
                 case 1 :
                     // InternalSpear.g:6208:2: rule__DivisionUnitExpr__Group_1__0
                     {
@@ -20279,17 +20301,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getTypeDefAccess().getUnitAssignment_0_4()); 
             }
             // InternalSpear.g:6671:1: ( rule__TypeDef__UnitAssignment_0_4 )?
-            int alt78=2;
-            int LA78_0 = input.LA(1);
+            int alt80=2;
+            int LA80_0 = input.LA(1);
 
-            if ( (LA78_0==RULE_ID) ) {
-                int LA78_1 = input.LA(2);
+            if ( (LA80_0==RULE_ID) ) {
+                int LA80_1 = input.LA(2);
 
-                if ( (LA78_1==EOF||LA78_1==RULE_ID||LA78_1==61||(LA78_1>=66 && LA78_1<=67)) ) {
-                    alt78=1;
+                if ( (LA80_1==EOF||LA80_1==RULE_ID||LA80_1==61||(LA80_1>=66 && LA80_1<=67)) ) {
+                    alt80=1;
                 }
             }
-            switch (alt78) {
+            switch (alt80) {
                 case 1 :
                     // InternalSpear.g:6671:2: rule__TypeDef__UnitAssignment_0_4
                     {
@@ -21206,17 +21228,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getTypeDefAccess().getGroup_2_6()); 
             }
             // InternalSpear.g:7017:1: ( rule__TypeDef__Group_2_6__0 )*
-            loop79:
+            loop81:
             do {
-                int alt79=2;
-                int LA79_0 = input.LA(1);
+                int alt81=2;
+                int LA81_0 = input.LA(1);
 
-                if ( (LA79_0==78) ) {
-                    alt79=1;
+                if ( (LA81_0==78) ) {
+                    alt81=1;
                 }
 
 
-                switch (alt79) {
+                switch (alt81) {
             	case 1 :
             	    // InternalSpear.g:7017:2: rule__TypeDef__Group_2_6__0
             	    {
@@ -21230,7 +21252,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop79;
+            	    break loop81;
                 }
             } while (true);
 
@@ -22630,17 +22652,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getTypeDefAccess().getGroup_4_6()); 
             }
             // InternalSpear.g:7557:1: ( rule__TypeDef__Group_4_6__0 )*
-            loop80:
+            loop82:
             do {
-                int alt80=2;
-                int LA80_0 = input.LA(1);
+                int alt82=2;
+                int LA82_0 = input.LA(1);
 
-                if ( (LA80_0==78) ) {
-                    alt80=1;
+                if ( (LA82_0==78) ) {
+                    alt82=1;
                 }
 
 
-                switch (alt80) {
+                switch (alt82) {
             	case 1 :
             	    // InternalSpear.g:7557:2: rule__TypeDef__Group_4_6__0
             	    {
@@ -22654,7 +22676,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop80;
+            	    break loop82;
                 }
             } while (true);
 
@@ -24272,17 +24294,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getConstantAccess().getDataAssignment_5()); 
             }
             // InternalSpear.g:8194:1: ( rule__Constant__DataAssignment_5 )*
-            loop81:
+            loop83:
             do {
-                int alt81=2;
-                int LA81_0 = input.LA(1);
+                int alt83=2;
+                int LA83_0 = input.LA(1);
 
-                if ( ((LA81_0>=25 && LA81_0<=26)||(LA81_0>=94 && LA81_0<=99)) ) {
-                    alt81=1;
+                if ( ((LA83_0>=25 && LA83_0<=26)||(LA83_0>=94 && LA83_0<=99)) ) {
+                    alt83=1;
                 }
 
 
-                switch (alt81) {
+                switch (alt83) {
             	case 1 :
             	    // InternalSpear.g:8194:2: rule__Constant__DataAssignment_5
             	    {
@@ -24296,7 +24318,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop81;
+            	    break loop83;
                 }
             } while (true);
 
@@ -24635,17 +24657,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getVariableAccess().getDataAssignment_3()); 
             }
             // InternalSpear.g:8321:1: ( rule__Variable__DataAssignment_3 )*
-            loop82:
+            loop84:
             do {
-                int alt82=2;
-                int LA82_0 = input.LA(1);
+                int alt84=2;
+                int LA84_0 = input.LA(1);
 
-                if ( ((LA82_0>=25 && LA82_0<=26)||(LA82_0>=94 && LA82_0<=99)) ) {
-                    alt82=1;
+                if ( ((LA84_0>=25 && LA84_0<=26)||(LA84_0>=94 && LA84_0<=99)) ) {
+                    alt84=1;
                 }
 
 
-                switch (alt82) {
+                switch (alt84) {
             	case 1 :
             	    // InternalSpear.g:8321:2: rule__Variable__DataAssignment_3
             	    {
@@ -24659,7 +24681,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop82;
+            	    break loop84;
                 }
             } while (true);
 
@@ -25166,17 +25188,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getMacroAccess().getDataAssignment_5()); 
             }
             // InternalSpear.g:8504:1: ( rule__Macro__DataAssignment_5 )*
-            loop83:
+            loop85:
             do {
-                int alt83=2;
-                int LA83_0 = input.LA(1);
+                int alt85=2;
+                int LA85_0 = input.LA(1);
 
-                if ( ((LA83_0>=25 && LA83_0<=26)||(LA83_0>=94 && LA83_0<=99)) ) {
-                    alt83=1;
+                if ( ((LA85_0>=25 && LA85_0<=26)||(LA85_0>=94 && LA85_0<=99)) ) {
+                    alt85=1;
                 }
 
 
-                switch (alt83) {
+                switch (alt85) {
             	case 1 :
             	    // InternalSpear.g:8504:2: rule__Macro__DataAssignment_5
             	    {
@@ -25190,7 +25212,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop83;
+            	    break loop85;
                 }
             } while (true);
 
@@ -25525,17 +25547,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getFormalConstraintAccess().getDataAssignment_3()); 
             }
             // InternalSpear.g:8633:1: ( rule__FormalConstraint__DataAssignment_3 )*
-            loop84:
+            loop86:
             do {
-                int alt84=2;
-                int LA84_0 = input.LA(1);
+                int alt86=2;
+                int LA86_0 = input.LA(1);
 
-                if ( ((LA84_0>=25 && LA84_0<=26)||(LA84_0>=94 && LA84_0<=99)) ) {
-                    alt84=1;
+                if ( ((LA86_0>=25 && LA86_0<=26)||(LA86_0>=94 && LA86_0<=99)) ) {
+                    alt86=1;
                 }
 
 
-                switch (alt84) {
+                switch (alt86) {
             	case 1 :
             	    // InternalSpear.g:8633:2: rule__FormalConstraint__DataAssignment_3
             	    {
@@ -25549,7 +25571,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop84;
+            	    break loop86;
                 }
             } while (true);
 
@@ -25884,17 +25906,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getEnglishConstraintAccess().getDataAssignment_3()); 
             }
             // InternalSpear.g:8758:1: ( rule__EnglishConstraint__DataAssignment_3 )*
-            loop85:
+            loop87:
             do {
-                int alt85=2;
-                int LA85_0 = input.LA(1);
+                int alt87=2;
+                int LA87_0 = input.LA(1);
 
-                if ( ((LA85_0>=25 && LA85_0<=26)||(LA85_0>=94 && LA85_0<=99)) ) {
-                    alt85=1;
+                if ( ((LA87_0>=25 && LA87_0<=26)||(LA87_0>=94 && LA87_0<=99)) ) {
+                    alt87=1;
                 }
 
 
-                switch (alt85) {
+                switch (alt87) {
             	case 1 :
             	    // InternalSpear.g:8758:2: rule__EnglishConstraint__DataAssignment_3
             	    {
@@ -25908,7 +25930,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop85;
+            	    break loop87;
                 }
             } while (true);
 
@@ -26727,17 +26749,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getDataAccess().getGroup_1_5()); 
             }
             // InternalSpear.g:9075:1: ( rule__Data__Group_1_5__0 )*
-            loop86:
+            loop88:
             do {
-                int alt86=2;
-                int LA86_0 = input.LA(1);
+                int alt88=2;
+                int LA88_0 = input.LA(1);
 
-                if ( (LA86_0==78) ) {
-                    alt86=1;
+                if ( (LA88_0==78) ) {
+                    alt88=1;
                 }
 
 
-                switch (alt86) {
+                switch (alt88) {
             	case 1 :
             	    // InternalSpear.g:9075:2: rule__Data__Group_1_5__0
             	    {
@@ -26751,7 +26773,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop86;
+            	    break loop88;
                 }
             } while (true);
 
@@ -29164,24 +29186,24 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getImpliesExprAccess().getGroup_1()); 
             }
             // InternalSpear.g:10044:1: ( rule__ImpliesExpr__Group_1__0 )?
-            int alt87=2;
-            int LA87_0 = input.LA(1);
+            int alt89=2;
+            int LA89_0 = input.LA(1);
 
-            if ( (LA87_0==27) ) {
-                int LA87_1 = input.LA(2);
+            if ( (LA89_0==27) ) {
+                int LA89_1 = input.LA(2);
 
-                if ( (synpred132_InternalSpear()) ) {
-                    alt87=1;
+                if ( (synpred134_InternalSpear()) ) {
+                    alt89=1;
                 }
             }
-            else if ( (LA87_0==28) ) {
-                int LA87_2 = input.LA(2);
+            else if ( (LA89_0==28) ) {
+                int LA89_2 = input.LA(2);
 
-                if ( (synpred132_InternalSpear()) ) {
-                    alt87=1;
+                if ( (synpred134_InternalSpear()) ) {
+                    alt89=1;
                 }
             }
-            switch (alt87) {
+            switch (alt89) {
                 case 1 :
                     // InternalSpear.g:10044:2: rule__ImpliesExpr__Group_1__0
                     {
@@ -29773,24 +29795,24 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getOrExprAccess().getGroup_1()); 
             }
             // InternalSpear.g:10259:1: ( rule__OrExpr__Group_1__0 )?
-            int alt88=2;
-            int LA88_0 = input.LA(1);
+            int alt90=2;
+            int LA90_0 = input.LA(1);
 
-            if ( (LA88_0==29) ) {
-                int LA88_1 = input.LA(2);
+            if ( (LA90_0==29) ) {
+                int LA90_1 = input.LA(2);
 
-                if ( (synpred133_InternalSpear()) ) {
-                    alt88=1;
+                if ( (synpred135_InternalSpear()) ) {
+                    alt90=1;
                 }
             }
-            else if ( (LA88_0==30) ) {
-                int LA88_2 = input.LA(2);
+            else if ( (LA90_0==30) ) {
+                int LA90_2 = input.LA(2);
 
-                if ( (synpred133_InternalSpear()) ) {
-                    alt88=1;
+                if ( (synpred135_InternalSpear()) ) {
+                    alt90=1;
                 }
             }
-            switch (alt88) {
+            switch (alt90) {
                 case 1 :
                     // InternalSpear.g:10259:2: rule__OrExpr__Group_1__0
                     {
@@ -30382,17 +30404,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getAndExprAccess().getGroup_1()); 
             }
             // InternalSpear.g:10474:1: ( rule__AndExpr__Group_1__0 )?
-            int alt89=2;
-            int LA89_0 = input.LA(1);
+            int alt91=2;
+            int LA91_0 = input.LA(1);
 
-            if ( (LA89_0==120) ) {
-                int LA89_1 = input.LA(2);
+            if ( (LA91_0==120) ) {
+                int LA91_1 = input.LA(2);
 
-                if ( (synpred134_InternalSpear()) ) {
-                    alt89=1;
+                if ( (synpred136_InternalSpear()) ) {
+                    alt91=1;
                 }
             }
-            switch (alt89) {
+            switch (alt91) {
                 case 1 :
                     // InternalSpear.g:10474:2: rule__AndExpr__Group_1__0
                     {
@@ -31148,17 +31170,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getAfterUntilExprAccess().getGroup_0_3()); 
             }
             // InternalSpear.g:10751:1: ( rule__AfterUntilExpr__Group_0_3__0 )?
-            int alt90=2;
-            int LA90_0 = input.LA(1);
+            int alt92=2;
+            int LA92_0 = input.LA(1);
 
-            if ( (LA90_0==103) ) {
-                int LA90_1 = input.LA(2);
+            if ( (LA92_0==103) ) {
+                int LA92_1 = input.LA(2);
 
-                if ( (synpred135_InternalSpear()) ) {
-                    alt90=1;
+                if ( (synpred137_InternalSpear()) ) {
+                    alt92=1;
                 }
             }
-            switch (alt90) {
+            switch (alt92) {
                 case 1 :
                     // InternalSpear.g:10751:2: rule__AfterUntilExpr__Group_0_3__0
                     {
@@ -31499,24 +31521,24 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getTriggersExprAccess().getGroup_1()); 
             }
             // InternalSpear.g:10879:1: ( rule__TriggersExpr__Group_1__0 )?
-            int alt91=2;
-            int LA91_0 = input.LA(1);
+            int alt93=2;
+            int LA93_0 = input.LA(1);
 
-            if ( (LA91_0==31) ) {
-                int LA91_1 = input.LA(2);
+            if ( (LA93_0==31) ) {
+                int LA93_1 = input.LA(2);
 
-                if ( (synpred136_InternalSpear()) ) {
-                    alt91=1;
+                if ( (synpred138_InternalSpear()) ) {
+                    alt93=1;
                 }
             }
-            else if ( (LA91_0==32) ) {
-                int LA91_2 = input.LA(2);
+            else if ( (LA93_0==32) ) {
+                int LA93_2 = input.LA(2);
 
-                if ( (synpred136_InternalSpear()) ) {
-                    alt91=1;
+                if ( (synpred138_InternalSpear()) ) {
+                    alt93=1;
                 }
             }
-            switch (alt91) {
+            switch (alt93) {
                 case 1 :
                     // InternalSpear.g:10879:2: rule__TriggersExpr__Group_1__0
                     {
@@ -32108,24 +32130,24 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getSinceExprAccess().getGroup_1()); 
             }
             // InternalSpear.g:11094:1: ( rule__SinceExpr__Group_1__0 )?
-            int alt92=2;
-            int LA92_0 = input.LA(1);
+            int alt94=2;
+            int LA94_0 = input.LA(1);
 
-            if ( (LA92_0==33) ) {
-                int LA92_1 = input.LA(2);
+            if ( (LA94_0==33) ) {
+                int LA94_1 = input.LA(2);
 
-                if ( (synpred137_InternalSpear()) ) {
-                    alt92=1;
+                if ( (synpred139_InternalSpear()) ) {
+                    alt94=1;
                 }
             }
-            else if ( (LA92_0==34) ) {
-                int LA92_2 = input.LA(2);
+            else if ( (LA94_0==34) ) {
+                int LA94_2 = input.LA(2);
 
-                if ( (synpred137_InternalSpear()) ) {
-                    alt92=1;
+                if ( (synpred139_InternalSpear()) ) {
+                    alt94=1;
                 }
             }
-            switch (alt92) {
+            switch (alt94) {
                 case 1 :
                     // InternalSpear.g:11094:2: rule__SinceExpr__Group_1__0
                     {
@@ -32969,9 +32991,9 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getRelationalExprAccess().getGroup_1()); 
             }
             // InternalSpear.g:11403:1: ( rule__RelationalExpr__Group_1__0 )?
-            int alt93=2;
-            alt93 = dfa93.predict(input);
-            switch (alt93) {
+            int alt95=2;
+            alt95 = dfa95.predict(input);
+            switch (alt95) {
                 case 1 :
                     // InternalSpear.g:11403:2: rule__RelationalExpr__Group_1__0
                     {
@@ -35034,24 +35056,24 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getPlusExprAccess().getGroup_1()); 
             }
             // InternalSpear.g:12239:1: ( rule__PlusExpr__Group_1__0 )?
-            int alt94=2;
-            int LA94_0 = input.LA(1);
+            int alt96=2;
+            int LA96_0 = input.LA(1);
 
-            if ( (LA94_0==48) ) {
-                int LA94_1 = input.LA(2);
+            if ( (LA96_0==48) ) {
+                int LA96_1 = input.LA(2);
 
-                if ( (synpred139_InternalSpear()) ) {
-                    alt94=1;
+                if ( (synpred141_InternalSpear()) ) {
+                    alt96=1;
                 }
             }
-            else if ( (LA94_0==49) ) {
-                int LA94_2 = input.LA(2);
+            else if ( (LA96_0==49) ) {
+                int LA96_2 = input.LA(2);
 
-                if ( (synpred139_InternalSpear()) ) {
-                    alt94=1;
+                if ( (synpred141_InternalSpear()) ) {
+                    alt96=1;
                 }
             }
-            switch (alt94) {
+            switch (alt96) {
                 case 1 :
                     // InternalSpear.g:12239:2: rule__PlusExpr__Group_1__0
                     {
@@ -35643,38 +35665,38 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getMultiplyExprAccess().getGroup_1()); 
             }
             // InternalSpear.g:12454:1: ( rule__MultiplyExpr__Group_1__0 )?
-            int alt95=2;
+            int alt97=2;
             switch ( input.LA(1) ) {
                 case 50:
                     {
-                    int LA95_1 = input.LA(2);
+                    int LA97_1 = input.LA(2);
 
-                    if ( (synpred140_InternalSpear()) ) {
-                        alt95=1;
+                    if ( (synpred142_InternalSpear()) ) {
+                        alt97=1;
                     }
                     }
                     break;
                 case 51:
                     {
-                    int LA95_2 = input.LA(2);
+                    int LA97_2 = input.LA(2);
 
-                    if ( (synpred140_InternalSpear()) ) {
-                        alt95=1;
+                    if ( (synpred142_InternalSpear()) ) {
+                        alt97=1;
                     }
                     }
                     break;
                 case 52:
                     {
-                    int LA95_3 = input.LA(2);
+                    int LA97_3 = input.LA(2);
 
-                    if ( (synpred140_InternalSpear()) ) {
-                        alt95=1;
+                    if ( (synpred142_InternalSpear()) ) {
+                        alt97=1;
                     }
                     }
                     break;
             }
 
-            switch (alt95) {
+            switch (alt97) {
                 case 1 :
                     // InternalSpear.g:12454:2: rule__MultiplyExpr__Group_1__0
                     {
@@ -36266,24 +36288,24 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getArrowExprAccess().getGroup_1()); 
             }
             // InternalSpear.g:12669:1: ( rule__ArrowExpr__Group_1__0 )?
-            int alt96=2;
-            int LA96_0 = input.LA(1);
+            int alt98=2;
+            int LA98_0 = input.LA(1);
 
-            if ( (LA96_0==53) ) {
-                int LA96_1 = input.LA(2);
+            if ( (LA98_0==53) ) {
+                int LA98_1 = input.LA(2);
 
-                if ( (synpred141_InternalSpear()) ) {
-                    alt96=1;
+                if ( (synpred143_InternalSpear()) ) {
+                    alt98=1;
                 }
             }
-            else if ( (LA96_0==54) ) {
-                int LA96_2 = input.LA(2);
+            else if ( (LA98_0==54) ) {
+                int LA98_2 = input.LA(2);
 
-                if ( (synpred141_InternalSpear()) ) {
-                    alt96=1;
+                if ( (synpred143_InternalSpear()) ) {
+                    alt98=1;
                 }
             }
-            switch (alt96) {
+            switch (alt98) {
                 case 1 :
                     // InternalSpear.g:12669:2: rule__ArrowExpr__Group_1__0
                     {
@@ -37291,17 +37313,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getPrefixExprAccess().getGroup_1_3()); 
             }
             // InternalSpear.g:13040:1: ( rule__PrefixExpr__Group_1_3__0 )?
-            int alt97=2;
-            int LA97_0 = input.LA(1);
+            int alt99=2;
+            int LA99_0 = input.LA(1);
 
-            if ( (LA97_0==110) ) {
-                int LA97_1 = input.LA(2);
+            if ( (LA99_0==110) ) {
+                int LA99_1 = input.LA(2);
 
-                if ( (synpred142_InternalSpear()) ) {
-                    alt97=1;
+                if ( (synpred144_InternalSpear()) ) {
+                    alt99=1;
                 }
             }
-            switch (alt97) {
+            switch (alt99) {
                 case 1 :
                     // InternalSpear.g:13040:2: rule__PrefixExpr__Group_1_3__0
                     {
@@ -37800,16 +37822,16 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getAccessExprAccess().getAlternatives_1()); 
             }
             // InternalSpear.g:13234:1: ( rule__AccessExpr__Alternatives_1 )*
-            loop98:
+            loop100:
             do {
-                int alt98=2;
+                int alt100=2;
                 switch ( input.LA(1) ) {
                 case 113:
                     {
-                    int LA98_2 = input.LA(2);
+                    int LA100_2 = input.LA(2);
 
-                    if ( (synpred143_InternalSpear()) ) {
-                        alt98=1;
+                    if ( (synpred145_InternalSpear()) ) {
+                        alt100=1;
                     }
 
 
@@ -37817,10 +37839,10 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                     break;
                 case 86:
                     {
-                    int LA98_3 = input.LA(2);
+                    int LA100_3 = input.LA(2);
 
-                    if ( (synpred143_InternalSpear()) ) {
-                        alt98=1;
+                    if ( (synpred145_InternalSpear()) ) {
+                        alt100=1;
                     }
 
 
@@ -37828,10 +37850,10 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                     break;
                 case 88:
                     {
-                    int LA98_4 = input.LA(2);
+                    int LA100_4 = input.LA(2);
 
-                    if ( (synpred143_InternalSpear()) ) {
-                        alt98=1;
+                    if ( (synpred145_InternalSpear()) ) {
+                        alt100=1;
                     }
 
 
@@ -37840,7 +37862,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
                 }
 
-                switch (alt98) {
+                switch (alt100) {
             	case 1 :
             	    // InternalSpear.g:13234:2: rule__AccessExpr__Alternatives_1
             	    {
@@ -37854,7 +37876,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop98;
+            	    break loop100;
                 }
             } while (true);
 
@@ -39182,13 +39204,13 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getAccessExprAccess().getGroup_1_2_2()); 
             }
             // InternalSpear.g:13734:1: ( rule__AccessExpr__Group_1_2_2__0 )?
-            int alt99=2;
-            int LA99_0 = input.LA(1);
+            int alt101=2;
+            int LA101_0 = input.LA(1);
 
-            if ( (LA99_0==114) ) {
-                alt99=1;
+            if ( (LA101_0==114) ) {
+                alt101=1;
             }
-            switch (alt99) {
+            switch (alt101) {
                 case 1 :
                     // InternalSpear.g:13734:2: rule__AccessExpr__Group_1_2_2__0
                     {
@@ -40413,17 +40435,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getAtomicExprAccess().getGroup_2_3()); 
             }
             // InternalSpear.g:14206:1: ( rule__AtomicExpr__Group_2_3__0 )*
-            loop100:
+            loop102:
             do {
-                int alt100=2;
-                int LA100_0 = input.LA(1);
+                int alt102=2;
+                int LA102_0 = input.LA(1);
 
-                if ( (LA100_0==78) ) {
-                    alt100=1;
+                if ( (LA102_0==78) ) {
+                    alt102=1;
                 }
 
 
-                switch (alt100) {
+                switch (alt102) {
             	case 1 :
             	    // InternalSpear.g:14206:2: rule__AtomicExpr__Group_2_3__0
             	    {
@@ -40437,7 +40459,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop100;
+            	    break loop102;
                 }
             } while (true);
 
@@ -41167,17 +41189,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getAtomicExprAccess().getGroup_3_5()); 
             }
             // InternalSpear.g:14488:1: ( rule__AtomicExpr__Group_3_5__0 )?
-            int alt101=2;
-            int LA101_0 = input.LA(1);
+            int alt103=2;
+            int LA103_0 = input.LA(1);
 
-            if ( (LA101_0==116) ) {
-                int LA101_1 = input.LA(2);
+            if ( (LA103_0==116) ) {
+                int LA103_1 = input.LA(2);
 
-                if ( (synpred146_InternalSpear()) ) {
-                    alt101=1;
+                if ( (synpred148_InternalSpear()) ) {
+                    alt103=1;
                 }
             }
-            switch (alt101) {
+            switch (alt103) {
                 case 1 :
                     // InternalSpear.g:14488:2: rule__AtomicExpr__Group_3_5__0
                     {
@@ -41855,17 +41877,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getAtomicExprAccess().getGroup_4_5()); 
             }
             // InternalSpear.g:14743:1: ( rule__AtomicExpr__Group_4_5__0 )*
-            loop102:
+            loop104:
             do {
-                int alt102=2;
-                int LA102_0 = input.LA(1);
+                int alt104=2;
+                int LA104_0 = input.LA(1);
 
-                if ( (LA102_0==78) ) {
-                    alt102=1;
+                if ( (LA104_0==78) ) {
+                    alt104=1;
                 }
 
 
-                switch (alt102) {
+                switch (alt104) {
             	case 1 :
             	    // InternalSpear.g:14743:2: rule__AtomicExpr__Group_4_5__0
             	    {
@@ -41879,7 +41901,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop102;
+            	    break loop104;
                 }
             } while (true);
 
@@ -42614,17 +42636,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getAtomicExprAccess().getGroup_5_5()); 
             }
             // InternalSpear.g:15030:1: ( rule__AtomicExpr__Group_5_5__0 )*
-            loop103:
+            loop105:
             do {
-                int alt103=2;
-                int LA103_0 = input.LA(1);
+                int alt105=2;
+                int LA105_0 = input.LA(1);
 
-                if ( (LA103_0==78) ) {
-                    alt103=1;
+                if ( (LA105_0==78) ) {
+                    alt105=1;
                 }
 
 
-                switch (alt103) {
+                switch (alt105) {
             	case 1 :
             	    // InternalSpear.g:15030:2: rule__AtomicExpr__Group_5_5__0
             	    {
@@ -42638,7 +42660,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop103;
+            	    break loop105;
                 }
             } while (true);
 
@@ -43373,17 +43395,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getAtomicExprAccess().getGroup_6_5()); 
             }
             // InternalSpear.g:15317:1: ( rule__AtomicExpr__Group_6_5__0 )*
-            loop104:
+            loop106:
             do {
-                int alt104=2;
-                int LA104_0 = input.LA(1);
+                int alt106=2;
+                int LA106_0 = input.LA(1);
 
-                if ( (LA104_0==78) ) {
-                    alt104=1;
+                if ( (LA106_0==78) ) {
+                    alt106=1;
                 }
 
 
-                switch (alt104) {
+                switch (alt106) {
             	case 1 :
             	    // InternalSpear.g:15317:2: rule__AtomicExpr__Group_6_5__0
             	    {
@@ -43397,7 +43419,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop104;
+            	    break loop106;
                 }
             } while (true);
 
@@ -43964,13 +43986,13 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getAtomicExprAccess().getGroup_7_3()); 
             }
             // InternalSpear.g:15544:1: ( rule__AtomicExpr__Group_7_3__0 )?
-            int alt105=2;
-            int LA105_0 = input.LA(1);
+            int alt107=2;
+            int LA107_0 = input.LA(1);
 
-            if ( ((LA105_0>=RULE_INT && LA105_0<=RULE_ID)||(LA105_0>=35 && LA105_0<=41)||LA105_0==49||(LA105_0>=55 && LA105_0<=59)||LA105_0==73||LA105_0==80||LA105_0==100||LA105_0==102||LA105_0==109||LA105_0==115||(LA105_0>=117 && LA105_0<=119)) ) {
-                alt105=1;
+            if ( ((LA107_0>=RULE_INT && LA107_0<=RULE_ID)||(LA107_0>=35 && LA107_0<=41)||LA107_0==49||(LA107_0>=55 && LA107_0<=59)||LA107_0==73||LA107_0==80||LA107_0==100||LA107_0==102||LA107_0==109||LA107_0==115||(LA107_0>=117 && LA107_0<=119)) ) {
+                alt107=1;
             }
-            switch (alt105) {
+            switch (alt107) {
                 case 1 :
                     // InternalSpear.g:15544:2: rule__AtomicExpr__Group_7_3__0
                     {
@@ -44222,17 +44244,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getAtomicExprAccess().getGroup_7_3_1()); 
             }
             // InternalSpear.g:15641:1: ( rule__AtomicExpr__Group_7_3_1__0 )*
-            loop106:
+            loop108:
             do {
-                int alt106=2;
-                int LA106_0 = input.LA(1);
+                int alt108=2;
+                int LA108_0 = input.LA(1);
 
-                if ( (LA106_0==78) ) {
-                    alt106=1;
+                if ( (LA108_0==78) ) {
+                    alt108=1;
                 }
 
 
-                switch (alt106) {
+                switch (alt108) {
             	case 1 :
             	    // InternalSpear.g:15641:2: rule__AtomicExpr__Group_7_3_1__0
             	    {
@@ -44246,7 +44268,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop106;
+            	    break loop108;
                 }
             } while (true);
 
@@ -44818,13 +44840,13 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getAtomicExprAccess().getGroup_8_4()); 
             }
             // InternalSpear.g:15859:1: ( rule__AtomicExpr__Group_8_4__0 )?
-            int alt107=2;
-            int LA107_0 = input.LA(1);
+            int alt109=2;
+            int LA109_0 = input.LA(1);
 
-            if ( ((LA107_0>=RULE_INT && LA107_0<=RULE_ID)||(LA107_0>=35 && LA107_0<=41)||LA107_0==49||(LA107_0>=55 && LA107_0<=59)||LA107_0==73||LA107_0==80||LA107_0==100||LA107_0==102||LA107_0==109||LA107_0==115||(LA107_0>=117 && LA107_0<=119)) ) {
-                alt107=1;
+            if ( ((LA109_0>=RULE_INT && LA109_0<=RULE_ID)||(LA109_0>=35 && LA109_0<=41)||LA109_0==49||(LA109_0>=55 && LA109_0<=59)||LA109_0==73||LA109_0==80||LA109_0==100||LA109_0==102||LA109_0==109||LA109_0==115||(LA109_0>=117 && LA109_0<=119)) ) {
+                alt109=1;
             }
-            switch (alt107) {
+            switch (alt109) {
                 case 1 :
                     // InternalSpear.g:15859:2: rule__AtomicExpr__Group_8_4__0
                     {
@@ -45076,17 +45098,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getAtomicExprAccess().getGroup_8_4_1()); 
             }
             // InternalSpear.g:15958:1: ( rule__AtomicExpr__Group_8_4_1__0 )*
-            loop108:
+            loop110:
             do {
-                int alt108=2;
-                int LA108_0 = input.LA(1);
+                int alt110=2;
+                int LA110_0 = input.LA(1);
 
-                if ( (LA108_0==78) ) {
-                    alt108=1;
+                if ( (LA110_0==78) ) {
+                    alt110=1;
                 }
 
 
-                switch (alt108) {
+                switch (alt110) {
             	case 1 :
             	    // InternalSpear.g:15958:2: rule__AtomicExpr__Group_8_4_1__0
             	    {
@@ -45100,7 +45122,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop108;
+            	    break loop110;
                 }
             } while (true);
 
@@ -45745,17 +45767,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getLiteralExprAccess().getUnitAssignment_0_2()); 
             }
             // InternalSpear.g:16209:1: ( rule__LiteralExpr__UnitAssignment_0_2 )?
-            int alt109=2;
-            int LA109_0 = input.LA(1);
+            int alt111=2;
+            int LA111_0 = input.LA(1);
 
-            if ( (LA109_0==RULE_ID) ) {
-                int LA109_1 = input.LA(2);
+            if ( (LA111_0==RULE_ID) ) {
+                int LA111_1 = input.LA(2);
 
-                if ( (LA109_1==EOF||LA109_1==RULE_ID||(LA109_1>=12 && LA109_1<=21)||(LA109_1>=25 && LA109_1<=34)||(LA109_1>=42 && LA109_1<=55)||LA109_1==61||LA109_1==67||LA109_1==74||(LA109_1>=77 && LA109_1<=78)||LA109_1==80||(LA109_1>=82 && LA109_1<=83)||(LA109_1>=86 && LA109_1<=89)||(LA109_1>=94 && LA109_1<=99)||LA109_1==101||(LA109_1>=103 && LA109_1<=104)||LA109_1==106||LA109_1==108||LA109_1==110||(LA109_1>=113 && LA109_1<=114)||LA109_1==116||LA109_1==120) ) {
-                    alt109=1;
+                if ( (LA111_1==EOF||LA111_1==RULE_ID||(LA111_1>=12 && LA111_1<=21)||(LA111_1>=25 && LA111_1<=34)||(LA111_1>=42 && LA111_1<=55)||LA111_1==61||LA111_1==67||LA111_1==74||(LA111_1>=77 && LA111_1<=78)||LA111_1==80||(LA111_1>=82 && LA111_1<=83)||(LA111_1>=86 && LA111_1<=89)||(LA111_1>=94 && LA111_1<=99)||LA111_1==101||(LA111_1>=103 && LA111_1<=104)||LA111_1==106||LA111_1==108||LA111_1==110||(LA111_1>=113 && LA111_1<=114)||LA111_1==116||LA111_1==120) ) {
+                    alt111=1;
                 }
             }
-            switch (alt109) {
+            switch (alt111) {
                 case 1 :
                     // InternalSpear.g:16209:2: rule__LiteralExpr__UnitAssignment_0_2
                     {
@@ -46175,17 +46197,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getLiteralExprAccess().getUnitAssignment_2_2()); 
             }
             // InternalSpear.g:16366:1: ( rule__LiteralExpr__UnitAssignment_2_2 )?
-            int alt110=2;
-            int LA110_0 = input.LA(1);
+            int alt112=2;
+            int LA112_0 = input.LA(1);
 
-            if ( (LA110_0==RULE_ID) ) {
-                int LA110_1 = input.LA(2);
+            if ( (LA112_0==RULE_ID) ) {
+                int LA112_1 = input.LA(2);
 
-                if ( (LA110_1==EOF||LA110_1==RULE_ID||(LA110_1>=12 && LA110_1<=21)||(LA110_1>=25 && LA110_1<=34)||(LA110_1>=42 && LA110_1<=55)||LA110_1==61||LA110_1==67||LA110_1==74||(LA110_1>=77 && LA110_1<=78)||LA110_1==80||(LA110_1>=82 && LA110_1<=83)||(LA110_1>=86 && LA110_1<=89)||(LA110_1>=94 && LA110_1<=99)||LA110_1==101||(LA110_1>=103 && LA110_1<=104)||LA110_1==106||LA110_1==108||LA110_1==110||(LA110_1>=113 && LA110_1<=114)||LA110_1==116||LA110_1==120) ) {
-                    alt110=1;
+                if ( (LA112_1==EOF||LA112_1==RULE_ID||(LA112_1>=12 && LA112_1<=21)||(LA112_1>=25 && LA112_1<=34)||(LA112_1>=42 && LA112_1<=55)||LA112_1==61||LA112_1==67||LA112_1==74||(LA112_1>=77 && LA112_1<=78)||LA112_1==80||(LA112_1>=82 && LA112_1<=83)||(LA112_1>=86 && LA112_1<=89)||(LA112_1>=94 && LA112_1<=99)||LA112_1==101||(LA112_1>=103 && LA112_1<=104)||LA112_1==106||LA112_1==108||LA112_1==110||(LA112_1>=113 && LA112_1<=114)||LA112_1==116||LA112_1==120) ) {
+                    alt112=1;
                 }
             }
-            switch (alt110) {
+            switch (alt112) {
                 case 1 :
                     // InternalSpear.g:16366:2: rule__LiteralExpr__UnitAssignment_2_2
                     {
@@ -46526,17 +46548,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getUnusedExprAccess().getGroup_3()); 
             }
             // InternalSpear.g:16492:1: ( rule__UnusedExpr__Group_3__0 )*
-            loop111:
+            loop113:
             do {
-                int alt111=2;
-                int LA111_0 = input.LA(1);
+                int alt113=2;
+                int LA113_0 = input.LA(1);
 
-                if ( (LA111_0==78) ) {
-                    alt111=1;
+                if ( (LA113_0==78) ) {
+                    alt113=1;
                 }
 
 
-                switch (alt111) {
+                switch (alt113) {
             	case 1 :
             	    // InternalSpear.g:16492:2: rule__UnusedExpr__Group_3__0
             	    {
@@ -46550,7 +46572,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop111;
+            	    break loop113;
                 }
             } while (true);
 
@@ -47127,17 +47149,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getUnusedExprAccess().getGroup_10()); 
             }
             // InternalSpear.g:16703:1: ( rule__UnusedExpr__Group_10__0 )*
-            loop112:
+            loop114:
             do {
-                int alt112=2;
-                int LA112_0 = input.LA(1);
+                int alt114=2;
+                int LA114_0 = input.LA(1);
 
-                if ( (LA112_0==78) ) {
-                    alt112=1;
+                if ( (LA114_0==78) ) {
+                    alt114=1;
                 }
 
 
-                switch (alt112) {
+                switch (alt114) {
             	case 1 :
             	    // InternalSpear.g:16703:2: rule__UnusedExpr__Group_10__0
             	    {
@@ -47151,7 +47173,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop112;
+            	    break loop114;
                 }
             } while (true);
 
@@ -55324,8 +55346,8 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     }
     // $ANTLR end "rule__FieldExpr__ExprAssignment_2"
 
-    // $ANTLR start synpred132_InternalSpear
-    public final void synpred132_InternalSpear_fragment() throws RecognitionException {   
+    // $ANTLR start synpred134_InternalSpear
+    public final void synpred134_InternalSpear_fragment() throws RecognitionException {   
         // InternalSpear.g:10044:2: ( rule__ImpliesExpr__Group_1__0 )
         // InternalSpear.g:10044:2: rule__ImpliesExpr__Group_1__0
         {
@@ -55337,10 +55359,10 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
         }
     }
-    // $ANTLR end synpred132_InternalSpear
+    // $ANTLR end synpred134_InternalSpear
 
-    // $ANTLR start synpred133_InternalSpear
-    public final void synpred133_InternalSpear_fragment() throws RecognitionException {   
+    // $ANTLR start synpred135_InternalSpear
+    public final void synpred135_InternalSpear_fragment() throws RecognitionException {   
         // InternalSpear.g:10259:2: ( rule__OrExpr__Group_1__0 )
         // InternalSpear.g:10259:2: rule__OrExpr__Group_1__0
         {
@@ -55352,10 +55374,10 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
         }
     }
-    // $ANTLR end synpred133_InternalSpear
+    // $ANTLR end synpred135_InternalSpear
 
-    // $ANTLR start synpred134_InternalSpear
-    public final void synpred134_InternalSpear_fragment() throws RecognitionException {   
+    // $ANTLR start synpred136_InternalSpear
+    public final void synpred136_InternalSpear_fragment() throws RecognitionException {   
         // InternalSpear.g:10474:2: ( rule__AndExpr__Group_1__0 )
         // InternalSpear.g:10474:2: rule__AndExpr__Group_1__0
         {
@@ -55367,10 +55389,10 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
         }
     }
-    // $ANTLR end synpred134_InternalSpear
+    // $ANTLR end synpred136_InternalSpear
 
-    // $ANTLR start synpred135_InternalSpear
-    public final void synpred135_InternalSpear_fragment() throws RecognitionException {   
+    // $ANTLR start synpred137_InternalSpear
+    public final void synpred137_InternalSpear_fragment() throws RecognitionException {   
         // InternalSpear.g:10751:2: ( rule__AfterUntilExpr__Group_0_3__0 )
         // InternalSpear.g:10751:2: rule__AfterUntilExpr__Group_0_3__0
         {
@@ -55382,10 +55404,10 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
         }
     }
-    // $ANTLR end synpred135_InternalSpear
+    // $ANTLR end synpred137_InternalSpear
 
-    // $ANTLR start synpred136_InternalSpear
-    public final void synpred136_InternalSpear_fragment() throws RecognitionException {   
+    // $ANTLR start synpred138_InternalSpear
+    public final void synpred138_InternalSpear_fragment() throws RecognitionException {   
         // InternalSpear.g:10879:2: ( rule__TriggersExpr__Group_1__0 )
         // InternalSpear.g:10879:2: rule__TriggersExpr__Group_1__0
         {
@@ -55397,10 +55419,10 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
         }
     }
-    // $ANTLR end synpred136_InternalSpear
+    // $ANTLR end synpred138_InternalSpear
 
-    // $ANTLR start synpred137_InternalSpear
-    public final void synpred137_InternalSpear_fragment() throws RecognitionException {   
+    // $ANTLR start synpred139_InternalSpear
+    public final void synpred139_InternalSpear_fragment() throws RecognitionException {   
         // InternalSpear.g:11094:2: ( rule__SinceExpr__Group_1__0 )
         // InternalSpear.g:11094:2: rule__SinceExpr__Group_1__0
         {
@@ -55412,10 +55434,10 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
         }
     }
-    // $ANTLR end synpred137_InternalSpear
+    // $ANTLR end synpred139_InternalSpear
 
-    // $ANTLR start synpred138_InternalSpear
-    public final void synpred138_InternalSpear_fragment() throws RecognitionException {   
+    // $ANTLR start synpred140_InternalSpear
+    public final void synpred140_InternalSpear_fragment() throws RecognitionException {   
         // InternalSpear.g:11403:2: ( rule__RelationalExpr__Group_1__0 )
         // InternalSpear.g:11403:2: rule__RelationalExpr__Group_1__0
         {
@@ -55427,10 +55449,10 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
         }
     }
-    // $ANTLR end synpred138_InternalSpear
+    // $ANTLR end synpred140_InternalSpear
 
-    // $ANTLR start synpred139_InternalSpear
-    public final void synpred139_InternalSpear_fragment() throws RecognitionException {   
+    // $ANTLR start synpred141_InternalSpear
+    public final void synpred141_InternalSpear_fragment() throws RecognitionException {   
         // InternalSpear.g:12239:2: ( rule__PlusExpr__Group_1__0 )
         // InternalSpear.g:12239:2: rule__PlusExpr__Group_1__0
         {
@@ -55442,10 +55464,10 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
         }
     }
-    // $ANTLR end synpred139_InternalSpear
+    // $ANTLR end synpred141_InternalSpear
 
-    // $ANTLR start synpred140_InternalSpear
-    public final void synpred140_InternalSpear_fragment() throws RecognitionException {   
+    // $ANTLR start synpred142_InternalSpear
+    public final void synpred142_InternalSpear_fragment() throws RecognitionException {   
         // InternalSpear.g:12454:2: ( rule__MultiplyExpr__Group_1__0 )
         // InternalSpear.g:12454:2: rule__MultiplyExpr__Group_1__0
         {
@@ -55457,10 +55479,10 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
         }
     }
-    // $ANTLR end synpred140_InternalSpear
+    // $ANTLR end synpred142_InternalSpear
 
-    // $ANTLR start synpred141_InternalSpear
-    public final void synpred141_InternalSpear_fragment() throws RecognitionException {   
+    // $ANTLR start synpred143_InternalSpear
+    public final void synpred143_InternalSpear_fragment() throws RecognitionException {   
         // InternalSpear.g:12669:2: ( rule__ArrowExpr__Group_1__0 )
         // InternalSpear.g:12669:2: rule__ArrowExpr__Group_1__0
         {
@@ -55472,10 +55494,10 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
         }
     }
-    // $ANTLR end synpred141_InternalSpear
+    // $ANTLR end synpred143_InternalSpear
 
-    // $ANTLR start synpred142_InternalSpear
-    public final void synpred142_InternalSpear_fragment() throws RecognitionException {   
+    // $ANTLR start synpred144_InternalSpear
+    public final void synpred144_InternalSpear_fragment() throws RecognitionException {   
         // InternalSpear.g:13040:2: ( rule__PrefixExpr__Group_1_3__0 )
         // InternalSpear.g:13040:2: rule__PrefixExpr__Group_1_3__0
         {
@@ -55487,10 +55509,10 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
         }
     }
-    // $ANTLR end synpred142_InternalSpear
+    // $ANTLR end synpred144_InternalSpear
 
-    // $ANTLR start synpred143_InternalSpear
-    public final void synpred143_InternalSpear_fragment() throws RecognitionException {   
+    // $ANTLR start synpred145_InternalSpear
+    public final void synpred145_InternalSpear_fragment() throws RecognitionException {   
         // InternalSpear.g:13234:2: ( rule__AccessExpr__Alternatives_1 )
         // InternalSpear.g:13234:2: rule__AccessExpr__Alternatives_1
         {
@@ -55502,10 +55524,10 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
         }
     }
-    // $ANTLR end synpred143_InternalSpear
+    // $ANTLR end synpred145_InternalSpear
 
-    // $ANTLR start synpred146_InternalSpear
-    public final void synpred146_InternalSpear_fragment() throws RecognitionException {   
+    // $ANTLR start synpred148_InternalSpear
+    public final void synpred148_InternalSpear_fragment() throws RecognitionException {   
         // InternalSpear.g:14488:2: ( rule__AtomicExpr__Group_3_5__0 )
         // InternalSpear.g:14488:2: rule__AtomicExpr__Group_3_5__0
         {
@@ -55517,15 +55539,43 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
         }
     }
-    // $ANTLR end synpred146_InternalSpear
+    // $ANTLR end synpred148_InternalSpear
 
     // Delegated rules
 
+    public final boolean synpred144_InternalSpear() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred144_InternalSpear_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
     public final boolean synpred136_InternalSpear() {
         state.backtracking++;
         int start = input.mark();
         try {
             synpred136_InternalSpear_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred145_InternalSpear() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred145_InternalSpear_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -55647,20 +55697,6 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred132_InternalSpear() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred132_InternalSpear_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
     public final boolean synpred140_InternalSpear() {
         state.backtracking++;
         int start = input.mark();
@@ -55675,25 +55711,11 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred146_InternalSpear() {
+    public final boolean synpred148_InternalSpear() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred146_InternalSpear_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred133_InternalSpear() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred133_InternalSpear_fragment(); // can never throw exception
+            synpred148_InternalSpear_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -55708,19 +55730,19 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     protected DFA9 dfa9 = new DFA9(this);
     protected DFA23 dfa23 = new DFA23(this);
     protected DFA30 dfa30 = new DFA30(this);
-    protected DFA93 dfa93 = new DFA93(this);
+    protected DFA95 dfa95 = new DFA95(this);
     static final String dfa_1s = "\16\uffff";
     static final String dfa_2s = "\5\uffff\4\15\5\uffff";
     static final String dfa_3s = "\1\6\1\26\7\6\5\uffff";
     static final String dfa_4s = "\1\6\1\30\3\135\4\130\5\uffff";
-    static final String dfa_5s = "\11\uffff\1\5\1\3\1\2\1\4\1\1";
+    static final String dfa_5s = "\11\uffff\1\3\1\5\1\2\1\4\1\1";
     static final String dfa_6s = "\16\uffff}>";
     static final String[] dfa_7s = {
             "\1\1",
             "\1\2\1\3\1\4",
-            "\1\10\115\uffff\1\13\1\12\4\uffff\1\11\1\5\1\6\1\7",
-            "\1\10\115\uffff\1\13\1\12\4\uffff\1\11\1\5\1\6\1\7",
-            "\1\10\115\uffff\1\13\1\12\4\uffff\1\11\1\5\1\6\1\7",
+            "\1\10\115\uffff\1\13\1\11\4\uffff\1\12\1\5\1\6\1\7",
+            "\1\10\115\uffff\1\13\1\11\4\uffff\1\12\1\5\1\6\1\7",
+            "\1\10\115\uffff\1\13\1\11\4\uffff\1\12\1\5\1\6\1\7",
             "\1\15\66\uffff\1\15\4\uffff\2\15\24\uffff\1\14",
             "\1\15\66\uffff\1\15\4\uffff\2\15\24\uffff\1\14",
             "\1\15\66\uffff\1\15\4\uffff\2\15\24\uffff\1\14",
@@ -55758,10 +55780,10 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         }
     }
     static final String dfa_8s = "\21\uffff";
-    static final String dfa_9s = "\13\uffff\1\16\1\20\4\uffff";
+    static final String dfa_9s = "\13\uffff\1\16\1\17\4\uffff";
     static final String dfa_10s = "\1\52\1\uffff\1\151\2\uffff\1\151\5\uffff\2\5\4\uffff";
     static final String dfa_11s = "\1\154\1\uffff\1\151\2\uffff\1\151\5\uffff\2\167\4\uffff";
-    static final String dfa_12s = "\1\uffff\1\1\1\uffff\1\3\1\5\1\uffff\1\7\1\11\1\12\1\13\1\14\2\uffff\1\4\1\2\1\10\1\6";
+    static final String dfa_12s = "\1\uffff\1\1\1\uffff\1\3\1\5\1\uffff\1\7\1\11\1\12\1\13\1\14\2\uffff\1\4\1\2\1\6\1\10";
     static final String dfa_13s = "\21\uffff}>";
     static final String[] dfa_14s = {
             "\1\1\1\3\1\4\1\6\1\7\1\11\7\uffff\1\12\60\uffff\1\2\1\uffff\1\10\1\uffff\1\5",
@@ -55776,7 +55798,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             "",
             "",
             "\2\16\26\uffff\1\15\23\uffff\1\16\5\uffff\5\16\15\uffff\1\16\6\uffff\1\16\34\uffff\1\16\5\uffff\1\16\1\uffff\3\16",
-            "\2\20\26\uffff\1\17\23\uffff\1\20\5\uffff\5\20\15\uffff\1\20\6\uffff\1\20\34\uffff\1\20\5\uffff\1\20\1\uffff\3\20",
+            "\2\17\26\uffff\1\20\23\uffff\1\17\5\uffff\5\17\15\uffff\1\17\6\uffff\1\17\34\uffff\1\17\5\uffff\1\17\1\uffff\3\17",
             "",
             "",
             "",
@@ -55859,7 +55881,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     static final String dfa_22s = "\1\6\12\0\2\uffff";
     static final String dfa_23s = "\1\170\12\0\2\uffff";
     static final String dfa_24s = "\13\uffff\1\2\1\1";
-    static final String dfa_25s = "\1\uffff\1\11\1\3\1\4\1\2\1\7\1\6\1\5\1\0\1\10\1\1\2\uffff}>";
+    static final String dfa_25s = "\1\uffff\1\5\1\3\1\10\1\6\1\7\1\0\1\11\1\1\1\4\1\2\2\uffff}>";
     static final String[] dfa_26s = {
             "\1\13\5\uffff\12\13\3\uffff\12\13\7\uffff\1\1\1\3\1\4\1\6\1\7\1\11\7\13\1\12\5\uffff\1\13\5\uffff\1\13\6\uffff\1\13\2\uffff\2\13\1\uffff\1\13\1\uffff\2\13\2\uffff\4\13\4\uffff\6\13\1\uffff\1\13\1\uffff\1\13\1\2\1\uffff\1\10\1\uffff\1\5\1\uffff\1\13\2\uffff\2\13\1\uffff\1\13\3\uffff\1\13",
             "\1\uffff",
@@ -55884,11 +55906,11 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     static final short[] dfa_25 = DFA.unpackEncodedString(dfa_25s);
     static final short[][] dfa_26 = unpackEncodedStringArray(dfa_26s);
 
-    class DFA93 extends DFA {
+    class DFA95 extends DFA {
 
-        public DFA93(BaseRecognizer recognizer) {
+        public DFA95(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 93;
+            this.decisionNumber = 95;
             this.eot = dfa_20;
             this.eof = dfa_21;
             this.min = dfa_22;
@@ -55905,159 +55927,159 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA93_8 = input.LA(1);
+                        int LA95_6 = input.LA(1);
 
                          
-                        int index93_8 = input.index();
+                        int index95_6 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred138_InternalSpear()) ) {s = 12;}
+                        if ( (synpred140_InternalSpear()) ) {s = 12;}
 
                         else if ( (true) ) {s = 11;}
 
                          
-                        input.seek(index93_8);
+                        input.seek(index95_6);
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA93_10 = input.LA(1);
+                        int LA95_8 = input.LA(1);
 
                          
-                        int index93_10 = input.index();
+                        int index95_8 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred138_InternalSpear()) ) {s = 12;}
+                        if ( (synpred140_InternalSpear()) ) {s = 12;}
 
                         else if ( (true) ) {s = 11;}
 
                          
-                        input.seek(index93_10);
+                        input.seek(index95_8);
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA93_4 = input.LA(1);
+                        int LA95_10 = input.LA(1);
 
                          
-                        int index93_4 = input.index();
+                        int index95_10 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred138_InternalSpear()) ) {s = 12;}
+                        if ( (synpred140_InternalSpear()) ) {s = 12;}
 
                         else if ( (true) ) {s = 11;}
 
                          
-                        input.seek(index93_4);
+                        input.seek(index95_10);
                         if ( s>=0 ) return s;
                         break;
                     case 3 : 
-                        int LA93_2 = input.LA(1);
+                        int LA95_2 = input.LA(1);
 
                          
-                        int index93_2 = input.index();
+                        int index95_2 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred138_InternalSpear()) ) {s = 12;}
+                        if ( (synpred140_InternalSpear()) ) {s = 12;}
 
                         else if ( (true) ) {s = 11;}
 
                          
-                        input.seek(index93_2);
+                        input.seek(index95_2);
                         if ( s>=0 ) return s;
                         break;
                     case 4 : 
-                        int LA93_3 = input.LA(1);
+                        int LA95_9 = input.LA(1);
 
                          
-                        int index93_3 = input.index();
+                        int index95_9 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred138_InternalSpear()) ) {s = 12;}
+                        if ( (synpred140_InternalSpear()) ) {s = 12;}
 
                         else if ( (true) ) {s = 11;}
 
                          
-                        input.seek(index93_3);
+                        input.seek(index95_9);
                         if ( s>=0 ) return s;
                         break;
                     case 5 : 
-                        int LA93_7 = input.LA(1);
+                        int LA95_1 = input.LA(1);
 
                          
-                        int index93_7 = input.index();
+                        int index95_1 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred138_InternalSpear()) ) {s = 12;}
+                        if ( (synpred140_InternalSpear()) ) {s = 12;}
 
                         else if ( (true) ) {s = 11;}
 
                          
-                        input.seek(index93_7);
+                        input.seek(index95_1);
                         if ( s>=0 ) return s;
                         break;
                     case 6 : 
-                        int LA93_6 = input.LA(1);
+                        int LA95_4 = input.LA(1);
 
                          
-                        int index93_6 = input.index();
+                        int index95_4 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred138_InternalSpear()) ) {s = 12;}
+                        if ( (synpred140_InternalSpear()) ) {s = 12;}
 
                         else if ( (true) ) {s = 11;}
 
                          
-                        input.seek(index93_6);
+                        input.seek(index95_4);
                         if ( s>=0 ) return s;
                         break;
                     case 7 : 
-                        int LA93_5 = input.LA(1);
+                        int LA95_5 = input.LA(1);
 
                          
-                        int index93_5 = input.index();
+                        int index95_5 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred138_InternalSpear()) ) {s = 12;}
+                        if ( (synpred140_InternalSpear()) ) {s = 12;}
 
                         else if ( (true) ) {s = 11;}
 
                          
-                        input.seek(index93_5);
+                        input.seek(index95_5);
                         if ( s>=0 ) return s;
                         break;
                     case 8 : 
-                        int LA93_9 = input.LA(1);
+                        int LA95_3 = input.LA(1);
 
                          
-                        int index93_9 = input.index();
+                        int index95_3 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred138_InternalSpear()) ) {s = 12;}
+                        if ( (synpred140_InternalSpear()) ) {s = 12;}
 
                         else if ( (true) ) {s = 11;}
 
                          
-                        input.seek(index93_9);
+                        input.seek(index95_3);
                         if ( s>=0 ) return s;
                         break;
                     case 9 : 
-                        int LA93_1 = input.LA(1);
+                        int LA95_7 = input.LA(1);
 
                          
-                        int index93_1 = input.index();
+                        int index95_7 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred138_InternalSpear()) ) {s = 12;}
+                        if ( (synpred140_InternalSpear()) ) {s = 12;}
 
                         else if ( (true) ) {s = 11;}
 
                          
-                        input.seek(index93_1);
+                        input.seek(index95_7);
                         if ( s>=0 ) return s;
                         break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 93, _s, input);
+                new NoViableAltException(getDescription(), 95, _s, input);
             error(nvae);
             throw nvae;
         }

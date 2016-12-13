@@ -1630,19 +1630,10 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     UnitDef returns BaseUnit
 	 *
 	 * Constraint:
-	 *     (name=ID description=STRING)
+	 *     (name=ID description=STRING?)
 	 */
 	protected void sequence_UnitDef(ISerializationContext context, BaseUnit semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.UNIT_DEF__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.UNIT_DEF__NAME));
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.UNIT_DEF__DESCRIPTION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.UNIT_DEF__DESCRIPTION));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getUnitDefAccess().getNameIDTerminalRuleCall_0_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getUnitDefAccess().getDescriptionSTRINGTerminalRuleCall_0_2_0(), semanticObject.getDescription());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1651,22 +1642,10 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     UnitDef returns DerivedUnit
 	 *
 	 * Constraint:
-	 *     (name=ID unit=UnitExpr description=STRING)
+	 *     (name=ID unit=UnitExpr description=STRING?)
 	 */
 	protected void sequence_UnitDef(ISerializationContext context, DerivedUnit semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.UNIT_DEF__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.UNIT_DEF__NAME));
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.DERIVED_UNIT__UNIT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.DERIVED_UNIT__UNIT));
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.UNIT_DEF__DESCRIPTION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.UNIT_DEF__DESCRIPTION));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getUnitDefAccess().getNameIDTerminalRuleCall_1_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getUnitDefAccess().getUnitUnitExprParserRuleCall_1_3_0(), semanticObject.getUnit());
-		feeder.accept(grammarAccess.getUnitDefAccess().getDescriptionSTRINGTerminalRuleCall_1_4_0(), semanticObject.getDescription());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

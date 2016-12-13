@@ -1298,7 +1298,7 @@ ruleUnitDef returns [EObject current=null]
 	    }
 
 )
-))
+)?)
     |((
     {
         $current = forceCreateModelElement(
@@ -1367,7 +1367,7 @@ ruleIdTypeDelimiter
 	    }
 
 )
-)))
+)?))
 ;
 
 

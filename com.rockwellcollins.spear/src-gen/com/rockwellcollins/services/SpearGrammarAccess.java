@@ -823,13 +823,14 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cDescriptionSTRINGTerminalRuleCall_1_4_0 = (RuleCall)cDescriptionAssignment_1_4.eContents().get(0);
 		
 		//UnitDef:
-		//	{BaseUnit} name=ID description=STRING | {DerivedUnit} name=ID IdTypeDelimiter unit=UnitExpr description=STRING;
+		//	{BaseUnit} name=ID description=STRING?
+		//	| {DerivedUnit} name=ID IdTypeDelimiter unit=UnitExpr description=STRING?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//{BaseUnit} name=ID description=STRING | {DerivedUnit} name=ID IdTypeDelimiter unit=UnitExpr description=STRING
+		//{BaseUnit} name=ID description=STRING? | {DerivedUnit} name=ID IdTypeDelimiter unit=UnitExpr description=STRING?
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//{BaseUnit} name=ID description=STRING
+		//{BaseUnit} name=ID description=STRING?
 		public Group getGroup_0() { return cGroup_0; }
 
 		//{BaseUnit}
@@ -841,13 +842,13 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_0_1_0() { return cNameIDTerminalRuleCall_0_1_0; }
 
-		//description=STRING
+		//description=STRING?
 		public Assignment getDescriptionAssignment_0_2() { return cDescriptionAssignment_0_2; }
 
 		//STRING
 		public RuleCall getDescriptionSTRINGTerminalRuleCall_0_2_0() { return cDescriptionSTRINGTerminalRuleCall_0_2_0; }
 
-		//{DerivedUnit} name=ID IdTypeDelimiter unit=UnitExpr description=STRING
+		//{DerivedUnit} name=ID IdTypeDelimiter unit=UnitExpr description=STRING?
 		public Group getGroup_1() { return cGroup_1; }
 
 		//{DerivedUnit}
@@ -868,7 +869,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//UnitExpr
 		public RuleCall getUnitUnitExprParserRuleCall_1_3_0() { return cUnitUnitExprParserRuleCall_1_3_0; }
 
-		//description=STRING
+		//description=STRING?
 		public Assignment getDescriptionAssignment_1_4() { return cDescriptionAssignment_1_4; }
 
 		//STRING
@@ -4087,7 +4088,8 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//UnitDef:
-	//	{BaseUnit} name=ID description=STRING | {DerivedUnit} name=ID IdTypeDelimiter unit=UnitExpr description=STRING;
+	//	{BaseUnit} name=ID description=STRING?
+	//	| {DerivedUnit} name=ID IdTypeDelimiter unit=UnitExpr description=STRING?;
 	public UnitDefElements getUnitDefAccess() {
 		return pUnitDef;
 	}
