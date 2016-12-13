@@ -50,6 +50,7 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getIdTypeDelimiterAccess().getAlternatives(), "rule__IdTypeDelimiter__Alternatives");
 					put(grammarAccess.getConstraintAccess().getAlternatives(), "rule__Constraint__Alternatives");
 					put(grammarAccess.getDataAccess().getAlternatives(), "rule__Data__Alternatives");
+					put(grammarAccess.getDataAccess().getAlternatives_1_1(), "rule__Data__Alternatives_1_1");
 					put(grammarAccess.getWhileExprAccess().getAlternatives(), "rule__WhileExpr__Alternatives");
 					put(grammarAccess.getImpliesExprAccess().getOpAlternatives_1_0_0_1_0(), "rule__ImpliesExpr__OpAlternatives_1_0_0_1_0");
 					put(grammarAccess.getOrExprAccess().getOpAlternatives_1_0_0_1_0(), "rule__OrExpr__OpAlternatives_1_0_0_1_0");

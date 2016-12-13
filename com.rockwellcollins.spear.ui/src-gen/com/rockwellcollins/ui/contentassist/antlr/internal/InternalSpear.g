@@ -1942,6 +1942,32 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__Data__Alternatives_1_1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getDataAccess().getTraceKeyword_1_1_0()); }
+
+	'trace' 
+
+{ after(grammarAccess.getDataAccess().getTraceKeyword_1_1_0()); }
+)
+
+    |(
+{ before(grammarAccess.getDataAccess().getParentsKeyword_1_1_1()); }
+
+	'parents' 
+
+{ after(grammarAccess.getDataAccess().getParentsKeyword_1_1_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__WhileExpr__Alternatives
     @init {
 		int stackSize = keepStackSize();
@@ -8925,11 +8951,9 @@ rule__Data__Group_1__1__Impl
     }
 :
 (
-{ before(grammarAccess.getDataAccess().getTraceKeyword_1_1()); }
-
-	'trace' 
-
-{ after(grammarAccess.getDataAccess().getTraceKeyword_1_1()); }
+{ before(grammarAccess.getDataAccess().getAlternatives_1_1()); }
+(rule__Data__Alternatives_1_1)
+{ after(grammarAccess.getDataAccess().getAlternatives_1_1()); }
 )
 
 ;

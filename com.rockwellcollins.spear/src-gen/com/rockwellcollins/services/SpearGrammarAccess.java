@@ -1723,7 +1723,9 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cStringSTRINGTerminalRuleCall_0_3_0 = (RuleCall)cStringAssignment_0_3.eContents().get(0);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
 		private final Action cTraceDataAction_1_0 = (Action)cGroup_1.eContents().get(0);
-		private final Keyword cTraceKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final Alternatives cAlternatives_1_1 = (Alternatives)cGroup_1.eContents().get(1);
+		private final Keyword cTraceKeyword_1_1_0 = (Keyword)cAlternatives_1_1.eContents().get(0);
+		private final Keyword cParentsKeyword_1_1_1 = (Keyword)cAlternatives_1_1.eContents().get(1);
 		private final Keyword cEqualsSignKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
 		private final Keyword cLeftSquareBracketKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
 		private final Assignment cIdsAssignment_1_4 = (Assignment)cGroup_1.eContents().get(4);
@@ -1765,14 +1767,14 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cStringSTRINGTerminalRuleCall_6_3_0 = (RuleCall)cStringAssignment_6_3.eContents().get(0);
 		
 		//Data:
-		//	{DescriptionData} 'text' '=' string=STRING | {TraceData} 'trace' '=' '[' ids+=ID (',' ids+=ID)* ']'
+		//	{DescriptionData} 'text' '=' string=STRING | {TraceData} ('trace' | 'parents') '=' '[' ids+=ID (',' ids+=ID)* ']'
 		//	| {OwnerData} 'owner' '=' string=STRING | {ReviewData} 'reviewDate' '=' string=STRING | {SourceData} 'source' '='
 		//	string=STRING | {RationaleData} 'rationale' '=' string=STRING | {CommentsData} 'comments' '=' string=STRING;
 		@Override public ParserRule getRule() { return rule; }
 
-		//{DescriptionData} 'text' '=' string=STRING | {TraceData} 'trace' '=' '[' ids+=ID (',' ids+=ID)* ']' | {OwnerData}
-		//'owner' '=' string=STRING | {ReviewData} 'reviewDate' '=' string=STRING | {SourceData} 'source' '=' string=STRING |
-		//{RationaleData} 'rationale' '=' string=STRING | {CommentsData} 'comments' '=' string=STRING
+		//{DescriptionData} 'text' '=' string=STRING | {TraceData} ('trace' | 'parents') '=' '[' ids+=ID (',' ids+=ID)* ']' |
+		//{OwnerData} 'owner' '=' string=STRING | {ReviewData} 'reviewDate' '=' string=STRING | {SourceData} 'source' '='
+		//string=STRING | {RationaleData} 'rationale' '=' string=STRING | {CommentsData} 'comments' '=' string=STRING
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//{DescriptionData} 'text' '=' string=STRING
@@ -1793,14 +1795,20 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//STRING
 		public RuleCall getStringSTRINGTerminalRuleCall_0_3_0() { return cStringSTRINGTerminalRuleCall_0_3_0; }
 
-		//{TraceData} 'trace' '=' '[' ids+=ID (',' ids+=ID)* ']'
+		//{TraceData} ('trace' | 'parents') '=' '[' ids+=ID (',' ids+=ID)* ']'
 		public Group getGroup_1() { return cGroup_1; }
 
 		//{TraceData}
 		public Action getTraceDataAction_1_0() { return cTraceDataAction_1_0; }
 
+		//('trace' | 'parents')
+		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
+
 		//'trace'
-		public Keyword getTraceKeyword_1_1() { return cTraceKeyword_1_1; }
+		public Keyword getTraceKeyword_1_1_0() { return cTraceKeyword_1_1_0; }
+
+		//'parents'
+		public Keyword getParentsKeyword_1_1_1() { return cParentsKeyword_1_1_1; }
 
 		//'='
 		public Keyword getEqualsSignKeyword_1_2() { return cEqualsSignKeyword_1_2; }
@@ -4260,7 +4268,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Data:
-	//	{DescriptionData} 'text' '=' string=STRING | {TraceData} 'trace' '=' '[' ids+=ID (',' ids+=ID)* ']'
+	//	{DescriptionData} 'text' '=' string=STRING | {TraceData} ('trace' | 'parents') '=' '[' ids+=ID (',' ids+=ID)* ']'
 	//	| {OwnerData} 'owner' '=' string=STRING | {ReviewData} 'reviewDate' '=' string=STRING | {SourceData} 'source' '='
 	//	string=STRING | {RationaleData} 'rationale' '=' string=STRING | {CommentsData} 'comments' '=' string=STRING;
 	public DataElements getDataAccess() {

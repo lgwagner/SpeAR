@@ -11,6 +11,7 @@ import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.AlternativeAlias;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
@@ -24,6 +25,7 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_AtomicExpr_LeftParenthesisKeyword_10_0_p;
 	protected AbstractElementAlias match_AtomicUnitExpr_LeftParenthesisKeyword_1_0_a;
 	protected AbstractElementAlias match_AtomicUnitExpr_LeftParenthesisKeyword_1_0_p;
+	protected AbstractElementAlias match_Data_ParentsKeyword_1_1_1_or_TraceKeyword_1_1_0;
 	protected AbstractElementAlias match_Definitions_ConstantsKeyword_5_0_q;
 	protected AbstractElementAlias match_Definitions_ImportsKeyword_2_0_q;
 	protected AbstractElementAlias match_Definitions_PatternsKeyword_6_0_q;
@@ -45,6 +47,7 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_AtomicExpr_LeftParenthesisKeyword_10_0_p = new TokenAlias(true, false, grammarAccess.getAtomicExprAccess().getLeftParenthesisKeyword_10_0());
 		match_AtomicUnitExpr_LeftParenthesisKeyword_1_0_a = new TokenAlias(true, true, grammarAccess.getAtomicUnitExprAccess().getLeftParenthesisKeyword_1_0());
 		match_AtomicUnitExpr_LeftParenthesisKeyword_1_0_p = new TokenAlias(true, false, grammarAccess.getAtomicUnitExprAccess().getLeftParenthesisKeyword_1_0());
+		match_Data_ParentsKeyword_1_1_1_or_TraceKeyword_1_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getDataAccess().getParentsKeyword_1_1_1()), new TokenAlias(false, false, grammarAccess.getDataAccess().getTraceKeyword_1_1_0()));
 		match_Definitions_ConstantsKeyword_5_0_q = new TokenAlias(false, true, grammarAccess.getDefinitionsAccess().getConstantsKeyword_5_0());
 		match_Definitions_ImportsKeyword_2_0_q = new TokenAlias(false, true, grammarAccess.getDefinitionsAccess().getImportsKeyword_2_0());
 		match_Definitions_PatternsKeyword_6_0_q = new TokenAlias(false, true, grammarAccess.getDefinitionsAccess().getPatternsKeyword_6_0());
@@ -93,6 +96,8 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_AtomicUnitExpr_LeftParenthesisKeyword_1_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_AtomicUnitExpr_LeftParenthesisKeyword_1_0_p.equals(syntax))
 				emit_AtomicUnitExpr_LeftParenthesisKeyword_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Data_ParentsKeyword_1_1_1_or_TraceKeyword_1_1_0.equals(syntax))
+				emit_Data_ParentsKeyword_1_1_1_or_TraceKeyword_1_1_0(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Definitions_ConstantsKeyword_5_0_q.equals(syntax))
 				emit_Definitions_ConstantsKeyword_5_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Definitions_ImportsKeyword_2_0_q.equals(syntax))
@@ -208,6 +213,17 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) {BinaryUnitExpr.left=}
 	 */
 	protected void emit_AtomicUnitExpr_LeftParenthesisKeyword_1_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     'trace' | 'parents'
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) '=' '[' ids+=ID
+	 */
+	protected void emit_Data_ParentsKeyword_1_1_1_or_TraceKeyword_1_1_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

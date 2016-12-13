@@ -125,7 +125,7 @@ EnglishConstraint:
 
 Data:
 	{DescriptionData} 'text' '=' (string=STRING)
-	| {TraceData} 'trace' '=' '[' ids+=ID (',' ids+=ID)* ']'
+	| {TraceData} ('trace' | 'parents') '=' '[' ids+=ID (',' ids+=ID)* ']'
 	| {OwnerData} 'owner' '=' (string=STRING)
 	| {ReviewData} 'reviewDate' '=' (string=STRING)
 	| {SourceData} 'source' '=' (string=STRING)
