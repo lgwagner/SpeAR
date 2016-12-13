@@ -810,8 +810,8 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Action cBaseUnitAction_0_0 = (Action)cGroup_0.eContents().get(0);
 		private final Assignment cNameAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_0_1_0 = (RuleCall)cNameAssignment_0_1.eContents().get(0);
-		private final Assignment cDataAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
-		private final RuleCall cDataDataParserRuleCall_0_2_0 = (RuleCall)cDataAssignment_0_2.eContents().get(0);
+		private final Assignment cDescriptionAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
+		private final RuleCall cDescriptionSTRINGTerminalRuleCall_0_2_0 = (RuleCall)cDescriptionAssignment_0_2.eContents().get(0);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
 		private final Action cDerivedUnitAction_1_0 = (Action)cGroup_1.eContents().get(0);
 		private final Assignment cNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
@@ -819,18 +819,17 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cIdTypeDelimiterParserRuleCall_1_2 = (RuleCall)cGroup_1.eContents().get(2);
 		private final Assignment cUnitAssignment_1_3 = (Assignment)cGroup_1.eContents().get(3);
 		private final RuleCall cUnitUnitExprParserRuleCall_1_3_0 = (RuleCall)cUnitAssignment_1_3.eContents().get(0);
-		private final Assignment cDataAssignment_1_4 = (Assignment)cGroup_1.eContents().get(4);
-		private final RuleCall cDataDataParserRuleCall_1_4_0 = (RuleCall)cDataAssignment_1_4.eContents().get(0);
+		private final Assignment cDescriptionAssignment_1_4 = (Assignment)cGroup_1.eContents().get(4);
+		private final RuleCall cDescriptionSTRINGTerminalRuleCall_1_4_0 = (RuleCall)cDescriptionAssignment_1_4.eContents().get(0);
 		
 		//UnitDef:
-		//	{BaseUnit} name=ID data+=Data*
-		//	| {DerivedUnit} name=ID IdTypeDelimiter unit=UnitExpr data+=Data*;
+		//	{BaseUnit} name=ID description=STRING | {DerivedUnit} name=ID IdTypeDelimiter unit=UnitExpr description=STRING;
 		@Override public ParserRule getRule() { return rule; }
 
-		//{BaseUnit} name=ID data+=Data* | {DerivedUnit} name=ID IdTypeDelimiter unit=UnitExpr data+=Data*
+		//{BaseUnit} name=ID description=STRING | {DerivedUnit} name=ID IdTypeDelimiter unit=UnitExpr description=STRING
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//{BaseUnit} name=ID data+=Data*
+		//{BaseUnit} name=ID description=STRING
 		public Group getGroup_0() { return cGroup_0; }
 
 		//{BaseUnit}
@@ -842,13 +841,13 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_0_1_0() { return cNameIDTerminalRuleCall_0_1_0; }
 
-		//data+=Data*
-		public Assignment getDataAssignment_0_2() { return cDataAssignment_0_2; }
+		//description=STRING
+		public Assignment getDescriptionAssignment_0_2() { return cDescriptionAssignment_0_2; }
 
-		//Data
-		public RuleCall getDataDataParserRuleCall_0_2_0() { return cDataDataParserRuleCall_0_2_0; }
+		//STRING
+		public RuleCall getDescriptionSTRINGTerminalRuleCall_0_2_0() { return cDescriptionSTRINGTerminalRuleCall_0_2_0; }
 
-		//{DerivedUnit} name=ID IdTypeDelimiter unit=UnitExpr data+=Data*
+		//{DerivedUnit} name=ID IdTypeDelimiter unit=UnitExpr description=STRING
 		public Group getGroup_1() { return cGroup_1; }
 
 		//{DerivedUnit}
@@ -869,11 +868,11 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//UnitExpr
 		public RuleCall getUnitUnitExprParserRuleCall_1_3_0() { return cUnitUnitExprParserRuleCall_1_3_0; }
 
-		//data+=Data*
-		public Assignment getDataAssignment_1_4() { return cDataAssignment_1_4; }
+		//description=STRING
+		public Assignment getDescriptionAssignment_1_4() { return cDescriptionAssignment_1_4; }
 
-		//Data
-		public RuleCall getDataDataParserRuleCall_1_4_0() { return cDataDataParserRuleCall_1_4_0; }
+		//STRING
+		public RuleCall getDescriptionSTRINGTerminalRuleCall_1_4_0() { return cDescriptionSTRINGTerminalRuleCall_1_4_0; }
 	}
 
 	public class UnitExprElements extends AbstractParserRuleElementFinder {
@@ -4088,8 +4087,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//UnitDef:
-	//	{BaseUnit} name=ID data+=Data*
-	//	| {DerivedUnit} name=ID IdTypeDelimiter unit=UnitExpr data+=Data*;
+	//	{BaseUnit} name=ID description=STRING | {DerivedUnit} name=ID IdTypeDelimiter unit=UnitExpr description=STRING;
 	public UnitDefElements getUnitDefAccess() {
 		return pUnitDef;
 	}

@@ -588,13 +588,13 @@ public interface SpearPackage extends EPackage
   int UNIT_DEF__NAME = 0;
 
   /**
-   * The feature id for the '<em><b>Data</b></em>' containment reference list.
+   * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int UNIT_DEF__DATA = 1;
+  int UNIT_DEF__DESCRIPTION = 1;
 
   /**
    * The number of structural features of the '<em>Unit Def</em>' class.
@@ -1163,13 +1163,13 @@ public interface SpearPackage extends EPackage
   int BASE_UNIT__NAME = UNIT_DEF__NAME;
 
   /**
-   * The feature id for the '<em><b>Data</b></em>' containment reference list.
+   * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BASE_UNIT__DATA = UNIT_DEF__DATA;
+  int BASE_UNIT__DESCRIPTION = UNIT_DEF__DESCRIPTION;
 
   /**
    * The number of structural features of the '<em>Base Unit</em>' class.
@@ -1200,13 +1200,13 @@ public interface SpearPackage extends EPackage
   int DERIVED_UNIT__NAME = UNIT_DEF__NAME;
 
   /**
-   * The feature id for the '<em><b>Data</b></em>' containment reference list.
+   * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DERIVED_UNIT__DATA = UNIT_DEF__DATA;
+  int DERIVED_UNIT__DESCRIPTION = UNIT_DEF__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Unit</b></em>' containment reference.
@@ -3040,15 +3040,15 @@ public interface SpearPackage extends EPackage
   EAttribute getUnitDef_Name();
 
   /**
-   * Returns the meta object for the containment reference list '{@link com.rockwellcollins.spear.UnitDef#getData <em>Data</em>}'.
+   * Returns the meta object for the attribute '{@link com.rockwellcollins.spear.UnitDef#getDescription <em>Description</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Data</em>'.
-   * @see com.rockwellcollins.spear.UnitDef#getData()
+   * @return the meta object for the attribute '<em>Description</em>'.
+   * @see com.rockwellcollins.spear.UnitDef#getDescription()
    * @see #getUnitDef()
    * @generated
    */
-  EReference getUnitDef_Data();
+  EAttribute getUnitDef_Description();
 
   /**
    * Returns the meta object for class '{@link com.rockwellcollins.spear.UnitExpr <em>Unit Expr</em>}'.
@@ -4894,12 +4894,12 @@ public interface SpearPackage extends EPackage
     EAttribute UNIT_DEF__NAME = eINSTANCE.getUnitDef_Name();
 
     /**
-     * The meta object literal for the '<em><b>Data</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference UNIT_DEF__DATA = eINSTANCE.getUnitDef_Data();
+    EAttribute UNIT_DEF__DESCRIPTION = eINSTANCE.getUnitDef_Description();
 
     /**
      * The meta object literal for the '{@link com.rockwellcollins.spear.impl.UnitExprImpl <em>Unit Expr</em>}' class.

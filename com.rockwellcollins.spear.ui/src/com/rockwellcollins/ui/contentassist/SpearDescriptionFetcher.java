@@ -45,12 +45,12 @@ public class SpearDescriptionFetcher extends SpearSwitch<String> {
 	
 	@Override
 	public String caseBaseUnit(BaseUnit base) {
-		return this.getDescriptorIfAvailable(base.getData());
+		return base.getDescription();
 	}
 	
 	@Override
 	public String caseDerivedUnit(DerivedUnit derived) {
-		return this.getDescriptorIfAvailable(derived.getData());
+		return derived.getDescription();
 	}
 	
 	@Override

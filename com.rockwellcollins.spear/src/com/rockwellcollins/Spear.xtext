@@ -62,8 +62,8 @@ LustreAssertion:
 	'assert' assertionExpr=Expr;
 
 UnitDef:
-	{BaseUnit} name=ID (data+=Data)*
-	| {DerivedUnit} name=ID IdTypeDelimiter unit=UnitExpr (data+=Data)*;
+	{BaseUnit} name=ID (description=STRING)
+	| {DerivedUnit} name=ID IdTypeDelimiter unit=UnitExpr (description=STRING);
 
 UnitExpr:
 	ProductUnitExpr;

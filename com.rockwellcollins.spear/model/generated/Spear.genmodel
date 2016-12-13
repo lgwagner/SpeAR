@@ -55,7 +55,7 @@
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//UnitDef">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//UnitDef/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//UnitDef/data"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//UnitDef/description"/>
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//UnitExpr"/>
     <genClasses ecoreClass="Spear.ecore#//TypeDef">

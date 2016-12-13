@@ -1282,23 +1282,23 @@ ruleUnitDef returns [EObject current=null]
 )
 )(
 (
-		{ 
-	        newCompositeNode(grammarAccess.getUnitDefAccess().getDataDataParserRuleCall_0_2_0()); 
-	    }
-		lv_data_2_0=ruleData		{
+		lv_description_2_0=RULE_STRING
+		{
+			newLeafNode(lv_description_2_0, grammarAccess.getUnitDefAccess().getDescriptionSTRINGTerminalRuleCall_0_2_0()); 
+		}
+		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getUnitDefRule());
+	            $current = createModelElement(grammarAccess.getUnitDefRule());
 	        }
-       		add(
+       		setWithLastConsumed(
        			$current, 
-       			"data",
-        		lv_data_2_0, 
-        		"com.rockwellcollins.Spear.Data");
-	        afterParserOrEnumRuleCall();
+       			"description",
+        		lv_description_2_0, 
+        		"org.eclipse.xtext.common.Terminals.STRING");
 	    }
 
 )
-)*)
+))
     |((
     {
         $current = forceCreateModelElement(
@@ -1351,23 +1351,23 @@ ruleIdTypeDelimiter
 )
 )(
 (
-		{ 
-	        newCompositeNode(grammarAccess.getUnitDefAccess().getDataDataParserRuleCall_1_4_0()); 
-	    }
-		lv_data_7_0=ruleData		{
+		lv_description_7_0=RULE_STRING
+		{
+			newLeafNode(lv_description_7_0, grammarAccess.getUnitDefAccess().getDescriptionSTRINGTerminalRuleCall_1_4_0()); 
+		}
+		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getUnitDefRule());
+	            $current = createModelElement(grammarAccess.getUnitDefRule());
 	        }
-       		add(
+       		setWithLastConsumed(
        			$current, 
-       			"data",
-        		lv_data_7_0, 
-        		"com.rockwellcollins.Spear.Data");
-	        afterParserOrEnumRuleCall();
+       			"description",
+        		lv_description_7_0, 
+        		"org.eclipse.xtext.common.Terminals.STRING");
 	    }
 
 )
-)*))
+)))
 ;
 
 

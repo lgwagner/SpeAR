@@ -5770,9 +5770,9 @@ rule__UnitDef__Group_0__2__Impl
     }
 :
 (
-{ before(grammarAccess.getUnitDefAccess().getDataAssignment_0_2()); }
-(rule__UnitDef__DataAssignment_0_2)*
-{ after(grammarAccess.getUnitDefAccess().getDataAssignment_0_2()); }
+{ before(grammarAccess.getUnitDefAccess().getDescriptionAssignment_0_2()); }
+(rule__UnitDef__DescriptionAssignment_0_2)
+{ after(grammarAccess.getUnitDefAccess().getDescriptionAssignment_0_2()); }
 )
 
 ;
@@ -5922,9 +5922,9 @@ rule__UnitDef__Group_1__4__Impl
     }
 :
 (
-{ before(grammarAccess.getUnitDefAccess().getDataAssignment_1_4()); }
-(rule__UnitDef__DataAssignment_1_4)*
-{ after(grammarAccess.getUnitDefAccess().getDataAssignment_1_4()); }
+{ before(grammarAccess.getUnitDefAccess().getDescriptionAssignment_1_4()); }
+(rule__UnitDef__DescriptionAssignment_1_4)
+{ after(grammarAccess.getUnitDefAccess().getDescriptionAssignment_1_4()); }
 )
 
 ;
@@ -17710,14 +17710,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__UnitDef__DataAssignment_0_2
+rule__UnitDef__DescriptionAssignment_0_2
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getUnitDefAccess().getDataDataParserRuleCall_0_2_0()); }
-	ruleData{ after(grammarAccess.getUnitDefAccess().getDataDataParserRuleCall_0_2_0()); }
+{ before(grammarAccess.getUnitDefAccess().getDescriptionSTRINGTerminalRuleCall_0_2_0()); }
+	RULE_STRING{ after(grammarAccess.getUnitDefAccess().getDescriptionSTRINGTerminalRuleCall_0_2_0()); }
 )
 
 ;
@@ -17755,14 +17755,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__UnitDef__DataAssignment_1_4
+rule__UnitDef__DescriptionAssignment_1_4
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getUnitDefAccess().getDataDataParserRuleCall_1_4_0()); }
-	ruleData{ after(grammarAccess.getUnitDefAccess().getDataDataParserRuleCall_1_4_0()); }
+{ before(grammarAccess.getUnitDefAccess().getDescriptionSTRINGTerminalRuleCall_1_4_0()); }
+	RULE_STRING{ after(grammarAccess.getUnitDefAccess().getDescriptionSTRINGTerminalRuleCall_1_4_0()); }
 )
 
 ;

@@ -268,10 +268,10 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLustrePropertyAccess().getPropertyIdAssignment_1(), "rule__LustreProperty__PropertyIdAssignment_1");
 					put(grammarAccess.getLustreAssertionAccess().getAssertionExprAssignment_1(), "rule__LustreAssertion__AssertionExprAssignment_1");
 					put(grammarAccess.getUnitDefAccess().getNameAssignment_0_1(), "rule__UnitDef__NameAssignment_0_1");
-					put(grammarAccess.getUnitDefAccess().getDataAssignment_0_2(), "rule__UnitDef__DataAssignment_0_2");
+					put(grammarAccess.getUnitDefAccess().getDescriptionAssignment_0_2(), "rule__UnitDef__DescriptionAssignment_0_2");
 					put(grammarAccess.getUnitDefAccess().getNameAssignment_1_1(), "rule__UnitDef__NameAssignment_1_1");
 					put(grammarAccess.getUnitDefAccess().getUnitAssignment_1_3(), "rule__UnitDef__UnitAssignment_1_3");
-					put(grammarAccess.getUnitDefAccess().getDataAssignment_1_4(), "rule__UnitDef__DataAssignment_1_4");
+					put(grammarAccess.getUnitDefAccess().getDescriptionAssignment_1_4(), "rule__UnitDef__DescriptionAssignment_1_4");
 					put(grammarAccess.getProductUnitExprAccess().getOpAssignment_1_0_0_1(), "rule__ProductUnitExpr__OpAssignment_1_0_0_1");
 					put(grammarAccess.getProductUnitExprAccess().getRightAssignment_1_1(), "rule__ProductUnitExpr__RightAssignment_1_1");
 					put(grammarAccess.getDivisionUnitExprAccess().getOpAssignment_1_0_0_1(), "rule__DivisionUnitExpr__OpAssignment_1_0_0_1");

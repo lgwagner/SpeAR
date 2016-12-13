@@ -1024,9 +1024,9 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getUnitDef_Data()
+  public EAttribute getUnitDef_Description()
   {
-    return (EReference)unitDefEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)unitDefEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2507,7 +2507,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
 
     unitDefEClass = createEClass(UNIT_DEF);
     createEAttribute(unitDefEClass, UNIT_DEF__NAME);
-    createEReference(unitDefEClass, UNIT_DEF__DATA);
+    createEAttribute(unitDefEClass, UNIT_DEF__DESCRIPTION);
 
     unitExprEClass = createEClass(UNIT_EXPR);
 
@@ -2838,7 +2838,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
 
     initEClass(unitDefEClass, UnitDef.class, "UnitDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getUnitDef_Name(), ecorePackage.getEString(), "name", null, 0, 1, UnitDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getUnitDef_Data(), this.getData(), null, "data", null, 0, -1, UnitDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getUnitDef_Description(), ecorePackage.getEString(), "description", null, 0, 1, UnitDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(unitExprEClass, UnitExpr.class, "UnitExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

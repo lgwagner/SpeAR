@@ -2,25 +2,15 @@
  */
 package com.rockwellcollins.spear.impl;
 
-import com.rockwellcollins.spear.Data;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.UnitDef;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,7 +21,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link com.rockwellcollins.spear.impl.UnitDefImpl#getName <em>Name</em>}</li>
- *   <li>{@link com.rockwellcollins.spear.impl.UnitDefImpl#getData <em>Data</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.impl.UnitDefImpl#getDescription <em>Description</em>}</li>
  * </ul>
  *
  * @generated
@@ -59,14 +49,24 @@ public class UnitDefImpl extends MinimalEObjectImpl.Container implements UnitDef
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getData() <em>Data</em>}' containment reference list.
+   * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getData()
+   * @see #getDescription()
    * @generated
    * @ordered
    */
-  protected EList<Data> data;
+  protected static final String DESCRIPTION_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDescription()
+   * @generated
+   * @ordered
+   */
+  protected String description = DESCRIPTION_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -117,13 +117,9 @@ public class UnitDefImpl extends MinimalEObjectImpl.Container implements UnitDef
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Data> getData()
+  public String getDescription()
   {
-    if (data == null)
-    {
-      data = new EObjectContainmentEList<Data>(Data.class, this, SpearPackage.UNIT_DEF__DATA);
-    }
-    return data;
+    return description;
   }
 
   /**
@@ -131,15 +127,12 @@ public class UnitDefImpl extends MinimalEObjectImpl.Container implements UnitDef
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  public void setDescription(String newDescription)
   {
-    switch (featureID)
-    {
-      case SpearPackage.UNIT_DEF__DATA:
-        return ((InternalEList<?>)getData()).basicRemove(otherEnd, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
+    String oldDescription = description;
+    description = newDescription;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, SpearPackage.UNIT_DEF__DESCRIPTION, oldDescription, description));
   }
 
   /**
@@ -154,8 +147,8 @@ public class UnitDefImpl extends MinimalEObjectImpl.Container implements UnitDef
     {
       case SpearPackage.UNIT_DEF__NAME:
         return getName();
-      case SpearPackage.UNIT_DEF__DATA:
-        return getData();
+      case SpearPackage.UNIT_DEF__DESCRIPTION:
+        return getDescription();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -165,7 +158,6 @@ public class UnitDefImpl extends MinimalEObjectImpl.Container implements UnitDef
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -174,9 +166,8 @@ public class UnitDefImpl extends MinimalEObjectImpl.Container implements UnitDef
       case SpearPackage.UNIT_DEF__NAME:
         setName((String)newValue);
         return;
-      case SpearPackage.UNIT_DEF__DATA:
-        getData().clear();
-        getData().addAll((Collection<? extends Data>)newValue);
+      case SpearPackage.UNIT_DEF__DESCRIPTION:
+        setDescription((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -195,8 +186,8 @@ public class UnitDefImpl extends MinimalEObjectImpl.Container implements UnitDef
       case SpearPackage.UNIT_DEF__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case SpearPackage.UNIT_DEF__DATA:
-        getData().clear();
+      case SpearPackage.UNIT_DEF__DESCRIPTION:
+        setDescription(DESCRIPTION_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -214,8 +205,8 @@ public class UnitDefImpl extends MinimalEObjectImpl.Container implements UnitDef
     {
       case SpearPackage.UNIT_DEF__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case SpearPackage.UNIT_DEF__DATA:
-        return data != null && !data.isEmpty();
+      case SpearPackage.UNIT_DEF__DESCRIPTION:
+        return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
     }
     return super.eIsSet(featureID);
   }
@@ -233,6 +224,8 @@ public class UnitDefImpl extends MinimalEObjectImpl.Container implements UnitDef
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");
     result.append(name);
+    result.append(", description: ");
+    result.append(description);
     result.append(')');
     return result.toString();
   }
