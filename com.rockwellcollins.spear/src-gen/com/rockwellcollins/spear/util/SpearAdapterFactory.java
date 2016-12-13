@@ -175,6 +175,11 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
         return createEnglishConstraintAdapter();
       }
       @Override
+      public Adapter caseData(Data object)
+      {
+        return createDataAdapter();
+      }
+      @Override
       public Adapter caseExpr(Expr object)
       {
         return createExprAdapter();
@@ -263,6 +268,41 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
       public Adapter caseUserType(UserType object)
       {
         return createUserTypeAdapter();
+      }
+      @Override
+      public Adapter caseDescriptionData(DescriptionData object)
+      {
+        return createDescriptionDataAdapter();
+      }
+      @Override
+      public Adapter caseTraceData(TraceData object)
+      {
+        return createTraceDataAdapter();
+      }
+      @Override
+      public Adapter caseOwnerData(OwnerData object)
+      {
+        return createOwnerDataAdapter();
+      }
+      @Override
+      public Adapter caseReviewData(ReviewData object)
+      {
+        return createReviewDataAdapter();
+      }
+      @Override
+      public Adapter caseSourceData(SourceData object)
+      {
+        return createSourceDataAdapter();
+      }
+      @Override
+      public Adapter caseRationaleData(RationaleData object)
+      {
+        return createRationaleDataAdapter();
+      }
+      @Override
+      public Adapter caseCommentsData(CommentsData object)
+      {
+        return createCommentsDataAdapter();
       }
       @Override
       public Adapter caseWhileExpr(WhileExpr object)
@@ -692,6 +732,21 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.Data <em>Data</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.rockwellcollins.spear.Data
+   * @generated
+   */
+  public Adapter createDataAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.Expr <em>Expr</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -957,6 +1012,111 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createUserTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.DescriptionData <em>Description Data</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.rockwellcollins.spear.DescriptionData
+   * @generated
+   */
+  public Adapter createDescriptionDataAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.TraceData <em>Trace Data</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.rockwellcollins.spear.TraceData
+   * @generated
+   */
+  public Adapter createTraceDataAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.OwnerData <em>Owner Data</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.rockwellcollins.spear.OwnerData
+   * @generated
+   */
+  public Adapter createOwnerDataAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.ReviewData <em>Review Data</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.rockwellcollins.spear.ReviewData
+   * @generated
+   */
+  public Adapter createReviewDataAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.SourceData <em>Source Data</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.rockwellcollins.spear.SourceData
+   * @generated
+   */
+  public Adapter createSourceDataAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.RationaleData <em>Rationale Data</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.rockwellcollins.spear.RationaleData
+   * @generated
+   */
+  public Adapter createRationaleDataAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.CommentsData <em>Comments Data</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.rockwellcollins.spear.CommentsData
+   * @generated
+   */
+  public Adapter createCommentsDataAdapter()
   {
     return null;
   }

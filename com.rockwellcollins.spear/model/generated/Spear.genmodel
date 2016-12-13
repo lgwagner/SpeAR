@@ -41,8 +41,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Pattern/equations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Pattern/properties"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Pattern/assertions"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//Pattern/descriptor"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//Pattern/ids"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Pattern/data"/>
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//LustreEquation">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Spear.ecore#//LustreEquation/ids"/>
@@ -56,7 +55,7 @@
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//UnitDef">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//UnitDef/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//UnitDef/description"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//UnitDef/data"/>
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//UnitExpr"/>
     <genClasses ecoreClass="Spear.ecore#//TypeDef">
@@ -71,29 +70,28 @@
     <genClasses ecoreClass="Spear.ecore#//Constant">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Constant/type"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Constant/expr"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//Constant/descriptor"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//Constant/ids"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Constant/data"/>
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//Variable">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Variable/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Variable/data"/>
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//Macro">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Macro/type"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Macro/expr"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//Macro/descriptor"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//Macro/ids"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Macro/data"/>
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//Constraint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//Constraint/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//Constraint/ids"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Constraint/data"/>
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//FormalConstraint">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//FormalConstraint/expr"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//FormalConstraint/descriptor"/>
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//EnglishConstraint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//EnglishConstraint/text"/>
     </genClasses>
+    <genClasses ecoreClass="Spear.ecore#//Data"/>
     <genClasses ecoreClass="Spear.ecore#//Expr"/>
     <genClasses ecoreClass="Spear.ecore#//LiteralExpr"/>
     <genClasses ecoreClass="Spear.ecore#//IdRef">
@@ -139,6 +137,27 @@
     <genClasses ecoreClass="Spear.ecore#//RealType"/>
     <genClasses ecoreClass="Spear.ecore#//UserType">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Spear.ecore#//UserType/def"/>
+    </genClasses>
+    <genClasses ecoreClass="Spear.ecore#//DescriptionData">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//DescriptionData/string"/>
+    </genClasses>
+    <genClasses ecoreClass="Spear.ecore#//TraceData">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//TraceData/ids"/>
+    </genClasses>
+    <genClasses ecoreClass="Spear.ecore#//OwnerData">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//OwnerData/string"/>
+    </genClasses>
+    <genClasses ecoreClass="Spear.ecore#//ReviewData">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//ReviewData/string"/>
+    </genClasses>
+    <genClasses ecoreClass="Spear.ecore#//SourceData">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//SourceData/string"/>
+    </genClasses>
+    <genClasses ecoreClass="Spear.ecore#//RationaleData">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//RationaleData/string"/>
+    </genClasses>
+    <genClasses ecoreClass="Spear.ecore#//CommentsData">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//CommentsData/string"/>
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//WhileExpr">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//WhileExpr/cond"/>

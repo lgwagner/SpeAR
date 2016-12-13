@@ -21,16 +21,13 @@ Specification:
 	(propertiesKeyword=PropertiesHeader ':' behaviors+=Constraint*)?;
 
 AssumptionsHeader:
-	'Assumptions' | 'Environment'
-;
+	'Assumptions' | 'Environment';
 
 RequirementsHeader:
-	'DerivedRequirements' | 'Requirements' | 'Implementation' | 'Design' | 'Constraints'
-;
+	'DerivedRequirements' | 'Requirements' | 'Implementation' | 'Design' | 'Constraints';
 
 PropertiesHeader:
-	'Requirements' | 'Properties' | 'Guarantees' | 'Behaviors'
-;
+	'Requirements' | 'Properties' | 'Guarantees' | 'Behaviors';
 
 Import:
 	'import' importURI=STRING;
@@ -44,34 +41,29 @@ Definitions:
 	('Patterns:' patterns+=Pattern*)?;
 
 Pattern:
-	'pattern' (name=ID) '(' (inputs+=Variable (',' inputs+=Variable)*)? ')' 'returns' '(' (outputs+=Variable (',' outputs+=Variable)*)? ')'
-	 ('var' (locals+=Variable)* )?
-	 'let' 
-	 	( equations+=LustreEquation
-	 	| properties+=LustreProperty
-	 	| assertions+=LustreAssertion
-	 	)*
-	 'tel'
-	 ('text' '=' descriptor=STRING)? 
-	 ('trace' '=' '[' ids+=ID (',' ids+= ID)* ']')?
-;
+	'pattern' (name=ID) '(' (inputs+=Variable (',' inputs+=Variable)*)? ')' 'returns' '(' (outputs+=Variable (','
+	outputs+=Variable)*)? ')'
+	('var' (locals+=Variable)*)?
+	'let'
+	(equations+=LustreEquation
+	| properties+=LustreProperty
+	| assertions+=LustreAssertion)*
+	'tel'
+	(data+=Data)*;
 
 LustreEquation:
 	'|' ids+=[Variable] (',' ids+=[Variable])* '|' '=' rhs=Expr
-|	ids+=[Variable] '=' rhs=Expr
-;
+	| ids+=[Variable] '=' rhs=Expr;
 
 LustreProperty:
-	'--%PROPERTY' propertyId=[Variable]
-;
+	'--%PROPERTY' propertyId=[Variable];
 
 LustreAssertion:
-	'assert' assertionExpr=Expr
-;
+	'assert' assertionExpr=Expr;
 
 UnitDef:
-	{BaseUnit} name=ID (description=STRING)?
-	| {DerivedUnit} name=ID IdTypeDelimiter unit=UnitExpr (description=STRING)?;
+	{BaseUnit} name=ID (data+=Data)*
+	| {DerivedUnit} name=ID IdTypeDelimiter unit=UnitExpr (data+=Data)*;
 
 UnitExpr:
 	ProductUnitExpr;
@@ -87,15 +79,14 @@ AtomicUnitExpr returns UnitExpr:
 	| '(' UnitExpr ')';
 
 TypeDef:
-	  {NamedTypeDef} name=ID IdTypeDelimiter type=Type (unit=[UnitDef])?
+	{NamedTypeDef} name=ID IdTypeDelimiter type=Type (unit=[UnitDef])?
 	| {AbstractTypeDef} name=ID IdTypeDelimiter 'abstract'
 	| {RecordTypeDef} name=ID IdTypeDelimiter 'record' '{' fields+=FieldType (',' fields+=FieldType)* '}'
 	| {ArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=Expr ']'
 	| {EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{' values+=EnumValue (',' values+=EnumValue)* '}';
-	
+
 UnusedTypeDef returns TypeDef:
-	{ConcreteArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=INT ']'
-;
+	{ConcreteArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=INT ']';
 
 FieldType:
 	name=ID ':' type=Type;
@@ -115,24 +106,31 @@ IdTypeDelimiter:
 	| 'is an';
 
 Constant:
-	name=ID IdTypeDelimiter type=Type '=' expr=Expr ('text' '=' descriptor=STRING)? ('trace' '=' '[' ids+=ID (',' ids+= ID)* ']')?;
+	name=ID IdTypeDelimiter type=Type '=' expr=Expr (data+=Data)*;
 
 Variable:
-	name=ID IdTypeDelimiter type=Type;
+	name=ID IdTypeDelimiter type=Type (data+=Data)*;
 
 Macro:
-	name=ID IdTypeDelimiter type=Type '=' expr=Expr ('text' '=' descriptor=STRING)? ('trace' '=' '[' ids+=ID (',' ids+= ID)* ']')?;
+	name=ID IdTypeDelimiter type=Type '=' expr=Expr (data+=Data)*;
 
 Constraint:
 	FormalConstraint | EnglishConstraint;
 
 FormalConstraint:
-	name=ID ':' expr=Expr ('text' '=' descriptor=STRING)? ('trace' '=' '[' ids+=ID (',' ids+= ID)* ']')?
-;
+	name=ID ':' expr=Expr (data+=Data)*;
 
 EnglishConstraint:
-	name=ID ':' text=STRING ('trace' '=' '[' ids+=ID (',' ids+= ID)* ']')?
-;
+	name=ID ':' text=STRING (data+=Data)*;
+
+Data:
+	{DescriptionData} 'text' '=' (string=STRING)
+	| {TraceData} 'trace' '=' '[' ids+=ID (',' ids+=ID)* ']'
+	| {OwnerData} 'owner' '=' (string=STRING)
+	| {ReviewData} 'reviewDate' '=' (string=STRING)
+	| {SourceData} 'source' '=' (string=STRING)
+	| {RationaleData} 'rationale' '=' (string=STRING)
+	| {CommentsData} 'comments' '=' (string=STRING);
 
 /* Begin Expr Language */
 Expr:
@@ -140,8 +138,7 @@ Expr:
 
 WhileExpr returns Expr:
 	{WhileExpr} 'while' cond=Expr 'then' then=Expr
-|	 ImpliesExpr
-;
+	| ImpliesExpr;
 
 ImpliesExpr returns Expr:
 	OrExpr (=> ({BinaryExpr.left=current} op=('=>' | 'implies')) right=ImpliesExpr)?;
@@ -154,8 +151,7 @@ AndExpr returns Expr:
 
 AfterUntilExpr returns Expr:
 	{AfterUntilExpr} 'after' (after=TriggersExpr) (=> 'until' until=TriggersExpr)?
-|	TriggersExpr
-;
+	| TriggersExpr;
 
 TriggersExpr returns Expr:
 	SinceExpr (=> ({BinaryExpr.left=current} op=('T' | 'triggers')) right=TriggersExpr)?;
@@ -171,9 +167,9 @@ RelationalExpr returns Expr:
 	PlusExpr (=> ({BinaryExpr.left=current} op=RelationalOp) right=RelationalExpr)?;
 
 RelationalOp:
-	   '<' | 'less' 'than'
+	'<' | 'less' 'than'
 	| '<=' | 'less' 'than' 'or' 'equal' 'to'
-	| '>'  | 'greater' 'than'
+	| '>' | 'greater' 'than'
 	| '>=' | 'greater' 'than' 'or' 'equal' 'to'
 	| '==' | 'equal' 'to'
 	| '<>' | 'not' 'equal' 'to';
@@ -205,23 +201,23 @@ AtomicExpr returns Expr:
 	| {RecordExpr} 'new' type=[RecordTypeDef] '{' fieldExprs+=FieldExpr (',' fieldExprs+=FieldExpr)* '}'
 	| {FieldlessRecordExpr} 'new' type=[RecordTypeDef] '{' exprs+=Expr (',' exprs+=Expr)* '}'
 	| {ArrayExpr} 'new' type=[ArrayTypeDef] '[' exprs+=Expr (',' exprs+=Expr)* ']'
-	| {PatternCall} pattern=[Pattern] '(' ( args+=Expr (',' args+=Expr)* )? ')'
-	| {SpecificationCall} 'spec' spec=[Specification] '(' ( args+=Expr (',' args+=Expr)* )? ')'
+	| {PatternCall} pattern=[Pattern] '(' (args+=Expr (',' args+=Expr)*)? ')'
+	| {SpecificationCall} 'spec' spec=[Specification] '(' (args+=Expr (',' args+=Expr)*)? ')'
 	| UnusedExpr
-	| '(' Expr ')'
-;
+	| '(' Expr ')';
 
 LiteralExpr:
 	{IntLiteral} value=INT (unit=[UnitDef])?
 	| {BoolLiteral} value=BOOL
 	| {RealLiteral} value=REAL (unit=[UnitDef])?;
 
-//	//this is a cute little hack to make processing easier on the translation to Lustre
+	//	//this is a cute little hack to make processing easier on the translation to Lustre
 UnusedExpr returns Expr:
-	{NormalizedCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')';
+	{NormalizedCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr (','
+	args+=Expr)* ')';
 
 IdRef:
-	 Variable
+	Variable
 	| Macro
 	| Constant
 	| EnumValue;
@@ -238,6 +234,9 @@ BOOLEAN_TRUE:
 BOOLEAN_FALSE:
 	'FALSE' | 'false';
 
-REAL hidden(): INT '.' (EXT_INT | INT);
-terminal EXT_INT: INT ('e'|'E')('-'|'+')? INT;
+REAL hidden():
+	INT '.' (EXT_INT | INT);
+
+terminal EXT_INT:
+	INT ('e' | 'E') ('-' | '+')? INT;
 

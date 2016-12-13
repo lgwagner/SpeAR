@@ -2,17 +2,25 @@
  */
 package com.rockwellcollins.spear.impl;
 
+import com.rockwellcollins.spear.Data;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Type;
 import com.rockwellcollins.spear.Variable;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,6 +31,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * </p>
  * <ul>
  *   <li>{@link com.rockwellcollins.spear.impl.VariableImpl#getType <em>Type</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.impl.VariableImpl#getData <em>Data</em>}</li>
  * </ul>
  *
  * @generated
@@ -38,6 +47,16 @@ public class VariableImpl extends IdRefImpl implements Variable
    * @ordered
    */
   protected Type type;
+
+  /**
+   * The cached value of the '{@link #getData() <em>Data</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getData()
+   * @generated
+   * @ordered
+   */
+  protected EList<Data> data;
 
   /**
    * <!-- begin-user-doc -->
@@ -113,6 +132,20 @@ public class VariableImpl extends IdRefImpl implements Variable
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<Data> getData()
+  {
+    if (data == null)
+    {
+      data = new EObjectContainmentEList<Data>(Data.class, this, SpearPackage.VARIABLE__DATA);
+    }
+    return data;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -120,6 +153,8 @@ public class VariableImpl extends IdRefImpl implements Variable
     {
       case SpearPackage.VARIABLE__TYPE:
         return basicSetType(null, msgs);
+      case SpearPackage.VARIABLE__DATA:
+        return ((InternalEList<?>)getData()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -136,6 +171,8 @@ public class VariableImpl extends IdRefImpl implements Variable
     {
       case SpearPackage.VARIABLE__TYPE:
         return getType();
+      case SpearPackage.VARIABLE__DATA:
+        return getData();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -145,6 +182,7 @@ public class VariableImpl extends IdRefImpl implements Variable
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -152,6 +190,10 @@ public class VariableImpl extends IdRefImpl implements Variable
     {
       case SpearPackage.VARIABLE__TYPE:
         setType((Type)newValue);
+        return;
+      case SpearPackage.VARIABLE__DATA:
+        getData().clear();
+        getData().addAll((Collection<? extends Data>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -170,6 +212,9 @@ public class VariableImpl extends IdRefImpl implements Variable
       case SpearPackage.VARIABLE__TYPE:
         setType((Type)null);
         return;
+      case SpearPackage.VARIABLE__DATA:
+        getData().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -186,6 +231,8 @@ public class VariableImpl extends IdRefImpl implements Variable
     {
       case SpearPackage.VARIABLE__TYPE:
         return type != null;
+      case SpearPackage.VARIABLE__DATA:
+        return data != null && !data.isEmpty();
     }
     return super.eIsSet(featureID);
   }

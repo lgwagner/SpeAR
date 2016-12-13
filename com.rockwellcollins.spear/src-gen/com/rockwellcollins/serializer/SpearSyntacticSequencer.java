@@ -301,21 +301,18 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'var'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     inputs+=Variable ')' 'returns' '(' ')' (ambiguity) 'let' 'tel' 'text' '=' descriptor=STRING
-	 *     inputs+=Variable ')' 'returns' '(' ')' (ambiguity) 'let' 'tel' 'trace' '=' '[' ids+=ID
 	 *     inputs+=Variable ')' 'returns' '(' ')' (ambiguity) 'let' 'tel' (rule end)
+	 *     inputs+=Variable ')' 'returns' '(' ')' (ambiguity) 'let' 'tel' data+=Data
 	 *     inputs+=Variable ')' 'returns' '(' ')' (ambiguity) 'let' assertions+=LustreAssertion
 	 *     inputs+=Variable ')' 'returns' '(' ')' (ambiguity) 'let' equations+=LustreEquation
 	 *     inputs+=Variable ')' 'returns' '(' ')' (ambiguity) 'let' properties+=LustreProperty
-	 *     name=ID '(' ')' 'returns' '(' ')' (ambiguity) 'let' 'tel' 'text' '=' descriptor=STRING
-	 *     name=ID '(' ')' 'returns' '(' ')' (ambiguity) 'let' 'tel' 'trace' '=' '[' ids+=ID
 	 *     name=ID '(' ')' 'returns' '(' ')' (ambiguity) 'let' 'tel' (rule end)
+	 *     name=ID '(' ')' 'returns' '(' ')' (ambiguity) 'let' 'tel' data+=Data
 	 *     name=ID '(' ')' 'returns' '(' ')' (ambiguity) 'let' assertions+=LustreAssertion
 	 *     name=ID '(' ')' 'returns' '(' ')' (ambiguity) 'let' equations+=LustreEquation
 	 *     name=ID '(' ')' 'returns' '(' ')' (ambiguity) 'let' properties+=LustreProperty
-	 *     outputs+=Variable ')' (ambiguity) 'let' 'tel' 'text' '=' descriptor=STRING
-	 *     outputs+=Variable ')' (ambiguity) 'let' 'tel' 'trace' '=' '[' ids+=ID
 	 *     outputs+=Variable ')' (ambiguity) 'let' 'tel' (rule end)
+	 *     outputs+=Variable ')' (ambiguity) 'let' 'tel' data+=Data
 	 *     outputs+=Variable ')' (ambiguity) 'let' assertions+=LustreAssertion
 	 *     outputs+=Variable ')' (ambiguity) 'let' equations+=LustreEquation
 	 *     outputs+=Variable ')' (ambiguity) 'let' properties+=LustreProperty

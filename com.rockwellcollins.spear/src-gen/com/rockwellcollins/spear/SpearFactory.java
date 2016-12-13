@@ -203,6 +203,15 @@ public interface SpearFactory extends EFactory
   EnglishConstraint createEnglishConstraint();
 
   /**
+   * Returns a new object of class '<em>Data</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Data</em>'.
+   * @generated
+   */
+  Data createData();
+
+  /**
    * Returns a new object of class '<em>Expr</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -363,6 +372,69 @@ public interface SpearFactory extends EFactory
    * @generated
    */
   UserType createUserType();
+
+  /**
+   * Returns a new object of class '<em>Description Data</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Description Data</em>'.
+   * @generated
+   */
+  DescriptionData createDescriptionData();
+
+  /**
+   * Returns a new object of class '<em>Trace Data</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Trace Data</em>'.
+   * @generated
+   */
+  TraceData createTraceData();
+
+  /**
+   * Returns a new object of class '<em>Owner Data</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Owner Data</em>'.
+   * @generated
+   */
+  OwnerData createOwnerData();
+
+  /**
+   * Returns a new object of class '<em>Review Data</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Review Data</em>'.
+   * @generated
+   */
+  ReviewData createReviewData();
+
+  /**
+   * Returns a new object of class '<em>Source Data</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Source Data</em>'.
+   * @generated
+   */
+  SourceData createSourceData();
+
+  /**
+   * Returns a new object of class '<em>Rationale Data</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Rationale Data</em>'.
+   * @generated
+   */
+  RationaleData createRationaleData();
+
+  /**
+   * Returns a new object of class '<em>Comments Data</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Comments Data</em>'.
+   * @generated
+   */
+  CommentsData createCommentsData();
 
   /**
    * Returns a new object of class '<em>While Expr</em>'.

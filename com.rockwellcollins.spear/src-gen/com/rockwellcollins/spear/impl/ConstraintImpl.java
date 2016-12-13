@@ -3,20 +3,24 @@
 package com.rockwellcollins.spear.impl;
 
 import com.rockwellcollins.spear.Constraint;
+import com.rockwellcollins.spear.Data;
 import com.rockwellcollins.spear.SpearPackage;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +31,7 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  * </p>
  * <ul>
  *   <li>{@link com.rockwellcollins.spear.impl.ConstraintImpl#getName <em>Name</em>}</li>
- *   <li>{@link com.rockwellcollins.spear.impl.ConstraintImpl#getIds <em>Ids</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.impl.ConstraintImpl#getData <em>Data</em>}</li>
  * </ul>
  *
  * @generated
@@ -55,14 +59,14 @@ public class ConstraintImpl extends MinimalEObjectImpl.Container implements Cons
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getIds() <em>Ids</em>}' attribute list.
+   * The cached value of the '{@link #getData() <em>Data</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIds()
+   * @see #getData()
    * @generated
    * @ordered
    */
-  protected EList<String> ids;
+  protected EList<Data> data;
 
   /**
    * <!-- begin-user-doc -->
@@ -113,13 +117,29 @@ public class ConstraintImpl extends MinimalEObjectImpl.Container implements Cons
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<String> getIds()
+  public EList<Data> getData()
   {
-    if (ids == null)
+    if (data == null)
     {
-      ids = new EDataTypeEList<String>(String.class, this, SpearPackage.CONSTRAINT__IDS);
+      data = new EObjectContainmentEList<Data>(Data.class, this, SpearPackage.CONSTRAINT__DATA);
     }
-    return ids;
+    return data;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case SpearPackage.CONSTRAINT__DATA:
+        return ((InternalEList<?>)getData()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -134,8 +154,8 @@ public class ConstraintImpl extends MinimalEObjectImpl.Container implements Cons
     {
       case SpearPackage.CONSTRAINT__NAME:
         return getName();
-      case SpearPackage.CONSTRAINT__IDS:
-        return getIds();
+      case SpearPackage.CONSTRAINT__DATA:
+        return getData();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -154,9 +174,9 @@ public class ConstraintImpl extends MinimalEObjectImpl.Container implements Cons
       case SpearPackage.CONSTRAINT__NAME:
         setName((String)newValue);
         return;
-      case SpearPackage.CONSTRAINT__IDS:
-        getIds().clear();
-        getIds().addAll((Collection<? extends String>)newValue);
+      case SpearPackage.CONSTRAINT__DATA:
+        getData().clear();
+        getData().addAll((Collection<? extends Data>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -175,8 +195,8 @@ public class ConstraintImpl extends MinimalEObjectImpl.Container implements Cons
       case SpearPackage.CONSTRAINT__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case SpearPackage.CONSTRAINT__IDS:
-        getIds().clear();
+      case SpearPackage.CONSTRAINT__DATA:
+        getData().clear();
         return;
     }
     super.eUnset(featureID);
@@ -194,8 +214,8 @@ public class ConstraintImpl extends MinimalEObjectImpl.Container implements Cons
     {
       case SpearPackage.CONSTRAINT__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case SpearPackage.CONSTRAINT__IDS:
-        return ids != null && !ids.isEmpty();
+      case SpearPackage.CONSTRAINT__DATA:
+        return data != null && !data.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -213,8 +233,6 @@ public class ConstraintImpl extends MinimalEObjectImpl.Container implements Cons
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");
     result.append(name);
-    result.append(", ids: ");
-    result.append(ids);
     result.append(')');
     return result.toString();
   }

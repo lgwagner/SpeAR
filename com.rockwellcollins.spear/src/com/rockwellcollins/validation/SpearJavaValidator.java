@@ -38,7 +38,8 @@ import com.rockwellcollins.spear.utilities.Utilities;
 @ComposedChecks(validators = { SpecificationsAcyclicValidator.class,
 							   VariablesAreUsedValidator.class,
 							   IllegalAnalysisValidations.class,
-							   TypeCheckingValidator.class})
+							   TypeCheckingValidator.class,
+							   DataValidator.class})
 
 public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractSpearJavaValidator {
 

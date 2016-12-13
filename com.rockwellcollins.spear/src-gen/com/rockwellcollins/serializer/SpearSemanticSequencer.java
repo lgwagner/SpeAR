@@ -16,10 +16,12 @@ import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.BinaryUnitExpr;
 import com.rockwellcollins.spear.BoolLiteral;
 import com.rockwellcollins.spear.BoolType;
+import com.rockwellcollins.spear.CommentsData;
 import com.rockwellcollins.spear.ConcreteArrayTypeDef;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.DerivedUnit;
+import com.rockwellcollins.spear.DescriptionData;
 import com.rockwellcollins.spear.EnglishConstraint;
 import com.rockwellcollins.spear.EnumTypeDef;
 import com.rockwellcollins.spear.EnumValue;
@@ -40,18 +42,23 @@ import com.rockwellcollins.spear.MultipleIdExpr;
 import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.NamedUnitExpr;
 import com.rockwellcollins.spear.NormalizedCall;
+import com.rockwellcollins.spear.OwnerData;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.PatternCall;
 import com.rockwellcollins.spear.PreviousExpr;
+import com.rockwellcollins.spear.RationaleData;
 import com.rockwellcollins.spear.RealLiteral;
 import com.rockwellcollins.spear.RealType;
 import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.RecordExpr;
 import com.rockwellcollins.spear.RecordTypeDef;
 import com.rockwellcollins.spear.RecordUpdateExpr;
+import com.rockwellcollins.spear.ReviewData;
+import com.rockwellcollins.spear.SourceData;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.SpecificationCall;
+import com.rockwellcollins.spear.TraceData;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.UserType;
 import com.rockwellcollins.spear.Variable;
@@ -114,6 +121,9 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case SpearPackage.BOOL_TYPE:
 				sequence_Type(context, (BoolType) semanticObject); 
 				return; 
+			case SpearPackage.COMMENTS_DATA:
+				sequence_Data(context, (CommentsData) semanticObject); 
+				return; 
 			case SpearPackage.CONCRETE_ARRAY_TYPE_DEF:
 				sequence_UnusedTypeDef(context, (ConcreteArrayTypeDef) semanticObject); 
 				return; 
@@ -125,6 +135,9 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case SpearPackage.DERIVED_UNIT:
 				sequence_UnitDef(context, (DerivedUnit) semanticObject); 
+				return; 
+			case SpearPackage.DESCRIPTION_DATA:
+				sequence_Data(context, (DescriptionData) semanticObject); 
 				return; 
 			case SpearPackage.ENGLISH_CONSTRAINT:
 				sequence_EnglishConstraint(context, (EnglishConstraint) semanticObject); 
@@ -186,6 +199,9 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case SpearPackage.NORMALIZED_CALL:
 				sequence_UnusedExpr(context, (NormalizedCall) semanticObject); 
 				return; 
+			case SpearPackage.OWNER_DATA:
+				sequence_Data(context, (OwnerData) semanticObject); 
+				return; 
 			case SpearPackage.PATTERN:
 				sequence_Pattern(context, (Pattern) semanticObject); 
 				return; 
@@ -194,6 +210,9 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case SpearPackage.PREVIOUS_EXPR:
 				sequence_PrefixExpr(context, (PreviousExpr) semanticObject); 
+				return; 
+			case SpearPackage.RATIONALE_DATA:
+				sequence_Data(context, (RationaleData) semanticObject); 
 				return; 
 			case SpearPackage.REAL_LITERAL:
 				sequence_LiteralExpr(context, (RealLiteral) semanticObject); 
@@ -213,11 +232,20 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case SpearPackage.RECORD_UPDATE_EXPR:
 				sequence_AccessExpr(context, (RecordUpdateExpr) semanticObject); 
 				return; 
+			case SpearPackage.REVIEW_DATA:
+				sequence_Data(context, (ReviewData) semanticObject); 
+				return; 
+			case SpearPackage.SOURCE_DATA:
+				sequence_Data(context, (SourceData) semanticObject); 
+				return; 
 			case SpearPackage.SPECIFICATION:
 				sequence_Specification(context, (Specification) semanticObject); 
 				return; 
 			case SpearPackage.SPECIFICATION_CALL:
 				sequence_AtomicExpr(context, (SpecificationCall) semanticObject); 
+				return; 
+			case SpearPackage.TRACE_DATA:
+				sequence_Data(context, (TraceData) semanticObject); 
 				return; 
 			case SpearPackage.UNARY_EXPR:
 				sequence_PrefixExpr_TemporalPrefixExpr(context, (UnaryExpr) semanticObject); 
@@ -867,9 +895,129 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     IdRef returns Constant
 	 *
 	 * Constraint:
-	 *     (name=ID type=Type expr=Expr descriptor=STRING? (ids+=ID ids+=ID*)?)
+	 *     (name=ID type=Type expr=Expr data+=Data*)
 	 */
 	protected void sequence_Constant(ISerializationContext context, Constant semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Data returns CommentsData
+	 *
+	 * Constraint:
+	 *     string=STRING
+	 */
+	protected void sequence_Data(ISerializationContext context, CommentsData semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.COMMENTS_DATA__STRING) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.COMMENTS_DATA__STRING));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getDataAccess().getStringSTRINGTerminalRuleCall_6_3_0(), semanticObject.getString());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Data returns DescriptionData
+	 *
+	 * Constraint:
+	 *     string=STRING
+	 */
+	protected void sequence_Data(ISerializationContext context, DescriptionData semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.DESCRIPTION_DATA__STRING) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.DESCRIPTION_DATA__STRING));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getDataAccess().getStringSTRINGTerminalRuleCall_0_3_0(), semanticObject.getString());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Data returns OwnerData
+	 *
+	 * Constraint:
+	 *     string=STRING
+	 */
+	protected void sequence_Data(ISerializationContext context, OwnerData semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.OWNER_DATA__STRING) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.OWNER_DATA__STRING));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getDataAccess().getStringSTRINGTerminalRuleCall_2_3_0(), semanticObject.getString());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Data returns RationaleData
+	 *
+	 * Constraint:
+	 *     string=STRING
+	 */
+	protected void sequence_Data(ISerializationContext context, RationaleData semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.RATIONALE_DATA__STRING) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.RATIONALE_DATA__STRING));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getDataAccess().getStringSTRINGTerminalRuleCall_5_3_0(), semanticObject.getString());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Data returns ReviewData
+	 *
+	 * Constraint:
+	 *     string=STRING
+	 */
+	protected void sequence_Data(ISerializationContext context, ReviewData semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.REVIEW_DATA__STRING) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.REVIEW_DATA__STRING));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getDataAccess().getStringSTRINGTerminalRuleCall_3_3_0(), semanticObject.getString());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Data returns SourceData
+	 *
+	 * Constraint:
+	 *     string=STRING
+	 */
+	protected void sequence_Data(ISerializationContext context, SourceData semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.SOURCE_DATA__STRING) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.SOURCE_DATA__STRING));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getDataAccess().getStringSTRINGTerminalRuleCall_4_3_0(), semanticObject.getString());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Data returns TraceData
+	 *
+	 * Constraint:
+	 *     (ids+=ID ids+=ID*)
+	 */
+	protected void sequence_Data(ISerializationContext context, TraceData semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -920,7 +1068,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     EnglishConstraint returns EnglishConstraint
 	 *
 	 * Constraint:
-	 *     (name=ID text=STRING (ids+=ID ids+=ID*)?)
+	 *     (name=ID text=STRING data+=Data*)
 	 */
 	protected void sequence_EnglishConstraint(ISerializationContext context, EnglishConstraint semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -994,7 +1142,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     FormalConstraint returns FormalConstraint
 	 *
 	 * Constraint:
-	 *     (name=ID expr=Expr descriptor=STRING? (ids+=ID ids+=ID*)?)
+	 *     (name=ID expr=Expr data+=Data*)
 	 */
 	protected void sequence_FormalConstraint(ISerializationContext context, FormalConstraint semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1199,7 +1347,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     IdRef returns Macro
 	 *
 	 * Constraint:
-	 *     (name=ID type=Type expr=Expr descriptor=STRING? (ids+=ID ids+=ID*)?)
+	 *     (name=ID type=Type expr=Expr data+=Data*)
 	 */
 	protected void sequence_Macro(ISerializationContext context, Macro semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1217,8 +1365,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (outputs+=Variable outputs+=Variable*)? 
 	 *         locals+=Variable* 
 	 *         (equations+=LustreEquation | properties+=LustreProperty | assertions+=LustreAssertion)* 
-	 *         descriptor=STRING? 
-	 *         (ids+=ID ids+=ID*)?
+	 *         data+=Data*
 	 *     )
 	 */
 	protected void sequence_Pattern(ISerializationContext context, Pattern semanticObject) {
@@ -1483,7 +1630,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     UnitDef returns BaseUnit
 	 *
 	 * Constraint:
-	 *     (name=ID description=STRING?)
+	 *     (name=ID data+=Data*)
 	 */
 	protected void sequence_UnitDef(ISerializationContext context, BaseUnit semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1495,7 +1642,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     UnitDef returns DerivedUnit
 	 *
 	 * Constraint:
-	 *     (name=ID unit=UnitExpr description=STRING?)
+	 *     (name=ID unit=UnitExpr data+=Data*)
 	 */
 	protected void sequence_UnitDef(ISerializationContext context, DerivedUnit semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1572,19 +1719,10 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     IdRef returns Variable
 	 *
 	 * Constraint:
-	 *     (name=ID type=Type)
+	 *     (name=ID type=Type data+=Data*)
 	 */
 	protected void sequence_Variable(ISerializationContext context, Variable semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ID_REF__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.ID_REF__NAME));
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.VARIABLE__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.VARIABLE__TYPE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getVariableAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getVariableAccess().getTypeTypeParserRuleCall_2_0(), semanticObject.getType());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

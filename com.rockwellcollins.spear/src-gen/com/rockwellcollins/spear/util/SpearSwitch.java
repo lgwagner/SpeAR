@@ -220,6 +220,13 @@ public class SpearSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case SpearPackage.DATA:
+      {
+        Data data = (Data)theEObject;
+        T result = caseData(data);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case SpearPackage.EXPR:
       {
         Expr expr = (Expr)theEObject;
@@ -358,6 +365,62 @@ public class SpearSwitch<T> extends Switch<T>
         UserType userType = (UserType)theEObject;
         T result = caseUserType(userType);
         if (result == null) result = caseType(userType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SpearPackage.DESCRIPTION_DATA:
+      {
+        DescriptionData descriptionData = (DescriptionData)theEObject;
+        T result = caseDescriptionData(descriptionData);
+        if (result == null) result = caseData(descriptionData);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SpearPackage.TRACE_DATA:
+      {
+        TraceData traceData = (TraceData)theEObject;
+        T result = caseTraceData(traceData);
+        if (result == null) result = caseData(traceData);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SpearPackage.OWNER_DATA:
+      {
+        OwnerData ownerData = (OwnerData)theEObject;
+        T result = caseOwnerData(ownerData);
+        if (result == null) result = caseData(ownerData);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SpearPackage.REVIEW_DATA:
+      {
+        ReviewData reviewData = (ReviewData)theEObject;
+        T result = caseReviewData(reviewData);
+        if (result == null) result = caseData(reviewData);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SpearPackage.SOURCE_DATA:
+      {
+        SourceData sourceData = (SourceData)theEObject;
+        T result = caseSourceData(sourceData);
+        if (result == null) result = caseData(sourceData);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SpearPackage.RATIONALE_DATA:
+      {
+        RationaleData rationaleData = (RationaleData)theEObject;
+        T result = caseRationaleData(rationaleData);
+        if (result == null) result = caseData(rationaleData);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SpearPackage.COMMENTS_DATA:
+      {
+        CommentsData commentsData = (CommentsData)theEObject;
+        T result = caseCommentsData(commentsData);
+        if (result == null) result = caseData(commentsData);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -857,6 +920,22 @@ public class SpearSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Data</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Data</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseData(Data object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Expr</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1140,6 +1219,118 @@ public class SpearSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseUserType(UserType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Description Data</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Description Data</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDescriptionData(DescriptionData object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Trace Data</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Trace Data</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTraceData(TraceData object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Owner Data</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Owner Data</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseOwnerData(OwnerData object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Review Data</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Review Data</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseReviewData(ReviewData object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Source Data</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Source Data</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSourceData(SourceData object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Rationale Data</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Rationale Data</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRationaleData(RationaleData object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Comments Data</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Comments Data</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCommentsData(CommentsData object)
   {
     return null;
   }

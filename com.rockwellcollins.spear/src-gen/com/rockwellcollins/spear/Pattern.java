@@ -22,8 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.rockwellcollins.spear.Pattern#getEquations <em>Equations</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.Pattern#getProperties <em>Properties</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.Pattern#getAssertions <em>Assertions</em>}</li>
- *   <li>{@link com.rockwellcollins.spear.Pattern#getDescriptor <em>Descriptor</em>}</li>
- *   <li>{@link com.rockwellcollins.spear.Pattern#getIds <em>Ids</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.Pattern#getData <em>Data</em>}</li>
  * </ul>
  *
  * @see com.rockwellcollins.spear.SpearPackage#getPattern()
@@ -155,45 +154,19 @@ public interface Pattern extends EObject
   EList<LustreAssertion> getAssertions();
 
   /**
-   * Returns the value of the '<em><b>Descriptor</b></em>' attribute.
+   * Returns the value of the '<em><b>Data</b></em>' containment reference list.
+   * The list contents are of type {@link com.rockwellcollins.spear.Data}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Descriptor</em>' attribute isn't clear,
+   * If the meaning of the '<em>Data</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Descriptor</em>' attribute.
-   * @see #setDescriptor(String)
-   * @see com.rockwellcollins.spear.SpearPackage#getPattern_Descriptor()
-   * @model
+   * @return the value of the '<em>Data</em>' containment reference list.
+   * @see com.rockwellcollins.spear.SpearPackage#getPattern_Data()
+   * @model containment="true"
    * @generated
    */
-  String getDescriptor();
-
-  /**
-   * Sets the value of the '{@link com.rockwellcollins.spear.Pattern#getDescriptor <em>Descriptor</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Descriptor</em>' attribute.
-   * @see #getDescriptor()
-   * @generated
-   */
-  void setDescriptor(String value);
-
-  /**
-   * Returns the value of the '<em><b>Ids</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Ids</em>' attribute list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Ids</em>' attribute list.
-   * @see com.rockwellcollins.spear.SpearPackage#getPattern_Ids()
-   * @model unique="false"
-   * @generated
-   */
-  EList<String> getIds();
+  EList<Data> getData();
 
 } // Pattern

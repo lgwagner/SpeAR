@@ -84,6 +84,7 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
       case SpearPackage.CONSTRAINT: return createConstraint();
       case SpearPackage.FORMAL_CONSTRAINT: return createFormalConstraint();
       case SpearPackage.ENGLISH_CONSTRAINT: return createEnglishConstraint();
+      case SpearPackage.DATA: return createData();
       case SpearPackage.EXPR: return createExpr();
       case SpearPackage.LITERAL_EXPR: return createLiteralExpr();
       case SpearPackage.ID_REF: return createIdRef();
@@ -102,6 +103,13 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
       case SpearPackage.BOOL_TYPE: return createBoolType();
       case SpearPackage.REAL_TYPE: return createRealType();
       case SpearPackage.USER_TYPE: return createUserType();
+      case SpearPackage.DESCRIPTION_DATA: return createDescriptionData();
+      case SpearPackage.TRACE_DATA: return createTraceData();
+      case SpearPackage.OWNER_DATA: return createOwnerData();
+      case SpearPackage.REVIEW_DATA: return createReviewData();
+      case SpearPackage.SOURCE_DATA: return createSourceData();
+      case SpearPackage.RATIONALE_DATA: return createRationaleData();
+      case SpearPackage.COMMENTS_DATA: return createCommentsData();
       case SpearPackage.WHILE_EXPR: return createWhileExpr();
       case SpearPackage.BINARY_EXPR: return createBinaryExpr();
       case SpearPackage.AFTER_UNTIL_EXPR: return createAfterUntilExpr();
@@ -353,6 +361,17 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public Data createData()
+  {
+    DataImpl data = new DataImpl();
+    return data;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Expr createExpr()
   {
     ExprImpl expr = new ExprImpl();
@@ -544,6 +563,83 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
   {
     UserTypeImpl userType = new UserTypeImpl();
     return userType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DescriptionData createDescriptionData()
+  {
+    DescriptionDataImpl descriptionData = new DescriptionDataImpl();
+    return descriptionData;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TraceData createTraceData()
+  {
+    TraceDataImpl traceData = new TraceDataImpl();
+    return traceData;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public OwnerData createOwnerData()
+  {
+    OwnerDataImpl ownerData = new OwnerDataImpl();
+    return ownerData;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ReviewData createReviewData()
+  {
+    ReviewDataImpl reviewData = new ReviewDataImpl();
+    return reviewData;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public SourceData createSourceData()
+  {
+    SourceDataImpl sourceData = new SourceDataImpl();
+    return sourceData;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public RationaleData createRationaleData()
+  {
+    RationaleDataImpl rationaleData = new RationaleDataImpl();
+    return rationaleData;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public CommentsData createCommentsData()
+  {
+    CommentsDataImpl commentsData = new CommentsDataImpl();
+    return commentsData;
   }
 
   /**

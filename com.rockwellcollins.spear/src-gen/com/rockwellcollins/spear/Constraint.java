@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link com.rockwellcollins.spear.Constraint#getName <em>Name</em>}</li>
- *   <li>{@link com.rockwellcollins.spear.Constraint#getIds <em>Ids</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.Constraint#getData <em>Data</em>}</li>
  * </ul>
  *
  * @see com.rockwellcollins.spear.SpearPackage#getConstraint()
@@ -52,19 +52,19 @@ public interface Constraint extends EObject
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Ids</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
+   * Returns the value of the '<em><b>Data</b></em>' containment reference list.
+   * The list contents are of type {@link com.rockwellcollins.spear.Data}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Ids</em>' attribute list isn't clear,
+   * If the meaning of the '<em>Data</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Ids</em>' attribute list.
-   * @see com.rockwellcollins.spear.SpearPackage#getConstraint_Ids()
-   * @model unique="false"
+   * @return the value of the '<em>Data</em>' containment reference list.
+   * @see com.rockwellcollins.spear.SpearPackage#getConstraint_Data()
+   * @model containment="true"
    * @generated
    */
-  EList<String> getIds();
+  EList<Data> getData();
 
 } // Constraint
