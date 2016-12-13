@@ -12,12 +12,12 @@ import com.rockwellcollins.spear.Variable;
 
 import jkind.results.layout.Layout;
 
-public class SpearLayout implements Layout {
+public class SpearRegularLayout implements Layout {
 
 	private final Map<String,String> map;
 	private final List<String> categories;
 	
-	public SpearLayout(Specification s) {
+	public SpearRegularLayout(Specification s) {
 		
 		if(s == null) {
 			throw new IllegalArgumentException("Unable to create layout for null specification.");

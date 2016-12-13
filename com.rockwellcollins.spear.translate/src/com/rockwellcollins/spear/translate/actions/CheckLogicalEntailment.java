@@ -35,7 +35,7 @@ import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
-import com.rockwellcollins.spear.translate.layout.SpearLayout;
+import com.rockwellcollins.spear.translate.layout.SpearRegularLayout;
 import com.rockwellcollins.spear.translate.master.SProgram;
 import com.rockwellcollins.spear.translate.views.SpearConsistencyResultsView;
 import com.rockwellcollins.spear.translate.views.SpearEntailmentResultsView;
@@ -121,7 +121,7 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 				JKindResult result = new JKindResult("Spear Result", p.getMainNode().properties, renaming);
 
 				IProgressMonitor monitor = new NullProgressMonitor();
-				showView(result, new SpearLayout(specification));
+				showView(result, new SpearRegularLayout(specification));
 
 				try {
 					api.execute(p, result, monitor);
