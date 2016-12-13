@@ -89,7 +89,7 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 
 				if (specification.getBehaviors().size() == 0) {
 					MessageDialog.openError(window.getShell(), "Nothing to analyze",
-							"The user must specify at least one requirement to check for logical entailment.");
+							"The user must specify at least one property to check for logical entailment.");
 					return null;
 				}
 

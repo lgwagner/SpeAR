@@ -86,12 +86,6 @@ public class CheckRealizability implements IWorkbenchWindowActionDelegate {
 					return null;
 				}
 
-				if (specification.getBehaviors().size() == 0) {
-					MessageDialog.openError(window.getShell(), "Nothing to analyze",
-							"The user must specify at least one requirement to check for logical entailment.");
-					return null;
-				}
-
 				//Set the runtime options
 				SpearRuntimeOptions.setRuntimeOptions();
 				
