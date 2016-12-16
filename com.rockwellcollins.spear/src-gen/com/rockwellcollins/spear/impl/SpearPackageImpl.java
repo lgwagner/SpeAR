@@ -1494,9 +1494,29 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getNamedTypeDef_Data()
+  {
+    return (EReference)namedTypeDefEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getAbstractTypeDef()
   {
     return abstractTypeDefEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAbstractTypeDef_Data()
+  {
+    return (EReference)abstractTypeDefEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1517,6 +1537,16 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
   public EReference getRecordTypeDef_Fields()
   {
     return (EReference)recordTypeDefEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRecordTypeDef_Data()
+  {
+    return (EReference)recordTypeDefEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1554,6 +1584,16 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getArrayTypeDef_Data()
+  {
+    return (EReference)arrayTypeDefEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getEnumTypeDef()
   {
     return enumTypeDefEClass;
@@ -1567,6 +1607,16 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
   public EReference getEnumTypeDef_Values()
   {
     return (EReference)enumTypeDefEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEnumTypeDef_Data()
+  {
+    return (EReference)enumTypeDefEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2575,18 +2625,23 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     namedTypeDefEClass = createEClass(NAMED_TYPE_DEF);
     createEReference(namedTypeDefEClass, NAMED_TYPE_DEF__TYPE);
     createEReference(namedTypeDefEClass, NAMED_TYPE_DEF__UNIT);
+    createEReference(namedTypeDefEClass, NAMED_TYPE_DEF__DATA);
 
     abstractTypeDefEClass = createEClass(ABSTRACT_TYPE_DEF);
+    createEReference(abstractTypeDefEClass, ABSTRACT_TYPE_DEF__DATA);
 
     recordTypeDefEClass = createEClass(RECORD_TYPE_DEF);
     createEReference(recordTypeDefEClass, RECORD_TYPE_DEF__FIELDS);
+    createEReference(recordTypeDefEClass, RECORD_TYPE_DEF__DATA);
 
     arrayTypeDefEClass = createEClass(ARRAY_TYPE_DEF);
     createEReference(arrayTypeDefEClass, ARRAY_TYPE_DEF__BASE);
     createEReference(arrayTypeDefEClass, ARRAY_TYPE_DEF__SIZE);
+    createEReference(arrayTypeDefEClass, ARRAY_TYPE_DEF__DATA);
 
     enumTypeDefEClass = createEClass(ENUM_TYPE_DEF);
     createEReference(enumTypeDefEClass, ENUM_TYPE_DEF__VALUES);
+    createEReference(enumTypeDefEClass, ENUM_TYPE_DEF__DATA);
 
     concreteArrayTypeDefEClass = createEClass(CONCRETE_ARRAY_TYPE_DEF);
     createEReference(concreteArrayTypeDefEClass, CONCRETE_ARRAY_TYPE_DEF__BASE);
@@ -2906,18 +2961,23 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     initEClass(namedTypeDefEClass, NamedTypeDef.class, "NamedTypeDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getNamedTypeDef_Type(), this.getType(), null, "type", null, 0, 1, NamedTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getNamedTypeDef_Unit(), this.getUnitDef(), null, "unit", null, 0, 1, NamedTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getNamedTypeDef_Data(), this.getData(), null, "data", null, 0, -1, NamedTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(abstractTypeDefEClass, AbstractTypeDef.class, "AbstractTypeDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAbstractTypeDef_Data(), this.getData(), null, "data", null, 0, -1, AbstractTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(recordTypeDefEClass, RecordTypeDef.class, "RecordTypeDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRecordTypeDef_Fields(), this.getFieldType(), null, "fields", null, 0, -1, RecordTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRecordTypeDef_Data(), this.getData(), null, "data", null, 0, -1, RecordTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(arrayTypeDefEClass, ArrayTypeDef.class, "ArrayTypeDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getArrayTypeDef_Base(), this.getType(), null, "base", null, 0, 1, ArrayTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getArrayTypeDef_Size(), this.getExpr(), null, "size", null, 0, 1, ArrayTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getArrayTypeDef_Data(), this.getData(), null, "data", null, 0, -1, ArrayTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(enumTypeDefEClass, EnumTypeDef.class, "EnumTypeDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getEnumTypeDef_Values(), this.getEnumValue(), null, "values", null, 0, -1, EnumTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEnumTypeDef_Data(), this.getData(), null, "data", null, 0, -1, EnumTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(concreteArrayTypeDefEClass, ConcreteArrayTypeDef.class, "ConcreteArrayTypeDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getConcreteArrayTypeDef_Base(), this.getType(), null, "base", null, 0, 1, ConcreteArrayTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

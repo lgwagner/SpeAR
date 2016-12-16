@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link com.rockwellcollins.spear.RecordTypeDef#getFields <em>Fields</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.RecordTypeDef#getData <em>Data</em>}</li>
  * </ul>
  *
  * @see com.rockwellcollins.spear.SpearPackage#getRecordTypeDef()
@@ -37,5 +38,21 @@ public interface RecordTypeDef extends TypeDef
    * @generated
    */
   EList<FieldType> getFields();
+
+  /**
+   * Returns the value of the '<em><b>Data</b></em>' containment reference list.
+   * The list contents are of type {@link com.rockwellcollins.spear.Data}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Data</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Data</em>' containment reference list.
+   * @see com.rockwellcollins.spear.SpearPackage#getRecordTypeDef_Data()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Data> getData();
 
 } // RecordTypeDef

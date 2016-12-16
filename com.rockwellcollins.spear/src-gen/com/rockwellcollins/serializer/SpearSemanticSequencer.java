@@ -1498,16 +1498,10 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     TypeDef returns AbstractTypeDef
 	 *
 	 * Constraint:
-	 *     name=ID
+	 *     (name=ID data+=Data*)
 	 */
 	protected void sequence_TypeDef(ISerializationContext context, AbstractTypeDef semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.TYPE_DEF__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.TYPE_DEF__NAME));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTypeDefAccess().getNameIDTerminalRuleCall_1_1_0(), semanticObject.getName());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1516,22 +1510,10 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     TypeDef returns ArrayTypeDef
 	 *
 	 * Constraint:
-	 *     (name=ID base=Type size=Expr)
+	 *     (name=ID base=Type size=Expr data+=Data*)
 	 */
 	protected void sequence_TypeDef(ISerializationContext context, ArrayTypeDef semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.TYPE_DEF__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.TYPE_DEF__NAME));
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ARRAY_TYPE_DEF__BASE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.ARRAY_TYPE_DEF__BASE));
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ARRAY_TYPE_DEF__SIZE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.ARRAY_TYPE_DEF__SIZE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTypeDefAccess().getNameIDTerminalRuleCall_3_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getTypeDefAccess().getBaseTypeParserRuleCall_3_3_0(), semanticObject.getBase());
-		feeder.accept(grammarAccess.getTypeDefAccess().getSizeExprParserRuleCall_3_5_0(), semanticObject.getSize());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1540,7 +1522,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     TypeDef returns EnumTypeDef
 	 *
 	 * Constraint:
-	 *     (name=ID values+=EnumValue values+=EnumValue*)
+	 *     (name=ID values+=EnumValue values+=EnumValue* data+=Data*)
 	 */
 	protected void sequence_TypeDef(ISerializationContext context, EnumTypeDef semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1552,7 +1534,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     TypeDef returns NamedTypeDef
 	 *
 	 * Constraint:
-	 *     (name=ID type=Type unit=[UnitDef|ID]?)
+	 *     (name=ID type=Type unit=[UnitDef|ID]? data+=Data*)
 	 */
 	protected void sequence_TypeDef(ISerializationContext context, NamedTypeDef semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1564,7 +1546,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     TypeDef returns RecordTypeDef
 	 *
 	 * Constraint:
-	 *     (name=ID fields+=FieldType fields+=FieldType*)
+	 *     (name=ID fields+=FieldType fields+=FieldType* data+=Data*)
 	 */
 	protected void sequence_TypeDef(ISerializationContext context, RecordTypeDef semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

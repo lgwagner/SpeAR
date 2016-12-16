@@ -2,6 +2,7 @@
  */
 package com.rockwellcollins.spear.impl;
 
+import com.rockwellcollins.spear.Data;
 import com.rockwellcollins.spear.FieldType;
 import com.rockwellcollins.spear.RecordTypeDef;
 import com.rockwellcollins.spear.SpearPackage;
@@ -27,6 +28,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link com.rockwellcollins.spear.impl.RecordTypeDefImpl#getFields <em>Fields</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.impl.RecordTypeDefImpl#getData <em>Data</em>}</li>
  * </ul>
  *
  * @generated
@@ -42,6 +44,16 @@ public class RecordTypeDefImpl extends TypeDefImpl implements RecordTypeDef
    * @ordered
    */
   protected EList<FieldType> fields;
+
+  /**
+   * The cached value of the '{@link #getData() <em>Data</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getData()
+   * @generated
+   * @ordered
+   */
+  protected EList<Data> data;
 
   /**
    * <!-- begin-user-doc -->
@@ -83,6 +95,20 @@ public class RecordTypeDefImpl extends TypeDefImpl implements RecordTypeDef
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<Data> getData()
+  {
+    if (data == null)
+    {
+      data = new EObjectContainmentEList<Data>(Data.class, this, SpearPackage.RECORD_TYPE_DEF__DATA);
+    }
+    return data;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -90,6 +116,8 @@ public class RecordTypeDefImpl extends TypeDefImpl implements RecordTypeDef
     {
       case SpearPackage.RECORD_TYPE_DEF__FIELDS:
         return ((InternalEList<?>)getFields()).basicRemove(otherEnd, msgs);
+      case SpearPackage.RECORD_TYPE_DEF__DATA:
+        return ((InternalEList<?>)getData()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -106,6 +134,8 @@ public class RecordTypeDefImpl extends TypeDefImpl implements RecordTypeDef
     {
       case SpearPackage.RECORD_TYPE_DEF__FIELDS:
         return getFields();
+      case SpearPackage.RECORD_TYPE_DEF__DATA:
+        return getData();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -125,6 +155,10 @@ public class RecordTypeDefImpl extends TypeDefImpl implements RecordTypeDef
         getFields().clear();
         getFields().addAll((Collection<? extends FieldType>)newValue);
         return;
+      case SpearPackage.RECORD_TYPE_DEF__DATA:
+        getData().clear();
+        getData().addAll((Collection<? extends Data>)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -142,6 +176,9 @@ public class RecordTypeDefImpl extends TypeDefImpl implements RecordTypeDef
       case SpearPackage.RECORD_TYPE_DEF__FIELDS:
         getFields().clear();
         return;
+      case SpearPackage.RECORD_TYPE_DEF__DATA:
+        getData().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -158,6 +195,8 @@ public class RecordTypeDefImpl extends TypeDefImpl implements RecordTypeDef
     {
       case SpearPackage.RECORD_TYPE_DEF__FIELDS:
         return fields != null && !fields.isEmpty();
+      case SpearPackage.RECORD_TYPE_DEF__DATA:
+        return data != null && !data.isEmpty();
     }
     return super.eIsSet(featureID);
   }

@@ -16,10 +16,13 @@ public class DataValidator extends AbstractSpearJavaValidator {
 		SimpleDateFormat sdf2 = new SimpleDateFormat("MM/dd/yyyy");
 		SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat sdf4 = new SimpleDateFormat("yyyy/MM/dd");
+		SimpleDateFormat sdf5 = new SimpleDateFormat("yyyyMMdd");
+		
 		sdf1.setLenient(false);
 		sdf2.setLenient(false);
 		sdf3.setLenient(false);
 		sdf4.setLenient(false);
+		sdf5.setLenient(false);
 		
 		boolean success = false;
 		
@@ -57,10 +60,19 @@ public class DataValidator extends AbstractSpearJavaValidator {
 			} catch (Exception e) {
 				success = false;
 			}
+		}	
+		
+		if (!success) {
+			try {
+				Date d5 = sdf5.parse(date.getString());
+				success = (d5 != null);
+			} catch (Exception e) {
+				success = false;
+			}
 		}
 		
 		if(!success) {
-			error("Date is an illegal format. Supported formats are: mm-dd-yyyy, mm/dd/yyyy, yyyy-mm-dd, yyyy/mm/dd", date, SpearPackage.Literals.REVIEW_DATA__STRING);
+			error("Date is an illegal format. Supported formats are: mm-dd-yyyy, mm/dd/yyyy, yyyy-mm-dd, yyyy/mm/dd, yyyymmdd", date, SpearPackage.Literals.REVIEW_DATA__STRING);
 		}
 	}
 }

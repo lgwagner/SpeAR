@@ -2,6 +2,7 @@
  */
 package com.rockwellcollins.spear;
 
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,6 +15,7 @@ package com.rockwellcollins.spear;
  * <ul>
  *   <li>{@link com.rockwellcollins.spear.ArrayTypeDef#getBase <em>Base</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.ArrayTypeDef#getSize <em>Size</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.ArrayTypeDef#getData <em>Data</em>}</li>
  * </ul>
  *
  * @see com.rockwellcollins.spear.SpearPackage#getArrayTypeDef()
@@ -73,5 +75,21 @@ public interface ArrayTypeDef extends TypeDef
    * @generated
    */
   void setSize(Expr value);
+
+  /**
+   * Returns the value of the '<em><b>Data</b></em>' containment reference list.
+   * The list contents are of type {@link com.rockwellcollins.spear.Data}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Data</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Data</em>' containment reference list.
+   * @see com.rockwellcollins.spear.SpearPackage#getArrayTypeDef_Data()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Data> getData();
 
 } // ArrayTypeDef

@@ -4,7 +4,7 @@
     editorDirectory="/com.rockwellcollins.spear.editor/src" modelPluginID="com.rockwellcollins.spear"
     forceOverwrite="true" modelName="Spear" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="6.0" copyrightFields="false" editPluginID="com.rockwellcollins.spear.edit"
-    editorPluginID="com.rockwellcollins.spear.editor" runtimeVersion="2.11">
+    editorPluginID="com.rockwellcollins.spear.editor" runtimeVersion="2.12">
   <genPackages prefix="Spear" basePackage="com.rockwellcollins" disposableProviderFactory="true"
       fileExtensions="spear" ecorePackage="Spear.ecore#/">
     <genClasses ecoreClass="Spear.ecore#//File">
@@ -116,17 +116,23 @@
     <genClasses ecoreClass="Spear.ecore#//NamedTypeDef">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//NamedTypeDef/type"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Spear.ecore#//NamedTypeDef/unit"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//NamedTypeDef/data"/>
     </genClasses>
-    <genClasses ecoreClass="Spear.ecore#//AbstractTypeDef"/>
+    <genClasses ecoreClass="Spear.ecore#//AbstractTypeDef">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//AbstractTypeDef/data"/>
+    </genClasses>
     <genClasses ecoreClass="Spear.ecore#//RecordTypeDef">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//RecordTypeDef/fields"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//RecordTypeDef/data"/>
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//ArrayTypeDef">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//ArrayTypeDef/base"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//ArrayTypeDef/size"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//ArrayTypeDef/data"/>
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//EnumTypeDef">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//EnumTypeDef/values"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//EnumTypeDef/data"/>
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//ConcreteArrayTypeDef">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//ConcreteArrayTypeDef/base"/>

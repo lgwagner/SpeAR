@@ -2,6 +2,7 @@
  */
 package com.rockwellcollins.spear;
 
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,6 +15,7 @@ package com.rockwellcollins.spear;
  * <ul>
  *   <li>{@link com.rockwellcollins.spear.NamedTypeDef#getType <em>Type</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.NamedTypeDef#getUnit <em>Unit</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.NamedTypeDef#getData <em>Data</em>}</li>
  * </ul>
  *
  * @see com.rockwellcollins.spear.SpearPackage#getNamedTypeDef()
@@ -73,5 +75,21 @@ public interface NamedTypeDef extends TypeDef
    * @generated
    */
   void setUnit(UnitDef value);
+
+  /**
+   * Returns the value of the '<em><b>Data</b></em>' containment reference list.
+   * The list contents are of type {@link com.rockwellcollins.spear.Data}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Data</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Data</em>' containment reference list.
+   * @see com.rockwellcollins.spear.SpearPackage#getNamedTypeDef_Data()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Data> getData();
 
 } // NamedTypeDef

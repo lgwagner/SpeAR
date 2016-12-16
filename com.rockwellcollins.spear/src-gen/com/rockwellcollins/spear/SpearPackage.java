@@ -1338,13 +1338,22 @@ public interface SpearPackage extends EPackage
   int NAMED_TYPE_DEF__UNIT = TYPE_DEF_FEATURE_COUNT + 1;
 
   /**
+   * The feature id for the '<em><b>Data</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NAMED_TYPE_DEF__DATA = TYPE_DEF_FEATURE_COUNT + 2;
+
+  /**
    * The number of structural features of the '<em>Named Type Def</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int NAMED_TYPE_DEF_FEATURE_COUNT = TYPE_DEF_FEATURE_COUNT + 2;
+  int NAMED_TYPE_DEF_FEATURE_COUNT = TYPE_DEF_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link com.rockwellcollins.spear.impl.AbstractTypeDefImpl <em>Abstract Type Def</em>}' class.
@@ -1366,13 +1375,22 @@ public interface SpearPackage extends EPackage
   int ABSTRACT_TYPE_DEF__NAME = TYPE_DEF__NAME;
 
   /**
+   * The feature id for the '<em><b>Data</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_TYPE_DEF__DATA = TYPE_DEF_FEATURE_COUNT + 0;
+
+  /**
    * The number of structural features of the '<em>Abstract Type Def</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ABSTRACT_TYPE_DEF_FEATURE_COUNT = TYPE_DEF_FEATURE_COUNT + 0;
+  int ABSTRACT_TYPE_DEF_FEATURE_COUNT = TYPE_DEF_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link com.rockwellcollins.spear.impl.RecordTypeDefImpl <em>Record Type Def</em>}' class.
@@ -1403,13 +1421,22 @@ public interface SpearPackage extends EPackage
   int RECORD_TYPE_DEF__FIELDS = TYPE_DEF_FEATURE_COUNT + 0;
 
   /**
+   * The feature id for the '<em><b>Data</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RECORD_TYPE_DEF__DATA = TYPE_DEF_FEATURE_COUNT + 1;
+
+  /**
    * The number of structural features of the '<em>Record Type Def</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RECORD_TYPE_DEF_FEATURE_COUNT = TYPE_DEF_FEATURE_COUNT + 1;
+  int RECORD_TYPE_DEF_FEATURE_COUNT = TYPE_DEF_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link com.rockwellcollins.spear.impl.ArrayTypeDefImpl <em>Array Type Def</em>}' class.
@@ -1449,13 +1476,22 @@ public interface SpearPackage extends EPackage
   int ARRAY_TYPE_DEF__SIZE = TYPE_DEF_FEATURE_COUNT + 1;
 
   /**
+   * The feature id for the '<em><b>Data</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ARRAY_TYPE_DEF__DATA = TYPE_DEF_FEATURE_COUNT + 2;
+
+  /**
    * The number of structural features of the '<em>Array Type Def</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ARRAY_TYPE_DEF_FEATURE_COUNT = TYPE_DEF_FEATURE_COUNT + 2;
+  int ARRAY_TYPE_DEF_FEATURE_COUNT = TYPE_DEF_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link com.rockwellcollins.spear.impl.EnumTypeDefImpl <em>Enum Type Def</em>}' class.
@@ -1486,13 +1522,22 @@ public interface SpearPackage extends EPackage
   int ENUM_TYPE_DEF__VALUES = TYPE_DEF_FEATURE_COUNT + 0;
 
   /**
+   * The feature id for the '<em><b>Data</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_TYPE_DEF__DATA = TYPE_DEF_FEATURE_COUNT + 1;
+
+  /**
    * The number of structural features of the '<em>Enum Type Def</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ENUM_TYPE_DEF_FEATURE_COUNT = TYPE_DEF_FEATURE_COUNT + 1;
+  int ENUM_TYPE_DEF_FEATURE_COUNT = TYPE_DEF_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link com.rockwellcollins.spear.impl.ConcreteArrayTypeDefImpl <em>Concrete Array Type Def</em>}' class.
@@ -3536,6 +3581,17 @@ public interface SpearPackage extends EPackage
   EReference getNamedTypeDef_Unit();
 
   /**
+   * Returns the meta object for the containment reference list '{@link com.rockwellcollins.spear.NamedTypeDef#getData <em>Data</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Data</em>'.
+   * @see com.rockwellcollins.spear.NamedTypeDef#getData()
+   * @see #getNamedTypeDef()
+   * @generated
+   */
+  EReference getNamedTypeDef_Data();
+
+  /**
    * Returns the meta object for class '{@link com.rockwellcollins.spear.AbstractTypeDef <em>Abstract Type Def</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3544,6 +3600,17 @@ public interface SpearPackage extends EPackage
    * @generated
    */
   EClass getAbstractTypeDef();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link com.rockwellcollins.spear.AbstractTypeDef#getData <em>Data</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Data</em>'.
+   * @see com.rockwellcollins.spear.AbstractTypeDef#getData()
+   * @see #getAbstractTypeDef()
+   * @generated
+   */
+  EReference getAbstractTypeDef_Data();
 
   /**
    * Returns the meta object for class '{@link com.rockwellcollins.spear.RecordTypeDef <em>Record Type Def</em>}'.
@@ -3565,6 +3632,17 @@ public interface SpearPackage extends EPackage
    * @generated
    */
   EReference getRecordTypeDef_Fields();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link com.rockwellcollins.spear.RecordTypeDef#getData <em>Data</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Data</em>'.
+   * @see com.rockwellcollins.spear.RecordTypeDef#getData()
+   * @see #getRecordTypeDef()
+   * @generated
+   */
+  EReference getRecordTypeDef_Data();
 
   /**
    * Returns the meta object for class '{@link com.rockwellcollins.spear.ArrayTypeDef <em>Array Type Def</em>}'.
@@ -3599,6 +3677,17 @@ public interface SpearPackage extends EPackage
   EReference getArrayTypeDef_Size();
 
   /**
+   * Returns the meta object for the containment reference list '{@link com.rockwellcollins.spear.ArrayTypeDef#getData <em>Data</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Data</em>'.
+   * @see com.rockwellcollins.spear.ArrayTypeDef#getData()
+   * @see #getArrayTypeDef()
+   * @generated
+   */
+  EReference getArrayTypeDef_Data();
+
+  /**
    * Returns the meta object for class '{@link com.rockwellcollins.spear.EnumTypeDef <em>Enum Type Def</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3618,6 +3707,17 @@ public interface SpearPackage extends EPackage
    * @generated
    */
   EReference getEnumTypeDef_Values();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link com.rockwellcollins.spear.EnumTypeDef#getData <em>Data</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Data</em>'.
+   * @see com.rockwellcollins.spear.EnumTypeDef#getData()
+   * @see #getEnumTypeDef()
+   * @generated
+   */
+  EReference getEnumTypeDef_Data();
 
   /**
    * Returns the meta object for class '{@link com.rockwellcollins.spear.ConcreteArrayTypeDef <em>Concrete Array Type Def</em>}'.
@@ -5312,6 +5412,14 @@ public interface SpearPackage extends EPackage
     EReference NAMED_TYPE_DEF__UNIT = eINSTANCE.getNamedTypeDef_Unit();
 
     /**
+     * The meta object literal for the '<em><b>Data</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference NAMED_TYPE_DEF__DATA = eINSTANCE.getNamedTypeDef_Data();
+
+    /**
      * The meta object literal for the '{@link com.rockwellcollins.spear.impl.AbstractTypeDefImpl <em>Abstract Type Def</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5320,6 +5428,14 @@ public interface SpearPackage extends EPackage
      * @generated
      */
     EClass ABSTRACT_TYPE_DEF = eINSTANCE.getAbstractTypeDef();
+
+    /**
+     * The meta object literal for the '<em><b>Data</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ABSTRACT_TYPE_DEF__DATA = eINSTANCE.getAbstractTypeDef_Data();
 
     /**
      * The meta object literal for the '{@link com.rockwellcollins.spear.impl.RecordTypeDefImpl <em>Record Type Def</em>}' class.
@@ -5338,6 +5454,14 @@ public interface SpearPackage extends EPackage
      * @generated
      */
     EReference RECORD_TYPE_DEF__FIELDS = eINSTANCE.getRecordTypeDef_Fields();
+
+    /**
+     * The meta object literal for the '<em><b>Data</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RECORD_TYPE_DEF__DATA = eINSTANCE.getRecordTypeDef_Data();
 
     /**
      * The meta object literal for the '{@link com.rockwellcollins.spear.impl.ArrayTypeDefImpl <em>Array Type Def</em>}' class.
@@ -5366,6 +5490,14 @@ public interface SpearPackage extends EPackage
     EReference ARRAY_TYPE_DEF__SIZE = eINSTANCE.getArrayTypeDef_Size();
 
     /**
+     * The meta object literal for the '<em><b>Data</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ARRAY_TYPE_DEF__DATA = eINSTANCE.getArrayTypeDef_Data();
+
+    /**
      * The meta object literal for the '{@link com.rockwellcollins.spear.impl.EnumTypeDefImpl <em>Enum Type Def</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5382,6 +5514,14 @@ public interface SpearPackage extends EPackage
      * @generated
      */
     EReference ENUM_TYPE_DEF__VALUES = eINSTANCE.getEnumTypeDef_Values();
+
+    /**
+     * The meta object literal for the '<em><b>Data</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ENUM_TYPE_DEF__DATA = eINSTANCE.getEnumTypeDef_Data();
 
     /**
      * The meta object literal for the '{@link com.rockwellcollins.spear.impl.ConcreteArrayTypeDefImpl <em>Concrete Array Type Def</em>}' class.

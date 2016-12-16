@@ -2416,8 +2416,8 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = RULE_EXT_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSpear.g:5705:14: ( RULE_INT ( 'e' | 'E' ) ( '-' | '+' )? RULE_INT )
-            // InternalSpear.g:5705:16: RULE_INT ( 'e' | 'E' ) ( '-' | '+' )? RULE_INT
+            // InternalSpear.g:5795:14: ( RULE_INT ( 'e' | 'E' ) ( '-' | '+' )? RULE_INT )
+            // InternalSpear.g:5795:16: RULE_INT ( 'e' | 'E' ) ( '-' | '+' )? RULE_INT
             {
             mRULE_INT(); 
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
@@ -2429,7 +2429,7 @@ public class InternalSpearLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // InternalSpear.g:5705:35: ( '-' | '+' )?
+            // InternalSpear.g:5795:35: ( '-' | '+' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -2472,10 +2472,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSpear.g:5707:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // InternalSpear.g:5707:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalSpear.g:5797:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // InternalSpear.g:5797:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // InternalSpear.g:5707:11: ( '^' )?
+            // InternalSpear.g:5797:11: ( '^' )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -2484,7 +2484,7 @@ public class InternalSpearLexer extends Lexer {
             }
             switch (alt2) {
                 case 1 :
-                    // InternalSpear.g:5707:11: '^'
+                    // InternalSpear.g:5797:11: '^'
                     {
                     match('^'); 
 
@@ -2502,7 +2502,7 @@ public class InternalSpearLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // InternalSpear.g:5707:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalSpear.g:5797:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop3:
             do {
                 int alt3=2;
@@ -2551,10 +2551,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSpear.g:5709:10: ( ( '0' .. '9' )+ )
-            // InternalSpear.g:5709:12: ( '0' .. '9' )+
+            // InternalSpear.g:5799:10: ( ( '0' .. '9' )+ )
+            // InternalSpear.g:5799:12: ( '0' .. '9' )+
             {
-            // InternalSpear.g:5709:12: ( '0' .. '9' )+
+            // InternalSpear.g:5799:12: ( '0' .. '9' )+
             int cnt4=0;
             loop4:
             do {
@@ -2568,7 +2568,7 @@ public class InternalSpearLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // InternalSpear.g:5709:13: '0' .. '9'
+            	    // InternalSpear.g:5799:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -2600,10 +2600,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSpear.g:5711:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // InternalSpear.g:5711:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalSpear.g:5801:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // InternalSpear.g:5801:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // InternalSpear.g:5711:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalSpear.g:5801:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -2621,10 +2621,10 @@ public class InternalSpearLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // InternalSpear.g:5711:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // InternalSpear.g:5801:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // InternalSpear.g:5711:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // InternalSpear.g:5801:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop5:
                     do {
                         int alt5=3;
@@ -2640,7 +2640,7 @@ public class InternalSpearLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // InternalSpear.g:5711:21: '\\\\' .
+                    	    // InternalSpear.g:5801:21: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -2648,7 +2648,7 @@ public class InternalSpearLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalSpear.g:5711:28: ~ ( ( '\\\\' | '\"' ) )
+                    	    // InternalSpear.g:5801:28: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -2673,10 +2673,10 @@ public class InternalSpearLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // InternalSpear.g:5711:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // InternalSpear.g:5801:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // InternalSpear.g:5711:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // InternalSpear.g:5801:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop6:
                     do {
                         int alt6=3;
@@ -2692,7 +2692,7 @@ public class InternalSpearLexer extends Lexer {
 
                         switch (alt6) {
                     	case 1 :
-                    	    // InternalSpear.g:5711:54: '\\\\' .
+                    	    // InternalSpear.g:5801:54: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -2700,7 +2700,7 @@ public class InternalSpearLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalSpear.g:5711:61: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // InternalSpear.g:5801:61: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -2743,12 +2743,12 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSpear.g:5713:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // InternalSpear.g:5713:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // InternalSpear.g:5803:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // InternalSpear.g:5803:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // InternalSpear.g:5713:24: ( options {greedy=false; } : . )*
+            // InternalSpear.g:5803:24: ( options {greedy=false; } : . )*
             loop8:
             do {
                 int alt8=2;
@@ -2773,7 +2773,7 @@ public class InternalSpearLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // InternalSpear.g:5713:52: .
+            	    // InternalSpear.g:5803:52: .
             	    {
             	    matchAny(); 
 
@@ -2803,12 +2803,12 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSpear.g:5715:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // InternalSpear.g:5715:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // InternalSpear.g:5805:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // InternalSpear.g:5805:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // InternalSpear.g:5715:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // InternalSpear.g:5805:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop9:
             do {
                 int alt9=2;
@@ -2821,7 +2821,7 @@ public class InternalSpearLexer extends Lexer {
 
                 switch (alt9) {
             	case 1 :
-            	    // InternalSpear.g:5715:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // InternalSpear.g:5805:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2841,7 +2841,7 @@ public class InternalSpearLexer extends Lexer {
                 }
             } while (true);
 
-            // InternalSpear.g:5715:40: ( ( '\\r' )? '\\n' )?
+            // InternalSpear.g:5805:40: ( ( '\\r' )? '\\n' )?
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -2850,9 +2850,9 @@ public class InternalSpearLexer extends Lexer {
             }
             switch (alt11) {
                 case 1 :
-                    // InternalSpear.g:5715:41: ( '\\r' )? '\\n'
+                    // InternalSpear.g:5805:41: ( '\\r' )? '\\n'
                     {
-                    // InternalSpear.g:5715:41: ( '\\r' )?
+                    // InternalSpear.g:5805:41: ( '\\r' )?
                     int alt10=2;
                     int LA10_0 = input.LA(1);
 
@@ -2861,7 +2861,7 @@ public class InternalSpearLexer extends Lexer {
                     }
                     switch (alt10) {
                         case 1 :
-                            // InternalSpear.g:5715:41: '\\r'
+                            // InternalSpear.g:5805:41: '\\r'
                             {
                             match('\r'); 
 
@@ -2893,10 +2893,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSpear.g:5717:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // InternalSpear.g:5717:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalSpear.g:5807:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // InternalSpear.g:5807:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // InternalSpear.g:5717:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalSpear.g:5807:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt12=0;
             loop12:
             do {
@@ -2950,8 +2950,8 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalSpear.g:5719:16: ( . )
-            // InternalSpear.g:5719:18: .
+            // InternalSpear.g:5809:16: ( . )
+            // InternalSpear.g:5809:18: .
             {
             matchAny(); 
 

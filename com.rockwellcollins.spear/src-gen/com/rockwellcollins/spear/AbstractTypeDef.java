@@ -2,12 +2,19 @@
  */
 package com.rockwellcollins.spear;
 
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Abstract Type Def</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link com.rockwellcollins.spear.AbstractTypeDef#getData <em>Data</em>}</li>
+ * </ul>
  *
  * @see com.rockwellcollins.spear.SpearPackage#getAbstractTypeDef()
  * @model
@@ -15,4 +22,20 @@ package com.rockwellcollins.spear;
  */
 public interface AbstractTypeDef extends TypeDef
 {
+  /**
+   * Returns the value of the '<em><b>Data</b></em>' containment reference list.
+   * The list contents are of type {@link com.rockwellcollins.spear.Data}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Data</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Data</em>' containment reference list.
+   * @see com.rockwellcollins.spear.SpearPackage#getAbstractTypeDef_Data()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Data> getData();
+
 } // AbstractTypeDef

@@ -3,17 +3,25 @@
 package com.rockwellcollins.spear.impl;
 
 import com.rockwellcollins.spear.ArrayTypeDef;
+import com.rockwellcollins.spear.Data;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Type;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,6 +33,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <ul>
  *   <li>{@link com.rockwellcollins.spear.impl.ArrayTypeDefImpl#getBase <em>Base</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.impl.ArrayTypeDefImpl#getSize <em>Size</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.impl.ArrayTypeDefImpl#getData <em>Data</em>}</li>
  * </ul>
  *
  * @generated
@@ -50,6 +59,16 @@ public class ArrayTypeDefImpl extends TypeDefImpl implements ArrayTypeDef
    * @ordered
    */
   protected Expr size;
+
+  /**
+   * The cached value of the '{@link #getData() <em>Data</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getData()
+   * @generated
+   * @ordered
+   */
+  protected EList<Data> data;
 
   /**
    * <!-- begin-user-doc -->
@@ -173,6 +192,20 @@ public class ArrayTypeDefImpl extends TypeDefImpl implements ArrayTypeDef
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<Data> getData()
+  {
+    if (data == null)
+    {
+      data = new EObjectContainmentEList<Data>(Data.class, this, SpearPackage.ARRAY_TYPE_DEF__DATA);
+    }
+    return data;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -182,6 +215,8 @@ public class ArrayTypeDefImpl extends TypeDefImpl implements ArrayTypeDef
         return basicSetBase(null, msgs);
       case SpearPackage.ARRAY_TYPE_DEF__SIZE:
         return basicSetSize(null, msgs);
+      case SpearPackage.ARRAY_TYPE_DEF__DATA:
+        return ((InternalEList<?>)getData()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -200,6 +235,8 @@ public class ArrayTypeDefImpl extends TypeDefImpl implements ArrayTypeDef
         return getBase();
       case SpearPackage.ARRAY_TYPE_DEF__SIZE:
         return getSize();
+      case SpearPackage.ARRAY_TYPE_DEF__DATA:
+        return getData();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -209,6 +246,7 @@ public class ArrayTypeDefImpl extends TypeDefImpl implements ArrayTypeDef
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -219,6 +257,10 @@ public class ArrayTypeDefImpl extends TypeDefImpl implements ArrayTypeDef
         return;
       case SpearPackage.ARRAY_TYPE_DEF__SIZE:
         setSize((Expr)newValue);
+        return;
+      case SpearPackage.ARRAY_TYPE_DEF__DATA:
+        getData().clear();
+        getData().addAll((Collection<? extends Data>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -240,6 +282,9 @@ public class ArrayTypeDefImpl extends TypeDefImpl implements ArrayTypeDef
       case SpearPackage.ARRAY_TYPE_DEF__SIZE:
         setSize((Expr)null);
         return;
+      case SpearPackage.ARRAY_TYPE_DEF__DATA:
+        getData().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -258,6 +303,8 @@ public class ArrayTypeDefImpl extends TypeDefImpl implements ArrayTypeDef
         return base != null;
       case SpearPackage.ARRAY_TYPE_DEF__SIZE:
         return size != null;
+      case SpearPackage.ARRAY_TYPE_DEF__DATA:
+        return data != null && !data.isEmpty();
     }
     return super.eIsSet(featureID);
   }

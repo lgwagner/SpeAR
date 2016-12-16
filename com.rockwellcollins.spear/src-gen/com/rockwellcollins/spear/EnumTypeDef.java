@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link com.rockwellcollins.spear.EnumTypeDef#getValues <em>Values</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.EnumTypeDef#getData <em>Data</em>}</li>
  * </ul>
  *
  * @see com.rockwellcollins.spear.SpearPackage#getEnumTypeDef()
@@ -37,5 +38,21 @@ public interface EnumTypeDef extends TypeDef
    * @generated
    */
   EList<EnumValue> getValues();
+
+  /**
+   * Returns the value of the '<em><b>Data</b></em>' containment reference list.
+   * The list contents are of type {@link com.rockwellcollins.spear.Data}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Data</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Data</em>' containment reference list.
+   * @see com.rockwellcollins.spear.SpearPackage#getEnumTypeDef_Data()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Data> getData();
 
 } // EnumTypeDef

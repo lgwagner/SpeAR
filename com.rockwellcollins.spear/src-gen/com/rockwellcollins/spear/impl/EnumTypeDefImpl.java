@@ -2,6 +2,7 @@
  */
 package com.rockwellcollins.spear.impl;
 
+import com.rockwellcollins.spear.Data;
 import com.rockwellcollins.spear.EnumTypeDef;
 import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.SpearPackage;
@@ -27,6 +28,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link com.rockwellcollins.spear.impl.EnumTypeDefImpl#getValues <em>Values</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.impl.EnumTypeDefImpl#getData <em>Data</em>}</li>
  * </ul>
  *
  * @generated
@@ -42,6 +44,16 @@ public class EnumTypeDefImpl extends TypeDefImpl implements EnumTypeDef
    * @ordered
    */
   protected EList<EnumValue> values;
+
+  /**
+   * The cached value of the '{@link #getData() <em>Data</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getData()
+   * @generated
+   * @ordered
+   */
+  protected EList<Data> data;
 
   /**
    * <!-- begin-user-doc -->
@@ -83,6 +95,20 @@ public class EnumTypeDefImpl extends TypeDefImpl implements EnumTypeDef
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<Data> getData()
+  {
+    if (data == null)
+    {
+      data = new EObjectContainmentEList<Data>(Data.class, this, SpearPackage.ENUM_TYPE_DEF__DATA);
+    }
+    return data;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -90,6 +116,8 @@ public class EnumTypeDefImpl extends TypeDefImpl implements EnumTypeDef
     {
       case SpearPackage.ENUM_TYPE_DEF__VALUES:
         return ((InternalEList<?>)getValues()).basicRemove(otherEnd, msgs);
+      case SpearPackage.ENUM_TYPE_DEF__DATA:
+        return ((InternalEList<?>)getData()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -106,6 +134,8 @@ public class EnumTypeDefImpl extends TypeDefImpl implements EnumTypeDef
     {
       case SpearPackage.ENUM_TYPE_DEF__VALUES:
         return getValues();
+      case SpearPackage.ENUM_TYPE_DEF__DATA:
+        return getData();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -125,6 +155,10 @@ public class EnumTypeDefImpl extends TypeDefImpl implements EnumTypeDef
         getValues().clear();
         getValues().addAll((Collection<? extends EnumValue>)newValue);
         return;
+      case SpearPackage.ENUM_TYPE_DEF__DATA:
+        getData().clear();
+        getData().addAll((Collection<? extends Data>)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -142,6 +176,9 @@ public class EnumTypeDefImpl extends TypeDefImpl implements EnumTypeDef
       case SpearPackage.ENUM_TYPE_DEF__VALUES:
         getValues().clear();
         return;
+      case SpearPackage.ENUM_TYPE_DEF__DATA:
+        getData().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -158,6 +195,8 @@ public class EnumTypeDefImpl extends TypeDefImpl implements EnumTypeDef
     {
       case SpearPackage.ENUM_TYPE_DEF__VALUES:
         return values != null && !values.isEmpty();
+      case SpearPackage.ENUM_TYPE_DEF__DATA:
+        return data != null && !data.isEmpty();
     }
     return super.eIsSet(featureID);
   }

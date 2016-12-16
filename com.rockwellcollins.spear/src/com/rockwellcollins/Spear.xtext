@@ -79,11 +79,12 @@ AtomicUnitExpr returns UnitExpr:
 	| '(' UnitExpr ')';
 
 TypeDef:
-	{NamedTypeDef} name=ID IdTypeDelimiter type=Type (unit=[UnitDef])?
-	| {AbstractTypeDef} name=ID IdTypeDelimiter 'abstract'
-	| {RecordTypeDef} name=ID IdTypeDelimiter 'record' '{' fields+=FieldType (',' fields+=FieldType)* '}'
-	| {ArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=Expr ']'
-	| {EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{' values+=EnumValue (',' values+=EnumValue)* '}';
+	  {NamedTypeDef} name=ID IdTypeDelimiter type=Type (unit=[UnitDef])? (data+=Data)*
+	| {AbstractTypeDef} name=ID IdTypeDelimiter 'abstract' (data+=Data)*
+	| {RecordTypeDef} name=ID IdTypeDelimiter 'record' '{' fields+=FieldType (',' fields+=FieldType)* '}' (data+=Data)*
+	| {ArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=Expr ']' (data+=Data)*
+	| {EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{' values+=EnumValue (',' values+=EnumValue)* '}' (data+=Data)*
+;
 
 UnusedTypeDef returns TypeDef:
 	{ConcreteArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=INT ']';
