@@ -1,1 +1,8 @@
 bin
+
+.DS_Store
+
+**/xtend-gen
+**/src-gen
+**/plugin.xml_gen
+com.rockwellcollins.spear/model
