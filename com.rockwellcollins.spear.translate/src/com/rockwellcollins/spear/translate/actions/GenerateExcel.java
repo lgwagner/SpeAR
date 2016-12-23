@@ -1,5 +1,8 @@
 package com.rockwellcollins.spear.translate.actions;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -26,6 +29,7 @@ import org.eclipse.xtext.validation.Issue;
 import com.google.inject.Injector;
 import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.translate.excel.MakeExcel;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
 public class GenerateExcel implements IWorkbenchWindowActionDelegate {
@@ -63,11 +67,19 @@ public class GenerateExcel implements IWorkbenchWindowActionDelegate {
 				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 				IResource excelResource = root.getFile(new Path(excelURI.toPlatformString(true)));
 
-				//This is where you will create the excel file.				
-				//MakeExcel.toPDF(workingCopy,pdfResource.getLocation().toFile());
-				
+		            //File file = File.createTempFile("requirements", ".xls");
+					//This is where you will create the excel file.	
+				try{
+					MakeExcel.toExcel(workingCopy,excelResource.getLocation().toFile());
+				}catch (Exception e) {
+		            //Dialog.showError("Unable to open spreadsheet", e.getMessage());
+		            MessageDialog.openError(window.getShell(), "Unable to export to spreadsheet", e.getMessage());
+
+		            e.printStackTrace();
+		        }
+		            //org.eclipse.swt.program.Program.launch(file.toString());
 				//Turn this off / remove this when you want to test your code.
-				MessageDialog.openError(window.getShell(), "Feature Unsupported", "This feature is not yet supported.");
+				//MessageDialog.openError(window.getShell(), "Feature Unsupported", "This feature is not yet supported.");
 
 				// refresh the workspace
 				root.refreshLocal(IResource.DEPTH_INFINITE, null);
