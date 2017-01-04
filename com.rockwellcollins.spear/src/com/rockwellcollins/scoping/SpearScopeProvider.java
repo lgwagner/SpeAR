@@ -5,12 +5,15 @@ package com.rockwellcollins.scoping;
 
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
 
+import com.google.inject.Inject;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.Expr;
+import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.RecordExpr;
@@ -48,18 +51,20 @@ public class SpearScopeProvider extends org.eclipse.xtext.scoping.impl.AbstractD
 			return IScope.NULLSCOPE;
 		}
 	}
-	
-	IScope scope_Variable(Pattern p, EReference reference) {
-		return getPatternScope(p);
+
+	IScope scope_Variable(Pattern p, EReference ref) {
+		return getPatternScope(p,ref);
 	}
 	
-	IScope scope_IdRef(Pattern p, EReference reference) {
-		return getPatternScope(p);
+	IScope scope_IdRef(Pattern p, EReference ref) {
+		return getPatternScope(p,ref);
 	}
 
-	private IScope getPatternScope(Pattern p) {
-		IScope scope = Scopes.scopeFor(EcoreUtil2.getAllContentsOfType(Utilities.getRoot(p), EnumValue.class));
-		scope = Scopes.scopeFor(EcoreUtil2.getAllContentsOfType(Utilities.getRoot(p), Constant.class), scope);
+	private IScope getPatternScope(Pattern p, EReference ref) {
+		//probably need to cycle through all of the imported files and add each element from it. This only looks at the root.
+		File f = Utilities.getRoot(p);
+		IScope scope = Scopes.scopeFor(EcoreUtil2.getAllContentsOfType(f, EnumValue.class));
+		scope = Scopes.scopeFor(EcoreUtil2.getAllContentsOfType(f, Constant.class), scope);
 		scope = Scopes.scopeFor(EcoreUtil2.getAllContentsOfType(p, Variable.class), scope);
 		return scope;
 	}

@@ -15,12 +15,12 @@ public class SpearRealizabilityResultsView extends ViewPart {
 	public static final String ID = "com.rockwellcollins.spear.translate.views.SpearRealizabilityResultsView";
 
 	private AnalysisResultTable table;
-	private SpearConsistencyMenuListener menuListener;
+	private SpearRealizabilityMenuListener menuListener;
 	
 	@Override
 	public void createPartControl(Composite parent) {
 		table = new AnalysisResultTable(parent);
-		menuListener = new SpearConsistencyMenuListener(this.getViewSite().getWorkbenchWindow(), table);
+		menuListener = new SpearRealizabilityMenuListener(this.getViewSite().getWorkbenchWindow(), table);
 		MenuManager manager = new MenuManager();
 		manager.setRemoveAllWhenShown(true);
 		manager.addMenuListener(menuListener);
