@@ -15,6 +15,7 @@ import com.rockwellcollins.spear.FieldlessRecordExpr;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.IfThenElseExpr;
 import com.rockwellcollins.spear.Macro;
+import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.PreviousExpr;
 import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.RecordExpr;
@@ -38,6 +39,11 @@ public class CompositeTypeLookup extends SpearSwitch<TypeDef> {
 	@Override
 	public TypeDef caseUserType(UserType ut) {
 		return doSwitch(ut.getDef());
+	}
+	
+	@Override
+	public TypeDef caseNamedTypeDef(NamedTypeDef nt) {
+		return doSwitch(nt.getType());
 	}
 	
 	@Override

@@ -86,7 +86,6 @@ public class SpearScopeProvider extends org.eclipse.xtext.scoping.impl.AbstractD
 	}
 	
 	private IScope getPatternScope(Pattern p, EReference ref) {
-		//probably need to cycle through all of the imported files and add each element from it. This only looks at the root.
 		File f = Utilities.getRoot(p);
 		IScope scope = IScope.NULLSCOPE;
 		scope = Scopes.scopeFor(EcoreUtil2.getAllContentsOfType(p, Variable.class), getScopeForImportChain(f,scope));
