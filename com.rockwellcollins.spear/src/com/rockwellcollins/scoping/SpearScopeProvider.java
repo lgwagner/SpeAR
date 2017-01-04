@@ -3,17 +3,20 @@
  */
 package com.rockwellcollins.scoping;
 
+import java.util.List;
+
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.EcoreUtil2;
-import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
 
-import com.google.inject.Inject;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.File;
+import com.rockwellcollins.spear.Import;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.RecordExpr;
@@ -60,12 +63,33 @@ public class SpearScopeProvider extends org.eclipse.xtext.scoping.impl.AbstractD
 		return getPatternScope(p,ref);
 	}
 
+	private IScope getFileScopeForPattern(File f, IScope scope) {
+		scope = Scopes.scopeFor(EcoreUtil2.getAllContentsOfType(f, EnumValue.class), scope);
+		scope = Scopes.scopeFor(EcoreUtil2.getAllContentsOfType(f, Constant.class), scope);
+		return scope;
+	}
+	
+	private IScope getScopeForImportChain(File root, IScope scope) {
+		scope = getFileScopeForPattern(root,scope);
+		for(Import im : root.getImports()) {
+			String URI = im.getImportURI();
+			Resource importedResource = EcoreUtil2.getResource(root.eResource(), URI);
+			List<EObject> contents = importedResource.getContents();
+			for(EObject eo : contents) {
+				if (eo instanceof File) {
+					File importedFile = (File) eo;
+					scope = getScopeForImportChain(importedFile,scope);
+				}
+			}
+		}
+		return scope;
+	}
+	
 	private IScope getPatternScope(Pattern p, EReference ref) {
 		//probably need to cycle through all of the imported files and add each element from it. This only looks at the root.
 		File f = Utilities.getRoot(p);
-		IScope scope = Scopes.scopeFor(EcoreUtil2.getAllContentsOfType(f, EnumValue.class));
-		scope = Scopes.scopeFor(EcoreUtil2.getAllContentsOfType(f, Constant.class), scope);
-		scope = Scopes.scopeFor(EcoreUtil2.getAllContentsOfType(p, Variable.class), scope);
+		IScope scope = IScope.NULLSCOPE;
+		scope = Scopes.scopeFor(EcoreUtil2.getAllContentsOfType(p, Variable.class), getScopeForImportChain(f,scope));
 		return scope;
 	}
 }
