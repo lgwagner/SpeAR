@@ -74,26 +74,31 @@ public class MakeExcel extends SpearSwitch<Integer> {
 			//to-do: populate component
 				
 			EList<Data> dataList = curConstraint.getData();
-			Iterator<Data> dataIterator = dataList.iterator();
-			while(dataIterator.hasNext()){
-				Data curData = dataIterator.next();
+			for (Data curData : dataList) {
+				String newText = "";
 				if(curData instanceof DescriptionData){
-					text = detectDuplicates(id, type, "text", text, curData);
+					newText = ((DescriptionData)curData).getString();
+					text = detectDuplicates(id, type, "text", text, newText);
 				}
 				else if(curData instanceof OwnerData){
-					owner = detectDuplicates(id, type, "owner", owner, curData);
+					newText = ((OwnerData)curData).getString();
+					owner = detectDuplicates(id, type, "owner", owner, newText);
 				}
 				else if(curData instanceof ReviewData){
-					reviewDate = detectDuplicates(id, type, "reviewDate", reviewDate, curData);
+					newText = ((ReviewData)curData).getString();
+					reviewDate = detectDuplicates(id, type, "reviewDate", reviewDate, newText);
 				}
 				else if(curData instanceof SourceData){
-					source = detectDuplicates(id, type, "source", source, curData);
+					newText = ((SourceData)curData).getString();
+					source = detectDuplicates(id, type, "source", source, newText);
 				}
 				else if(curData instanceof RationaleData){
-					rationale = detectDuplicates(id, type, "rationale", rationale, curData);
+					newText = ((RationaleData)curData).getString();
+					rationale = detectDuplicates(id, type, "rationale", rationale, newText);
 				}
 				else if(curData instanceof CommentsData){
-					comments = detectDuplicates(id, type, "comments", comments, curData);
+					newText = ((CommentsData)curData).getString();
+					comments = detectDuplicates(id, type, "comments", comments, newText);
 				}
 			}
 			
@@ -129,9 +134,9 @@ public class MakeExcel extends SpearSwitch<Integer> {
 		exportRequirement(propIterator, "PROP");		
 	}
 
-	private String detectDuplicates(String id, String type, String attributeName, String text, Data curData) throws Exception {
+	private String detectDuplicates(String id, String type, String attributeName, String text, String newText) throws Exception {
 		if("".equals(text)){
-			//text = curData.getString();
+			text = newText;
 		}else{
 			throw new Exception("Duplicate "+attributeName+" for "+type+ " ID "+id);
 		}
