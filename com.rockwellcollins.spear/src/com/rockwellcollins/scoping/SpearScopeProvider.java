@@ -3,7 +3,11 @@
  */
 package com.rockwellcollins.scoping;
 
+import java.util.List;
+
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
@@ -11,6 +15,8 @@ import org.eclipse.xtext.scoping.Scopes;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.Expr;
+import com.rockwellcollins.spear.File;
+import com.rockwellcollins.spear.Import;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.RecordExpr;
@@ -48,19 +54,41 @@ public class SpearScopeProvider extends org.eclipse.xtext.scoping.impl.AbstractD
 			return IScope.NULLSCOPE;
 		}
 	}
-	
-	IScope scope_Variable(Pattern p, EReference reference) {
-		return getPatternScope(p);
+
+	IScope scope_Variable(Pattern p, EReference ref) {
+		return getPatternScope(p,ref);
 	}
 	
-	IScope scope_IdRef(Pattern p, EReference reference) {
-		return getPatternScope(p);
+	IScope scope_IdRef(Pattern p, EReference ref) {
+		return getPatternScope(p,ref);
 	}
 
-	private IScope getPatternScope(Pattern p) {
-		IScope scope = Scopes.scopeFor(EcoreUtil2.getAllContentsOfType(Utilities.getRoot(p), EnumValue.class));
-		scope = Scopes.scopeFor(EcoreUtil2.getAllContentsOfType(Utilities.getRoot(p), Constant.class), scope);
-		scope = Scopes.scopeFor(EcoreUtil2.getAllContentsOfType(p, Variable.class), scope);
+	private IScope getFileScopeForPattern(File f, IScope scope) {
+		scope = Scopes.scopeFor(EcoreUtil2.getAllContentsOfType(f, EnumValue.class), scope);
+		scope = Scopes.scopeFor(EcoreUtil2.getAllContentsOfType(f, Constant.class), scope);
+		return scope;
+	}
+	
+	private IScope getScopeForImportChain(File root, IScope scope) {
+		scope = getFileScopeForPattern(root,scope);
+		for(Import im : root.getImports()) {
+			String URI = im.getImportURI();
+			Resource importedResource = EcoreUtil2.getResource(root.eResource(), URI);
+			List<EObject> contents = importedResource.getContents();
+			for(EObject eo : contents) {
+				if (eo instanceof File) {
+					File importedFile = (File) eo;
+					scope = getScopeForImportChain(importedFile,scope);
+				}
+			}
+		}
+		return scope;
+	}
+	
+	private IScope getPatternScope(Pattern p, EReference ref) {
+		File f = Utilities.getRoot(p);
+		IScope scope = IScope.NULLSCOPE;
+		scope = Scopes.scopeFor(EcoreUtil2.getAllContentsOfType(p, Variable.class), getScopeForImportChain(f,scope));
 		return scope;
 	}
 }

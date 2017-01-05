@@ -49,7 +49,6 @@ public class SpearRealizabilityMenuListener implements IMenuListener {
 
 	private void addLinkedMenus(IMenuManager manager, PropertyResult result) {
 		addViewCounterexampleMenu(manager, result);
-//		addViewSupport(manager,result);
 	}
 
 	private void addViewCounterexampleMenu(IMenuManager manager, PropertyResult result) {
@@ -76,20 +75,6 @@ public class SpearRealizabilityMenuListener implements IMenuListener {
 		});
 	}
 
-//	private void addViewSupport(IMenuManager manager, PropertyResult result) {
-//		final Set<String> support = getSupport(result);
-//		if (support == null || support.size() == 0) {
-//			return;
-//		}
-//
-//		manager.add(new Action("Show Unrealizable Trace") {
-//			@Override
-//			public void run() {
-//				viewSupport(support);
-//			}
-//		});
-//	}
-	
 	private void viewCexEclipse(Counterexample cex, Layout layout) {
 		try {
 			SpearCounterexampleView cexView = (SpearCounterexampleView) window.getActivePage().showView(SpearCounterexampleView.ID);
@@ -111,19 +96,6 @@ public class SpearRealizabilityMenuListener implements IMenuListener {
 			e.printStackTrace();
 		}
 	}
-
-//	private void viewSupport(Set<String> support) {
-//		MessageDialog.openInformation(window.getShell(), "Conflicting Constraints!", support.toString());
-//	}
-//	
-//	private static Set<String> getSupport(PropertyResult result) {
-//		Property prop = result.getProperty();
-//		if (prop instanceof ValidProperty) {
-//			ValidProperty valid = (ValidProperty) prop;
-//			return valid.getIvc();
-//		}
-//		return null;
-//	}
 	
 	private static Counterexample getCounterexample(PropertyResult result) {
 		Property prop = result.getProperty();

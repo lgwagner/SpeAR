@@ -38,10 +38,15 @@ public class SpearRealizabilityLayout implements Layout {
 		categories.add(macros);
 		
 		String assumptions = s.getAssumptionsKeyword();
-		categories.add(assumptions);
-		
+		if(assumptions != null) {
+			categories.add(assumptions);
+		}
+
 		String requirements = s.getRequirementsKeyword();
-		categories.add(requirements);
+		if(requirements != null) {
+			categories.add(requirements);
+		}
+		
 				
 		this.map=new HashMap<>();
 		

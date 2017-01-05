@@ -37,13 +37,11 @@ import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.translate.layout.SpearRegularLayout;
 import com.rockwellcollins.spear.translate.master.SProgram;
-import com.rockwellcollins.spear.translate.views.SpearConsistencyResultsView;
 import com.rockwellcollins.spear.translate.views.SpearEntailmentResultsView;
 import com.rockwellcollins.spear.ui.preferences.PreferencesUtil;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
 import jkind.api.JKindApi;
-import jkind.api.KindApi;
 import jkind.api.results.JKindResult;
 import jkind.api.results.MapRenaming;
 import jkind.api.results.MapRenaming.Mode;
