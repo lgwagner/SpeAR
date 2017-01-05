@@ -185,10 +185,10 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	/***************************************************************************************************/
 	@Override
 	public Unit caseNamedTypeDef(NamedTypeDef nt) {
-		if (nt.getUnit() == null) {
-			return doSwitch(nt.getType());
-		} else {
+		if(nt.getUnit() != null) {
 			return doSwitch(nt.getUnit());
+		} else {
+			return doSwitch(nt.getType());
 		}
 	}
 

@@ -19,12 +19,14 @@ import com.rockwellcollins.spear.Constraint;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.Macro;
+import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.PreviousExpr;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.Variable;
+import com.rockwellcollins.spear.typing.PrimitiveType;
 import com.rockwellcollins.spear.utilities.ConstantChecker;
 import com.rockwellcollins.spear.utilities.Utilities;
 
@@ -151,6 +153,15 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 		if(requirements.equals(properties)) {
 			error("Duplicate section name used: " + requirements,s,SpearPackage.Literals.SPECIFICATION__REQUIREMENTS_KEYWORD);
 			error("Duplicate section name used: " + requirements,s,SpearPackage.Literals.SPECIFICATION__PROPERTIES_KEYWORD);
+		}
+	}
+	
+	
+	
+	@Check
+	public void checkAliasTypeUnits(NamedTypeDef ntd) {
+		if(ntd.getUnit() != null && !PrimitiveType.isPrimitive(ntd.getType())) {
+			error("Unit definitions only allowed on primitive types.",ntd,SpearPackage.Literals.NAMED_TYPE_DEF__UNIT);
 		}
 	}
 	
