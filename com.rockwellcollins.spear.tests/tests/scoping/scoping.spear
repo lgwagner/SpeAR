@@ -1,0 +1,46 @@
+Specification scoping
+
+Imports:
+	import "definitions.spear"
+
+Types:
+	t1: enum {A,B,C}
+	
+Constants:
+	c1: int = 5
+
+//this section is optional
+Patterns:
+	
+	pattern p1 (in1 : int) returns (out1 : int)
+	var
+		prop1 : bool
+	let
+		out1 = in1 + c1
+		prop1 = out1 > in1
+		--%PROPERTY prop1
+	tel
+	
+	pattern p2 (in2 : t1) returns (out1 : t1)
+	let
+		out1 = if in2 == B then A else C
+	tel
+	
+	pattern p4 (in1 : t2, in2 : int) returns (out1 : t2, out2 : int)
+	let
+		out1 = if true then D else E
+		out2 = c2
+	tel
+
+Inputs:
+	a : int
+
+Outputs:
+
+State:
+
+Macros:
+
+Requirements:
+
+Properties:

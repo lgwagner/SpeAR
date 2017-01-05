@@ -1,0 +1,27 @@
+Specification heater
+
+Inputs:
+	ambient : real
+	target : real
+
+Outputs:
+	heater : bool
+
+Macros:
+	pre_ambient : real = previous ambient with initial value 65.0
+	pre_target : real = previous target with initial value 65.0
+
+Assumptions:
+	a0: (ambient - pre_ambient <= 0.25) or (ambient - pre_ambient >= -0.25)
+	a1: (after ambient <> target until ambient == target) => (target == pre_target)
+	a2: heater implies ambient > pre_ambient
+	a3: not heater implies ambient < pre_ambient
+	a4: initially (target == 65.0 and ambient == 65.0)
+
+Requirements:
+	r0: (ambient - target) > 1.5 implies heater
+	r1: ambient >= target implies not heater
+
+Properties:
+	p0: (after ambient < target until ambient >= target) implies heater
+

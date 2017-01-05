@@ -1,32 +1,22 @@
-Specification simple
+Specification imports
 
 Imports:
-	import "import_definitions2.spear"
 	import "import_definitions.spear"
 
-Constants:
-	c2 : real = 5.2
-
 Inputs:
-	a : typeA
-	b : real
+	a : meters_int
 
 Outputs:
-	z : real
-
-State:
-	q : real
-
-Macros:
-	m1 : real = c1 + c2
+	z : meters_int
 
 Assumptions:
-	a0: a > 0.0
-	a1: b <= 0.0
+	a0: a >= 0 m
 
-DerivedRequirements:
-	qr0: q == a + b
-	zr0: z == a + b + c1 + m1 
-	
 Requirements:
-	p0: z - q > 0.0
+	r0: z == a + c1 
+	
+Properties:
+	p0: z > a
+	
+	
+	

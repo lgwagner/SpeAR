@@ -1,114 +1,24 @@
 Specification test
 
-Imports:
-	import "test_definitions.spear"
-	import "simple_spec.spear"
-	import "complex_spec.spear"
-
-Units:
-	kg "kilograms"
-	m "meters"
-	s "seconds"
-
-	kgs_per_second : kg/s "kilograms per second"
-	meters_per_second : m/s "meters per second"
-	meters_per_second_per_second : m/(s*s) "meter per second squared"
-	
-Types:
-	boolean_rewrite : bool
-	simple_record : record {q : int, r : bool, s : real}
-	simple_array : int[6]
-	simple_enum : enum {ON,OFF,FAILED}
-	complex_record : record {v : simple_record, w : simple_enum}
-
-	mass : real  
-	speed : int meters_per_second
-	
-	//TODO: we need to figure out how to handle enumerations from other files.
-	//these should all conflict with the enumerations in user_enumeration
-	type1 : enum {A,B,C1}
-	type2 : enum {C2,D,E}
-	type3 : user_enumeration
-		
-Constants:
-	RAWR is a user_type1 = 0.5
-
-	MAX_INT is a int = 255
-	MAX_REAL is a real = 255555555555555.0
-	ALWAYS_TRUE is a bool = TRUE
-	ALWAYS_FALSE is a bool = FALSE
-	
-	MAX_SPEED : speed = 25 meters_per_second
-
 Inputs:
+a : int
 
-	user_enumeration1 : user_enumeration
-
-	kilometers_per_hour : int
-	abc : bool
-	a : mass
-	b : bool
-	c : real
-	d : boolean_rewrite
-	e : simple_record
-	g : simple_enum
-	h : complex_record
-	j : user_type1
-	k : user_enumeration
-	l : bool
-	m : simple_array
-	
 Outputs:
-	/* this represents the x-coordinate of an x,y,z system */
-	x : int
-	y : bool
-	z : real
-	record_out : simple_record
-	array_out : simple_array
-	
-State:
-	q : int
-	r : bool
-	s : real
-
-Macros:
-	qw : bool = user_enumeration1 == NULL
-
-	a_plus_x : int = x + 5
-	b_and_y : bool = b and y
-	c_times_z : real = c * z
-	user_constant_plus_5 : real = user_constant1 + 5.0
-	pre_x : int = previous x with initial value 0
-	g_is_on : bool = g == ON
-
-Assumptions:
-	test_assumption: (k == C) => c < 0.1
-	assumption0: (k == NULL) => c > 0.0
-	
-	assumption3: initially(e == new simple_record {q=0, r=TRUE, s=2.5})
-	assumption4: initially(g == FAILED)
-	assumption5: initially(m == new simple_array [0,1,2,3,4,5])
-
-DerivedRequirements:
-	req0: a > 0.0
-	req2: z == spec simple(0.5,2.3)
-	req3: |q,r,s| == spec complex(a,2.5,c,5.0,2.222)
-	
-	req4: a_plus_x > 2
-	req6: b implies record_out == e{r := not e.r}{q := e.q + 1}
-	req7: b implies array_out == m[0 := -1][1 := -1]
-	req8: not b implies s == e.s
-	req9: not b implies q == m[2]
+b : int
 
 Requirements:
-	prop1: (s > 0.0) => r
-	prop2: (q < 0) => not r
-	prop4: once l implies historically r
-	prop5: not (once l) implies historically (s <= 0.0)
-	
+r1: a==3 implies b==2
+r2: a==3 implies b==3
+r3: (a<>3) implies b < 0
+	comments = "commentor"
+	text = "rar rar rar"
+	trace = [r1,r2]
+	owner = "Bubba"
+	reviewDate = "11/30/2035"
+	reviewDate = "12-31-2035"
+	reviewDate = "2035-12-31"
+	reviewDate = "2035/12/31"
+	source = "someone else"
 
-
- 
-
-
-
+Properties:
+p0: b > 0 implies a > 0

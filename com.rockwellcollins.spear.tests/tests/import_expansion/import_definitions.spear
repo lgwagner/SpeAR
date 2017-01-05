@@ -2,10 +2,21 @@ Definitions import_definitions
 
 Units:
 	m "meters"
-	m2 : m*m "meters squared"
 
 Types:
-	typeA : real
+	meters_int : int m 
 
 Constants:
-	c1 : real = 5.1
+	c1 : meters_int = 1 m
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

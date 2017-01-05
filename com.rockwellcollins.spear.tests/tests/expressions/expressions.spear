@@ -1,5 +1,6 @@
 Specification expressions
 
+
 Inputs:
 	a : bool
 	b : bool
@@ -17,6 +18,6 @@ Assumptions:
 Requirements:
 	r0: counter > pre_counter	
 
-Properties:
+Guarantees:
 	g0: counter < 50 
  

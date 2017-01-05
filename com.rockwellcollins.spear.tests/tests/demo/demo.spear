@@ -17,7 +17,7 @@ Units:
 	m3 : 					m*m*m "cubic meters" 
 	m3_per_second : 		m3/s "cubic meters per second"
 	m3_per_second_alt : 	m*m*m/s //Defines cubic meters per second directly
-	
+
 Types:
 	//Note the three different type delimiters that can be used ("is a", "is an", and ":")
 	
