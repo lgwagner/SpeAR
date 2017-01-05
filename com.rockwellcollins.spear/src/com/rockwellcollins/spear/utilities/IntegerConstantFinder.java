@@ -7,7 +7,6 @@ import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.IntLiteral;
-import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
