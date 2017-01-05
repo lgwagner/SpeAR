@@ -131,7 +131,7 @@ public class MakeExcel extends SpearSwitch<Integer> {
 
 	private String detectDuplicates(String id, String type, String attributeName, String text, Data curData) throws Exception {
 		if("".equals(text)){
-			text = curData.getString();
+			//text = curData.getString();
 		}else{
 			throw new Exception("Duplicate "+attributeName+" for "+type+ " ID "+id);
 		}
