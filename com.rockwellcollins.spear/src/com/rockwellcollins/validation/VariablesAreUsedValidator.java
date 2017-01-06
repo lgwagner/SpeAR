@@ -14,8 +14,10 @@ import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.EnumTypeDef;
 import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.IdExpr;
+import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.LustreEquation;
 import com.rockwellcollins.spear.Macro;
+import com.rockwellcollins.spear.MultipleIdExpr;
 import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.NamedUnitExpr;
 import com.rockwellcollins.spear.Pattern;
@@ -47,6 +49,12 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 		Set<String> used = new HashSet<>();
 		for(IdExpr ide : EcoreUtil2.getAllContentsOfType(s, IdExpr.class)) {
 			used.add(ide.getId().getName());
+		}
+		
+		for(MultipleIdExpr mide : EcoreUtil2.getAllContentsOfType(s, MultipleIdExpr.class)) {
+			for(IdRef ide : mide.getIds()) {
+				used.add(ide.getName());
+			}
 		}
 		
 		for(Constant c : s.getConstants()) {

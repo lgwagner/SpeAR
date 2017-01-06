@@ -81,14 +81,14 @@ public class SpearFormatter extends AbstractDeclarativeFormatter {
 		c.setIndentationDecrement().after(g.getSpecificationAccess().getMacrosMacroParserRuleCall_12_1_0());
 		c.setLinewrap(2).after(g.getSpecificationAccess().getMacrosMacroParserRuleCall_12_1_0());
 
-		//this is useful for the rest
+		//this works for all Constraints (formal and english)
 		c.setLinewrap().after(g.getConstraintRule());
 		
 		c.setLinewrap().before(g.getSpecificationAccess().getAssumptionsAssignment_13_2());
 		c.setIndentationIncrement().before(g.getSpecificationAccess().getAssumptionsAssignment_13_2());
 		c.setIndentationDecrement().after(g.getSpecificationAccess().getAssumptionsAssignment_13_2());
 		c.setLinewrap(2).after(g.getSpecificationAccess().getAssumptionsConstraintParserRuleCall_13_2_0());
-		
+
 		c.setLinewrap().before(g.getSpecificationAccess().getRequirementsAssignment_16());
 		c.setIndentationIncrement().before(g.getSpecificationAccess().getRequirementsAssignment_16());
 		c.setIndentationDecrement().after(g.getSpecificationAccess().getRequirementsAssignment_16());

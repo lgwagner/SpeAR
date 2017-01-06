@@ -17,7 +17,7 @@ Specification:
 	('State:' state+=Variable*)?
 	('Macros:' macros+=Macro*)?
 	(assumptionsKeyword=AssumptionsHeader ':' assumptions+=Constraint*)?
-	requirementsKeyword=RequirementsHeader ':' requirements+=Constraint*
+	(requirementsKeyword=RequirementsHeader ':' requirements+=Constraint*)
 	(propertiesKeyword=PropertiesHeader ':' behaviors+=Constraint*)?;
 
 AssumptionsHeader:
