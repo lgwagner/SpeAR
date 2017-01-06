@@ -18,7 +18,7 @@ Specification:
 	('Macros:' macros+=Macro*)?
 	(assumptionsKeyword=AssumptionsHeader ':' assumptions+=Constraint*)?
 	(requirementsKeyword=RequirementsHeader ':' requirements+=Constraint*)
-	(propertiesKeyword=PropertiesHeader ':' behaviors+=Constraint*)?;
+	(behaviorsKeyword=BehaviorsHeader ':' behaviors+=Constraint*)?;
 
 AssumptionsHeader:
 	'Assumptions' | 'Environment';
@@ -26,7 +26,7 @@ AssumptionsHeader:
 RequirementsHeader:
 	'DerivedRequirements' | 'Requirements' | 'Implementation' | 'Design' | 'Constraints';
 
-PropertiesHeader:
+BehaviorsHeader:
 	'Requirements' | 'Properties' | 'Guarantees' | 'Behaviors';
 
 Import:

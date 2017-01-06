@@ -37,8 +37,8 @@ public class SpearRegularLayout implements Layout {
 		String macros = "Macros";
 		categories.add(macros);
 		
-		String properties = s.getPropertiesKeyword();
-		categories.add(properties);
+		String behaviors = s.getBehaviorsKeyword();
+		categories.add(behaviors);
 				
 		this.map=new HashMap<>();
 		
@@ -59,7 +59,7 @@ public class SpearRegularLayout implements Layout {
 		}
 		
 		for(Constraint c : s.getBehaviors()) {
-			map.put(c.getName(), properties);
+			map.put(c.getName(), behaviors);
 		}
 	}
 	

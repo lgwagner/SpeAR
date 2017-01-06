@@ -190,10 +190,10 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 	@Check
 	public void checkForIllegalSectionheaders(Specification s) {
 		String requirements = s.getRequirementsKeyword();
-		String properties = s.getPropertiesKeyword();
-		if(requirements.equals(properties)) {
+		String behaviors = s.getBehaviorsKeyword();
+		if(requirements.equals(behaviors)) {
 			error("Duplicate section name used: " + requirements,s,SpearPackage.Literals.SPECIFICATION__REQUIREMENTS_KEYWORD);
-			error("Duplicate section name used: " + requirements,s,SpearPackage.Literals.SPECIFICATION__PROPERTIES_KEYWORD);
+			error("Duplicate section name used: " + requirements,s,SpearPackage.Literals.SPECIFICATION__BEHAVIORS_KEYWORD);
 		}
 	}
 	
