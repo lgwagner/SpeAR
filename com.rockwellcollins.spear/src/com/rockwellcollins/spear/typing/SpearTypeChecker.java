@@ -81,8 +81,8 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	/***************************************************************************************************/
 	// Checks
 	/***************************************************************************************************/
-	public Type checkNamedType(NamedTypeDef nt) {
-		return doSwitch(nt);
+	public Type checkTypeDef(TypeDef td) {
+		return doSwitch(td);
 	}
 
 	public boolean checkConstant(Constant c) {

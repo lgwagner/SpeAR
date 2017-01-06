@@ -45,6 +45,7 @@ import com.rockwellcollins.spear.RecordUpdateExpr;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.SpecificationCall;
 import com.rockwellcollins.spear.Type;
+import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.UserType;
 import com.rockwellcollins.spear.Variable;
@@ -66,8 +67,8 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	/***************************************************************************************************/
 	// Checks
 	/***************************************************************************************************/
-	public void checkNamedTypeDef(NamedTypeDef nt) {
-		doSwitch(nt);
+	public void checkTypeDef(TypeDef td) {
+		doSwitch(td);
 	}
 
 	public void checkConstant(Constant c) {
@@ -183,13 +184,18 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	/***************************************************************************************************/
 	// TypeDefs
 	/***************************************************************************************************/
+	
 	@Override
 	public Unit caseNamedTypeDef(NamedTypeDef nt) {
+		Unit actual = doSwitch(nt.getType());
+		
 		if(nt.getUnit() != null) {
-			return doSwitch(nt.getUnit());
-		} else {
-			return doSwitch(nt.getType());
+			Unit declared = doSwitch(nt.getUnit());
+			if(!declared.equals(actual)) {
+				return ERROR;
+			}
 		}
+		return actual;
 	}
 
 	@Override
