@@ -103,7 +103,7 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 				URI lustreURI = createURI(state.getURI(), "", "lus");
 
 				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-				
+								
 				if(SpearRuntimeOptions.printFinalLustre) {
 					IResource finalResource = root.getFile(new Path(lustreURI.toPlatformString(true)));
 					printResource(finalResource, p.toString());
