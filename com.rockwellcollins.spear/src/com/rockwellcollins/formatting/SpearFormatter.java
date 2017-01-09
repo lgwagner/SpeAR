@@ -36,14 +36,14 @@ public class SpearFormatter extends AbstractDeclarativeFormatter {
 
 		c.setLinewrap(2).before(g.getSpecificationAccess().getImportsKeyword_2_0());		
 		c.setLinewrap().after(g.getSpecificationAccess().getImportsKeyword_2_0());
-		c.setIndentationIncrement().before(g.getSpecificationAccess().getImportsAssignment_2_1());
 		c.setLinewrap().after(g.getImportRule());
+		c.setIndentationIncrement().before(g.getSpecificationAccess().getImportsAssignment_2_1());
 		c.setIndentationDecrement().after(g.getSpecificationAccess().getImportsAssignment_2_1());
 	
 		c.setLinewrap(2).before(g.getSpecificationAccess().getUnitsKeyword_3_0());
 		c.setLinewrap().after(g.getSpecificationAccess().getUnitsKeyword_3_0());
-		c.setIndentationIncrement().before(g.getSpecificationAccess().getUnitsAssignment_3_1());
 		c.setLinewrap().after(g.getUnitDefRule());
+		c.setIndentationIncrement().before(g.getSpecificationAccess().getUnitsAssignment_3_1());
 		c.setIndentationDecrement().after(g.getSpecificationAccess().getUnitsAssignment_3_1());
 
 		c.setLinewrap(2).before(g.getSpecificationAccess().getTypesKeyword_4_0());
