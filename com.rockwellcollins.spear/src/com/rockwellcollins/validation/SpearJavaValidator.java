@@ -3,6 +3,7 @@
  */
 package com.rockwellcollins.validation;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -197,12 +198,26 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 		}
 	}
 	
-	
-	
 	@Check
 	public void checkAliasTypeUnits(NamedTypeDef ntd) {
 		if(ntd.getUnit() != null && !PrimitiveType.isPrimitive(ntd.getType())) {
 			error("Unit definitions only allowed on primitive types.",ntd,SpearPackage.Literals.NAMED_TYPE_DEF__UNIT);
+		}
+	}
+	
+	@Check
+	public void checkPropertiesOnlyHaveWitnessFlags(Specification s) {
+		List<Constraint> constraints = new ArrayList<>(s.getAssumptions());
+		constraints.addAll(s.getRequirements());
+		
+		for(Constraint c : constraints) {
+			if (c instanceof FormalConstraint) {
+				FormalConstraint fc = (FormalConstraint) c;
+				if(fc.getFlagAsWitness() != null) {
+					String type = fc.getFlagAsWitness().equals("witness") ? "a witness" : "an observer";
+					error("Only " + s.getBehaviorsKeyword() + " may be flagged as " + type + ".",c,SpearPackage.Literals.FORMAL_CONSTRAINT__FLAG_AS_WITNESS);
+				}
+			}
 		}
 	}
 	

@@ -119,7 +119,7 @@ Constraint:
 	FormalConstraint | EnglishConstraint;
 
 FormalConstraint:
-	name=ID ':' expr=Expr (data+=Data)*;
+	name=ID (flagAsWitness='observe')? ':' expr=Expr (data+=Data)*;
 
 EnglishConstraint:
 	name=ID ':' text=STRING (data+=Data)*;
@@ -131,7 +131,8 @@ Data:
 	| {ReviewData} 'reviewDate' '=' (string=STRING)
 	| {SourceData} 'source' '=' (string=STRING)
 	| {RationaleData} 'rationale' '=' (string=STRING)
-	| {CommentsData} 'comments' '=' (string=STRING);
+	| {CommentsData} 'comments' '=' (string=STRING)
+;
 
 /* Begin Expr Language */
 Expr:
