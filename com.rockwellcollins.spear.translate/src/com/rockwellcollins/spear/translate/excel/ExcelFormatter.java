@@ -4,6 +4,7 @@ import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import jkind.JKindException;
@@ -55,14 +56,14 @@ public class ExcelFormatter implements Closeable {
 	}
 
 
-	public WritableSheet writeSpecification(List<Requirement> requirementList) {
+	public WritableSheet writeSpecification(List<String> topLevelReqList, HashMap<String, Requirement> reqIDMap) {
 		try {
 			sheet = workbook
 					.createSheet("Requirements", workbook.getNumberOfSheets());
 			row = 0;
 			ExcelUtil.autosize(sheet, 1);			
 			writeColHeader();
-			writeRequirement(requirementList);
+			writeRequirement(topLevelReqList, reqIDMap);
 			return sheet;
 		} catch (WriteException e) {
 			throw new JKindException("Error writing counterexample to Excel file", e);
@@ -90,15 +91,19 @@ public class ExcelFormatter implements Closeable {
 		row++;
 	}
 	
-	private void writeRequirement(List<Requirement> requirementList) throws WriteException, RowsExceededException {
-        for(Requirement req: requirementList){
+	private void writeRequirement(List<String> reqList, HashMap<String, Requirement> reqIDMap) throws WriteException, RowsExceededException {
+		//go through the current requirement list
+    	for(String reqID: reqList){
+    		//print the current requirement
+			Requirement req = reqIDMap.get(reqID);
         	List<String> attributeList = req.exportStrs();
     		for (int col = 0; col < numOfCols; col++) {
 				sheet.addCell(new Label(col, row, attributeList.get(col), defaultFormat));
     		}
     		row++;
-        }
+    		//print requirements from the child list of the current requirement
+     		writeRequirement(req.getChildList(), reqIDMap);
+    	}
 	}
-	
 }
 
