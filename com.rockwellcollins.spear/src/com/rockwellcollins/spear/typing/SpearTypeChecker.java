@@ -35,7 +35,7 @@ import com.rockwellcollins.spear.IntLiteral;
 import com.rockwellcollins.spear.IntType;
 import com.rockwellcollins.spear.LustreEquation;
 import com.rockwellcollins.spear.Macro;
-import com.rockwellcollins.spear.MultipleIdExpr;
+import com.rockwellcollins.spear.MultipleExpr;
 import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.PatternCall;
 import com.rockwellcollins.spear.PreviousExpr;
@@ -614,8 +614,8 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	}
 
 	@Override
-	public Type caseMultipleIdExpr(MultipleIdExpr mide) {
-		return this.processList(new ArrayList<>(mide.getIds()));
+	public Type caseMultipleExpr(MultipleExpr mide) {
+		return this.processList(new ArrayList<>(mide.getExprs()));
 	}
 
 	@Override

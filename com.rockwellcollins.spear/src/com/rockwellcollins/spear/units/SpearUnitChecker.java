@@ -32,7 +32,7 @@ import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.IfThenElseExpr;
 import com.rockwellcollins.spear.IntLiteral;
 import com.rockwellcollins.spear.Macro;
-import com.rockwellcollins.spear.MultipleIdExpr;
+import com.rockwellcollins.spear.MultipleExpr;
 import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.NamedUnitExpr;
 import com.rockwellcollins.spear.PatternCall;
@@ -574,8 +574,8 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	}
 
 	@Override
-	public Unit caseMultipleIdExpr(MultipleIdExpr mide) {
-		return this.processList(new ArrayList<>(mide.getIds()));
+	public Unit caseMultipleExpr(MultipleExpr mide) {
+		return this.processList(new ArrayList<>(mide.getExprs()));
 	}
 
 	@Override

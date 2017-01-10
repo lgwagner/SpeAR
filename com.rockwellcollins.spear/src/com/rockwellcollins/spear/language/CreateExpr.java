@@ -6,7 +6,7 @@ import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.Macro;
-import com.rockwellcollins.spear.MultipleIdExpr;
+import com.rockwellcollins.spear.MultipleExpr;
 import com.rockwellcollins.spear.SpearFactory;
 import com.rockwellcollins.spear.Type;
 import com.rockwellcollins.spear.UnaryExpr;
@@ -76,9 +76,11 @@ public class CreateExpr {
 		return ide;
 	}
 	
-	public static MultipleIdExpr createMultipleIdExpr(List<Macro> list) {
-		MultipleIdExpr mide = f.createMultipleIdExpr();
-		mide.getIds().addAll(list);
+	public static MultipleExpr createMultipleIdExpr(List<Macro> list) {
+		MultipleExpr mide = f.createMultipleExpr();
+		for(Macro m : list) {
+			mide.getExprs().add(createIdExpr(m));
+		}
 		return mide;
 	}
 	

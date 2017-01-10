@@ -198,8 +198,8 @@ AccessExpr returns Expr:
 AtomicExpr returns Expr:
 	LiteralExpr
 	| {IdExpr} id=[IdRef]
-//	| {MultipleExpr} '|' exprs+=Expr (',' exprs+=Expr)* '|'
-	| {MultipleIdExpr} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|'
+	| {MultipleExpr} '|' exprs+=Expr (',' exprs+=Expr)* '|'
+//	| {MultipleIdExpr} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|'
 	| {IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else' else=Expr)?
 	| {RecordExpr} 'new' type=[RecordTypeDef] '{' fieldExprs+=FieldExpr (',' fieldExprs+=FieldExpr)* '}'
 	| {FieldlessRecordExpr} 'new' type=[RecordTypeDef] '{' exprs+=Expr (',' exprs+=Expr)* '}'

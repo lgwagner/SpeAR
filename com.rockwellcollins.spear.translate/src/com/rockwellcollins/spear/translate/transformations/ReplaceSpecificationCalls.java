@@ -6,8 +6,7 @@ import org.eclipse.xtext.EcoreUtil2;
 import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.File;
-import com.rockwellcollins.spear.IdExpr;
-import com.rockwellcollins.spear.MultipleIdExpr;
+import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.SpearFactory;
 import com.rockwellcollins.spear.Specification;
@@ -32,20 +31,8 @@ public class ReplaceSpecificationCalls extends SpearSwitch<EObject> {
 		NormalizedCall replacement = f.createNormalizedCall();
 		replacement.setSpec(call.getSpec());
 		replacement.getArgs().addAll(call.getArgs());
-		
-		if (ids instanceof MultipleIdExpr) {
-			MultipleIdExpr multipleIdExpr = (MultipleIdExpr) ids;
-			replacement.getIds().addAll(multipleIdExpr.getIds());
-			return replacement;
-		}
-		
-		if (ids instanceof IdExpr) {
-			IdExpr idExpr = (IdExpr) ids;
-			replacement.getIds().add(idExpr.getId());
-			return replacement;
-		}
-		
-		return null;
+		replacement.getIds().addAll(EcoreUtil2.getAllContentsOfType(ids, IdRef.class));
+		return replacement;
 	}
 	
 	@Override
