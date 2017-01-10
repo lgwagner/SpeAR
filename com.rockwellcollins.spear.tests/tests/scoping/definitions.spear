@@ -1,0 +1,17 @@
+Definitions definitions
+
+Units:
+	u1 "meters"
+
+Types:
+	t2 : enum {D,E,F}
+
+Constants:
+	c2 : int = 6
+
+Patterns:
+	pattern p3 (in1 : int) returns (out1 : int)
+	let
+		out1 = in1 + 1
+	tel
+

@@ -53,7 +53,7 @@ Requirements:
 	
 Properties: 
 	p_init: initially(microwave_mode == SETUP)
-	p0: microwave_mode == COOKING => door_closed
+	p0: microwave_mode == COOKING implies door_closed
 	p1: before start implies microwave_mode == SETUP
 	p2: 0 <= left_digit and left_digit <= 9
 	p3: 0 <= middle_digit and middle_digit <= 9

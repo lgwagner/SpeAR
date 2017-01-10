@@ -1,0 +1,20 @@
+Specification Fieldless
+
+Types:
+  record_type is a record {x : int, y : int}
+  
+Constants:
+  the_record is a record_type = new record_type {0, 1}
+  
+Inputs:
+  dummy_input is an int
+  
+Outputs:
+  dummy_output is an int
+  
+Requirements:
+  r1: dummy_output equal to the_record.y
+  
+Properties:
+  p1: true
+  w1: false

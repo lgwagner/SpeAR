@@ -35,21 +35,21 @@ public class FindSpecificationDependencies extends SpearSwitch<Status> {
 	
 	@Override
 	public Status caseTypeDef(TypeDef td) {
-		set.add(td);
+		set.add(EcoreUtil2.copy(td));
 		this.defaultCase(td);
 		return Status.DONE;
 	}
 	
 	@Override
 	public Status caseConstant(Constant c) {
-		set.add(c);
+		set.add(EcoreUtil2.copy(c));
 		this.defaultCase(c);
 		return Status.DONE;
 	}
 	
 	@Override
 	public Status casePattern(Pattern p) {
-		set.add(p);
+		set.add(EcoreUtil2.copy(p));
 		this.defaultCase(p);
 		return Status.DONE;
 	}

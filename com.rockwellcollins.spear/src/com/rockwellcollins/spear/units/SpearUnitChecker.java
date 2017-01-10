@@ -32,7 +32,7 @@ import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.IfThenElseExpr;
 import com.rockwellcollins.spear.IntLiteral;
 import com.rockwellcollins.spear.Macro;
-import com.rockwellcollins.spear.MultipleIdExpr;
+import com.rockwellcollins.spear.MultipleExpr;
 import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.NamedUnitExpr;
 import com.rockwellcollins.spear.PatternCall;
@@ -45,6 +45,7 @@ import com.rockwellcollins.spear.RecordUpdateExpr;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.SpecificationCall;
 import com.rockwellcollins.spear.Type;
+import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.UserType;
 import com.rockwellcollins.spear.Variable;
@@ -66,8 +67,8 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	/***************************************************************************************************/
 	// Checks
 	/***************************************************************************************************/
-	public void checkNamedTypeDef(NamedTypeDef nt) {
-		doSwitch(nt);
+	public void checkTypeDef(TypeDef td) {
+		doSwitch(td);
 	}
 
 	public void checkConstant(Constant c) {
@@ -183,13 +184,18 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	/***************************************************************************************************/
 	// TypeDefs
 	/***************************************************************************************************/
+	
 	@Override
 	public Unit caseNamedTypeDef(NamedTypeDef nt) {
-		if (nt.getUnit() == null) {
-			return doSwitch(nt.getType());
-		} else {
-			return doSwitch(nt.getUnit());
+		Unit actual = doSwitch(nt.getType());
+		
+		if(nt.getUnit() != null) {
+			Unit declared = doSwitch(nt.getUnit());
+			if(!declared.equals(actual)) {
+				return ERROR;
+			}
 		}
+		return actual;
 	}
 
 	@Override
@@ -568,8 +574,8 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	}
 
 	@Override
-	public Unit caseMultipleIdExpr(MultipleIdExpr mide) {
-		return this.processList(new ArrayList<>(mide.getIds()));
+	public Unit caseMultipleExpr(MultipleExpr mide) {
+		return this.processList(new ArrayList<>(mide.getExprs()));
 	}
 
 	@Override

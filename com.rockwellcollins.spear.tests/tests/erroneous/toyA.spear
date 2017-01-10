@@ -15,14 +15,8 @@ State:
 
 Macros:
 
-Assumptions:
-	a0: a > 0 and b > 0
-
 Requirements:
-	r0: z == spec toyB(a)
-	r1: s == spec toyB(b)
+
 
 Properties:
-	p0: z > 0
-	p1: s > 0
 

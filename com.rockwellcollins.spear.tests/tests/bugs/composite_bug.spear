@@ -1,0 +1,26 @@
+Specification composite_bug
+
+Imports:
+	import "called.spear"
+
+Types:
+	array_type is a bool[2]
+	int_array is an int[3]
+	record1 is a record {a : int, b : bool}
+	
+Inputs:
+	in1 : array_type
+	in2 : int_array
+
+Outputs:
+	out1 : array_type
+	out2 : record1
+
+Assumptions:
+	a0: in1[in2[2]] == false
+
+Requirements:
+	r0: |out1[0],out2.b| == spec called(true)
+
+Properties:
+	p0: not (out1[1] or false)

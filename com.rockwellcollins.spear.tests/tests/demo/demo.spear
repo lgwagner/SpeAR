@@ -9,37 +9,37 @@ Imports:
 	import "demo_module.spear"
 
 Units:
-	//Base units with optional string descriptions
-	m "meters" 
-	s 
+//Base units with optional string descriptions
+	m "meters"
+	s
 
 	//Derived units (defined in terms of other units) with optional string descriptions
-	m3 : 					m*m*m "cubic meters" 
-	m3_per_second : 		m3/s "cubic meters per second"
-	m3_per_second_alt : 	m*m*m/s //Defines cubic meters per second directly
-	
+	m3 : m * m * m "cubic meters"
+	m3_per_second : m3 / s "cubic meters per second"
+	m3_per_second_alt : m * m * m / s //Defines cubic meters per second directly
+
+
 Types:
-	//Note the three different type delimiters that can be used ("is a", "is an", and ":")
-	
-	//Named types
+//Note the three different type delimiters that can be used ("is a", "is an", and ":")
+
+//Named types
 	metric_length is a real m
 	flow_type is a real m3_per_second
-	
+
 	//Enumeration types
-	button : enum {PRESSED, NOT_PRESSED}
-	switch_state is an enum {ON, OFF, FAILED}
-	valve_state : enum {OPEN, CLOSED}
-	
+	button : enum { PRESSED, NOT_PRESSED }
+	switch_state is an enum { ON, OFF, FAILED }
+	valve_state : enum { OPEN, CLOSED }
+
 	//Record Type
-	myRecord is a record {field1 : real, field2: int}
-	
+	myRecord is a record { field1: real, field2: int }
+
 	//Array Type
-	myArray : int[4]
-	
+	myArray : int [ 4 ]
+
 Constants:
 	C1 is an english_length = 5.0 ft
-	C2 : real = 2.718
-		text = "C3 is an approximation of the number e"
+	C2 : real = 2.718 text = "C3 is an approximation of the number e"
 
 Inputs:
 	input1 is a real
@@ -59,10 +59,9 @@ Outputs:
 	output3 is a real
 	valve_state is a valve_state
 	valve_flow is a flow_type
-	
 	out1 : english_length
 	out2 : int
-	
+
 State:
 	internal_state : bool
 
@@ -71,116 +70,96 @@ Macros:
 	reset_is_pressed is a bool = reset == PRESSED
 	out2_mod_5 : int = out2 mod 5
 
-//Assumptions are stated in terms of input variables only (not outputs or state)
-Assumptions: 
-	//Literals
-	r_lit_boolTl:		input3 equal to true 	//uses the true boolean literal
-	r_lit_boolTU:		input3 equal to TRUE 	//TRUE is the same as true
-	r_lit_boolFL: 		input3 == false			//uses the false boolean literal
-	r_lit_boolFU: 		input3 == FALSE			//FALSE is the same as false
-	r_lit_real: 		input1 not equal to 3.0 //uses the real literal 3.0
-	r_lit_int:	 		input2 <> 3				//uses the integer literal 3
-	r_lit_with_unit: 	input5 less than 8.0 m	//uses a real literal with units
-
+	//Assumptions are stated in terms of input variables only (not outputs or state)
+Assumptions:
+//Literals
+	r_lit_boolTl: input3 equal to true //uses the true boolean literal
+	r_lit_boolTU: input3 equal to TRUE //TRUE is the same as true
+	r_lit_boolFL: input3 == false //uses the false boolean literal
+	r_lit_boolFU: input3 == FALSE //FALSE is the same as false
+	r_lit_real: input1 not equal to 3.0 //uses the real literal 3.0
+	r_lit_int: input2 <> 3 //uses the integer literal 3
+	r_lit_with_unit: input5 less than 8.0 m //uses a real literal with units
 DerivedRequirements:
-	//Patterns are not yet supported
-	r_pattern: my_pattern(input1)
-	
+//Patterns are not yet supported
+	r_pattern: my_pattern (input1)
+
 	//Spec call with multiple outputs 
 	//--Perhaps a validation error should be thrown here since out1 and out2 are not declared locally 
-	r_spec_call: |out1,out2| == spec demo_module(C1)
-	
+	r_spec_call: | out1, out2 | == spec demo_module (C1)
+
 	//We support English text constraints that are not formalizable.
-	r_english: 		"The product shall be purple."
-	
+	r_english: "The product shall be purple."
+
 	//Implies Expressions
-	r_implies: 		input3 implies output1
-		text = "If input3 is true, then output1 shall be true." //Optional text descriptor. 
-	r_implies_sym: 	input3 => output1
-	
+	r_implies: input3 implies output1 text = "If input3 is true, then output1 shall be true." //Optional text descriptor. 
+	r_implies_sym: input3 => output1
+
 	//Logical Expressions
-	r_or: 				input3 or output1
-	r_xor: 			input3 xor output1
-	r_and: 			input3 and output1
-	r_not: 			not input3
-	
+	r_or: input3 or output1
+	r_xor: input3 xor output1
+	r_and: input3 and output1
+	r_not: not input3
+
 	//Temporal Expressions (intended to be used directly by the user)
-	r_initially:		initially input3
-	r_before:			before input4
-	r_after: 			after input3
-	r_after_until:	 	after input3 until input4
-	r_while: 			while input3 then output2 
-	r_never: 			never input4
+	r_initially: initially input3
+	r_before: before input4
+	r_after: after input3
+	r_after_until: after input3 until input4
+	r_while: while input3 then output2 r_never: never input4
 	//PLTL Temporal Operators (can be used directly, but primarily used behind-the-scenes during translation to Lustre for analysis)
-	r_once: 			once input3 //same as 'after input3' 
-	r_O: 				O input3 //same as 'once input3' 
-	r_historically: 	historically internal_state
-	r_H: 				H internal_state //same as 'historically internal_state'
-	r_triggers: 		input3 triggers output1
-	r_T: 				input3 T output1 //same as 'input3 triggers output1'
-	r_since: 			output2 since input3 
-	r_S:				output2 S input3 //same as 'output2 since input3'
-	
+	r_once: once input3 //same as 'after input3' 
+	r_O: O input3 //same as 'once input3' 
+	r_historically: historically internal_state r_H: H internal_state //same as 'historically internal_state'
+	r_triggers: input3 triggers output1 r_T: input3 T output1 //same as 'input3 triggers output1'
+	r_since: output2 since input3 r_S: output2 S input3 //same as 'output2 since input3'
+
 	//Relational Operators. Text and symbolic representations are available for each.
-	r_lt_sym:			output3 < input1
-	r_lt: 				output3 less than input1 //same as <
-	r_lte_sym:	 		output3 <= input1
-	r_lte:	 			output3 less than or equal to input1 //same as <=
-	r_gt_sym: 			output3 > input1
-	r_gt: 				output3 greater than input1 //same as >
-	r_gte_sym: 		output3 >= input1
-	r_gte: 			output3 greater than or equal to input1 //same as >=
-	r_eq_sym: 			output3 == input1
-	r_eq: 				output3 equal to input1 //same as ==
-	r_neq_sym: 		output3 <> input1
-	r_neq: 			output3 not equal to input1 //same as <>
-	
+	r_lt_sym: output3 < input1 r_lt: output3 less than input1 //same as <
+	r_lte_sym: output3 <= input1 r_lte: output3 less than or equal to input1 //same as <=
+	r_gt_sym: output3 > input1 r_gt: output3 greater than input1 //same as >
+	r_gte_sym: output3 >= input1 r_gte: output3 greater than or equal to input1 //same as >=
+	r_eq_sym: output3 == input1 r_eq: output3 equal to input1 //same as ==
+	r_neq_sym: output3 <> input1 r_neq: output3 not equal to input1 //same as <>
+
 	//Arithmetic Expressions
-	r_plus: 			input1 + output3 > 0.0
-	r_minus: 			input1 - C2 < 0.0
-	r_times: 			input1*output3 equal to 0.0
-	r_divide:			input1/output3 less than 0.0
-	r_negate: 			-input1 > 0.0
+	r_plus: input1 + output3 > 0.0 r_minus: input1 - C2 < 0.0 r_times: input1 * output3 equal to 0.0 r_divide: input1 /
+	output3 less than 0.0 r_negate: - input1 > 0.0
 	//TODO: Add exponential?
-	
+
 	//Record Access
-	r_rec_access: 		inputRecord1.field1 > 0.0
-	
+	r_rec_access: inputRecord1.field1 > 0.0
+
 	//Record Update
-	r_rec_update: 		inputRecord1{field2 := 19} == inputRecord1
-	
+	r_rec_update: inputRecord1 { field2 := 19 } == inputRecord1
+
 	//Record Expression
-	r_rec_expr: 		inputRecord1 == new myRecord{field1 = 2.0, field2 = 3}
-	r_rec_expr_fl: 	inputRecord1 == new myRecord{2.0,3}
-		
+	r_rec_expr: inputRecord1 == new myRecord { field1 = 2.0, field2 = 3 } r_rec_expr_fl: inputRecord1 == new myRecord {
+	2.0, 3 }
+
 	//Array Access
-	r_array_access: 	inputArray1[2] less than 25
-	
+	r_array_access: inputArray1 [ 2 ] less than 25
+
 	//Array Update
-	r_array_update: 	inputArray1[3:= 35] <> inputArray1
-	
+	r_array_update: inputArray1 [ 3 := 35 ] <> inputArray1
+
 	//Array Expression
-	r_array_expr: 		(new myArray[100, 101, 102, 103])[2] not equal to 39
-		
+	r_array_expr: (new myArray [ 100, 101, 102, 103 ]) [ 2 ] not equal to 39
+
 	//Previous --Note that 'with initial value' binds tighter than 'greater than or equal to' 
-	r_prev_init:		previous input1 with initial value 0.0 greater than or equal to 0.0
-		
+	r_prev_init: previous input1 with initial value 0.0 greater than or equal to 0.0
+
 	//If Then Else Expressions 
 	//The 'else' clause is optional and defaults to true. 
-	r_ite: 			if input3 then output1 else output2
-	r_it: 				if input3 then internal_state 
-	
-Requirements:
-	//Examples that combine language features  
-	r01: if switch equal to ON then valve_flow greater than or equal to 0.0 m3_per_second
-		text = "While the switch is on it will always be the case that the valve flow is greater than or equal to 0.0 cubic meters per second"
-	
-	r02: after emergency_stop equal to PRESSED implies valve_state equal to OPEN
-		text = "After emergency stop button is pressed the emergency valve will be open"
-	
-	r03: initially (valve_flow equal to 0.0 m3_per_second)
+	r_ite: if input3 then output1 else output2 r_it: if input3 then internal_state
 
-	r04: after emergency_stop equal to PRESSED until reset_is_pressed implies no_valve_flow
-		text = "After the emergency stop is pressed until reset is pressed, there is no flow through the valve."
-	
+Requirements:
+//Examples that combine language features  
+	r01: if switch equal to ON then valve_flow greater than or equal to 0.0 m3_per_second text =
+	"While the switch is on it will always be the case that the valve flow is greater than or equal to 0.0 cubic meters per second"
+	r02: after emergency_stop equal to PRESSED implies valve_state equal to OPEN text =
+	"After emergency stop button is pressed the emergency valve will be open" r03: initially (valve_flow equal to 0.0
+	m3_per_second) r04: after emergency_stop equal to PRESSED until reset_is_pressed implies no_valve_flow text =
+	"After the emergency stop is pressed until reset is pressed, there is no flow through the valve."
+
 

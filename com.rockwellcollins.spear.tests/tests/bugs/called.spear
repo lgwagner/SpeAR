@@ -1,0 +1,14 @@
+Specification called
+
+Inputs:
+	in : bool
+	
+Outputs:
+	out1 : bool
+	out2 : bool
+
+Requirements:
+	r0: out1 == not in
+	r1: out2 == in
+
+

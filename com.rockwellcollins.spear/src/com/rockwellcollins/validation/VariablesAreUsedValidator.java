@@ -113,14 +113,15 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 	@Check
 	public void checkSpecificationUnits(Specification s) {
 		Set<String> used = new HashSet<>();
-		for(NamedTypeDef nt : EcoreUtil2.getAllContentsOfType(s, NamedTypeDef.class)) {
-			if(nt.getUnit() != null) {
-				used.add(nt.getUnit().getName());
-			}
-		}
 		
 		for(NamedUnitExpr nue : EcoreUtil2.getAllContentsOfType(s, NamedUnitExpr.class)) {
 			used.add(nue.getUnit().getName());
+		}
+
+		for(NamedTypeDef ntd : EcoreUtil2.getAllContentsOfType(s, NamedTypeDef.class)){
+			if(ntd.getUnit() != null) {
+				used.add(ntd.getUnit().getName());
+			}
 		}
 		
 		for(UnitDef ud : s.getUnits()) {

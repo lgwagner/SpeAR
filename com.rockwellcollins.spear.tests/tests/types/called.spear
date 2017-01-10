@@ -1,0 +1,9 @@
+Definitions called
+
+Types:
+	record_type: record {a : int_array, b : int_array2}
+	int_array: int_array2[5]
+	int_array2: int[5]
+	
+Constants:
+	array_size : int = 5

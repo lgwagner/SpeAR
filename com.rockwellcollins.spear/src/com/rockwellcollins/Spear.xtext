@@ -17,8 +17,8 @@ Specification:
 	('State:' state+=Variable*)?
 	('Macros:' macros+=Macro*)?
 	(assumptionsKeyword=AssumptionsHeader ':' assumptions+=Constraint*)?
-	requirementsKeyword=RequirementsHeader ':' requirements+=Constraint*
-	(propertiesKeyword=PropertiesHeader ':' behaviors+=Constraint*)?;
+	(requirementsKeyword=RequirementsHeader ':' requirements+=Constraint*)
+	(behaviorsKeyword=BehaviorsHeader ':' behaviors+=Constraint*)?;
 
 AssumptionsHeader:
 	'Assumptions' | 'Environment';
@@ -26,7 +26,7 @@ AssumptionsHeader:
 RequirementsHeader:
 	'DerivedRequirements' | 'Requirements' | 'Implementation' | 'Design' | 'Constraints';
 
-PropertiesHeader:
+BehaviorsHeader:
 	'Requirements' | 'Properties' | 'Guarantees' | 'Behaviors';
 
 Import:
@@ -119,7 +119,7 @@ Constraint:
 	FormalConstraint | EnglishConstraint;
 
 FormalConstraint:
-	name=ID ':' expr=Expr (data+=Data)*;
+	name=ID (flagAsWitness='observe')? ':' expr=Expr (data+=Data)*;
 
 EnglishConstraint:
 	name=ID ':' text=STRING (data+=Data)*;
@@ -131,7 +131,8 @@ Data:
 	| {ReviewData} 'reviewDate' '=' (string=STRING)
 	| {SourceData} 'source' '=' (string=STRING)
 	| {RationaleData} 'rationale' '=' (string=STRING)
-	| {CommentsData} 'comments' '=' (string=STRING);
+	| {CommentsData} 'comments' '=' (string=STRING)
+;
 
 /* Begin Expr Language */
 Expr:
@@ -197,7 +198,8 @@ AccessExpr returns Expr:
 AtomicExpr returns Expr:
 	LiteralExpr
 	| {IdExpr} id=[IdRef]
-	| {MultipleIdExpr} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|'
+	| {MultipleExpr} '|' exprs+=Expr (',' exprs+=Expr)* '|'
+//	| {MultipleIdExpr} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|'
 	| {IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else' else=Expr)?
 	| {RecordExpr} 'new' type=[RecordTypeDef] '{' fieldExprs+=FieldExpr (',' fieldExprs+=FieldExpr)* '}'
 	| {FieldlessRecordExpr} 'new' type=[RecordTypeDef] '{' exprs+=Expr (',' exprs+=Expr)* '}'

@@ -3,6 +3,8 @@ package com.rockwellcollins.spear.translate.actions;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
@@ -31,8 +33,10 @@ import org.eclipse.xtext.validation.Issue;
 
 import com.google.inject.Injector;
 import com.rockwellcollins.SpearInjectorUtil;
+import com.rockwellcollins.spear.Constraint;
 import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.File;
+import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.translate.layout.SpearRegularLayout;
@@ -103,7 +107,7 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 				URI lustreURI = createURI(state.getURI(), "", "lus");
 
 				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-				
+								
 				if(SpearRuntimeOptions.printFinalLustre) {
 					IResource finalResource = root.getFile(new Path(lustreURI.toPlatformString(true)));
 					printResource(finalResource, p.toString());
@@ -116,7 +120,22 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 				api.setIvcReduction();
 
 				Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.getMain()), Mode.IDENTITY);
-				JKindResult result = new JKindResult("Spear Result", p.getMainNode().properties, renaming);
+				List<Boolean> invert = new ArrayList<>();
+				Specification s = workingCopy.specifications.get(workingCopy.mainName);
+				for(Constraint c : s.getBehaviors()) {
+					if (c instanceof FormalConstraint) {
+						FormalConstraint fc = (FormalConstraint) c;
+						if(fc.getFlagAsWitness() != null) {
+							invert.add(true);
+						} else {
+							invert.add(false);
+						}
+					} else {
+						invert.add(false);
+					}
+				}
+				
+				JKindResult result = new JKindResult("Spear Result", p.getMainNode().properties, invert, renaming);
 
 				IProgressMonitor monitor = new NullProgressMonitor();
 				showView(result, new SpearRegularLayout(specification));

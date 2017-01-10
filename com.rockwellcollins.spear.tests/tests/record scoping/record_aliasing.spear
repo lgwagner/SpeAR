@@ -1,0 +1,32 @@
+Specification record_aliasing
+
+Units:
+	m "meters"
+
+Types:
+	record_t is a record {
+		a : int,
+		b : int
+	}
+
+	record_alias is a record_t
+	
+	distance is an int m
+
+Inputs:
+	in1 : record_t
+
+Outputs:
+	out1 : record_alias
+
+Assumptions:
+
+Requirements:
+	r0: out1 == in1
+	r1: "This should always be true"
+	
+Properties:
+	p0: out1.a > 0
+	p1: "whatever"
+
+

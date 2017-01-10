@@ -1,0 +1,15 @@
+Specification realize
+
+Inputs:
+	a : int
+
+Outputs:
+	b : int
+
+Requirements:
+	r0: a == 3 implies b == 2
+	r1: a == 2 implies b == 3
+
+Properties:
+	bad_prop: not (a==3)
+	

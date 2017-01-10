@@ -1,0 +1,22 @@
+Specification top
+
+Imports:
+	import "called.spear"
+
+Inputs:
+	a : record_type
+
+Outputs:
+	y : record_type
+
+State:
+
+Assumptions:
+	a0: a.a[0][0] > 0
+
+Requirements:
+	r0: y == a
+
+Properties:
+	p0: y.a[0][0] > 0
+

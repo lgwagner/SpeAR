@@ -35,7 +35,7 @@ import com.rockwellcollins.spear.IntLiteral;
 import com.rockwellcollins.spear.IntType;
 import com.rockwellcollins.spear.LustreEquation;
 import com.rockwellcollins.spear.Macro;
-import com.rockwellcollins.spear.MultipleIdExpr;
+import com.rockwellcollins.spear.MultipleExpr;
 import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.PatternCall;
 import com.rockwellcollins.spear.PreviousExpr;
@@ -81,8 +81,8 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	/***************************************************************************************************/
 	// Checks
 	/***************************************************************************************************/
-	public Type checkNamedType(NamedTypeDef nt) {
-		return doSwitch(nt);
+	public Type checkTypeDef(TypeDef td) {
+		return doSwitch(td);
 	}
 
 	public boolean checkConstant(Constant c) {
@@ -113,7 +113,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	
 	@Override
 	public Type caseAbstractTypeDef(AbstractTypeDef at) {
-		return new AbstractType(at.getName());
+		return new AbstractType(at);
 	}
 
 	@Override
@@ -126,7 +126,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		for (FieldType rtf : rt.getFields()) {
 			fields.put(rtf.getName(), doSwitch(rtf.getType()));
 		}
-		return new RecordType(rt.getName(), fields);
+		return new RecordType(rt.getName(),fields,rt);
 	}
 
 	@Override
@@ -152,7 +152,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 			return ERROR;
 		}
 		
-		return new ArrayType(at.getName(), doSwitch(at.getBase()), size);
+		return new ArrayType(at.getName(), doSwitch(at.getBase()), size, at);
 	}
 
 	@Override
@@ -165,7 +165,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		for (EnumValue ev : et.getValues()) {
 			values.add(ev.getName());
 		}
-		return new EnumType(et.getName(), values);
+		return new EnumType(et.getName(), values, et);
 	}
 
 	public final Deque<TypeDef> stack = new ArrayDeque<>();
@@ -614,8 +614,8 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	}
 
 	@Override
-	public Type caseMultipleIdExpr(MultipleIdExpr mide) {
-		return this.processList(new ArrayList<>(mide.getIds()));
+	public Type caseMultipleExpr(MultipleExpr mide) {
+		return this.processList(new ArrayList<>(mide.getExprs()));
 	}
 
 	@Override

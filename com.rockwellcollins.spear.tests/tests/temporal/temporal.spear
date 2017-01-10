@@ -24,10 +24,10 @@ Requirements:
 	r4: (pre_state == Z) implies (state == Z)
 	r5: not a implies (state == pre_state)
 
-Properties:
+Behaviors:
 	p0: once (state == B) implies (state <> A)
 	p1: once (state == Y) implies (state <> A) and (state <> B)
 	p2: once (state == Z) implies (state <> A) and (state <> B) and (state <> Y)
-	p3: never (state == Z)
+	p3 observe: (state == Z)
 
 
