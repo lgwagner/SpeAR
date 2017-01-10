@@ -1,5 +1,6 @@
 package com.rockwellcollins.spear.typing;
 
-public class Type {
+public abstract class Type {
 
+	public abstract com.rockwellcollins.spear.Type getType();
 }

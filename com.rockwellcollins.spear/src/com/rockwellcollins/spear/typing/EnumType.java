@@ -2,13 +2,19 @@ package com.rockwellcollins.spear.typing;
 
 import java.util.List;
 
+import com.rockwellcollins.spear.EnumTypeDef;
+import com.rockwellcollins.spear.SpearFactory;
+import com.rockwellcollins.spear.UserType;
+
 public class EnumType extends Type {
 	public final String id;
 	public final List<String> values;
+	private EnumTypeDef typedef;
 	
-	public EnumType(String id, List<String> values) {
+	public EnumType(String id, List<String> values, EnumTypeDef etd) {
 		this.id=id;
 		this.values=values;
+		this.typedef=etd;
 	}
 	
 	@Override
@@ -28,5 +34,12 @@ public class EnumType extends Type {
 			return id.equals(other.id);
 		}
 		return false;
+	}
+
+	@Override
+	public com.rockwellcollins.spear.Type getType() {
+		UserType ut = SpearFactory.eINSTANCE.createUserType();
+		ut.setDef(typedef);
+		return ut;
 	}
 }

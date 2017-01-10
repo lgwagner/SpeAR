@@ -1,10 +1,16 @@
 package com.rockwellcollins.spear.typing;
 
+import com.rockwellcollins.spear.AbstractTypeDef;
+import com.rockwellcollins.spear.SpearFactory;
+import com.rockwellcollins.spear.UserType;
+
 public class AbstractType extends Type {
 	public String id;
+	private AbstractTypeDef typedef;
 
-	public AbstractType(String id) {
-		this.id=id;	
+	public AbstractType(AbstractTypeDef atd) {
+		this.id=atd.getName();	
+		this.typedef=atd;
 	}
 	
 	@Override
@@ -24,5 +30,12 @@ public class AbstractType extends Type {
 			return this.id.equals(other.id);
 		}
 		return false;
+	}
+
+	@Override
+	public com.rockwellcollins.spear.Type getType() {
+		UserType ut = SpearFactory.eINSTANCE.createUserType();
+		ut.setDef(typedef);
+		return ut;
 	}
 }

@@ -113,7 +113,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	
 	@Override
 	public Type caseAbstractTypeDef(AbstractTypeDef at) {
-		return new AbstractType(at.getName());
+		return new AbstractType(at);
 	}
 
 	@Override
@@ -126,7 +126,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		for (FieldType rtf : rt.getFields()) {
 			fields.put(rtf.getName(), doSwitch(rtf.getType()));
 		}
-		return new RecordType(rt.getName(), fields);
+		return new RecordType(rt.getName(),fields,rt);
 	}
 
 	@Override
@@ -152,7 +152,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 			return ERROR;
 		}
 		
-		return new ArrayType(at.getName(), doSwitch(at.getBase()), size);
+		return new ArrayType(at.getName(), doSwitch(at.getBase()), size, at);
 	}
 
 	@Override
@@ -165,7 +165,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		for (EnumValue ev : et.getValues()) {
 			values.add(ev.getName());
 		}
-		return new EnumType(et.getName(), values);
+		return new EnumType(et.getName(), values, et);
 	}
 
 	public final Deque<TypeDef> stack = new ArrayDeque<>();

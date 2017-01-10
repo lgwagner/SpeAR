@@ -250,4 +250,9 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 				break;
 		}
 	}
+	
+	@Check
+	public void flagReservedKeywords(Specification s) {
+		
+	}
 }

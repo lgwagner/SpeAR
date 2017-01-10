@@ -1,8 +1,14 @@
 package com.rockwellcollins.spear.language;
 
+import java.util.List;
+
 import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.Expr;
+import com.rockwellcollins.spear.IdExpr;
+import com.rockwellcollins.spear.Macro;
+import com.rockwellcollins.spear.MultipleIdExpr;
 import com.rockwellcollins.spear.SpearFactory;
+import com.rockwellcollins.spear.Type;
 import com.rockwellcollins.spear.UnaryExpr;
 
 public class CreateExpr {
@@ -56,6 +62,26 @@ public class CreateExpr {
 		return be;
 	}
 	
+	public static Macro createMacro(String name, Type t, Expr e) {
+		Macro m = f.createMacro();
+		m.setName(name);
+		m.setType(t);
+		m.setExpr(e);
+		return m;
+	}
+	
+	public static IdExpr createIdExpr(Macro m) {
+		IdExpr ide = f.createIdExpr();
+		ide.setId(m);
+		return ide;
+	}
+	
+	public static MultipleIdExpr createMultipleIdExpr(List<Macro> list) {
+		MultipleIdExpr mide = f.createMultipleIdExpr();
+		mide.getIds().addAll(list);
+		return mide;
+	}
+	
 	public static UnaryExpr createNot(Expr sub) {
 		return createUnaryExpr(NOT,sub);
 	}
@@ -83,5 +109,4 @@ public class CreateExpr {
 	public static BinaryExpr createTriggers(Expr left, Expr right) {
 		return createBinaryExpr(left,TRIGGERS,right);
 	}
-
 }

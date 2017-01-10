@@ -42,4 +42,9 @@ public class TupleType extends Type {
 		}
 		return false;
 	}
+	
+	@Override
+	public com.rockwellcollins.spear.Type getType() {
+		return null;
+	}
 }
