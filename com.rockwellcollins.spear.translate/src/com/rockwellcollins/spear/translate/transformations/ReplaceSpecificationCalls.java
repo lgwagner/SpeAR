@@ -6,13 +6,13 @@ import org.eclipse.xtext.EcoreUtil2;
 import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.File;
-import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.SpearFactory;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.SpecificationCall;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.util.SpearSwitch;
+import com.rockwellcollins.spear.utilities.GetAllIdRefs;
 
 public class ReplaceSpecificationCalls extends SpearSwitch<EObject> {
 
@@ -31,10 +31,10 @@ public class ReplaceSpecificationCalls extends SpearSwitch<EObject> {
 		NormalizedCall replacement = f.createNormalizedCall();
 		replacement.setSpec(call.getSpec());
 		replacement.getArgs().addAll(call.getArgs());
-		replacement.getIds().addAll(EcoreUtil2.getAllContentsOfType(ids, IdRef.class));
+		replacement.getIds().addAll(GetAllIdRefs.getReferences(ids));
 		return replacement;
 	}
-	
+
 	@Override
 	public Expr caseBinaryExpr(BinaryExpr be) {
 		Expr left = (Expr) this.doSwitch(be.getLeft());
@@ -65,4 +65,6 @@ public class ReplaceSpecificationCalls extends SpearSwitch<EObject> {
 	}
 	
 	SpearFactory f = SpearFactory.eINSTANCE;
+	
+
 }
