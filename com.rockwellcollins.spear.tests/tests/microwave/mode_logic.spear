@@ -30,7 +30,7 @@ Assumptions:
 	a0: seconds_to_cook >= 0
 	
 Requirements:
-	r0: initially(microwave_mode == SETUP)
+//	r0: initially(microwave_mode == SETUP)
 	
 	r1: if microwave_mode == SETUP 
 		 then seconds_remaining == seconds_to_cook 

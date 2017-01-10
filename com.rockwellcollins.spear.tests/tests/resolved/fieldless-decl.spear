@@ -1,0 +1,7 @@
+Definitions t
+
+Types:
+  record_type is a record {x : int, y : int}
+  
+Constants:
+  the_record is a record_type = new record_type {0, 1}
