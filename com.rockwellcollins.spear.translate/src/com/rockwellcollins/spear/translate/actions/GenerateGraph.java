@@ -1,12 +1,12 @@
 package com.rockwellcollins.spear.translate.actions;
 
-import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.io.IOException;
+import java.nio.file.Files;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.action.IAction;
@@ -15,7 +15,6 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
-import org.eclipse.ui.PartInitException;
 import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.XtextEditor;
@@ -32,11 +31,7 @@ import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.intermediate.GenerateDot;
-import com.rockwellcollins.spear.translate.views.SpearRealizabilityResultsView;
 import com.rockwellcollins.ui.internal.SpearActivator;
-
-import jkind.api.results.JKindResult;
-import jkind.results.layout.Layout;
 
 public class GenerateGraph implements IWorkbenchWindowActionDelegate {
 
@@ -74,23 +69,44 @@ public class GenerateGraph implements IWorkbenchWindowActionDelegate {
 					return null;
 				}
 				
-				if (checkForDot()) {
-					MessageDialog.openError(window.getShell(), "Error", "GraphViz is not installed/detected.");
+				if (!checkForDot()) {
+					MessageDialog.openError(window.getShell(), "Error", "Unable to find GraphViz installation.");
 					return null;					
 				}
-
+				
 				//Set the runtime options
 				SpearRuntimeOptions.setRuntimeOptions();
 				
 				String result = GenerateDot.generateDot(specification);
-//				URI dotURI = createURI(state.getURI(), "", "dot");
+				URI pngURI = createURI(state.getURI(), "", "png");
+				
+				java.nio.file.Path dotFile = Files.createTempFile("spear_graphical", ".dot");
 
 				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+				IResource pdfFile = root.getFile(new Path(pngURI.toPlatformString(true)));
+
+				try {
+					FileWriter writer = new FileWriter(dotFile.toFile());
+					writer.write(result);
+					writer.flush();
+					writer.close();
+				} catch (Exception e) {
+					MessageDialog.openError(window.getShell(), "Error", "Unable to create dot file.");
+					e.printStackTrace();
+					return null;
+				}
 				
-//				if(SpearRuntimeOptions.printFinalLustre) {
-//					IResource finalResource = root.getFile(new Path(lustreURI.toPlatformString(true)));
-//					printResource(finalResource, p.toString());
-//				}
+				try {
+					//this string needs to be a filesystem string for DOT to work correctly on it.
+					String fileSystemString = pdfFile.getLocation().toFile().toString();
+					ProcessBuilder pb = new ProcessBuilder("dot","-Tpng","-o",fileSystemString,dotFile.toString());
+					pb.start().waitFor();
+					pb = null;
+				} catch (Exception e) {
+					MessageDialog.openError(window.getShell(), "Error", "Unable to process dot file.");
+					e.printStackTrace();
+					return null;
+				}
 
 				// refresh the workspace
 				root.refreshLocal(IResource.DEPTH_INFINITE, null);
@@ -100,7 +116,13 @@ public class GenerateGraph implements IWorkbenchWindowActionDelegate {
 	}
 
 	private boolean checkForDot() {
-		return false;
+		ProcessBuilder pb = new ProcessBuilder("dot","-help");
+		try {
+			pb.start().waitFor();
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
 	}
 	
 	protected boolean hasErrors(Resource res) {
@@ -121,26 +143,6 @@ public class GenerateGraph implements IWorkbenchWindowActionDelegate {
 		int i = filename.lastIndexOf(".");
 		baseURI = baseURI.appendSegment((filename.substring(0, i) + suffix + "." + extension));
 		return baseURI;
-	}
-
-	private void printResource(IResource res, String contents) throws IOException {
-		try (BufferedWriter bw = new BufferedWriter(new FileWriter(res.getRawLocation().toFile()))) {
-			bw.write(contents);
-		}
-	}
-
-	private void showView(final JKindResult result, final Layout layout) {
-		window.getShell().getDisplay().syncExec(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					SpearRealizabilityResultsView page = (SpearRealizabilityResultsView) window.getActivePage().showView(SpearRealizabilityResultsView.ID);
-					page.setInput(result, layout, null);
-				} catch (PartInitException e) {
-					e.printStackTrace();
-				}
-			}
-		});
 	}
 
 	@Override
