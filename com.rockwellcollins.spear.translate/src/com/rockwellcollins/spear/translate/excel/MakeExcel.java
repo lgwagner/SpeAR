@@ -32,8 +32,11 @@ public class MakeExcel extends SpearSwitch<Integer> {
 	public static List<String> topLevelReqList = new ArrayList<>();
 	
 	public static void toExcel(Specification s, File f) throws Exception {
+		//clear existing list
+		reqIDMap.clear();
+		topLevelReqList.clear();
 		try (ExcelFormatter formatter = new ExcelFormatter(f)) {
-			new MakeExcel(s,f);
+			new MakeExcel(s,f);			
 			//need to connect writeRequirements with file
 			formatter.writeSpecification(topLevelReqList, reqIDMap);
 			//need to handle the situation when the file is already open - then it cannot be launched 
@@ -149,17 +152,21 @@ public class MakeExcel extends SpearSwitch<Integer> {
 			Boolean topLevelReq = true;
         	for(String parentID: req.getParentList()){
             	//check if parentID exists in requirementList
+        		//if yes, mark it as non top level requirement and add child ID to parent req
         		if(reqIDList.contains(parentID)){
         			topLevelReq = false;
         			//if yes, add the requirement ID to the parentID requirement's childList
         			reqIDMap.get(parentID).addChild(req.getID());	
         		}
-        		//if not, throw an exception
+        		//if parentID is not in requirementList
+        		//it may be defined elsewhere
         		else{
         			//project specific text for Derived and Originating requirements
-        			//marked in the parents attribute
+        			//marked in the parents attribute - still consider them top level requirement
         			if (!parentID.equals("HALWA_Derived") && !parentID.equals("HALWA_Originating")){
-        				throw new Exception("parent ID "+parentID + " for req_ID " + req.getID() + " is not defined");
+        				//other requirement IDs, throw an exception if exporting all related SpeAR files
+        				topLevelReq = false;
+        				//throw new Exception("parent ID "+parentID + " for req_ID " + req.getID() + " is not defined");
         			}
         		}     		
         	}
