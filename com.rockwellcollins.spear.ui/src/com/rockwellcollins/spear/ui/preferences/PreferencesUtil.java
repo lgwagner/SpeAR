@@ -30,6 +30,11 @@ public class PreferencesUtil {
 		return prefs.getBoolean(PreferenceConstants.PREF_GENERATE_FINAL_LUSTRE_FILE);		
 	}
 	
+	public static boolean getRecursiveGraphicalDisplayOption() {
+		IPreferenceStore prefs = getPreferenceStore();
+		return prefs.getBoolean(PreferenceConstants.PREF_RECURSIVE_GRAPHICAL_DISPLAY);		
+	}
+	
 	public static boolean getDisabledUnusedValidations() {
 		IPreferenceStore prefs = getPreferenceStore();
 		return prefs.getBoolean(PreferenceConstants.PREF_DISABLE_UNUSED_VALIDATIONS);		
@@ -115,14 +120,14 @@ public class PreferencesUtil {
 		}
 	}
 
-	private static Kind2Api getKind2Api() {
+	public static Kind2Api getKind2Api() {
 		IPreferenceStore prefs = getPreferenceStore();
 		Kind2Api api = new Kind2Api();
 		api.setTimeout(prefs.getInt(PreferenceConstants.PREF_TIMEOUT));
 		return api;
 	}
 
-	private static Kind2WebApi getKind2WebApi(String uri) {
+	public static Kind2WebApi getKind2WebApi(String uri) {
 		IPreferenceStore prefs = getPreferenceStore();
 		Kind2WebApi api = new Kind2WebApi(uri);
 		api.setTimeout(prefs.getInt(PreferenceConstants.PREF_TIMEOUT));

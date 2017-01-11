@@ -69,6 +69,7 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 	private BooleanFieldEditor intervalGenFieldEditor;
 	private BooleanFieldEditor unusedValidationFieldEditor;
 	private BooleanFieldEditor spearFinalLustreFileFieldEditor;
+	private BooleanFieldEditor spearRecursiveGraphicalDisplayFieldEditor;
 	private NonNegativeIntegerFieldEditor depthFieldEditor;
 	private NonNegativeIntegerFieldEditor timeoutFieldEditor;
 	private NonNegativeIntegerFieldEditor consistencyFieldEditor;
@@ -117,6 +118,10 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 		spearFinalLustreFileFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_GENERATE_FINAL_LUSTRE_FILE,
 				"Generate final Lustre file", getFieldEditorParent());
 		addField(spearFinalLustreFileFieldEditor);
+		
+		spearRecursiveGraphicalDisplayFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_RECURSIVE_GRAPHICAL_DISPLAY,
+				"Make graphical display recursive", getFieldEditorParent());
+		addField(spearRecursiveGraphicalDisplayFieldEditor);
 		
 		unusedValidationFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_DISABLE_UNUSED_VALIDATIONS,
 				"Disable unused variable validations", getFieldEditorParent());
