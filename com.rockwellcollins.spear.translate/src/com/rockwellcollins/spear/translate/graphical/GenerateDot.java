@@ -1,4 +1,4 @@
-package com.rockwellcollins.spear.translate.intermediate;
+package com.rockwellcollins.spear.translate.graphical;
 
 import java.util.HashSet;
 import java.util.List;

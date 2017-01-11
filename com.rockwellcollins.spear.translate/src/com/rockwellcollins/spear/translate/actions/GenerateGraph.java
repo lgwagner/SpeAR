@@ -30,7 +30,7 @@ import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Specification;
-import com.rockwellcollins.spear.translate.intermediate.GenerateDot;
+import com.rockwellcollins.spear.translate.graphical.GenerateDot;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
 public class GenerateGraph implements IWorkbenchWindowActionDelegate {
