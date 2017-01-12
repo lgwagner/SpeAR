@@ -70,7 +70,8 @@ public class GenerateGraph implements IWorkbenchWindowActionDelegate {
 				}
 				
 				if (!checkForDot()) {
-					MessageDialog.openError(window.getShell(), "Error", "Unable to find GraphViz installation.");
+					MessageDialog.openError(window.getShell(), "Error", "Unable to find GraphViz installation. \n"
+							+ "GraphViz can be downloaded at http://www.graphviz.org");
 					return null;					
 				}
 				
