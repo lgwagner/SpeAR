@@ -18,6 +18,19 @@ public class Requirement {
 	private final String rationale;
 	private final String comments;
     
+	/**
+	 * SpeAR Requirement (Assumption, Property, Requirement) Object to be exported to Excel
+	 * @param id
+	 * @param text
+	 * @param type
+	 * @param owner
+	 * @param component
+	 * @param parentList
+	 * @param reviewDate
+	 * @param source
+	 * @param rationale
+	 * @param comments
+	 */
 	public Requirement(String id, String text, String type, String owner, String component,
 			List<String> parentList, 
 			String reviewDate, String source, String rationale, String comments) {
@@ -38,6 +51,10 @@ public class Requirement {
 		this.comments = comments;
 	}
 	
+	/**
+	 * export the attributes of a Requirement object to a list of strings
+	 * @return
+	 */
 	public List<String> exportStrs() {
 		List<String> attributeList = new ArrayList<>();
 		attributeList.add(id);
@@ -54,18 +71,34 @@ public class Requirement {
 		return attributeList;
 	}
 	
+	/**
+	 * Get Requirement ID
+	 * @return
+	 */
 	public String getID(){
 		return id;
 	}
 	
+	/**
+	 * Get the list of parent requirement IDs
+	 * @return
+	 */
 	public List<String> getParentList(){
 		return parentList;
 	}
 	
+	/**
+	 * Get the list of child requirement IDs
+	 * @return
+	 */
 	public List<String> getChildList(){
 		return childList;
 	}
 	
+	/**
+	 * Add a requirement ID to the child requirement list
+	 * @param childID
+	 */
 	public void addChild(String childID){
 		childList.add(childID);
 	}

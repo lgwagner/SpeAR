@@ -1,8 +1,5 @@
 package com.rockwellcollins.spear.translate.actions;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -25,11 +22,11 @@ import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
-
 import com.google.inject.Injector;
 import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.excel.MakeExcel;
+import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
 public class GenerateExcel implements IWorkbenchWindowActionDelegate {
@@ -61,25 +58,21 @@ public class GenerateExcel implements IWorkbenchWindowActionDelegate {
 				}
 				
 				Specification workingCopy = EcoreUtil2.copy(specification);
+				SpearDocument spearDoc = new SpearDocument(workingCopy);
 				// This is where you will create the URI for the excel file.
 				URI excelURI = createURI(state.getURI(), "", "xls");
 				
 				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 				IResource excelResource = root.getFile(new Path(excelURI.toPlatformString(true)));
 
-		            //File file = File.createTempFile("requirements", ".xls");
-					//This is where you will create the excel file.	
 				try{
-					MakeExcel.toExcel(workingCopy,excelResource.getLocation().toFile());
+					MakeExcel.toExcel(spearDoc,excelResource.getLocation().toFile());
 				}catch (Exception e) {
-		            //Dialog.showError("Unable to open spreadsheet", e.getMessage());
-		            MessageDialog.openError(window.getShell(), "Unable to export to spreadsheet", e.getMessage());
+		            MessageDialog.openError(window.getShell(), "Unable to export to spreadsheet.", e.getMessage());
 
 		            e.printStackTrace();
 		        }
-		            //org.eclipse.swt.program.Program.launch(file.toString());
-				//Turn this off / remove this when you want to test your code.
-				//MessageDialog.openError(window.getShell(), "Feature Unsupported", "This feature is not yet supported.");
+				
 
 				// refresh the workspace
 				root.refreshLocal(IResource.DEPTH_INFINITE, null);

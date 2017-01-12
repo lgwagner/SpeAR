@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import jkind.JKindException;
 import jkind.excel.ExcelUtil;
 import jxl.Workbook;
@@ -34,11 +33,16 @@ public class ExcelFormatter implements Closeable {
 	private final CellFormat boldFormat = ExcelUtil.getBoldFormat();
 	private final CellFormat defaultFormat = new WritableCellFormat();
 
+	/**
+	 * Constructor that creates an Excel workbook with the file given
+	 * @param file
+	 * @throws Exception
+	 */
 	public ExcelFormatter(File file) {
 		try {
 			workbook = Workbook.createWorkbook(file);
 		} catch (IOException e) {
-			throw new JKindException("Error writing to Excel file", e);
+			throw new JKindException("Unable to create Excel file. Please close the Excel file previously exported.", e);
 		}
 	}
 
@@ -66,7 +70,7 @@ public class ExcelFormatter implements Closeable {
 			writeRequirement(topLevelReqList, reqIDMap);
 			return sheet;
 		} catch (WriteException e) {
-			throw new JKindException("Error writing counterexample to Excel file", e);
+			throw new JKindException("Error writing to Excel file", e);
 		}
 	}
 	

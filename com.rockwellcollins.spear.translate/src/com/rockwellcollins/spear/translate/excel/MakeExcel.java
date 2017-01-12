@@ -5,9 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-
 import org.eclipse.emf.common.util.EList;
-
 import com.rockwellcollins.spear.CommentsData;
 import com.rockwellcollins.spear.Constraint;
 import com.rockwellcollins.spear.Data;
@@ -21,22 +19,31 @@ import com.rockwellcollins.spear.SourceData;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.TraceData;
 import com.rockwellcollins.spear.util.SpearSwitch;
-
-import jxl.write.Label;
-
 import com.rockwellcollins.spear.translate.excel.Requirement;
+import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 
 public class MakeExcel extends SpearSwitch<Integer> {
 	
     public static HashMap<String, Requirement> reqIDMap = new HashMap<String, Requirement>();
 	public static List<String> topLevelReqList = new ArrayList<>();
 	
-	public static void toExcel(Specification s, File f) throws Exception {
+	/**
+	 * Export all requirements from the selected SpeAR file and all SpeAR files it depends on 
+	 * (through hierarchical imports) to an Excel spreadsheet
+	 * 
+	 * @param spearDoc
+	 * @param f
+	 * @throws Exception
+	 */
+	public static void toExcel(SpearDocument spearDoc, File f) throws Exception {
 		//clear existing list
 		reqIDMap.clear();
 		topLevelReqList.clear();
 		try (ExcelFormatter formatter = new ExcelFormatter(f)) {
-			new MakeExcel(s,f);			
+			for(Specification spec: spearDoc.specifications.values()){
+				exportReqList(spec);		
+			}
+			extractChildLists();	
 			//need to connect writeRequirements with file
 			formatter.writeSpecification(topLevelReqList, reqIDMap);
 			//need to handle the situation when the file is already open - then it cannot be launched 
@@ -44,7 +51,8 @@ public class MakeExcel extends SpearSwitch<Integer> {
 		}
 	}
 	
-	private void exportRequirement(Iterator<Constraint> constraintIterator, String type, String compName) throws Exception{
+	
+	private static void exportRequirement(Iterator<Constraint> constraintIterator, String type, String compName) throws Exception{
 		
 		while (constraintIterator.hasNext()) {
 			//get current constraint
@@ -62,8 +70,7 @@ public class MakeExcel extends SpearSwitch<Integer> {
 			String source = "";
 			String rationale = "";
 			String comments = "";
-	        List<String> parentList = new ArrayList<>();
-	        List<String> childList = new ArrayList<>();	    
+	        List<String> parentList = new ArrayList<>(); 
 
 	        //extract data from the current constraint and update the attributes
 	        
@@ -129,7 +136,7 @@ public class MakeExcel extends SpearSwitch<Integer> {
 		}
 	}
 	
-	public MakeExcel(Specification s, File f) throws Exception{
+	private static void exportReqList(Specification s) throws Exception{
 		String compName = s.getName();
 		//get the assumptions
 		Iterator<Constraint> asIterator = s.getAssumptions().iterator();
@@ -140,6 +147,9 @@ public class MakeExcel extends SpearSwitch<Integer> {
 		//get the properties
 		Iterator<Constraint> propIterator = s.getBehaviors().iterator();
 		exportRequirement(propIterator, "PROP", compName);		
+	}
+
+	private static void extractChildLists() {
 		//get the IDs for all existing requirements listed
 		List<String> reqIDList = new ArrayList<>(reqIDMap.keySet());
 
@@ -157,18 +167,7 @@ public class MakeExcel extends SpearSwitch<Integer> {
         			topLevelReq = false;
         			//if yes, add the requirement ID to the parentID requirement's childList
         			reqIDMap.get(parentID).addChild(req.getID());	
-        		}
-        		//if parentID is not in requirementList
-        		//it may be defined elsewhere
-        		else{
-        			//project specific text for Derived and Originating requirements
-        			//marked in the parents attribute - still consider them top level requirement
-        			if (!parentID.equals("HALWA_Derived") && !parentID.equals("HALWA_Originating")){
-        				//other requirement IDs, throw an exception if exporting all related SpeAR files
-        				topLevelReq = false;
-        				//throw new Exception("parent ID "+parentID + " for req_ID " + req.getID() + " is not defined");
-        			}
-        		}     		
+        		}  		
         	}
         	//add to topLevelList if the topLevelReq flag is true
         	if(topLevelReq){
@@ -177,7 +176,7 @@ public class MakeExcel extends SpearSwitch<Integer> {
         }
 	}
 
-	private String detectDuplicates(String id, String type, String attributeName, String text, String newText) throws Exception {
+	private static String detectDuplicates(String id, String type, String attributeName, String text, String newText) throws Exception {
 		if("".equals(text)){
 			text = newText;
 		}else{
