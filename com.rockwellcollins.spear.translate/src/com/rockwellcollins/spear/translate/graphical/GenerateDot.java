@@ -100,6 +100,7 @@ public class GenerateDot {
 		}
 	}
 	
+	//we need to filter out the pattern calls that exist inside of other patterns in a spec
 	private List<PatternCall> getDirectPatternCalls(Specification s) {
 		List<PatternCall> filtered = new ArrayList<>();
 		for(PatternCall pc : EcoreUtil2.getAllContentsOfType(s, PatternCall.class)) {
