@@ -1,0 +1,32 @@
+Specification call1
+
+Imports:
+	import "definitions.spear"
+
+Units:
+
+Types:
+
+Constants:
+
+Patterns:
+	pattern gt0(a : int) returns (x : bool)
+	let
+		x = a > 0
+	tel
+
+Inputs:
+	a : int
+
+Outputs:
+	z : int
+
+Assumptions:
+	a0: gt0(a)
+
+Requirements:
+	r0: z == plus_one(a)
+
+Properties:
+	p0: z > a
+

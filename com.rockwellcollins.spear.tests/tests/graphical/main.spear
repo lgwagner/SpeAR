@@ -1,0 +1,35 @@
+Specification main
+
+
+Imports:
+	import "call1.spear"
+	import "call2.spear"
+	import "definitions.spear"
+
+Patterns:
+
+	pattern add_three(a : t1, b : int, c : int) returns (x : int)
+	let
+		x = add_two(a,b) + c
+	tel
+
+Inputs:
+	a : int
+	b : int
+	c : int
+
+Outputs:
+	x : int
+	y : int
+	z : int
+
+Assumptions:
+	a0: a >= 0 and b >= 0 and c >= 0
+
+Requirements:
+	r0: |x,y| == spec call2(a,b)
+	r1: z == spec call1(c)
+
+Properties:
+	p0: z > add_three(a,b,c)
+

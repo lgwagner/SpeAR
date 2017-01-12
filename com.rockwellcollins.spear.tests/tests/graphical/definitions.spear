@@ -1,0 +1,18 @@
+Definitions definitions
+
+Types:
+	t1: int
+
+Constants:
+
+Patterns:
+	pattern add_two(a : int, b : int) returns (x : int)
+	let
+		x = a + b
+	tel
+	
+	pattern plus_one(a : int) returns (x : int)
+	let
+		x = a + 1
+	tel
+

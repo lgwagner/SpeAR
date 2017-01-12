@@ -1,7 +1,6 @@
 Specification mode_logic
 
 Imports:
-	import "compute_time.spear"
 	import "microwave_definitions.spear"
 
 Types:
@@ -18,10 +17,9 @@ Outputs:
 
 Macros:
 	pre_mode : mode_type = previous microwave_mode with initial value SETUP
-	pre_mode_is_setup : bool = pre_mode == SETUP
-	pre_mode_is_cooking : bool = pre_mode == COOKING
-	pre_mode_is_suspended : bool = pre_mode == SUSPENDED
-	
+	pre_mode_is_setup : bool = pre_mode == UNASSIGNED
+	pre_mode_is_cooking : bool = pre_mode == UNASSIGNED
+	pre_mode_is_suspended : bool = pre_mode == UNASSIGNED	
 	seconds_to_cook_positive : bool = seconds_to_cook > 0
 	seconds_remaining_positive : bool = seconds_remaining > 0
 	pre_seconds_remaining : int = previous seconds_remaining with initial value 0
@@ -30,7 +28,7 @@ Assumptions:
 	a0: seconds_to_cook >= 0
 	
 Requirements:
-//	r0: initially(microwave_mode == SETUP)
+	r0: initially(microwave_mode == UNASSIGNED)
 	
 	r1: if microwave_mode == SETUP 
 		 then seconds_remaining == seconds_to_cook 
@@ -49,6 +47,8 @@ Requirements:
 	r8: pre_mode_is_suspended and (not door_closed and not clear) implies microwave_mode == SUSPENDED
 	r9: pre_mode_is_suspended and (door_closed and start and not clear) implies microwave_mode == COOKING
 	r10: pre_mode_is_suspended and clear implies microwave_mode == SETUP
+	
+	r11: pre_mode == UNASSIGNED implies microwave_mode == SETUP
 
 Guarantees:
 	p1: (microwave_mode == COOKING) => door_closed
