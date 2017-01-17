@@ -117,7 +117,7 @@ public class GenerateGraph implements IWorkbenchWindowActionDelegate {
 	}
 
 	private boolean checkForDot() {
-		ProcessBuilder pb = new ProcessBuilder("dot","-help");
+		ProcessBuilder pb = new ProcessBuilder("dot","-?");
 		try {
 			pb.start().waitFor();
 		} catch (Exception e) {
