@@ -59,9 +59,8 @@ public class SProgram extends SMapElement {
 		 * 3. resolve the call variables
 		 */
 		specifications.addAll(SSpecification.build(document.specifications.values(), map));
-		
-		resolveCalls();	
-		resolveCallVars();
+		specifications.stream().forEach(s -> s.resolveCalls(specifications));
+		specifications.stream().forEach(s -> s.resolveCallVars());
 		
 		//identify the main node.
 		this.mainName = map.lookupOriginalProgram(document.mainName);
@@ -103,19 +102,7 @@ public class SProgram extends SMapElement {
 		program.setMain(this.mainName);
 		return program.build();
 	}
-	
-	private void resolveCalls() {
-		for(SSpecification s : specifications) {
-			s.resolveCalls(specifications);
-		}
-	}
-	
-	private void resolveCallVars() {
-		for(SSpecification s : specifications) {
-			s.resolveCallVars();
-		}
-	}
-	
+
 	public Program getBaseProgram() {
 		ProgramBuilder program = new ProgramBuilder();
 		

@@ -3,11 +3,11 @@
  */
 package com.rockwellcollins.formatting;
 
-import com.google.inject.Inject;
-
 import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.formatting.impl.AbstractDeclarativeFormatter;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
+
+import com.google.inject.Inject;
 import com.rockwellcollins.services.SpearGrammarAccess;
 
 /**

@@ -1,7 +1,7 @@
 package com.rockwellcollins.spear.translate.master;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.rockwellcollins.spear.Type;
 import com.rockwellcollins.spear.Variable;
@@ -12,23 +12,11 @@ import jkind.lustre.VarDecl;
 public class SVariable {
 
 	public static List<SVariable> build(List<Variable> list, SSpecification s) {
-		List<SVariable> processed = new ArrayList<>();
-		for(Variable v : list) {
-			processed.add(SVariable.build(v, s));
-		}
-		return processed;
+		return list.stream().map(v -> new SVariable(v,s)).collect(Collectors.toList());
 	}
 	
 	public static List<VarDecl> toVarDecl(List<SVariable> list, SSpecification s) {
-		List<VarDecl> lustre = new ArrayList<>();
-		for(SVariable svar : list) {
-			lustre.add(svar.toLustre(s));
-		}
-		return lustre;
-	}
-	
-	public static SVariable build(Variable v, SSpecification s) {
-		return new SVariable(v,s);
+		return list.stream().map(v -> v.toLustre(s)).collect(Collectors.toList());
 	}
 	
 	public String original;

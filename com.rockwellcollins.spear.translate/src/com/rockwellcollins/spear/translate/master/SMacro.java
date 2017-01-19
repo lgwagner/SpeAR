@@ -1,7 +1,7 @@
 package com.rockwellcollins.spear.translate.master;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.Macro;
@@ -15,31 +15,15 @@ import jkind.lustre.VarDecl;
 public class SMacro {
 
 	public static List<SMacro> build(List<Macro> list, SSpecification s) {
-		List<SMacro> built = new ArrayList<>();
-		for(Macro m : list) {
-			built.add(SMacro.build(m, s));
-		}
-		return built;
+		return list.stream().map(m -> new SMacro(m, s)).collect(Collectors.toList());
 	}
 	
 	public static List<VarDecl> toVarDecls(List<SMacro> list, SSpecification s) {
-		List<VarDecl> decls = new ArrayList<>();
-		for(SMacro smacro : list) {
-			decls.add(smacro.toVarDecl(s));
-		}
-		return decls;
+		return list.stream().map(sm -> sm.toVarDecl(s)).collect(Collectors.toList());
 	}
 	
 	public static List<Equation> toEquations(List<SMacro> list, SSpecification s) {
-		List<Equation> equations = new ArrayList<>();
-		for(SMacro smacro : list) {
-			equations.add(smacro.toEquation(s));
-		}
-		return equations;
-	}
-	
-	public static SMacro build(Macro m, SSpecification s) {
-		return new SMacro(m,s);
+		return list.stream().map(sm -> sm.toEquation(s)).collect(Collectors.toList());
 	}
 	
 	public String name;

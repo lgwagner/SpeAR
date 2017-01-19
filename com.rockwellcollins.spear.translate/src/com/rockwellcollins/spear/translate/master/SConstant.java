@@ -1,8 +1,8 @@
 package com.rockwellcollins.spear.translate.master;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Expr;
@@ -13,23 +13,11 @@ import com.rockwellcollins.spear.translate.lustre.TranslateType;
 public class SConstant {
 	
 	public static List<SConstant> build(Collection<Constant> list, SProgram program) {
-		List<SConstant> built = new ArrayList<>();
-		for(Constant c : list) {
-			built.add(SConstant.build(c, program));
-		}
-		return built;
-	}
-	
-	public static SConstant build(Constant c, SProgram program) {
-		return new SConstant(c,program);
+		return list.stream().map(c -> new SConstant(c,program)).collect(Collectors.toList());
 	}
 	
 	public static List<jkind.lustre.Constant> toLustre(List<SConstant> list, SProgram program) {
-		List<jkind.lustre.Constant> lustre = new ArrayList<>();
-		for(SConstant sc : list) {
-			lustre.add(sc.toLustre(program));
-		}
-		return lustre;
+		return list.stream().map(sc -> sc.toLustre(program)).collect(Collectors.toList());
 	}
 	
 	public String name;

@@ -1,7 +1,7 @@
 package com.rockwellcollins.spear.translate.master;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -15,50 +15,28 @@ import jkind.lustre.VarDecl;
 
 public abstract class SConstraint {
 
-	public static final String PROPERTY_SUFFIX = "_property";
 	public static List<SConstraint> build(List<Constraint> list, SSpecification s) {
-		List<SConstraint> built = new ArrayList<>();
-		for(Constraint c : list) {
-			built.add(SConstraint.build(c, s));
-		}
-		return built;
+		return list.stream().map(c -> SConstraint.build(c, s)).collect(Collectors.toList());
 	}
 	
-	public static List<VarDecl> toVarDecl(List<SConstraint> list, SSpecification map) {
-		List<VarDecl> decls = new ArrayList<>();
-		for(SConstraint c : list) {
-			decls.add(c.toVarDecl(map));
-		}
-		return decls;
+	public static List<VarDecl> toVarDecl(List<SConstraint> list, SSpecification s) {
+		return list.stream().map(c -> c.toVarDecl(s)).collect(Collectors.toList());
 	}
 
-	public static List<Equation> toEquation(List<SConstraint> list, SSpecification map) {
-		List<Equation> equations = new ArrayList<>();
-		for(SConstraint c : list) {
-			equations.add(c.toEquation(map));
-		}
-		return equations;
+	public static List<Equation> toEquation(List<SConstraint> list, SSpecification s) {
+		return list.stream().map(c -> c.toEquation(s)).collect(Collectors.toList());
 	}
 	
 	public static List<Equation> toPropertyEquations(List<SConstraint> list, String name, SSpecification s) {
-		List<Equation> equations = new ArrayList<>();
-		for(SConstraint sc : list) {
-			equations.add(sc.getPropertyEquation(name,s));
-		}
-		return equations;
+		return list.stream().map(c -> c.getPropertyEquation(name, s)).collect(Collectors.toList());
 	}
 	
 	public static List<String> toPropertyIds(List<SConstraint> list, SSpecification map) {
-		List<String> strings = new ArrayList<>();
-		for(SConstraint sc : list) {
-			strings.add(sc.name);
-		}
-		return strings;
+		return list.stream().map(c -> c.name).collect(Collectors.toList());
 	}
 	
-	public static SConstraint build(Constraint c, SSpecification s) {
-		SConstraintBuilder builder = new SConstraintBuilder(s);
-		return builder.doSwitch(c);
+	private static SConstraint build(Constraint c, SSpecification s) {
+		return new SConstraintBuilder(s).doSwitch(c);
 	}
 	
 	public String name;
