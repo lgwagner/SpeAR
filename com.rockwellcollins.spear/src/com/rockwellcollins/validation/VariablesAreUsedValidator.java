@@ -128,15 +128,11 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 
 		Set<String> assigned = new HashSet<>();
 		for(LustreEquation leq : EcoreUtil2.getAllContentsOfType(p, LustreEquation.class)) {
-			for(Variable v : leq.getIds()) {
-				assigned.add(v.getName());
-			}
+			assigned.addAll(leq.getIds().stream().map(v -> v.getName()).collect(Collectors.toList()));
 		}
 		
 		for(LustreEquation eq : EcoreUtil2.getAllContentsOfType(p, LustreEquation.class)) {
-			for(Variable v : eq.getIds()) {
-				read.add(v.getName());
-			}
+			read.addAll(eq.getIds().stream().map(v -> v.getName()).collect(Collectors.toList()));
 		}
 		
 		for(Variable v : p.getInputs()) {
