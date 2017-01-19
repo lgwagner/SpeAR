@@ -4,8 +4,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 
 import com.rockwellcollins.spear.BinaryExpr;
-import com.rockwellcollins.spear.Pattern;
-import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.language.CreateExpr;
 import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
@@ -18,19 +16,12 @@ public class NormalizeOperators {
 	}
 	
 	public static void transform(SpearDocument doc) {
-		for(Pattern p : doc.patterns.values()) {
-			transform(p);
-		}
-		
-		for(Specification s : doc.specifications.values()) {
-			transform(s);
-		}
+		doc.patterns.values().stream().forEach(p -> transform(p));
+		doc.specifications.values().stream().forEach(s -> transform(s));
 	}
 	
 	public static void transform(PatternDocument doc) {
-		for(Pattern p : doc.patterns.values()) {
-			transform(p);
-		}
+		doc.patterns.values().stream().forEach(p -> transform(p));
 	}
 	
 	private static EObject transform(EObject o) {

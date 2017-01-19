@@ -6,7 +6,6 @@ import org.eclipse.xtext.EcoreUtil2;
 import com.rockwellcollins.spear.ArrayTypeDef;
 import com.rockwellcollins.spear.ConcreteArrayTypeDef;
 import com.rockwellcollins.spear.SpearFactory;
-import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
@@ -18,16 +17,12 @@ public class ReplaceVariableArrayDefs extends SpearSwitch<EObject> {
 
 	public static void transform(SpearDocument d) {
 		ReplaceVariableArrayDefs replacer = new ReplaceVariableArrayDefs(d);
-		for(TypeDef td : d.typedefs.values()) {
-			replacer.doSwitch(td);
-		}
+		d.typedefs.values().stream().forEach(td -> replacer.doSwitch(td));
 	}
 	
 	public static void transform(PatternDocument d) {
 		ReplaceVariableArrayDefs replacer = new ReplaceVariableArrayDefs(d);
-		for(TypeDef td : d.typedefs.values()) {
-			replacer.doSwitch(td);
-		}		
+		d.typedefs.values().stream().forEach(td -> replacer.doSwitch(td));
 	}
 
 	private Document document;
@@ -48,13 +43,8 @@ public class ReplaceVariableArrayDefs extends SpearSwitch<EObject> {
 	}
 	
 	public EObject defaultCase(EObject e) {
-		for(EObject o : e.eContents()) {
-			this.doSwitch(o);
-		}
-		
-		for(EObject o : e.eCrossReferences()) {
-			this.doSwitch(o);
-		}
+		e.eContents().stream().forEach(o -> this.doSwitch(o));
+		e.eCrossReferences().stream().forEach(ref -> this.doSwitch(ref));
 		return e;
 	}
 }

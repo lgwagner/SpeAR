@@ -3,15 +3,12 @@ package com.rockwellcollins.spear.translate.transformations;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 
-import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FieldExpr;
 import com.rockwellcollins.spear.FieldType;
 import com.rockwellcollins.spear.FieldlessRecordExpr;
-import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.RecordExpr;
 import com.rockwellcollins.spear.SpearFactory;
-import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 
@@ -20,23 +17,14 @@ public class ReplaceShortHandRecords {
 	public static SpearFactory factory = SpearFactory.eINSTANCE;
 	
 	public static void transform(SpearDocument doc) {
-		for(Constant c : doc.constants.values()) {
-			transform(c);
-		}
-		
-		for(Pattern p : doc.patterns.values()) {
-			transform(p);
-		}
-		
-		for(Specification s : doc.specifications.values()) {
-			transform(s);
-		}
+		doc.constants.values().stream().forEach(c -> transform(c));
+		doc.patterns.values().stream().forEach(p -> transform(p));
+		doc.specifications.values().stream().forEach(s -> transform(s));
 	}
 	
 	public static void transform(PatternDocument doc) {
-		for(Pattern p : doc.patterns.values()) {
-			transform(p);
-		}
+		doc.constants.values().stream().forEach(c -> transform(c));
+		doc.patterns.values().stream().forEach(p -> transform(p));
 	}
 	
 	public static EObject transform(EObject o) {
