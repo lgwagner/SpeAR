@@ -1,8 +1,5 @@
 package com.rockwellcollins.spear.translate.actions;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +10,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
@@ -21,17 +17,11 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
-import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
-import org.eclipse.xtext.validation.CheckMode;
-import org.eclipse.xtext.validation.IResourceValidator;
-import org.eclipse.xtext.validation.Issue;
 
-import com.google.inject.Injector;
 import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Constraint;
 import com.rockwellcollins.spear.Definitions;
@@ -84,7 +74,7 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 					specification = (Specification) f;
 				}
 
-				if (hasErrors(specification.eResource())) {
+				if (ActionUtilities.hasErrors(specification.eResource())) {
 					MessageDialog.openError(window.getShell(), "Error", "Specification contains errors.");
 					return null;
 				}
@@ -104,13 +94,13 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 				SProgram program = SProgram.build(workingCopy);
 
 				Program p = program.getLogicalEntailment();
-				URI lustreURI = createURI(state.getURI(), "", "lus");
+				URI lustreURI = ActionUtilities.createURI(state.getURI(), "", "lus");
 
 				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 								
 				if(SpearRuntimeOptions.printFinalLustre) {
 					IResource finalResource = root.getFile(new Path(lustreURI.toPlatformString(true)));
-					printResource(finalResource, p.toString());
+					ActionUtilities.printResource(finalResource, p.toString());
 				}
 
 				// refresh the workspace
@@ -145,39 +135,13 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 				try {
 					api.execute(p, result, monitor);
 				} catch (Exception e) {
-					System.out.println(result.getText());
+					System.err.println(result.getText());
 					throw e;
 				}
 
 				return null;
 			}
 		});
-	}
-
-	protected boolean hasErrors(Resource res) {
-		Injector injector = SpearActivator.getInstance().getInjector(SpearActivator.COM_ROCKWELLCOLLINS_SPEAR);
-		IResourceValidator resourceValidator = injector.getInstance(IResourceValidator.class);
-
-		for (Issue issue : resourceValidator.validate(res, CheckMode.ALL, CancelIndicator.NullImpl)) {
-			if (issue.getSeverity() == Severity.ERROR) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	private static URI createURI(URI baseURI, String suffix, String extension) {
-		String filename = baseURI.lastSegment();
-		baseURI = baseURI.trimSegments(1);
-		int i = filename.lastIndexOf(".");
-		baseURI = baseURI.appendSegment((filename.substring(0, i) + suffix + "." + extension));
-		return baseURI;
-	}
-
-	private void printResource(IResource res, String contents) throws IOException {
-		try (BufferedWriter bw = new BufferedWriter(new FileWriter(res.getRawLocation().toFile()))) {
-			bw.write(contents);
-		}
 	}
 
 	private void showView(final JKindResult result, final Layout layout) {

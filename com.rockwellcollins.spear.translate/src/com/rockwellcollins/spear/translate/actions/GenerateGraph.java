@@ -8,24 +8,17 @@ import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
-import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
-import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
-import org.eclipse.xtext.validation.CheckMode;
-import org.eclipse.xtext.validation.IResourceValidator;
-import org.eclipse.xtext.validation.Issue;
 
-import com.google.inject.Injector;
 import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.File;
@@ -60,16 +53,17 @@ public class GenerateGraph implements IWorkbenchWindowActionDelegate {
 				Specification specification = null;
 				if (f instanceof Definitions) {
 					MessageDialog.openError(window.getShell(), "Error", "Cannot analyze a Definitions file.");	
+					return null;
 				} else {
 					specification = (Specification) f;
 				}
 
-				if (hasErrors(specification.eResource())) {
+				if (ActionUtilities.hasErrors(specification.eResource())) {
 					MessageDialog.openError(window.getShell(), "Error", "Specification contains errors.");
 					return null;
 				}
 				
-				if (!checkForDot()) {
+				if (!ActionUtilities.checkForDot()) {
 					MessageDialog.openError(window.getShell(), "Error", "Unable to find GraphViz installation. \n"
 							+ "GraphViz can be downloaded at http://www.graphviz.org");
 					return null;					
@@ -79,7 +73,7 @@ public class GenerateGraph implements IWorkbenchWindowActionDelegate {
 				SpearRuntimeOptions.setRuntimeOptions();
 				
 				String result = GenerateDot.generateDot(specification);
-				URI pngURI = createURI(state.getURI(), "", "png");
+				URI pngURI = ActionUtilities.createURI(state.getURI(), "", "png");
 				
 				java.nio.file.Path dotFile = Files.createTempFile("spear_graphical", ".dot");
 
@@ -114,36 +108,6 @@ public class GenerateGraph implements IWorkbenchWindowActionDelegate {
 				return null;
 			}
 		});
-	}
-
-	private boolean checkForDot() {
-		ProcessBuilder pb = new ProcessBuilder("dot","-?");
-		try {
-			pb.start().waitFor();
-		} catch (Exception e) {
-			return false;
-		}
-		return true;
-	}
-	
-	protected boolean hasErrors(Resource res) {
-		Injector injector = SpearActivator.getInstance().getInjector(SpearActivator.COM_ROCKWELLCOLLINS_SPEAR);
-		IResourceValidator resourceValidator = injector.getInstance(IResourceValidator.class);
-
-		for (Issue issue : resourceValidator.validate(res, CheckMode.ALL, CancelIndicator.NullImpl)) {
-			if (issue.getSeverity() == Severity.ERROR) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	private static URI createURI(URI baseURI, String suffix, String extension) {
-		String filename = baseURI.lastSegment();
-		baseURI = baseURI.trimSegments(1);
-		int i = filename.lastIndexOf(".");
-		baseURI = baseURI.appendSegment((filename.substring(0, i) + suffix + "." + extension));
-		return baseURI;
 	}
 
 	@Override
