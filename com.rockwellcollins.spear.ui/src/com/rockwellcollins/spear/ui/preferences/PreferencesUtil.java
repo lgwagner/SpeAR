@@ -35,11 +35,15 @@ public class PreferencesUtil {
 		return prefs.getBoolean(PreferenceConstants.PREF_RECURSIVE_GRAPHICAL_DISPLAY);		
 	}
 	
+	public static boolean getEnableIVCDuringEntailment() {
+		IPreferenceStore prefs = getPreferenceStore();
+		return prefs.getBoolean(PreferenceConstants.PREF_ENABLE_IVC_ENTAILMENT);		
+	}
+	
 	public static boolean getDisabledUnusedValidations() {
 		IPreferenceStore prefs = getPreferenceStore();
 		return prefs.getBoolean(PreferenceConstants.PREF_DISABLE_UNUSED_VALIDATIONS);		
 	}
-	
 	
 	public static KindApi getKindApi() {
 		IPreferenceStore prefs = getPreferenceStore();

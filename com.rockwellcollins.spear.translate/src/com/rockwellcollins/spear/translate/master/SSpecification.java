@@ -181,7 +181,9 @@ public class SSpecification extends SMapElement {
 		}
 
 		builder.addProperties(SConstraint.toPropertyIds(behaviors, this));
-		builder.addIvcs(SConstraint.toPropertyIds(ListUtils.union(assumptions, requirements), this));
+		if(SpearRuntimeOptions.enableIVCDuringEntailment) {
+			builder.addIvcs(SConstraint.toPropertyIds(ListUtils.union(assumptions, requirements), this));			
+		}
 		return builder.build();
 	}
 	

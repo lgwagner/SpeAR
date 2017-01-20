@@ -117,7 +117,9 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 				root.refreshLocal(IResource.DEPTH_INFINITE, null);
 				
 				JKindApi api = (JKindApi) PreferencesUtil.getKindApi();
-				api.setIvcReduction();
+				if(SpearRuntimeOptions.enableIVCDuringEntailment) {
+					api.setIvcReduction();					
+				}
 
 				Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.getMain()), Mode.IDENTITY);
 				List<Boolean> invert = new ArrayList<>();

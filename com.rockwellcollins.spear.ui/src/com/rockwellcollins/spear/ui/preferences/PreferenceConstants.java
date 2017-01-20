@@ -10,6 +10,7 @@ public class PreferenceConstants {
 	public static final String PREF_GENERATE_FINAL_LUSTRE_FILE = "final lustre file";
 	public static final String PREF_RECURSIVE_GRAPHICAL_DISPLAY = "recursive graphical display";
 	public static final String PREF_DISABLE_UNUSED_VALIDATIONS = "disable unused validations";
+	public static final String PREF_ENABLE_IVC_ENTAILMENT = "Enable IVC during logical entailment";
 	
 	public static final String PREF_BOUNDED_MODEL_CHECKING = "boundedModelChecking";
 	public static final String PREF_K_INDUCTION = "kInduction";
