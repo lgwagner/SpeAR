@@ -21,17 +21,13 @@ public class GetAllIdRefs extends SpearSwitch<Integer> {
 	
 	@Override
 	public Integer defaultCase(EObject o) {
-		for(EObject sub : o.eContents()) {
-			this.doSwitch(sub);
-		}
-		
+		o.eContents().stream().forEach(sub -> this.doSwitch(sub));
 		for(EObject ref : o.eCrossReferences()) {
 			if (ref instanceof IdRef) {
 				IdRef idr = (IdRef) ref;
 				list.add(idr);
 			}
 		}
-		
 		return 0;
 	}
 }
