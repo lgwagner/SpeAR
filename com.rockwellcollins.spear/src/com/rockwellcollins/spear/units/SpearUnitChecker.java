@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -25,7 +26,6 @@ import com.rockwellcollins.spear.EnumTypeDef;
 import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FieldExpr;
-import com.rockwellcollins.spear.FieldType;
 import com.rockwellcollins.spear.FieldlessRecordExpr;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
@@ -206,9 +206,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	@Override
 	public Unit caseRecordTypeDef(RecordTypeDef rt) {
 		Map<String, Unit> fields = new HashMap<>();
-		for (FieldType rtf : rt.getFields()) {
-			fields.put(rtf.getName(), doSwitch(rtf.getType()));
-		}
+		rt.getFields().stream().forEach(rtf -> fields.put(rtf.getName(), this.doSwitch(rtf.getType())));
 		return new RecordUnit(rt.getName(), fields);
 	}
 
@@ -647,11 +645,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	// Error Functions
 	/***************************************************************************************************/
 	private TupleUnit processList(List<EObject> elements) {
-		List<Unit> list = new ArrayList<>();
-		for (EObject o : elements) {
-			list.add(this.doSwitch(o));
-		}
-		return new TupleUnit(list);
+		return new TupleUnit(elements.stream().map(o -> this.doSwitch(o)).collect(Collectors.toList()));
 	}
 
 	private Unit compressTuple(TupleUnit tupleUnit) {
