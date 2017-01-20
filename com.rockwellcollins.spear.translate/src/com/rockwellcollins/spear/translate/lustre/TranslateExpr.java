@@ -46,7 +46,7 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	
 	private SMapElement module;
 
-	public TranslateExpr(SMapElement s) {
+	private TranslateExpr(SMapElement s) {
 		this.module=s;
 	}
 	

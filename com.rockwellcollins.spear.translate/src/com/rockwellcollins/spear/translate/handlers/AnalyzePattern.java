@@ -93,9 +93,7 @@ public class AnalyzePattern extends AbstractHandler {
 		
 		JKindApi api = (JKindApi) PreferencesUtil.getKindApi();
 		JKindResult result = new JKindResult("result");
-		for(String prop : program.getMainNode().properties) {
-			result.addProperty(prop);
-		}
+		program.getMainNode().properties.stream().forEach(prop -> result.addProperty(prop));
 		IProgressMonitor monitor = new NullProgressMonitor();
 		String nicename = "Pattern Analysis: " + p.getName();
 		showView(result, new NodeLayout(program.getMainNode()), nicename);

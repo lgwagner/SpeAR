@@ -5,10 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.rockwellcollins.spear.Constraint;
-import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.Specification;
-import com.rockwellcollins.spear.Variable;
 
 import jkind.results.layout.Layout;
 
@@ -46,33 +43,15 @@ public class SpearRealizabilityLayout implements Layout {
 		if(requirements != null) {
 			categories.add(requirements);
 		}
-		
-				
+						
 		this.map=new HashMap<>();
 		
-		for(Variable v : s.getInputs()) {
-			map.put(v.getName(), inputs);
-		}
-		
-		for(Variable v : s.getOutputs()) {
-			map.put(v.getName(), outputs);
-		}
-		
-		for(Variable v : s.getState()) {
-			map.put(v.getName(), state);
-		}
-		
-		for(Macro m : s.getMacros()) {
-			map.put(m.getName(), macros);
-		}
-		
-		for(Constraint c : s.getAssumptions()) {
-			map.put(c.getName(), assumptions);
-		}
-		
-		for(Constraint c : s.getRequirements()) {
-			map.put(c.getName(), requirements);
-		}
+		s.getInputs().stream().forEach(v -> map.put(v.getName(), inputs));
+		s.getOutputs().stream().forEach(v -> map.put(v.getName(), outputs));
+		s.getState().stream().forEach(v -> map.put(v.getName(), state));
+		s.getMacros().stream().forEach(m -> map.put(m.getName(), macros));
+		s.getAssumptions().stream().forEach(c -> map.put(c.getName(), assumptions));
+		s.getRequirements().stream().forEach(c -> map.put(c.getName(), requirements));
 	}
 	
 	@Override

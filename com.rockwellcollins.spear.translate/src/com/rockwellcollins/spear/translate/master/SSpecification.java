@@ -189,7 +189,6 @@ public class SSpecification extends SMapElement {
 	
 	public Node getLogicalEntailmentCalled() {
 		NodeBuilder builder = new NodeBuilder(this.toBaseLustre());
-		
 		builder.addEquation(this.getAssertionCalledEquation(requirements));
 		return builder.build();
 	}
