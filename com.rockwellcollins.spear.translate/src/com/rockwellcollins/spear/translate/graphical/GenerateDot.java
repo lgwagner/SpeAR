@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -102,13 +103,9 @@ public class GenerateDot {
 	
 	//we need to filter out the pattern calls that exist inside of other patterns in a spec
 	private List<PatternCall> getDirectPatternCalls(Specification s) {
-		List<PatternCall> filtered = new ArrayList<>();
-		for(PatternCall pc : EcoreUtil2.getAllContentsOfType(s, PatternCall.class)) {
-			if(Utilities.getTopContainer(pc).equals(s)) {
-				filtered.add(pc);
-			}
-		}
+		
+		List<PatternCall> patternCalls = EcoreUtil2.getAllContentsOfType(s, PatternCall.class);
+		List<PatternCall> filtered = patternCalls.stream().filter(pc -> Utilities.getTopContainer(pc).equals(s)).collect(Collectors.toList());
 		return filtered;
 	}
-
 }
