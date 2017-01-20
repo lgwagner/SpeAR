@@ -1,6 +1,5 @@
 package com.rockwellcollins.spear.translate.graphical;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
