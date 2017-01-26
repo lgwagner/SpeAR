@@ -1,0 +1,18 @@
+Specification scientific
+
+Inputs:
+	in : real
+
+Outputs:
+	out : real
+
+State:
+
+Assumptions:
+	a0: in > 5.0e-200
+
+Requirements:
+	r0: out == in + 5.0e-250
+
+Properties:
+	p0: out > in

@@ -9,7 +9,7 @@ Outputs:
 	time : int
 
 Assumptions:
-	al: 0 <= l and l <= 9
+	al: 0 <= l and l <= 8
 	am: 0 <= m and m <= 9
 	ar: 0 <= r and r <= 9
 

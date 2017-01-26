@@ -1,0 +1,23 @@
+Specification top
+
+Imports:
+	import "called.spear"
+
+Inputs:
+	a : int
+
+Outputs:
+	x : int
+	y : int
+
+Assumptions:
+	a0: a > 0
+
+Requirements:
+	r0: x == spec called(a)
+	r1: y == spec called(x)
+
+Properties:
+	p0: x > 1
+	p1: y > 2
+	p2: y == a + 2
