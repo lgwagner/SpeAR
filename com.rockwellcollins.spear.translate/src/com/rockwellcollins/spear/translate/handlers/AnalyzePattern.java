@@ -88,7 +88,7 @@ public class AnalyzePattern extends AbstractHandler {
 			e1.printStackTrace();
 		} 
 		
-		SProgram pprogram = new SProgram(document);
+		SProgram pprogram = SProgram.build(document);
 		Program program = pprogram.patternToLustre();
 		
 		JKindApi api = (JKindApi) PreferencesUtil.getKindApi();

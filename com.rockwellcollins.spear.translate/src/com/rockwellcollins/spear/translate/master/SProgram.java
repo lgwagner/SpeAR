@@ -17,22 +17,17 @@ public class SProgram extends SMapElement {
 		return new SProgram(doc);
 	}
 	
+	public static SProgram build(PatternDocument doc) {
+		return new SProgram(doc);
+	}
+	
 	public String mainName;
 	public List<STypeDef> typedefs = new ArrayList<>();
 	public List<SConstant> constants = new ArrayList<>();
 	public List<SPattern> patterns = new ArrayList<>();
 	public List<SSpecification> specifications = new ArrayList<>();
 	
-	public SSpecification lookupSpec(String name) {
-		for(SSpecification s : specifications) {
-			if(s.name.equals(mainName)) {
-				return s;
-			}
-		}
-		return null;
-	}
-	
-	public SProgram(SpearDocument document) {
+	private SProgram(SpearDocument document) {
 		//initialize the program's global map
 		map = SpearMap.getProgramMap();
 		
@@ -66,7 +61,7 @@ public class SProgram extends SMapElement {
 		this.mainName = map.lookupOriginalProgram(document.mainName);
 	}
 	
-	public SProgram(PatternDocument document) {
+	private SProgram(PatternDocument document) {
 		//create the map
 		map = SpearMap.getProgramMap();
 		

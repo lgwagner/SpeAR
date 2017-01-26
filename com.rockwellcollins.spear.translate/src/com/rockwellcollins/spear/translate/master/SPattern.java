@@ -16,7 +16,7 @@ public class SPattern extends SMapElement {
 		return list.stream().map(p -> SPattern.addName(p, program)).collect(Collectors.toList());
 	}
 	
-	public static String addName(Pattern p, SProgram program) {
+	private static String addName(Pattern p, SProgram program) {
 		return program.map.getProgramName(p.getName());
 	}
 	
