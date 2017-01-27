@@ -48,14 +48,22 @@ public class ExcelFormatter implements Closeable {
 
 	@Override
 	public void close() {
+		String str = "";
 		try {
 			if (workbook != null) {
 				workbook.write();
-				workbook.close();
-				workbook = null;
 			}
 		} catch (Exception e) {
-			throw new JKindException("Error closing Excel file", e);
+			str += "Error writing Excel file\n";
+		}
+		try{
+			workbook.close();
+		} catch (Exception e){
+			str += "Error closing Excel file\n";
+		}
+		workbook = null;
+		if(!str.equals("")){
+			throw new JKindException(str);
 		}
 	}
 
