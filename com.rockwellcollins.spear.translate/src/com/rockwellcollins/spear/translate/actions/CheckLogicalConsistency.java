@@ -98,7 +98,7 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 				// refresh the workspace
 				root.refreshLocal(IResource.DEPTH_INFINITE, null);
 				
-				JKindApi api = (JKindApi) PreferencesUtil.getKindApi();
+				JKindApi api = PreferencesUtil.getJKindApi();
 				api.setIvcReduction();
 				
 				Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.getMain()), Mode.IDENTITY);

@@ -19,7 +19,7 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		store.setDefault(PreferenceConstants.PREF_INVARIANT_GENERATION, true);
 		store.setDefault(PreferenceConstants.PREF_PDR_MAX, 2);
 		store.setDefault(PreferenceConstants.PREF_INDUCTIVE_COUNTEREXAMPLES, true);
-		store.setDefault(PreferenceConstants.PREF_REDUCE_IVC, false);
+//		store.setDefault(PreferenceConstants.PREF_REDUCE_IVC, false);
 		store.setDefault(PreferenceConstants.PREF_SMOOTH_COUNTEREXAMPLES, false);
 		store.setDefault(PreferenceConstants.PREF_INTERVAL_GENERALIZATION, false);
 		store.setDefault(PreferenceConstants.PREF_DEBUG, false);
@@ -28,9 +28,9 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		
 		//Spear
 		store.setDefault(PreferenceConstants.PREF_SPEAR_CONSISTENCY_DEPTH, 10);
-		store.setDefault(PreferenceConstants.PREF_GENERATE_FINAL_LUSTRE_FILE, false);
-		store.setDefault(PreferenceConstants.PREF_RECURSIVE_GRAPHICAL_DISPLAY, false);
-		store.setDefault(PreferenceConstants.PREF_DISABLE_UNUSED_VALIDATIONS, false);
-		store.setDefault(PreferenceConstants.PREF_ENABLE_IVC_ENTAILMENT, false);
+		store.setDefault(PreferenceConstants.PREF_SPEAR_PRINT_FINAL_LUSTRE, false);
+		store.setDefault(PreferenceConstants.PREF_SPEAR_RECURSIVE_GRAPH, false);
+		store.setDefault(PreferenceConstants.PREF_SPEAR_WARN_ON_UNUSED_VARS, false);
+		store.setDefault(PreferenceConstants.PREF_SPEAR_ENABLE_IVC_ON_ENTAILMENT, false);
 	}
 }
