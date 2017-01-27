@@ -1,0 +1,17 @@
+Specification specE
+
+Inputs:
+	a : int
+
+Outputs:
+	y : int
+
+Assumptions:
+	a0: a > 0
+
+Requirements:
+	r0: y == a + 1
+
+Properties:
+	p0: y > a
+

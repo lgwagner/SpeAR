@@ -1,8 +1,8 @@
 package com.rockwellcollins.spear.translate.master;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.translate.naming.SpearMap;
@@ -13,35 +13,19 @@ import jkind.lustre.builders.NodeBuilder;
 public class SPattern extends SMapElement {
 
 	public static List<String> addNames(Collection<Pattern> list, SProgram program) {
-		List<String> renamed = new ArrayList<>();
-		for(Pattern p : list) {
-			renamed.add(SPattern.addName(p, program));
-		}
-		return renamed;
+		return list.stream().map(p -> SPattern.addName(p, program)).collect(Collectors.toList());
 	}
 	
-	public static String addName(Pattern p, SProgram program) {
+	private static String addName(Pattern p, SProgram program) {
 		return program.map.getProgramName(p.getName());
 	}
 	
 	public static List<SPattern> build(Collection<Pattern> list, SProgram program) {
-		List<SPattern> built = new ArrayList<>();
-		for(Pattern p : list) {
-			built.add(SPattern.build(p, program));
-		}
-		return built;
+		return list.stream().map(p -> new SPattern(p,program)).collect(Collectors.toList());
 	}
 	
 	public static List<Node> toLustre(List<SPattern> list) {
-		List<Node> lustre = new ArrayList<>();
-		for(SPattern p : list) {
-			lustre.add(p.toLustre());
-		}
-		return lustre;
-	}
-	
-	public static SPattern build(Pattern p, SProgram program) {
-		return new SPattern(p,program);
+		return list.stream().map(p -> p.toLustre()).collect(Collectors.toList());
 	}
 	
 	public String name;

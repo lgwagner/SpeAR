@@ -17,22 +17,17 @@ public class SProgram extends SMapElement {
 		return new SProgram(doc);
 	}
 	
+	public static SProgram build(PatternDocument doc) {
+		return new SProgram(doc);
+	}
+	
 	public String mainName;
 	public List<STypeDef> typedefs = new ArrayList<>();
 	public List<SConstant> constants = new ArrayList<>();
 	public List<SPattern> patterns = new ArrayList<>();
 	public List<SSpecification> specifications = new ArrayList<>();
 	
-	public SSpecification lookupSpec(String name) {
-		for(SSpecification s : specifications) {
-			if(s.name.equals(mainName)) {
-				return s;
-			}
-		}
-		return null;
-	}
-	
-	public SProgram(SpearDocument document) {
+	private SProgram(SpearDocument document) {
 		//initialize the program's global map
 		map = SpearMap.getProgramMap();
 		
@@ -59,15 +54,14 @@ public class SProgram extends SMapElement {
 		 * 3. resolve the call variables
 		 */
 		specifications.addAll(SSpecification.build(document.specifications.values(), map));
-		
-		resolveCalls();	
-		resolveCallVars();
+		specifications.stream().forEach(s -> s.resolveCalls(specifications));
+		specifications.stream().forEach(s -> s.resolveCallVars());
 		
 		//identify the main node.
 		this.mainName = map.lookupOriginalProgram(document.mainName);
 	}
 	
-	public SProgram(PatternDocument document) {
+	private SProgram(PatternDocument document) {
 		//create the map
 		map = SpearMap.getProgramMap();
 		
@@ -103,19 +97,7 @@ public class SProgram extends SMapElement {
 		program.setMain(this.mainName);
 		return program.build();
 	}
-	
-	private void resolveCalls() {
-		for(SSpecification s : specifications) {
-			s.resolveCalls(specifications);
-		}
-	}
-	
-	private void resolveCallVars() {
-		for(SSpecification s : specifications) {
-			s.resolveCallVars();
-		}
-	}
-	
+
 	public Program getBaseProgram() {
 		ProgramBuilder program = new ProgramBuilder();
 		

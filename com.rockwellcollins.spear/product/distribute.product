@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="SpeAR" uid="spear.product" id="com.rockwellcollins.spear.spear_product" application="org.eclipse.ui.ide.workbench" version="2.0.rc15" useFeatures="false" includeLaunchers="true">
+<product name="SpeAR" uid="spear.product" id="com.rockwellcollins.spear.spear_product" application="org.eclipse.ui.ide.workbench" version="2.0.rc17" useFeatures="false" includeLaunchers="true">
 
    <aboutInfo>
       <image path="/com.rockwellcollins.spear/branding/1429142344_weapons_spear-128.png"/>
@@ -42,7 +42,7 @@ A tool for prototyping requirements using formal notations.
    <license>
         <url>http://www.github.com/lgwagner/SpeAR</url>
         <text>
-   Copyright (c) 2012-2016, Rockwell Collins 
+   Copyright (c) 2012-2017, Rockwell Collins 
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -104,7 +104,6 @@ IS APPROVED FOR PUBLIC RELEASE. CASE NUMBER: 88ABW-2016-1658
       <plugin id="org.eclipse.core.expressions"/>
       <plugin id="org.eclipse.core.filebuffers"/>
       <plugin id="org.eclipse.core.filesystem"/>
-      <plugin id="org.eclipse.core.filesystem.java7" fragment="true"/>
       <plugin id="org.eclipse.core.filesystem.win32.x86_64" fragment="true"/>
       <plugin id="org.eclipse.core.jobs"/>
       <plugin id="org.eclipse.core.net"/>
@@ -112,7 +111,6 @@ IS APPROVED FOR PUBLIC RELEASE. CASE NUMBER: 88ABW-2016-1658
       <plugin id="org.eclipse.core.resources"/>
       <plugin id="org.eclipse.core.resources.win32.x86_64" fragment="true"/>
       <plugin id="org.eclipse.core.runtime"/>
-      <plugin id="org.eclipse.core.runtime.compatibility.registry" fragment="true"/>
       <plugin id="org.eclipse.core.variables"/>
       <plugin id="org.eclipse.debug.core"/>
       <plugin id="org.eclipse.debug.ui"/>

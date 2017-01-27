@@ -1,0 +1,71 @@
+Specification if_not_scalar
+
+Units:
+  m "meters"  
+  
+Types:
+  length_type is a real m
+
+
+Inputs:
+  input_x is a length_type
+  input_y is a length_type
+  
+  input_w is a real
+  input_v is a real
+  
+Outputs:
+
+Macros:
+  test is a bool = input_x > input_y
+
+Requirements:
+  r_broken_1:
+    if (20.0 m > input_x) then
+      true
+    else
+      false
+      
+  r_broken_2:
+    if (input_x > 8.0 m) then
+      true
+    else
+      false
+
+  r_broken_3:
+    if (input_x > input_y) then
+      true
+    else
+      false
+      
+  r_working_1:
+    if (20.0 m > input_x) then
+      true
+
+  r_working_2:
+    if (input_x  > 8.0 m) then
+      true
+
+  r_working_3:
+    if (input_x > input_y) then
+      true
+      
+  r_working_4:
+    if (input_w > input_v) then
+      true
+    else
+      false
+
+  r_working_5:
+    if (20.0 m > 8.0 m) then
+      true
+    else
+      false
+    
+  r_working_6:
+    if test then
+      true
+    else
+      false
+    
+Properties:

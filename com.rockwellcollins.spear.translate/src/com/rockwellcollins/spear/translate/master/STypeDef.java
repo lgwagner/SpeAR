@@ -1,8 +1,8 @@
 package com.rockwellcollins.spear.translate.master;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.rockwellcollins.spear.ArrayTypeDef;
 import com.rockwellcollins.spear.ConcreteArrayTypeDef;
@@ -15,24 +15,15 @@ import com.rockwellcollins.spear.util.SpearSwitch;
 public abstract class STypeDef {
 
 	public static List<STypeDef> build(Collection<TypeDef> list, SProgram p) {
-		List<STypeDef> processed = new ArrayList<>();
-		for(TypeDef td : list) {
-			processed.add(STypeDef.build(td, p));
-		}
-		return processed;
+		return list.stream().map(td -> STypeDef.build(td, p)).collect(Collectors.toList());
 	}
 	
 	public static List<jkind.lustre.TypeDef> toLustre(List<STypeDef> list, SProgram p) {
-		List<jkind.lustre.TypeDef> lustre = new ArrayList<>();
-		for(STypeDef std : list) {
-			lustre.add(std.toLustre(p));
-		}
-		return lustre;
+		return list.stream().map(std -> std.toLustre(p)).collect(Collectors.toList());
 	}
 	
 	public static STypeDef build(TypeDef td, SProgram program) {
-		STypeDefBuilder builder = new STypeDefBuilder(program);
-		return builder.doSwitch(td);
+		return new STypeDefBuilder(program).doSwitch(td);
 	}
 	
 	public String name;

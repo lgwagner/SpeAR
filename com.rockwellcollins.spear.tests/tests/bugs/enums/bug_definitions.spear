@@ -1,0 +1,5 @@
+Definitions bug_definitions
+
+Types:
+	t2: enum {A,B,C,D}
+

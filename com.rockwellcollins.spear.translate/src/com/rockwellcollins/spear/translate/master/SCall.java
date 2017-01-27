@@ -2,6 +2,7 @@ package com.rockwellcollins.spear.translate.master;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.translate.lustre.TranslateType;
@@ -14,18 +15,10 @@ import jkind.lustre.VarDecl;
 public class SCall {
 
 	public static List<SCall> build(List<NormalizedCall> calls, List<SSpecification> specs, SpearMap map) {
-		List<SCall> built = new ArrayList<>();
-		for(NormalizedCall call : calls) {
-			built.add(SCall.build(call,specs,map));
-		}
-		return built;
+		return calls.stream().map(call -> new SCall(call, specs, map)).collect(Collectors.toList());
 	}
 	
-	public static SCall build(NormalizedCall call, List<SSpecification> specs, SpearMap map) {
-		return new SCall(call,specs,map);
-	}
-	
-	public static List<VarDecl> toVarDecl(List<SCall> calls, SSpecification s) {
+	public static List<VarDecl> toVarDeclList(List<SCall> calls, SSpecification s) {
 		List<VarDecl> decls = new ArrayList<>();
 		for(SCall call : calls) {
 			decls.addAll(call.toVarDecl(s));

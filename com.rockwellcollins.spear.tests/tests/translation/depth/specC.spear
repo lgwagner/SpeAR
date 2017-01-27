@@ -1,0 +1,27 @@
+Specification specC
+
+Imports:
+	import "specD.spear"
+
+Inputs:
+	a : int
+
+Outputs:
+	y : int
+
+State:
+	r : int
+
+Macros:
+
+Assumptions:
+	a0: a > 0
+
+Requirements:
+	r0: r == spec specD(a)
+	r1: y == spec specD(r)
+
+Properties:
+	p0: r > a
+	p1: y > r and y > a
+

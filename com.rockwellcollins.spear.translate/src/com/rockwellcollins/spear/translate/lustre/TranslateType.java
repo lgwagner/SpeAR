@@ -19,7 +19,7 @@ public class TranslateType extends SpearSwitch<Type> {
 	
 	private SpearMap map;
 
-	public TranslateType(SpearMap map) {
+	private TranslateType(SpearMap map) {
 		this.map = map;
 	}
 	

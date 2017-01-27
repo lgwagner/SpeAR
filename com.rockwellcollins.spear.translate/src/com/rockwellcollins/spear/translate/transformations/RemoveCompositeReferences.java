@@ -23,19 +23,14 @@ public class RemoveCompositeReferences extends SpearSwitch<Integer> {
 	
 	public static void transform(SpearDocument doc) {
 		RemoveCompositeReferences transformer = new RemoveCompositeReferences();
-		for(Specification s : doc.specifications.values()) {
-			transformer.transform(s);
-		}
+		doc.specifications.values().stream().forEach(s -> transformer.transform(s));
 	}
 
 	private ArrayList<Macro> generated;
 	
 	public void transform(Specification s) {
 		generated = new ArrayList<>();
-		for(FormalConstraint fc : EcoreUtil2.getAllContentsOfType(s, FormalConstraint.class)){
-			this.doSwitch(fc);
-		}
-		
+		EcoreUtil2.getAllContentsOfType(s, FormalConstraint.class).stream().forEach(fc -> this.doSwitch(fc));
 		s.getMacros().addAll(generated);
 	}
 	
@@ -98,9 +93,7 @@ public class RemoveCompositeReferences extends SpearSwitch<Integer> {
 	
 	@Override
 	public Integer defaultCase(EObject eo) {
-		for(EObject sub : eo.eContents()) {
-			this.doSwitch(sub);
-		}
+		eo.eContents().stream().forEach(sub -> this.doSwitch(sub));
 		return 0;
 	}
 }

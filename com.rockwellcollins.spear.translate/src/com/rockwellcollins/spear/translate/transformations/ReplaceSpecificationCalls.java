@@ -16,10 +16,8 @@ import com.rockwellcollins.spear.utilities.GetAllIdRefs;
 
 public class ReplaceSpecificationCalls extends SpearSwitch<EObject> {
 
-	public static void transform(SpearDocument p) {
-		for(Specification s : p.specifications.values()) {
-			transform(s);
-		}
+	public static void transform(SpearDocument doc) {
+		doc.specifications.values().stream().forEach(s -> transform(s));
 	}
 	
 	private static File transform(Specification s) {
@@ -27,6 +25,8 @@ public class ReplaceSpecificationCalls extends SpearSwitch<EObject> {
 		return updated;
 	}
 
+	private SpearFactory f = SpearFactory.eINSTANCE;
+	
 	private NormalizedCall getReplacement(Expr ids, SpecificationCall call) {
 		NormalizedCall replacement = f.createNormalizedCall();
 		replacement.setSpec(call.getSpec());
@@ -58,13 +58,7 @@ public class ReplaceSpecificationCalls extends SpearSwitch<EObject> {
 	
 	@Override
 	public EObject defaultCase(EObject o) {
-		for(EObject sub : o.eContents()) {
-			this.doSwitch(sub);
-		}
+		o.eContents().stream().forEach(sub -> this.doSwitch(sub));
 		return o;
 	}
-	
-	SpearFactory f = SpearFactory.eINSTANCE;
-	
-
 }

@@ -1,23 +1,25 @@
 Specification simple_pattern_call
 
 Patterns:
-pattern after_initial_timestep() returns (output : bool)
-	var p1 : bool
+	pattern after_initial_timestep () returns (output : bool)
 	let
 		output = false -> true
 	tel
-	
-//this section is mandatory
+
+	//this section is mandatory
+
+
 Inputs:
 
 //this section is mandatory
+
+
 Outputs:
 
 //this section is mandatory
 DerivedRequirements:
-DR : after_initial_timestep()
+	DR: after_initial_timestep ()
 
-//this section is mandatory
-Requirements:
-R : initially(false)
+	//this section is mandatory
+Requirements: R: initially (false)
 

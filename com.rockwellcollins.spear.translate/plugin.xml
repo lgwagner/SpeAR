@@ -33,6 +33,15 @@
                id="com.rockwellcollins.spear.translate.GeneratePDF">
          </action>
          <action
+               label="&amp;Graphical View"
+               icon="icons/graphical.png"
+               class="com.rockwellcollins.spear.translate.actions.GenerateGraph"
+               tooltip="Generate Graphical View"
+               menubarPath="translateMenu/translateGroup"
+               toolbarPath="translateGroup"
+               id="com.rockwellcollins.spear.translate.GenerateGraph">
+         </action>       
+         <action
                label="&amp;Check Realizability"
                icon="icons/realizability.png"
                class="com.rockwellcollins.spear.translate.actions.CheckRealizability"

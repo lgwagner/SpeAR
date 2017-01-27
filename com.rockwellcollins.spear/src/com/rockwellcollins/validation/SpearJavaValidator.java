@@ -4,9 +4,9 @@
 package com.rockwellcollins.validation;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
@@ -61,19 +61,9 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 	 */
 	@Check
 	public void checkAssumptions(Specification s) {
-		Set<String> valids = new HashSet<>();
-		for (Variable input : s.getInputs()) {
-			valids.add(input.getName());
-		}
-
-		Set<String> invalids = new HashSet<>();
-		for (Variable output : s.getOutputs()) {
-			invalids.add(output.getName());
-		}
-
-		for (Variable local : s.getState()) {
-			invalids.add(local.getName());
-		}
+		Set<String> valids = s.getInputs().stream().map(in -> in.getName()).collect(Collectors.toSet());
+		Set<String> invalids = s.getOutputs().stream().map(out -> out.getName()).collect(Collectors.toSet());
+		invalids.addAll(s.getState().stream().map(local -> local.getName()).collect(Collectors.toSet()));
 
 		for (Constraint assumption : s.getAssumptions()) {
 			for (IdExpr ide : EcoreUtil2.getAllContentsOfType(assumption, IdExpr.class)) {
@@ -249,10 +239,5 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 			default:
 				break;
 		}
-	}
-	
-	@Check
-	public void flagReservedKeywords(Specification s) {
-		
 	}
 }

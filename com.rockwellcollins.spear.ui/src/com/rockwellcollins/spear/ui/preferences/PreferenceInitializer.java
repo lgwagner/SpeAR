@@ -29,6 +29,8 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		//Spear
 		store.setDefault(PreferenceConstants.PREF_SPEAR_CONSISTENCY_DEPTH, 10);
 		store.setDefault(PreferenceConstants.PREF_GENERATE_FINAL_LUSTRE_FILE, false);
+		store.setDefault(PreferenceConstants.PREF_RECURSIVE_GRAPHICAL_DISPLAY, false);
 		store.setDefault(PreferenceConstants.PREF_DISABLE_UNUSED_VALIDATIONS, false);
+		store.setDefault(PreferenceConstants.PREF_ENABLE_IVC_ENTAILMENT, false);
 	}
 }

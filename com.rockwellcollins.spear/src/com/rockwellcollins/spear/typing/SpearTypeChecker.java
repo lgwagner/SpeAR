@@ -7,6 +7,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -26,7 +27,6 @@ import com.rockwellcollins.spear.EnumTypeDef;
 import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FieldExpr;
-import com.rockwellcollins.spear.FieldType;
 import com.rockwellcollins.spear.FieldlessRecordExpr;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
@@ -123,9 +123,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		}
 
 		Map<String, Type> fields = new LinkedHashMap<>();
-		for (FieldType rtf : rt.getFields()) {
-			fields.put(rtf.getName(), doSwitch(rtf.getType()));
-		}
+		rt.getFields().stream().forEach(rtf -> fields.put(rtf.getName(), this.doSwitch(rtf.getType())));
 		return new RecordType(rt.getName(),fields,rt);
 	}
 
@@ -160,11 +158,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		if (et.getName() == null) {
 			return ERROR;
 		}
-
-		List<String> values = new ArrayList<>();
-		for (EnumValue ev : et.getValues()) {
-			values.add(ev.getName());
-		}
+		List<String> values = et.getValues().stream().map(ev -> ev.getName()).collect(Collectors.toList());
 		return new EnumType(et.getName(), values, et);
 	}
 
@@ -641,11 +635,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	// HELPER FUNCTIONS
 	/***************************************************************************************************/
 	private TupleType processList(List<EObject> list) {
-		List<Type> types = new ArrayList<>();
-		for (EObject o : list) {
-			types.add(this.doSwitch(o));
-		}
-		return new TupleType(types);
+		return new TupleType(list.stream().map(o -> this.doSwitch(o)).collect(Collectors.toList()));
 	}
 
 	private Type compressTuple(TupleType tuple) {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -25,7 +26,6 @@ import com.rockwellcollins.spear.EnumTypeDef;
 import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FieldExpr;
-import com.rockwellcollins.spear.FieldType;
 import com.rockwellcollins.spear.FieldlessRecordExpr;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
@@ -106,17 +106,20 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	/***************************************************************************************************/
 	@Override
 	public Unit caseConstant(Constant c) {
-		return doSwitch(c.getType());
+		Unit result = doSwitch(c.getType());
+		return result;
 	}
 
 	@Override
 	public Unit caseMacro(Macro m) {
-		return doSwitch(m.getType());
+		Unit result = doSwitch(m.getType());
+		return result;
 	}
 
 	@Override
 	public Unit caseVariable(Variable v) {
-		return doSwitch(v.getType());
+		Unit result = doSwitch(v.getType());
+		return result;
 	}
 
 	/***************************************************************************************************/
@@ -187,14 +190,11 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	
 	@Override
 	public Unit caseNamedTypeDef(NamedTypeDef nt) {
-		Unit actual = doSwitch(nt.getType());
-		
 		if(nt.getUnit() != null) {
 			Unit declared = doSwitch(nt.getUnit());
-			if(!declared.equals(actual)) {
-				return ERROR;
-			}
+			return declared;
 		}
+		Unit actual = doSwitch(nt.getType());
 		return actual;
 	}
 
@@ -206,9 +206,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	@Override
 	public Unit caseRecordTypeDef(RecordTypeDef rt) {
 		Map<String, Unit> fields = new HashMap<>();
-		for (FieldType rtf : rt.getFields()) {
-			fields.put(rtf.getName(), doSwitch(rtf.getType()));
-		}
+		rt.getFields().stream().forEach(rtf -> fields.put(rtf.getName(), this.doSwitch(rtf.getType())));
 		return new RecordUnit(rt.getName(), fields);
 	}
 
@@ -232,7 +230,8 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	/***************************************************************************************************/
 	@Override
 	public Unit caseUserType(UserType ut) {
-		return doSwitch(ut.getDef());
+		Unit result = doSwitch(ut.getDef());
+		return result;
 	}
 
 	@Override
@@ -305,11 +304,6 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		case "less than":
 		case "<=":
 		case "less than or equal to":
-			if (left.equals(right)) {
-				return SCALAR;
-			}
-			break;
-
 		case "or":
 		case "xor":
 		case "and":
@@ -319,7 +313,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		case "T":
 		case "since":
 		case "S":
-			if (left == SCALAR && right == SCALAR) {
+			if (left.equals(right)) {
 				return SCALAR;
 			}
 			break;
@@ -492,7 +486,8 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 
 	@Override
 	public Unit caseIdExpr(IdExpr ide) {
-		return doSwitch(ide.getId());
+		Unit result = doSwitch(ide.getId());
+		return result;
 	}
 
 	@Override
@@ -514,7 +509,15 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 
 	@Override
 	public Unit caseIfThenElseExpr(IfThenElseExpr ite) {
-		Unit testUnit = doSwitch(ite.getCond());
+		Unit testUnit = doSwitch(ite.getCond());		
+		if(testUnit == ERROR) {
+			return ERROR;
+		}
+
+		if (testUnit != SCALAR) {
+			error("Condition of If-Then-Else must be scalar.", ite, SpearPackage.Literals.IF_THEN_ELSE_EXPR__COND);
+		}
+
 		Unit thenUnit = doSwitch(ite.getThen());
 
 		if (ite.getElse() == null) {
@@ -527,16 +530,11 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 			return ERROR;
 		}
 
-		if (testUnit != SCALAR) {
-			error("Condition of If-Then-Else must be scalar.", ite, SpearPackage.Literals.IF_THEN_ELSE_EXPR__COND);
-		}
-
 		if (thenUnit.equals(elseUnit)) {
 			return thenUnit;
 		}
 
-		error("Then branch of If-Then-Else has units " + thenUnit + ", but else branch has units " + elseUnit, ite,
-				null);
+		error("Then branch of If-Then-Else has units " + thenUnit + ", but else branch has units " + elseUnit, ite,null);
 		return ERROR;
 	}
 
@@ -634,7 +632,8 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 
 	@Override
 	public Unit caseEnumValue(EnumValue ev) {
-		return doSwitch(ev.eContainer());
+		Unit result = doSwitch(ev.eContainer());
+		return result;
 	}
 
 	@Override
@@ -647,11 +646,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	// Error Functions
 	/***************************************************************************************************/
 	private TupleUnit processList(List<EObject> elements) {
-		List<Unit> list = new ArrayList<>();
-		for (EObject o : elements) {
-			list.add(this.doSwitch(o));
-		}
-		return new TupleUnit(list);
+		return new TupleUnit(elements.stream().map(o -> this.doSwitch(o)).collect(Collectors.toList()));
 	}
 
 	private Unit compressTuple(TupleUnit tupleUnit) {

@@ -1,16 +1,11 @@
 package com.rockwellcollins.spear.utilities;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.util.SimpleAttributeResolver;
 
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Pattern;
-
-import jkind.lustre.VarDecl;
 
 public class Utilities {
 
@@ -45,13 +40,5 @@ public class Utilities {
 		String name = getName(o);
 		String filename = Utilities.getRoot(o).getName();
 		return filename + "." + name;
-	}
-
-	public static List<String> pullIdsOffVarDecls(List<VarDecl> decls) {
-		List<String> strings = new ArrayList<>();
-		for(VarDecl vd : decls) {
-			strings.add(vd.id);
-		}
-		return strings;
 	}
 }

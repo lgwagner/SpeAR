@@ -1,0 +1,16 @@
+Specification called
+
+Inputs:
+	a : int
+
+Outputs:
+	x : int
+
+Assumptions:
+	a0: a > 1
+
+Requirements:
+	r0: x == a + 1 
+
+Properties:
+	p0: x > a

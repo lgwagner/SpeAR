@@ -13,7 +13,6 @@ import org.eclipse.xtext.validation.EValidatorRegistrar;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.SpecificationCall;
-import com.rockwellcollins.spear.utilities.CycleUtilities;
 
 import jkind.util.CycleFinder;
 
@@ -52,12 +51,26 @@ public class SpecificationsAcyclicValidator extends AbstractSpearJavaValidator {
 	}
 
 	protected void error(Specification spec, List<String> cycle) {
-		String message = "Cycle detected: " + CycleUtilities.getCycleErrorMessage(cycle);
+		String message = "Cycle detected: " + getCycleErrorMessage(cycle);
 		for(SpecificationCall specCall : EcoreUtil2.getAllContentsOfType(spec, SpecificationCall.class)) {
 			if(cycle.contains(specCall.getSpec().getName())) {
 				error(message, specCall, SpearPackage.Literals.SPECIFICATION_CALL__SPEC);
 			}
 		}
+	}
+	
+	private String getCycleErrorMessage(List<String> cycle) {
+		StringBuilder text = new StringBuilder();
+		boolean first = true;
+		for (String node : cycle) {
+			if (first) {
+				first = false;
+			} else {
+				text.append(" -> ");
+			}
+			text.append(node);
+		}
+		return text.toString();
 	}
 	
 	@Override

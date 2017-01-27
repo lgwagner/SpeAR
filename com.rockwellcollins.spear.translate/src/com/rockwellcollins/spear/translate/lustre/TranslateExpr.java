@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.EnumValue;
-import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.translate.master.SCall;
@@ -46,16 +46,14 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	
 	private SMapElement module;
 
-	public TranslateExpr(SMapElement s) {
+	private TranslateExpr(SMapElement s) {
 		this.module=s;
 	}
 	
 	@Override
 	public Expr casePatternCall(com.rockwellcollins.spear.PatternCall call) {
 		List<Expr> args = new ArrayList<>();
-		for(com.rockwellcollins.spear.Expr e : call.getArgs()) {
-			args.add(this.doSwitch(e));
-		}
+		args.addAll(call.getArgs().stream().map(e -> this.doSwitch(e)).collect(Collectors.toList()));
 		return new NodeCallExpr(call.getPattern().getName(), args);
 	}
 	
@@ -66,13 +64,8 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 		}
 		SSpecification s = (SSpecification) module;
 		List<Expr> args = new ArrayList<>();
-		for(com.rockwellcollins.spear.Expr e : call.getArgs()) {
-			args.add(this.doSwitch(e));
-		}
-		
-		for(IdRef idr : call.getIds()) {
-			args.add(this.doSwitch(idr));
-		}
+		args.addAll(call.getArgs().stream().map(e -> this.doSwitch(e)).collect(Collectors.toList()));
+		args.addAll(call.getIds().stream().map(idr -> this.doSwitch(idr)).collect(Collectors.toList()));
 
 		String nodeName = s.map.lookupOriginalProgram(call.getSpec().getName());
 		SCall scall = SCall.get(call,s.calls);
@@ -243,9 +236,7 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	@Override
 	public Expr caseArrayExpr(com.rockwellcollins.spear.ArrayExpr ae) {
 		List<Expr> list = new ArrayList<>();
-		for(com.rockwellcollins.spear.Expr expr : ae.getExprs()) {
-			list.add(doSwitch(expr));
-		}
+		list.addAll(ae.getExprs().stream().map(e -> this.doSwitch(e)).collect(Collectors.toList()));
 		return new ArrayExpr(list);
 	}
 	

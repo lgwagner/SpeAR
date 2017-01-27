@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.ListUtils;
 import org.eclipse.xtext.EcoreUtil2;
 
 import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.actions.SpearRuntimeOptions;
-import com.rockwellcollins.spear.translate.naming.Map;
 import com.rockwellcollins.spear.translate.naming.SpearMap;
 import com.rockwellcollins.spear.utilities.PLTL;
 
@@ -76,8 +77,8 @@ public class SSpecification extends SMapElement {
 		return val;
 	}
 	
-	private String assertionName;
-	private static final String ASSERTION = "assertions";
+	private String constraintsName;
+	private static final String CONSTRAINTS = "constraints";
 
 	private String counterName;
 	private static final String COUNTER = "counter";
@@ -114,7 +115,7 @@ public class SSpecification extends SMapElement {
 		this.behaviors.addAll(SConstraint.build(s.getBehaviors(), this));
 		this.spearCalls.addAll(EcoreUtil2.getAllContentsOfType(s, NormalizedCall.class));
 		
-		this.assertionName = map.getModuleName(ASSERTION);
+		this.constraintsName = map.getModuleName(CONSTRAINTS);
 		this.counterName = map.getModuleName(COUNTER);
 		this.consistencyName = map.getModuleName(CONSISTENCY);
 	}
@@ -141,7 +142,7 @@ public class SSpecification extends SMapElement {
 		builder.addInputs(SVariable.toVarDecl(inputs, this));
 		builder.addInputs(SVariable.toVarDecl(outputs, this));
 		builder.addInputs(SVariable.toVarDecl(state, this));
-		builder.addInputs(SCall.toVarDecl(calls, this));
+		builder.addInputs(SCall.toVarDeclList(calls, this));
 		
 		/*
 		 * We must add 
@@ -166,7 +167,7 @@ public class SSpecification extends SMapElement {
 		builder.addEquations(SMacro.toEquations(macros, this));
 		builder.addEquations(SConstraint.toEquation(assumptions, this));
 		builder.addEquations(SConstraint.toEquation(requirements, this));
-		builder.addEquations(SConstraint.toPropertyEquations(behaviors, assertionName, this));
+		builder.addEquations(SConstraint.toPropertyEquations(behaviors, constraintsName, this));
 		return builder.build();
 	}
 
@@ -180,17 +181,14 @@ public class SSpecification extends SMapElement {
 		}
 
 		builder.addProperties(SConstraint.toPropertyIds(behaviors, this));
-		
-		List<SConstraint> list = new ArrayList<>();
-		list.addAll(assumptions);
-		list.addAll(requirements);
-		builder.addIvcs(SConstraint.toPropertyIds(list, this));
+		if(SpearRuntimeOptions.enableIVCDuringEntailment) {
+			builder.addIvcs(SConstraint.toPropertyIds(ListUtils.union(assumptions, requirements), this));			
+		}
 		return builder.build();
 	}
 	
 	public Node getLogicalEntailmentCalled() {
 		NodeBuilder builder = new NodeBuilder(this.toBaseLustre());
-		
 		builder.addEquation(this.getAssertionCalledEquation(requirements));
 		return builder.build();
 	}
@@ -203,7 +201,7 @@ public class SSpecification extends SMapElement {
 		
 		builder.addEquation(this.getCounterEquation());
 		builder.addEquation(this.getConsistencyEquation());
-		builder.addEquation(this.getAssertionMainEquation(getAssumptionsAndRequirements()));
+		builder.addEquation(this.getAssertionMainEquation(ListUtils.union(assumptions, requirements)));
 		
 		builder.addProperty(this.consistencyName);
 		
@@ -215,14 +213,6 @@ public class SSpecification extends SMapElement {
 		return builder.build();
 	}
 	
-	private List<String> getInputString() {
-		List<String> inputNames = new ArrayList<>();
-		for(SVariable sv : this.inputs) {
-			inputNames.add(sv.name);
-		}
-		return inputNames;
-	}
-	
 	public Node getRealizabilityMain() {
 		NodeBuilder builder = new NodeBuilder(this.toBaseLustre());
 
@@ -232,9 +222,8 @@ public class SSpecification extends SMapElement {
 			builder.addAssertion(this.conjunctify(assumptions.iterator()));
 		}
 
-		//builder.addProperties(SConstraint.toPropertyIds(behaviors, this));
-		builder.addProperty(assertionName);
-		builder.setRealizabilityInputs(getInputString());
+		builder.addProperty(constraintsName);
+		builder.setRealizabilityInputs(this.inputs.stream().map(input -> input.name).collect(Collectors.toList()));
 		return builder.build();
 	}
 	
@@ -261,20 +250,13 @@ public class SSpecification extends SMapElement {
 	private Equation getConsistencyEquation() {
 		Integer iv = SpearRuntimeOptions.consistencyDepth;
 		Expr gt = new BinaryExpr(new IdExpr(this.counterName), BinaryOp.GREATEREQUAL, new IntExpr(iv));
-		Expr and = new BinaryExpr(new IdExpr(this.assertionName), BinaryOp.AND, gt);
+		Expr and = new BinaryExpr(new IdExpr(this.constraintsName), BinaryOp.AND, gt);
 		Expr rhs = new UnaryExpr(UnaryOp.NOT, and);
 		return new Equation(new IdExpr(this.consistencyName), rhs);
 	}
 
-	private List<SConstraint> getAssumptionsAndRequirements() {
-		List<SConstraint> conjunct = new ArrayList<>();
-		conjunct.addAll(assumptions);
-		conjunct.addAll(requirements);
-		return conjunct;
-	}
-
 	private VarDecl getAssertionVarDecl() {
-		return new VarDecl(this.assertionName, NamedType.BOOL);
+		return new VarDecl(this.constraintsName, NamedType.BOOL);
 	}
 
 	private Expr conjunctify(Iterator<SConstraint> it) {
@@ -295,7 +277,7 @@ public class SSpecification extends SMapElement {
 		} else {
 			RHS = conjunctify(conjunct.iterator());
 		}
-		return new Equation(new IdExpr(this.assertionName), new NodeCallExpr(PLTL.historically().id, RHS));
+		return new Equation(new IdExpr(this.constraintsName), new NodeCallExpr(PLTL.historically().id, RHS));
 	}
 	
 	public Equation getAssertionCalledEquation(List<SConstraint> conjunct) {
@@ -305,9 +287,10 @@ public class SSpecification extends SMapElement {
 		} else {
 			RHS = conjunctify(conjunct.iterator());
 		}
-		return new Equation(new IdExpr(this.assertionName), RHS);
+		return new Equation(new IdExpr(this.constraintsName), RHS);
 	}
 	
+	@Override
 	public String toString() {
 		return this.name;
 	}

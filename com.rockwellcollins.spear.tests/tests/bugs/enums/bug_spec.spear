@@ -1,0 +1,26 @@
+Specification bug_spec
+
+Imports:
+	import "bug_definitions.spear"
+
+Types:
+	t0: enum {A,B,C}
+	t1: enum {A1,B1,C1}
+
+Inputs:
+
+Outputs:
+	x : t0
+	y : t1
+	z : t2
+
+Assumptions:
+
+Requirements:
+	r0: x == A
+	r1: y == A1
+	r2: z == D
+
+Properties:
+	p0: x <> B
+

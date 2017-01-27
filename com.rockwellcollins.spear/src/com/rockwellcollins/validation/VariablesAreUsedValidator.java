@@ -2,6 +2,7 @@ package com.rockwellcollins.validation;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -44,10 +45,7 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 	
 	@Check
 	public void checkSpecificationVariables(Specification s) {
-		Set<String> used = new HashSet<>();
-		for(IdExpr ide : EcoreUtil2.getAllContentsOfType(s, IdExpr.class)) {
-			used.add(ide.getId().getName());
-		}
+		Set<String> used = EcoreUtil2.getAllContentsOfType(s, IdExpr.class).stream().map(ide -> ide.getId().getName()).collect(Collectors.toSet());
 		
 		for(Constant c : s.getConstants()) {
 			if(!used.contains(c.getName())) {
@@ -82,19 +80,10 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 	
 	@Check
 	public void checkSpecificationTypes(Specification s) {
-		Set<String> used = new HashSet<>();
-		for(UserType ut : EcoreUtil2.getAllContentsOfType(s, UserType.class)) {
-			used.add(ut.getDef().getName());
-		}
-		
-		for(RecordExpr re : EcoreUtil2.getAllContentsOfType(s, RecordExpr.class)) {
-			used.add(re.getType().getName());
-		}
-		
-		for(ArrayExpr ae : EcoreUtil2.getAllContentsOfType(s, ArrayExpr.class)) {
-			used.add(ae.getType().getName());
-		}
-		
+		Set<String> used = EcoreUtil2.getAllContentsOfType(s, UserType.class).stream().map(ut -> ut.getDef().getName()).collect(Collectors.toSet()); 
+		used.addAll(EcoreUtil2.getAllContentsOfType(s, RecordExpr.class).stream().map(re -> re.getType().getName()).collect(Collectors.toSet()));
+		used.addAll(EcoreUtil2.getAllContentsOfType(s, ArrayExpr.class).stream().map(ae -> ae.getType().getName()).collect(Collectors.toSet()));
+
 		for(IdExpr ide : EcoreUtil2.getAllContentsOfType(s, IdExpr.class)) {
 			if (ide.getId() instanceof EnumValue) {
 				EnumValue ev = (EnumValue) ide.getId();
@@ -112,17 +101,8 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 	
 	@Check
 	public void checkSpecificationUnits(Specification s) {
-		Set<String> used = new HashSet<>();
-		
-		for(NamedUnitExpr nue : EcoreUtil2.getAllContentsOfType(s, NamedUnitExpr.class)) {
-			used.add(nue.getUnit().getName());
-		}
-
-		for(NamedTypeDef ntd : EcoreUtil2.getAllContentsOfType(s, NamedTypeDef.class)){
-			if(ntd.getUnit() != null) {
-				used.add(ntd.getUnit().getName());
-			}
-		}
+		Set<String> used = EcoreUtil2.getAllContentsOfType(s, NamedUnitExpr.class).stream().map(nue -> nue.getUnit().getName()).collect(Collectors.toSet());
+		used.addAll(EcoreUtil2.getAllContentsOfType(s, NamedTypeDef.class).stream().map(ntd -> ntd.getUnit().getName()).collect(Collectors.toSet()));
 		
 		for(UnitDef ud : s.getUnits()) {
 			if(!used.contains(ud.getName())) {
@@ -133,10 +113,7 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 	
 	@Check
 	public void checkPatternsAreUsed(Specification s) {
-		Set<String> used = new HashSet<>();
-		for(PatternCall call : EcoreUtil2.getAllContentsOfType(s, PatternCall.class)) {
-			used.add(call.getPattern().getName());
-		}
+		Set<String> used = EcoreUtil2.getAllContentsOfType(s, PatternCall.class).stream().map(call -> call.getPattern().getName()).collect(Collectors.toSet());
 		
 		for(Pattern p : s.getPatterns()) {
 			if(!used.contains(p.getName())) {
@@ -147,22 +124,15 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 	
 	@Check
 	public void checkPatternVariablesAreUsed(Pattern p) {
-		Set<String> read = new HashSet<>();
-		for(IdExpr ide : EcoreUtil2.getAllContentsOfType(p, IdExpr.class)) {
-			read.add(ide.getId().getName());
-		}
-		
+		Set<String> read = EcoreUtil2.getAllContentsOfType(p, IdExpr.class).stream().map(ide -> ide.getId().getName()).collect(Collectors.toSet());
+
 		Set<String> assigned = new HashSet<>();
 		for(LustreEquation leq : EcoreUtil2.getAllContentsOfType(p, LustreEquation.class)) {
-			for(Variable v : leq.getIds()) {
-				assigned.add(v.getName());
-			}
+			assigned.addAll(leq.getIds().stream().map(v -> v.getName()).collect(Collectors.toList()));
 		}
 		
 		for(LustreEquation eq : EcoreUtil2.getAllContentsOfType(p, LustreEquation.class)) {
-			for(Variable v : eq.getIds()) {
-				read.add(v.getName());
-			}
+			read.addAll(eq.getIds().stream().map(v -> v.getName()).collect(Collectors.toList()));
 		}
 		
 		for(Variable v : p.getInputs()) {

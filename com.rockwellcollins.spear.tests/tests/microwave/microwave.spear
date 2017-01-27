@@ -39,10 +39,10 @@ Macros:
 Assumptions:
 
 Requirements:
-	r0: |microwave_mode,seconds_remaining| == spec mode_logic(clear, start, door_closed, seconds_to_cook)
+	r1: |microwave_mode,seconds_remaining| == spec mode_logic(clear, start, door_closed, seconds_to_cook)
 	r2: |left_SETUP,middle_SETUP,right_SETUP| == spec keypad_processing(user_input)
 	r3: |left_RUNNING,middle_RUNNING,right_RUNNING| == spec reverse_time(seconds_remaining)
-	r4: s2c_SETUP == spec compute_time(left_digit,middle_digit,right_digit)
+	r4: s2c_SETUP == spec compute_time(left_SETUP,middle_SETUP,right_SETUP)
 	r5: s2c_RUNNING == previous seconds_to_cook with initial value 0
 	
 	rl: if microwave_mode==SETUP then left_digit == left_SETUP else left_digit == left_RUNNING

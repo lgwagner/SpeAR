@@ -1,0 +1,25 @@
+Specification specB
+
+Imports:
+	import "specC.spear"
+
+Inputs:
+	in : int
+
+Outputs:
+	out : int
+	
+State:
+	local : int
+
+Assumptions:
+	a1 : in > 0
+
+Requirements:
+	r0: local == spec specC(in)
+	r1: out == spec specC(local)
+
+Properties:
+	p0: out == local + 4
+	p1: local == in + 4
+

@@ -5,11 +5,8 @@ import java.util.Map;
 
 import org.eclipse.xtext.EcoreUtil2;
 
-import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.NormalizedCall;
-import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.Specification;
-import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 
 public class UniquifyNormalizedCalls {
@@ -56,21 +53,10 @@ public class UniquifyNormalizedCalls {
 	}
 	
 	private void populateMap(SpearDocument d) {
-		for(TypeDef td : d.typedefs.values()) {
-			map.put(td.getName(), td.getName());
-		}
-		
-		for(Constant c : d.constants.values()) {
-			map.put(c.getName(), c.getName());
-		}
-		
-		for(Pattern p : d.patterns.values()) {
-			map.put(p.getName(), p.getName());
-		}
-		
-		for(Specification s : d.specifications.values()) {
-			map.put(s.getName(), s.getName());
-		}
+		d.typedefs.values().stream().forEach(td -> map.put(td.getName(), td.getName()));
+		d.constants.values().stream().forEach(c -> map.put(c.getName(), c.getName()));
+		d.patterns.values().stream().forEach(p -> map.put(p.getName(), p.getName()));
+		d.specifications.values().stream().forEach(s -> map.put(s.getName(), s.getName()));
 	}
 	
 	public void makeUnique(SpearDocument d) {
