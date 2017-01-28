@@ -15,7 +15,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
@@ -55,11 +54,6 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 	private ComboFieldEditor solverFieldEditor;
 	@SuppressWarnings("unused") private String selectedSolver;
 
-//	private Group solverGroup;
-//	private Group jkindGroup;
-//	private Group spearGroup;
-	
-	private Label seperator1;
 	private BooleanFieldEditor bmcFieldEditor;
 	private BooleanFieldEditor kInductionFieldEditor;
 	private BooleanFieldEditor invGenFieldEditor;
@@ -79,55 +73,8 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 	/* Spear specific preferences */
 	private BooleanFieldEditor debugFieldEditor;
 
-//	@Override
-//	public Control createContents(Composite parent) {
-//		Composite top = new Composite(parent, SWT.LEFT);
-//		
-//		top.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-//		top.setLayout(new GridLayout());
-//		
-//		solverGroup = new Group(top, SWT.SHADOW_NONE);
-//		solverGroup.setText("Solver Options");
-//		solverGroup.setLayout(new GridLayout(1,true));
-//		solverGroup.addListener(SWT.Resize, new Listener() {
-//			@Override
-//			public void handleEvent(Event event) {
-//				solverGroup.redraw();
-//			}
-//		});
-//		
-//		jkindGroup = new Group(top, SWT.SHADOW_NONE);
-//		jkindGroup.setText("JKind Options");
-//		jkindGroup.setLayout(new GridLayout(1,true));
-//		solverGroup.addListener(SWT.Resize, new Listener() {
-//			@Override
-//			public void handleEvent(Event event) {
-//				solverGroup.redraw();
-//			}
-//		});
-//		
-//		spearGroup = new Group(top, SWT.SHADOW_NONE);
-//		spearGroup.setText("SpeAR Options");
-//		spearGroup.setLayout(new GridLayout(1,true));
-//		solverGroup.addListener(SWT.Resize, new Listener() {
-//			@Override
-//			public void handleEvent(Event event) {
-//				solverGroup.redraw();
-//			}
-//		});
-//		
-//        createFieldEditors();
-//
-//        initialize();
-//        checkState();
-//		return this.getFieldEditorParent();
-//	}
-	
 	@Override
 	public void createFieldEditors() {
-		
-		seperator1 = new Label(this.getFieldEditorParent(),SWT.HORIZONTAL);
-		seperator1.setText("Solver options");
 		
 		/* BEGIN: Solver Group */
 		solverFieldEditor = new ComboFieldEditor(PreferenceConstants.PREF_SOLVER, "SMT Solver",SOLVERS,this.getFieldEditorParent());
