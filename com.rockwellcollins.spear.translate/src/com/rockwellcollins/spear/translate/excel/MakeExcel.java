@@ -172,5 +172,4 @@ public class MakeExcel extends SpearSwitch<Integer> {
 		}
 		return text;
 	}
-
 }

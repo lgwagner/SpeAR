@@ -1,8 +1,5 @@
 package com.rockwellcollins.spear.translate.actions;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -26,12 +23,13 @@ import com.rockwellcollins.spear.translate.excel.MakeExcel;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
 public class GenerateExcel implements IWorkbenchWindowActionDelegate {
-	
+
 	private IWorkbenchWindow window;
 
 	@Override
 	public void run(IAction action) {
-		SpearInjectorUtil.setInjector(SpearActivator.getInstance().getInjector(SpearActivator.COM_ROCKWELLCOLLINS_SPEAR));
+		SpearInjectorUtil
+				.setInjector(SpearActivator.getInstance().getInjector(SpearActivator.COM_ROCKWELLCOLLINS_SPEAR));
 
 		IEditorPart editor = window.getActivePage().getActiveEditor();
 		if (!(editor instanceof XtextEditor)) {
@@ -52,27 +50,28 @@ public class GenerateExcel implements IWorkbenchWindowActionDelegate {
 					MessageDialog.openError(window.getShell(), "Error", "Specification contains errors.");
 					return null;
 				}
-				
+
 				Specification workingCopy = EcoreUtil2.copy(specification);
 				// This is where you will create the URI for the excel file.
 				URI excelURI = ActionUtilities.createURI(state.getURI(), "", "xls");
-				
+
 				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 				IResource excelResource = root.getFile(new Path(excelURI.toPlatformString(true)));
 
-		            //File file = File.createTempFile("requirements", ".xls");
-					//This is where you will create the excel file.	
-				try{
-					MakeExcel.toExcel(workingCopy,excelResource.getLocation().toFile());
-				}catch (Exception e) {
-		            //Dialog.showError("Unable to open spreadsheet", e.getMessage());
-		            MessageDialog.openError(window.getShell(), "Unable to export to spreadsheet", e.getMessage());
-
-		            e.printStackTrace();
-		        }
-		            //org.eclipse.swt.program.Program.launch(file.toString());
-				//Turn this off / remove this when you want to test your code.
-				//MessageDialog.openError(window.getShell(), "Feature Unsupported", "This feature is not yet supported.");
+				// File file = File.createTempFile("requirements", ".xls");
+				// This is where you will create the excel file.
+				try {
+					MakeExcel.toExcel(workingCopy, excelResource.getLocation().toFile());
+				} catch (Exception e) {
+					// Dialog.showError("Unable to open spreadsheet",
+					// e.getMessage());
+					MessageDialog.openError(window.getShell(), "Unable to export to spreadsheet", e.getMessage());
+					e.printStackTrace();
+				}
+				// org.eclipse.swt.program.Program.launch(file.toString());
+				// Turn this off / remove this when you want to test your code.
+				// MessageDialog.openError(window.getShell(), "Feature
+				// Unsupported", "This feature is not yet supported.");
 
 				// refresh the workspace
 				root.refreshLocal(IResource.DEPTH_INFINITE, null);
@@ -83,10 +82,12 @@ public class GenerateExcel implements IWorkbenchWindowActionDelegate {
 	}
 
 	@Override
-	public void selectionChanged(IAction arg0, ISelection arg1) {}
+	public void selectionChanged(IAction arg0, ISelection arg1) {
+	}
 
 	@Override
-	public void dispose() {}
+	public void dispose() {
+	}
 
 	@Override
 	public void init(IWorkbenchWindow arg0) {
