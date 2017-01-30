@@ -1,88 +1,182 @@
 package com.rockwellcollins.spear.translate.excel;
 
 import java.io.File;
-import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.Font.FontFamily;
-import com.itextpdf.text.List;
-import com.itextpdf.text.ListItem;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
+import org.eclipse.emf.common.util.EList;
+
+import com.rockwellcollins.spear.CommentsData;
+import com.rockwellcollins.spear.Constraint;
+import com.rockwellcollins.spear.Data;
+import com.rockwellcollins.spear.DescriptionData;
+import com.rockwellcollins.spear.EnglishConstraint;
+import com.rockwellcollins.spear.FormalConstraint;
+import com.rockwellcollins.spear.OwnerData;
+import com.rockwellcollins.spear.RationaleData;
+import com.rockwellcollins.spear.ReviewData;
+import com.rockwellcollins.spear.SourceData;
 import com.rockwellcollins.spear.Specification;
-import com.rockwellcollins.spear.Variable;
+import com.rockwellcollins.spear.TraceData;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
-/*
- * This class uses iText to generate PDFs. IText is free, but 
- */
+import jxl.write.Label;
+
+import com.rockwellcollins.spear.translate.excel.Requirement;
+
 public class MakeExcel extends SpearSwitch<Integer> {
-
-	public static void toExcel(Specification s, File f) {
-		new MakeExcel(s,f);
-	}
 	
-
+    public static HashMap<String, Requirement> reqIDMap = new HashMap<String, Requirement>();
+	public static List<String> topLevelReqList = new ArrayList<>();
 	
-	//this is to keep from falling through to the default case on a null value.
-	public static final Integer DONE = 0;
-
-	private Document document;
-	private FontFamily fontFamily;
-	private BaseColor baseColor;
-	
-	private void addToDocument(Element e) {
-		try {
-			this.document.add(e);
-		} catch (DocumentException d) {
-			System.out.println("Error adding " + e + " to document.");
-			d.printStackTrace();
+	public static void toExcel(Specification s, File f) throws Exception {
+		try (ExcelFormatter formatter = new ExcelFormatter(f)) {
+			new MakeExcel(s,f);
+			//need to connect writeRequirements with file
+			formatter.writeSpecification(topLevelReqList, reqIDMap);
+			//need to handle the situation when the file is already open - then it cannot be launched 
+			org.eclipse.swt.program.Program.launch(f.toString());
 		}
 	}
 	
-	public MakeExcel(Specification s, File f) {
-		this.document = new Document();
-		this.fontFamily=FontFamily.HELVETICA;
-		this.baseColor = BaseColor.BLACK;
+	private void exportRequirement(Iterator<Constraint> constraintIterator, String type, String compName) throws Exception{
 		
-		try {
-			PdfWriter.getInstance(document, new FileOutputStream(f));
-			document.open();
-			this.doSwitch(s);
+		while (constraintIterator.hasNext()) {
+			//get current constraint
+			Constraint curConstraint = constraintIterator.next();
+			//set flag for export
+			boolean export = false;
 			
-			/* this line is required to satisfy the license 
-			 * agreement for iText's AGPL license */
-			document.addProducer();
+			//initialize the attributes
+			String id = curConstraint.getName();
+			String component = compName;
 			
-			document.close();
-		} catch (Exception e) {
-			System.out.println("Error opening/closing document.");
-			e.printStackTrace();
+			String text = "";
+			String owner = "";
+			String reviewDate = "";
+			String source = "";
+			String rationale = "";
+			String comments = "";
+	        List<String> parentList = new ArrayList<>();
+	        List<String> childList = new ArrayList<>();	    
+
+	        //extract data from the current constraint and update the attributes
+	        
+			//if EnglishConstraint
+			if (curConstraint instanceof EnglishConstraint){
+				text = ((EnglishConstraint)curConstraint).getText();	
+				export = true;
+			}
+					
+			EList<Data> dataList = curConstraint.getData();
+			for (Data curData : dataList) {
+				String newText = "";
+				if(curData instanceof DescriptionData){
+					newText = ((DescriptionData)curData).getString();
+					text = detectDuplicates(id, type, "text", text, newText);
+				}
+				else if(curData instanceof OwnerData){
+					newText = ((OwnerData)curData).getString();
+					owner = detectDuplicates(id, type, "owner", owner, newText);
+				}
+				else if(curData instanceof ReviewData){
+					newText = ((ReviewData)curData).getString();
+					reviewDate = detectDuplicates(id, type, "reviewDate", reviewDate, newText);
+				}
+				else if(curData instanceof SourceData){
+					newText = ((SourceData)curData).getString();
+					source = detectDuplicates(id, type, "source", source, newText);
+				}
+				else if(curData instanceof RationaleData){
+					newText = ((RationaleData)curData).getString();
+					rationale = detectDuplicates(id, type, "rationale", rationale, newText);
+				}
+				else if(curData instanceof CommentsData){
+					newText = ((CommentsData)curData).getString();
+					comments = detectDuplicates(id, type, "comments", comments, newText);
+				}
+				else if(curData instanceof TraceData){
+					//if parentList is not empty, there is a duplicate
+					if(!parentList.isEmpty()){
+						throw new Exception("Duplicate parents for "+type+ " ID "+id);
+					}
+					parentList = ((TraceData)curData).getIds();
+				}	
+			}
+			
+			//if FormalConstraint and empty text, no export
+			if (curConstraint instanceof FormalConstraint){
+				if("".equals(text)){
+					export = false;
+				}
+				else{
+					export = true;
+				}
+			}
+			
+			if(export){
+				//create requirement instance
+				Requirement curRequirement = new Requirement(id, text, type, owner, component, parentList, 
+						reviewDate, source, rationale, comments);
+				//add to requirement id map
+				reqIDMap.put(id, curRequirement);
+			}
 		}
 	}
 	
-	@Override
-	public Integer caseSpecification(Specification s) {
-		
-		Paragraph specP = new Paragraph("Specification:" + s.getName(), new Font(fontFamily, 18, Font.BOLD, baseColor));
-		specP.setAlignment(Paragraph.ALIGN_CENTER);
-		this.addToDocument(specP);
-		
-		Paragraph inputsP = new Paragraph("Inputs:", new Font(fontFamily, 18, Font.BOLD, baseColor));
-		inputsP.setAlignment(Paragraph.ALIGN_LEFT);
-		this.addToDocument(inputsP);
-		
-		List list = new List(true,20);
-		Font f = new Font(fontFamily, 12, Font.NORMAL, baseColor);
-		for(Variable v : s.getInputs()) {
-			list.add(new ListItem(v.getName(), f));
-		}
-		this.addToDocument(list);
-		
-		return DONE;
+	public MakeExcel(Specification s, File f) throws Exception{
+		String compName = s.getName();
+		//get the assumptions
+		Iterator<Constraint> asIterator = s.getAssumptions().iterator();
+		exportRequirement(asIterator, "ASSUMPTION", compName);	
+		//get the requirements
+		Iterator<Constraint> reqIterator = s.getRequirements().iterator();
+		exportRequirement(reqIterator, "REQT", compName);
+		//get the properties
+		Iterator<Constraint> propIterator = s.getBehaviors().iterator();
+		exportRequirement(propIterator, "PROP", compName);		
+		//get the IDs for all existing requirements listed
+		List<String> reqIDList = new ArrayList<>(reqIDMap.keySet());
+
+		//extract the child list for each requirement
+		for(HashMap.Entry<String, Requirement> reqEntry: reqIDMap.entrySet()){
+			//for each requirement, go through its parentList
+			Requirement req = reqEntry.getValue();
+        	//for each requirement
+        	//go through its parentList
+			Boolean topLevelReq = true;
+        	for(String parentID: req.getParentList()){
+            	//check if parentID exists in requirementList
+        		if(reqIDList.contains(parentID)){
+        			topLevelReq = false;
+        			//if yes, add the requirement ID to the parentID requirement's childList
+        			reqIDMap.get(parentID).addChild(req.getID());	
+        		}
+        		//if not, throw an exception
+        		else{
+        			//project specific text for Derived and Originating requirements
+        			//marked in the parents attribute
+        			if (!parentID.equals("HALWA_Derived") && !parentID.equals("HALWA_Originating")){
+        				throw new Exception("parent ID "+parentID + " for req_ID " + req.getID() + " is not defined");
+        			}
+        		}     		
+        	}
+        	//add to topLevelList if the topLevelReq flag is true
+        	if(topLevelReq){
+        		topLevelReqList.add(req.getID());
+        	}
+        }
 	}
+
+	private String detectDuplicates(String id, String type, String attributeName, String text, String newText) throws Exception {
+		if("".equals(text)){
+			text = newText;
+		}else{
+			throw new Exception("Duplicate "+attributeName+" for "+type+ " ID "+id);
+		}
+		return text;
+	}
+
 }
