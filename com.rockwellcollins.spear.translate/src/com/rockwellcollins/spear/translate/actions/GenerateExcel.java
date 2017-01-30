@@ -12,7 +12,6 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
-import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.XtextEditor;
@@ -31,12 +30,13 @@ import com.rockwellcollins.spear.translate.excel.MakeExcel;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
 public class GenerateExcel implements IWorkbenchWindowActionDelegate {
-	
+
 	private IWorkbenchWindow window;
 
 	@Override
 	public void run(IAction action) {
-		SpearInjectorUtil.setInjector(SpearActivator.getInstance().getInjector(SpearActivator.COM_ROCKWELLCOLLINS_SPEAR));
+		SpearInjectorUtil
+				.setInjector(SpearActivator.getInstance().getInjector(SpearActivator.COM_ROCKWELLCOLLINS_SPEAR));
 
 		IEditorPart editor = window.getActivePage().getActiveEditor();
 		if (!(editor instanceof XtextEditor)) {
@@ -57,36 +57,32 @@ public class GenerateExcel implements IWorkbenchWindowActionDelegate {
 					MessageDialog.openError(window.getShell(), "Error", "Specification contains errors.");
 					return null;
 				}
-				
-				Specification workingCopy = EcoreUtil2.copy(specification);
-				AltSpearDocument spearDoc = AltSpearDocument.create(workingCopy);
+
+				AltSpearDocument spearDoc = AltSpearDocument.create(specification);
 				// This is where you will create the URI for the excel file.
 				URI excelURI = createURI(state.getURI(), "", "xls");
-				
+
 				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 				IResource excelResource = root.getFile(new Path(excelURI.toPlatformString(true)));
 
-				try{
-					MakeExcel.toExcel(spearDoc,excelResource.getLocation().toFile());
-				}catch (Exception e) {
-		            MessageDialog.openError(window.getShell(), "Unable to export to spreadsheet.", e.getMessage());
+				try {
+					MakeExcel.toExcel(spearDoc, excelResource.getLocation().toFile());
+				} catch (Exception e) {
+					MessageDialog.openError(window.getShell(), "Unable to export to spreadsheet.", e.getMessage());
 
-		            e.printStackTrace();
-		        }
-				
+					e.printStackTrace();
+				}
 
 				// refresh the workspace
 				root.refreshLocal(IResource.DEPTH_INFINITE, null);
 				return null;
 			}
-
 		});
 	}
-	
+
 	protected boolean hasErrors(Resource res) {
 		Injector injector = SpearActivator.getInstance().getInjector(SpearActivator.COM_ROCKWELLCOLLINS_SPEAR);
 		IResourceValidator resourceValidator = injector.getInstance(IResourceValidator.class);
-
 		for (Issue issue : resourceValidator.validate(res, CheckMode.ALL, CancelIndicator.NullImpl)) {
 			if (issue.getSeverity() == Severity.ERROR) {
 				return true;
@@ -94,7 +90,7 @@ public class GenerateExcel implements IWorkbenchWindowActionDelegate {
 		}
 		return false;
 	}
-	
+
 	private static URI createURI(URI baseURI, String suffix, String extension) {
 		String filename = baseURI.lastSegment();
 		baseURI = baseURI.trimSegments(1);
@@ -104,10 +100,12 @@ public class GenerateExcel implements IWorkbenchWindowActionDelegate {
 	}
 
 	@Override
-	public void selectionChanged(IAction arg0, ISelection arg1) {}
+	public void selectionChanged(IAction arg0, ISelection arg1) {
+	}
 
 	@Override
-	public void dispose() {}
+	public void dispose() {
+	}
 
 	@Override
 	public void init(IWorkbenchWindow arg0) {

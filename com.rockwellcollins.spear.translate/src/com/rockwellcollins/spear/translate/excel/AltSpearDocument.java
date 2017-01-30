@@ -1,6 +1,7 @@
 package com.rockwellcollins.spear.translate.excel;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -47,7 +48,7 @@ public class AltSpearDocument {
 		}
 	}
 	
-	public List<Specification> getSpecifications() {
+	public Collection<Specification> getSpecifications() {
 		List<Specification> list = new ArrayList<>();
 		for(File f : used) {
 			if (f instanceof Specification) {
@@ -55,6 +56,7 @@ public class AltSpearDocument {
 				list.add(s);
 			}
 		}
-		return list;
+		//this copy needs to happen.
+		return EcoreUtil2.copyAll(list);
 	}
 }
