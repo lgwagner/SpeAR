@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+
 import org.eclipse.emf.common.util.EList;
+
 import com.rockwellcollins.spear.CommentsData;
 import com.rockwellcollins.spear.Constraint;
 import com.rockwellcollins.spear.Data;
@@ -19,8 +21,6 @@ import com.rockwellcollins.spear.SourceData;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.TraceData;
 import com.rockwellcollins.spear.util.SpearSwitch;
-import com.rockwellcollins.spear.translate.excel.Requirement;
-import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 
 public class MakeExcel extends SpearSwitch<Integer> {
 	
@@ -35,12 +35,12 @@ public class MakeExcel extends SpearSwitch<Integer> {
 	 * @param f
 	 * @throws Exception
 	 */
-	public static void toExcel(SpearDocument spearDoc, File f) throws Exception {
+	public static void toExcel(AltSpearDocument spearDoc, File f) throws Exception {
 		//clear existing list
 		reqIDMap.clear();
 		topLevelReqList.clear();
 		try (ExcelFormatter formatter = new ExcelFormatter(f)) {
-			for(Specification spec: spearDoc.specifications.values()){
+			for(Specification spec: spearDoc.getSpecifications()){
 				exportReqList(spec);		
 			}
 			extractChildLists();	

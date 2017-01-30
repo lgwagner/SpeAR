@@ -1,5 +1,6 @@
 package com.rockwellcollins.spear.translate.excel;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -44,5 +45,16 @@ public class AltSpearDocument {
 				}
 			}
 		}
+	}
+	
+	public List<Specification> getSpecifications() {
+		List<Specification> list = new ArrayList<>();
+		for(File f : used) {
+			if (f instanceof Specification) {
+				Specification s = (Specification) f;
+				list.add(s);
+			}
+		}
+		return list;
 	}
 }

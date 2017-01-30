@@ -22,11 +22,12 @@ import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
+
 import com.google.inject.Injector;
 import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.translate.excel.AltSpearDocument;
 import com.rockwellcollins.spear.translate.excel.MakeExcel;
-import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
 public class GenerateExcel implements IWorkbenchWindowActionDelegate {
@@ -58,7 +59,7 @@ public class GenerateExcel implements IWorkbenchWindowActionDelegate {
 				}
 				
 				Specification workingCopy = EcoreUtil2.copy(specification);
-				SpearDocument spearDoc = new SpearDocument(workingCopy);
+				AltSpearDocument spearDoc = AltSpearDocument.create(workingCopy);
 				// This is where you will create the URI for the excel file.
 				URI excelURI = createURI(state.getURI(), "", "xls");
 				
