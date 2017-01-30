@@ -5,6 +5,7 @@ import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
@@ -12,10 +13,16 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
+import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
+import org.eclipse.xtext.validation.CheckMode;
+import org.eclipse.xtext.validation.IResourceValidator;
+import org.eclipse.xtext.validation.Issue;
+import com.google.inject.Injector;
 import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.excel.MakeExcel;
@@ -45,7 +52,7 @@ public class GenerateExcel implements IWorkbenchWindowActionDelegate {
 			public java.lang.Void exec(XtextResource state) throws Exception {
 				Specification specification = (Specification) state.getContents().get(0);
 
-				if (ActionUtilities.hasErrors(specification.eResource())) {
+				if (hasErrors(specification.eResource())) {
 					MessageDialog.openError(window.getShell(), "Error", "Specification contains errors.");
 					return null;
 				}
@@ -53,7 +60,7 @@ public class GenerateExcel implements IWorkbenchWindowActionDelegate {
 				Specification workingCopy = EcoreUtil2.copy(specification);
 				SpearDocument spearDoc = new SpearDocument(workingCopy);
 				// This is where you will create the URI for the excel file.
-				URI excelURI = ActionUtilities.createURI(state.getURI(), "", "xls");
+				URI excelURI = createURI(state.getURI(), "", "xls");
 				
 				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 				IResource excelResource = root.getFile(new Path(excelURI.toPlatformString(true)));
@@ -73,6 +80,26 @@ public class GenerateExcel implements IWorkbenchWindowActionDelegate {
 			}
 
 		});
+	}
+	
+	protected boolean hasErrors(Resource res) {
+		Injector injector = SpearActivator.getInstance().getInjector(SpearActivator.COM_ROCKWELLCOLLINS_SPEAR);
+		IResourceValidator resourceValidator = injector.getInstance(IResourceValidator.class);
+
+		for (Issue issue : resourceValidator.validate(res, CheckMode.ALL, CancelIndicator.NullImpl)) {
+			if (issue.getSeverity() == Severity.ERROR) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private static URI createURI(URI baseURI, String suffix, String extension) {
+		String filename = baseURI.lastSegment();
+		baseURI = baseURI.trimSegments(1);
+		int i = filename.lastIndexOf(".");
+		baseURI = baseURI.appendSegment((filename.substring(0, i) + suffix + "." + extension));
+		return baseURI;
 	}
 
 	@Override

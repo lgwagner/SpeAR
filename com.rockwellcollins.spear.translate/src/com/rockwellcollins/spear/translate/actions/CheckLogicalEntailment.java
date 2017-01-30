@@ -106,7 +106,7 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 				// refresh the workspace
 				root.refreshLocal(IResource.DEPTH_INFINITE, null);
 				
-				JKindApi api = (JKindApi) PreferencesUtil.getKindApi();
+				JKindApi api = PreferencesUtil.getJKindApi();
 				if(SpearRuntimeOptions.enableIVCDuringEntailment) {
 					api.setIvcReduction();					
 				}

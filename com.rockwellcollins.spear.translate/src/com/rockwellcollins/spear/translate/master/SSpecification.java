@@ -33,11 +33,7 @@ import jkind.lustre.builders.NodeBuilder;
 public class SSpecification extends SMapElement {
 
 	public static List<String> addNames(Collection<Specification> list, SpearMap map) {
-		List<String> renamed = new ArrayList<>();
-		for(Specification  s : list) {
-			renamed.add(SSpecification.addName(s, map));
-		}
-		return renamed;
+		return list.stream().map(s -> SSpecification.addName(s, map)).collect(Collectors.toList());
 	}
 	
 	public static String addName(Specification s, SpearMap map) {
@@ -45,11 +41,7 @@ public class SSpecification extends SMapElement {
 	}
 	
 	public static List<SSpecification> build(Collection<Specification> list, SpearMap map) {
-		List<SSpecification> converted = new ArrayList<>();
-		for(Specification s : list) {
-			converted.add(SSpecification.build(s, map));
-		}
-		return converted;
+		return list.stream().map(s -> SSpecification.build(s, map)).collect(Collectors.toList());
 	}
 	
 	public static SSpecification build(Specification s, SpearMap map) {

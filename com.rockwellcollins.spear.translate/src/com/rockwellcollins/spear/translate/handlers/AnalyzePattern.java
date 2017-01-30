@@ -91,7 +91,7 @@ public class AnalyzePattern extends AbstractHandler {
 		SProgram pprogram = SProgram.build(document);
 		Program program = pprogram.patternToLustre();
 		
-		JKindApi api = (JKindApi) PreferencesUtil.getKindApi();
+		JKindApi api = PreferencesUtil.getJKindApi();
 		JKindResult result = new JKindResult("result");
 		program.getMainNode().properties.stream().forEach(prop -> result.addProperty(prop));
 		IProgressMonitor monitor = new NullProgressMonitor();

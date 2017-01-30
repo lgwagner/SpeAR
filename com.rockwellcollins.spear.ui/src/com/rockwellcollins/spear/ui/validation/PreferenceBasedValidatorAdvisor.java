@@ -16,7 +16,7 @@ public class PreferenceBasedValidatorAdvisor implements IValidatorAdvisor {
 
 	@Override
 	public boolean isUnusedValidationsDisabled() {
-		return preferencesStore.getBoolean(PreferenceConstants.PREF_DISABLE_UNUSED_VALIDATIONS);
+		return preferencesStore.getBoolean(PreferenceConstants.PREF_SPEAR_WARN_ON_UNUSED_VARS);
 	}
 	
 	@Override

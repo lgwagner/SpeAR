@@ -21,7 +21,7 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
 
 import com.rockwellcollins.ui.internal.SpearActivator;
 
-import jkind.api.KindApi;
+import jkind.api.JKindApi;
 
 /**
  * This class represents a preference page that is contributed to the
@@ -40,10 +40,6 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 		setPreferenceStore(SpearActivator.getInstance().getPreferenceStore());
 	}
 
-	private static final String[][] MODEL_CHECKERS = {
-			{ PreferenceConstants.MODEL_CHECKER_JKIND, PreferenceConstants.MODEL_CHECKER_JKIND },
-			{ PreferenceConstants.MODEL_CHECKER_KIND2, PreferenceConstants.MODEL_CHECKER_KIND2 },
-			{ PreferenceConstants.MODEL_CHECKER_KIND2WEB, PreferenceConstants.MODEL_CHECKER_KIND2WEB } };
 	private ComboFieldEditor modelCheckerFieldEditor;
 	private String selectedModelChecker;
 
@@ -53,11 +49,10 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 		   {{ PreferenceConstants.SOLVER_SMTINTERPOL, PreferenceConstants.SOLVER_SMTINTERPOL },
 			{ PreferenceConstants.SOLVER_Z3, PreferenceConstants.SOLVER_Z3 },
 			{ PreferenceConstants.SOLVER_YICES2, PreferenceConstants.SOLVER_YICES2 },
-			{ PreferenceConstants.SOLVER_CVC4, PreferenceConstants.SOLVER_CVC4 },
-			{ PreferenceConstants.SOLVER_MATHSAT, PreferenceConstants.SOLVER_MATHSAT }};
+			{ PreferenceConstants.SOLVER_CVC4, PreferenceConstants.SOLVER_CVC4 }};
 
 	private ComboFieldEditor solverFieldEditor;
-	private String selectedSolver;
+	@SuppressWarnings("unused") private String selectedSolver;
 
 	private BooleanFieldEditor bmcFieldEditor;
 	private BooleanFieldEditor kInductionFieldEditor;
@@ -67,7 +62,7 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 	private BooleanFieldEditor reduceSupportFieldEditor;
 	private BooleanFieldEditor smoothCexFieldEditor;
 	private BooleanFieldEditor intervalGenFieldEditor;
-	private BooleanFieldEditor unusedValidationFieldEditor;
+	private BooleanFieldEditor spearUnusedVariableWarningsEditor;
 	private BooleanFieldEditor spearFinalLustreFileFieldEditor;
 	private BooleanFieldEditor spearRecursiveGraphicalDisplayFieldEditor;
 	private BooleanFieldEditor spearEnableIVCDuringEntailment;
@@ -80,83 +75,12 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 
 	@Override
 	public void createFieldEditors() {
-		modelCheckerFieldEditor = new ComboFieldEditor(PreferenceConstants.PREF_MODEL_CHECKER, "Model Checker",
-				MODEL_CHECKERS, getFieldEditorParent());
-		addField(modelCheckerFieldEditor);
-
-		remoteUrlFieldEditor = new StringFieldEditor(PreferenceConstants.PREF_REMOTE_URL, "Remote URL",
-				getFieldEditorParent());
-		addField(remoteUrlFieldEditor);
-
-		solverFieldEditor = new ComboFieldEditor(PreferenceConstants.PREF_SOLVER, "SMT Solver", SOLVERS,
-				getFieldEditorParent());
+		
+		/* BEGIN: Solver Group */
+		solverFieldEditor = new ComboFieldEditor(PreferenceConstants.PREF_SOLVER, "SMT Solver",SOLVERS,this.getFieldEditorParent());
 		addField(solverFieldEditor);
-
-		bmcFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_BOUNDED_MODEL_CHECKING,
-				"Use bounded model checking", getFieldEditorParent());
-		addField(bmcFieldEditor);
-
-		kInductionFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_K_INDUCTION, "Use k-induction",
-				getFieldEditorParent());
-		addField(kInductionFieldEditor);
-
-		invGenFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_INVARIANT_GENERATION,
-				"Use invariant generation", getFieldEditorParent());
-		addField(invGenFieldEditor);
-
-		pdrMaxFieldEditor = new NonNegativeIntegerFieldEditor(PreferenceConstants.PREF_PDR_MAX,
-				"Maximum number of PDR instances (0 to disable)", getFieldEditorParent());
-		addField(pdrMaxFieldEditor);
-
-		inductCexFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_INDUCTIVE_COUNTEREXAMPLES,
-				"Generate inductive counterexamples", getFieldEditorParent());
-		addField(inductCexFieldEditor);
-
-		reduceSupportFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_REDUCE_IVC,
-				"Reduce support (expensive)", getFieldEditorParent());
-		addField(reduceSupportFieldEditor);
-
-		spearFinalLustreFileFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_GENERATE_FINAL_LUSTRE_FILE,
-				"Generate final Lustre file", getFieldEditorParent());
-		addField(spearFinalLustreFileFieldEditor);
 		
-		spearRecursiveGraphicalDisplayFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_RECURSIVE_GRAPHICAL_DISPLAY,
-				"Make graphical display recursive", getFieldEditorParent());
-		addField(spearRecursiveGraphicalDisplayFieldEditor);
-		
-		spearEnableIVCDuringEntailment = new BooleanFieldEditor(PreferenceConstants.PREF_ENABLE_IVC_ENTAILMENT,
-				"Enable IVC during Logical Entailment Analysis", getFieldEditorParent());
-		addField(spearEnableIVCDuringEntailment);
-		
-		unusedValidationFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_DISABLE_UNUSED_VALIDATIONS,
-				"Disable unused variable validations", getFieldEditorParent());
-		addField(unusedValidationFieldEditor);
-
-		smoothCexFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_SMOOTH_COUNTEREXAMPLES,
-				"Generate smooth counterexamples (minimal number of input value changes)", getFieldEditorParent());
-		addField(smoothCexFieldEditor);
-
-		intervalGenFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_INTERVAL_GENERALIZATION,
-				"Generalize counterexamples using interval analysis", getFieldEditorParent());
-		addField(intervalGenFieldEditor);
-
-		depthFieldEditor = new NonNegativeIntegerFieldEditor(PreferenceConstants.PREF_DEPTH,
-				"Maximum depth for k-induction", getFieldEditorParent());
-		addField(depthFieldEditor);
-
-		timeoutFieldEditor = new NonNegativeIntegerFieldEditor(PreferenceConstants.PREF_TIMEOUT, "Timeout in seconds",
-				getFieldEditorParent());
-		addField(timeoutFieldEditor);
-
-		consistencyFieldEditor = new NonNegativeIntegerFieldEditor(PreferenceConstants.PREF_SPEAR_CONSISTENCY_DEPTH,
-				"Depth of consistency check in steps", getFieldEditorParent());
-		addField(consistencyFieldEditor);
-
-		debugFieldEditor = new BooleanButtonFieldEditor(PreferenceConstants.PREF_DEBUG, "Debug mode (record log files)",
-				"Open temporary folder", this::openTemporaryFolder, getFieldEditorParent());
-		addField(debugFieldEditor);
-
-		Button checkAvailableButton = new Button(getFieldEditorParent(), SWT.PUSH);
+		Button checkAvailableButton = new Button(this.getFieldEditorParent(), SWT.PUSH);
 		checkAvailableButton.setText("Check if available");
 		checkAvailableButton.addListener(SWT.Selection, new Listener() {
 			@Override
@@ -164,6 +88,57 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 				checkAvailable();
 			}
 		});
+
+		/* END: Solver group, BEGIN: JKind group */
+		
+		bmcFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_BOUNDED_MODEL_CHECKING,"Use bounded model checking",this.getFieldEditorParent());
+		addField(bmcFieldEditor);
+
+		kInductionFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_K_INDUCTION,"Use k-induction",this.getFieldEditorParent());
+		addField(kInductionFieldEditor);
+
+		invGenFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_INVARIANT_GENERATION,"Use invariant generation",this.getFieldEditorParent());
+		addField(invGenFieldEditor);
+
+		pdrMaxFieldEditor = new NonNegativeIntegerFieldEditor(PreferenceConstants.PREF_PDR_MAX,"Maximum number of PDR instances (0 to disable)",this.getFieldEditorParent());
+		addField(pdrMaxFieldEditor);
+
+		inductCexFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_INDUCTIVE_COUNTEREXAMPLES,"Generate inductive counterexamples",this.getFieldEditorParent());
+		addField(inductCexFieldEditor);
+
+		smoothCexFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_SMOOTH_COUNTEREXAMPLES,"Generate smooth counterexamples (minimal number of input value changes)",this.getFieldEditorParent());
+		addField(smoothCexFieldEditor);
+
+		intervalGenFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_INTERVAL_GENERALIZATION,"Generalize counterexamples using interval analysis",this.getFieldEditorParent());
+		addField(intervalGenFieldEditor);
+
+		depthFieldEditor = new NonNegativeIntegerFieldEditor(PreferenceConstants.PREF_DEPTH,"Maximum depth for k-induction",this.getFieldEditorParent());
+		addField(depthFieldEditor);
+
+		timeoutFieldEditor = new NonNegativeIntegerFieldEditor(PreferenceConstants.PREF_TIMEOUT, "Timeout in seconds",this.getFieldEditorParent());
+		addField(timeoutFieldEditor);
+
+		debugFieldEditor = new BooleanButtonFieldEditor(PreferenceConstants.PREF_DEBUG, "Debug mode (record log files)","Open temporary folder",this::openTemporaryFolder, this.getFieldEditorParent());
+		addField(debugFieldEditor);
+		
+		/* END: JKind group, BEGIN: SpeAR group */
+		
+		spearFinalLustreFileFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_SPEAR_PRINT_FINAL_LUSTRE,"Generate final Lustre file",this.getFieldEditorParent());
+		addField(spearFinalLustreFileFieldEditor);
+		
+		spearRecursiveGraphicalDisplayFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_SPEAR_RECURSIVE_GRAPH,"Make graphical display recursive",this.getFieldEditorParent());
+		addField(spearRecursiveGraphicalDisplayFieldEditor);
+		
+		spearEnableIVCDuringEntailment = new BooleanFieldEditor(PreferenceConstants.PREF_SPEAR_ENABLE_IVC_ON_ENTAILMENT,"Enable IVC during Logical Entailment Analysis",this.getFieldEditorParent());
+		addField(spearEnableIVCDuringEntailment);
+		
+		spearUnusedVariableWarningsEditor = new BooleanFieldEditor(PreferenceConstants.PREF_SPEAR_WARN_ON_UNUSED_VARS,"Disable unused variable validations",this.getFieldEditorParent());
+		addField(spearUnusedVariableWarningsEditor);
+		
+		consistencyFieldEditor = new NonNegativeIntegerFieldEditor(PreferenceConstants.PREF_SPEAR_CONSISTENCY_DEPTH,"Depth of consistency check in steps",this.getFieldEditorParent());
+		addField(consistencyFieldEditor);
+		
+		/* END: SpeAR group */
 	}
 
 	private void openTemporaryFolder() {
@@ -178,8 +153,7 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 
 	private void checkAvailable() {
 		try {
-			String remoteUrl = remoteUrlFieldEditor.getStringValue();
-			KindApi api = PreferencesUtil.getKindApi(selectedModelChecker, remoteUrl);
+			JKindApi api = PreferencesUtil.getJKindApi();
 			String details = api.checkAvailable();
 			MessageDialog.openInformation(getShell(), "Model checker available", details);
 		} catch (Exception e) {
@@ -210,8 +184,8 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 
 	private void configureEnabledFieldEditors() {
 		boolean isJKind = selectedModelChecker.equals(PreferenceConstants.MODEL_CHECKER_JKIND);
-		boolean isRemote = selectedModelChecker.equals(PreferenceConstants.MODEL_CHECKER_KIND2WEB);
-		boolean isYices = selectedSolver.equals(PreferenceConstants.SOLVER_YICES);
+		boolean isRemote = false;
+		boolean isYices = false;
 
 		remoteUrlFieldEditor.setEnabled(isRemote, getFieldEditorParent());
 		bmcFieldEditor.setEnabled(isJKind, getFieldEditorParent());
@@ -248,6 +222,5 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 	}
 
 	@Override
-	public void init(IWorkbench workbench) {
-	}
+	public void init(IWorkbench workbench) {}
 }
