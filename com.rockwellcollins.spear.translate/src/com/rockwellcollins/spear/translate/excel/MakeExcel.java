@@ -22,10 +22,6 @@ import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.TraceData;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
-import jxl.write.Label;
-
-import com.rockwellcollins.spear.translate.excel.Requirement;
-
 public class MakeExcel extends SpearSwitch<Integer> {
 	
     public static HashMap<String, Requirement> reqIDMap = new HashMap<String, Requirement>();
@@ -60,7 +56,6 @@ public class MakeExcel extends SpearSwitch<Integer> {
 			String rationale = "";
 			String comments = "";
 	        List<String> parentList = new ArrayList<>();
-	        List<String> childList = new ArrayList<>();	    
 
 	        //extract data from the current constraint and update the attributes
 	        
