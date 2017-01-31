@@ -1,0 +1,38 @@
+Specification unit_validation
+
+Units:
+  m "meters"  
+  
+Types:
+  length_type is a real m
+
+Inputs:
+  x is a length_type
+  
+Outputs:
+  y is a length_type
+  z is a length_type
+  w is a length_type
+
+Requirements:
+  r_should_fail_validation1:
+    y == previous x + 1.0
+    
+  r_should_fail_validation2:
+    if x == 1.0 m then
+      y == 1.0 m
+    else if previous x == 2.0 then y == 2.0
+    else if previous x == 3.0 then y == 3.0
+      
+  r_should_fail_validation3:
+    y == 1.0 m and
+    z == previous x + 1.0 and w == 2.0
+    
+  r_does_fail_validation1:
+    w == (previous x with initial value 0.0 m) + 1.0
+
+  r_does_fail_validation2:
+    z == x + 1.0
+        
+Properties:
+

@@ -1,0 +1,64 @@
+Specification Sub_Sys_A
+
+Inputs:
+A_In is an int
+
+Outputs:
+A_Out: int
+
+State:
+
+Macros:
+
+Assumptions:
+A_Assumption_1 : "The temperature ranges between 0 to 100 degrees."
+	parents = [Top_Assumption_1]
+	owner = "Test Company"
+	reviewDate = "1/27/2017"
+	source = ""
+	rationale = ""
+	comments = ""
+	
+A_Assumption_2 : "The wind speed ranges between 0 to 50 mph."
+	parents = [Top_Assumption_2]
+	owner = "Test Company"
+	reviewDate = "1/27/2017"
+	source = ""
+	rationale = ""
+	comments = ""
+
+Requirements:
+A_Requirement_1 : "The system shall output true when input is greater than zero."
+	parents = [Top_Requirement_1]
+	owner = "Test Company"
+	reviewDate = "12/13/2016"
+	source = ""
+	rationale = ""
+	comments = ""
+
+A_Requirement_2 : "The system shall output false when input is less or equal to zero."
+	parents = [Top_Requirement_2]
+	owner = "Test Company"
+	reviewDate = "12/13/2016"
+	source = ""
+	rationale = ""
+	comments = ""
+
+Properties:
+A_Property_1 : "If the system output true then the input is great than zero."
+	parents = [Top_Requirement_1]
+	owner = "Test Company"
+	reviewDate = "12/13/2016"
+	source = ""
+	rationale = ""
+	comments = ""
+	
+A_Property_2 : "If the system output false then the input is less or equal to zero."
+	parents = [Top_Requirement_2]
+	owner = "Test Company"
+	reviewDate = "12/13/2016"
+	source = ""
+	rationale = ""
+	comments = ""
+
+	

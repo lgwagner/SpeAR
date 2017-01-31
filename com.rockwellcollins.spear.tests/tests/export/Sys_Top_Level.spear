@@ -1,0 +1,67 @@
+Specification Sys_Top_Level
+
+Imports:
+import "Sub_Sys_A.spear"
+
+Inputs:
+Top_In is an int
+
+Outputs:
+Top_Out: int
+
+State:
+
+Macros:
+
+Assumptions:
+Top_Assumption_1 : "The temperature ranges between 0 to 100 degrees."
+	parents = [Originating]
+	owner = "Test Company"
+	reviewDate = "1/27/2017"
+	source = "Customer Requirement Intent Spec Section 12.3"
+	rationale = ""
+	comments = ""
+	
+Top_Assumption_2 : "The wind speed ranges between 0 to 50 mph."
+	parents = [Originating]
+	owner = "Test Company"
+	reviewDate = "1/27/2017"
+	source = "Customer Requirement Intent Spec Section 12.4"
+	rationale = ""
+	comments = ""
+
+Requirements:
+Top_Requirement_1 : "The system shall output true when input is greater than zero."
+	parents = [Originating]
+	owner = "Test Company"
+	reviewDate = "12/13/2016"
+	source = "Customer Requirement Intent Spec Section 12.1"
+	rationale = ""
+	comments = ""
+
+Top_Requirement_2 : "The system shall output false when input is less or equal to zero."
+	parents = [Originating]
+	owner = "Test Company"
+	reviewDate = "12/13/2016"
+	source = "Customer Requirement Intent Spec Section 12.1"
+	rationale = ""
+	comments = ""
+
+Properties:
+Top_Property_1 : "If the system output true then the input is great than zero."
+	parents = [Top_Requirement_1]
+	owner = "Test Company"
+	reviewDate = "12/13/2016"
+	source = ""
+	rationale = ""
+	comments = ""
+	
+Top_Property_2 : "If the system output false then the input is less or equal to zero."
+	parents = [Top_Requirement_2]
+	owner = "Test Company"
+	reviewDate = "12/13/2016"
+	source = ""
+	rationale = ""
+	comments = ""
+
+	
