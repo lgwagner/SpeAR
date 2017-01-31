@@ -9,7 +9,6 @@ import org.eclipse.jface.preference.ComboFieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.IntegerFieldEditor;
-import org.eclipse.jface.preference.StringFieldEditor;
 import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
@@ -40,10 +39,7 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 		setPreferenceStore(SpearActivator.getInstance().getPreferenceStore());
 	}
 
-	private ComboFieldEditor modelCheckerFieldEditor;
-	private String selectedModelChecker;
-
-	private StringFieldEditor remoteUrlFieldEditor;
+	private final String selectedModelChecker = PreferenceConstants.MODEL_CHECKER_JKIND;
 
 	private static final String[][] SOLVERS = 
 		   {{ PreferenceConstants.SOLVER_SMTINTERPOL, PreferenceConstants.SOLVER_SMTINTERPOL },
@@ -59,7 +55,6 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 	private BooleanFieldEditor invGenFieldEditor;
 	private NonNegativeIntegerFieldEditor pdrMaxFieldEditor;
 	private BooleanFieldEditor inductCexFieldEditor;
-	private BooleanFieldEditor reduceSupportFieldEditor;
 	private BooleanFieldEditor smoothCexFieldEditor;
 	private BooleanFieldEditor intervalGenFieldEditor;
 	private BooleanFieldEditor spearUnusedVariableWarningsEditor;
@@ -167,9 +162,7 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 		super.propertyChange(event);
 		if (event.getSource().equals(solverFieldEditor)) {
 			selectedSolver = (String) event.getNewValue();
-		} else if (event.getSource().equals(modelCheckerFieldEditor)) {
-			selectedModelChecker = (String) event.getNewValue();
-		}
+		} 
 		configureEnabledFieldEditors();
 	}
 
@@ -178,23 +171,18 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 		super.performDefaults();
 		IPreferenceStore prefs = getPreferenceStore();
 		selectedSolver = prefs.getDefaultString(PreferenceConstants.PREF_SOLVER);
-		selectedModelChecker = prefs.getDefaultString(PreferenceConstants.PREF_MODEL_CHECKER);
 		configureEnabledFieldEditors();
 	}
 
 	private void configureEnabledFieldEditors() {
 		boolean isJKind = selectedModelChecker.equals(PreferenceConstants.MODEL_CHECKER_JKIND);
-		boolean isRemote = false;
 		boolean isYices = false;
-
-		remoteUrlFieldEditor.setEnabled(isRemote, getFieldEditorParent());
 		bmcFieldEditor.setEnabled(isJKind, getFieldEditorParent());
 		kInductionFieldEditor.setEnabled(isJKind, getFieldEditorParent());
 		invGenFieldEditor.setEnabled(isJKind, getFieldEditorParent());
 		pdrMaxFieldEditor.setEnabled(isJKind, getFieldEditorParent());
 		solverFieldEditor.setEnabled(isJKind, getFieldEditorParent());
 		inductCexFieldEditor.setEnabled(isJKind, getFieldEditorParent());
-		reduceSupportFieldEditor.setEnabled(isJKind, getFieldEditorParent());
 		smoothCexFieldEditor.setEnabled(isJKind && isYices, getFieldEditorParent());
 		intervalGenFieldEditor.setEnabled(isJKind, getFieldEditorParent());
 		depthFieldEditor.setEnabled(isJKind, getFieldEditorParent());
@@ -210,7 +198,6 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 	private void initializeStateVariables() {
 		IPreferenceStore prefs = getPreferenceStore();
 		selectedSolver = prefs.getString(PreferenceConstants.PREF_SOLVER);
-		selectedModelChecker = prefs.getString(PreferenceConstants.PREF_MODEL_CHECKER);
 	}
 
 	private class NonNegativeIntegerFieldEditor extends IntegerFieldEditor {
