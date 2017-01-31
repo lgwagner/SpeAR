@@ -492,9 +492,13 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 
 	@Override
 	public Unit casePreviousExpr(PreviousExpr prev) {
-		Unit init = doSwitch(prev.getInit());
 		Unit var = doSwitch(prev.getVar());
-
+		if(prev.getInit() == null) {
+			return var;
+		}
+		
+		Unit init = doSwitch(prev.getInit());
+		
 		if (init == ERROR || var == ERROR) {
 			return ERROR;
 		}
@@ -507,35 +511,52 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		return ERROR;
 	}
 
-	@Override
-	public Unit caseIfThenElseExpr(IfThenElseExpr ite) {
-		Unit testUnit = doSwitch(ite.getCond());		
-		if(testUnit == ERROR) {
+	private Unit processIfThen(IfThenElseExpr ite) {
+		Unit testUnit = doSwitch(ite.getCond());
+		Unit thenUnit = doSwitch(ite.getThen());	
+		
+		if(testUnit == ERROR | thenUnit == ERROR) {
 			return ERROR;
 		}
-
+		
 		if (testUnit != SCALAR) {
-			error("Condition of If-Then-Else must be scalar.", ite, SpearPackage.Literals.IF_THEN_ELSE_EXPR__COND);
+			error("Condition of If-Then must be scalar.", ite, SpearPackage.Literals.IF_THEN_ELSE_EXPR__COND);
 		}
-
+		
+		if (thenUnit != SCALAR) {
+			error("If-Then expressions must be scalar.", ite, SpearPackage.Literals.IF_THEN_ELSE_EXPR__THEN);
+		}
+		
+		return thenUnit;
+	}
+	
+	private Unit processIfThenElse(IfThenElseExpr ite) {
+		Unit testUnit = doSwitch(ite.getCond());
 		Unit thenUnit = doSwitch(ite.getThen());
-
-		if (ite.getElse() == null) {
-			return thenUnit;
-		}
-
 		Unit elseUnit = doSwitch(ite.getElse());
-
-		if (thenUnit == ERROR || elseUnit == ERROR) {
+		
+		if(testUnit == ERROR | thenUnit == ERROR | elseUnit == ERROR) {
 			return ERROR;
+		}	
+		
+		if (testUnit != SCALAR) {
+			error("Condition of If-Then must be scalar.", ite, SpearPackage.Literals.IF_THEN_ELSE_EXPR__COND);
 		}
-
-		if (thenUnit.equals(elseUnit)) {
+		
+		if(thenUnit.equals(elseUnit)) {
 			return thenUnit;
 		}
-
 		error("Then branch of If-Then-Else has units " + thenUnit + ", but else branch has units " + elseUnit, ite,null);
 		return ERROR;
+	}
+	
+	@Override
+	public Unit caseIfThenElseExpr(IfThenElseExpr ite) {
+		if(ite.getElse() == null) {
+			return processIfThen(ite);
+		} else {
+			return processIfThenElse(ite);
+		}
 	}
 
 	@Override
