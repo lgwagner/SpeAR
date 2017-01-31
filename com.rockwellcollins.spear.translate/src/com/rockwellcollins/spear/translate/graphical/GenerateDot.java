@@ -62,7 +62,7 @@ public class GenerateDot {
 						defined.add(def);
 						buffer.append(def.getName() + "[shape=polygon,sides=4,label=\"" + def.getName() + "\"]" + newline);
 					}
-					buffer.append(s.getName() + spacedArrow + def.getName() + newline);
+					buffer.append(def.getName() + spacedArrow + s.getName() + newline);
 				}
 			}
 		}
