@@ -1,26 +1,10 @@
 package com.rockwellcollins.spear.translate.actions;
 
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
-import org.eclipse.xtext.EcoreUtil2;
-import org.eclipse.xtext.resource.XtextResource;
-import org.eclipse.xtext.ui.editor.XtextEditor;
-import org.eclipse.xtext.ui.editor.model.IXtextDocument;
-import org.eclipse.xtext.util.concurrent.IUnitOfWork;
-
-import com.rockwellcollins.SpearInjectorUtil;
-import com.rockwellcollins.spear.Specification;
-import com.rockwellcollins.spear.translate.pdf.MakePDF;
-import com.rockwellcollins.ui.internal.SpearActivator;
 
 public class GeneratePDF implements IWorkbenchWindowActionDelegate {
 	
@@ -28,45 +12,49 @@ public class GeneratePDF implements IWorkbenchWindowActionDelegate {
 
 	@Override
 	public void run(IAction action) {
-		SpearInjectorUtil.setInjector(SpearActivator.getInstance().getInjector(SpearActivator.COM_ROCKWELLCOLLINS_SPEAR));
-
-		IEditorPart editor = window.getActivePage().getActiveEditor();
-		if (!(editor instanceof XtextEditor)) {
-			MessageDialog.openError(window.getShell(), "Error", "Only SpeAR files can be analyzed.");
-			return;
-		}
-
-		XtextEditor xte = (XtextEditor) editor;
-		IXtextDocument doc = xte.getDocument();
-
-		doc.readOnly(new IUnitOfWork<Void, XtextResource>() {
-
-			@Override
-			public java.lang.Void exec(XtextResource state) throws Exception {
-				Specification specification = (Specification) state.getContents().get(0);
-
-				if (ActionUtilities.hasErrors(specification.eResource())) {
-					MessageDialog.openError(window.getShell(), "Error", "Specification contains errors.");
-					return null;
-				}
-				
-				Specification workingCopy = EcoreUtil2.copy(specification);
-				URI pdfURI = ActionUtilities.createURI(state.getURI(), "", "pdf");
-				
-				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-				IResource pdfResource = root.getFile(new Path(pdfURI.toPlatformString(true)));
-
-				//This is not yet supported so instead we'll comment it out.
-				MakePDF.toPDF(workingCopy,pdfResource.getLocation().toFile());
-
-				//Instead we throw this dialog and null out;
-				MessageDialog.openError(window.getShell(), "Unsupported Feature", "This feature is not yet supported.");
-				
-				// refresh the workspace
-				root.refreshLocal(IResource.DEPTH_INFINITE, null);
-				return null;
-			}
-		});
+		
+		MessageDialog.openError(window.getShell(), "Not Supported", "PDF Output is not yet supported.");
+		return;
+		
+//		SpearInjectorUtil.setInjector(SpearActivator.getInstance().getInjector(SpearActivator.COM_ROCKWELLCOLLINS_SPEAR));
+//
+//		IEditorPart editor = window.getActivePage().getActiveEditor();
+//		if (!(editor instanceof XtextEditor)) {
+//			MessageDialog.openError(window.getShell(), "Error", "Only SpeAR files can be analyzed.");
+//			return;
+//		}
+//
+//		XtextEditor xte = (XtextEditor) editor;
+//		IXtextDocument doc = xte.getDocument();
+//
+//		doc.readOnly(new IUnitOfWork<Void, XtextResource>() {
+//
+//			@Override
+//			public java.lang.Void exec(XtextResource state) throws Exception {
+//				Specification specification = (Specification) state.getContents().get(0);
+//
+//				if (ActionUtilities.hasErrors(specification.eResource())) {
+//					MessageDialog.openError(window.getShell(), "Error", "Specification contains errors.");
+//					return null;
+//				}
+//				
+//				Specification workingCopy = EcoreUtil2.copy(specification);
+//				URI pdfURI = ActionUtilities.createURI(state.getURI(), "", "pdf");
+//				
+//				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+//				IResource pdfResource = root.getFile(new Path(pdfURI.toPlatformString(true)));
+//
+//				//This is not yet supported so instead we'll comment it out.
+//				MakePDF.toPDF(workingCopy,pdfResource.getLocation().toFile());
+//
+//				//Instead we throw this dialog and null out;
+//				MessageDialog.openError(window.getShell(), "Unsupported Feature", "This feature is not yet supported.");
+//				
+//				// refresh the workspace
+//				root.refreshLocal(IResource.DEPTH_INFINITE, null);
+//				return null;
+//			}
+//		});
 	}
 	
 	@Override
