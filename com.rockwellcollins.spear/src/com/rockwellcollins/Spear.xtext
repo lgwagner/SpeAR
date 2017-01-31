@@ -40,6 +40,8 @@ Definitions:
 	('Constants:' constants+=Constant*)?
 	('Patterns:' patterns+=Pattern*)?;
 
+/* BEGIN PATTERN DEFINITIONS */
+
 Pattern:
 	'pattern' (name=ID) '(' (inputs+=Variable (',' inputs+=Variable)*)? ')' 'returns' '(' (outputs+=Variable (','
 	outputs+=Variable)*)? ')'
@@ -61,6 +63,10 @@ LustreProperty:
 LustreAssertion:
 	'assert' assertionExpr=Expr;
 
+/* END PATTERN DEFINITIONS */
+
+/* BEGIN UNIT DEFINITIONS */
+
 UnitDef:
 	{BaseUnit} name=ID (description=STRING)?
 	| {DerivedUnit} name=ID IdTypeDelimiter unit=UnitExpr (description=STRING)?;
@@ -78,8 +84,10 @@ AtomicUnitExpr returns UnitExpr:
 	{NamedUnitExpr} unit=[UnitDef]
 	| '(' UnitExpr ')';
 
+/* END UNIT DEFINITIONS */
+
 TypeDef:
-	  {NamedTypeDef} name=ID IdTypeDelimiter type=Type (unit=[UnitDef])? (data+=Data)*
+	  {NamedTypeDef} name=ID IdTypeDelimiter type=Type (unit=[UnitDef])? ('{' pred=Expr '}')? (data+=Data)*
 	| {AbstractTypeDef} name=ID IdTypeDelimiter 'abstract' (data+=Data)*
 	| {RecordTypeDef} name=ID IdTypeDelimiter 'record' '{' fields+=FieldType (',' fields+=FieldType)* '}' (data+=Data)*
 	| {ArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=Expr ']' (data+=Data)*
@@ -100,6 +108,59 @@ Type:
 	| {BoolType} 'bool'
 	| {RealType} 'real'
 	| {UserType} def=[TypeDef];
+
+/* BEGIN PREDICATE SUBTYPING AND EXPRESSIONS */
+
+//PredSubType:
+//	'{' expr=PredExpr '}'
+//;
+//
+//PredExpr:
+//	PredImpliesExpr
+//;
+//
+//PredImpliesExpr returns PredExpr:
+//	PredOrExpr (=> ({BinaryPredExpr.left=current} op=('=>' | 'implies')) right=PredImpliesExpr)?
+//;
+//
+//PredOrExpr returns PredExpr:
+//	PredAndExpr (=> ({BinaryPredExpr.left=current} op=('or' | 'xor')) right=PredOrExpr)?
+//;
+//
+//PredAndExpr returns PredExpr:
+//	PredRelationalExpr (=> ({BinaryPredExpr.left=current} op='and') right=PredOrExpr)?
+//;
+//
+//PredRelationalExpr returns PredExpr:
+//	PredMultiplyExpr (=> ({BinaryPredExpr.left=current} op=RelationalOp) right=PredRelationalExpr)?
+//;
+//
+//PredMultiplyExpr returns PredExpr:
+//	PredAddExpr (=> ({BinaryPredExpr.left=current} op=('*' | '/' | 'mod')) right=PredRelationalExpr)?
+//;
+//
+//PredAddExpr returns PredExpr:
+//	PredPrefixExpr (=> ({BinaryPredExpr.left=current} op=('+' | '-')) right=PredRelationalExpr)?
+//;
+//
+//PredPrefixExpr returns PredExpr:
+//	{PredUnaryExpr} op=('not' | '-') sub=PredPrefixExpr
+//|	PredAtomicExpr
+//;
+//
+//PredAtomicExpr returns PredExpr:
+//	{PredIdExpr} id=[TypeDef]
+//|	PredLiteralExpr
+//|	'(' PredExpr ')'
+//;
+//
+//PredLiteralExpr:
+//	{PredIntExpr} val=INT
+//|	{PredRealExpr} val=REAL
+//|	{PredBoolExpr} val=BOOL	
+//;
+
+/* END PREDICATE SUBTYPING */
 
 IdTypeDelimiter:
 	':'
@@ -199,7 +260,6 @@ AtomicExpr returns Expr:
 	LiteralExpr
 	| {IdExpr} id=[IdRef]
 	| {MultipleExpr} '|' exprs+=Expr (',' exprs+=Expr)* '|'
-//	| {MultipleIdExpr} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|'
 	| {IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else' else=Expr)?
 	| {RecordExpr} 'new' type=[RecordTypeDef] '{' fieldExprs+=FieldExpr (',' fieldExprs+=FieldExpr)* '}'
 	| {FieldlessRecordExpr} 'new' type=[RecordTypeDef] '{' exprs+=Expr (',' exprs+=Expr)* '}'
@@ -207,6 +267,7 @@ AtomicExpr returns Expr:
 	| {PatternCall} pattern=[Pattern] '(' (args+=Expr (',' args+=Expr)*)? ')'
 	| {SpecificationCall} 'spec' spec=[Specification] '(' (args+=Expr (',' args+=Expr)*)? ')'
 	| UnusedExpr
+	| {ThisExpr} 'this'
 	| '(' Expr ')';
 
 LiteralExpr:
@@ -214,16 +275,16 @@ LiteralExpr:
 	| {BoolLiteral} value=BOOL
 	| {RealLiteral} value=REAL (unit=[UnitDef])?;
 
-	//	//this is a cute little hack to make processing easier on the translation to Lustre
+// this is a cute little hack to make processing easier on the translation to Lustre
 UnusedExpr returns Expr:
-	{NormalizedCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr (','
-	args+=Expr)* ')';
+	{NormalizedCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr (','	args+=Expr)* ')';
 
 IdRef:
 	Variable
 	| Macro
 	| Constant
-	| EnumValue;
+	| EnumValue
+;
 
 FieldExpr:
 	field=[FieldType] '=' expr=Expr;

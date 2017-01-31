@@ -17,6 +17,7 @@ import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Import;
+import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.RecordExpr;
