@@ -38,6 +38,7 @@ import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.MultipleExpr;
 import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.PatternCall;
+import com.rockwellcollins.spear.PredicateSubTypeDef;
 import com.rockwellcollins.spear.PreviousExpr;
 import com.rockwellcollins.spear.RealLiteral;
 import com.rockwellcollins.spear.RealType;
@@ -160,6 +161,15 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		}
 		List<String> values = et.getValues().stream().map(ev -> ev.getName()).collect(Collectors.toList());
 		return new EnumType(et.getName(), values, et);
+	}
+	
+	//TODO: Review this at a later date.
+	@Override
+	public Type casePredicateSubTypeDef(PredicateSubTypeDef pstd) {
+		Type expected = PrimitiveType.BOOL;
+		expectAssignableType(expected,pstd.getPredExpr());
+		
+		return this.doSwitch(pstd.getPredVar());
 	}
 
 	public final Deque<TypeDef> stack = new ArrayDeque<>();

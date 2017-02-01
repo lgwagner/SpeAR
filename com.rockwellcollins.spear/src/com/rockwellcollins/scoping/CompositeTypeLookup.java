@@ -16,6 +16,7 @@ import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.IfThenElseExpr;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.NamedTypeDef;
+import com.rockwellcollins.spear.PredicateSubTypeDef;
 import com.rockwellcollins.spear.PreviousExpr;
 import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.RecordExpr;
@@ -59,6 +60,11 @@ public class CompositeTypeLookup extends SpearSwitch<TypeDef> {
 	@Override
 	public EnumTypeDef caseEnumTypeDef(EnumTypeDef etd) {
 		return etd;
+	}
+	
+	@Override
+	public TypeDef casePredicateSubTypeDef(PredicateSubTypeDef pstd) {
+		return doSwitch(pstd.getPredVar());
 	}
 	
 	@Override

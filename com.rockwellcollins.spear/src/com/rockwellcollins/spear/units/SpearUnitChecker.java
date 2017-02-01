@@ -36,6 +36,7 @@ import com.rockwellcollins.spear.MultipleExpr;
 import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.NamedUnitExpr;
 import com.rockwellcollins.spear.PatternCall;
+import com.rockwellcollins.spear.PredicateSubTypeDef;
 import com.rockwellcollins.spear.PreviousExpr;
 import com.rockwellcollins.spear.RealLiteral;
 import com.rockwellcollins.spear.RecordAccessExpr;
@@ -223,6 +224,21 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	@Override
 	public Unit caseEnumTypeDef(EnumTypeDef enumtype) {
 		return new EnumUnit(enumtype.getName());
+	}
+
+	//FIXME: review this
+	@Override
+	public Unit casePredicateSubTypeDef(PredicateSubTypeDef pstd) {
+		Unit actual = this.doSwitch(pstd.getPredExpr());
+		if(!actual.equals(SCALAR)) {
+			return ERROR;
+		}
+		
+		if(pstd.getUnit() != null) {
+			return this.doSwitch(pstd.getUnit());
+		} else {
+			return this.doSwitch(pstd.getPredVar().getType());
+		}
 	}
 
 	/***************************************************************************************************/
