@@ -163,31 +163,32 @@ SinceExpr returns Expr:
 
 TemporalPrefixExpr returns Expr:
 	{UnaryExpr} op=('O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'initially') expr=TemporalPrefixExpr
-	| RelationalExpr;
+	| EqualsExpr;
+
+EqualsExpr returns Expr:
+	RelationalExpr (=> ({BinaryExpr.left=current} op=EqualsOp) right=EqualsExpr)?;
+
+EqualsOp:
+	 '==' | 'equal' 'to'
+	| '<>' | 'not' 'equal' 'to'
+;
 
 RelationalExpr returns Expr:
-	SubtractionExpr (=> ({BinaryExpr.left=current} op=RelationalOp) right=RelationalExpr)?;
+	PlusExpr (=> ({BinaryExpr.left=current} op=RelationalOp) right=RelationalExpr)?;
 
 RelationalOp:
 	'<' | 'less' 'than'
 	| '<=' | 'less' 'than' 'or' 'equal' 'to'
 	| '>' | 'greater' 'than'
 	| '>=' | 'greater' 'than' 'or' 'equal' 'to'
-	| '==' | 'equal' 'to'
-	| '<>' | 'not' 'equal' 'to';
-
-SubtractionExpr returns Expr:
-	PlusExpr (=> ({BinaryExpr.left=current} op='-') right=SubtractionExpr)?;
+;
 
 PlusExpr returns Expr:
-	MultiplyExpr (=> ({BinaryExpr.left=current} op='+') right=PlusExpr)?;
+	MultiplyExpr (=> ({BinaryExpr.left=current} op=('-' | '+')) right=MultiplyExpr)*;
 
 MultiplyExpr returns Expr:
-	DivisionExpr (=> ({BinaryExpr.left=current} op='*') right=MultiplyExpr)?;
+	ArrowExpr (=> ({BinaryExpr.left=current} op=('*' | '/' | 'mod')) right=ArrowExpr)*;
 	
-DivisionExpr returns Expr:
-	ArrowExpr (=> ({BinaryExpr.left=current} op=('/' | 'mod')) right=DivisionExpr)?;
-
 ArrowExpr returns Expr:
 	PrefixExpr (=> ({BinaryExpr.left=current} op=('->' | 'arrow')) right=ArrowExpr)?;
 
