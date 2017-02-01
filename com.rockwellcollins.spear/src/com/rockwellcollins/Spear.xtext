@@ -180,7 +180,7 @@ TemporalPrefixExpr returns Expr:
 	| RelationalExpr;
 
 RelationalExpr returns Expr:
-	PlusExpr (=> ({BinaryExpr.left=current} op=RelationalOp) right=RelationalExpr)?;
+	SubtractionExpr (=> ({BinaryExpr.left=current} op=RelationalOp) right=RelationalExpr)?;
 
 RelationalOp:
 	'<' | 'less' 'than'
@@ -190,11 +190,17 @@ RelationalOp:
 	| '==' | 'equal' 'to'
 	| '<>' | 'not' 'equal' 'to';
 
+SubtractionExpr returns Expr:
+	PlusExpr (=> ({BinaryExpr.left=current} op='-') right=SubtractionExpr)?;
+
 PlusExpr returns Expr:
-	MultiplyExpr (=> ({BinaryExpr.left=current} op=('+' | '-')) right=PlusExpr)?;
+	MultiplyExpr (=> ({BinaryExpr.left=current} op='+') right=PlusExpr)?;
 
 MultiplyExpr returns Expr:
-	ArrowExpr (=> ({BinaryExpr.left=current} op=('*' | '/' | 'mod')) right=MultiplyExpr)?;
+	DivisionExpr (=> ({BinaryExpr.left=current} op='*') right=MultiplyExpr)?;
+	
+DivisionExpr returns Expr:
+	ArrowExpr (=> ({BinaryExpr.left=current} op=('/' | 'mod')) right=DivisionExpr)?;
 
 ArrowExpr returns Expr:
 	PrefixExpr (=> ({BinaryExpr.left=current} op=('->' | 'arrow')) right=ArrowExpr)?;
