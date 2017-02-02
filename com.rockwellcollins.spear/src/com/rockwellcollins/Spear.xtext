@@ -79,12 +79,11 @@ AtomicUnitExpr returns UnitExpr:
 	| '(' UnitExpr ')';
 
 TypeDef:
-	  {NamedTypeDef} name=ID IdTypeDelimiter type=Type (unit=[UnitDef])? (data+=Data)*
+	{NamedTypeDef} name=ID IdTypeDelimiter type=Type (unit=[UnitDef])? (data+=Data)*
 	| {AbstractTypeDef} name=ID IdTypeDelimiter 'abstract' (data+=Data)*
 	| {RecordTypeDef} name=ID IdTypeDelimiter 'record' '{' fields+=FieldType (',' fields+=FieldType)* '}' (data+=Data)*
 	| {ArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=Expr ']' (data+=Data)*
-	| {EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{' values+=EnumValue (',' values+=EnumValue)* '}' (data+=Data)*
-;
+	| {EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{' values+=EnumValue (',' values+=EnumValue)* '}' (data+=Data)*;
 
 UnusedTypeDef returns TypeDef:
 	{ConcreteArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=INT ']';
@@ -131,8 +130,7 @@ Data:
 	| {ReviewData} 'reviewDate' '=' (string=STRING)
 	| {SourceData} 'source' '=' (string=STRING)
 	| {RationaleData} 'rationale' '=' (string=STRING)
-	| {CommentsData} 'comments' '=' (string=STRING)
-;
+	| {CommentsData} 'comments' '=' (string=STRING);
 
 /* Begin Expr Language */
 Expr:
@@ -172,9 +170,8 @@ EqualsExpr returns Expr:
 	RelationalExpr (=> ({BinaryExpr.left=current} op=EqualsOp) right=EqualsExpr)?;
 
 EqualsOp:
-	 '==' | 'equal' 'to'
-	| '<>' | 'not' 'equal' 'to'
-;
+	'==' | 'equal' 'to'
+	| '<>' | 'not' 'equal' 'to';
 
 RelationalExpr returns Expr:
 	PlusExpr (=> ({BinaryExpr.left=current} op=RelationalOp) right=RelationalExpr)?;
@@ -193,11 +190,10 @@ MultiplyExpr returns Expr:
 
 PreviousExpr returns Expr:
 	{PreviousExpr} 'previous' var=PrefixExpr (=> 'with' 'initial' 'value' init=PreviousExpr)?
-|	PrefixExpr
-;
+	| PrefixExpr;
 
 PrefixExpr returns Expr:
-	  {UnaryExpr} op=('-' | 'not') expr=PrefixExpr
+	{UnaryExpr} op=('-' | 'not') expr=PrefixExpr
 	| AccessExpr;
 
 AccessExpr returns Expr:
@@ -223,9 +219,10 @@ LiteralExpr:
 	| {BoolLiteral} value=BOOL
 	| {RealLiteral} value=REAL (unit=[UnitDef])?;
 
-//this is a cute little hack to make processing easier on the translation to Lustre
+	//this is a cute little hack to make processing easier on the translation to Lustre
 UnusedExpr returns Expr:
-	{NormalizedCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr (','	args+=Expr)* ')';
+	{NormalizedCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr (','
+	args+=Expr)* ')';
 
 IdRef:
 	Variable
