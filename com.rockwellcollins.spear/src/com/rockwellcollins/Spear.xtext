@@ -6,18 +6,10 @@ File:
 	Specification | Definitions;
 
 Specification:
-	'Specification' (name=ID)
-	('Imports:' imports+=Import*)?
-	('Units:' units+=UnitDef*)?
-	('Types:' typedefs+=TypeDef*)?
-	('Constants:' constants+=Constant*)?
-	('Patterns:' patterns+=Pattern*)?
-	'Inputs:' inputs+=Variable*
-	'Outputs:' outputs+=Variable*
-	('State:' state+=Variable*)?
-	('Macros:' macros+=Macro*)?
-	(assumptionsKeyword=AssumptionsHeader ':' assumptions+=Constraint*)?
-	(requirementsKeyword=RequirementsHeader ':' requirements+=Constraint*)
+	'Specification' (name=ID) ('Imports:' imports+=Import*)? ('Units:' units+=UnitDef*)? ('Types:' typedefs+=TypeDef*)?
+	('Constants:' constants+=Constant*)? ('Patterns:' patterns+=Pattern*)? 'Inputs:' inputs+=Variable* 'Outputs:'
+	outputs+=Variable* ('State:' state+=Variable*)? ('Macros:' macros+=Macro*)? (assumptionsKeyword=AssumptionsHeader ':'
+	assumptions+=Constraint*)? (requirementsKeyword=RequirementsHeader ':' requirements+=Constraint*)
 	(behaviorsKeyword=BehaviorsHeader ':' behaviors+=Constraint*)?;
 
 AssumptionsHeader:
@@ -33,43 +25,21 @@ Import:
 	'import' importURI=STRING;
 
 Definitions:
-	'Definitions' (name=ID)
-	('Imports:' imports+=Import*)?
-	('Units:' unitdefs+=UnitDef*)?
-	('Types:' typedefs+=TypeDef*)?
-	('Constants:' constants+=Constant*)?
-	('Patterns:' patterns+=Pattern*)?;
-
-/* BEGIN PATTERN DEFINITIONS */
-
-Pattern:
+	'Definitions' (name=ID) ('Imports:' imports+=Import*)? ('Units:' unitdefs+=UnitDef*)? ('Types:' typedefs+=TypeDef*)?
+	('Constants:' constants+=Constant*)? ('Patterns:' patterns+=Pattern*)?; /* BEGIN PATTERN DEFINITIONS */ Pattern:
 	'pattern' (name=ID) '(' (inputs+=Variable (',' inputs+=Variable)*)? ')' 'returns' '(' (outputs+=Variable (','
-	outputs+=Variable)*)? ')'
-	('var' (locals+=Variable)*)?
-	'let'
-	(equations+=LustreEquation
-	| properties+=LustreProperty
-	| assertions+=LustreAssertion)*
-	'tel'
-	(data+=Data)*;
+	outputs+=Variable)*)? ')' ('var' (locals+=Variable)*)? 'let' (equations+=LustreEquation | properties+=LustreProperty
+	| assertions+=LustreAssertion)* 'tel' (data+=Data)*;
 
 LustreEquation:
-	'|' ids+=[Variable] (',' ids+=[Variable])* '|' '=' rhs=Expr
-	| ids+=[Variable] '=' rhs=Expr;
+	'|' ids+=[Variable] (',' ids+=[Variable])* '|' '=' rhs=Expr | ids+=[Variable] '=' rhs=Expr;
 
 LustreProperty:
 	'--%PROPERTY' propertyId=[Variable];
 
 LustreAssertion:
-	'assert' assertionExpr=Expr;
-
-/* END PATTERN DEFINITIONS */
-
-/* BEGIN UNIT DEFINITIONS */
-
-UnitDef:
-	{BaseUnit} name=ID (description=STRING)?
-	| {DerivedUnit} name=ID IdTypeDelimiter unit=UnitExpr (description=STRING)?;
+	'assert' assertionExpr=Expr; /* END PATTERN DEFINITIONS */ /* BEGIN UNIT DEFINITIONS */ UnitDef:
+	{BaseUnit} name=ID (description=STRING)? | {DerivedUnit} name=ID IdTypeDelimiter unit=UnitExpr (description=STRING)?;
 
 UnitExpr:
 	ProductUnitExpr;
@@ -81,24 +51,16 @@ DivisionUnitExpr returns UnitExpr:
 	AtomicUnitExpr (=> ({BinaryUnitExpr.left=current} op='/') right=AtomicUnitExpr)?;
 
 AtomicUnitExpr returns UnitExpr:
-	{NamedUnitExpr} unit=[UnitDef]
-	| '(' UnitExpr ')';
-
-/* END UNIT DEFINITIONS */
-
-TypeDef:
-	  {NamedTypeDef} name=ID IdTypeDelimiter type=Type (unit=[UnitDef])?  (data+=Data)*
-	| {RecordTypeDef} name=ID IdTypeDelimiter 'record' '{' fields+=FieldType (',' fields+=FieldType)* '}' (data+=Data)*
-	| {ArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=Expr ']' (data+=Data)*
-	| {EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{' values+=EnumValue (',' values+=EnumValue)* '}' (data+=Data)*
-	| {AbstractTypeDef} name=ID IdTypeDelimiter 'abstract' (data+=Data)*
-	| {PredicateSubTypeDef} name=ID IdTypeDelimiter '{' predVar=Variable SuchThat predExpr=Expr '}' (unit=[UnitDef])? (data+=Data)*
-;
+	{NamedUnitExpr} unit=[UnitDef] | '(' UnitExpr ')'; /* END UNIT DEFINITIONS */ TypeDef:
+	{NamedTypeDef} name=ID IdTypeDelimiter type=Type (unit=[UnitDef])? (data+=Data)* | {PredicateSubTypeDef} name=ID
+	IdTypeDelimiter '{' predVar=Variable SuchThat predExpr=Expr '}' (unit=[UnitDef])? (data+=Data)* | {AbstractTypeDef}
+	name=ID IdTypeDelimiter 'abstract' (data+=Data)* | {RecordTypeDef} name=ID IdTypeDelimiter 'record' '{'
+	fields+=FieldType (',' fields+=FieldType)* '}' (data+=Data)* | {ArrayTypeDef} name=ID IdTypeDelimiter base=Type '['
+	size=Expr ']' (data+=Data)* | {EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{' values+=EnumValue (','
+	values+=EnumValue)* '}' (data+=Data)* | {AbstractTypeDef} name=ID IdTypeDelimiter 'abstract' (data+=Data)*;
 
 SuchThat:
-	'such' 'that'
-|	'|'
-;
+	'such' 'that' | '|';
 
 UnusedTypeDef returns TypeDef:
 	{ConcreteArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=INT ']';
@@ -110,15 +72,10 @@ EnumValue:
 	name=ID;
 
 Type:
-	  {IntType} 'int'
-	| {BoolType} 'bool'
-	| {RealType} 'real'
-	| {UserType} def=[TypeDef];
+	{IntType} 'int' | {BoolType} 'bool' | {RealType} 'real' | {UserType} def=[TypeDef];
 
 IdTypeDelimiter:
-	':'
-	| 'is a'
-	| 'is an';
+	':' | 'is a' | 'is an';
 
 Constant:
 	name=ID IdTypeDelimiter type=Type '=' expr=Expr (data+=Data)*;
@@ -139,110 +96,87 @@ EnglishConstraint:
 	name=ID ':' text=STRING (data+=Data)*;
 
 Data:
-	{DescriptionData} 'text' '=' (string=STRING)
-	| {TraceData} ('trace' | 'parents') '=' '[' ids+=ID (',' ids+=ID)* ']'
-	| {OwnerData} 'owner' '=' (string=STRING)
-	| {ReviewData} 'reviewDate' '=' (string=STRING)
-	| {SourceData} 'source' '=' (string=STRING)
-	| {RationaleData} 'rationale' '=' (string=STRING)
-	| {CommentsData} 'comments' '=' (string=STRING)
-;
-
-/* Begin Expr Language */
-Expr:
+	{DescriptionData} 'text' '=' (string=STRING) | {TraceData} ('trace' | 'parents') '=' '[' ids+=ID (',' ids+=ID)* ']' |
+	{OwnerData} 'owner' '=' (string=STRING) | {ReviewData} 'reviewDate' '=' (string=STRING) | {SourceData} 'source' '='
+	(string=STRING) | {RationaleData} 'rationale' '=' (string=STRING) | {CommentsData} 'comments' '=' (string=STRING);
+/* Begin Expr Language */ Expr:
 	WhileExpr;
 
 WhileExpr returns Expr:
-	{WhileExpr} 'while' cond=Expr 'then' then=Expr
-	| ImpliesExpr;
+	{WhileExpr} 'while' cond=Expr 'then' then=Expr | ArrowExpr;
+
+ArrowExpr returns Expr:
+	ImpliesExpr (=> ({BinaryExpr.left=current} op=('->' | 'arrow')) right=ArrowExpr)?;
 
 ImpliesExpr returns Expr:
 	OrExpr (=> ({BinaryExpr.left=current} op=('=>' | 'implies')) right=ImpliesExpr)?;
 
 OrExpr returns Expr:
-	AndExpr (=> ({BinaryExpr.left=current} op=('or' | 'xor')) right=OrExpr)?;
+	AndExpr (=> ({BinaryExpr.left=current} op=('or' | 'xor')) right=AndExpr)*;
 
 AndExpr returns Expr:
-	AfterUntilExpr (=> ({BinaryExpr.left=current} op='and') right=AndExpr)?;
+	AfterUntilExpr (=> ({BinaryExpr.left=current} op='and') right=AfterUntilExpr)*;
 
 AfterUntilExpr returns Expr:
-	{AfterUntilExpr} 'after' (after=TriggersExpr) (=> 'until' until=TriggersExpr)?
-	| TriggersExpr;
+	{AfterUntilExpr} 'after' (after=TriggersExpr) (=> 'until' until=TriggersExpr)? | TriggersExpr;
 
 TriggersExpr returns Expr:
-	SinceExpr (=> ({BinaryExpr.left=current} op=('T' | 'triggers')) right=TriggersExpr)?;
+	SinceExpr (=> ({BinaryExpr.left=current} op=('T' | 'triggers')) right=SinceExpr)*;
 
 SinceExpr returns Expr:
-	TemporalPrefixExpr (=> ({BinaryExpr.left=current} op=('S' | 'since')) right=SinceExpr)?;
+	TemporalPrefixExpr (=> ({BinaryExpr.left=current} op=('S' | 'since')) right=TemporalPrefixExpr)*;
 
 TemporalPrefixExpr returns Expr:
-	{UnaryExpr} op=('O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'initially') expr=TemporalPrefixExpr
-	| RelationalExpr;
+	{UnaryExpr} op=('O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'initially') expr=TemporalPrefixExpr |
+	EqualsExpr;
+
+EqualsExpr returns Expr:
+	RelationalExpr (=> ({BinaryExpr.left=current} op=EqualsOp) right=EqualsExpr)?;
+
+EqualsOp:
+	'==' | 'equal' 'to' | '<>' | 'not' 'equal' 'to';
 
 RelationalExpr returns Expr:
-	SubtractionExpr (=> ({BinaryExpr.left=current} op=RelationalOp) right=RelationalExpr)?;
+	PlusExpr (=> ({BinaryExpr.left=current} op=RelationalOp) right=RelationalExpr)?;
 
 RelationalOp:
-	'<' | 'less' 'than'
-	| '<=' | 'less' 'than' 'or' 'equal' 'to'
-	| '>' | 'greater' 'than'
-	| '>=' | 'greater' 'than' 'or' 'equal' 'to'
-	| '==' | 'equal' 'to'
-	| '<>' | 'not' 'equal' 'to';
-
-SubtractionExpr returns Expr:
-	PlusExpr (=> ({BinaryExpr.left=current} op='-') right=SubtractionExpr)?;
+	'<' | 'less' 'than' | '<=' | 'less' 'than' 'or' 'equal' 'to' | '>' | 'greater' 'than' | '>=' | 'greater' 'than' 'or'
+	'equal' 'to';
 
 PlusExpr returns Expr:
-	MultiplyExpr (=> ({BinaryExpr.left=current} op='+') right=PlusExpr)?;
+	MultiplyExpr (=> ({BinaryExpr.left=current} op=('-' | '+')) right=MultiplyExpr)*;
 
 MultiplyExpr returns Expr:
-	DivisionExpr (=> ({BinaryExpr.left=current} op='*') right=MultiplyExpr)?;
-	
-DivisionExpr returns Expr:
-	ArrowExpr (=> ({BinaryExpr.left=current} op=('/' | 'mod')) right=DivisionExpr)?;
+	PreviousExpr (=> ({BinaryExpr.left=current} op=('*' | '/' | 'mod')) right=PreviousExpr)*;
 
-ArrowExpr returns Expr:
-	PrefixExpr (=> ({BinaryExpr.left=current} op=('->' | 'arrow')) right=ArrowExpr)?;
+PreviousExpr returns Expr:
+	{PreviousExpr} 'previous' var=PrefixExpr (=> 'with' 'initial' 'value' init=PreviousExpr)? | PrefixExpr;
 
 PrefixExpr returns Expr:
-	{UnaryExpr} op=('-' | 'not') expr=PrefixExpr
-	| {PreviousExpr} 'previous' var=PrefixExpr (=> 'with' 'initial' 'value' init=PrefixExpr)?
-	| AccessExpr;
+	{UnaryExpr} op=('-' | 'not') expr=PrefixExpr | AccessExpr;
 
 AccessExpr returns Expr:
-	AtomicExpr (=> ({RecordAccessExpr.record=current} '.') field=[FieldType]
-	| => ({RecordUpdateExpr.record=current} '{' field=[FieldType] ':=') value=Expr '}'
-	| => ({ArrayAccessExpr.array=current} '[') index=Expr (=> ({ArrayUpdateExpr.access=current} ':=') value=Expr)? ']')*;
+	AtomicExpr (=> ({RecordAccessExpr.record=current} '.') field=[FieldType] | => ({RecordUpdateExpr.record=current} '{'
+	field=[FieldType] ':=') value=Expr '}' | => ({ArrayAccessExpr.array=current} '[') index=Expr (=>
+	({ArrayUpdateExpr.access=current} ':=') value=Expr)? ']')*;
 
 AtomicExpr returns Expr:
-	LiteralExpr
-	| {IdExpr} id=[IdRef]
-	| {MultipleExpr} '|' exprs+=Expr (',' exprs+=Expr)* '|'
-	| {IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else' else=Expr)?
-	| {RecordExpr} 'new' type=[RecordTypeDef] '{' fieldExprs+=FieldExpr (',' fieldExprs+=FieldExpr)* '}'
-	| {FieldlessRecordExpr} 'new' type=[RecordTypeDef] '{' exprs+=Expr (',' exprs+=Expr)* '}'
-	| {ArrayExpr} 'new' type=[ArrayTypeDef] '[' exprs+=Expr (',' exprs+=Expr)* ']'
-	| {PatternCall} pattern=[Pattern] '(' (args+=Expr (',' args+=Expr)*)? ')'
-	| {SpecificationCall} 'spec' spec=[Specification] '(' (args+=Expr (',' args+=Expr)*)? ')'
-	| UnusedExpr
-	| '(' Expr ')';
+	LiteralExpr | {IdExpr} id=[IdRef] | {MultipleExpr} '|' exprs+=Expr (',' exprs+=Expr)* '|' | {IfThenElseExpr} 'if'
+	cond=Expr 'then' then=Expr (=> 'else' else=Expr)? | {RecordExpr} 'new' type=[RecordTypeDef] '{' fieldExprs+=FieldExpr
+	(',' fieldExprs+=FieldExpr)* '}' | {FieldlessRecordExpr} 'new' type=[RecordTypeDef] '{' exprs+=Expr (','
+	exprs+=Expr)* '}' | {ArrayExpr} 'new' type=[ArrayTypeDef] '[' exprs+=Expr (',' exprs+=Expr)* ']' | {PatternCall}
+	pattern=[Pattern] '(' (args+=Expr (',' args+=Expr)*)? ')' | {SpecificationCall} 'spec' spec=[Specification] '('
+	(args+=Expr (',' args+=Expr)*)? ')' | UnusedExpr | '(' Expr ')';
 
 LiteralExpr:
-	{IntLiteral} value=INT (unit=[UnitDef])?
-	| {BoolLiteral} value=BOOL
-	| {RealLiteral} value=REAL (unit=[UnitDef])?;
-
-// this is a cute little hack to make processing easier on the translation to Lustre
-UnusedExpr returns Expr:
-	{NormalizedCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr (','	args+=Expr)* ')';
+	{IntLiteral} value=INT (unit=[UnitDef])? | {BoolLiteral} value=BOOL | {RealLiteral} value=REAL (unit=[UnitDef])?;
+//this is a cute little hack to make processing easier on the translation to Lustre
+ UnusedExpr returns Expr:
+	{NormalizedCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr (','
+	args+=Expr)* ')';
 
 IdRef:
-	Variable
-	| Macro
-	| Constant
-	| EnumValue
-;
+	Variable | Macro | Constant | EnumValue;
 
 FieldExpr:
 	field=[FieldType] '=' expr=Expr;
