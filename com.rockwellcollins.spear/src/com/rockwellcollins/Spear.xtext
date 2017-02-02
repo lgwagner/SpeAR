@@ -51,13 +51,17 @@ DivisionUnitExpr returns UnitExpr:
 	AtomicUnitExpr (=> ({BinaryUnitExpr.left=current} op='/') right=AtomicUnitExpr)?;
 
 AtomicUnitExpr returns UnitExpr:
-	{NamedUnitExpr} unit=[UnitDef] | '(' UnitExpr ')'; /* END UNIT DEFINITIONS */ TypeDef:
-	{NamedTypeDef} name=ID IdTypeDelimiter type=Type (unit=[UnitDef])? (data+=Data)* | {PredicateSubTypeDef} name=ID
-	IdTypeDelimiter '{' predVar=Variable SuchThat predExpr=Expr '}' (unit=[UnitDef])? (data+=Data)* | {AbstractTypeDef}
-	name=ID IdTypeDelimiter 'abstract' (data+=Data)* | {RecordTypeDef} name=ID IdTypeDelimiter 'record' '{'
-	fields+=FieldType (',' fields+=FieldType)* '}' (data+=Data)* | {ArrayTypeDef} name=ID IdTypeDelimiter base=Type '['
-	size=Expr ']' (data+=Data)* | {EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{' values+=EnumValue (','
-	values+=EnumValue)* '}' (data+=Data)* | {AbstractTypeDef} name=ID IdTypeDelimiter 'abstract' (data+=Data)*;
+	{NamedUnitExpr} unit=[UnitDef] 
+	| '(' UnitExpr ')'; /* END UNIT DEFINITIONS */ 
+	
+TypeDef:
+	{NamedTypeDef} name=ID IdTypeDelimiter type=Type (unit=[UnitDef])? (data+=Data)* 
+|	{PredicateSubTypeDef} name=ID IdTypeDelimiter '{' predVar=Variable SuchThat predExpr=Expr '}' (unit=[UnitDef])? (data+=Data)* 
+|   {AbstractTypeDef} name=ID IdTypeDelimiter 'abstract' (data+=Data)* 
+|   {RecordTypeDef} name=ID IdTypeDelimiter 'record' '{'fields+=FieldType (',' fields+=FieldType)* '}' (data+=Data)* 
+| 	{ArrayTypeDef} name=ID IdTypeDelimiter base=Type '['size=Expr ']' (data+=Data)* 
+| 	{EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{' values+=EnumValue (','	values+=EnumValue)* '}' (data+=Data)*
+;
 
 SuchThat:
 	'such' 'that' | '|';

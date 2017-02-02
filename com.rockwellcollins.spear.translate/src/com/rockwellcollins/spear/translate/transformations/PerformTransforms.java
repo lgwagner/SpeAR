@@ -11,6 +11,7 @@ public class PerformTransforms {
 
 	public static Map<EObject,Map<String,String>> apply(SpearDocument doc) throws Exception {
 		RemoveCompositeReferences.transform(doc);
+		PropagatePredicates.transform(doc);
 		ReplaceAbstractTypes.transform(doc);
 		ReplaceVariableArrayDefs.transform(doc);
 		Map<EObject,Map<String,String>> renamed = RemoveLustreKeywords.transform(doc);

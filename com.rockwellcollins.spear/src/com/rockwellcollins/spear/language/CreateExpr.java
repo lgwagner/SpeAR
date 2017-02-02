@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.Expr;
+import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.MultipleExpr;
@@ -110,5 +111,12 @@ public class CreateExpr {
 	
 	public static BinaryExpr createTriggers(Expr left, Expr right) {
 		return createBinaryExpr(left,TRIGGERS,right);
+	}
+	
+	public static FormalConstraint createFormalConstraint(String name, Expr expr) {
+		FormalConstraint fc = f.createFormalConstraint();
+		fc.setName(name);
+		fc.setExpr(expr);
+		return fc;
 	}
 }

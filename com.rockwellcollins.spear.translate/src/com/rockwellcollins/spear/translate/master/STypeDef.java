@@ -8,6 +8,7 @@ import com.rockwellcollins.spear.ArrayTypeDef;
 import com.rockwellcollins.spear.ConcreteArrayTypeDef;
 import com.rockwellcollins.spear.EnumTypeDef;
 import com.rockwellcollins.spear.NamedTypeDef;
+import com.rockwellcollins.spear.PredicateSubTypeDef;
 import com.rockwellcollins.spear.RecordTypeDef;
 import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.util.SpearSwitch;
@@ -59,6 +60,11 @@ public abstract class STypeDef {
 		@Override
 		public STypeDef caseEnumTypeDef(EnumTypeDef etd) {
 			return new SEnumTypeDef(etd,program);
+		}
+		
+		@Override
+		public STypeDef casePredicateSubTypeDef(PredicateSubTypeDef pstd) {
+			return new SPredicateSubTypeDef(pstd,program);
 		}
 	}
 	
