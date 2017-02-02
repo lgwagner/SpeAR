@@ -11,6 +11,8 @@ import org.eclipse.xtext.EcoreUtil2;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
+import com.rockwellcollins.spear.IdRef;
+import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.PredicateSubTypeDef;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.TypeDef;
@@ -45,6 +47,16 @@ public class PropagatePredicates {
 		return false;
 	}
 	
+	private boolean isPredSubType(Macro m) {
+		if (m.getType() instanceof UserType) {
+			UserType userType = (UserType) m.getType();
+			if(userType.getDef() instanceof PredicateSubTypeDef) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	private void propagate(SpearDocument d) {
 		d.specifications.values().stream().forEach(s -> propagate(s));
 	}
@@ -69,11 +81,25 @@ public class PropagatePredicates {
 				properties.add(getFormalConstraint(v));
 			}			
 		}
+		
+		for(Macro m : s.getMacros()) {
+			if(isPredSubType(m)) {
+				properties.add(getFormalConstraint(m));
+			}
+		}
+		
 		s.getAssumptions().addAll(assumptions);
 		s.getBehaviors().addAll(properties);
 	}
 	
 	private FormalConstraint getFormalConstraint(Variable v) {
+		UserType ut = (UserType) v.getType();
+		PredicateSubTypeDef pstd = (PredicateSubTypeDef) typedefs.get(ut.getDef().getName());
+		String name = v.getName() + "_satisfies_predicate";
+		return CreateExpr.createFormalConstraint(name, ExprReplacement.replace(v, pstd));
+	}
+	
+	private FormalConstraint getFormalConstraint(Macro v) {
 		UserType ut = (UserType) v.getType();
 		PredicateSubTypeDef pstd = (PredicateSubTypeDef) typedefs.get(ut.getDef().getName());
 		String name = v.getName() + "_satisfies_predicate";
@@ -88,12 +114,25 @@ public class PropagatePredicates {
 			return replace.replacement;
 		}
 		
+		public static Expr replace(Macro m, PredicateSubTypeDef pstd) {
+			ExprReplacement replace = new ExprReplacement(m,pstd);
+			replace.crunch();
+			return replace.replacement;			
+		}
+		
+		private IdRef ref;
 		private Variable predVar;
-		private Variable var;
+		
 		private Expr replacement; 
 		
 		private ExprReplacement(Variable v, PredicateSubTypeDef pstd) {
-			this.var = v;
+			this.ref = v;
+			this.predVar = pstd.getPredVar();
+			this.replacement = EcoreUtil2.copy(pstd.getPredExpr());
+		}
+		
+		private ExprReplacement(Macro m, PredicateSubTypeDef pstd) {
+			this.ref = m;
 			this.predVar = pstd.getPredVar();
 			this.replacement = EcoreUtil2.copy(pstd.getPredExpr());
 		}
@@ -105,7 +144,7 @@ public class PropagatePredicates {
 		@Override
 		public Integer caseIdExpr(IdExpr ide) {
 			if(ide.getId().equals(predVar)) {
-				ide.setId(var);
+				ide.setId(ref);
 			}
 			return 0;
 		}
