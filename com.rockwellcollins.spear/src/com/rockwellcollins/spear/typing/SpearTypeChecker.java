@@ -7,6 +7,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
@@ -28,12 +29,10 @@ import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FieldExpr;
 import com.rockwellcollins.spear.FieldlessRecordExpr;
-import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.IfThenElseExpr;
 import com.rockwellcollins.spear.IntLiteral;
 import com.rockwellcollins.spear.IntType;
-import com.rockwellcollins.spear.LustreEquation;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.MultipleExpr;
 import com.rockwellcollins.spear.NamedTypeDef;
@@ -59,19 +58,17 @@ import com.rockwellcollins.spear.utilities.IntConstantFinder;
 
 public class SpearTypeChecker extends SpearSwitch<Type> {
 
-	public static Type typeCheck(EObject o) {
-		SpearTypeChecker typecheck = new SpearTypeChecker();
+	public static Type typeCheck(EObject o, Set<EObject> errors, ValidationMessageAcceptor acceptor) {
+		SpearTypeChecker typecheck = new SpearTypeChecker(errors, acceptor);
 		return typecheck.doSwitch(o);
 	}
 
 	final private ValidationMessageAcceptor messageAcceptor;
+	final private Set<EObject> errors;
 
-	public SpearTypeChecker() {
-		this.messageAcceptor = null;
-	}
-
-	public SpearTypeChecker(ValidationMessageAcceptor messageAcceptor) {
-		this.messageAcceptor = messageAcceptor;
+	public SpearTypeChecker(Set<EObject> errors, ValidationMessageAcceptor acceptor) {
+		this.errors = errors;
+		this.messageAcceptor = acceptor;
 	}
 
 	public static final Type ERROR = PrimitiveType.ERROR;
@@ -80,32 +77,16 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	public static final Type REAL = PrimitiveType.REAL;
 
 	/***************************************************************************************************/
-	// Checks
-	/***************************************************************************************************/
-	public Type checkTypeDef(TypeDef td) {
-		return doSwitch(td);
-	}
-
-	public boolean checkConstant(Constant c) {
-		return expectAssignableType(doSwitch(c.getType()), c.getExpr());
-	}
-
-	public boolean checkMacro(Macro m) {
-		return expectAssignableType(doSwitch(m.getType()), m.getExpr());
-	}
-
-	public boolean checkFormalConstraint(FormalConstraint fc) {
-		return expectAssignableType(BOOL, fc.getExpr());
-	}
-
-	public boolean checkLustreEquation(LustreEquation eq) {
-		TupleType tuple = this.processList(new ArrayList<>(eq.getIds()));
-		return expectAssignableType(this.compressTuple(tuple), eq.getRhs());
-	}
-
-	/***************************************************************************************************/
 	// TYPES
 	/***************************************************************************************************/
+	
+	@Override
+	public Type doSwitch(EObject o) {
+		if(errors.contains(o)) {
+			return ERROR;
+		}
+		return super.doSwitch(o);
+	}
 	
 	@Override
 	public Type caseNamedTypeDef(NamedTypeDef nt) {
@@ -163,7 +144,6 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		return new EnumType(et.getName(), values, et);
 	}
 	
-	//TODO: Review this at a later date.
 	@Override
 	public Type casePredicateSubTypeDef(PredicateSubTypeDef pstd) {
 		Type expected = PrimitiveType.BOOL;

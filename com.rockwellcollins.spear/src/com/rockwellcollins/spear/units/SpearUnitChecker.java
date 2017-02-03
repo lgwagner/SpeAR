@@ -226,7 +226,6 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		return new EnumUnit(enumtype.getName());
 	}
 
-	//FIXME: review this
 	@Override
 	public Unit casePredicateSubTypeDef(PredicateSubTypeDef pstd) {
 		Unit actual = this.doSwitch(pstd.getPredExpr());

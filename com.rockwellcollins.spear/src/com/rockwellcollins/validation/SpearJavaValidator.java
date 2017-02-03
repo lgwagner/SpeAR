@@ -117,52 +117,6 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 	/************** BEGIN TYPE AND UNIT CHECKING **************************/
 	
 	@Check
-	public void checkTypes(TypeDef td) {
-		List<EObject> deps = AcyclicValidator.validate(td);
-		if(deps.contains(td)) {
-			String message = "Cycle detected: " + td.getName() + " -> " + AcyclicValidator.getMessage(td,deps);
-			error(message, td, SpearPackage.Literals.TYPE_DEF__NAME);
-			return;
-		}
-		
-		SpearTypeChecker tc = new SpearTypeChecker(getMessageAcceptor());
-		Type type = tc.checkTypeDef(td);
-		if(type != SpearTypeChecker.ERROR) {
-			new SpearUnitChecker(getMessageAcceptor()).checkTypeDef(td);			
-		}
-	}
-	
-	@Check
-	public void checkConstants(Constant c) {
-		List<EObject> deps = AcyclicValidator.validate(c);
-		if(deps.contains(c)) {
-			String message = "Cycle detected: " + c.getName() + " -> " + AcyclicValidator.getMessage(c,deps);
-			error(message, c, SpearPackage.Literals.ID_REF__NAME);
-			return;
-		}
-		
-		SpearTypeChecker tc = new SpearTypeChecker(getMessageAcceptor());
-		if(tc.checkConstant(c)) {
-			new SpearUnitChecker(getMessageAcceptor()).checkConstant(c);	
-		}
-	}
-	
-	@Check
-	public void checkMacros(Macro m) {
-		List<EObject> deps = AcyclicValidator.validate(m);
-		if(deps.contains(m)) {
-			String message = "Cycle detected: " + m.getName() + " -> " + AcyclicValidator.getMessage(m,deps);
-			error(message, m, SpearPackage.Literals.ID_REF__NAME);
-			return;
-		}	
-		
-		SpearTypeChecker tc = new SpearTypeChecker(getMessageAcceptor());
-		if(tc.checkMacro(m)) {
-			new SpearUnitChecker(getMessageAcceptor()).checkMacro(m);	
-		}
-	}
-	
-	@Check
 	public void checkFormalConstraints(FormalConstraint fc) {
 		SpearTypeChecker tc = new SpearTypeChecker(getMessageAcceptor());
 		if(tc.checkFormalConstraint(fc)) {

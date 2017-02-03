@@ -6,10 +6,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 
-import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.IdRef;
-import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.PreviousExpr;
 import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.util.SpearSwitch;
@@ -17,24 +15,12 @@ import com.rockwellcollins.spear.utilities.Utilities;
 
 public class AcyclicValidator extends SpearSwitch<Integer> {
 
-	public static List<EObject> validate(TypeDef td) {
+	public static List<EObject> validate(EObject o) {
 		AcyclicValidator validate = new AcyclicValidator();
-		validate.defaultCase(td);
+		validate.defaultCase(o);
 		return validate.dependencies;
 	}
 
-	public static List<EObject> validate(Constant c) {
-		AcyclicValidator validate = new AcyclicValidator();
-		validate.doSwitch(c.getExpr());
-		return validate.dependencies;
-	}
-	
-	public static List<EObject> validate(Macro m) {
-		AcyclicValidator validate = new AcyclicValidator();
-		validate.doSwitch(m.getExpr());
-		return validate.dependencies;
-	}
-	
 	public static String getMessage(EObject start, List<EObject> dependencies) {
 		File root = Utilities.getRoot(start);
 		Iterator<EObject> iterate = dependencies.iterator();
