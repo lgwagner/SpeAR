@@ -103,6 +103,11 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		return super.doSwitch(o);
 	}
 	
+	private Type error(EObject eo) {
+		errors.add(eo);
+		return ERROR;
+	}
+	
 	@Override
 	public Type caseNamedTypeDef(NamedTypeDef nt) {
 		return doSwitch(nt.getType());
@@ -116,7 +121,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	@Override
 	public Type caseRecordTypeDef(RecordTypeDef rt) {
 		if (rt.getName() == null) {
-			return ERROR;
+			return error(rt);
 		}
 
 		Map<String, Type> fields = new LinkedHashMap<>();
@@ -127,24 +132,24 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	@Override
 	public Type caseArrayTypeDef(ArrayTypeDef at) {
 		if (at.getName() == null) {
-			return ERROR;
+			return error(at);
 		}
 
 		Type sizeType = doSwitch(at.getSize());
 		if(!sizeType.equals(PrimitiveType.INT)) {
 			error(at.getName() + " must be given an integer size argument.", at, SpearPackage.Literals.ARRAY_TYPE_DEF__SIZE);
-			return ERROR;
+			return error(at);
 		}
 		
 		if(!ConstantChecker.isConstant(at.getSize())) {
 			error(at.getName() + " must be given a constant size argument.", at, SpearPackage.Literals.ARRAY_TYPE_DEF__SIZE);
-			return ERROR;
+			return error(at);
 		} 
 		
 		Integer size = IntConstantFinder.fetch(at);
 		if(size == null) {
 			error("A concrete size value cannot be determined for " + at.getName(), at, SpearPackage.Literals.ARRAY_TYPE_DEF__SIZE);
-			return ERROR;
+			return error(at);
 		}
 		
 		return new ArrayType(at.getName(), doSwitch(at.getBase()), size, at);
@@ -153,7 +158,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	@Override
 	public Type caseEnumTypeDef(EnumTypeDef et) {
 		if (et.getName() == null) {
-			return ERROR;
+			return error(et);
 		}
 		List<String> values = et.getValues().stream().map(ev -> ev.getName()).collect(Collectors.toList());
 		return new EnumType(et.getName(), values, et);
@@ -172,7 +177,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	@Override
 	public Type caseUserType(UserType ut) {
 		if (stack.contains(ut.getDef())) {
-			return ERROR;
+			return error(ut);
 		}
 
 		stack.push(ut.getDef());
@@ -218,7 +223,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	public Type caseFormalConstraint(FormalConstraint fc) {
 		Type expected = BOOL;
 		if(!expectAssignableType(expected, fc.getExpr())) {
-			return ERROR;
+			return error(fc);
 		}
 		return expected;
 	}
@@ -230,16 +235,21 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	public Type caseLustreAssertion(LustreAssertion la) {
 		Type expected = BOOL;
 		if(!expectAssignableType(expected, la.getAssertionExpr())) {
-			return ERROR;
+			return error(la);
 		}
 		return expected;
 	}
 	
 	@Override
 	public Type caseLustreEquation(LustreEquation le) {
-		Type expected = this.compressTuple(this.processList(new ArrayList<>(le.getIds())));
-		if(!expectAssignableType(expected, le.getRhs())) {
+		Type expected = this.processList(new ArrayList<>(le.getIds()));
+		
+		if(expected == ERROR) {
 			return ERROR;
+		}
+		
+		if(!expectAssignableType(expected, le.getRhs())) {
+			return error(le);
 		}
 		return expected;
 	}
@@ -249,7 +259,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		Type expected = BOOL;
 		Type actual = doSwitch(lp.getPropertyId());
 		if(!expectAssignableType(expected, actual, lp)) {
-			return ERROR;
+			return error(lp);
 		}
 		return expected;
 	}
@@ -264,7 +274,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		Type right = doSwitch(be.getRight());
 
 		if (left == ERROR || right == ERROR) {
-			return ERROR;
+			return error(be);
 		}
 
 		switch (be.getOp()) {
@@ -336,14 +346,14 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		}
 
 		error("Operator '" + be.getOp() + "' not defined on types " + left + ", " + right, be);
-		return ERROR;
+		return error(be);
 	}
 
 	@Override
 	public Type caseUnaryExpr(UnaryExpr ue) {
 		Type type = doSwitch(ue.getExpr());
 		if (type == ERROR) {
-			return ERROR;
+			return error(ue);
 		}
 
 		switch (ue.getOp()) {
@@ -373,14 +383,14 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		}
 
 		error("Operator '" + ue.getOp() + "' not defined on type " + type, ue);
-		return ERROR;
+		return error(ue);
 	}
 
 	@Override
 	public Type caseRecordAccessExpr(RecordAccessExpr rae) {
 		Type type = doSwitch(rae.getRecord());
 		if (type == ERROR) {
-			return ERROR;
+			return error(rae);
 		}
 
 		if (type instanceof RecordType) {
@@ -388,7 +398,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 			return recordType.fields.get(rae.getField().getName());
 		} else {
 			error("Expected record type, but found " + type, rae.getRecord());
-			return ERROR;
+			return error(rae);
 		}
 	}
 
@@ -397,7 +407,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		Type type = doSwitch(rue.getRecord());
 
 		if (type == ERROR) {
-			return ERROR;
+			return error(rue);
 		}
 
 		if (type instanceof RecordType) {
@@ -407,7 +417,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 			return recordType;
 		} else {
 			error("Expected record type, but found " + type, rue.getRecord());
-			return ERROR;
+			return error(rue);
 		}
 	}
 
@@ -420,7 +430,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 
 		Type result = doSwitch(re.getType());
 		if (!(result instanceof RecordType)) {
-			return ERROR;
+			return error(re);
 		}
 		RecordType expectedRecord = (RecordType) result;
 
@@ -450,7 +460,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		} else {
 			error("Record shorthand was " + re.getExprs().size() + " elements, expected "
 					+ re.getType().getFields().size(), re, null);
-			return ERROR;
+			return error(re);
 		}
 
 		Type result = this.doSwitch(re.getType());
@@ -473,7 +483,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	public Type caseArrayAccessExpr(ArrayAccessExpr aae) {
 		Type type = doSwitch(aae.getArray());
 		if (type == ERROR) {
-			return ERROR;
+			return error(aae);
 		}
 
 		Type indexType = doSwitch(aae.getIndex());
@@ -486,7 +496,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 			return arrayType.base;
 		} else {
 			error("Expected array type, but found " + type, aae.getArray());
-			return ERROR;
+			return error(aae);
 		}
 	}
 
@@ -494,7 +504,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	public Type caseArrayUpdateExpr(ArrayUpdateExpr aue) {
 		Type type = doSwitch(aue.getAccess().getArray());
 		if (type == ERROR) {
-			return ERROR;
+			return error(aue);
 		}
 
 		Type index = doSwitch(aue.getAccess().getIndex());
@@ -508,7 +518,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 			return arrayType;
 		} else {
 			error("Expected array type, but found " + type, aue.getAccess().getArray());
-			return ERROR;
+			return error(aue);
 		}
 	}
 
@@ -517,7 +527,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		Type type = doSwitch(ae.getType());
 
 		if (type == ERROR) {
-			return ERROR;
+			return error(ae);
 		}
 
 		if (type instanceof ArrayType) {
@@ -526,7 +536,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 			if (arrayType.size != ae.getExprs().size()) {
 				error("Array expected " + arrayType.size + " elements, but received " + ae.getExprs().size()
 						+ " instead.", ae);
-				return ERROR;
+				return error(ae);
 			}
 
 			for (Expr e : ae.getExprs()) {
@@ -535,7 +545,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 			return arrayType;
 		} else {
 			error("Expected array type, but found " + type, ae);
-			return ERROR;
+			return error(ae);
 		}
 	}
 
@@ -564,18 +574,18 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		Type var = doSwitch(prev.getVar());
 
 		if (var == ERROR) {
-			return ERROR;
+			return error(prev);
 		}
 
 		if (prev.getInit() != null) {
 			Type init = doSwitch(prev.getInit());
 			if (init == ERROR) {
-				return ERROR;
+				return error(prev);
 			}
 
 			if (!var.equals(init)) {
 				error("Previous must be supplied expressions of the same type.", prev.getInit());
-				return ERROR;
+				return error(prev);
 			}
 		}
 
@@ -590,7 +600,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		if (ite.getElse() == null) {
 			if (thenType != BOOL) {
 				error("Then branch must be of type boolean when else branch is unspecified.", ite.getThen());
-				return ERROR;
+				return error(ite);
 			}
 			return thenType;
 		}
@@ -598,12 +608,12 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		Type elseType = doSwitch(ite.getElse());
 
 		if (thenType == ERROR || elseType == ERROR) {
-			return ERROR;
+			return error(ite);
 		}
 
 		if (!thenType.equals(elseType)) {
 			error("Branches have inconsistent types " + thenType + ", " + elseType, ite);
-			return ERROR;
+			return error(ite);
 		} else {
 			return thenType;
 		}
@@ -614,7 +624,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		expectAssignableType(BOOL, afe.getAfter());
 		if (afe.getUntil() != null) {
 			if (!expectAssignableType(BOOL, afe.getUntil())) {
-				return ERROR;
+				return error(afe);
 			}
 		}
 		return BOOL;
@@ -623,11 +633,11 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	@Override
 	public Type caseWhileExpr(WhileExpr wh) {
 		if (!expectAssignableType(BOOL, wh.getCond())) {
-			return ERROR;
+			return error(wh);
 		}
 
 		if (!expectAssignableType(BOOL, wh.getThen())) {
-			return ERROR;
+			return error(wh);
 		}
 		return BOOL;
 	}
@@ -639,17 +649,20 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 
 	@Override
 	public Type caseSpecificationCall(SpecificationCall call) {
-		TupleType args = this.processList(new ArrayList<>(call.getArgs()));
-		TupleType inputs = this.processList(new ArrayList<>(call.getSpec().getInputs()));
+		Type args = this.processList(new ArrayList<>(call.getArgs()));
+		Type inputs = this.processList(new ArrayList<>(call.getSpec().getInputs()));
+		
+		if(args == ERROR || inputs == ERROR) {
+			return ERROR;
+		}
 
 		if (!args.equals(inputs)) {
 			error("Provided args of type " + args + ", but spec " + call.getSpec().getName() + " expected type " + inputs
 					+ ".", call, SpearPackage.Literals.SPECIFICATION_CALL__ARGS);
-			return ERROR;
+			return error(call);
 		}
 
-		TupleType outputs = this.processList(new ArrayList<>(call.getSpec().getOutputs()));
-		return compressTuple(outputs);
+		return this.processList(new ArrayList<>(call.getSpec().getOutputs()));
 	}
 
 	@Override
@@ -659,27 +672,33 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 
 	@Override
 	public Type casePatternCall(PatternCall call) {
-		TupleType args = this.processList(new ArrayList<>(call.getArgs()));
-		TupleType inputs = this.processList(new ArrayList<>(call.getPattern().getInputs()));
-
+		Type args = this.processList(new ArrayList<>(call.getArgs()));
+		Type inputs = this.processList(new ArrayList<>(call.getPattern().getInputs()));
+		
+		if(args == ERROR || inputs == ERROR) {
+			return ERROR;
+		}
+		
 		if (!args.equals(inputs)) {
 			if (call.getPattern().getName() == null) {
 				error("Possible omission of 'spec' keyword in specification call.", call, SpearPackage.Literals.PATTERN_CALL__ARGS);
 			} else {
-				error("Provided args of type " + args + ", but spec " + call.getPattern().getName() + " expected type " + inputs
-						+ ".", call, SpearPackage.Literals.PATTERN_CALL__ARGS);
+				error("Provided args of type " + args + ", but spec " + call.getPattern().getName() + " expected type " + inputs + ".", call, SpearPackage.Literals.PATTERN_CALL__ARGS);
 			}
-			return ERROR;
+			return error(call);
 		}
-
-		return compressTuple(this.processList(new ArrayList<>(call.getPattern().getOutputs())));
+		return this.processList(new ArrayList<>(call.getPattern().getOutputs()));
 	}
 
 	/***************************************************************************************************/
 	// HELPER FUNCTIONS
 	/***************************************************************************************************/
-	private TupleType processList(List<EObject> list) {
-		return new TupleType(list.stream().map(o -> this.doSwitch(o)).collect(Collectors.toList()));
+	private Type processList(List<EObject> list) {
+		TupleType tt = new TupleType(list.stream().map(o -> this.doSwitch(o)).collect(Collectors.toList()));
+		if(tt.types.contains(ERROR)) {
+			return ERROR;
+		}
+		return compressTuple(tt);
 	}
 
 	private Type compressTuple(TupleType tuple) {
@@ -707,7 +726,6 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		if (expected == ERROR || actual == ERROR || expected == null || actual == null) {
 			return true;
 		}
-
 		return expected.equals(actual);
 	}
 

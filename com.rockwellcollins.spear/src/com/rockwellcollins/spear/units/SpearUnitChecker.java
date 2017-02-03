@@ -28,7 +28,6 @@ import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FieldExpr;
 import com.rockwellcollins.spear.FieldlessRecordExpr;
-import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.IfThenElseExpr;
 import com.rockwellcollins.spear.IntLiteral;
@@ -48,7 +47,6 @@ import com.rockwellcollins.spear.RecordUpdateExpr;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.SpecificationCall;
 import com.rockwellcollins.spear.Type;
-import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.UserType;
 import com.rockwellcollins.spear.Variable;
@@ -82,43 +80,11 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		return super.doSwitch(o);
 	}
 	
-	/***************************************************************************************************/
-	// Checks
-	/***************************************************************************************************/
-	public void checkTypeDef(TypeDef td) {
-		doSwitch(td);
+	private Unit error(EObject o) {
+		errors.add(o);
+		return ERROR;
 	}
-
-	public void checkConstant(Constant c) {
-		Unit declared = doSwitch(c.getType());
-		Unit expressed = doSwitch(c.getExpr());
-
-		if (declared == ERROR || expressed == ERROR) {
-			return;
-		}
-
-		if (!declared.equals(expressed)) {
-			error("Expected unit " + declared + ", " + "but received " + expressed, c.getExpr());
-		}
-	}
-
-	public void checkMacro(Macro m) {
-		Unit declared = doSwitch(m.getType());
-		Unit expressed = doSwitch(m.getExpr());
-
-		if (declared == ERROR || expressed == ERROR) {
-			return;
-		}
-
-		if (!declared.equals(expressed)) {
-			error("Expected unit " + declared + ", " + "but received " + expressed, m);
-		}
-	}
-
-	public void checkFormalConstraint(FormalConstraint fc) {
-		doSwitch(fc.getExpr());
-	}
-
+	
 	/***************************************************************************************************/
 	// Declarations
 	/***************************************************************************************************/
@@ -142,11 +108,15 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	
 	@Override
 	public Unit caseLustreEquation(LustreEquation eq) {
-		Unit expected = this.compressTuple(this.processList(new ArrayList<>(eq.getIds())));
+		Unit expected = this.processList(new ArrayList<>(eq.getIds()));
 		Unit actual = doSwitch(eq.getRhs());
 		
-		if(!expected.equals(actual)) {
+		if(expected == ERROR || actual == ERROR) {
 			return ERROR;
+		}
+		
+		if(!expected.equals(actual)) {
+			return error(eq);
 		}
 		return expected;
 	}
@@ -175,7 +145,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		Unit right = doSwitch(bue.getRight());
 
 		if (left == ERROR || right == ERROR) {
-			return ERROR;
+			return error(bue);
 		}
 
 		switch (bue.getOp()) {
@@ -205,7 +175,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		}
 
 		error("Units " + left + ", " + right + " do not agree.", bue);
-		return ERROR;
+		return error(bue);
 	}
 
 	@Override
@@ -244,7 +214,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		//this should just work because typechecking has presumably passed.
 		Integer size = IntConstantFinder.fetch(at);
 		if(size == null) {
-			return ERROR;
+			return error(at);
 		}
 		return new ArrayUnit(at.getName(), doSwitch(at.getBase()), size);
 	}
@@ -258,7 +228,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	public Unit casePredicateSubTypeDef(PredicateSubTypeDef pstd) {
 		Unit actual = this.doSwitch(pstd.getPredExpr());
 		if(!actual.equals(SCALAR)) {
-			return ERROR;
+			return error(pstd);
 		}
 		
 		if(pstd.getUnit() != null) {
@@ -292,7 +262,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		Unit right = doSwitch(be.getRight());
 
 		if (left == ERROR || right == ERROR) {
-			return ERROR;
+			return error(be);
 		}
 
 		if (left == SCALAR && right == SCALAR) {
@@ -363,7 +333,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		}
 
 		error("Operator '" + be.getOp() + "' not defined on units " + left + ", " + right, be);
-		return ERROR;
+		return error(be);
 	}
 
 	@Override
@@ -371,7 +341,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		Unit unit = doSwitch(ue.getExpr());
 
 		if (unit == ERROR) {
-			return ERROR;
+			return error(ue);
 		}
 
 		switch (ue.getOp()) {
@@ -395,14 +365,14 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		}
 
 		error("Operator '" + ue.getOp() + "' not defined on unit " + unit, ue);
-		return ERROR;
+		return error(ue);
 	}
 
 	@Override
 	public Unit caseRecordAccessExpr(RecordAccessExpr rae) {
 		Unit record = doSwitch(rae.getRecord());
 		if (record == ERROR) {
-			return ERROR;
+			return error(rae);
 		}
 
 		if (record instanceof RecordUnit) {
@@ -411,7 +381,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		}
 
 		error("Expected record unit but found " + record, rae.getRecord());
-		return ERROR;
+		return error(rae);
 	}
 
 	@Override
@@ -420,7 +390,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		Unit value = doSwitch(rue.getValue());
 
 		if (record == ERROR || value == ERROR) {
-			return ERROR;
+			return error(rue);
 		}
 
 		if (record instanceof RecordUnit) {
@@ -428,13 +398,13 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 			Unit fieldUnit = recordUnit.fields.get(rue.getField().getName());
 			if (!fieldUnit.equals(value)) {
 				error("RecordField expected unit " + fieldUnit + ", but received " + value, rue);
-				return ERROR;
+				return error(rue);
 			} else {
 				return record;
 			}
 		} else {
 			error("Expected record unit but found " + record, rue.getRecord());
-			return ERROR;
+			return error(rue);
 		}
 	}
 
@@ -463,7 +433,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		Unit array = doSwitch(aae.getArray());
 
 		if (array == ERROR) {
-			return ERROR;
+			return error(aae);
 		}
 
 		if (array instanceof ArrayUnit) {
@@ -472,7 +442,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		}
 
 		error("Expected array of units but " + array + " was provided instead", aae.getArray(), null);
-		return ERROR;
+		return error(aae);
 	}
 
 	@Override
@@ -481,7 +451,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		Unit value = doSwitch(aue.getValue());
 
 		if (array == ERROR || value == ERROR) {
-			return ERROR;
+			return error(aue);
 		}
 
 		if (array instanceof ArrayUnit) {
@@ -489,20 +459,20 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 			if (!arrayUnit.base.equals(value)) {
 				error("Array update unit is " + value + ", but array expects " + arrayUnit.base, aue,
 						SpearPackage.Literals.ARRAY_UPDATE_EXPR__VALUE);
-				return ERROR;
+				return error(aue);
 			} else {
 				return array;
 			}
 		}
 		error("Expected array, but received " + array, aue, null);
-		return ERROR;
+		return error(aue);
 	}
 
 	@Override
 	public Unit caseArrayExpr(ArrayExpr array) {
 		Unit expected = doSwitch(array.getType());
 		if (expected == ERROR) {
-			return ERROR;
+			return error(array);
 		}
 
 		if (expected instanceof ArrayUnit) {
@@ -517,14 +487,14 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 				}
 			}
 			if (error) {
-				return ERROR;
+				return error(array);
 			} else {
 				return arrayUnit;
 			}
 		}
 
 		error("Expected an array of units but received " + expected, array);
-		return ERROR;
+		return error(array);
 	}
 
 	@Override
@@ -543,7 +513,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		Unit init = doSwitch(prev.getInit());
 		
 		if (init == ERROR || var == ERROR) {
-			return ERROR;
+			return error(prev);
 		}
 
 		if (init.equals(var)) {
@@ -551,7 +521,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		}
 
 		error("Previous has variable unit of " + var + ", but initial expression has unit of " + init, prev);
-		return ERROR;
+		return error(prev);
 	}
 
 	private Unit processIfThen(IfThenElseExpr ite) {
@@ -559,7 +529,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		Unit thenUnit = doSwitch(ite.getThen());	
 		
 		if(testUnit == ERROR | thenUnit == ERROR) {
-			return ERROR;
+			return error(ite);
 		}
 		
 		if (testUnit != SCALAR) {
@@ -579,7 +549,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		Unit elseUnit = doSwitch(ite.getElse());
 		
 		if(testUnit == ERROR | thenUnit == ERROR | elseUnit == ERROR) {
-			return ERROR;
+			return error(ite);
 		}	
 		
 		if (testUnit != SCALAR) {
@@ -590,7 +560,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 			return thenUnit;
 		}
 		error("Then branch of If-Then-Else has units " + thenUnit + ", but else branch has units " + elseUnit, ite,null);
-		return ERROR;
+		return error(ite);
 	}
 	
 	@Override
@@ -607,12 +577,14 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		Unit afterUnit = doSwitch(afe.getAfter());
 		if (afterUnit != SCALAR) {
 			error("After expressions must have scalar units.", afe.getAfter(), null);
+			return error(afe);
 		}
 
 		if (afe.getUntil() != null) {
 			Unit untilUnit = doSwitch(afe.getUntil());
 			if (untilUnit != SCALAR) {
 				error("Until expressions must have scalar units.", afe.getUntil(), null);
+				return error(afe);
 			}
 		}
 		return SCALAR;
@@ -625,12 +597,12 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 
 		if (cond != SCALAR) {
 			error("While expressions must have scalar units.", wh.getCond(), null);
-			return ERROR;
+			return error(wh);
 		}
 
 		if (then != SCALAR) {
 			error("Then expression must have scalar units.", wh.getThen(), null);
-			return ERROR;
+			return error(wh);
 		}
 		return SCALAR;
 	}
@@ -642,33 +614,39 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 
 	@Override
 	public Unit caseSpecificationCall(SpecificationCall sc) {
-		TupleUnit args = this.processList(new ArrayList<>(sc.getArgs()));
-		TupleUnit inputs = this.processList(new ArrayList<>(sc.getSpec().getInputs()));
-
-		if (!args.equals(inputs)) {
-			error("Provided units of type " + args + ", but spec " + sc.getSpec().getName() + " expected units "
-					+ inputs + ".", sc, SpearPackage.Literals.SPECIFICATION_CALL__ARGS);
+		Unit args = this.processList(new ArrayList<>(sc.getArgs()));
+		Unit inputs = this.processList(new ArrayList<>(sc.getSpec().getInputs()));
+		
+		if(args == ERROR || inputs == ERROR) {
 			return ERROR;
 		}
-		return compressTuple(this.processList(new ArrayList<>(sc.getSpec().getOutputs())));
+
+		if (!args.equals(inputs)) {
+			error("Provided units of type " + args + ", but spec " + sc.getSpec().getName() + " expected units " + inputs + ".", sc, SpearPackage.Literals.SPECIFICATION_CALL__ARGS);
+			return error(sc);
+		}
+		return this.processList(new ArrayList<>(sc.getSpec().getOutputs()));
 	}
 
 	@Override
 	public Unit casePatternCall(PatternCall pc) {
-		TupleUnit args = this.processList(new ArrayList<>(pc.getArgs()));
-		TupleUnit inputs = this.processList(new ArrayList<>(pc.getPattern().getInputs()));
+		Unit args = this.processList(new ArrayList<>(pc.getArgs()));
+		Unit inputs = this.processList(new ArrayList<>(pc.getPattern().getInputs()));
+		
+		if(args == ERROR || inputs == ERROR) {
+			return ERROR;
+		}
 
 		if (!args.equals(inputs)) {
 			if (pc.getPattern().getName() == null) {
-				error("Possible omission of 'spec' keyword in specification call.", pc, 
-						SpearPackage.Literals.PATTERN_CALL__ARGS);
+				error("Possible omission of 'spec' keyword in specification call.", pc, SpearPackage.Literals.PATTERN_CALL__ARGS);
+				return error(pc);
 			} else {
-				error("Provided units of type " + args + ", but pattern " + pc.getPattern().getName() + " expected units " + inputs
-						+ ".", pc, SpearPackage.Literals.PATTERN_CALL__ARGS);
+				error("Provided units of type " + args + ", but pattern " + pc.getPattern().getName() + " expected units " + inputs	+ ".", pc, SpearPackage.Literals.PATTERN_CALL__ARGS);
+				return error(pc);
 			}
 		}
-
-		return compressTuple(this.processList(new ArrayList<>(pc.getPattern().getOutputs())));
+		return this.processList(new ArrayList<>(pc.getPattern().getOutputs()));
 	}
 
 	@Override
@@ -709,8 +687,12 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	/***************************************************************************************************/
 	// Error Functions
 	/***************************************************************************************************/
-	private TupleUnit processList(List<EObject> elements) {
-		return new TupleUnit(elements.stream().map(o -> this.doSwitch(o)).collect(Collectors.toList()));
+	private Unit processList(List<EObject> elements) {
+		TupleUnit tu = new TupleUnit(elements.stream().map(o -> this.doSwitch(o)).collect(Collectors.toList()));
+		if(tu.units.contains(ERROR)) {
+			return ERROR;
+		}
+		return compressTuple(tu);
 	}
 
 	private Unit compressTuple(TupleUnit tupleUnit) {
