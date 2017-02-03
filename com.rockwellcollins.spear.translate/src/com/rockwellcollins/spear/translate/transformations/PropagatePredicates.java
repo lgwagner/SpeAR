@@ -108,7 +108,7 @@ public class PropagatePredicates {
 		private IdRef ref;
 		private Variable predVar;
 		
-		private Expr replacement; 
+		private Expr replacement;
 		
 		private ExprReplacement(IdRef ref, PredicateSubTypeDef pstd) {
 			this.ref = ref;
