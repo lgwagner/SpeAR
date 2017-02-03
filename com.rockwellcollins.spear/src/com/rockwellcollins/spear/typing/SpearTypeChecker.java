@@ -3,6 +3,7 @@ package com.rockwellcollins.spear.typing;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,10 +30,14 @@ import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FieldExpr;
 import com.rockwellcollins.spear.FieldlessRecordExpr;
+import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.IfThenElseExpr;
 import com.rockwellcollins.spear.IntLiteral;
 import com.rockwellcollins.spear.IntType;
+import com.rockwellcollins.spear.LustreAssertion;
+import com.rockwellcollins.spear.LustreEquation;
+import com.rockwellcollins.spear.LustreProperty;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.MultipleExpr;
 import com.rockwellcollins.spear.NamedTypeDef;
@@ -62,6 +67,11 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		SpearTypeChecker typecheck = new SpearTypeChecker(errors, acceptor);
 		return typecheck.doSwitch(o);
 	}
+	
+	public static Type typeCheck(EObject o) {
+		SpearTypeChecker typecheck = new SpearTypeChecker();
+		return typecheck.doSwitch(o);
+	}
 
 	final private ValidationMessageAcceptor messageAcceptor;
 	final private Set<EObject> errors;
@@ -69,6 +79,11 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	public SpearTypeChecker(Set<EObject> errors, ValidationMessageAcceptor acceptor) {
 		this.errors = errors;
 		this.messageAcceptor = acceptor;
+	}
+	
+	public SpearTypeChecker() {
+		this.errors = new HashSet<>();
+		this.messageAcceptor = null;
 	}
 
 	public static final Type ERROR = PrimitiveType.ERROR;
@@ -198,7 +213,47 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	public Type caseMacro(Macro m) {
 		return doSwitch(m.getType());
 	}
+	
+	@Override
+	public Type caseFormalConstraint(FormalConstraint fc) {
+		Type expected = BOOL;
+		if(!expectAssignableType(expected, fc.getExpr())) {
+			return ERROR;
+		}
+		return expected;
+	}
 
+	/***************************************************************************************************/
+	// Pattern Components
+	/***************************************************************************************************/
+	@Override
+	public Type caseLustreAssertion(LustreAssertion la) {
+		Type expected = BOOL;
+		if(!expectAssignableType(expected, la.getAssertionExpr())) {
+			return ERROR;
+		}
+		return expected;
+	}
+	
+	@Override
+	public Type caseLustreEquation(LustreEquation le) {
+		Type expected = this.compressTuple(this.processList(new ArrayList<>(le.getIds())));
+		if(!expectAssignableType(expected, le.getRhs())) {
+			return ERROR;
+		}
+		return expected;
+	}
+	
+	@Override
+	public Type caseLustreProperty(LustreProperty lp) {
+		Type expected = BOOL;
+		Type actual = doSwitch(lp.getPropertyId());
+		if(!expectAssignableType(expected, actual, lp)) {
+			return ERROR;
+		}
+		return expected;
+	}
+	
 	/***************************************************************************************************/
 	// EXPRESSIONS
 	/***************************************************************************************************/
@@ -609,8 +664,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 
 		if (!args.equals(inputs)) {
 			if (call.getPattern().getName() == null) {
-				error("Possible omission of 'spec' keyword in specification call.", call, 
-						SpearPackage.Literals.PATTERN_CALL__ARGS);
+				error("Possible omission of 'spec' keyword in specification call.", call, SpearPackage.Literals.PATTERN_CALL__ARGS);
 			} else {
 				error("Provided args of type " + args + ", but spec " + call.getPattern().getName() + " expected type " + inputs
 						+ ".", call, SpearPackage.Literals.PATTERN_CALL__ARGS);

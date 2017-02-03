@@ -20,19 +20,13 @@ import com.rockwellcollins.spear.Constraint;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
-import com.rockwellcollins.spear.LustreEquation;
-import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.PreviousExpr;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
-import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.typing.PrimitiveType;
-import com.rockwellcollins.spear.typing.SpearTypeChecker;
-import com.rockwellcollins.spear.typing.Type;
-import com.rockwellcollins.spear.units.SpearUnitChecker;
 import com.rockwellcollins.spear.utilities.ConstantChecker;
 import com.rockwellcollins.spear.utilities.Utilities;
 
@@ -46,7 +40,8 @@ import com.rockwellcollins.spear.utilities.Utilities;
 @ComposedChecks(validators = { SpecificationsAcyclicValidator.class,
 							   VariablesAreUsedValidator.class,
 							   IllegalAnalysisValidations.class,
-							   DataValidator.class})
+							   DataValidator.class,
+							   SpecificationValidator.class})
 
 public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractSpearJavaValidator {
 
@@ -113,24 +108,6 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 			}
 		}
 	}
-	
-	/************** BEGIN TYPE AND UNIT CHECKING **************************/
-	
-	@Check
-	public void checkFormalConstraints(FormalConstraint fc) {
-		SpearTypeChecker tc = new SpearTypeChecker(getMessageAcceptor());
-		if(tc.checkFormalConstraint(fc)) {
-			new SpearUnitChecker(getMessageAcceptor()).checkFormalConstraint(fc);			
-		}
-	}
-	
-	@Check
-	public void checkEquations(LustreEquation eq) {
-		SpearTypeChecker tc = new SpearTypeChecker(getMessageAcceptor());
-		tc.checkLustreEquation(eq);
-	}
-	
-	/************** END TYPE AND UNIT CHECKING **************************/
 	
 	@Check
 	public void checkForIllegalSectionheaders(Specification s) {

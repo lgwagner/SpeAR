@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
@@ -31,6 +32,7 @@ import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.IfThenElseExpr;
 import com.rockwellcollins.spear.IntLiteral;
+import com.rockwellcollins.spear.LustreEquation;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.MultipleExpr;
 import com.rockwellcollins.spear.NamedTypeDef;
@@ -56,15 +58,30 @@ import com.rockwellcollins.spear.utilities.IntConstantFinder;
 
 public class SpearUnitChecker extends SpearSwitch<Unit> {
 
+	public static Unit unitCheck(EObject o, Set<EObject> errors, ValidationMessageAcceptor acceptor) {
+		SpearUnitChecker unitCheck = new SpearUnitChecker(errors, acceptor);
+		return unitCheck.doSwitch(o);
+	}
+	
 	final private ValidationMessageAcceptor messageAcceptor;
+	private Set<EObject> errors;
 
-	public SpearUnitChecker(ValidationMessageAcceptor messageAcceptor) {
+	public SpearUnitChecker(Set<EObject> errors, ValidationMessageAcceptor messageAcceptor) {
+		this.errors = errors;
 		this.messageAcceptor = messageAcceptor;
 	}
 
 	private static final Unit ERROR = new ErrorUnit();
 	private static final Unit SCALAR = new ScalarUnit();
 
+	@Override
+	public Unit doSwitch(EObject o) {
+		if(errors.contains(o)) {
+			return ERROR;
+		}
+		return super.doSwitch(o);
+	}
+	
 	/***************************************************************************************************/
 	// Checks
 	/***************************************************************************************************/
@@ -121,6 +138,17 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	public Unit caseVariable(Variable v) {
 		Unit result = doSwitch(v.getType());
 		return result;
+	}
+	
+	@Override
+	public Unit caseLustreEquation(LustreEquation eq) {
+		Unit expected = this.compressTuple(this.processList(new ArrayList<>(eq.getIds())));
+		Unit actual = doSwitch(eq.getRhs());
+		
+		if(!expected.equals(actual)) {
+			return ERROR;
+		}
+		return expected;
 	}
 
 	/***************************************************************************************************/

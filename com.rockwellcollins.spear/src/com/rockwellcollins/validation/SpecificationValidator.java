@@ -9,13 +9,16 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.validation.Check;
 
 import com.rockwellcollins.spear.Constant;
+import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.Macro;
+import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.typing.PrimitiveType;
 import com.rockwellcollins.spear.typing.SpearTypeChecker;
-import com.rockwellcollins.spear.typing.Type;
+import com.rockwellcollins.spear.units.SpearUnitChecker;
+import com.rockwellcollins.spear.units.Unit;
 
 public class SpecificationValidator extends SpearJavaValidator {
 	
@@ -53,6 +56,10 @@ public class SpecificationValidator extends SpearJavaValidator {
 		return SpearTypeChecker.typeCheck(o, errors, this.getMessageAcceptor()).equals(PrimitiveType.ERROR);
 	}
 	
+	private boolean unitCheck(EObject o, Set<EObject> errors) {
+		return SpearUnitChecker.unitCheck(o, errors, this.getMessageAcceptor()).equals(Unit.ERROR);
+	}
+	
 	@Check
 	public void validate(Specification s) {
 		Set<EObject> errors = new HashSet<>();
@@ -66,9 +73,49 @@ public class SpecificationValidator extends SpearJavaValidator {
 		errors.addAll(s.getTypedefs().stream().filter(td -> typeCheck(td, errors)).collect(Collectors.toList()));
 		errors.addAll(s.getConstants().stream().filter(c -> typeCheck(c,errors)).collect(Collectors.toList()));
 		errors.addAll(s.getMacros().stream().filter(m -> typeCheck(m,errors)).collect(Collectors.toList()));
-		
+		errors.addAll(s.getAssumptions().stream().filter(a -> typeCheck(a,errors)).collect(Collectors.toList()));
+		errors.addAll(s.getRequirements().stream().filter(r -> typeCheck(r,errors)).collect(Collectors.toList()));
+		errors.addAll(s.getBehaviors().stream().filter(b -> typeCheck(b,errors)).collect(Collectors.toList()));
 		
 		//if none, units check
+		errors.addAll(s.getTypedefs().stream().filter(td -> unitCheck(td, errors)).collect(Collectors.toList()));
+		errors.addAll(s.getConstants().stream().filter(c -> unitCheck(c,errors)).collect(Collectors.toList()));
+		errors.addAll(s.getMacros().stream().filter(m -> unitCheck(m,errors)).collect(Collectors.toList()));
+		errors.addAll(s.getAssumptions().stream().filter(a -> unitCheck(a,errors)).collect(Collectors.toList()));
+		errors.addAll(s.getRequirements().stream().filter(r -> unitCheck(r,errors)).collect(Collectors.toList()));
+		errors.addAll(s.getBehaviors().stream().filter(b -> unitCheck(b,errors)).collect(Collectors.toList()));
 	}
-
+	
+	@Check
+	public void validate(Definitions s) {
+		Set<EObject> errors = new HashSet<>();
+		
+		//acyclic checks
+		errors.addAll(s.getTypedefs().stream().filter(td -> acyclicCheck(td)).collect(Collectors.toList()));
+		errors.addAll(s.getConstants().stream().filter(c -> acyclicCheck(c)).collect(Collectors.toList()));
+	
+		//if none, type check
+		errors.addAll(s.getTypedefs().stream().filter(td -> typeCheck(td, errors)).collect(Collectors.toList()));
+		errors.addAll(s.getConstants().stream().filter(c -> typeCheck(c,errors)).collect(Collectors.toList()));
+		
+		//if none, units check
+		errors.addAll(s.getTypedefs().stream().filter(td -> unitCheck(td, errors)).collect(Collectors.toList()));
+		errors.addAll(s.getConstants().stream().filter(c -> unitCheck(c,errors)).collect(Collectors.toList()));
+	}
+	
+	@Check
+	public void validate(Pattern p) {
+		Set<EObject> errors = new HashSet<>();
+		
+		//acyclic checks
+		//type check
+		errors.addAll(p.getAssertions().stream().filter(assertion -> typeCheck(assertion,errors)).collect(Collectors.toList()));
+		errors.addAll(p.getEquations().stream().filter(eq -> typeCheck(eq,errors)).collect(Collectors.toList()));
+		errors.addAll(p.getProperties().stream().filter(prop -> typeCheck(prop,errors)).collect(Collectors.toList()));
+		
+		//unit check
+		errors.addAll(p.getAssertions().stream().filter(assertion -> unitCheck(assertion,errors)).collect(Collectors.toList()));
+		errors.addAll(p.getEquations().stream().filter(eq -> unitCheck(eq,errors)).collect(Collectors.toList()));
+		errors.addAll(p.getProperties().stream().filter(prop -> unitCheck(prop,errors)).collect(Collectors.toList()));		
+	}
 }
