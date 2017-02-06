@@ -178,13 +178,15 @@ PlusExpr returns Expr:
 	MultiplyExpr (=> ({BinaryExpr.left=current} op=('-' | '+')) right=MultiplyExpr)*;
 
 MultiplyExpr returns Expr:
-	PreviousExpr (=> ({BinaryExpr.left=current} op=('*' | '/' | 'mod')) right=PreviousExpr)*;
-
-PreviousExpr returns Expr:
-	{PreviousExpr} 'previous' var=PrefixExpr (=> 'with' 'initial' 'value' init=PreviousExpr)? | PrefixExpr;
+	PrefixExpr (=> ({BinaryExpr.left=current} op=('*' | '/' | 'mod')) right=PrefixExpr)*;
 
 PrefixExpr returns Expr:
-	{UnaryExpr} op=('-' | 'not') expr=PrefixExpr | AccessExpr;
+	{UnaryExpr} op=('-' | 'not') expr=PrefixExpr
+	| PreviousExpr;
+
+PreviousExpr returns Expr:
+	{PreviousExpr} 'previous' var=PrefixExpr (=> 'with' 'initial' 'value' init=PreviousExpr)?
+	| AccessExpr;
 
 AccessExpr returns Expr:
 	AtomicExpr (=> ({RecordAccessExpr.record=current} '.') field=[FieldType] | => ({RecordUpdateExpr.record=current} '{'
