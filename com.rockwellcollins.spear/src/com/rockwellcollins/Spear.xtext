@@ -40,14 +40,12 @@ Definitions:
 	('Constants:' constants+=Constant*)? 
 	('Patterns:' patterns+=Pattern*)?; 
 	
-/* BEGIN PATTERN DEFINITIONS */ Pattern:
-	'pattern' (name=ID) '(' 
-	(inputs+=Variable (',' inputs+=Variable)*)? ')' 
-	'returns' 
-	'(' (outputs+=Variable (','	outputs+=Variable)*)? ')' 
+Pattern:
+	'pattern' (name=ID) '(' (inputs+=Variable (',' inputs+=Variable)*)? ')' 
+	'returns' '(' (outputs+=Variable (','	outputs+=Variable)*)? ')' 
 	('var' (locals+=Variable)*)? 
 	'let' 
-	(equations+=LustreEquation | properties+=LustreProperty | assertions+=LustreAssertion)* 
+		(equations+=LustreEquation | properties+=LustreProperty | assertions+=LustreAssertion)* 
 	'tel' (data+=Data)*;
 
 LustreEquation:
@@ -57,8 +55,11 @@ LustreProperty:
 	'--%PROPERTY' propertyId=[Variable];
 
 LustreAssertion:
-	'assert' assertionExpr=Expr; /* END PATTERN DEFINITIONS */ /* BEGIN UNIT DEFINITIONS */ UnitDef:
-	{BaseUnit} name=ID (description=STRING)? | {DerivedUnit} name=ID IdTypeDelimiter unit=UnitExpr (description=STRING)?;
+	'assert' assertionExpr=Expr; 
+	
+UnitDef:
+	{BaseUnit} name=ID (description=STRING)? 
+  | {DerivedUnit} name=ID IdTypeDelimiter unit=UnitExpr (description=STRING)?;
 
 UnitExpr:
 	ProductUnitExpr;
@@ -71,7 +72,7 @@ DivisionUnitExpr returns UnitExpr:
 
 AtomicUnitExpr returns UnitExpr:
 	{NamedUnitExpr} unit=[UnitDef] 
-	| '(' UnitExpr ')'; /* END UNIT DEFINITIONS */ 
+	| '(' UnitExpr ')'; 
 	
 TypeDef:
 	{NamedTypeDef} name=ID IdTypeDelimiter type=Type (unit=[UnitDef])? (data+=Data)* 
@@ -95,7 +96,10 @@ EnumValue:
 	name=ID;
 
 Type:
-	{IntType} 'int' | {BoolType} 'bool' | {RealType} 'real' | {UserType} def=[TypeDef];
+	{IntType} 'int' 
+  | {BoolType} 'bool' 
+  | {RealType} 'real' 
+  | {UserType} def=[TypeDef];
 
 IdTypeDelimiter:
 	':' | 'is a' | 'is an';
@@ -127,7 +131,7 @@ Data:
   | {RationaleData} 'rationale' '=' (string=STRING) 
   | {CommentsData} 'comments' '=' (string=STRING);
 
-/* Begin Expr Language */ Expr:
+Expr:
 	WhileExpr;
 
 WhileExpr returns Expr:
@@ -207,10 +211,8 @@ AtomicExpr returns Expr:
 LiteralExpr:
 	{IntLiteral} value=INT (unit=[UnitDef])? | {BoolLiteral} value=BOOL | {RealLiteral} value=REAL (unit=[UnitDef])?;
 
-//this is a cute little hack to make processing easier on the translation to Lustre
  UnusedExpr returns Expr:
-	{NormalizedCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr (','
-	args+=Expr)* ')';
+	{NormalizedCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr (',' 	args+=Expr)* ')';
 
 IdRef:
 	Variable | Macro | Constant | EnumValue;
@@ -232,4 +234,3 @@ REAL hidden():
 
 terminal EXT_INT:
 	INT ('e' | 'E') ('-' | '+')? INT;
-

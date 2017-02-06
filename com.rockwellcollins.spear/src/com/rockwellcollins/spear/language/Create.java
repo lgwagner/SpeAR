@@ -1,18 +1,21 @@
 package com.rockwellcollins.spear.language;
 
+import java.util.Iterator;
 import java.util.List;
 
 import com.rockwellcollins.spear.BinaryExpr;
+import com.rockwellcollins.spear.BoolLiteral;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
+import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.MultipleExpr;
 import com.rockwellcollins.spear.SpearFactory;
 import com.rockwellcollins.spear.Type;
 import com.rockwellcollins.spear.UnaryExpr;
 
-public class CreateExpr {
+public class Create {
 	
 	private static SpearFactory f = SpearFactory.eINSTANCE;
 	
@@ -48,14 +51,14 @@ public class CreateExpr {
 	public static final String ALT_NOT_EQUAL_TO = "not equal to";
 	public static final String ALT_ARROW = "arrow";
 	
-	private static UnaryExpr createUnaryExpr(String operator, Expr sub) {
+	private static Expr createUnaryExpr(String operator, Expr sub) {
 		UnaryExpr ue = f.createUnaryExpr();
 		ue.setExpr(sub);
 		ue.setOp(operator);
 		return ue;
 	}
 	
-	private static BinaryExpr createBinaryExpr(Expr left, String operator, Expr right) {
+	private static Expr createBinaryExpr(Expr left, String operator, Expr right) {
 		BinaryExpr be = f.createBinaryExpr();
 		be.setLeft(left);
 		be.setRight(right);
@@ -85,31 +88,43 @@ public class CreateExpr {
 		return mide;
 	}
 	
-	public static UnaryExpr createNot(Expr sub) {
+	public static BoolLiteral createTrue() {
+		BoolLiteral bl = f.createBoolLiteral();
+		bl.setValue("true");
+		return bl;
+	}
+	
+	public static BoolLiteral createFalse() {
+		BoolLiteral bl = f.createBoolLiteral();
+		bl.setValue("false");
+		return bl;
+	}
+	
+	public static Expr createNot(Expr sub) {
 		return createUnaryExpr(NOT,sub);
 	}
 	
-	public static UnaryExpr createMinus(Expr sub) {
+	public static Expr createMinus(Expr sub) {
 		return createUnaryExpr(MINUS,sub);
 	}
 	
-	public static UnaryExpr createOnce(Expr sub) {
+	public static Expr createOnce(Expr sub) {
 		return createUnaryExpr(ONCE,sub);
 	}
 	
-	public static UnaryExpr createHistorically(Expr sub) {
+	public static Expr createHistorically(Expr sub) {
 		return createUnaryExpr(HISTORICALLY, sub);
 	}
 	
-	public static UnaryExpr createInitially(Expr sub) {
+	public static Expr createInitially(Expr sub) {
 		return createUnaryExpr(INITIALLY, sub);
 	}
 	
-	public static BinaryExpr createImplication(Expr left, Expr right) {
+	public static Expr createImplication(Expr left, Expr right) {
 		return createBinaryExpr(left,IMPLIES,right);
 	}
 	
-	public static BinaryExpr createTriggers(Expr left, Expr right) {
+	public static Expr createTriggers(Expr left, Expr right) {
 		return createBinaryExpr(left,TRIGGERS,right);
 	}
 	
@@ -118,5 +133,27 @@ public class CreateExpr {
 		fc.setName(name);
 		fc.setExpr(expr);
 		return fc;
+	}
+	
+	private static Expr createAnd(Expr left, Expr right) {
+		return createBinaryExpr(left, "and", right);
+	}
+	
+	public static Expr createAnd(Iterator<Expr> exprs) {
+		if(exprs.hasNext()) {
+			Expr next = exprs.next();
+			if(exprs.hasNext()) {
+				return createAnd(next,createAnd(exprs));
+			} else {
+				return next;
+			}
+		}
+		return createTrue();
+	}
+	
+	public static Expr createIdExpr(IdRef c) {
+		IdExpr ide = f.createIdExpr();
+		ide.setId(c);
+		return ide;
 	}
 }

@@ -12,7 +12,7 @@ import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.RecordUpdateExpr;
 import com.rockwellcollins.spear.Specification;
-import com.rockwellcollins.spear.language.CreateExpr;
+import com.rockwellcollins.spear.language.Create;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.typing.SpearTypeChecker;
 import com.rockwellcollins.spear.util.SpearSwitch;
@@ -46,8 +46,8 @@ public class RemoveCompositeReferences extends SpearSwitch<Integer> {
 		this.doSwitch(aue.getValue());
 		
 		com.rockwellcollins.spear.typing.Type t = SpearTypeChecker.typeCheck(aue);
-		Macro m = CreateExpr.createMacro(getMacroName(), t.getType(), EcoreUtil2.copy(aue));
-		EcoreUtil2.replace(aue, CreateExpr.createIdExpr(m));
+		Macro m = Create.createMacro(getMacroName(), t.getType(), EcoreUtil2.copy(aue));
+		EcoreUtil2.replace(aue, Create.createIdExpr(m));
 		generated.add(m);
 		
 		return 0;
@@ -59,8 +59,8 @@ public class RemoveCompositeReferences extends SpearSwitch<Integer> {
 		this.doSwitch(aae.getArray());
 		
 		com.rockwellcollins.spear.typing.Type t = SpearTypeChecker.typeCheck(aae);
-		Macro m = CreateExpr.createMacro(getMacroName(), t.getType(), EcoreUtil2.copy(aae));
-		EcoreUtil2.replace(aae, CreateExpr.createIdExpr(m));
+		Macro m = Create.createMacro(getMacroName(), t.getType(), EcoreUtil2.copy(aae));
+		EcoreUtil2.replace(aae, Create.createIdExpr(m));
 		generated.add(m);
 		
 		return 0;
@@ -72,8 +72,8 @@ public class RemoveCompositeReferences extends SpearSwitch<Integer> {
 		this.doSwitch(rue.getValue());
 		
 		com.rockwellcollins.spear.typing.Type t = SpearTypeChecker.typeCheck(rue);
-		Macro m = CreateExpr.createMacro(getMacroName(), t.getType(), EcoreUtil2.copy(rue));
-		EcoreUtil2.replace(rue, CreateExpr.createIdExpr(m));
+		Macro m = Create.createMacro(getMacroName(), t.getType(), EcoreUtil2.copy(rue));
+		EcoreUtil2.replace(rue, Create.createIdExpr(m));
 		generated.add(m);
 		
 		return 0;
@@ -84,8 +84,8 @@ public class RemoveCompositeReferences extends SpearSwitch<Integer> {
 		this.doSwitch(rae.getRecord());
 		
 		com.rockwellcollins.spear.typing.Type t = SpearTypeChecker.typeCheck(rae);
-		Macro m = CreateExpr.createMacro(getMacroName(), t.getType(), EcoreUtil2.copy(rae));
-		EcoreUtil2.replace(rae, CreateExpr.createIdExpr(m));
+		Macro m = Create.createMacro(getMacroName(), t.getType(), EcoreUtil2.copy(rae));
+		EcoreUtil2.replace(rae, Create.createIdExpr(m));
 		generated.add(m);
 		
 		return 0;

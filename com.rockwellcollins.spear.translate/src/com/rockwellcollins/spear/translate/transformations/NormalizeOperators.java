@@ -5,7 +5,7 @@ import org.eclipse.xtext.EcoreUtil2;
 
 import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.UnaryExpr;
-import com.rockwellcollins.spear.language.CreateExpr;
+import com.rockwellcollins.spear.language.Create;
 import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 
@@ -29,12 +29,12 @@ public class NormalizeOperators {
 			String normalizedOp = normalize(ue.getOp());
 			
 			switch(normalizedOp) {
-				case CreateExpr.ALT_HISTORICALLY:
-					ue.setOp(CreateExpr.HISTORICALLY);
+				case Create.ALT_HISTORICALLY:
+					ue.setOp(Create.HISTORICALLY);
 					break;
 					
-				case CreateExpr.ALT_ONCE:
-					ue.setOp(CreateExpr.ONCE);
+				case Create.ALT_ONCE:
+					ue.setOp(Create.ONCE);
 					break;
 			}
 		}
@@ -43,44 +43,44 @@ public class NormalizeOperators {
 			String normalizedOp = normalize(be.getOp());
 			
 			switch(normalizedOp) {
-				case CreateExpr.ALT_IMPLIES:
-					be.setOp(CreateExpr.IMPLIES);
+				case Create.ALT_IMPLIES:
+					be.setOp(Create.IMPLIES);
 					break;
 				
-				case CreateExpr.ALT_SINCE:
-					be.setOp(CreateExpr.SINCE);
+				case Create.ALT_SINCE:
+					be.setOp(Create.SINCE);
 					break;
 					
-				case CreateExpr.ALT_TRIGGERS:
-					be.setOp(CreateExpr.TRIGGERS);
+				case Create.ALT_TRIGGERS:
+					be.setOp(Create.TRIGGERS);
 					break;
 					
-				case CreateExpr.ALT_LESS_THAN:
-					be.setOp(CreateExpr.LESS_THAN);
+				case Create.ALT_LESS_THAN:
+					be.setOp(Create.LESS_THAN);
 					break;
 					
-				case CreateExpr.ALT_LESS_THAN_OR_EQUAL_TO:
-					be.setOp(CreateExpr.LESS_THAN_OR_EQUAL_TO);
+				case Create.ALT_LESS_THAN_OR_EQUAL_TO:
+					be.setOp(Create.LESS_THAN_OR_EQUAL_TO);
 					break;
 					
-				case CreateExpr.ALT_GREATER_THAN:
-					be.setOp(CreateExpr.GREATER_THAN);
+				case Create.ALT_GREATER_THAN:
+					be.setOp(Create.GREATER_THAN);
 					break;
 					
-				case CreateExpr.ALT_GREATER_THAN_OR_EQUAL_TO:
-					be.setOp(CreateExpr.GREATER_THAN_OR_EQUAL_TO);
+				case Create.ALT_GREATER_THAN_OR_EQUAL_TO:
+					be.setOp(Create.GREATER_THAN_OR_EQUAL_TO);
 					break;
 					
-				case CreateExpr.ALT_EQUAL_TO:
-					be.setOp(CreateExpr.EQUAL_TO);
+				case Create.ALT_EQUAL_TO:
+					be.setOp(Create.EQUAL_TO);
 					break;
 					
-				case CreateExpr.ALT_NOT_EQUAL_TO:
-					be.setOp(CreateExpr.NOT_EQUAL_TO);
+				case Create.ALT_NOT_EQUAL_TO:
+					be.setOp(Create.NOT_EQUAL_TO);
 					break;
 					
-				case CreateExpr.ALT_ARROW:
-					be.setOp(CreateExpr.ARROW);
+				case Create.ALT_ARROW:
+					be.setOp(Create.ARROW);
 					break;
 			}
 		}
