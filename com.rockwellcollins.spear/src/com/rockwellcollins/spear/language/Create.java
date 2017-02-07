@@ -3,14 +3,18 @@ package com.rockwellcollins.spear.language;
 import java.util.Iterator;
 import java.util.List;
 
+import com.rockwellcollins.spear.ArrayAccessExpr;
 import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.BoolLiteral;
 import com.rockwellcollins.spear.Expr;
+import com.rockwellcollins.spear.FieldType;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.IdRef;
+import com.rockwellcollins.spear.IntLiteral;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.MultipleExpr;
+import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.SpearFactory;
 import com.rockwellcollins.spear.Type;
 import com.rockwellcollins.spear.UnaryExpr;
@@ -100,6 +104,12 @@ public class Create {
 		return bl;
 	}
 	
+	public static IntLiteral createInteger(Integer value) {
+		IntLiteral il = f.createIntLiteral();
+		il.setValue(value);
+		return il;
+	}
+	
 	public static Expr createNot(Expr sub) {
 		return createUnaryExpr(NOT,sub);
 	}
@@ -155,5 +165,19 @@ public class Create {
 		IdExpr ide = f.createIdExpr();
 		ide.setId(c);
 		return ide;
+	}
+	
+	public static Expr createRecordAccessExpr(Expr record, FieldType ft) {
+		RecordAccessExpr rae = f.createRecordAccessExpr();
+		rae.setRecord(record);
+		rae.setField(ft);
+		return rae;
+	}
+	
+	public static Expr createArrayAccessExpr(Expr array, Expr index) {
+		ArrayAccessExpr aae = f.createArrayAccessExpr();
+		aae.setArray(array);
+		aae.setIndex(index);
+		return aae;
 	}
 }

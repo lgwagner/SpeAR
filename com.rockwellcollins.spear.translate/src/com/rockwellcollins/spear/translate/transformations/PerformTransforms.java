@@ -11,9 +11,9 @@ public class PerformTransforms {
 
 	public static Map<EObject,Map<String,String>> apply(SpearDocument doc) throws Exception {
 		RemoveCompositeReferences.transform(doc);
+		ReplaceVariableArrayDefs.transform(doc);
 		PropagatePredicates.transform(doc);
 		ReplaceAbstractTypes.transform(doc);
-		ReplaceVariableArrayDefs.transform(doc);
 		Map<EObject,Map<String,String>> renamed = RemoveLustreKeywords.transform(doc);
 		NormalizeOperators.transform(doc);
 		ReplaceShortHandRecords.transform(doc);
@@ -25,8 +25,9 @@ public class PerformTransforms {
 	}
 	
 	public static Map<EObject,Map<String,String>> apply(PatternDocument doc) throws Exception {
-		ReplaceAbstractTypes.transform(doc);
 		ReplaceVariableArrayDefs.transform(doc);
+		ReplaceAbstractTypes.transform(doc);
+		//PropagatePredicates.transform(doc);
 		Map<EObject,Map<String,String>> renamed = RemoveLustreKeywords.transform(doc);
 		NormalizeOperators.transform(doc);
 		ReplaceShortHandRecords.transform(doc);

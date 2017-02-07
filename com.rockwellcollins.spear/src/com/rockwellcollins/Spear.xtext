@@ -150,7 +150,8 @@ AndExpr returns Expr:
 	AfterUntilExpr (=> ({BinaryExpr.left=current} op='and') right=AfterUntilExpr)*;
 
 AfterUntilExpr returns Expr:
-	{AfterUntilExpr} 'after' (after=TriggersExpr) (=> 'until' until=TriggersExpr)? | TriggersExpr;
+	{AfterUntilExpr} 'after' (after=TriggersExpr) (=> 'until' until=TriggersExpr)? 
+  | TriggersExpr;
 
 TriggersExpr returns Expr:
 	SinceExpr (=> ({BinaryExpr.left=current} op=('T' | 'triggers')) right=SinceExpr)*;
