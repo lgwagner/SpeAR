@@ -109,13 +109,9 @@ public class SpecificationValidator extends SpearJavaValidator {
 		
 		//acyclic checks
 		//type check
-		errors.addAll(p.getAssertions().stream().filter(assertion -> typeCheck(assertion,errors)).collect(Collectors.toList()));
 		errors.addAll(p.getEquations().stream().filter(eq -> typeCheck(eq,errors)).collect(Collectors.toList()));
-		errors.addAll(p.getProperties().stream().filter(prop -> typeCheck(prop,errors)).collect(Collectors.toList()));
 		
 		//unit check
-		errors.addAll(p.getAssertions().stream().filter(assertion -> unitCheck(assertion,errors)).collect(Collectors.toList()));
 		errors.addAll(p.getEquations().stream().filter(eq -> unitCheck(eq,errors)).collect(Collectors.toList()));
-		errors.addAll(p.getProperties().stream().filter(prop -> unitCheck(prop,errors)).collect(Collectors.toList()));		
 	}
 }

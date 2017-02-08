@@ -17,10 +17,13 @@ import com.rockwellcollins.spear.LustreEquation;
 import com.rockwellcollins.spear.LustreProperty;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.MultipleExpr;
+import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.SpearFactory;
 import com.rockwellcollins.spear.Type;
+import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.UnaryExpr;
+import com.rockwellcollins.spear.UserType;
 import com.rockwellcollins.spear.Variable;
 
 public class Create {
@@ -218,5 +221,17 @@ public class Create {
 		LustreProperty lp = f.createLustreProperty();
 		lp.setPropertyId(prop);
 		return lp;
+	}
+
+	public static Pattern createPattern(String string) {
+		Pattern p = f.createPattern();
+		p.setName(string);
+		return p;
+	}
+
+	public static Type createUserType(TypeDef td) {
+		UserType ut = f.createUserType();
+		ut.setDef(td);
+		return ut;
 	}
 }

@@ -35,6 +35,13 @@ public class PatternDocument extends Document {
 		}
 	}
 	
+	public PatternDocument(TypeDocument td) {
+		this.mainName = td.pattern.getName();
+		this.typedefs = new HashMap<>(td.typedefs);
+		//add the singular pattern
+		this.patterns.put(td.pattern.getName(), td.pattern);
+	}
+	
 	public void transform() {
 		try {
 			this.renamed = PerformTransforms.apply(this);

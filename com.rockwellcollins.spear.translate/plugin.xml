@@ -111,7 +111,12 @@
            description="Translate a Pattern to Lustre and Analyze"
            id="com.rockwellcollins.spear.translate.commands.analyzePattern"
            name="Analyze SpeAR Pattern">
-     </command>    
+     </command>  
+     <command categoryId="com.rockwellcollins.spear.translate.commands"
+           description="Analyze Type"
+           id="com.rockwellcollins.spear.translate.commands.analyzeType"
+           name="Check Type Validity">
+     </command>   
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -124,6 +129,12 @@
                 id="com.rockwellcollins.spear.translate.commands.analyzePattern"
                 style="push">
           </command>
+          <command
+                commandId="com.rockwellcollins.spear.translate.commands.analyzeType"
+                icon="icons/fire.png"
+                id="com.rockwellcollins.spear.translate.commands.analyzeType"
+                style="push">
+          </command>
       </menuContribution>
    </extension>
    <extension
@@ -132,7 +143,10 @@
             commandId="com.rockwellcollins.spear.translate.commands.analyzePattern"
             class="com.rockwellcollins.spear.translate.handlers.AnalyzePattern">
       </handler>
+      <handler
+            commandId="com.rockwellcollins.spear.translate.commands.analyzeType"
+            class="com.rockwellcollins.spear.translate.handlers.AnalyzeType">
+      </handler>
    </extension>
-   
-
+  
 </plugin>

@@ -97,7 +97,7 @@ public class SProgram extends SMapElement {
 		program.setMain(this.mainName);
 		return program.build();
 	}
-
+	
 	public Program getBaseProgram() {
 		ProgramBuilder program = new ProgramBuilder();
 		
