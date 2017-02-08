@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.eclipse.xtext.util.SimpleAttributeResolver;
 
+import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdRef;
@@ -26,6 +27,14 @@ public class PropagatePredicates {
 	public static void transform(Specification s) {
 		List<FormalConstraint> assumptions = new ArrayList<>();
 		List<FormalConstraint> properties = new ArrayList<>();
+		
+		for(Constant c : s.getConstants()) {
+			OptionalExpr oe = EmitPredicateProperties.crunch(c);
+			if (oe instanceof SomeExpr) {
+				SomeExpr some = (SomeExpr) oe;
+				properties.add(makeConstraint(c,some.expr));	
+			}
+		}
 		
 		for(Macro m : s.getMacros()) {
 			OptionalExpr oe = EmitPredicateProperties.crunch(m);

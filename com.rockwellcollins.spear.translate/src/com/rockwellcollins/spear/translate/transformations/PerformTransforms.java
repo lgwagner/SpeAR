@@ -10,13 +10,13 @@ import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 public class PerformTransforms {
 
 	public static Map<EObject,Map<String,String>> apply(SpearDocument doc) throws Exception {
-		RemoveCompositeReferences.transform(doc);
-		ReplaceVariableArrayDefs.transform(doc);
-		PropagatePredicates.transform(doc);
-		ReplaceAbstractTypes.transform(doc);
 		Map<EObject,Map<String,String>> renamed = RemoveLustreKeywords.transform(doc);
-		NormalizeOperators.transform(doc);
+		ReplaceAbstractTypes.transform(doc);
+		ReplaceVariableArrayDefs.transform(doc);
+		PropagatePredicates.transform(doc); //must come after replace Variable array defs
+		RemoveCompositeReferences.transform(doc);
 		ReplaceShortHandRecords.transform(doc);
+		NormalizeOperators.transform(doc);
 		RemoveSugar.transform(doc);
 		TransformObservers.transform(doc);
 		ReplaceSpecificationCalls.transform(doc);
@@ -25,12 +25,12 @@ public class PerformTransforms {
 	}
 	
 	public static Map<EObject,Map<String,String>> apply(PatternDocument doc) throws Exception {
-		ReplaceVariableArrayDefs.transform(doc);
-		ReplaceAbstractTypes.transform(doc);
-		//PropagatePredicates.transform(doc);
 		Map<EObject,Map<String,String>> renamed = RemoveLustreKeywords.transform(doc);
-		NormalizeOperators.transform(doc);
+		ReplaceAbstractTypes.transform(doc);
+		ReplaceVariableArrayDefs.transform(doc);
+		//PropagatePredicates.transform(doc);
 		ReplaceShortHandRecords.transform(doc);
+		NormalizeOperators.transform(doc);
 		RemoveSugar.transform(doc);
 		return renamed;		
 	}
