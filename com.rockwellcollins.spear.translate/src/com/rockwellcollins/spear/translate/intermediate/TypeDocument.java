@@ -49,7 +49,7 @@ public class TypeDocument extends Document {
 			SomeExpr some = (SomeExpr) oe;
 			p.getEquations().add(Create.createLustreEquation(Collections.singletonList(vacuous),Create.createNot(some.expr)));
 		} else {
-			p.getEquations().add(Create.createLustreEquation(Collections.singletonList(vacuous),Create.createTrue()));
+			p.getEquations().add(Create.createLustreEquation(Collections.singletonList(vacuous),Create.createFalse()));
 		}
 		
 		p.getProperties().add(Create.createLustreProperty(vacuous));

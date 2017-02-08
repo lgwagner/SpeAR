@@ -94,6 +94,9 @@ public class AnalyzeType extends AbstractHandler {
 		SProgram p = SProgram.build(pd);
 		Program lp = p.patternToLustre();
 		
+		//TODO: remove
+		System.out.println(lp.toString());
+		
 		JKindApi api = PreferencesUtil.getJKindApi();
 		JKindResult result = new JKindResult("result");
 		lp.getMainNode().properties.stream().forEach(prop -> result.addProperty(prop, true));
