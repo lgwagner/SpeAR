@@ -10,17 +10,26 @@ import com.rockwellcollins.spear.WhileExpr;
 import com.rockwellcollins.spear.language.Create;
 import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
+import com.rockwellcollins.spear.translate.intermediate.TypeDocument;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 public class RemoveSugar extends SpearSwitch<Void> {
 	
 	public static void transform(SpearDocument doc) {
+		doc.typedefs.values().stream().forEach(td -> transform(td));
+		doc.constants.values().stream().forEach(c -> transform(c));
 		doc.patterns.values().stream().forEach(p -> transform(p));
 		doc.specifications.values().stream().forEach(s -> transform(s));
 	}
 	
 	public static void transform(PatternDocument doc) {
+		doc.typedefs.values().stream().forEach(td -> transform(td));
+		doc.constants.values().stream().forEach(c -> transform(c));
 		doc.patterns.values().stream().forEach(p -> transform(p));
+	}
+	
+	public static void transform(TypeDocument doc) {
+		doc.typedefs.values().stream().forEach(td -> transform(td));
 	}
 	
 	private static EObject transform(EObject o) {

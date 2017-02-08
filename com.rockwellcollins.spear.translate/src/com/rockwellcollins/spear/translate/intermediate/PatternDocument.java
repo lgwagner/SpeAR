@@ -1,5 +1,8 @@
 package com.rockwellcollins.spear.translate.intermediate;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.emf.ecore.EObject;
 
 import com.rockwellcollins.spear.Constant;
@@ -9,6 +12,9 @@ import com.rockwellcollins.spear.translate.transformations.PerformTransforms;
 
 public class PatternDocument extends Document {
 
+	public Map<String,Constant> constants = new HashMap<>();
+	public Map<String,Pattern> patterns = new HashMap<>();
+	
 	public PatternDocument(Pattern main) {
 		this.mainName = main.getName();
 		for(EObject o : FindPatternDependencies.instance(main).getObjects()) {

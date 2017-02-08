@@ -11,6 +11,7 @@ import org.eclipse.xtext.util.SimpleAttributeResolver;
 
 import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
+import com.rockwellcollins.spear.translate.intermediate.TypeDocument;
 
 public class RemoveLustreKeywords {
 
@@ -59,6 +60,8 @@ public class RemoveLustreKeywords {
 	
 	public static Map<EObject,Map<String,String>> transform(SpearDocument doc) {
 		Map<EObject,Map<String,String>> map = new HashMap<>();
+		doc.typedefs.values().stream().forEach(td -> map.put(td, transform(td)));
+		doc.constants.values().stream().forEach(c -> map.put(c, transform(c)));
 		doc.patterns.values().stream().forEach(p -> map.put(p, transform(p)));
 		doc.specifications.values().stream().forEach(s -> map.put(s, transform(s)));
 		return map;
@@ -66,7 +69,15 @@ public class RemoveLustreKeywords {
 	
 	public static Map<EObject,Map<String,String>> transform(PatternDocument doc) {
 		Map<EObject,Map<String,String>> map = new HashMap<>();
+		doc.typedefs.values().stream().forEach(td -> map.put(td, transform(td)));
+		doc.constants.values().stream().forEach(c -> map.put(c, transform(c)));
 		doc.patterns.values().stream().forEach(p -> map.put(p, transform(p)));
+		return map;		
+	}
+	
+	public static Map<EObject,Map<String,String>> transform(TypeDocument doc) {
+		Map<EObject,Map<String,String>> map = new HashMap<>();
+		doc.typedefs.values().stream().forEach(p -> map.put(p, transform(p)));
 		return map;		
 	}
 	

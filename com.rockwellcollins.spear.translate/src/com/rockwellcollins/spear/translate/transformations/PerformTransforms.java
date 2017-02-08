@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
+import com.rockwellcollins.spear.translate.intermediate.TypeDocument;
 
 public class PerformTransforms {
 
@@ -33,5 +34,14 @@ public class PerformTransforms {
 		NormalizeOperators.transform(doc);
 		RemoveSugar.transform(doc);
 		return renamed;		
+	}
+	
+	public static Map<EObject,Map<String,String>> apply(TypeDocument doc) throws Exception {
+		Map<EObject,Map<String,String>> renamed = RemoveLustreKeywords.transform(doc);
+		ReplaceAbstractTypes.transform(doc);
+		ReplaceVariableArrayDefs.transform(doc);
+		NormalizeOperators.transform(doc);
+		RemoveSugar.transform(doc);
+		return renamed;
 	}
 }

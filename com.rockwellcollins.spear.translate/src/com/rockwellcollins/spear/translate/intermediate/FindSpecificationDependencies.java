@@ -12,10 +12,9 @@ import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.TypeDef;
-import com.rockwellcollins.spear.translate.intermediate.FindSpecificationDependencies.Status;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
-public class FindSpecificationDependencies extends SpearSwitch<Status> {
+public class FindSpecificationDependencies extends SpearSwitch<Integer> {
 
 	public static List<EObject> getDependencies(Specification main) {
 		FindSpecificationDependencies find = new FindSpecificationDependencies();
@@ -24,7 +23,6 @@ public class FindSpecificationDependencies extends SpearSwitch<Status> {
 		return find.getCalledFiles();
 	}
 	
-	public static enum Status { DONE };
 	private Set<EObject> set = new LinkedHashSet<>();
 	private Set<EObject> traversed = new LinkedHashSet<>();
 	
@@ -34,35 +32,35 @@ public class FindSpecificationDependencies extends SpearSwitch<Status> {
 	}
 	
 	@Override
-	public Status caseTypeDef(TypeDef td) {
+	public Integer caseTypeDef(TypeDef td) {
 		set.add(EcoreUtil2.copy(td));
 		this.defaultCase(td);
-		return Status.DONE;
+		return 0;
 	}
 	
 	@Override
-	public Status caseConstant(Constant c) {
+	public Integer caseConstant(Constant c) {
 		set.add(EcoreUtil2.copy(c));
 		this.defaultCase(c);
-		return Status.DONE;
+		return 0;
 	}
 	
 	@Override
-	public Status casePattern(Pattern p) {
+	public Integer casePattern(Pattern p) {
 		set.add(EcoreUtil2.copy(p));
 		this.defaultCase(p);
-		return Status.DONE;
+		return 0;
 	}
 	
 	@Override
-	public Status caseSpecification(Specification s) {
+	public Integer caseSpecification(Specification s) {
 		set.add(s);
 		this.defaultCase(s);
-		return Status.DONE;
+		return 0;
 	}
 	
 	@Override
-	public Status defaultCase(EObject e) {
+	public Integer defaultCase(EObject e) {
 		for(EObject sub : e.eContents()) {
 			if(!traversed.contains(sub)) {
 				traversed.add(sub);
@@ -77,6 +75,6 @@ public class FindSpecificationDependencies extends SpearSwitch<Status> {
 				this.doSwitch(ref);
 			}
 		}
-		return Status.DONE;
+		return 0;
 	}
 }

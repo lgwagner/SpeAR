@@ -12,13 +12,10 @@ import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 public class TransformObservers {
 	
 	public static void transform(SpearDocument doc) {
-		for(Specification s : doc.specifications.values()) {
-			transform(s);
-		}
+		doc.specifications.values().stream().forEach(s -> transform(s));
 	}
 	
 	private static EObject transform(Specification s) {
-		
 		for(Constraint c : s.getBehaviors()) {
 			if (c instanceof FormalConstraint) {
 				FormalConstraint fc = (FormalConstraint) c;
@@ -28,7 +25,6 @@ public class TransformObservers {
 				}
 			}
 		}
-		
 		return s;
 	}
 }

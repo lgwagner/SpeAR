@@ -7,18 +7,11 @@ import com.rockwellcollins.spear.AbstractTypeDef;
 import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.SpearFactory;
 import com.rockwellcollins.spear.translate.intermediate.Document;
-import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
-import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 public class ReplaceAbstractTypes extends SpearSwitch<EObject> {
 
-	public static void transform(SpearDocument d) {
-		ReplaceAbstractTypes replacer = new ReplaceAbstractTypes(d);
-		d.typedefs.values().stream().forEach(td -> replacer.doSwitch(td));
-	}
-	
-	public static void transform(PatternDocument d) {
+	public static void transform(Document d) {
 		ReplaceAbstractTypes replacer = new ReplaceAbstractTypes(d);
 		d.typedefs.values().stream().forEach(td -> replacer.doSwitch(td));
 	}

@@ -8,18 +8,16 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 
-import com.rockwellcollins.spear.Constant;
-import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
-public class FindPatternDependencies extends SpearSwitch<Integer> {
+public class FindTypeDependencies extends SpearSwitch<Integer> {
 
-	public static FindPatternDependencies instance(Pattern main) {
-		FindPatternDependencies findDeps = new FindPatternDependencies();
-		findDeps.set.add(main);
-		findDeps.doSwitch(main);	
-		return findDeps;
+	public static List<EObject> instance(TypeDef td) {
+		FindTypeDependencies findDeps = new FindTypeDependencies();
+		findDeps.set.add(td);
+		findDeps.doSwitch(td);	
+		return findDeps.getObjects();
 	}
 	
 	private Set<EObject> set = new HashSet<>();
@@ -34,20 +32,6 @@ public class FindPatternDependencies extends SpearSwitch<Integer> {
 	public Integer caseTypeDef(TypeDef td) {
 		set.add(td);
 		this.defaultCase(td);
-		return 0;
-	}
-	
-	@Override
-	public Integer caseConstant(Constant c) {
-		set.add(c);
-		this.defaultCase(c);
-		return 0;
-	}
-	
-	@Override
-	public Integer casePattern(Pattern p) {
-		set.add(p);
-		this.defaultCase(p);
 		return 0;
 	}
 	

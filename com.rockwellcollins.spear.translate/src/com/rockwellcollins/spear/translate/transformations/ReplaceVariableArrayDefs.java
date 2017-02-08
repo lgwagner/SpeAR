@@ -7,20 +7,12 @@ import com.rockwellcollins.spear.ArrayTypeDef;
 import com.rockwellcollins.spear.ConcreteArrayTypeDef;
 import com.rockwellcollins.spear.SpearFactory;
 import com.rockwellcollins.spear.translate.intermediate.Document;
-import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
-import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.util.SpearSwitch;
 import com.rockwellcollins.spear.utilities.IntConstantFinder;
 
-
 public class ReplaceVariableArrayDefs extends SpearSwitch<EObject> {
 
-	public static void transform(SpearDocument d) {
-		ReplaceVariableArrayDefs replacer = new ReplaceVariableArrayDefs(d);
-		d.typedefs.values().stream().forEach(td -> replacer.doSwitch(td));
-	}
-	
-	public static void transform(PatternDocument d) {
+	public static void transform(Document d) {
 		ReplaceVariableArrayDefs replacer = new ReplaceVariableArrayDefs(d);
 		d.typedefs.values().stream().forEach(td -> replacer.doSwitch(td));
 	}
