@@ -1,0 +1,28 @@
+Specification test_preds
+
+Types:
+	t1 : {i : int | i > 0 }
+	t2 : {i : t1 | i < 0}
+
+Patterns:
+	pattern test (a : t1) returns (x : t1)
+	var
+		p1 : bool
+	let
+		p1 = x > a
+		x = a + 1
+		--%PROPERTY p1
+	tel
+
+Inputs:
+	a : t2
+
+Outputs:
+	x : t2
+	
+Requirements:
+	r0: x == test(a)
+
+Properties:
+	p0: x > a
+

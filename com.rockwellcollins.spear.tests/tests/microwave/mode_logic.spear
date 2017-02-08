@@ -25,7 +25,7 @@ Macros:
 	pre_seconds_remaining : int = previous seconds_remaining with initial value 0
 	
 Assumptions:
-	a0: seconds_to_cook >= 0
+	a0: seconds_to_cook >= 1
 	
 Requirements:
 	r1: if microwave_mode == SETUP 

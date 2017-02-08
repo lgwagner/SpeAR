@@ -1,0 +1,51 @@
+Specification test_precedence
+
+Types:
+
+Patterns:
+
+	//implies binds tighter than arrow
+	pattern test_arrow(a : bool, b : bool) returns (x : bool)
+	var
+		p1 : bool
+	let
+		x = a implies b -> true
+		p1 = not a implies x
+		--%PROPERTY p1
+	tel
+
+Inputs:
+	a : bool
+	b : bool
+	c : bool
+
+Outputs:
+	x : bool
+
+State:
+
+Macros:
+	m1: int = 5*3+2-4
+	m1_alt: int = (((5*3)+2)-4)
+	
+	m2: int = 2+4+3*5/3-5
+	m2_alt: int = (((2+4)+((3*5)/3))-5)
+	
+	m3: int = 5*3 mod 6-8+3
+	m3_alt: int = ((((5*3) mod 6)-8)+3)
+	
+	m4: bool = a and b and c
+	m5: bool = a or b or c
+	
+	m6: bool = not previous a
+	m7: bool = previous not a
+	
+Assumptions:
+
+Requirements:
+	r0: a => m2 > 0
+
+Properties:
+	p1: m1 == 13 and m1_alt == 13
+	p2: m2 == 6 and m2_alt == 6
+	p3: m3 == -2 and m3_alt == -2

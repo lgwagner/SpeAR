@@ -1,0 +1,32 @@
+Specification unit_bug2
+
+Units:
+	s "second"
+	m "meters"
+	m_per_s : m / s "meters per second"
+
+Types:
+	time_type is a real s
+	length_type is a real m
+	velocity_type is a real m_per_s
+
+Constants:
+	TIMESTEP is a time_type = 1.0 s
+	PI is a real = 3.14159
+
+Inputs:
+	input_x is a length_type
+	input_y is a velocity_type
+
+Outputs:
+	output_z is a length_type
+
+Macros:
+	temp : length_type = input_y / PI * TIMESTEP
+	
+Requirements:
+	r_broken_1: output_z == input_x + temp
+	r_sub: temp == input_y / PI * TIMESTEP
+	r_working_1: output_z == input_x + (input_y / PI) * TIMESTEP
+
+Properties:

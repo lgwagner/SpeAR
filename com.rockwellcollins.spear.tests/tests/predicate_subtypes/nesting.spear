@@ -1,0 +1,51 @@
+Specification test_preds
+
+Types:
+	nonneg : {i : int | i >= 0}
+	posint : {i : nonneg | i <> 0}
+	
+	r1 : record {a : posint, b : nonneg}
+	r2 : { r : r1 | r.a > 5 => r.b > 20 }
+	
+	a1 : posint[3]
+	a2 : { a : a1 | a[0] > a[1] and a[1] > a[2] }
+
+Constants:
+	c1 : posint = 25
+	
+Inputs:
+	a : posint
+	b : nonneg
+	c : r1
+	d : r2
+	e : a1
+	f : a2
+
+Outputs:
+	q : posint
+	r : nonneg
+	s : r1
+	t : r2
+	u : a1
+	v : a2
+	
+State:
+	x : posint
+
+Macros:
+	m1 : posint = b + 1
+	
+Assumptions:
+
+Requirements:
+	r0: q == a + 1
+	r1: r == b - 1
+	r2: s == c { a := c.a + 1 }
+	r3: t == d { b := d.b - 1 }
+	r4: u == e [ 0 := e[1] - 1 ]
+	r5: v == f [ 1 := f[0] + 5 ]
+	r6: x == m1 + c1
+
+Properties:
+	p0: a > 0
+

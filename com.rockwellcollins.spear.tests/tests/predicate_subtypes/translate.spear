@@ -1,0 +1,23 @@
+Specification translate
+
+Types:
+	posint: {i : int | i > 0}
+
+Inputs:
+	x : posint
+	
+Outputs:
+	y : posint
+
+State:
+
+Macros:
+
+Assumptions:
+
+Requirements:
+	dr0: y == x + 1
+
+Properties:
+	p0: y > x
+

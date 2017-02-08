@@ -1,0 +1,36 @@
+Specification test_preds
+
+Types:
+	nonneg : {i : int | i >= 0}
+	posint : {i : nonneg | i <> 0}
+	
+	r1 : record {a : bool, b : bool}
+	r2 : { i : r1 | i.a implies i.b }
+	r3 : record {a : posint, b : nonneg}
+	r4 : { r : r3 | r.a > 5 => r.b > 20 }
+	
+	vac1 : {i : int | i < 0 }
+	vac2 : {i : vac1 | i > 0 }
+	
+	a1 : posint[3]
+	a2 : { a : a1 | a[0] > a[1] and a[1] > a[2] }
+	
+Inputs:
+	a : posint
+
+Outputs:
+	x : nonneg
+	y : posint
+	z : a2
+	
+State:
+
+Macros:
+
+Assumptions:
+
+Requirements:
+
+Properties:
+	p0: a > 0
+

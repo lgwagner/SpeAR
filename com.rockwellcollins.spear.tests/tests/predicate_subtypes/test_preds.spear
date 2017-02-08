@@ -1,0 +1,42 @@
+Specification test_preds
+
+Types:
+	nonneg : {i : int | i >= 0}
+	posint : {i : nonneg | i <> 0}
+	
+	between_0_and_5_not_3 : {i : int | i > 0 and i < 5 and i <> 3}
+	
+	alt : { b : bool | b <> previous b }
+	
+	r1 : record {a : posint, b : real, c : bool, d : bool}
+
+	t1 : int
+
+	r1_pred : {r : r1 | r.a > 0 and r.b < 0.0 and (r.c implies r.d)}
+
+Inputs:
+	a : nonneg
+	b : r1_pred
+	c : alt
+
+Outputs:
+	y : posint
+	z : r1_pred
+	x : alt
+
+State:
+
+Macros:
+	m1 : r1_pred = new r1 {a = 5, b = -1.0, c = true, d = true}
+
+Assumptions:
+
+Requirements:
+	r0: y == a + 1
+	r1: z == b { a := b.a + 1 }
+	r2: x <> c
+
+Properties:
+	p0: y > a
+	p1: not (x and c)
+
