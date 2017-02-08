@@ -29,7 +29,7 @@ public class PerformTransforms {
 		Map<EObject,Map<String,String>> renamed = RemoveLustreKeywords.transform(doc);
 		ReplaceAbstractTypes.transform(doc);
 		ReplaceVariableArrayDefs.transform(doc);
-		//PropagatePredicates.transform(doc);
+		PropagatePredicates.transform(doc);
 		ReplaceShortHandRecords.transform(doc);
 		NormalizeOperators.transform(doc);
 		RemoveSugar.transform(doc);

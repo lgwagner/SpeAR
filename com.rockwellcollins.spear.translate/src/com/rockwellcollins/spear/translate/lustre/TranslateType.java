@@ -13,8 +13,8 @@ import jkind.lustre.Type;
 
 public class TranslateType extends SpearSwitch<Type> {
 
-	public static Type translate(com.rockwellcollins.spear.Type t, SpearMap nameMap) {
-		return new TranslateType(nameMap).doSwitch(t);
+	public static Type translate(com.rockwellcollins.spear.Type t, SpearMap map) {
+		return new TranslateType(map).doSwitch(t);
 	}
 	
 	private SpearMap map;
@@ -42,11 +42,6 @@ public class TranslateType extends SpearSwitch<Type> {
 	@Override
 	public Type caseRealType(RealType rt) {
 		return jkind.lustre.NamedType.REAL;
-	}
-	
-	@Override
-	public Type caseType(com.rockwellcollins.spear.Type type) {
-		throw new RuntimeException("Type cannot be translated to Lustre.");
 	}
 	
 	@Override

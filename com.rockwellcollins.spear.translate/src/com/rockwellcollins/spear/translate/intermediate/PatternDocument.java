@@ -18,25 +18,24 @@ public class PatternDocument extends Document {
 	public PatternDocument(Pattern main) {
 		this.mainName = main.getName();
 		for(EObject o : FindPatternDependencies.instance(main).getObjects()) {
-			if (o instanceof Pattern) {
-				Pattern p = (Pattern) o;
-				patterns.put(p.getName(),p);
-			}
-			
 			if (o instanceof TypeDef) {
 				TypeDef td = (TypeDef) o;
 				typedefs.put(td.getName(),td);
 			}
-			
+
 			if (o instanceof Constant) {
 				Constant c = (Constant) o;
 				constants.put(c.getName(),c);
+			}
+			
+			if (o instanceof Pattern) {
+				Pattern p = (Pattern) o;
+				patterns.put(p.getName(),p);
 			}
 		}
 	}
 	
 	public void transform() {
-		//transform the document
 		try {
 			this.renamed = PerformTransforms.apply(this);
 		} catch (Exception e) {

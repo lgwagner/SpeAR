@@ -12,12 +12,16 @@ import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.IntLiteral;
+import com.rockwellcollins.spear.LustreAssertion;
+import com.rockwellcollins.spear.LustreEquation;
+import com.rockwellcollins.spear.LustreProperty;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.MultipleExpr;
 import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.SpearFactory;
 import com.rockwellcollins.spear.Type;
 import com.rockwellcollins.spear.UnaryExpr;
+import com.rockwellcollins.spear.Variable;
 
 public class Create {
 	
@@ -179,5 +183,40 @@ public class Create {
 		aae.setArray(array);
 		aae.setIndex(index);
 		return aae;
+	}
+
+	public static LustreAssertion createLustreAssertion(Expr expr) {
+		LustreAssertion la = f.createLustreAssertion();
+		la.setAssertionExpr(expr);
+		return la;
+	}
+	
+	public static LustreAssertion createLustreAssertion(Variable prop) {
+		return createLustreAssertion(Create.createIdExpr(prop));
+	}
+
+	public static Variable createVariable(String name, Type t) {
+		Variable v = f.createVariable();
+		v.setName(name);
+		v.setType(t);
+		return v;
+	}
+	
+	public static Variable createBoolVariable(String name) {
+		Type t = f.createBoolType();
+		return createVariable(name,t);
+	}
+	
+	public static LustreEquation createLustreEquation(List<Variable> ids, Expr e) {
+		LustreEquation leq = f.createLustreEquation();
+		leq.getIds().addAll(ids);
+		leq.setRhs(e);
+		return leq;
+	}
+
+	public static LustreProperty createLustreProperty(Variable prop) {
+		LustreProperty lp = f.createLustreProperty();
+		lp.setPropertyId(prop);
+		return lp;
 	}
 }
