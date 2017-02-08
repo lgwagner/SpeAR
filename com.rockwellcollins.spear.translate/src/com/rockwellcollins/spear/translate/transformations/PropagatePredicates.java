@@ -12,6 +12,8 @@ import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.language.Create;
+import com.rockwellcollins.spear.optional.OptionalExpr;
+import com.rockwellcollins.spear.optional.SomeExpr;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.translate.utilities.EmitPredicateProperties;
 
@@ -26,25 +28,36 @@ public class PropagatePredicates {
 		List<FormalConstraint> properties = new ArrayList<>();
 		
 		for(Macro m : s.getMacros()) {
-			Expr e = EmitPredicateProperties.crunch(m);
-			properties.add(makeConstraint(m,e));
+			OptionalExpr oe = EmitPredicateProperties.crunch(m);
+			if (oe instanceof SomeExpr) {
+				SomeExpr some = (SomeExpr) oe;
+				properties.add(makeConstraint(m,some.expr));	
+			}
 		}
 
 		for(Variable v : s.getInputs()) {
-			Expr e = EmitPredicateProperties.crunch(v);
-			assumptions.add(makeConstraint(v,e));
+			OptionalExpr oe = EmitPredicateProperties.crunch(v);
+			if (oe instanceof SomeExpr) {
+				SomeExpr some = (SomeExpr) oe;
+				assumptions.add(makeConstraint(v,some.expr));	
+			}
 		}
 
 		for(Variable v : s.getOutputs()) {
-			Expr e = EmitPredicateProperties.crunch(v);
-			properties.add(makeConstraint(v,e));
+			OptionalExpr oe = EmitPredicateProperties.crunch(v);
+			if (oe instanceof SomeExpr) {
+				SomeExpr some = (SomeExpr) oe;
+				properties.add(makeConstraint(v,some.expr));
+			}
 		}
 		
 		for(Variable v : s.getState()) {
-			Expr e = EmitPredicateProperties.crunch(v);
-			properties.add(makeConstraint(v,e));
+			OptionalExpr oe = EmitPredicateProperties.crunch(v);
+			if (oe instanceof SomeExpr) {
+				SomeExpr some = (SomeExpr) oe;
+				properties.add(makeConstraint(v,some.expr));
+			}
 		}
-		
 		s.getAssumptions().addAll(assumptions);
 		s.getBehaviors().addAll(properties);
 	}
