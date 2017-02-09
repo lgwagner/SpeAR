@@ -15,6 +15,7 @@ import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.EnumTypeDef;
 import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.IdExpr;
+import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.LustreEquation;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.NamedTypeDef;
@@ -45,34 +46,34 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 	
 	@Check
 	public void checkSpecificationVariables(Specification s) {
-		Set<String> used = EcoreUtil2.getAllContentsOfType(s, IdExpr.class).stream().map(ide -> ide.getId().getName()).collect(Collectors.toSet());
+		Set<IdRef> used = EcoreUtil2.getAllContentsOfType(s, IdExpr.class).stream().map(ide -> ide.getId()).collect(Collectors.toSet());
 		
 		for(Constant c : s.getConstants()) {
-			if(!used.contains(c.getName())) {
+			if(!used.contains(c)) {
 				unusedWarning(notReadWarningMessage(c),c,SpearPackage.Literals.ID_REF__NAME);
 			}
 		}
 		
 		for(Macro m : s.getMacros()) {
-			if(!used.contains(m.getName())) {
+			if(!used.contains(m)) {
 				unusedWarning(notReadWarningMessage(m),m,SpearPackage.Literals.ID_REF__NAME);
 			}
 		}
 		
 		for(Variable v : s.getInputs()) {
-			if(!used.contains(v.getName())) {
+			if(!used.contains(v)) {
 				unusedWarning(notReadWarningMessage(v),v,SpearPackage.Literals.ID_REF__NAME);
 			}
 		}
 		
 		for(Variable v : s.getOutputs()) {
-			if(!used.contains(v.getName())) {
+			if(!used.contains(v)) {
 				unusedWarning(notReadWarningMessage(v),v,SpearPackage.Literals.ID_REF__NAME);
 			}
 		}
 		
 		for(Variable v : s.getState()) {
-			if(!used.contains(v.getName())) {
+			if(!used.contains(v)) {
 				unusedWarning(notReadWarningMessage(v),v,SpearPackage.Literals.ID_REF__NAME);
 			}
 		}
@@ -124,31 +125,27 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 	
 	@Check
 	public void checkPatternVariablesAreUsed(Pattern p) {
-		Set<String> read = EcoreUtil2.getAllContentsOfType(p, IdExpr.class).stream().map(ide -> ide.getId().getName()).collect(Collectors.toSet());
+		Set<IdRef> read = EcoreUtil2.getAllContentsOfType(p, IdExpr.class).stream().map(ide -> ide.getId()).collect(Collectors.toSet());
 
-		Set<String> assigned = new HashSet<>();
+		Set<Variable> assigned = new HashSet<>();
 		for(LustreEquation leq : EcoreUtil2.getAllContentsOfType(p, LustreEquation.class)) {
-			assigned.addAll(leq.getIds().stream().map(v -> v.getName()).collect(Collectors.toList()));
-		}
-		
-		for(LustreEquation eq : EcoreUtil2.getAllContentsOfType(p, LustreEquation.class)) {
-			read.addAll(eq.getIds().stream().map(v -> v.getName()).collect(Collectors.toList()));
+			assigned.addAll(leq.getIds());
 		}
 		
 		for(Variable v : p.getInputs()) {
-			if(!read.contains(v.getName())) {
+			if(!read.contains(v)) {
 				unusedWarning(notReadWarningMessage(v),v,SpearPackage.Literals.ID_REF__NAME);
 			}
 		}
 		
 		for(Variable v : p.getOutputs()) {
-			if(!assigned.contains(v.getName())) {
+			if(!assigned.contains(v)) {
 				unusedError(notAssignedErrorMessage(v),v,SpearPackage.Literals.ID_REF__NAME);
 			}
 		}
 
 		for(Variable v : p.getLocals()) {
-			if(!read.contains(v.getName())) {
+			if(!assigned.contains(v)) {
 				unusedError(notAssignedErrorMessage(v),v,SpearPackage.Literals.ID_REF__NAME);
 			}
 		}
