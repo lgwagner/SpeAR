@@ -4,12 +4,13 @@ import java.util.Collections;
 
 import org.eclipse.emf.ecore.EObject;
 
+import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.language.Create;
-import com.rockwellcollins.spear.optional.OptionalExpr;
-import com.rockwellcollins.spear.optional.SomeExpr;
+import com.rockwellcollins.spear.optional.Optional;
+import com.rockwellcollins.spear.optional.Some;
 import com.rockwellcollins.spear.translate.transformations.PerformTransforms;
 import com.rockwellcollins.spear.translate.utilities.EmitPredicateProperties;
 
@@ -44,10 +45,10 @@ public class TypeDocument extends Document {
 		Variable vacuous = Create.createBoolVariable(main.getName() + "_valid");
 		p.getOutputs().add(vacuous);
 		
-		OptionalExpr oe = EmitPredicateProperties.crunch(in);
-		if (oe instanceof SomeExpr) {
-			SomeExpr some = (SomeExpr) oe;
-			p.getEquations().add(Create.createLustreEquation(Collections.singletonList(vacuous),Create.createNot(some.expr)));
+		Optional<Expr> oe = EmitPredicateProperties.crunch(in);
+		if (oe instanceof Some) {
+			Some<Expr> some = (Some<Expr>) oe;
+			p.getEquations().add(Create.createLustreEquation(Collections.singletonList(vacuous),Create.createNot(some.value)));
 		} else {
 			p.getEquations().add(Create.createLustreEquation(Collections.singletonList(vacuous),Create.createFalse()));
 		}

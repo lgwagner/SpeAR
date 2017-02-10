@@ -18,8 +18,8 @@ import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.language.Create;
-import com.rockwellcollins.spear.optional.OptionalExpr;
-import com.rockwellcollins.spear.optional.SomeExpr;
+import com.rockwellcollins.spear.optional.Optional;
+import com.rockwellcollins.spear.optional.Some;
 import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.translate.utilities.EmitPredicateProperties;
@@ -40,42 +40,42 @@ public class PropagatePredicates {
 		List<FormalConstraint> properties = new ArrayList<>();
 		
 		for(Constant c : s.getConstants()) {
-			OptionalExpr oe = EmitPredicateProperties.crunch(c);
-			if (oe instanceof SomeExpr) {
-				SomeExpr some = (SomeExpr) oe;
-				properties.add(makeConstraint(c,some.expr));	
+			Optional<Expr> oe = EmitPredicateProperties.crunch(c);
+			if (oe instanceof Some) {
+				Some<Expr> some = (Some<Expr>) oe;
+				properties.add(makeConstraint(c,some.value));	
 			}
 		}
 		
 		for(Macro m : s.getMacros()) {
-			OptionalExpr oe = EmitPredicateProperties.crunch(m);
-			if (oe instanceof SomeExpr) {
-				SomeExpr some = (SomeExpr) oe;
-				properties.add(makeConstraint(m,some.expr));	
+			Optional<Expr> oe = EmitPredicateProperties.crunch(m);
+			if (oe instanceof Some) {
+				Some<Expr> some = (Some<Expr>) oe;
+				properties.add(makeConstraint(m,some.value));	
 			}
 		}
 
 		for(Variable v : s.getInputs()) {
-			OptionalExpr oe = EmitPredicateProperties.crunch(v);
-			if (oe instanceof SomeExpr) {
-				SomeExpr some = (SomeExpr) oe;
-				assumptions.add(makeConstraint(v,some.expr));	
+			Optional<Expr> oe = EmitPredicateProperties.crunch(v);
+			if (oe instanceof Some) {
+				Some<Expr> some = (Some<Expr>) oe;
+				assumptions.add(makeConstraint(v,some.value));	
 			}
 		}
 
 		for(Variable v : s.getOutputs()) {
-			OptionalExpr oe = EmitPredicateProperties.crunch(v);
-			if (oe instanceof SomeExpr) {
-				SomeExpr some = (SomeExpr) oe;
-				properties.add(makeConstraint(v,some.expr));
+			Optional<Expr> oe = EmitPredicateProperties.crunch(v);
+			if (oe instanceof Some) {
+				Some<Expr> some = (Some<Expr>) oe;
+				properties.add(makeConstraint(v,some.value));
 			}
 		}
 		
 		for(Variable v : s.getState()) {
-			OptionalExpr oe = EmitPredicateProperties.crunch(v);
-			if (oe instanceof SomeExpr) {
-				SomeExpr some = (SomeExpr) oe;
-				properties.add(makeConstraint(v,some.expr));
+			Optional<Expr> oe = EmitPredicateProperties.crunch(v);
+			if (oe instanceof Some) {
+				Some<Expr> some = (Some<Expr>) oe;
+				properties.add(makeConstraint(v,some.value));
 			}
 		}
 		s.getAssumptions().addAll(assumptions);
@@ -89,34 +89,34 @@ public class PropagatePredicates {
 		List<LustreEquation> equations = new ArrayList<>();
 		
 		for(Variable v : p.getInputs()) {
-			OptionalExpr oe = EmitPredicateProperties.crunch(v);
-			if (oe instanceof SomeExpr) {
-				SomeExpr some = (SomeExpr) oe;
+			Optional<Expr> oe = EmitPredicateProperties.crunch(v);
+			if (oe instanceof Some) {
+				Some<Expr> some = (Some<Expr>) oe;
 				Variable prop = createPropertyVariable(v);
 				locals.add(prop);
-				equations.add(Create.createLustreEquation(Collections.singletonList(prop), some.expr));
+				equations.add(Create.createLustreEquation(Collections.singletonList(prop), some.value));
 				assertions.add(Create.createLustreAssertion(prop));
 			}
 		}
 		
 		for(Variable v : p.getOutputs()) {
-			OptionalExpr oe = EmitPredicateProperties.crunch(v);
-			if (oe instanceof SomeExpr) {
-				SomeExpr some = (SomeExpr) oe;
+			Optional<Expr> oe = EmitPredicateProperties.crunch(v);
+			if (oe instanceof Some) {
+				Some<Expr> some = (Some<Expr>) oe;
 				Variable prop = createPropertyVariable(v);
 				locals.add(prop);
-				equations.add(Create.createLustreEquation(Collections.singletonList(prop), some.expr));
+				equations.add(Create.createLustreEquation(Collections.singletonList(prop), some.value));
 				properties.add(Create.createLustreProperty(prop));
 			}
 		}
 		
 		for(Variable v : p.getLocals()) {
-			OptionalExpr oe = EmitPredicateProperties.crunch(v);
-			if (oe instanceof SomeExpr) {
-				SomeExpr some = (SomeExpr) oe;
+			Optional<Expr> oe = EmitPredicateProperties.crunch(v);
+			if (oe instanceof Some) {
+				Some<Expr> some = (Some<Expr>) oe;
 				Variable prop = createPropertyVariable(v);
 				locals.add(prop);
-				equations.add(Create.createLustreEquation(Collections.singletonList(prop), some.expr));
+				equations.add(Create.createLustreEquation(Collections.singletonList(prop), some.value));
 				properties.add(Create.createLustreProperty(prop));
 			}
 		}

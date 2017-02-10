@@ -16,9 +16,9 @@ import com.rockwellcollins.spear.RecordTypeDef;
 import com.rockwellcollins.spear.UserType;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.language.Create;
-import com.rockwellcollins.spear.optional.NoExpr;
-import com.rockwellcollins.spear.optional.OptionalExpr;
-import com.rockwellcollins.spear.optional.SomeExpr;
+import com.rockwellcollins.spear.optional.None;
+import com.rockwellcollins.spear.optional.Optional;
+import com.rockwellcollins.spear.optional.Some;
 import com.rockwellcollins.spear.translate.references.FieldReference;
 import com.rockwellcollins.spear.translate.references.IdReference;
 import com.rockwellcollins.spear.translate.references.IndexReference;
@@ -28,14 +28,14 @@ import com.rockwellcollins.spear.utilities.IntConstantFinder;
 
 public class EmitPredicateProperties extends SpearSwitch<Integer> {
 	
-	public static OptionalExpr crunch(IdRef ref) {
+	public static Optional<Expr> crunch(IdRef ref) {
 		EmitPredicateProperties emit = new EmitPredicateProperties();
 		emit.doSwitch(ref);
 		if(emit.exprs.isEmpty()) {
-			return new NoExpr();
+			return new None<Expr>();
 		} else {
 			Expr result = Create.createAnd(emit.exprs.iterator());
-			return new SomeExpr(result);
+			return new Some<Expr>(result);
 		}
 	}
 	
