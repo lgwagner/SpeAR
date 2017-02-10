@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.ComposedChecks;
+import org.eclipse.xtext.validation.NamesAreUniqueValidator;
 
 import com.google.inject.Inject;
 import com.rockwellcollins.spear.BinaryExpr;
