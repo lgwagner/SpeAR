@@ -111,7 +111,9 @@ Type:
   | {UserType} def=[TypeDef];
 
 IdTypeDelimiter:
-	':' | 'is a' | 'is an';
+	':' 
+  | 'is a' 
+  | 'is an';
 
 Constant:
 	name=ID IdTypeDelimiter type=Type '=' expr=Expr (data+=Data)*;
