@@ -1,3 +1,3 @@
 package com.rockwellcollins.spear.optional;
 
-public class Optional<T1> {}
+abstract public class Optional<T1> {}
