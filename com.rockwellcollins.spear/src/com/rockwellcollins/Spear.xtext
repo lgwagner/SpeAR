@@ -3,7 +3,8 @@ grammar com.rockwellcollins.Spear with org.eclipse.xtext.common.Terminals
 generate spear "http://www.rockwellcollins.com/Spear"
 
 File:
-	Specification | Definitions;
+	Specification 
+  | Definitions;
 
 Specification:
 	'Specification' (name=ID) 
@@ -20,18 +21,6 @@ Specification:
 	(requirementsKeyword=RequirementsHeader ':' requirements+=Constraint*)
 	(behaviorsKeyword=BehaviorsHeader ':' behaviors+=Constraint*)?;
 
-AssumptionsHeader:
-	'Assumptions' | 'Environment';
-
-RequirementsHeader:
-	'DerivedRequirements' | 'Requirements' | 'Implementation' | 'Design' | 'Constraints';
-
-BehaviorsHeader:
-	'Requirements' | 'Properties' | 'Guarantees' | 'Behaviors';
-
-Import:
-	'import' importURI=STRING;
-
 Definitions:
 	'Definitions' (name=ID) 
 	('Imports:' imports+=Import*)? 
@@ -39,6 +28,30 @@ Definitions:
 	('Types:' typedefs+=TypeDef*)?
 	('Constants:' constants+=Constant*)? 
 	('Patterns:' patterns+=Pattern*)?; 
+
+Import:
+	'import' importURI=STRING;
+
+UnitDef:
+	{BaseUnit} name=ID (description=STRING)? 
+  | {DerivedUnit} name=ID IdTypeDelimiter unit=UnitExpr (description=STRING)?;
+
+AssumptionsHeader:
+	'Assumptions' 
+  | 'Environment';
+
+RequirementsHeader:
+	'DerivedRequirements' 
+  | 'Requirements' 
+  | 'Implementation' 
+  | 'Design' 
+  | 'Constraints';
+
+BehaviorsHeader:
+	'Requirements' 
+  | 'Properties' 
+  | 'Guarantees' 
+  | 'Behaviors';
 	
 Pattern:
 	'pattern' (name=ID) '(' (inputs+=Variable (',' inputs+=Variable)*)? ')' 
@@ -57,10 +70,6 @@ LustreProperty:
 LustreAssertion:
 	'assert' assertionExpr=Expr; 
 	
-UnitDef:
-	{BaseUnit} name=ID (description=STRING)? 
-  | {DerivedUnit} name=ID IdTypeDelimiter unit=UnitExpr (description=STRING)?;
-
 UnitExpr:
 	ProductUnitExpr;
 

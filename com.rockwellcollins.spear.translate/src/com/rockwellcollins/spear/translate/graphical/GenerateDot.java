@@ -6,10 +6,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.EcoreUtil2;
 
 import com.rockwellcollins.spear.Definitions;
+import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Import;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.PatternCall;
@@ -52,18 +52,14 @@ public class GenerateDot {
 		defined.add(s);
 		
 		for(Import im : s.getImports()) {
-			String URI = im.getImportURI();
-			Resource importedResource = EcoreUtil2.getResource(s.eResource(), URI);
-			List<EObject> contents = importedResource.getContents();
-			for(EObject element : contents) {
-				if (element instanceof Definitions) {
-					Definitions def = (Definitions) element;
-					if(!defined.contains(def)) {
-						defined.add(def);
-						buffer.append(def.getName() + "[shape=polygon,sides=4,label=\"" + def.getName() + "\"]" + newline);
-					}
-					buffer.append(def.getName() + spacedArrow + s.getName() + newline);
+			File imported = Utilities.getImportedFile(s, im);
+			if (imported instanceof Definitions) {
+				Definitions def = (Definitions) imported;
+				if(!defined.contains(def)) {
+					defined.add(def);
+					buffer.append(def.getName() + "[shape=polygon,sides=4,label=\"" + def.getName() + "\"]" + newline);
 				}
+				buffer.append(def.getName() + spacedArrow + s.getName() + newline);				
 			}
 		}
 		

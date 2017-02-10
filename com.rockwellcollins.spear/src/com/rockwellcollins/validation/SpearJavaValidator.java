@@ -17,9 +17,12 @@ import com.google.inject.Inject;
 import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Constraint;
+import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.Expr;
+import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
+import com.rockwellcollins.spear.Import;
 import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.PreviousExpr;
 import com.rockwellcollins.spear.SpearPackage;
@@ -70,6 +73,16 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 								valids.toArray(new String[valids.size()]));
 					}
 				}
+			}
+		}
+	}
+	
+	@Check
+	public void checkDefinitionsOnlyImportDefinitions(Definitions d) {
+		for(Import im : d.getImports()) {
+			File f = Utilities.getImportedFile(d, im);
+			if (f instanceof Specification) {
+				error("Definitions files cannot import Specifications.", im, SpearPackage.Literals.IMPORT__IMPORT_URI);
 			}
 		}
 	}

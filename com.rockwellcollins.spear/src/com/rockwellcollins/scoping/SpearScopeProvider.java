@@ -73,15 +73,8 @@ public class SpearScopeProvider extends org.eclipse.xtext.scoping.impl.AbstractD
 	private IScope getScopeForImportChain(File root, IScope scope) {
 		scope = getFileScopeForPattern(root,scope);
 		for(Import im : root.getImports()) {
-			String URI = im.getImportURI();
-			Resource importedResource = EcoreUtil2.getResource(root.eResource(), URI);
-			List<EObject> contents = importedResource.getContents();
-			for(EObject eo : contents) {
-				if (eo instanceof File) {
-					File importedFile = (File) eo;
-					scope = getScopeForImportChain(importedFile,scope);
-				}
-			}
+			File importedFile = Utilities.getImportedFile(root, im);
+			scope = getScopeForImportChain(importedFile,scope);
 		}
 		return scope;
 	}

@@ -1,14 +1,30 @@
 package com.rockwellcollins.spear.utilities;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.util.SimpleAttributeResolver;
 
 import com.rockwellcollins.spear.File;
+import com.rockwellcollins.spear.Import;
 import com.rockwellcollins.spear.Pattern;
 
 public class Utilities {
 
+	public static File getImportedFile(File root, Import im) {
+		String URI = im.getImportURI();
+		Resource importedResource = EcoreUtil2.getResource(root.eResource(), URI);
+		List<EObject> contents = importedResource.getContents();
+		
+		if(contents.size() == 1) {
+			EObject element = contents.get(0);
+			return (File) element;
+		}
+		throw new RuntimeException("A File object should be imported");
+	}
+	
 	public static File getRoot(EObject o) {
 		EObject root = EcoreUtil2.getRootContainer(o);
 		if (root instanceof File) {

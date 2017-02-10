@@ -6,13 +6,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.EcoreUtil2;
 
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Import;
 import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.utilities.Utilities;
 
 public class AltSpearDocument {
 	
@@ -36,15 +35,8 @@ public class AltSpearDocument {
 		
 		used.add(f);
 		for(Import im : f.getImports()) {
-			String URI = im.getImportURI();
-			Resource importedResource = EcoreUtil2.getResource(f.eResource(), URI);
-			List<EObject> contents = importedResource.getContents();
-			for(EObject o : contents) {
-				if (o instanceof File) {
-					File importedFile = (File) o;
-					processFile(importedFile);
-				}
-			}
+			File importedFile = Utilities.getImportedFile(f, im);
+			processFile(importedFile);
 		}
 	}
 	
