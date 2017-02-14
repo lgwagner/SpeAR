@@ -67,16 +67,12 @@ Workflow {
     		fragment = resourceFactory.ResourceFactoryFragment auto-inject {}
     
     		// The antlr parser generator fragment.
-    		fragment = parser.antlr.XtextAntlrGeneratorFragment auto-inject {
-    		//  options = {
-    		//      backtrack = true
-    		//  }
-    		}
+    		fragment = parser.antlr.XtextAntlrGeneratorFragment auto-inject {}
     
     		// Xtend-based API for validation
     		fragment = validation.JavaValidatorFragment auto-inject {
     		    composedCheck = "org.eclipse.xtext.validation.ImportUriValidator"
-    		    composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
+//    		    composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
     		}
     
     		// old scoping and exporting API
