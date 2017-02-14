@@ -24,7 +24,7 @@ Specification:
 Definitions:
 	'Definitions' (name=ID) 
 	('Imports:' imports+=Import*)? 
-	('Units:' unitdefs+=UnitDef*)? 
+	('Units:' units+=UnitDef*)? 
 	('Types:' typedefs+=TypeDef*)?
 	('Constants:' constants+=Constant*)? 
 	('Patterns:' patterns+=Pattern*)?; 
@@ -115,11 +115,11 @@ IdTypeDelimiter:
   | 'is a' 
   | 'is an';
 
-Constant:
-	name=ID IdTypeDelimiter type=Type '=' expr=Expr (data+=Data)*;
-
 Variable:
 	name=ID IdTypeDelimiter type=Type (data+=Data)*;
+
+Constant:
+	name=ID IdTypeDelimiter type=Type '=' expr=Expr (data+=Data)*;
 
 Macro:
 	name=ID IdTypeDelimiter type=Type '=' expr=Expr (data+=Data)*;
