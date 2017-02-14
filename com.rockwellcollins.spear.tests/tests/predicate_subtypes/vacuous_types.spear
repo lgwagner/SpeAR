@@ -13,7 +13,7 @@ Patterns:
 		x = a + 1
 		--%PROPERTY p1
 	tel
-
+	
 Inputs:
 	a : t2
 

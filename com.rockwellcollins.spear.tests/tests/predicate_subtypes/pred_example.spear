@@ -1,0 +1,79 @@
+Specification test_preds
+
+Types:
+	//a type that is a nonnegative integer
+	nonneg : { i : int | i >= 0 }
+
+	/*a type that is a postive integer that was created from a nonnegative */
+	posint : { i : nonneg | i <> 0 }
+	
+	/* an integer that is even */
+	even : { i : int | i mod 2 == 0 }
+	
+	/* and integer that is odd */
+	odd  : { i : int | i mod 2 == 1 }
+	
+	/* a boolean that alternates from true to false */
+	alt_bool : { q : bool | q <> previous q }
+	
+	/* a modulo 5 counter */
+	counter_mod_5 : { i : int | i == (previous i with initial value 4 + 1) mod 5 }
+	
+	/* composite types that use existing types */
+	record1 : record { a : nonneg, b : posint, c : even }
+	record2 : { r : record1 | r.a > 10 implies r.b < 5 }
+	array1 : record1[3]
+	array2 : { v : array1 | v[0].a > 15 }
+
+	/* an obviously vacuous type */
+	vac : { i : int | i > 0 and i < 0 }
+	
+	e1 : enum {A,B,C,D,E}
+	
+	e1_sub : { e : e1 | e == A or e == B }
+	e2_sub : { e : e1 | e == C or e == D }
+
+Constants:
+	//this type is illegal, a check is emitted automatically to check it.
+	constant1 : posint = -3
+	constant2 : posint = -5
+	
+Inputs:
+	a : nonneg
+	b : posint
+	c1 : even
+	c2 : even
+	d1 : odd
+	d2 : odd
+	e : alt_bool
+	f : counter_mod_5
+	g : record1
+	h : record2
+	i : array1
+	j : array2
+	
+	enum1 : e1
+
+Outputs:
+
+
+State:
+
+Macros:
+	m1: even = c1 + c2  //even + even = even
+	m2: even = d1 + d2  //odd + odd = even
+	m3: odd  = c1 + d1  //even + odd = even
+	counter : int = (previous counter with initial value 0) + 1
+	m5: alt_bool = not e
+
+	m6 : e1_sub = if enum1 <> A and enum1 <> B then C else enum1
+	
+Assumptions:
+
+Requirements:
+
+Properties:
+	//observe how the types work over a 15 step trace
+	p0 observe: counter >= 15 and not m5 and e 
+
+

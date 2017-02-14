@@ -7,8 +7,11 @@ Types:
 	r1 : record {a : posint, b : nonneg}
 	r2 : { r : r1 | r.a > 5 => r.b > 20 }
 	
-	a1 : posint[3]
+	a1 : posint[100]
 	a2 : { a : a1 | a[0] > a[1] and a[1] > a[2] }
+	
+	a3 : { b : bool | b <> previous b with initial value false }
+	between_0_5 : { i : int | i == i mod 5}
 
 Constants:
 	c1 : posint = 25
@@ -20,6 +23,8 @@ Inputs:
 	d : r2
 	e : a1
 	f : a2
+	g : a3
+	h : between_0_5
 
 Outputs:
 	q : posint
@@ -29,11 +34,15 @@ Outputs:
 	u : a1
 	v : a2
 	
+	z : between_0_5
+	
 State:
 	x : posint
 
 Macros:
 	m1 : posint = b + 1
+	
+	pre_z : int = previous z with initial value 0
 	
 Assumptions:
 
@@ -45,7 +54,10 @@ Requirements:
 	r4: u == e [ 0 := e[1] - 1 ]
 	r5: v == f [ 1 := f[0] + 5 ]
 	r6: x == m1 + c1
+	r7: z == if g then pre_z + 1 else pre_z
 
 Properties:
 	p0: a > 0
+	p1: z <> 12
+	p2: h >= 0 and h < 5
 

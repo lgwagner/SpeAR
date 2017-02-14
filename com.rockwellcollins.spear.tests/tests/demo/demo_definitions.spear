@@ -11,8 +11,10 @@ Constants:
 	user_constant1 : real = 3.141519
 	
 Patterns:
-	pattern my_pattern (in : real) returns (out : bool)
+	pattern my_pattern (in1 : real, in2 : real) returns (out : bool)
+	var
+		local : int
 	let
-		out = in > 0.0	
+		out = in2 > 0.0	
 	tel
 	
