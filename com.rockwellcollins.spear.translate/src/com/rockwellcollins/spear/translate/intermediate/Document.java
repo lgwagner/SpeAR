@@ -13,5 +13,4 @@ public class Document {
 	public Map<String,TypeDef> typedefs = new HashMap<>();
 	
 	public Map<EObject,Map<String,String>> renamed;
-
 }

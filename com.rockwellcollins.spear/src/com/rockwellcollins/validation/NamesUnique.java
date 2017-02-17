@@ -29,9 +29,8 @@ public class NamesUnique extends AbstractSpearJavaValidator {
 		map.put(s, set);
 	}
 	
-	@Check
-	public void checkNamesAreUnique(Pattern p) {
-		Map<String,Set<EObject>> map = new HashMap<>();
+	private void checkNamesAreUnique(Map<String,Set<EObject>> globalScope, Pattern p) {
+		Map<String,Set<EObject>> map = new HashMap<>(globalScope);
 		SimpleAttributeResolver<EObject, String> resolver = SimpleAttributeResolver.newResolver(String.class,"name");
 
 		p.getInputs().stream().forEach(v -> insert(map,resolver.apply(v),v));
@@ -51,10 +50,17 @@ public class NamesUnique extends AbstractSpearJavaValidator {
 		Map<String,Set<EObject>> map = new HashMap<>();
 		SimpleAttributeResolver<EObject, String> resolver = SimpleAttributeResolver.newResolver(String.class,"name");
 		
-		s.getUnits().stream().forEach(d -> insert(map,resolver.apply(d),d));
+		/* 
+		 * s.getUnits().stream().forEach(d -> insert(map,resolver.apply(d),d)); 
+		 * 
+		 * don't need to add units because they aren't used in the Lustre, at all.
+		 * */
 		s.getTypedefs().stream().forEach(td -> insert(map,resolver.apply(td),td));
 		s.getConstants().stream().forEach(c -> insert(map,resolver.apply(c),c));
 		s.getPatterns().stream().forEach(p -> insert(map,resolver.apply(p),p));
+		
+		//check the patterns
+		s.getPatterns().stream().forEach(p -> checkNamesAreUnique(map,p));
 		
 		for(String key : map.keySet()) {
 			Set<EObject> set = map.get(key);
@@ -69,10 +75,18 @@ public class NamesUnique extends AbstractSpearJavaValidator {
 		Map<String,Set<EObject>> map = new HashMap<>();
 		SimpleAttributeResolver<EObject, String> resolver = SimpleAttributeResolver.newResolver(String.class,"name");
 		
-		s.getUnits().stream().forEach(d -> insert(map,resolver.apply(d),d));
+		/* 
+		 * s.getUnits().stream().forEach(d -> insert(map,resolver.apply(d),d)); 
+		 * 
+		 * don't need to add units because they aren't used in the Lustre, at all.
+		 * */
 		s.getTypedefs().stream().forEach(td -> insert(map,resolver.apply(td),td));
 		s.getConstants().stream().forEach(c -> insert(map,resolver.apply(c),c));
 		s.getPatterns().stream().forEach(p -> insert(map,resolver.apply(p),p));
+		
+		//check the patterns here because the elements above are used by the patterns
+		s.getPatterns().stream().forEach(p -> checkNamesAreUnique(map,p));
+		
 		s.getMacros().stream().forEach(m -> insert(map,resolver.apply(m),m));
 		s.getInputs().stream().forEach(v -> insert(map,resolver.apply(v),v));
 		s.getOutputs().stream().forEach(v -> insert(map,resolver.apply(v),v));
