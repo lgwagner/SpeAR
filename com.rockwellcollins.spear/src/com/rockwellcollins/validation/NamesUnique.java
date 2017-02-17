@@ -2,6 +2,7 @@ package com.rockwellcollins.validation;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -10,8 +11,11 @@ import org.eclipse.xtext.util.SimpleAttributeResolver;
 import org.eclipse.xtext.validation.Check;
 
 import com.rockwellcollins.spear.Definitions;
+import com.rockwellcollins.spear.Import;
 import com.rockwellcollins.spear.Pattern;
+import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.utilities.Utilities;
 
 public class NamesUnique extends AbstractSpearJavaValidator {
 
@@ -75,12 +79,20 @@ public class NamesUnique extends AbstractSpearJavaValidator {
 		Map<String,Set<EObject>> map = new HashMap<>();
 		SimpleAttributeResolver<EObject, String> resolver = SimpleAttributeResolver.newResolver(String.class,"name");
 		
+		for(Import im : s.getImports()) {
+			List<String> imported = Utilities.getImportNames(s, im);
+			if(imported.contains(s.getName())) {
+				error(s.getName() + " imports a file with the same name.",im,SpearPackage.Literals.IMPORT__IMPORT_URI);
+			}
+		}
+		
 		/* 
 		 * s.getUnits().stream().forEach(d -> insert(map,resolver.apply(d),d)); 
 		 * 
 		 * don't need to add units because they aren't used in the Lustre, at all.
 		 * */
 		s.getTypedefs().stream().forEach(td -> insert(map,resolver.apply(td),td));
+		//need to add enumerations here as well.
 		s.getConstants().stream().forEach(c -> insert(map,resolver.apply(c),c));
 		s.getPatterns().stream().forEach(p -> insert(map,resolver.apply(p),p));
 		
