@@ -86,17 +86,23 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 				
 				SProgram program = SProgram.build(workingCopy);
 				Program p = program.getLogicalConsistency();
-				
-				URI lustreURI = ActionUtilities.createURI(state.getURI(), "", "lus");
-				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-				
+						
 				if(SpearRuntimeOptions.printFinalLustre) {
+					IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+					
+					//create the generated folder
+					URI folderURI = ActionUtilities.createFolder(state.getURI(), "generated");
+					ActionUtilities.makeFolder(root.getFolder(new Path(folderURI.toPlatformString(true))));
+					
+					//create the lustre file
+					String filename = ActionUtilities.getGeneratedFile(state.getURI(), "lus");
+					URI lustreURI = ActionUtilities.createURI(folderURI, filename);					
 					IResource finalResource = root.getFile(new Path(lustreURI.toPlatformString(true)));
 					ActionUtilities.printResource(finalResource, p.toString());
+					
+					// refresh the workspace
+					root.refreshLocal(IResource.DEPTH_INFINITE, null);
 				}
-
-				// refresh the workspace
-				root.refreshLocal(IResource.DEPTH_INFINITE, null);
 				
 				JKindApi api = PreferencesUtil.getJKindApi();
 				api.setIvcReduction();

@@ -59,17 +59,22 @@ public class GenerateExcel implements IWorkbenchWindowActionDelegate {
 				}
 
 				AltSpearDocument spearDoc = AltSpearDocument.create(specification);
-				// This is where you will create the URI for the excel file.
-				URI excelURI = createURI(state.getURI(), "", "xls");
-
+				
 				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-				IResource excelResource = root.getFile(new Path(excelURI.toPlatformString(true)));
-
+				
+				//create the generated folder
+				URI folderURI = ActionUtilities.createFolder(state.getURI(), "generated");
+				ActionUtilities.makeFolder(root.getFolder(new Path(folderURI.toPlatformString(true))));
+				
+				//create the lustre file
+				String filename = ActionUtilities.getGeneratedFile(state.getURI(), "xls");
+				URI excelURI = ActionUtilities.createURI(folderURI, filename);					
+				IResource finalResource = root.getFile(new Path(excelURI.toPlatformString(true)));
+				
 				try {
-					MakeExcel.toExcel(spearDoc, excelResource.getLocation().toFile());
+					MakeExcel.toExcel(spearDoc, finalResource.getLocation().toFile());
 				} catch (Exception e) {
 					MessageDialog.openError(window.getShell(), "Unable to export to spreadsheet.", e.getMessage());
-
 					e.printStackTrace();
 				}
 
@@ -91,21 +96,11 @@ public class GenerateExcel implements IWorkbenchWindowActionDelegate {
 		return false;
 	}
 
-	private static URI createURI(URI baseURI, String suffix, String extension) {
-		String filename = baseURI.lastSegment();
-		baseURI = baseURI.trimSegments(1);
-		int i = filename.lastIndexOf(".");
-		baseURI = baseURI.appendSegment((filename.substring(0, i) + suffix + "." + extension));
-		return baseURI;
-	}
+	@Override
+	public void selectionChanged(IAction arg0, ISelection arg1) {}
 
 	@Override
-	public void selectionChanged(IAction arg0, ISelection arg1) {
-	}
-
-	@Override
-	public void dispose() {
-	}
+	public void dispose() {}
 
 	@Override
 	public void init(IWorkbenchWindow arg0) {

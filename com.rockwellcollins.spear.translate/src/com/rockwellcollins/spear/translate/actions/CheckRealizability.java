@@ -78,24 +78,28 @@ public class CheckRealizability implements IWorkbenchWindowActionDelegate {
 
 				//Set the runtime options
 				SpearRuntimeOptions.setRuntimeOptions();
-				
+		
 				SpearDocument workingCopy = new SpearDocument(specification);
 				workingCopy.transform();
-				
 				SProgram program = SProgram.build(workingCopy);
-
 				Program p = program.getRealizability();
-				URI lustreURI = ActionUtilities.createURI(state.getURI(), "", "lus");
 
-				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-				
 				if(SpearRuntimeOptions.printFinalLustre) {
+					IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+					
+					//create the generated folder
+					URI folderURI = ActionUtilities.createFolder(state.getURI(), "generated");
+					ActionUtilities.makeFolder(root.getFolder(new Path(folderURI.toPlatformString(true))));
+					
+					//create the lustre file
+					String filename = ActionUtilities.getGeneratedFile(state.getURI(), "lus");
+					URI lustreURI = ActionUtilities.createURI(folderURI, filename);					
 					IResource finalResource = root.getFile(new Path(lustreURI.toPlatformString(true)));
 					ActionUtilities.printResource(finalResource, p.toString());
+					
+					// refresh the workspace
+					root.refreshLocal(IResource.DEPTH_INFINITE, null);
 				}
-
-				// refresh the workspace
-				root.refreshLocal(IResource.DEPTH_INFINITE, null);
 				
 				JRealizabilityApi api = PreferencesUtil.getJRealizabilityApi();
 				try {

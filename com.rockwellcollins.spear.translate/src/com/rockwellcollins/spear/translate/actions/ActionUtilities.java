@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -30,14 +31,28 @@ public class ActionUtilities {
 		return false;
 	}
 	
-	public static URI createURI(URI baseURI, String suffix, String extension) {
+	public static String getGeneratedFile(URI baseURI, String extension) {
 		String filename = baseURI.lastSegment();
-		baseURI = baseURI.trimSegments(1);
 		int i = filename.lastIndexOf(".");
-		baseURI = baseURI.appendSegment((filename.substring(0, i) + suffix + "." + extension));
+		String newFilename = filename.substring(0, i) + "." + extension;
+		return newFilename;
+	}
+	
+	public static URI createURI(URI folder, String filename) {
+		folder = folder.appendSegment(filename);
+		return folder;
+	}
+	
+	public static URI createFolder(URI baseURI, String folder) {
+		baseURI = baseURI.trimSegments(1);
+		baseURI = baseURI.appendSegment(folder);
 		return baseURI;
 	}
 
+	public static boolean makeFolder(IFolder f) throws IOException {
+		return f.getRawLocation().toFile().mkdir();
+	}
+	
 	public static void printResource(IResource res, String contents) throws IOException {
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(res.getRawLocation().toFile()))) {
 			bw.write(contents);
@@ -53,4 +68,6 @@ public class ActionUtilities {
 		}
 		return true;
 	}
+
+
 }

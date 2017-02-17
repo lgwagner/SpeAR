@@ -69,17 +69,21 @@ public class GenerateGraph implements IWorkbenchWindowActionDelegate {
 					return null;					
 				}
 				
-				//Set the runtime options
 				SpearRuntimeOptions.setRuntimeOptions();
-				
 				String result = GenerateDot.generateDot(specification);
-				URI pngURI = ActionUtilities.createURI(state.getURI(), "", "png");
 				
+				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+				
+				URI folderURI = ActionUtilities.createFolder(state.getURI(), "generated");
+				ActionUtilities.makeFolder(root.getFolder(new Path(folderURI.toPlatformString(true))));
+				
+				String filename = ActionUtilities.getGeneratedFile(state.getURI(), "png");
+				URI pngURI = ActionUtilities.createURI(folderURI, filename);
 				java.nio.file.Path dotFile = Files.createTempFile("spear_graphical", ".dot");
 
-				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-				IResource pdfFile = root.getFile(new Path(pngURI.toPlatformString(true)));
+				IResource pngFile = root.getFile(new Path(pngURI.toPlatformString(true)));
 
+				//write the dot file
 				try {
 					FileWriter writer = new FileWriter(dotFile.toFile());
 					writer.write(result);
@@ -91,9 +95,10 @@ public class GenerateGraph implements IWorkbenchWindowActionDelegate {
 					return null;
 				}
 				
+				//write the PNG file using dot
 				try {
 					//this string needs to be a filesystem string for DOT to work correctly on it.
-					String fileSystemString = pdfFile.getLocation().toFile().toString();
+					String fileSystemString = pngFile.getLocation().toFile().toString();
 					ProcessBuilder pb = new ProcessBuilder("dot","-Tpng","-o",fileSystemString,dotFile.toString());
 					pb.start().waitFor();
 					pb = null;
