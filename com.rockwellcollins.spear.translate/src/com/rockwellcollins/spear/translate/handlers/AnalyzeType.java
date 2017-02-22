@@ -87,7 +87,9 @@ public class AnalyzeType extends AbstractHandler {
 		} catch (Exception e1) {
 			System.err.println("Unexpected error transforming PatternDocument for analysis.");
 			e1.printStackTrace();
-		} 
+		}
+		//this *must* occur after the transform for operators to be correctly normalized.
+		document.populatePattern();
 		
 		PatternDocument pd = document.toPatternDocument();
 		

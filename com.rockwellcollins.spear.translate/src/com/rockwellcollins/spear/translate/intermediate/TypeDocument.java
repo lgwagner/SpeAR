@@ -26,13 +26,15 @@ public class TypeDocument extends Document {
 				typedefs.put(td.getName(), td);
 			}
 		}
-		this.pattern = createPattern();
 	}
 	
 	public TypeDef getMain() {
 		return this.typedefs.get(this.mainName);
 	}
 	
+	public void populatePattern() {
+		this.pattern = createPattern();
+	}
 	
 	//FIXME: Refactor please.
 	private Pattern createPattern() {

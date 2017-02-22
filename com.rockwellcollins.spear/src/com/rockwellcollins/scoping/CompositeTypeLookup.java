@@ -145,7 +145,7 @@ public class CompositeTypeLookup extends SpearSwitch<TypeDef> {
 	
 	@Override
 	public TypeDef defaultCase(EObject o) {
-		System.out.println("Unsupported element " + o);
+//		System.out.println("Unsupported element " + o);
 		return null;
 	}
 }
