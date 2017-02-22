@@ -2,24 +2,28 @@ package com.rockwellcollins.validation;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.util.SimpleAttributeResolver;
 import org.eclipse.xtext.validation.Check;
 
 import com.rockwellcollins.spear.Definitions;
+import com.rockwellcollins.spear.EnumTypeDef;
+import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Import;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.TypeDef;
+import com.rockwellcollins.spear.util.SpearSwitch;
 import com.rockwellcollins.spear.utilities.Utilities;
 
 public class NamesUnique extends AbstractSpearJavaValidator {
 
-	private Set<EObject> get(Map<String,Set<EObject>> map, String s) {
+	public static Set<EObject> get(Map<String,Set<EObject>> map, String s) {
 		if(map.containsKey(s)) {
 			return map.get(s);
 		} else {
@@ -27,7 +31,7 @@ public class NamesUnique extends AbstractSpearJavaValidator {
 		}
 	}
 	
-	private void insert(Map<String,Set<EObject>> map, String s, EObject e) {
+	public static void insert(Map<String,Set<EObject>> map, String s, EObject e) {
 		Set<EObject> set = get(map,s);
 		set.add(e);
 		map.put(s, set);
@@ -50,21 +54,27 @@ public class NamesUnique extends AbstractSpearJavaValidator {
 	}
 	
 	@Check
-	public void checkNamesAreUnique(Definitions s) {
+	public void checkNamesAreUnique(Definitions d) {
 		Map<String,Set<EObject>> map = new HashMap<>();
 		SimpleAttributeResolver<EObject, String> resolver = SimpleAttributeResolver.newResolver(String.class,"name");
 		
+		for(Import im : d.getImports()) {
+			Set<String> importedNames = getImportedNames(d,im);
+			if(importedNames.contains(d.getName())) {
+				error("Import URI references a Specification/Definitions file with same ID (" + d.getName() + ") as current specification", im, SpearPackage.Literals.IMPORT__IMPORT_URI);
+			}
+		}
+		
 		/* 
 		 * s.getUnits().stream().forEach(d -> insert(map,resolver.apply(d),d)); 
-		 * 
 		 * don't need to add units because they aren't used in the Lustre, at all.
 		 * */
-		s.getTypedefs().stream().forEach(td -> insert(map,resolver.apply(td),td));
-		s.getConstants().stream().forEach(c -> insert(map,resolver.apply(c),c));
-		s.getPatterns().stream().forEach(p -> insert(map,resolver.apply(p),p));
+		d.getTypedefs().stream().forEach(td -> InsertTypeDef.crunch(map,td));
+		d.getConstants().stream().forEach(c -> insert(map,resolver.apply(c),c));
+		d.getPatterns().stream().forEach(p -> insert(map,resolver.apply(p),p));
 		
 		//check the patterns
-		s.getPatterns().stream().forEach(p -> checkNamesAreUnique(map,p));
+		d.getPatterns().stream().forEach(p -> checkNamesAreUnique(map,p));
 		
 		for(String key : map.keySet()) {
 			Set<EObject> set = map.get(key);
@@ -73,26 +83,24 @@ public class NamesUnique extends AbstractSpearJavaValidator {
 			}
 		}
 	}
-	
+
 	@Check
 	public void checkNamesAreUnique(Specification s) {
 		Map<String,Set<EObject>> map = new HashMap<>();
 		SimpleAttributeResolver<EObject, String> resolver = SimpleAttributeResolver.newResolver(String.class,"name");
 		
 		for(Import im : s.getImports()) {
-			List<String> imported = Utilities.getImportNames(s, im);
-			if(imported.contains(s.getName())) {
-				error(s.getName() + " imports a file with the same name.",im,SpearPackage.Literals.IMPORT__IMPORT_URI);
+			Set<String> importedNames = getImportedNames(s,im);
+			if(importedNames.contains(s.getName())) {
+				error("Import URI references a Specification/Definitions file with same ID (" + s.getName() + ") as current specification", im, SpearPackage.Literals.IMPORT__IMPORT_URI);
 			}
 		}
 		
 		/* 
 		 * s.getUnits().stream().forEach(d -> insert(map,resolver.apply(d),d)); 
-		 * 
 		 * don't need to add units because they aren't used in the Lustre, at all.
 		 * */
-		s.getTypedefs().stream().forEach(td -> insert(map,resolver.apply(td),td));
-		//need to add enumerations here as well.
+		s.getTypedefs().stream().forEach(td -> InsertTypeDef.crunch(map,td));
 		s.getConstants().stream().forEach(c -> insert(map,resolver.apply(c),c));
 		s.getPatterns().stream().forEach(p -> insert(map,resolver.apply(p),p));
 		
@@ -112,6 +120,50 @@ public class NamesUnique extends AbstractSpearJavaValidator {
 			if(set.size() > 1) {
 				set.stream().forEach(e -> error("Name " + key + " used in multiple places.", e, null));
 			}
+		}
+	}
+	
+	private Set<String> getImportedNames(File root, Import im) {
+		Set<File> imported = new HashSet<>();
+		imported = getImportedFiles(root, im, imported);
+		return imported.stream().map(f -> f.getName()).collect(Collectors.toSet());
+	}
+	
+	private Set<File> getImportedFiles(File root, Import im, Set<File> imported) {
+		File f = Utilities.getImportedFile(root, im);
+		if(!imported.contains(f)) {
+			imported.add(f);
+			for(Import im2 : f.getImports()) {
+				getImportedFiles(f,im2,imported);
+			}
+		}
+		return imported;
+	}
+	
+	private static class InsertTypeDef extends SpearSwitch<Integer> {
+		
+		public static void crunch(Map<String,Set<EObject>> map, TypeDef td) {
+			InsertTypeDef itd = new InsertTypeDef(map);
+			itd.doSwitch(td);
+		}
+		
+		private Map<String, Set<EObject>> map;
+
+		private InsertTypeDef(Map<String,Set<EObject>> map) {
+			this.map=map;
+		}
+		
+		@Override
+		public Integer caseTypeDef(TypeDef td) {
+			insert(map,td.getName(),td);
+			return 0;
+		}
+		
+		@Override
+		public Integer caseEnumTypeDef(EnumTypeDef etd) {
+			insert(map,etd.getName(),etd);
+			etd.getValues().stream().forEach(ev -> insert(map,ev.getName(),ev));
+			return 0;
 		}
 	}
 }

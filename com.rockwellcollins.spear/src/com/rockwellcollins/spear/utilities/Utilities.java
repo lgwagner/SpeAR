@@ -1,6 +1,5 @@
 package com.rockwellcollins.spear.utilities;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -14,16 +13,6 @@ import com.rockwellcollins.spear.Pattern;
 
 public class Utilities {
 
-	public static List<String> getImportNames(File root, Import im) {
-		List<String> list = new ArrayList<>();
-		File imported = Utilities.getImportedFile(root, im);
-		list.add(imported.getName());
-		for(Import im1 : imported.getImports()) {
-			list.addAll(getImportNames(imported, im1));
-		}
-		return list;
-	}
-	
 	public static File getImportedFile(File root, Import im) {
 		String URI = im.getImportURI();
 		Resource importedResource = EcoreUtil2.getResource(root.eResource(), URI);
