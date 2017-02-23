@@ -13,7 +13,7 @@ import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.actions.SpearRuntimeOptions;
 import com.rockwellcollins.spear.translate.naming.SpearMap;
-import com.rockwellcollins.spear.utilities.PLTL;
+import com.rockwellcollins.spear.utilities.LustreLibraries;
 
 import jkind.lustre.BinaryExpr;
 import jkind.lustre.BinaryOp;
@@ -269,7 +269,7 @@ public class SSpecification extends SMapElement {
 		} else {
 			RHS = conjunctify(conjunct.iterator());
 		}
-		return new Equation(new IdExpr(this.constraintsName), new NodeCallExpr(PLTL.historically().id, RHS));
+		return new Equation(new IdExpr(this.constraintsName), new NodeCallExpr(LustreLibraries.historically().id, RHS));
 	}
 	
 	public Equation getAssertionCalledEquation(List<SConstraint> conjunct) {

@@ -1,6 +1,6 @@
 package com.rockwellcollins.spear.translate.naming;
 
-import com.rockwellcollins.spear.utilities.PLTL;
+import com.rockwellcollins.spear.utilities.LustreLibraries;
 
 import jkind.lustre.Node;
 
@@ -15,7 +15,7 @@ public class SpearMap {
 	}
 	
 	public static void addPLTL(SpearMap map) {
-		for(Node n : PLTL.getPLTL()) {
+		for(Node n : LustreLibraries.getLibraries()) {
 			map.program.getName(n.id);
 		}
 	}
