@@ -6,7 +6,7 @@ import java.util.List;
 import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.translate.naming.SpearMap;
-import com.rockwellcollins.spear.utilities.LustreLibraries;
+import com.rockwellcollins.spear.utilities.LustreLibrary;
 
 import jkind.lustre.Program;
 import jkind.lustre.builders.ProgramBuilder;
@@ -86,7 +86,7 @@ public class SProgram extends SMapElement {
 		ProgramBuilder program = new ProgramBuilder();
 		
 		//add the PLTL nodes
-		program.addNodes(LustreLibraries.getLibraries());
+		program.addNodes(LustreLibrary.getLibraries());
 		
 		//add the typedefs, constants, and patterns
 		program.addTypes(STypeDef.toLustre(typedefs, this));
@@ -102,7 +102,7 @@ public class SProgram extends SMapElement {
 		ProgramBuilder program = new ProgramBuilder();
 		
 		//add the PLTL nodes
-		program.addNodes(LustreLibraries.getLibraries());
+		program.addNodes(LustreLibrary.getLibraries());
 		
 		program.addConstants(SConstant.toLustre(constants, this));
 		program.addTypes(STypeDef.toLustre(typedefs, this));
