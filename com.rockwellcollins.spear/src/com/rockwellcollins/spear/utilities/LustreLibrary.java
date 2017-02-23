@@ -6,7 +6,9 @@ import java.util.Set;
 import jkind.lustre.BinaryExpr;
 import jkind.lustre.BinaryOp;
 import jkind.lustre.BoolExpr;
+import jkind.lustre.CastExpr;
 import jkind.lustre.Equation;
+import jkind.lustre.Expr;
 import jkind.lustre.IdExpr;
 import jkind.lustre.IfThenElseExpr;
 import jkind.lustre.IntExpr;
@@ -16,6 +18,7 @@ import jkind.lustre.Node;
 import jkind.lustre.UnaryExpr;
 import jkind.lustre.UnaryOp;
 import jkind.lustre.VarDecl;
+import jkind.lustre.builders.EquationBuilder;
 import jkind.lustre.builders.NodeBuilder;
 
 /**
@@ -173,6 +176,36 @@ public class LustreLibrary {
 		responds_within.addEquation(scope_time_eq);
 		responds_within.addEquation(holds_eq);
 		return responds_within.build();
+	}
+	
+	public static Node fmod() {
+		/*node fmod(a : real; b : real) returns (x : real);
+			let
+				x = (a - (b * real(floor(a / b))));
+			tel;
+		*/
+		NodeBuilder fmod = new NodeBuilder("fmod");
+		
+		VarDecl a = new VarDecl("a", NamedType.REAL);
+		VarDecl b = new VarDecl("b", NamedType.REAL);
+		VarDecl x = new VarDecl("x", NamedType.REAL);
+		fmod.addInput(a);
+		fmod.addInput(b);
+		fmod.addOutput(x);
+		
+		/* this is a bit gross, but easier to read this way */
+		Expr inner_div = new BinaryExpr(new IdExpr(a.id), BinaryOp.DIVIDE, new IdExpr(b.id));
+		Expr innercast = new CastExpr(NamedType.INT, inner_div);
+		Expr outercast = new CastExpr(NamedType.REAL, innercast);
+		Expr mult = new BinaryExpr(new IdExpr(b.id), BinaryOp.MULTIPLY, outercast);
+		Expr finalExpr = new BinaryExpr(new IdExpr(a.id), BinaryOp.MINUS, mult);
+		EquationBuilder eq = new EquationBuilder();
+		eq.addLhs(x.id);
+		eq.setExpr(finalExpr);
+		
+		fmod.addEquation(eq.build());
+		
+		return fmod.build();
 	}
 
 	public static Set<Node> getLibraries() {

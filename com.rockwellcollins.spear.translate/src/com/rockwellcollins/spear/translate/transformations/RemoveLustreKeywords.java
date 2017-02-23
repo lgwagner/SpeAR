@@ -54,6 +54,7 @@ public class RemoveLustreKeywords {
 		keywords.add("since");
 		keywords.add("triggers");
 		keywords.add("responds_within");
+		keywords.add("fmod");
 		keywords.add("counter");
 		return keywords;
 	}
