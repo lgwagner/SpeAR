@@ -12,7 +12,6 @@ import com.rockwellcollins.spear.translate.transformations.PerformTransforms;
 
 public class PatternDocument extends Document {
 
-	public Map<String,Constant> constants = new HashMap<>();
 	public Map<String,Pattern> patterns = new HashMap<>();
 	
 	public PatternDocument(Pattern main) {
@@ -38,6 +37,7 @@ public class PatternDocument extends Document {
 	public PatternDocument(TypeDocument td) {
 		this.mainName = td.pattern.getName();
 		this.typedefs = new HashMap<>(td.typedefs);
+		this.constants = new HashMap<>(td.constants);
 		//add the singular pattern
 		this.patterns.put(td.pattern.getName(), td.pattern);
 	}

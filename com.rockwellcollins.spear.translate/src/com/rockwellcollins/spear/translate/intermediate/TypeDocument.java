@@ -4,6 +4,7 @@ import java.util.Collections;
 
 import org.eclipse.emf.ecore.EObject;
 
+import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.TypeDef;
@@ -23,7 +24,12 @@ public class TypeDocument extends Document {
 		for(EObject e : FindTypeDependencies.instance(top)) {
 			if (e instanceof TypeDef) {
 				TypeDef td = (TypeDef) e;
-				typedefs.put(td.getName(), td);
+				typedefs.put(td.getName(),td);
+			}
+			
+			if (e instanceof Constant) {
+				Constant c = (Constant) e;
+				constants.put(c.getName(),c);
 			}
 		}
 	}

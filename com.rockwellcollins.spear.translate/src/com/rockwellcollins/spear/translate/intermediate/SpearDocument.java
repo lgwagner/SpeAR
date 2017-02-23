@@ -14,7 +14,6 @@ import com.rockwellcollins.spear.translate.transformations.PerformTransforms;
 
 public class SpearDocument extends Document {
 
-	public Map<String,Constant> constants = new HashMap<>();
 	public Map<String,Pattern> patterns = new HashMap<>();
 	public Map<String,Specification> specifications = new HashMap<>();
 

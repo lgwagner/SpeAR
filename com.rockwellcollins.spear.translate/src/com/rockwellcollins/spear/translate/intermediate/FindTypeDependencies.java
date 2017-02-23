@@ -8,6 +8,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 
+import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
@@ -26,6 +27,13 @@ public class FindTypeDependencies extends SpearSwitch<Integer> {
 	public List<EObject> getObjects() {
 		List<EObject> objects = new ArrayList<>(EcoreUtil2.copyAll(set));
 		return objects;
+	}
+	
+	@Override
+	public Integer caseConstant(Constant c) {
+		set.add(c);
+		this.defaultCase(c);
+		return 0;
 	}
 	
 	@Override
