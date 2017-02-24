@@ -11,7 +11,9 @@ import org.eclipse.emf.ecore.EObject;
 
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.EnumValue;
+import com.rockwellcollins.spear.IntegerCast;
 import com.rockwellcollins.spear.Macro;
+import com.rockwellcollins.spear.RealCast;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.translate.master.SCall;
 import com.rockwellcollins.spear.translate.master.SMapElement;
@@ -27,10 +29,12 @@ import jkind.lustre.ArrayUpdateExpr;
 import jkind.lustre.BinaryExpr;
 import jkind.lustre.BinaryOp;
 import jkind.lustre.BoolExpr;
+import jkind.lustre.CastExpr;
 import jkind.lustre.Expr;
 import jkind.lustre.IdExpr;
 import jkind.lustre.IfThenElseExpr;
 import jkind.lustre.IntExpr;
+import jkind.lustre.NamedType;
 import jkind.lustre.NodeCallExpr;
 import jkind.lustre.RealExpr;
 import jkind.lustre.RecordAccessExpr;
@@ -210,6 +214,16 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 		return new IdExpr(this.module.map.lookupOriginalModule(m.getName()));
 	}
 
+	@Override
+	public Expr caseIntegerCast(IntegerCast cast) {
+		return new CastExpr(NamedType.INT,doSwitch(cast.getExpr()));
+	}
+	
+	@Override
+	public Expr caseRealCast(RealCast cast) {
+		return new CastExpr(NamedType.REAL,doSwitch(cast.getExpr()));
+	}
+	
 	@Override
 	public Expr caseIntLiteral(com.rockwellcollins.spear.IntLiteral il) {
 		return new IntExpr(il.getValue());

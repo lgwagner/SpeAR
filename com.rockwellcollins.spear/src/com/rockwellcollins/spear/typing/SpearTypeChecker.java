@@ -35,6 +35,7 @@ import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.IfThenElseExpr;
 import com.rockwellcollins.spear.IntLiteral;
 import com.rockwellcollins.spear.IntType;
+import com.rockwellcollins.spear.IntegerCast;
 import com.rockwellcollins.spear.LustreAssertion;
 import com.rockwellcollins.spear.LustreEquation;
 import com.rockwellcollins.spear.LustreProperty;
@@ -44,6 +45,7 @@ import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.PatternCall;
 import com.rockwellcollins.spear.PredicateSubTypeDef;
 import com.rockwellcollins.spear.PreviousExpr;
+import com.rockwellcollins.spear.RealCast;
 import com.rockwellcollins.spear.RealLiteral;
 import com.rockwellcollins.spear.RealType;
 import com.rockwellcollins.spear.RecordAccessExpr;
@@ -543,6 +545,26 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		}
 	}
 
+	@Override
+	public Type caseIntegerCast(IntegerCast cast) {
+		Type sub = doSwitch(cast.getExpr());
+		if(!sub.equals(REAL)) {
+			error("Integer cast expressions can only be applied to real types.",cast,SpearPackage.Literals.INTEGER_CAST__EXPR);
+			return ERROR;
+		}
+		return INT;
+	}
+	
+	@Override
+	public Type caseRealCast(RealCast cast) {
+		Type sub = doSwitch(cast.getExpr());
+		if(!sub.equals(INT)) {
+			error("Real cast expressions can only be applied to integer types.",cast,SpearPackage.Literals.REAL_CAST__EXPR);
+			return ERROR;
+		}
+		return REAL;
+	}
+	
 	@Override
 	public Type caseIntLiteral(IntLiteral ile) {
 		return INT;
