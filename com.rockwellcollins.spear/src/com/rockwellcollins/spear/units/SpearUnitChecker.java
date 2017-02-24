@@ -31,6 +31,7 @@ import com.rockwellcollins.spear.FieldlessRecordExpr;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.IfThenElseExpr;
 import com.rockwellcollins.spear.IntLiteral;
+import com.rockwellcollins.spear.IntegerCast;
 import com.rockwellcollins.spear.LustreEquation;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.MultipleExpr;
@@ -39,6 +40,7 @@ import com.rockwellcollins.spear.NamedUnitExpr;
 import com.rockwellcollins.spear.PatternCall;
 import com.rockwellcollins.spear.PredicateSubTypeDef;
 import com.rockwellcollins.spear.PreviousExpr;
+import com.rockwellcollins.spear.RealCast;
 import com.rockwellcollins.spear.RealLiteral;
 import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.RecordExpr;
@@ -649,6 +651,16 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		return this.processList(new ArrayList<>(pc.getPattern().getOutputs()));
 	}
 
+	@Override
+	public Unit caseIntegerCast(IntegerCast cast) {
+		return doSwitch(cast.getExpr());
+	}
+	
+	@Override
+	public Unit caseRealCast(RealCast cast) {
+		return doSwitch(cast.getExpr());
+	}
+	
 	@Override
 	public Unit caseRealLiteral(RealLiteral rle) {
 		if (rle.getUnit() != null) {
