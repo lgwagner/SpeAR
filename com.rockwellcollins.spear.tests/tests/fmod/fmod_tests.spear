@@ -1,0 +1,22 @@
+Specification test_fmod
+
+Inputs:
+	a : int
+	b : real
+	c : real
+
+Outputs:
+	x : real
+	y : int
+	z : real
+
+State:
+
+Requirements:
+	r0: x == real(a)
+	r1: y == floor(b)
+	r2: z == c mod 25.200000234321
+
+Properties:
+	p0: b >= real(y)
+	p1 observe: z > 25.0
