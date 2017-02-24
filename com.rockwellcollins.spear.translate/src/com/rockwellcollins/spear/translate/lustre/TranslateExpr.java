@@ -19,6 +19,7 @@ import com.rockwellcollins.spear.translate.master.SSpecification;
 import com.rockwellcollins.spear.typing.SpearTypeChecker;
 import com.rockwellcollins.spear.typing.Type;
 import com.rockwellcollins.spear.util.SpearSwitch;
+import com.rockwellcollins.spear.utilities.LustreLibrary;
 
 import jkind.lustre.ArrayAccessExpr;
 import jkind.lustre.ArrayExpr;
@@ -125,6 +126,7 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	
 	@Override
 	public Expr caseBinaryExpr(com.rockwellcollins.spear.BinaryExpr binary) {
+		Type leftType = SpearTypeChecker.typeCheck(binary.getLeft());
 		Expr left = doSwitch(binary.getLeft());
 		Expr right = doSwitch(binary.getRight());
 		
@@ -141,12 +143,16 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 			case "+":
 			case "-":
 			case "*":
-			case "mod":
 				BinaryOp op = BinaryOp.fromString(binary.getOp());
-				return new BinaryExpr(left, op, right);
+				return new BinaryExpr(left, op, right);	
+				
+			case "mod":
+				if(leftType.equals(SpearTypeChecker.REAL)) {
+					return new NodeCallExpr(LustreLibrary.fmod().id, left, right);
+				}
+				return new BinaryExpr(left, BinaryOp.MODULUS, right);
 
 			case "/":
-				Type leftType = SpearTypeChecker.typeCheck(binary.getLeft());
 				if(leftType.equals(SpearTypeChecker.INT)) {
 					return new BinaryExpr(left, BinaryOp.INT_DIVIDE, right);
 				}

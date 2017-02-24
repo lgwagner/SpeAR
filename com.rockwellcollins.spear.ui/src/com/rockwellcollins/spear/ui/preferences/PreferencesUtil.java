@@ -42,6 +42,12 @@ public class PreferencesUtil {
 		return prefs.getBoolean(PreferenceConstants.PREF_SPEAR_WARN_ON_UNUSED_VARS);		
 	}
 	
+	public static boolean getSolverNonlinear() {
+		IPreferenceStore prefs = getPreferenceStore();
+		String solver = prefs.getString(PreferenceConstants.PREF_SOLVER);
+		return solver.equals(PreferenceConstants.SOLVER_Z3);
+	}
+	
 	private static IPreferenceStore getPreferenceStore() {
 		return SpearActivator.getInstance().getPreferenceStore();
 	}

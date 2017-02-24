@@ -288,17 +288,11 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		case "-":
 		case "*":
 		case "/":
+		case "mod":
 			if (left == REAL && right == REAL) {
 				return REAL;
 			}
 
-			if (left == INT && right == INT) {
-				return INT;
-			}
-			
-			break;
-
-		case "mod":
 			if (left == INT && right == INT) {
 				return INT;
 			}

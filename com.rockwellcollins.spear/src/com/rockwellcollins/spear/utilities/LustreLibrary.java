@@ -218,4 +218,10 @@ public class LustreLibrary {
 		nodes.add(responds_within());
 		return nodes;
 	}
+	
+	public static Set<Node> getNonlinearLibraries() {
+		Set<Node> nodes = new LinkedHashSet<>();
+		nodes.add(fmod());
+		return nodes;
+	}
 }

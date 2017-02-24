@@ -3,6 +3,7 @@ package com.rockwellcollins.spear.translate.master;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.rockwellcollins.spear.translate.actions.SpearRuntimeOptions;
 import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.translate.naming.SpearMap;
@@ -85,8 +86,7 @@ public class SProgram extends SMapElement {
 	public Program patternToLustre() {
 		ProgramBuilder program = new ProgramBuilder();
 		
-		//add the PLTL nodes
-		program.addNodes(LustreLibrary.getLibraries());
+		addNodes(program);
 		
 		//add the typedefs, constants, and patterns
 		program.addTypes(STypeDef.toLustre(typedefs, this));
@@ -101,13 +101,20 @@ public class SProgram extends SMapElement {
 	public Program getBaseProgram() {
 		ProgramBuilder program = new ProgramBuilder();
 		
-		//add the PLTL nodes
-		program.addNodes(LustreLibrary.getLibraries());
+		addNodes(program);
 		
 		program.addConstants(SConstant.toLustre(constants, this));
 		program.addTypes(STypeDef.toLustre(typedefs, this));
 		program.addNodes(SPattern.toLustre(patterns));
 		return program.build();
+	}
+
+	private void addNodes(ProgramBuilder program) {
+		//add the PLTL nodes
+		program.addNodes(LustreLibrary.getLibraries());		
+		if(SpearRuntimeOptions.isSolverNonlinear) {
+			program.addNodes(LustreLibrary.getNonlinearLibraries());
+		}
 	}
 	
 	public Program getLogicalEntailment() {

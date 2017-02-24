@@ -30,6 +30,8 @@ import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.typing.PrimitiveType;
+import com.rockwellcollins.spear.typing.SpearTypeChecker;
+import com.rockwellcollins.spear.typing.Type;
 import com.rockwellcollins.spear.utilities.ConstantChecker;
 import com.rockwellcollins.spear.utilities.Utilities;
 
@@ -164,12 +166,13 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 		if(options.isSolverNonlinear()) {
 			return;
 		}
-		
+	
 		boolean isLeftConstant = ConstantChecker.isConstant(be.getLeft());
 		boolean isRightConstant = ConstantChecker.isConstant(be.getRight());
 		
 		switch (be.getOp()) {
 			case "/":
+			case "mod":
 				if(!isRightConstant) {
 					error("Division by non-constant expressions is not supported.",be,SpearPackage.Literals.BINARY_EXPR__RIGHT);
 				}
@@ -183,6 +186,19 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 				
 			default:
 				break;
+		}
+	}
+	
+	@Check
+	public void checkNonlinearModulus(BinaryExpr be) {
+		if(options.isSolverNonlinear()) {
+			return;
+		}
+		
+		Type leftType = SpearTypeChecker.typeCheck(be.getLeft());
+		
+		if(be.getOp().equals("mod") && leftType.equals(PrimitiveType.REAL)) {
+			error("Real modulus is only supported on non-linear solvers.", be, null);
 		}
 	}
 }
