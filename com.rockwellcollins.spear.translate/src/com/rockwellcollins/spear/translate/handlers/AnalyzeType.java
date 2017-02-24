@@ -24,6 +24,7 @@ import org.eclipse.xtext.validation.Issue;
 
 import com.google.inject.Injector;
 import com.rockwellcollins.spear.TypeDef;
+import com.rockwellcollins.spear.translate.actions.SpearRuntimeOptions;
 import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
 import com.rockwellcollins.spear.translate.intermediate.TypeDocument;
 import com.rockwellcollins.spear.translate.master.SProgram;
@@ -80,6 +81,8 @@ public class AnalyzeType extends AbstractHandler {
 	}
 	
 	private void analyzeType(TypeDef td) {
+		SpearRuntimeOptions.setRuntimeOptions();
+		
 		TypeDocument document = new TypeDocument(td);
 
 		try {

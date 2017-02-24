@@ -33,7 +33,7 @@ public class SProgram extends SMapElement {
 		map = SpearMap.getProgramMap();
 		
 		//add the PLTL node names to the program namespace
-		SpearMap.addPLTL(map);
+		SpearMap.addLibraries(map);
 
 		//get the names of the typedefs, constants and process them
 		typedefs.addAll(STypeDef.build(document.typedefs.values(), this));
@@ -67,7 +67,7 @@ public class SProgram extends SMapElement {
 		map = SpearMap.getProgramMap();
 		
 		//add the PLTL node names to the program namespace
-		SpearMap.addPLTL(map);
+		SpearMap.addLibraries(map);
 		
 		//not going to rename the main name. it will be first in, no conflicts.
 		this.mainName = document.mainName;
@@ -85,7 +85,6 @@ public class SProgram extends SMapElement {
 	
 	public Program patternToLustre() {
 		ProgramBuilder program = new ProgramBuilder();
-		
 		addNodes(program);
 		
 		//add the typedefs, constants, and patterns
@@ -100,7 +99,6 @@ public class SProgram extends SMapElement {
 	
 	public Program getBaseProgram() {
 		ProgramBuilder program = new ProgramBuilder();
-		
 		addNodes(program);
 		
 		program.addConstants(SConstant.toLustre(constants, this));
