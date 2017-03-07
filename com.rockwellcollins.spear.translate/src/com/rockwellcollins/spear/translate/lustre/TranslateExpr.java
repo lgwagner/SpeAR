@@ -13,6 +13,7 @@ import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.IntegerCast;
 import com.rockwellcollins.spear.Macro;
+import com.rockwellcollins.spear.MultipleExpr;
 import com.rockwellcollins.spear.RealCast;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.translate.master.SCall;
@@ -40,6 +41,7 @@ import jkind.lustre.RealExpr;
 import jkind.lustre.RecordAccessExpr;
 import jkind.lustre.RecordExpr;
 import jkind.lustre.RecordUpdateExpr;
+import jkind.lustre.TupleExpr;
 import jkind.lustre.UnaryExpr;
 import jkind.lustre.UnaryOp;
 
@@ -264,6 +266,13 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	public Expr caseVariable(Variable v) {
 		String name = this.module.map.lookupOriginalModule(v.getName());
 		return new IdExpr(name);
+	}
+	
+	@Override
+	public Expr caseMultipleExpr(MultipleExpr me) {
+		List<Expr> list = new ArrayList<>();
+		list.addAll(me.getExprs().stream().map(e -> this.doSwitch(e)).collect(Collectors.toList()));
+		return new TupleExpr(list);
 	}
 	
 	@Override
