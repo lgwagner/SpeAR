@@ -3,7 +3,6 @@ package com.rockwellcollins.spear.translate.views;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
 
-import jkind.api.ui.counterexample.CounterexampleTreeViewer;
 import jkind.results.Counterexample;
 import jkind.results.layout.Layout;
 
@@ -13,11 +12,11 @@ import jkind.results.layout.Layout;
 public class SpearCounterexampleView extends ViewPart {
 	public static final String ID = "com.rockwellcollins.spear.translate.views.SpearCounterexampleView";
 
-	private CounterexampleTreeViewer tree;
+	private SpearCEXTreeView tree;
 
 	@Override
 	public void createPartControl(Composite parent) {
-		tree = new CounterexampleTreeViewer(parent);
+		tree = new SpearCEXTreeView(parent);
 	}
 
 	@Override
