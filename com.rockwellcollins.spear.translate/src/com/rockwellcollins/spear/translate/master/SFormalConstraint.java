@@ -8,6 +8,7 @@ import jkind.lustre.BinaryExpr;
 import jkind.lustre.BinaryOp;
 import jkind.lustre.IdExpr;
 import jkind.lustre.NamedType;
+import jkind.lustre.UnaryOp;
 
 public class SFormalConstraint extends SConstraint {
 
@@ -16,10 +17,12 @@ public class SFormalConstraint extends SConstraint {
 	}
 
 	public Expr expression;
+	public boolean isObserver;
 
 	public SFormalConstraint(FormalConstraint fc, SSpecification s) {
 		this.name = s.map.getModuleName(fc.getName());
 		this.expression = fc.getExpr();
+		this.isObserver = fc.getFlagAsWitness() != null && fc.getFlagAsWitness().equals("observe");
 	}
 
 	@Override
@@ -37,7 +40,8 @@ public class SFormalConstraint extends SConstraint {
 	@Override
 	public jkind.lustre.Equation getPropertyEquation(String assertion, SSpecification spec) {
 		IdExpr lhs = new IdExpr(this.name);
-		jkind.lustre.Expr rhs = new BinaryExpr(new IdExpr(assertion),BinaryOp.IMPLIES,TranslateExpr.translate(this.expression,spec));
-		return new jkind.lustre.Equation(lhs,rhs);
+		jkind.lustre.Expr base = TranslateExpr.translate(this.expression,spec);
+		jkind.lustre.Expr rhs = this.isObserver ? new jkind.lustre.UnaryExpr(UnaryOp.NOT,base) : base;
+		return new jkind.lustre.Equation(lhs,new BinaryExpr(new IdExpr(assertion),BinaryOp.IMPLIES,rhs));
 	}
 }
