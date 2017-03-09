@@ -6,11 +6,9 @@ import java.util.stream.Collectors;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.resources.WorkspaceJob;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -61,15 +59,7 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 		XtextEditor xte = (XtextEditor) editor;
 		IXtextDocument doc = xte.getDocument();
 
-		WorkspaceJob job = new WorkspaceJob("Consistency Analysis") {
-			@Override
-			public IStatus runInWorkspace(final IProgressMonitor monitor) {
-				runAnalysis(doc,monitor);
-				return Status.OK_STATUS;
-			}
-		};
-
-		job.schedule();
+		runAnalysis(doc,new NullProgressMonitor());
 	}
 
 	private void runAnalysis(IXtextDocument doc,IProgressMonitor monitor) {
