@@ -127,12 +127,16 @@ public class CheckRealizability implements IWorkbenchWindowActionDelegate {
 				JRealizabilityResult result = new JRealizabilityResult("SpeAR Realizability Result", renaming);
 				showView(result, new SpearRealizabilityLayout(specification));
 
-				try {
-					api.execute(p, result, monitor);
-				} catch (Exception e) {
-					System.out.println(result.getText());
-					throw e;
-				}
+				new Thread() {
+					public void run() {
+						try {
+							api.execute(p, result, monitor);
+						} catch (Exception e) {
+							System.err.println(result.getText());
+							throw e;
+						}
+					}
+				}.start();
 
 				return null;
 			}

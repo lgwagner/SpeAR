@@ -126,12 +126,16 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 				JKindResult result = new JKindResult("result",p.getMainNode().properties, invert, renaming);
 				showView(result, new SpearRegularLayout(specification));
 
-				try {
-					api.execute(p, result, monitor);
-				} catch (Exception e) {
-					System.err.println(result.getText());
-					throw e;
-				}
+				new Thread() {
+					public void run() {
+						try {
+							api.execute(p, result, monitor);
+						} catch (Exception e) {
+							System.err.println(result.getText());
+							throw e;
+						}
+					}
+				}.start();
 				
 				return null;
 			}

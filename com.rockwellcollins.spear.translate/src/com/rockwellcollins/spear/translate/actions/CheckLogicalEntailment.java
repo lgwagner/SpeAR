@@ -150,12 +150,16 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 				JKindResult result = new JKindResult("Spear Result", p.getMainNode().properties, invert, renaming);
 				showView(result, new SpearRegularLayout(specification));
 
-				try {
-					api.execute(p, result, monitor);
-				} catch (Exception e) {
-					System.err.println(result.getText());
-					throw e;
-				}
+				new Thread() {
+					public void run() {
+						try {
+							api.execute(p, result, monitor);
+						} catch (Exception e) {
+							System.err.println(result.getText());
+							throw e;
+						}
+					}
+				}.start();
 
 				return null;
 			}
@@ -163,7 +167,7 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 	}
 
 	private void showView(final JKindResult result, final Layout layout) {
-		window.getShell().getDisplay().syncExec(new Runnable() {
+		window.getShell().getDisplay().asyncExec(new Runnable() {
 			@Override
 			public void run() {
 				try {
