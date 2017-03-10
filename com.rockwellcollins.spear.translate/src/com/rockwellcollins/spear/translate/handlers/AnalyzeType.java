@@ -106,16 +106,12 @@ public class AnalyzeType extends AbstractHandler {
 		String nicename = "Pattern Analysis: " + td.getName();
 		showView(result, new NodeLayout(lp.getMainNode()), nicename);
 		
-		new Thread() {
-			public void run() {
-				try {
-					api.execute(lp, result, monitor);
-				} catch (Exception e) {
-					System.out.println(result.getText());
-					throw e;
-				}		
-			}
-		}.start();
+		try {
+			api.execute(lp, result, monitor);
+		} catch (Exception e) {
+			System.out.println(result.getText());
+			throw e;
+		}		
 	}
 	
 	private void showView(final JKindResult result, final Layout layout, String title) {
