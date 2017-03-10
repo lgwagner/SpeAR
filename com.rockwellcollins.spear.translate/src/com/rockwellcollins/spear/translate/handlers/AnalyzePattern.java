@@ -98,12 +98,16 @@ public class AnalyzePattern extends AbstractHandler {
 		String nicename = "Pattern Analysis: " + p.getName();
 		showView(result, new NodeLayout(program.getMainNode()), nicename);
 		
-		try {
-			api.execute(program, result, monitor);
-		} catch (Exception e) {
-			System.out.println(result.getText());
-			throw e;
-		}		
+		new Thread() {
+			public void run() {
+				try {
+					api.execute(program, result, monitor);
+				} catch (Exception e) {
+					System.out.println(result.getText());
+					throw e;
+				}		
+			}
+		}.start();
 	}
 	
 	private void showView(final JKindResult result, final Layout layout, String title) {
