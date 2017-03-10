@@ -108,7 +108,8 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 	
 	@Check
 	public void checkPreviousExpressionsAreGuarded(PreviousExpr pe) {
-		if(pe.getInit() == null) {
+		EObject container = Utilities.getTopContainer(pe);		
+		if(container instanceof Specification && pe.getInit() == null) {
 			warning("No initial value was specified. Analysis will consider all possible values for the initial state.",pe,null);
 		}
 	}
