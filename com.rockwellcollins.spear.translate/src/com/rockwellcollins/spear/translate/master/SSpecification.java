@@ -28,6 +28,7 @@ import jkind.lustre.NodeCallExpr;
 import jkind.lustre.UnaryExpr;
 import jkind.lustre.UnaryOp;
 import jkind.lustre.VarDecl;
+import jkind.lustre.builders.EquationBuilder;
 import jkind.lustre.builders.NodeBuilder;
 
 public class SSpecification extends SMapElement {
@@ -78,6 +79,9 @@ public class SSpecification extends SMapElement {
 	private String consistencyName;
 	private static final String CONSISTENCY = "consistent";
 	
+	private String traceabilityName;
+	private static final String TRACEABILITY = "all_properties";
+	
 	public String name;
 	public List<SMacro> macros = new ArrayList<>();
 	public List<SVariable> inputs = new ArrayList<>();
@@ -110,6 +114,7 @@ public class SSpecification extends SMapElement {
 		this.constraintsName = map.getModuleName(CONSTRAINTS);
 		this.counterName = map.getModuleName(COUNTER);
 		this.consistencyName = map.getModuleName(CONSISTENCY);
+		this.traceabilityName = map.getModuleName(TRACEABILITY);
 	}
 
 	public void resolveCalls(List<SSpecification> specs) {
@@ -174,11 +179,38 @@ public class SSpecification extends SMapElement {
 
 		builder.addProperties(SConstraint.toPropertyIds(behaviors, this));
 		if(SpearRuntimeOptions.enableIVCDuringEntailment) {
+			VarDecl vd = new VarDecl(this.traceabilityName, NamedType.BOOL);
+			builder.addLocal(vd);
+			
+			List<SConstraint> justProperties = getJustProperties(behaviors);
+			EquationBuilder eq = new EquationBuilder();
+			eq.addLhs(vd.id);
+			if(justProperties.isEmpty()) {
+				//another hack for when there are no properties
+				eq.setExpr(new BoolExpr(true));
+			} else {
+				eq.setExpr(conjunctify(justProperties.iterator()));	
+			}
+			builder.addEquation(eq.build());
+			builder.addProperty(vd.id);
 			builder.addIvcs(SConstraint.toPropertyIds(ListUtils.union(assumptions, requirements), this));			
 		}
 		return builder.build();
 	}
 	
+	private List<SConstraint> getJustProperties(List<SConstraint> behaviors) {
+		List<SConstraint> filtered = new ArrayList<>(); 
+		for(SConstraint c : behaviors) {
+			if (c instanceof SFormalConstraint) {
+				SFormalConstraint sfc = (SFormalConstraint) c;
+				if(!sfc.isObserver) {
+					filtered.add(sfc);
+				}
+			}
+		}
+		return filtered;
+	}
+
 	public Node getLogicalEntailmentCalled() {
 		NodeBuilder builder = new NodeBuilder(this.toBaseLustre());
 		builder.addEquation(this.getAssertionCalledEquation(requirements));

@@ -138,6 +138,11 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 					}
 				}
 				
+				//this is a hack to ensure the invert list accounts for the additional property that captures all properties.
+				if(SpearRuntimeOptions.enableIVCDuringEntailment) {
+					invert.add(false);
+				}
+				
 				JKindResult result = new JKindResult("Spear Result", p.getMainNode().properties, invert, renaming);
 				showView(result, new SpearRegularLayout(specification));
 
