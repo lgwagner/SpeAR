@@ -17,6 +17,8 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.handlers.IHandlerActivation;
+import org.eclipse.ui.handlers.IHandlerService;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
@@ -28,6 +30,7 @@ import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.translate.handlers.TerminateHandler;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.translate.layout.SpearRegularLayout;
 import com.rockwellcollins.spear.translate.master.SProgram;
@@ -45,6 +48,8 @@ import jkind.results.layout.Layout;
 
 public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 
+	private static final String TERMINATE_ID = "com.rockwellcollins.spear.translate.commands.terminateAnalysis";
+
 	private IWorkbenchWindow window;
 
 	@Override
@@ -60,13 +65,13 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 
 		XtextEditor xte = (XtextEditor) editor;
 		IXtextDocument doc = xte.getDocument();
-		
+
 		runAnalysis(doc, new NullProgressMonitor());
 	}
 
 	private void runAnalysis(IXtextDocument doc, IProgressMonitor monitor) {
 		doc.readOnly(new IUnitOfWork<Void, XtextResource>() {
-			
+
 			@Override
 			public java.lang.Void exec(XtextResource state) throws Exception {
 				File f = (File) state.getContents().get(0);
@@ -90,50 +95,42 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 					return null;
 				}
 
-				//Set the runtime options
+				// Set the runtime options
 				SpearRuntimeOptions.setRuntimeOptions();
-				
+
 				SpearDocument workingCopy = new SpearDocument(specification);
 				workingCopy.transform();
-				
+
 				SProgram program = SProgram.build(workingCopy);
 				Program p = program.getLogicalEntailment();
-								
-				if(SpearRuntimeOptions.printFinalLustre) {
+
+				if (SpearRuntimeOptions.printFinalLustre) {
 					IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-					
-					//create the generated folder
+
+					// create the generated folder
 					URI folderURI = ActionUtilities.createFolder(state.getURI(), "generated");
 					ActionUtilities.makeFolder(root.getFolder(new Path(folderURI.toPlatformString(true))));
-					
-					//create the lustre file
+
+					// create the lustre file
 					String filename = ActionUtilities.getGeneratedFile(state.getURI(), "lus");
-					URI lustreURI = ActionUtilities.createURI(folderURI, filename);					
+					URI lustreURI = ActionUtilities.createURI(folderURI, filename);
 					IResource finalResource = root.getFile(new Path(lustreURI.toPlatformString(true)));
 					ActionUtilities.printResource(finalResource, p.toString());
-					
+
 					// refresh the workspace
 					root.refreshLocal(IResource.DEPTH_INFINITE, null);
 				}
-				
+
 				JKindApi api = PreferencesUtil.getJKindApi();
-				if(SpearRuntimeOptions.generalizeCEX) {
-					System.out.println("A");
-					api.setIntervalGeneralization();
-				}
-				
-				if(SpearRuntimeOptions.smoothCEX) {
-					System.out.println("B");
-					api.setSmoothCounterexamples();
-				}
+				setApiOptions(api);
 
 				Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.getMain()), Mode.IDENTITY);
 				List<Boolean> invert = new ArrayList<>();
 				Specification s = workingCopy.specifications.get(workingCopy.mainName);
-				for(Constraint c : s.getBehaviors()) {
+				for (Constraint c : s.getBehaviors()) {
 					if (c instanceof FormalConstraint) {
 						FormalConstraint fc = (FormalConstraint) c;
-						if(fc.getFlagAsWitness() != null) {
+						if (fc.getFlagAsWitness() != null) {
 							invert.add(true);
 						} else {
 							invert.add(false);
@@ -142,14 +139,16 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 						invert.add(false);
 					}
 				}
-				
-				//this is a hack to ensure the invert list accounts for the additional property that captures all properties.
-				if(SpearRuntimeOptions.enableIVCDuringEntailment) {
+
+				// this is a hack to ensure the invert list accounts for the
+				// additional property that captures all properties.
+				if (SpearRuntimeOptions.enableIVCDuringEntailment) {
 					api.setIvcReduction();
 					invert.add(false);
 				}
-				
+
 				JKindResult result = new JKindResult("Spear Result", p.getMainNode().properties, invert, renaming);
+				activateTerminateHandler(monitor);
 				showView(result, new SpearRegularLayout(specification));
 
 				new Thread() {
@@ -159,11 +158,46 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 						} catch (Exception e) {
 							System.err.println(result.getText());
 							throw e;
+						} finally {
+							deactivateTerminateHandler();
 						}
+						
 					}
 				}.start();
 
 				return null;
+			}
+
+			private void setApiOptions(JKindApi api) {
+				if (SpearRuntimeOptions.generalizeCEX) {
+					api.setIntervalGeneralization();
+				}
+
+				if (SpearRuntimeOptions.smoothCEX) {
+					api.setSmoothCounterexamples();
+				}
+			}
+		});
+	}
+
+	private IHandlerActivation activation;
+	
+	private void activateTerminateHandler(final IProgressMonitor monitor) {
+		final IHandlerService handlerService = (IHandlerService) window.getService(IHandlerService.class);
+		window.getShell().getDisplay().syncExec(new Runnable() {
+			@Override
+			public void run() {
+				activation = handlerService.activateHandler(TERMINATE_ID,new TerminateHandler(monitor));
+			}
+		});
+	}
+	
+	private void deactivateTerminateHandler() {
+		final IHandlerService handlerService = (IHandlerService) window.getService(IHandlerService.class);
+		window.getShell().getDisplay().syncExec(new Runnable() {
+			@Override
+			public void run() {
+				handlerService.deactivateHandler(activation);
 			}
 		});
 	}
@@ -173,7 +207,8 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 			@Override
 			public void run() {
 				try {
-					SpearEntailmentResultsView page = (SpearEntailmentResultsView) window.getActivePage().showView(SpearEntailmentResultsView.ID);
+					SpearEntailmentResultsView page = (SpearEntailmentResultsView) window.getActivePage()
+							.showView(SpearEntailmentResultsView.ID);
 					page.setInput(result, layout, null);
 				} catch (PartInitException e) {
 					e.printStackTrace();
@@ -183,10 +218,12 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 	}
 
 	@Override
-	public void selectionChanged(IAction arg0, ISelection arg1) {}
+	public void selectionChanged(IAction arg0, ISelection arg1) {
+	}
 
 	@Override
-	public void dispose() {}
+	public void dispose() {
+	}
 
 	@Override
 	public void init(IWorkbenchWindow arg0) {

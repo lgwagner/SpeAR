@@ -14,6 +14,8 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.handlers.IHandlerActivation;
+import org.eclipse.ui.handlers.IHandlerService;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
@@ -23,6 +25,7 @@ import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.translate.handlers.TerminateHandler;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.translate.layout.SpearRealizabilityLayout;
 import com.rockwellcollins.spear.translate.master.SProgram;
@@ -41,6 +44,8 @@ import jkind.results.layout.Layout;
 
 public class CheckRealizability implements IWorkbenchWindowActionDelegate {
 
+	private static final String TERMINATE_ID = "com.rockwellcollins.spear.translate.commands.terminateAnalysis";
+	
 	private IWorkbenchWindow window;
 
 	@Override
@@ -115,6 +120,7 @@ public class CheckRealizability implements IWorkbenchWindowActionDelegate {
 
 				Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.getMain()), Mode.IDENTITY);
 				JRealizabilityResult result = new JRealizabilityResult("SpeAR Realizability Result", renaming);
+				activateTerminateHandler(monitor);
 				showView(result, new SpearRealizabilityLayout(specification));
 
 				new Thread() {
@@ -124,6 +130,8 @@ public class CheckRealizability implements IWorkbenchWindowActionDelegate {
 						} catch (Exception e) {
 							System.err.println(result.getText());
 							throw e;
+						} finally {
+							deactivateTerminateHandler();
 						}
 					}
 				}.start();
@@ -133,6 +141,28 @@ public class CheckRealizability implements IWorkbenchWindowActionDelegate {
 		});
 	}
 
+	private IHandlerActivation activation;
+	
+	private void activateTerminateHandler(final IProgressMonitor monitor) {
+		final IHandlerService handlerService = (IHandlerService) window.getService(IHandlerService.class);
+		window.getShell().getDisplay().syncExec(new Runnable() {
+			@Override
+			public void run() {
+				activation = handlerService.activateHandler(TERMINATE_ID,new TerminateHandler(monitor));
+			}
+		});
+	}
+	
+	private void deactivateTerminateHandler() {
+		final IHandlerService handlerService = (IHandlerService) window.getService(IHandlerService.class);
+		window.getShell().getDisplay().syncExec(new Runnable() {
+			@Override
+			public void run() {
+				handlerService.deactivateHandler(activation);
+			}
+		});
+	}
+	
 	private void showView(final JKindResult result, final Layout layout) {
 		window.getShell().getDisplay().syncExec(new Runnable() {
 			@Override
