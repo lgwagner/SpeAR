@@ -176,14 +176,15 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 
 	private void configureEnabledFieldEditors() {
 		boolean isJKind = selectedModelChecker.equals(PreferenceConstants.MODEL_CHECKER_JKIND);
-		boolean isYices = false;
+		boolean isYices = selectedSolver.equals(PreferenceConstants.SOLVER_YICES2);
+		boolean isZ3 = selectedSolver.equals(PreferenceConstants.SOLVER_Z3);
 		bmcFieldEditor.setEnabled(isJKind, getFieldEditorParent());
 		kInductionFieldEditor.setEnabled(isJKind, getFieldEditorParent());
 		invGenFieldEditor.setEnabled(isJKind, getFieldEditorParent());
 		pdrMaxFieldEditor.setEnabled(isJKind, getFieldEditorParent());
 		solverFieldEditor.setEnabled(isJKind, getFieldEditorParent());
 		inductCexFieldEditor.setEnabled(isJKind, getFieldEditorParent());
-		smoothCexFieldEditor.setEnabled(isJKind && isYices, getFieldEditorParent());
+		smoothCexFieldEditor.setEnabled(isJKind && (isYices || isZ3), getFieldEditorParent());
 		intervalGenFieldEditor.setEnabled(isJKind, getFieldEditorParent());
 		depthFieldEditor.setEnabled(isJKind, getFieldEditorParent());
 	}

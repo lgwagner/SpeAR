@@ -48,6 +48,16 @@ public class PreferencesUtil {
 		return solver.equals(PreferenceConstants.SOLVER_Z3);
 	}
 	
+	public static boolean generalizeCEX() {
+		IPreferenceStore prefs = getPreferenceStore();
+		return prefs.getBoolean(PreferenceConstants.PREF_INTERVAL_GENERALIZATION);
+	}
+	
+	public static boolean smoothCEX() {
+		IPreferenceStore prefs = getPreferenceStore();
+		return prefs.getBoolean(PreferenceConstants.PREF_SMOOTH_COUNTEREXAMPLES);
+	}
+	
 	private static IPreferenceStore getPreferenceStore() {
 		return SpearActivator.getInstance().getPreferenceStore();
 	}
@@ -107,4 +117,6 @@ public class PreferencesUtil {
 			throw new JKindException("Unable to extract jkind.jar from plug-in", e);
 		}
 	}
+
+
 }

@@ -97,7 +97,6 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 				workingCopy.transform();
 				
 				SProgram program = SProgram.build(workingCopy);
-
 				Program p = program.getLogicalEntailment();
 								
 				if(SpearRuntimeOptions.printFinalLustre) {
@@ -118,8 +117,14 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 				}
 				
 				JKindApi api = PreferencesUtil.getJKindApi();
-				if(SpearRuntimeOptions.enableIVCDuringEntailment) {
-					api.setIvcReduction();					
+				if(SpearRuntimeOptions.generalizeCEX) {
+					System.out.println("A");
+					api.setIntervalGeneralization();
+				}
+				
+				if(SpearRuntimeOptions.smoothCEX) {
+					System.out.println("B");
+					api.setSmoothCounterexamples();
 				}
 
 				Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.getMain()), Mode.IDENTITY);
@@ -140,6 +145,7 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 				
 				//this is a hack to ensure the invert list accounts for the additional property that captures all properties.
 				if(SpearRuntimeOptions.enableIVCDuringEntailment) {
+					api.setIvcReduction();
 					invert.add(false);
 				}
 				

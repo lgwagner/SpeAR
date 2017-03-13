@@ -9,6 +9,8 @@ public class SpearRuntimeOptions {
 	public static boolean recursiveGraphicalDisplay = false;
 	public static boolean enableIVCDuringEntailment = false;
 	public static boolean isSolverNonlinear = false;
+	public static boolean generalizeCEX = false;
+	public static boolean smoothCEX = false;
 	
 	public static void setRuntimeOptions() {
 		SpearRuntimeOptions.consistencyDepth = PreferencesUtil.getConsistencyDepthOption();
@@ -16,5 +18,7 @@ public class SpearRuntimeOptions {
 		SpearRuntimeOptions.recursiveGraphicalDisplay = PreferencesUtil.getRecursiveGraphicalDisplayOption();
 		SpearRuntimeOptions.enableIVCDuringEntailment = PreferencesUtil.getEnableIVCDuringEntailment();
 		SpearRuntimeOptions.isSolverNonlinear = PreferencesUtil.getSolverNonlinear();
+		SpearRuntimeOptions.generalizeCEX = PreferencesUtil.generalizeCEX();
+		SpearRuntimeOptions.smoothCEX  = PreferencesUtil.smoothCEX();
 	}
 }
