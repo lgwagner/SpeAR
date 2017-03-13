@@ -12,6 +12,8 @@ import org.eclipse.jface.text.TextSelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.handlers.HandlerUtil;
+import org.eclipse.ui.handlers.IHandlerActivation;
+import org.eclipse.ui.handlers.IHandlerService;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.resource.EObjectAtOffsetHelper;
@@ -39,6 +41,8 @@ import jkind.results.layout.NodeLayout;
 
 public class AnalyzePattern extends AbstractHandler {
 
+	private static final String TERMINATE_ID = "com.rockwellcollins.spear.translate.commands.terminateAnalysis";
+	
 	private IWorkbenchWindow window;
 
 	@Override
@@ -95,21 +99,27 @@ public class AnalyzePattern extends AbstractHandler {
 		SProgram pprogram = SProgram.build(document);
 		Program program = pprogram.patternToLustre();
 		
-		System.out.println(program.toString());
-		
 		JKindApi api = PreferencesUtil.getJKindApi();
 		JKindResult result = new JKindResult("result");
 		program.getMainNode().properties.stream().forEach(prop -> result.addProperty(prop));
 		IProgressMonitor monitor = new NullProgressMonitor();
 		String nicename = "Pattern Analysis: " + p.getName();
+		
+		activateTerminateHandler(monitor);
 		showView(result, new NodeLayout(program.getMainNode()), nicename);
 		
-		try {
-			api.execute(program, result, monitor);
-		} catch (Exception e) {
-			System.out.println(result.getText());
-			throw e;
-		}		
+		new Thread() {
+			public void run() {
+				try {
+					api.execute(program, result, monitor);
+				} catch (Exception e) {
+					System.out.println(result.getText());
+					throw e;
+				} finally {
+					deactivateTerminateHandler();
+				}
+			}
+		}.start();
 	}
 	
 	private void showView(final JKindResult result, final Layout layout, String title) {
@@ -122,6 +132,28 @@ public class AnalyzePattern extends AbstractHandler {
 				} catch (PartInitException e) {
 					e.printStackTrace();
 				}
+			}
+		});
+	}
+	
+	private IHandlerActivation activation;
+	
+	private void activateTerminateHandler(final IProgressMonitor monitor) {
+		final IHandlerService handlerService = (IHandlerService) window.getService(IHandlerService.class);
+		window.getShell().getDisplay().syncExec(new Runnable() {
+			@Override
+			public void run() {
+				activation = handlerService.activateHandler(TERMINATE_ID,new TerminateHandler(monitor));
+			}
+		});
+	}
+	
+	private void deactivateTerminateHandler() {
+		final IHandlerService handlerService = (IHandlerService) window.getService(IHandlerService.class);
+		window.getShell().getDisplay().syncExec(new Runnable() {
+			@Override
+			public void run() {
+				handlerService.deactivateHandler(activation);
 			}
 		});
 	}
