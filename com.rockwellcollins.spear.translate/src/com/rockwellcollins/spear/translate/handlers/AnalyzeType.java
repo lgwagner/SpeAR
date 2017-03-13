@@ -62,6 +62,9 @@ public class AnalyzeType extends AbstractHandler {
 				return null;
 			}
 			
+			//Set the runtime options
+			SpearRuntimeOptions.setRuntimeOptions();
+			
 			analyzeType(td);
 			return null;
 		});
@@ -81,7 +84,6 @@ public class AnalyzeType extends AbstractHandler {
 	}
 	
 	private void analyzeType(TypeDef td) {
-		SpearRuntimeOptions.setRuntimeOptions();
 		
 		TypeDocument document = new TypeDocument(td);
 

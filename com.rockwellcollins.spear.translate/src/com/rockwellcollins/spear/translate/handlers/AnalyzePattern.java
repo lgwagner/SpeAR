@@ -24,6 +24,7 @@ import org.eclipse.xtext.validation.Issue;
 
 import com.google.inject.Injector;
 import com.rockwellcollins.spear.Pattern;
+import com.rockwellcollins.spear.translate.actions.SpearRuntimeOptions;
 import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
 import com.rockwellcollins.spear.translate.master.SProgram;
 import com.rockwellcollins.spear.translate.views.SpearConsistencyResultsView;
@@ -60,6 +61,9 @@ public class AnalyzePattern extends AbstractHandler {
 				return null;
 			}
 			
+			//Set the runtime options
+			SpearRuntimeOptions.setRuntimeOptions();
+			
 			analyzePattern(p);
 			return null;
 		});
@@ -90,6 +94,8 @@ public class AnalyzePattern extends AbstractHandler {
 		
 		SProgram pprogram = SProgram.build(document);
 		Program program = pprogram.patternToLustre();
+		
+		System.out.println(program.toString());
 		
 		JKindApi api = PreferencesUtil.getJKindApi();
 		JKindResult result = new JKindResult("result");
