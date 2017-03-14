@@ -213,7 +213,11 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 
 	@Override
 	public Type caseConstant(Constant c) {
-		return doSwitch(c.getType());
+		Type expected = doSwitch(c.getType());
+		if(!expectAssignableType(expected, c.getExpr())) {
+			return error(c);
+		}
+		return expected;
 	}
 
 	@Override
