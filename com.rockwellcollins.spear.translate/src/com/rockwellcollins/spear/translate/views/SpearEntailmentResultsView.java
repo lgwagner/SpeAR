@@ -1,5 +1,7 @@
 package com.rockwellcollins.spear.translate.views;
 
+import java.util.List;
+
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
@@ -9,14 +11,14 @@ import jkind.api.ui.results.AnalysisResultTable;
 import jkind.results.layout.Layout;
 
 /**
- * JKindResult is a helper class for performing analysis. 
+ * JKindResult is a helper class for performing analysis.
  */
 public class SpearEntailmentResultsView extends ViewPart {
 	public static final String ID = "com.rockwellcollins.spear.translate.views.SpearEntailmentResultsView";
 
 	private AnalysisResultTable table;
 	private SpearEntailmentMenuListener menuListener;
-	
+
 	@Override
 	public void createPartControl(Composite parent) {
 		table = new AnalysisResultTable(parent);
@@ -32,13 +34,10 @@ public class SpearEntailmentResultsView extends ViewPart {
 		table.getControl().setFocus();
 	}
 
-	public void setInput(JKindResult result, Layout layout, String title) {
+	public void setInput(JKindResult result, Layout layout, List<String> requirements) {
 		table.setInput(result);
 		menuListener.setLayout(layout);
-		if(title != null) {
-			setPartName(title);			
-		} else {
-			setPartName("Analysis Results");
-		}
+		menuListener.setRequirements(requirements);
+		setPartName("Analysis Results");
 	}
 }

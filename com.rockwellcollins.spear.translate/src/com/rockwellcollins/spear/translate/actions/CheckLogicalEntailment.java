@@ -1,5 +1,7 @@
 package com.rockwellcollins.spear.translate.actions;
 
+import static java.util.stream.Collectors.toList;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -149,7 +151,9 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 
 				JKindResult result = new JKindResult("Spear Result", p.getMainNode().properties, invert, renaming);
 				activateTerminateHandler(monitor);
-				showView(result, new SpearRegularLayout(specification));
+				List<String> requirements = specification.getRequirements().stream().map(req -> req.getName())
+						.collect(toList());
+				showView(result, new SpearRegularLayout(specification), requirements);
 
 				new Thread() {
 					public void run() {
@@ -161,7 +165,7 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 						} finally {
 							deactivateTerminateHandler();
 						}
-						
+
 					}
 				}.start();
 
@@ -181,17 +185,17 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 	}
 
 	private IHandlerActivation activation;
-	
+
 	private void activateTerminateHandler(final IProgressMonitor monitor) {
 		final IHandlerService handlerService = (IHandlerService) window.getService(IHandlerService.class);
 		window.getShell().getDisplay().syncExec(new Runnable() {
 			@Override
 			public void run() {
-				activation = handlerService.activateHandler(TERMINATE_ID,new TerminateHandler(monitor));
+				activation = handlerService.activateHandler(TERMINATE_ID, new TerminateHandler(monitor));
 			}
 		});
 	}
-	
+
 	private void deactivateTerminateHandler() {
 		final IHandlerService handlerService = (IHandlerService) window.getService(IHandlerService.class);
 		window.getShell().getDisplay().syncExec(new Runnable() {
@@ -202,14 +206,14 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 		});
 	}
 
-	private void showView(final JKindResult result, final Layout layout) {
+	private void showView(final JKindResult result, final Layout layout, List<String> requirements) {
 		window.getShell().getDisplay().asyncExec(new Runnable() {
 			@Override
 			public void run() {
 				try {
 					SpearEntailmentResultsView page = (SpearEntailmentResultsView) window.getActivePage()
 							.showView(SpearEntailmentResultsView.ID);
-					page.setInput(result, layout, null);
+					page.setInput(result, layout, requirements);
 				} catch (PartInitException e) {
 					e.printStackTrace();
 				}

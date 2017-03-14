@@ -2,6 +2,7 @@ package com.rockwellcollins.spear.translate.views;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.jface.action.Action;
@@ -13,6 +14,7 @@ import org.eclipse.swt.program.Program;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 
+import jkind.api.results.JKindResult;
 import jkind.api.results.PropertyResult;
 import jkind.api.ui.results.AnalysisResultColumnViewer;
 import jkind.api.ui.results.AnalysisResultTable;
@@ -30,6 +32,7 @@ public class SpearEntailmentMenuListener implements IMenuListener {
 	private final AnalysisResultColumnViewer columnViewer;
 	private Layout layout;
 	private IWorkbenchWindow window;
+	private List<String> requirements;
 
 	public SpearEntailmentMenuListener(IWorkbenchWindow window, AnalysisResultTable columnViewer) {
 		this.window = window;
@@ -39,7 +42,7 @@ public class SpearEntailmentMenuListener implements IMenuListener {
 	public void setLayout(Layout layout) {
 		this.layout = layout;
 	}
-	
+
 	@Override
 	public void menuAboutToShow(IMenuManager manager) {
 		IStructuredSelection selection = (IStructuredSelection) columnViewer.getViewer().getSelection();
@@ -51,7 +54,7 @@ public class SpearEntailmentMenuListener implements IMenuListener {
 
 	private void addLinkedMenus(IMenuManager manager, PropertyResult result) {
 		addViewCounterexampleMenu(manager, result);
-		addViewSupport(manager,result);
+		addViewTraceabilityMatrix(manager, result);
 	}
 
 	private void addViewCounterexampleMenu(IMenuManager manager, PropertyResult result) {
@@ -61,7 +64,7 @@ public class SpearEntailmentMenuListener implements IMenuListener {
 		}
 
 		boolean inductive = result.getProperty() instanceof UnknownProperty;
-		
+
 		String text = "View " + (inductive ? "Inductive " : "") + "Counterexample in ";
 		manager.add(new Action(text + "spreadsheet") {
 			@Override
@@ -69,55 +72,63 @@ public class SpearEntailmentMenuListener implements IMenuListener {
 				viewCexSpreadsheet(cex, layout);
 			}
 		});
-		
+
 		manager.add(new Action(text + "Eclipse") {
 			@Override
 			public void run() {
-				viewCexEclipse(cex,layout);
+				viewCexEclipse(cex, layout);
 			}
 		});
 	}
 
-	private void addViewSupport(IMenuManager manager, PropertyResult result) {
+	private void addViewTraceabilityMatrix(IMenuManager manager, PropertyResult result) {
 		final Set<String> support = getSupport(result);
 		if (support == null || support.size() == 0) {
 			return;
 		}
 
-		manager.add(new Action("Show supporting Assumptions/Requirements.") {
+		manager.add(new Action("View Traceability Matrix") {
 			@Override
 			public void run() {
-				viewSupport(support, result.getName());
+				showSpearTraceabilityMatrixView((JKindResult) columnViewer.getViewer().getInput());
 			}
 		});
 	}
-	
+
 	private void viewCexEclipse(Counterexample cex, Layout layout) {
 		try {
-			SpearCounterexampleView cexView = (SpearCounterexampleView) window.getActivePage().showView(SpearCounterexampleView.ID);
+			SpearCounterexampleView cexView = (SpearCounterexampleView) window.getActivePage()
+					.showView(SpearCounterexampleView.ID);
 			cexView.setInput(cex, layout);
 			cexView.setFocus();
 		} catch (PartInitException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void viewCexSpreadsheet(Counterexample cex, Layout layout) {
 		try {
 			File file = File.createTempFile("cex", ".xls");
 			cex.toExcel(file, layout);
 			Program.launch(file.toString());
 		} catch (IOException e) {
-			MessageDialog.openError(columnViewer.getControl().getShell(), "Error opening spreadsheet",
-					e.getMessage());
+			MessageDialog.openError(columnViewer.getControl().getShell(), "Error opening spreadsheet", e.getMessage());
 			e.printStackTrace();
 		}
 	}
 
-	private void viewSupport(Set<String> support, String name) {
-		MessageDialog.openInformation(window.getShell(), name + " supporting Assumptions/Requirements", support.toString());
+	private void showSpearTraceabilityMatrixView(JKindResult result) {
+		window.getShell().getDisplay().asyncExec(() -> {
+			try {
+				SpearTraceabilityMatrixView page = (SpearTraceabilityMatrixView) window.getActivePage()
+						.showView(SpearTraceabilityMatrixView.ID);
+				page.setInput(result, requirements);
+			} catch (PartInitException e) {
+				e.printStackTrace();
+			}
+		});
 	}
-	
+
 	private static Set<String> getSupport(PropertyResult result) {
 		Property prop = result.getProperty();
 		if (prop instanceof ValidProperty) {
@@ -126,7 +137,7 @@ public class SpearEntailmentMenuListener implements IMenuListener {
 		}
 		return null;
 	}
-	
+
 	private static Counterexample getCounterexample(PropertyResult result) {
 		Property prop = result.getProperty();
 		if (prop instanceof InvalidProperty) {
@@ -136,5 +147,9 @@ public class SpearEntailmentMenuListener implements IMenuListener {
 		} else {
 			return null;
 		}
+	}
+
+	public void setRequirements(List<String> requirements) {
+		this.requirements = requirements;
 	}
 }

@@ -98,7 +98,13 @@
               class="com.rockwellcollins.spear.translate.views.SpearCounterexampleView"
               icon="icons/counterexample.png"
               id="com.rockwellcollins.spear.translate.views.SpearCounterexampleView"
-              name="Counterexample"/>              
+              name="Counterexample"/>
+        <view
+              category="com.rockwellcollins.spear.translate.lustre"
+              class="com.rockwellcollins.spear.translate.views.SpearTraceabilityMatrixView"
+              icon="icons/spreadsheet.png"
+              id="com.rockwellcollins.spear.translate.views.SpearTraceabilityMatrixView"
+              name="Traceability Matrix"/>            
    </extension>
    
    <extension
