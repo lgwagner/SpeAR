@@ -153,20 +153,21 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 				activateTerminateHandler(monitor);
 				List<String> requirements = specification.getRequirements().stream().map(req -> req.getName())
 						.collect(toList());
-				List<String> observers = getObservers(specification);
-				showView(result, new SpearRegularLayout(specification), requirements, observers);
+				showView(result, new SpearRegularLayout(specification), requirements);
 
-				new Thread(() -> {
-					try {
-						api.execute(p, result, monitor);
-					} catch (Exception e) {
-						System.err.println(result.getText());
-						throw e;
-					} finally {
-						deactivateTerminateHandler();
+				new Thread() {
+					public void run() {
+						try {
+							api.execute(p, result, monitor);
+						} catch (Exception e) {
+							System.err.println(result.getText());
+							throw e;
+						} finally {
+							deactivateTerminateHandler();
+						}
+
 					}
-
-				}).start();
+				}.start();
 
 				return null;
 			}
@@ -181,19 +182,6 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 				}
 			}
 		});
-	}
-
-	private List<String> getObservers(Specification specification) {
-		List<String> result = new ArrayList<>();
-		for (Constraint c : specification.getBehaviors()) {
-			if (c instanceof FormalConstraint) {
-				FormalConstraint fc = (FormalConstraint) c;
-				if ("observe".equals(fc.getFlagAsWitness())) {
-					result.add(c.getName());
-				}
-			}
-		}
-		return result;
 	}
 
 	private IHandlerActivation activation;
@@ -218,15 +206,14 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 		});
 	}
 
-	private void showView(final JKindResult result, final Layout layout, List<String> requirements,
-			List<String> observers) {
+	private void showView(final JKindResult result, final Layout layout, List<String> requirements) {
 		window.getShell().getDisplay().asyncExec(new Runnable() {
 			@Override
 			public void run() {
 				try {
 					SpearEntailmentResultsView page = (SpearEntailmentResultsView) window.getActivePage()
 							.showView(SpearEntailmentResultsView.ID);
-					page.setInput(result, layout, requirements, observers);
+					page.setInput(result, layout, requirements);
 				} catch (PartInitException e) {
 					e.printStackTrace();
 				}

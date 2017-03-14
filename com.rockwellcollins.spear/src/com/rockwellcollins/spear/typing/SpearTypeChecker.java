@@ -218,7 +218,11 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 
 	@Override
 	public Type caseMacro(Macro m) {
-		return doSwitch(m.getType());
+		Type expected = doSwitch(m.getType());
+		if(!expectAssignableType(expected, m.getExpr())) {
+			return error(m);
+		}
+		return expected;
 	}
 	
 	@Override
