@@ -16,8 +16,6 @@ import org.eclipse.ui.PartInitException;
 
 import jkind.api.results.JKindResult;
 import jkind.api.results.PropertyResult;
-import jkind.api.ui.results.AnalysisResultColumnViewer;
-import jkind.api.ui.results.AnalysisResultTable;
 import jkind.results.Counterexample;
 import jkind.results.InvalidProperty;
 import jkind.results.Property;
@@ -29,12 +27,12 @@ import jkind.results.layout.Layout;
  * JKindMenuListener is a class necessary to display the Analysis pulldown menu.
  */
 public class SpearEntailmentMenuListener implements IMenuListener {
-	private final AnalysisResultColumnViewer columnViewer;
+	private final SpearAnalysisResultTable columnViewer;
 	private Layout layout;
 	private IWorkbenchWindow window;
 	private List<String> requirements;
 
-	public SpearEntailmentMenuListener(IWorkbenchWindow window, AnalysisResultTable columnViewer) {
+	public SpearEntailmentMenuListener(IWorkbenchWindow window, SpearAnalysisResultTable columnViewer) {
 		this.window = window;
 		this.columnViewer = columnViewer;
 	}

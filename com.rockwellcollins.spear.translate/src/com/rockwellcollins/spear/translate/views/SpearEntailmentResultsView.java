@@ -7,7 +7,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
 
 import jkind.api.results.JKindResult;
-import jkind.api.ui.results.AnalysisResultTable;
 import jkind.results.layout.Layout;
 
 /**
@@ -16,12 +15,12 @@ import jkind.results.layout.Layout;
 public class SpearEntailmentResultsView extends ViewPart {
 	public static final String ID = "com.rockwellcollins.spear.translate.views.SpearEntailmentResultsView";
 
-	private AnalysisResultTable table;
+	private SpearAnalysisResultTable table;
 	private SpearEntailmentMenuListener menuListener;
 
 	@Override
 	public void createPartControl(Composite parent) {
-		table = new AnalysisResultTable(parent);
+		table = new SpearAnalysisResultTable(parent);
 		menuListener = new SpearEntailmentMenuListener(this.getViewSite().getWorkbenchWindow(), table);
 		MenuManager manager = new MenuManager();
 		manager.setRemoveAllWhenShown(true);
@@ -34,8 +33,9 @@ public class SpearEntailmentResultsView extends ViewPart {
 		table.getControl().setFocus();
 	}
 
-	public void setInput(JKindResult result, Layout layout, List<String> requirements) {
+	public void setInput(JKindResult result, Layout layout, List<String> requirements, List<String> observers) {
 		table.setInput(result);
+		table.setObservers(observers);
 		menuListener.setLayout(layout);
 		menuListener.setRequirements(requirements);
 		setPartName("Analysis Results");
