@@ -17,7 +17,6 @@ public class Utilities {
 		String URI = im.getImportURI();
 		Resource importedResource = EcoreUtil2.getResource(root.eResource(), URI);
 		List<EObject> contents = importedResource.getContents();
-		
 		if(contents.size() == 1) {
 			EObject element = contents.get(0);
 			return (File) element;

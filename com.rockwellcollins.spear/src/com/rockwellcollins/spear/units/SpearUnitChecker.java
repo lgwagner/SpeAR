@@ -2,6 +2,7 @@ package com.rockwellcollins.spear.units;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -53,6 +54,7 @@ import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.UserType;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.WhileExpr;
+import com.rockwellcollins.spear.typing.SpearTypeChecker;
 import com.rockwellcollins.spear.util.SpearSwitch;
 import com.rockwellcollins.spear.utilities.IntConstantFinder;
 
@@ -62,6 +64,16 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		SpearUnitChecker unitCheck = new SpearUnitChecker(errors, acceptor);
 		return unitCheck.doSwitch(o);
 	}
+	
+	 public static Unit unitCheck(EObject o) {
+	    SpearUnitChecker unitcheck = new SpearUnitChecker();
+	    return unitcheck.doSwitch(o);
+	  }
+	
+	 public SpearUnitChecker() {
+	    this.errors = new HashSet<>();
+	    this.messageAcceptor = null;
+	  }
 	
 	final private ValidationMessageAcceptor messageAcceptor;
 	private Set<EObject> errors;

@@ -81,11 +81,13 @@ Workflow {
     
     		// scoping and exporting API
 			fragment = scoping.ImportNamespacesScopingFragment auto-inject {}
-    		fragment = exporting.QualifiedNamesFragment auto-inject {}
-    		fragment = builder.BuilderIntegrationFragment auto-inject {}
+    	fragment = exporting.QualifiedNamesFragment auto-inject {}
+    	fragment = builder.BuilderIntegrationFragment auto-inject {}
     
     		// generator API
-    		fragment = generator.GeneratorFragment auto-inject {}
+    		fragment = generator.GeneratorFragment auto-inject {
+    		  generateJavaMain = true
+    		}
     
     		// formatter API
     		fragment = formatting.FormatterFragment auto-inject {}
