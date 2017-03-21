@@ -92,14 +92,26 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	/***************************************************************************************************/
 	@Override
 	public Unit caseConstant(Constant c) {
-		Unit result = doSwitch(c.getType());
-		return result;
+		Unit expected = this.doSwitch(c.getType());
+		Unit actual = this.doSwitch(c.getExpr());
+	
+		if(expected.equals(actual)) {
+			return expected;
+		}
+		error("Expected units:" + expected.toString() + ", but actual units are:" + actual.toString(), c, SpearPackage.Literals.CONSTANT__EXPR);
+		return ERROR;
 	}
 
 	@Override
 	public Unit caseMacro(Macro m) {
-		Unit result = doSwitch(m.getType());
-		return result;
+		Unit expected = this.doSwitch(m.getType());
+		Unit actual = this.doSwitch(m.getExpr());
+	
+		if(expected.equals(actual)) {
+			return expected;
+		}
+		error("Expected units:" + expected.toString() + ", but actual units are:" + actual.toString(), m, SpearPackage.Literals.MACRO__EXPR);
+		return ERROR;
 	}
 
 	@Override
