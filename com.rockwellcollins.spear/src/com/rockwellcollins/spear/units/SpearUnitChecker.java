@@ -98,7 +98,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		if(expected.equals(actual)) {
 			return expected;
 		}
-		error("Expected units:" + expected.toString() + ", but actual units are:" + actual.toString(), c, SpearPackage.Literals.CONSTANT__EXPR);
+		error("Expected units: " + expected.toString() + ", but actual units are: " + actual.toString(), c, SpearPackage.Literals.CONSTANT__EXPR);
 		return ERROR;
 	}
 
@@ -110,7 +110,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		if(expected.equals(actual)) {
 			return expected;
 		}
-		error("Expected units:" + expected.toString() + ", but actual units are:" + actual.toString(), m, SpearPackage.Literals.MACRO__EXPR);
+		error("Expected units: " + expected.toString() + ", but actual units are: " + actual.toString(), m, SpearPackage.Literals.MACRO__EXPR);
 		return ERROR;
 	}
 
