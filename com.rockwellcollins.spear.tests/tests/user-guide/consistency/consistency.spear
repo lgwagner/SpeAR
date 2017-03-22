@@ -1,0 +1,18 @@
+Specification consistency
+
+Inputs:
+	x : int
+
+Outputs:
+	y : int
+
+Assumptions:
+	a0: x > 0
+
+Requirements:
+	r0: y < 0
+	r1: y > x
+	r2: y < -22
+	
+Properties:
+	p0: y <= 0

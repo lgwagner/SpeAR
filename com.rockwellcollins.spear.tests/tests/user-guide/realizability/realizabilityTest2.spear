@@ -1,0 +1,20 @@
+Specification realizabilityTest2
+
+Patterns:
+pattern after_initial_timestep() returns (output : bool)
+	let
+		output = false -> true
+	tel
+
+Inputs:
+
+Outputs:
+b : int
+
+Requirements:
+r1: b equal to previous b
+//r1_fix: after_initial_timestep() implies 
+//			b equal to previous b
+r2: b not equal to 0
+
+Properties:
