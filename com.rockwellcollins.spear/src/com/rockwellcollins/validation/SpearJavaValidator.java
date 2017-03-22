@@ -202,4 +202,16 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 			error("Real modulus is only supported on non-linear solvers.", be, null);
 		}
 	}
+	
+	@Check
+	public void checkSpecNameMatchesFilename(File f) {
+		String filename = f.eResource().getURI().trimFileExtension().lastSegment();
+		if(!filename.equals(f.getName())) {
+			if (f instanceof Specification) {
+				error("Specification name must match base filename.",f,SpearPackage.Literals.FILE__NAME);
+			} else {
+				error("Definitions name must match base filename.",f,SpearPackage.Literals.FILE__NAME);
+			}
+		}
+	}
 }
