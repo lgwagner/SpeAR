@@ -25,7 +25,7 @@ public class SpearRuntimeModule extends com.rockwellcollins.AbstractSpearRuntime
 		return SpearDeclarativeQualifiedNameProvider.class;
 	}
 	public Class<? extends IValidatorAdvisor> bindIValidatorAdvisor() {
-	  return AbsurdValidator.class;
+	  return VacuousValidator.class;
 	}
 }
 

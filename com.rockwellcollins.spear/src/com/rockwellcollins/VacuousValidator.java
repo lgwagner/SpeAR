@@ -2,9 +2,9 @@ package com.rockwellcollins;
 
 import com.rockwellcollins.validation.IValidatorAdvisor;
 
-class AbsurdValidator implements IValidatorAdvisor {
+class VacuousValidator implements IValidatorAdvisor {
 
-  public boolean isUnusedValidationsDisabled() {return false;}
+  public boolean isUnusedValidationsDisabled() {return true;}
   public boolean isSolverNonlinear() { return false;}
 
 }
