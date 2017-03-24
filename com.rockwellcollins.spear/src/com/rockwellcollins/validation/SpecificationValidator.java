@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.validation.EValidatorRegistrar;
 
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Definitions;
@@ -113,4 +114,7 @@ public class SpecificationValidator extends AbstractSpearJavaValidator {
 		//unit check
 		errors.addAll(p.getEquations().stream().filter(eq -> unitCheck(eq,errors)).collect(Collectors.toList()));
 	}
+	
+	@Override
+	public void register(EValidatorRegistrar registrar) {}
 }

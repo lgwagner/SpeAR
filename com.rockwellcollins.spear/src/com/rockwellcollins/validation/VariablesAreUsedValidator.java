@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.validation.EValidatorRegistrar;
 
 import com.google.inject.Inject;
 import com.rockwellcollins.spear.ArrayExpr;
@@ -160,4 +161,7 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 	private void unusedError(String message, EObject source, EStructuralFeature feature) {
 		error(message,source,feature);	
 	}
+	
+	@Override
+	public void register(EValidatorRegistrar registrar) {}
 }

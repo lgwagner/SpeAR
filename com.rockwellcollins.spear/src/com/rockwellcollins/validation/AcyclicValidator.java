@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.validation.EValidatorRegistrar;
 
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.IdRef;

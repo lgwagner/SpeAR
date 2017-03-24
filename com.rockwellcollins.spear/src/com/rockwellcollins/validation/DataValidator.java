@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.validation.EValidatorRegistrar;
 
 import com.rockwellcollins.spear.ReviewData;
 import com.rockwellcollins.spear.SpearPackage;
@@ -75,4 +76,7 @@ public class DataValidator extends AbstractSpearJavaValidator {
 			error("Date is an illegal format. Supported formats are: mm-dd-yyyy, mm/dd/yyyy, yyyy-mm-dd, yyyy/mm/dd, yyyymmdd", date, SpearPackage.Literals.REVIEW_DATA__STRING);
 		}
 	}
+	
+	@Override
+	public void register(EValidatorRegistrar registrar) {}
 }

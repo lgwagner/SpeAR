@@ -6,6 +6,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.validation.EValidatorRegistrar;
 
 import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.Macro;
@@ -60,4 +61,7 @@ public class IllegalAnalysisValidations extends AbstractSpearJavaValidator {
 		acceptable.add("is equal to");
 		return acceptable;
 	}
+	
+	@Override
+	public void register(EValidatorRegistrar registrar) {}
 }

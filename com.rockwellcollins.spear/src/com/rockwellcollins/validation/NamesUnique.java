@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.util.SimpleAttributeResolver;
 import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.validation.EValidatorRegistrar;
 
 import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.EnumTypeDef;
@@ -166,4 +167,7 @@ public class NamesUnique extends AbstractSpearJavaValidator {
 			return 0;
 		}
 	}
+	
+	@Override
+	public void register(EValidatorRegistrar registrar) {}
 }
