@@ -23,11 +23,13 @@ import com.rockwellcollins.spear.BinaryUnitExpr;
 import com.rockwellcollins.spear.BoolLiteral;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.DerivedUnit;
+import com.rockwellcollins.spear.EnglishConstraint;
 import com.rockwellcollins.spear.EnumTypeDef;
 import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FieldExpr;
 import com.rockwellcollins.spear.FieldlessRecordExpr;
+import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.IfThenElseExpr;
 import com.rockwellcollins.spear.IntLiteral;
@@ -66,7 +68,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	final private ValidationMessageAcceptor messageAcceptor;
 	private Set<EObject> errors;
 
-	public SpearUnitChecker(Set<EObject> errors, ValidationMessageAcceptor messageAcceptor) {
+	private SpearUnitChecker(Set<EObject> errors, ValidationMessageAcceptor messageAcceptor) {
 		this.errors = errors;
 		this.messageAcceptor = messageAcceptor;
 	}
@@ -99,7 +101,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 			return expected;
 		}
 		error("Expected units: " + expected.toString() + ", but actual units are: " + actual.toString(), c, SpearPackage.Literals.CONSTANT__EXPR);
-		return ERROR;
+		return error(c);
 	}
 
 	@Override
@@ -111,7 +113,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 			return expected;
 		}
 		error("Expected units: " + expected.toString() + ", but actual units are: " + actual.toString(), m, SpearPackage.Literals.MACRO__EXPR);
-		return ERROR;
+		return error(m);
 	}
 
 	@Override
@@ -133,6 +135,16 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 			return error(eq);
 		}
 		return expected;
+	}
+	
+	@Override
+	public Unit caseEnglishConstraint(EnglishConstraint ec) {
+		return SCALAR;
+	}
+	
+	@Override
+	public Unit caseFormalConstraint(FormalConstraint fc) {
+		return doSwitch(fc.getExpr());
 	}
 
 	/***************************************************************************************************/
@@ -265,7 +277,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	public Unit caseType(Type t) {
 		return SCALAR;
 	}
-
+	
 	/***************************************************************************************************/
 	// Expressions
 	/***************************************************************************************************/

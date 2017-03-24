@@ -20,7 +20,7 @@ import com.rockwellcollins.spear.typing.SpearTypeChecker;
 import com.rockwellcollins.spear.units.SpearUnitChecker;
 import com.rockwellcollins.spear.units.Unit;
 
-public class SpecificationValidator extends SpearJavaValidator {
+public class SpecificationValidator extends AbstractSpearJavaValidator {
 	
 	private boolean acyclicCheck(TypeDef td) {
 		List<EObject> deps = AcyclicValidator.validate(td);
@@ -107,7 +107,6 @@ public class SpecificationValidator extends SpearJavaValidator {
 	public void validate(Pattern p) {
 		Set<EObject> errors = new HashSet<>();
 		
-		//acyclic checks
 		//type check
 		errors.addAll(p.getEquations().stream().filter(eq -> typeCheck(eq,errors)).collect(Collectors.toList()));
 		

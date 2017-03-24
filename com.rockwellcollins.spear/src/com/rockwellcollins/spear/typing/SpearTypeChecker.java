@@ -78,12 +78,12 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	final private ValidationMessageAcceptor messageAcceptor;
 	final private Set<EObject> errors;
 
-	public SpearTypeChecker(Set<EObject> errors, ValidationMessageAcceptor acceptor) {
+	private SpearTypeChecker(Set<EObject> errors, ValidationMessageAcceptor acceptor) {
 		this.errors = errors;
 		this.messageAcceptor = acceptor;
 	}
 	
-	public SpearTypeChecker() {
+	private SpearTypeChecker() {
 		this.errors = new HashSet<>();
 		this.messageAcceptor = null;
 	}

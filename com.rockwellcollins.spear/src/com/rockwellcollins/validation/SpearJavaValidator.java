@@ -42,24 +42,19 @@ import com.rockwellcollins.spear.utilities.Utilities;
  * validation
  */
 
-@ComposedChecks(validators = { NamesUnique.class,
+@ComposedChecks(validators = { 
+							   NamesUnique.class,
 							   SpecificationsAcyclicValidator.class,
 							   VariablesAreUsedValidator.class,
 							   IllegalAnalysisValidations.class,
 							   DataValidator.class,
-							   SpecificationValidator.class})
+							   SpecificationValidator.class
+							 })
 
 public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractSpearJavaValidator {
 
 	public static final String INVALID_ASSUMPTION_REF = "INVALID_ASSUMPTION_REF";
 
-	/**
-	 * @param s
-	 *            - a Spear specification
-	 * 
-	 *            This validation will check that assumptions only reference
-	 *            input variables and not computed variables.
-	 */
 	@Check
 	public void checkAssumptions(Specification s) {
 		Set<String> valids = s.getInputs().stream().map(in -> in.getName()).collect(Collectors.toSet());
@@ -76,6 +71,18 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 								valids.toArray(new String[valids.size()]));
 					}
 				}
+			}
+		}
+	}
+	
+	public static final String MISMATCHED_FILENAME = "MISMATCHED_FILENAME";
+	
+	@Check
+	public void checkSpecNameMatchesFilename(File f) {
+		String filename = f.eResource().getURI().trimFileExtension().lastSegment();
+		if(!filename.equals(f.getName())) {
+			if (f instanceof Specification) {
+				error("File ID name must be " + filename,f,SpearPackage.Literals.FILE__NAME,MISMATCHED_FILENAME,filename);
 			}
 		}
 	}
@@ -200,18 +207,6 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 		
 		if(be.getOp().equals("mod") && leftType.equals(PrimitiveType.REAL)) {
 			error("Real modulus is only supported on non-linear solvers.", be, null);
-		}
-	}
-	
-	@Check
-	public void checkSpecNameMatchesFilename(File f) {
-		String filename = f.eResource().getURI().trimFileExtension().lastSegment();
-		if(!filename.equals(f.getName())) {
-			if (f instanceof Specification) {
-				error("Specification name must match base filename.",f,SpearPackage.Literals.FILE__NAME);
-			} else {
-				error("Definitions name must match base filename.",f,SpearPackage.Literals.FILE__NAME);
-			}
 		}
 	}
 }

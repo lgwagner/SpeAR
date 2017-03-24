@@ -33,6 +33,17 @@ public class SpearQuickfixProvider extends org.eclipse.xtext.ui.editor.quickfix.
 		}
 	}
 	
-	
+	@Fix(SpearJavaValidator.MISMATCHED_FILENAME)
+	public void provideBaseFilename(final Issue issue, IssueResolutionAcceptor acceptor) {
+		for (String replacement : issue.getData()) {
+			acceptor.accept(issue, "Change to " + replacement, null, null, new IModification() {
+				@Override
+				public void apply(IModificationContext context) throws Exception {
+					IXtextDocument xtextDocument = context.getXtextDocument();
+					xtextDocument.replace(issue.getOffset(), issue.getLength(), replacement);
+				}
+			});
+		}
+	}
 
 }
