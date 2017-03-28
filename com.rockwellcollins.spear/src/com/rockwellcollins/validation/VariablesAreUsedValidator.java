@@ -125,12 +125,29 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 	}
 	
 	@Check
-	public void checkPatternVariablesAreUsed(Pattern p) {
+	public void checkPatternVariables(Pattern p) {
+		Set<Variable> inputs = new HashSet<>();
+		inputs.addAll(p.getInputs());
+		Set<Variable> computed = new HashSet<>(); 
+		computed.addAll(p.getLocals());
+		computed.addAll(p.getOutputs());
+		
 		Set<IdRef> read = EcoreUtil2.getAllContentsOfType(p, IdExpr.class).stream().map(ide -> ide.getId()).collect(Collectors.toSet());
 
 		Set<Variable> assigned = new HashSet<>();
 		for(LustreEquation leq : EcoreUtil2.getAllContentsOfType(p, LustreEquation.class)) {
-			assigned.addAll(leq.getIds());
+			int i=0;
+			for(Variable v : leq.getIds()) {
+				if(inputs.contains(v)) {
+					error("Pattern input " + v.getName() + " cannot be assigned.",leq,SpearPackage.Literals.LUSTRE_EQUATION__IDS,i);
+				}
+				
+				if(assigned.contains(v)) {
+					error("Pattern variable " + v.getName() + " is already written.",leq,SpearPackage.Literals.LUSTRE_EQUATION__IDS,i);
+				}
+				assigned.add(v);
+				i++;
+			}
 		}
 		
 		for(Variable v : p.getInputs()) {
