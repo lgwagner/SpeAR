@@ -3,7 +3,7 @@ package com.rockwellcollins.spear.translate.master;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.rockwellcollins.spear.translate.actions.SpearRuntimeOptions;
+import com.rockwellcollins.spear.preferences.PreferencesUtil;
 import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
 import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
 import com.rockwellcollins.spear.translate.naming.SpearMap;
@@ -110,7 +110,7 @@ public class SProgram extends SMapElement {
 	private void addNodes(ProgramBuilder program) {
 		//add the PLTL nodes
 		program.addNodes(LustreLibrary.getLibraries());		
-		if(SpearRuntimeOptions.isSolverNonlinear) {
+		if(PreferencesUtil.getSolverNonlinear()) {
 			program.addNodes(LustreLibrary.getNonlinearLibraries());
 		}
 	}

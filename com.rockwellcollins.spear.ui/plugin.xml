@@ -434,7 +434,7 @@
    <extension
          point="org.eclipse.core.runtime.preferences">
       <initializer
-            class="com.rockwellcollins.spear.ui.preferences.PreferenceInitializer">
+            class="com.rockwellcollins.spear.preferences.PreferenceInitializer">
       </initializer>
    </extension>
    <extension
@@ -483,4 +483,193 @@
             type="text">
     </fileTypes>
   </extension>   
+     <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            label="Analysis"
+            visible="true"
+            id="com.rockwellcollins.spear.ui.actionSet">
+         <menu
+               label="SpeAR"
+               id="uiMenu">
+            <separator name="uiGroup">
+            </separator>
+         </menu>
+         <action
+               label="&amp;Generate Excel"
+               icon="icons/spreadsheet.png"
+               class="com.rockwellcollins.spear.ui.actions.GenerateExcel"
+               tooltip="Generate Excel"
+               menubarPath="uiMenu/uiGroup"
+               toolbarPath="uiGroup"
+               id="com.rockwellcollins.spear.ui.GenerateExcel">
+         </action>
+         <action
+               label="&amp;Generate PDF"
+               icon="icons/document.png"
+               class="com.rockwellcollins.spear.ui.actions.GeneratePDF"
+               tooltip="Generate PDF"
+               menubarPath="uiMenu/uiGroup"
+               toolbarPath="uiGroup"
+               id="com.rockwellcollins.spear.ui.GeneratePDF">
+         </action>
+         <action
+               label="&amp;Graphical View"
+               icon="icons/graphical.png"
+               class="com.rockwellcollins.spear.ui.actions.GenerateGraph"
+               tooltip="Generate Graphical View"
+               menubarPath="uiMenu/uiGroup"
+               toolbarPath="uiGroup"
+               id="com.rockwellcollins.spear.ui.GenerateGraph">
+         </action>       
+         <action
+               label="&amp;Check Realizability"
+               icon="icons/realizability.png"
+               class="com.rockwellcollins.spear.ui.actions.CheckRealizability"
+               tooltip="Check Realizability"
+               menubarPath="uiMenu/uiGroup"
+               toolbarPath="uiGroup"
+               id="com.rockwellcollins.spear.ui.CheckLogicalEntailment">
+         </action>
+         <action
+               label="&amp;Check Logical Consistency"
+               icon="icons/logical_consistency.png"
+               class="com.rockwellcollins.spear.ui.actions.CheckLogicalConsistency"
+               tooltip="Check for Logical Consistency"
+               menubarPath="uiMenu/uiGroup"
+               toolbarPath="uiGroup"
+               id="com.rockwellcollins.spear.ui.CheckConsistency">
+         </action>
+         <action
+               label="&amp;Check Logical Entailment"
+               icon="icons/logical_entailment.png"
+               class="com.rockwellcollins.spear.ui.actions.CheckLogicalEntailment"
+               tooltip="Check for Logical Entailment"
+               menubarPath="uiMenu/uiGroup"
+               toolbarPath="uiGroup"
+               id="com.rockwellcollins.spear.ui.CheckLogicalEntailment">
+         </action>
+      </actionSet>
+   </extension>
+    <extension point="org.eclipse.ui.views">
+      <category
+            id="com.rockwellcollins.spear.ui"
+            name="SpeAR View">
+      </category>
+        <view
+              category="com.rockwellcollins.spear.ui"
+              class="com.rockwellcollins.spear.ui.views.SpearEntailmentResultsView"
+              icon="icons/logical_entailment.png"
+              id="com.rockwellcollins.spear.ui.views.SpearEntailmentResultsView"
+              name="Entailment Analysis Results"/>
+        <view
+              category="com.rockwellcollins.spear.ui"
+              class="com.rockwellcollins.spear.ui.views.SpearConsistencyResultsView"
+              icon="icons/logical_consistency.png"
+              id="com.rockwellcollins.spear.ui.views.SpearConsistencyResultsView"
+              name="Consistency Analysis Results"/>
+        <view
+              category="com.rockwellcollins.spear.ui"
+              class="com.rockwellcollins.spear.ui.views.SpearRealizabilityResultsView"
+              icon="icons/realizability.png"
+              id="com.rockwellcollins.spear.ui.views.SpearRealizabilityResultsView"
+              name="Realizability Analysis Results"/>              
+    <view
+              category="com.rockwellcollins.spear.ui.lustre"
+              class="com.rockwellcollins.spear.ui.views.SpearCounterexampleView"
+              icon="icons/counterexample.png"
+              id="com.rockwellcollins.spear.ui.views.SpearCounterexampleView"
+              name="Counterexample"/>
+        <view
+              category="com.rockwellcollins.spear.ui.lustre"
+              class="com.rockwellcollins.spear.ui.views.SpearTraceabilityMatrixView"
+              icon="icons/spreadsheet.png"
+              id="com.rockwellcollins.spear.ui.views.SpearTraceabilityMatrixView"
+              name="Traceability Matrix"/>            
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            name="SpeAR Commands"
+            id="com.rockwellcollins.spear.ui.commands">
+      </category>
+     <command categoryId="com.rockwellcollins.spear.ui.commands"
+           description="ui a Pattern to Lustre and Analyze"
+           id="com.rockwellcollins.spear.ui.commands.analyzePattern"
+           name="Analyze SpeAR Pattern">
+     </command>  
+     <command categoryId="com.rockwellcollins.spear.ui.commands"
+           description="Analyze Type"
+           id="com.rockwellcollins.spear.ui.commands.analyzeType"
+           name="Check Type Validity">
+     </command>
+     <command categoryId="com.rockwellcollins.spear.ui.commands"
+           description="Terminate Analysis"
+           id="com.rockwellcollins.spear.ui.commands.terminateAnalysis"
+           name="Cancel Analysis">
+     </command>   
+        
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:#TextEditorContext?after=additions">
+          <command
+                commandId="com.rockwellcollins.spear.ui.commands.analyzePattern"
+                icon="icons/logical_entailment.png"
+                id="com.rockwellcollins.spear.ui.commands.analyzePattern"
+                style="push">
+          </command>
+          <command
+                commandId="com.rockwellcollins.spear.ui.commands.analyzeType"
+                icon="icons/fire.png"
+                id="com.rockwellcollins.spear.ui.commands.analyzeType"
+                style="push">
+          </command>
+      </menuContribution> 
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:com.rockwellcollins.spear.ui.views.SpearEntailmentResultsView">
+         <command
+               commandId="com.rockwellcollins.spear.ui.commands.terminateAnalysis"
+               icon="icons/terminate.png"
+               label="Terminate"
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:com.rockwellcollins.spear.ui.views.SpearConsistencyResultsView">
+         <command
+               commandId="com.rockwellcollins.spear.ui.commands.terminateAnalysis"
+               icon="icons/terminate.png"
+               label="Terminate"
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:com.rockwellcollins.spear.ui.views.SpearRealizabilityResultsView">
+         <command
+               commandId="com.rockwellcollins.spear.ui.commands.terminateAnalysis"
+               icon="icons/terminate.png"
+               label="Terminate"
+               style="push">
+         </command>
+      </menuContribution>      
+            
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            commandId="com.rockwellcollins.spear.ui.commands.analyzePattern"
+            class="com.rockwellcollins.spear.ui.handlers.AnalyzePattern">
+      </handler>
+      <handler
+            commandId="com.rockwellcollins.spear.ui.commands.analyzeType"
+            class="com.rockwellcollins.spear.ui.handlers.AnalyzeType">
+      </handler>
+   </extension>
 </plugin>

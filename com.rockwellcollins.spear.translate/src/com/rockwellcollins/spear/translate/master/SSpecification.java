@@ -11,7 +11,7 @@ import org.eclipse.xtext.EcoreUtil2;
 
 import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.Specification;
-import com.rockwellcollins.spear.translate.actions.SpearRuntimeOptions;
+import com.rockwellcollins.spear.preferences.PreferencesUtil;
 import com.rockwellcollins.spear.translate.naming.SpearMap;
 import com.rockwellcollins.spear.utilities.LustreLibrary;
 
@@ -178,7 +178,7 @@ public class SSpecification extends SMapElement {
 		}
 
 		builder.addProperties(SConstraint.toPropertyIds(behaviors, this));
-		if(SpearRuntimeOptions.enableIVCDuringEntailment) {
+		if(PreferencesUtil.getEnableIVCDuringEntailment()) {
 			VarDecl vd = new VarDecl(this.traceabilityName, NamedType.BOOL);
 			builder.addLocal(vd);
 			
@@ -272,7 +272,7 @@ public class SSpecification extends SMapElement {
 	}
 	
 	private Equation getConsistencyEquation() {
-		Integer iv = SpearRuntimeOptions.consistencyDepth;
+		Integer iv = PreferencesUtil.getConsistencyDepthOption();
 		Expr gt = new BinaryExpr(new IdExpr(this.counterName), BinaryOp.GREATEREQUAL, new IntExpr(iv));
 		Expr and = new BinaryExpr(new IdExpr(this.constraintsName), BinaryOp.AND, gt);
 		Expr rhs = new UnaryExpr(UnaryOp.NOT, and);

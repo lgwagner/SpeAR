@@ -1,6 +1,6 @@
 package com.rockwellcollins.spear.translate.naming;
 
-import com.rockwellcollins.spear.translate.actions.SpearRuntimeOptions;
+import com.rockwellcollins.spear.preferences.PreferencesUtil;
 import com.rockwellcollins.spear.utilities.LustreLibrary;
 
 import jkind.lustre.Node;
@@ -20,7 +20,7 @@ public class SpearMap {
 			map.program.getName(n.id);
 		}
 		
-		if(SpearRuntimeOptions.isSolverNonlinear) {
+		if(PreferencesUtil.getSolverNonlinear()) {
 			for(Node n : LustreLibrary.getNonlinearLibraries()) {
 				map.program.getName(n.id);
 			}

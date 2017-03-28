@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: com.rockwellcollins.spear.tests
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: com.rockwellcollins.spear.tests; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: com.rockwellcollins.spear,
+ org.eclipse.core.runtime;bundle-version="3.12.0"
+Import-Package: com.rockwellcollins.spear.translate.intermediate,
+ com.rockwellcollins.spear.translate.master
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ClassPath: .,
+ dependencies/jcommander-1.64.jar
+

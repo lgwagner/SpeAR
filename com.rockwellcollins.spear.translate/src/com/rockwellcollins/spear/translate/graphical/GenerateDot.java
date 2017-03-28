@@ -15,7 +15,7 @@ import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.PatternCall;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.SpecificationCall;
-import com.rockwellcollins.spear.translate.actions.SpearRuntimeOptions;
+import com.rockwellcollins.spear.preferences.PreferencesUtil;
 import com.rockwellcollins.spear.utilities.Utilities;
 
 public class GenerateDot {
@@ -66,7 +66,7 @@ public class GenerateDot {
 		for(SpecificationCall call : EcoreUtil2.getAllContentsOfType(s, SpecificationCall.class)) {
 			Specification called = call.getSpec();
 			buffer.append(s.getName() + spacedArrow + called.getName() + newline);
-			if(!defined.contains(called) && SpearRuntimeOptions.recursiveGraphicalDisplay) {
+			if(!defined.contains(called) && PreferencesUtil.getRecursiveGraphicalDisplayOption()) {
 				this.generateSpec(called);
 			}
 		}
@@ -85,7 +85,7 @@ public class GenerateDot {
 		buffer.append(p.getName() + " [shape=polygon,sides=6,label=\"" + p.getName() + "\"]" + newline);
 		defined.add(p);
 		
-		if(SpearRuntimeOptions.recursiveGraphicalDisplay) {
+		if(PreferencesUtil.getRecursiveGraphicalDisplayOption()) {
 			for(PatternCall call : EcoreUtil2.getAllContentsOfType(p, PatternCall.class)){
 				Pattern called = call.getPattern();
 				buffer.append(p.getName() + spacedArrow + called.getName() + newline);
