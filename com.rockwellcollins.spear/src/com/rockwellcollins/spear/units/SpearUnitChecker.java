@@ -31,10 +31,13 @@ import com.rockwellcollins.spear.FieldExpr;
 import com.rockwellcollins.spear.FieldlessRecordExpr;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
+import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.IfThenElseExpr;
 import com.rockwellcollins.spear.IntLiteral;
 import com.rockwellcollins.spear.IntegerCast;
+import com.rockwellcollins.spear.LustreAssertion;
 import com.rockwellcollins.spear.LustreEquation;
+import com.rockwellcollins.spear.LustreProperty;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.MultipleExpr;
 import com.rockwellcollins.spear.NamedTypeDef;
@@ -92,11 +95,17 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	/***************************************************************************************************/
 	// Declarations
 	/***************************************************************************************************/
+	public Map<IdRef,Unit> map = new HashMap<>();
+	
 	@Override
 	public Unit caseConstant(Constant c) {
+		if(map.containsKey(c)) {
+			return map.get(c);
+		}
 		Unit expected = this.doSwitch(c.getType());
+		map.put(c, expected);
+		
 		Unit actual = this.doSwitch(c.getExpr());
-	
 		if(expected.equals(actual)) {
 			return expected;
 		}
@@ -106,9 +115,13 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 
 	@Override
 	public Unit caseMacro(Macro m) {
+		if(map.containsKey(m)) {
+			return map.get(m);
+		}
 		Unit expected = this.doSwitch(m.getType());
+		map.put(m, expected);
+		
 		Unit actual = this.doSwitch(m.getExpr());
-	
 		if(expected.equals(actual)) {
 			return expected;
 		}
@@ -133,6 +146,36 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		
 		if(!expected.equals(actual)) {
 			return error(eq);
+		}
+		return expected;
+	}
+	
+	@Override
+	public Unit caseLustreAssertion(LustreAssertion la) {
+		Unit expected = SCALAR;
+		Unit actual = doSwitch(la.getAssertionExpr());
+		
+		if(actual == ERROR) {
+			return ERROR;
+		}	
+		
+		if(!expected.equals(actual)) {
+			return error(la);
+		}
+		return expected;
+	}
+	
+	@Override
+	public Unit caseLustreProperty(LustreProperty lp) {
+		Unit expected = SCALAR;
+		Unit actual = doSwitch(lp.getPropertyId());
+		
+		if(actual == ERROR) {
+			return ERROR;
+		}
+		
+		if(!expected.equals(actual)) {
+			return error(lp);
 		}
 		return expected;
 	}

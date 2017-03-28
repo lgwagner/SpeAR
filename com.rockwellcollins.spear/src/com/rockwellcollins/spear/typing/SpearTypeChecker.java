@@ -3,6 +3,7 @@ package com.rockwellcollins.spear.typing;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -32,6 +33,7 @@ import com.rockwellcollins.spear.FieldExpr;
 import com.rockwellcollins.spear.FieldlessRecordExpr;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
+import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.IfThenElseExpr;
 import com.rockwellcollins.spear.IntLiteral;
 import com.rockwellcollins.spear.IntType;
@@ -206,6 +208,9 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	/***************************************************************************************************/
 	// DECLARATIONS
 	/***************************************************************************************************/
+	
+	public Map<IdRef,Type> map = new HashMap<>();
+	
 	@Override
 	public Type caseVariable(Variable v) {
 		return doSwitch(v.getType());
@@ -213,7 +218,12 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 
 	@Override
 	public Type caseConstant(Constant c) {
+		if(map.containsKey(c)) {
+			return map.get(c);
+		}
+		
 		Type expected = doSwitch(c.getType());
+		map.put(c, expected);
 		if(!expectAssignableType(expected, c.getExpr())) {
 			return error(c);
 		}
@@ -222,7 +232,11 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 
 	@Override
 	public Type caseMacro(Macro m) {
+		if(map.containsKey(m)) {
+			return map.get(m);
+		}
 		Type expected = doSwitch(m.getType());
+		map.put(m, expected);
 		if(!expectAssignableType(expected, m.getExpr())) {
 			return error(m);
 		}
