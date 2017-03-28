@@ -57,7 +57,7 @@ public class SpecificationValidator extends AbstractSpearJavaValidator {
 		List<EObject> deps = AcyclicValidator.validate(p);
 		if(deps.contains(p)) {
 			String message = "Cycle detected: " + p.getName() + " -> " + AcyclicValidator.getMessage(p,deps);
-			error(message, p, SpearPackage.Literals.ID_REF__NAME);
+			error(message, p, SpearPackage.Literals.PATTERN__NAME);
 			return true;
 		}
 		return false;

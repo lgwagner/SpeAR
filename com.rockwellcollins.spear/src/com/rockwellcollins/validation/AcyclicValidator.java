@@ -1,13 +1,16 @@
 package com.rockwellcollins.validation;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.IdRef;
+import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.PreviousExpr;
 import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.util.SpearSwitch;
@@ -42,6 +45,7 @@ public class AcyclicValidator extends SpearSwitch<Integer> {
 	}
 	
 	public List<EObject> dependencies = new ArrayList<>();
+	public Set<EObject> visited = new HashSet<>();
 	
 	@Override
 	public Integer casePreviousExpr(PreviousExpr pe) {
@@ -67,13 +71,28 @@ public class AcyclicValidator extends SpearSwitch<Integer> {
 	}
 	
 	@Override
+	public Integer casePattern(Pattern p) {
+		if(!dependencies.contains(p)) {
+			dependencies.add(p);
+			this.defaultCase(p);
+		}
+		return 0;
+	}
+	
+	@Override
 	public Integer defaultCase(EObject o) {
 		for(EObject sub : o.eContents()) {
-			this.doSwitch(sub);
+			if(!visited.contains(sub)) {
+				visited.add(sub);
+				this.doSwitch(sub);	
+			}
 		}
 		
 		for(EObject ref : o.eCrossReferences()) {
-			this.doSwitch(ref);
+			if(!visited.contains(ref)) {
+				visited.add(ref);
+				this.doSwitch(ref);				
+			}
 		}
 		
 		return 0;
