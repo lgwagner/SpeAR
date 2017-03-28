@@ -71,10 +71,6 @@ public class SpecificationValidator extends AbstractSpearJavaValidator {
 		return SpearUnitChecker.unitCheck(o, errors, this.getMessageAcceptor()).equals(Unit.ERROR);
 	}
 	
-	private boolean typeCheckPattern(Pattern p, Set<EObject> errors) {
-		return false;
-	}
-	
 	@Check
 	public void validate(Specification s) {
 		Set<EObject> errors = new HashSet<>();
@@ -118,6 +114,21 @@ public class SpecificationValidator extends AbstractSpearJavaValidator {
 		//if none, units check
 		errors.addAll(s.getTypedefs().stream().filter(td -> unitCheck(td, errors)).collect(Collectors.toList()));
 		errors.addAll(s.getConstants().stream().filter(c -> unitCheck(c,errors)).collect(Collectors.toList()));
+	}
+	
+	@Check
+	public void validate(Pattern p) {
+		Set<EObject> errors = new HashSet<>();
+		
+		//type-check
+		errors.addAll(p.getAssertions().stream().filter(la -> typeCheck(la, errors)).collect(Collectors.toList()));
+		errors.addAll(p.getEquations().stream().filter(eq -> typeCheck(eq, errors)).collect(Collectors.toList()));
+		errors.addAll(p.getProperties().stream().filter(lp -> typeCheck(lp, errors)).collect(Collectors.toList()));
+		
+		//unit-check
+		errors.addAll(p.getAssertions().stream().filter(la -> unitCheck(la, errors)).collect(Collectors.toList()));
+		errors.addAll(p.getEquations().stream().filter(eq -> unitCheck(eq, errors)).collect(Collectors.toList()));
+		errors.addAll(p.getProperties().stream().filter(lp -> unitCheck(lp, errors)).collect(Collectors.toList()));
 	}
 	
 	@Override

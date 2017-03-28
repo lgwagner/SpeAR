@@ -224,7 +224,14 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		
 		Type expected = doSwitch(c.getType());
 		map.put(c, expected);
-		if(!expectAssignableType(expected, c.getExpr())) {
+		Type actual = doSwitch(c.getExpr());
+		
+		if(expected == ERROR || actual == ERROR) {
+			return error(c);
+		}
+		
+		if(!expected.equals(actual)) {
+			error("Expected type " + expected + ", but received type " + actual,c,SpearPackage.Literals.CONSTANT__EXPR);
 			return error(c);
 		}
 		return expected;
@@ -237,7 +244,14 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		}
 		Type expected = doSwitch(m.getType());
 		map.put(m, expected);
-		if(!expectAssignableType(expected, m.getExpr())) {
+		Type actual = doSwitch(m.getExpr());
+		
+		if(expected == ERROR || actual == ERROR) {
+			return error(m);
+		}
+		
+		if(!expected.equals(actual)) {
+			error("Expected type " + expected + ", but received type " + actual,m,SpearPackage.Literals.MACRO__EXPR);
 			return error(m);
 		}
 		return expected;
