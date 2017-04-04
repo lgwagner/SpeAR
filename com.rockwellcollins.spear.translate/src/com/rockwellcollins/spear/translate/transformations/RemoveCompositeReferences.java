@@ -1,6 +1,7 @@
 package com.rockwellcollins.spear.translate.transformations;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.function.Consumer;
 
 import org.eclipse.emf.ecore.EObject;
@@ -35,10 +36,9 @@ public class RemoveCompositeReferences extends SpearSwitch<Integer> {
 		doc.files.stream().forEach(consume);
 	}
 
-	private ArrayList<Macro> generated;
+	private Collection<Macro> generated = new ArrayList<>();
 	
 	public void transform(Specification s) {
-		generated = new ArrayList<>();
 		EcoreUtil2.getAllContentsOfType(s, FormalConstraint.class).stream().forEach(fc -> this.doSwitch(fc));
 		s.getMacros().addAll(generated);
 	}
