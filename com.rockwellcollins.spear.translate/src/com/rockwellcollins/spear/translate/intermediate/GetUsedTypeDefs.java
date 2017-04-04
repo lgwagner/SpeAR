@@ -2,7 +2,9 @@ package com.rockwellcollins.spear.translate.intermediate;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -18,7 +20,17 @@ public class GetUsedTypeDefs extends SpearSwitch<Integer> {
 	}
 	
 	private Map<String,TypeDef> map = new HashMap<>();
-
+	private Set<EObject> traversed = new HashSet<>();
+	
+	@Override
+	public Integer doSwitch(EObject o) {
+		if(!traversed.contains(o)) {
+			traversed.add(o);
+			super.doSwitch(o);
+		}
+		return 0;
+	}
+	
 	@Override
 	public Integer caseTypeDef(TypeDef td) {
 		map.put(td.getName(),td);

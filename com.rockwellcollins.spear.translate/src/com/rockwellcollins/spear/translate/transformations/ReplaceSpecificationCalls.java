@@ -48,7 +48,7 @@ public class ReplaceSpecificationCalls extends SpearSwitch<EObject> {
 		Expr left = (Expr) this.doSwitch(be.getLeft());
 		Expr right = (Expr) this.doSwitch(be.getRight());
 
-		//Validations should enforce the following two scenarios. ONE must be true.
+		//Validations should enforce the following two scenarios. One MUST be true.
 		if (right instanceof SpecificationCall) {
 			SpecificationCall specificationCall = (SpecificationCall) right;
 			this.doSwitch(specificationCall.getSpec());

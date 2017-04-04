@@ -1,7 +1,10 @@
 package com.rockwellcollins.spear.translate.transformations;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
+import java.util.function.Consumer;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
@@ -18,7 +21,7 @@ public class ReplaceAbstractTypes extends SpearSwitch<Integer> {
 
 	public static void transform(Document d) {
 		ReplaceAbstractTypes replacer = new ReplaceAbstractTypes();
-		d.files.stream().forEach(eo -> replacer.doSwitch(eo));
+		d.files.stream().forEach(f -> replacer.doSwitch(f));
 		
 		for(File f : d.files) {
 			for(UserType ut : EcoreUtil2.getAllContentsOfType(f, UserType.class)) {
@@ -30,6 +33,16 @@ public class ReplaceAbstractTypes extends SpearSwitch<Integer> {
 	}
 
 	private Map<AbstractTypeDef,NamedTypeDef> map = new HashMap<>();
+	private Set<EObject> traversed = new HashSet<>();
+	
+	@Override
+	public Integer doSwitch(EObject o) {
+		if(!traversed.contains(o)) {
+			traversed.add(o);
+			super.doSwitch(o);
+		}
+		return 0;
+	}
 	
 	public Integer caseAbstractTypeDef(AbstractTypeDef atd) {
 		NamedTypeDef ntd = null;
@@ -47,7 +60,7 @@ public class ReplaceAbstractTypes extends SpearSwitch<Integer> {
 	
 	public Integer defaultCase(EObject e) {
 		e.eContents().stream().forEach(o -> this.doSwitch(o));
-		e.eCrossReferences().stream().forEach(ref -> this.doSwitch(ref));
+		e.eCrossReferences().stream().forEach(o -> this.doSwitch(o));
 		return 0;
 	}
 }

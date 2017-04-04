@@ -81,9 +81,7 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 	public void checkSpecNameMatchesFilename(File f) {
 		String filename = f.eResource().getURI().trimFileExtension().lastSegment();
 		if(!filename.equals(f.getName())) {
-			if (f instanceof Specification) {
-				error("File ID name must be " + filename,f,SpearPackage.Literals.FILE__NAME,MISMATCHED_FILENAME,filename);
-			}
+			error("File ID name must be " + filename,f,SpearPackage.Literals.FILE__NAME,MISMATCHED_FILENAME,filename);
 		}
 	}
 	
