@@ -14,7 +14,7 @@ import com.rockwellcollins.spear.utilities.Utilities;
 
 public class FindDependencies extends SpearSwitch<Integer> {
 
-	public static Collection<EObject> get2(EObject main) {
+	public static Collection<EObject> get(EObject main) {
 		Set<EObject> elements = new HashSet<>();
 		elements.add(main);
 		File root = (File) Utilities.getTopFile(main);

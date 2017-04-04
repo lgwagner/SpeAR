@@ -16,11 +16,12 @@ public class Document {
 	public EObject main;
 	public Collection<File> files = new HashSet<>();
 	public Map<EObject,Map<String,String>> renamed = new HashMap<>();
+	
 	private SimpleAttributeResolver<EObject, String> resolver = SimpleAttributeResolver.newResolver(String.class,"name");
 	
 	public Document(EObject o) {
 		String mainName = resolver.apply(o);
-		Collection<EObject> objects = FindDependencies.get2(o);
+		Collection<EObject> objects = FindDependencies.get(o);
 		for(EObject ob : objects) {
 			if (ob instanceof File) {
 				File f = (File) ob;

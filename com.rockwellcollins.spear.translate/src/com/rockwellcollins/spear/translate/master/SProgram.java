@@ -79,7 +79,6 @@ public class SProgram extends SMapElement {
 	public Program getBaseProgram() {
 		ProgramBuilder program = new ProgramBuilder();
 		addNodes(program);
-		
 		program.addConstants(SConstant.toLustre(constants, this));
 		program.addTypes(STypeDef.toLustre(typedefs, this));
 		program.addNodes(SPattern.toLustre(patterns));
