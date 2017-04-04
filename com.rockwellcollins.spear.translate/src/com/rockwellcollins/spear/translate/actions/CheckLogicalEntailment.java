@@ -165,7 +165,6 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 					} finally {
 						deactivateTerminateHandler();
 					}
-
 				}).start();
 
 				return null;

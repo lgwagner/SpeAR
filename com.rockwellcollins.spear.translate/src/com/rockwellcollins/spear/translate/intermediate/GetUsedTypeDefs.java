@@ -1,7 +1,8 @@
 package com.rockwellcollins.spear.translate.intermediate;
 
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -13,14 +14,14 @@ public class GetUsedTypeDefs extends SpearSwitch<Integer> {
 	public static Collection<TypeDef> get(EObject main) {
 		GetUsedTypeDefs get = new GetUsedTypeDefs();
 		get.doSwitch(main);
-		return get.set;
+		return get.map.values();
 	}
 	
-	private Collection<TypeDef> set = new HashSet<>();
+	private Map<String,TypeDef> map = new HashMap<>();
 
 	@Override
 	public Integer caseTypeDef(TypeDef td) {
-		set.add(td);
+		map.put(td.getName(),td);
 		this.defaultCase(td);
 		return 0;
 	}

@@ -1,7 +1,8 @@
 package com.rockwellcollins.spear.translate.intermediate;
 
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -13,14 +14,14 @@ public class GetUsedConstants extends SpearSwitch<Integer> {
 	public static Collection<Constant> get(EObject main) {
 		GetUsedConstants get = new GetUsedConstants();
 		get.doSwitch(main);
-		return get.set;
+		return get.map.values();
 	}
 	
-	private Collection<Constant> set = new HashSet<>();
+	private Map<String,Constant> map = new HashMap<>();
 
 	@Override
 	public Integer caseConstant(Constant c) {
-		set.add(c);
+		map.put(c.getName(),c);
 		this.defaultCase(c);
 		return 0;
 	}

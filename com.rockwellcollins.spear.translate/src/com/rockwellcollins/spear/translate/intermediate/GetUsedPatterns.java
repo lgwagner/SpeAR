@@ -1,11 +1,13 @@
 package com.rockwellcollins.spear.translate.intermediate;
 
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 
 import com.rockwellcollins.spear.Pattern;
+import com.rockwellcollins.spear.PatternCall;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 public class GetUsedPatterns extends SpearSwitch<Integer> {
@@ -13,15 +15,16 @@ public class GetUsedPatterns extends SpearSwitch<Integer> {
 	public static Collection<Pattern> get(EObject main) {
 		GetUsedPatterns get = new GetUsedPatterns();
 		get.doSwitch(main);
-		return get.set;
+		return get.map.values();
 	}
 	
-	private Collection<Pattern> set = new HashSet<>();
-
+	//have to use a map to avoid dupes
+	private Map<String,Pattern> map = new HashMap<>();
+	
 	@Override
-	public Integer casePattern(Pattern p) {
-		set.add(p);
-		this.defaultCase(p);
+	public Integer casePatternCall(PatternCall pc) {
+		map.put(pc.getPattern().getName(),pc.getPattern());
+		this.defaultCase(pc);
 		return 0;
 	}
 	

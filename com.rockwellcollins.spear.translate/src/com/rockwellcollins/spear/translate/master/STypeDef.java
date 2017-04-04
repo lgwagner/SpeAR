@@ -1,12 +1,10 @@
 package com.rockwellcollins.spear.translate.master;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import com.rockwellcollins.spear.ArrayTypeDef;
-import com.rockwellcollins.spear.ConcreteArrayTypeDef;
 import com.rockwellcollins.spear.EnumTypeDef;
 import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.PredicateSubTypeDef;
@@ -50,11 +48,6 @@ public abstract class STypeDef {
 		
 		@Override
 		public STypeDef caseArrayTypeDef(ArrayTypeDef atd) {
-			throw new RuntimeException("Unallowed element encountered during translation.");
-		}
-		
-		@Override
-		public STypeDef caseConcreteArrayTypeDef(ConcreteArrayTypeDef atd) {
 			return new SArrayTypeDef(atd,program);
 		}
 		

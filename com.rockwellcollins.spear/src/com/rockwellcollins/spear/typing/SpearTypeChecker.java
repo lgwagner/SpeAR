@@ -25,7 +25,6 @@ import com.rockwellcollins.spear.ArrayUpdateExpr;
 import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.BoolLiteral;
 import com.rockwellcollins.spear.BoolType;
-import com.rockwellcollins.spear.ConcreteArrayTypeDef;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.EnumTypeDef;
 import com.rockwellcollins.spear.EnumValue;
@@ -158,14 +157,6 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		}
 		
 		return new ArrayType(at.getName(), doSwitch(at.getBase()), size, at);
-	}
-	
-	@Override
-	public Type caseConcreteArrayTypeDef(ConcreteArrayTypeDef ctd) {
-		if (ctd.getName() == null) {
-			return error(ctd);
-		}
-		return new ArrayType(ctd.getName(), doSwitch(ctd.getBase()), ctd.getSize(), ctd);
 	}
 
 	@Override

@@ -32,10 +32,15 @@ public class ReplaceAbstractTypes extends SpearSwitch<Integer> {
 	private Map<AbstractTypeDef,NamedTypeDef> map = new HashMap<>();
 	
 	public Integer caseAbstractTypeDef(AbstractTypeDef atd) {
-		NamedTypeDef ntd = SpearFactory.eINSTANCE.createNamedTypeDef();
-		ntd.setName(atd.getName());
-		ntd.setType(SpearFactory.eINSTANCE.createIntType());
-		map.put(atd, ntd);
+		NamedTypeDef ntd = null;
+		if(map.containsKey(atd)) {
+			ntd = map.get(atd);
+		} else {
+			ntd = SpearFactory.eINSTANCE.createNamedTypeDef();
+			ntd.setName(atd.getName());
+			ntd.setType(SpearFactory.eINSTANCE.createIntType());
+			map.put(atd, ntd);
+		}
 		EcoreUtil2.replace(atd, ntd);
 		return 0;
 	}

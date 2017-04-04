@@ -7,7 +7,6 @@ public class PerformTransforms {
 	public static void apply(Document doc) throws Exception {
 		RemoveLustreKeywords.transform(doc);
 		ReplaceAbstractTypes.transform(doc);
-		ReplaceVariableArrayDefs.transform(doc);
 		PropagatePredicates.transform(doc); //must come after replace Variable array defs
 		RemoveCompositeReferences.transform(doc);
 		ReplaceShortHandRecords.transform(doc);

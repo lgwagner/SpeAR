@@ -104,16 +104,13 @@ TypeDef:
 |  {PredicateSubTypeDef} name=ID IdTypeDelimiter '{' predVar=Variable SuchThat predExpr=Expr '}' (unit=[UnitDef])? (data+=Data)* 
 |  {AbstractTypeDef} name=ID IdTypeDelimiter 'abstract' (data+=Data)* 
 |  {RecordTypeDef} name=ID IdTypeDelimiter 'record' '{'fields+=FieldType (',' fields+=FieldType)* '}' (data+=Data)* 
-|  {ArrayTypeDef} name=ID IdTypeDelimiter base=Type '['size=Expr ']' (data+=Data)* 
+|  {ArrayTypeDef} name=ID IdTypeDelimiter base=Type '['size=Expr']' (data+=Data)* 
 |  {EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{' values+=EnumValue (','	values+=EnumValue)* '}' (data+=Data)*
 ;
 
 SuchThat:
    'such' 'that' | '|'
 ;
-
-UnusedTypeDef returns TypeDef:
-   {ConcreteArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=INT ']';
 
 FieldType:
    name=ID ':' type=Type
