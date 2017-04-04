@@ -3,6 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="src-gen"/>
 	<classpathentry kind="src" path="xtend-gen"/>
+	<classpathentry exported="true" kind="lib" path="dependencies/jkind.jar"/>
 	<classpathentry exported="true" kind="lib" path="dependencies/jxl.jar"/>
 	<classpathentry exported="true" kind="lib" path="dependencies/jaxb-api-2.2.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="dependencies/jkind-api.jar"/>
