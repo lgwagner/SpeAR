@@ -9,31 +9,24 @@ import com.rockwellcollins.spear.SpearFactory;
 import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
-public class ReplaceAbstractTypes extends SpearSwitch<EObject> {
+public class ReplaceAbstractTypes extends SpearSwitch<Integer> {
 
 	public static void transform(Document d) {
-		ReplaceAbstractTypes replacer = new ReplaceAbstractTypes(d);
-		d.typedefs.values().stream().forEach(td -> replacer.doSwitch(td));
+		ReplaceAbstractTypes replacer = new ReplaceAbstractTypes();
+		d.files.stream().forEach(eo -> replacer.doSwitch(eo));
 	}
 
-	private Document document;
-	
-	public ReplaceAbstractTypes(Document d) {
-		this.document=d;
-	}
-	
-	public EObject caseAbstractTypeDef(AbstractTypeDef atd) {
+	public Integer caseAbstractTypeDef(AbstractTypeDef atd) {
 		NamedTypeDef ntd = SpearFactory.eINSTANCE.createNamedTypeDef();
 		ntd.setName(atd.getName());
 		ntd.setType(SpearFactory.eINSTANCE.createIntType());
 		EcoreUtil2.replace(atd, ntd);
-		document.typedefs.put(ntd.getName(), ntd);
-		return ntd;
+		return 0;
 	}
 	
-	public EObject defaultCase(EObject e) {
+	public Integer defaultCase(EObject e) {
 		e.eContents().stream().forEach(o -> this.doSwitch(o));
 		e.eCrossReferences().stream().forEach(ref -> this.doSwitch(ref));
-		return e;
+		return 0;
 	}
 }

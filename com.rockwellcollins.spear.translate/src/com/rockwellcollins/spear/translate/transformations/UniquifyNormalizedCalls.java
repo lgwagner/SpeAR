@@ -5,13 +5,14 @@ import java.util.Map;
 
 import org.eclipse.xtext.EcoreUtil2;
 
+import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.Specification;
-import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
+import com.rockwellcollins.spear.translate.intermediate.Document;
 
 public class UniquifyNormalizedCalls {
 	
-	public static void transform(SpearDocument d) {
+	public static void transform(Document d) {
 		UniquifyNormalizedCalls uniquify = new UniquifyNormalizedCalls();
 		uniquify.makeUnique(d);
 	}
@@ -27,19 +28,19 @@ public class UniquifyNormalizedCalls {
 		return proposed;
 	}
 	
-	private Map<String,Specification> specs = new HashMap<>();
+	private Map<String,File> files = new HashMap<>();
 	private Map<String,String> map = new HashMap<>();
 	
 	private void processSpec(Specification s) {
 		for(NormalizedCall nc : EcoreUtil2.getAllContentsOfType(s, NormalizedCall.class)) {
 			Specification next = nc.getSpec();
-			if(specs.containsValue(next)) {
+			if(files.containsValue(next)) {
 				Specification newNext = createCopy(next);
 				nc.setSpec(newNext);
-				specs.put(newNext.getName(),newNext);
+				files.put(newNext.getName(),newNext);
 				processSpec(newNext);
 			} else {
-				specs.put(next.getName(),next);
+				files.put(next.getName(),next);
 				processSpec(next);
 			}
 		}
@@ -52,18 +53,11 @@ public class UniquifyNormalizedCalls {
 		return newNext;
 	}
 	
-	private void populateMap(SpearDocument d) {
-		d.typedefs.values().stream().forEach(td -> map.put(td.getName(), td.getName()));
-		d.constants.values().stream().forEach(c -> map.put(c.getName(), c.getName()));
-		d.patterns.values().stream().forEach(p -> map.put(p.getName(), p.getName()));
-		d.specifications.values().stream().forEach(s -> map.put(s.getName(), s.getName()));
-	}
-	
-	public void makeUnique(SpearDocument d) {
-		populateMap(d);
-		Specification main = d.getMain();
-		specs.put(main.getName(),main);
-		processSpec(main);
-		d.specifications=new HashMap<>(this.specs);
+	public void makeUnique(Document d) {
+		if (d.main instanceof Specification) {
+			Specification spec = (Specification) d.main;
+			files.put(spec.getName(),spec);
+			processSpec(spec);
+		}
 	}
 }

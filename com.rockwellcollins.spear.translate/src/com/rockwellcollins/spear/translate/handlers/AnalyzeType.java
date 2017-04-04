@@ -1,5 +1,7 @@
 package com.rockwellcollins.spear.translate.handlers;
 
+import java.util.Collections;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -25,11 +27,17 @@ import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
 
 import com.google.inject.Injector;
+import com.rockwellcollins.spear.Expr;
+import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.TypeDef;
+import com.rockwellcollins.spear.Variable;
+import com.rockwellcollins.spear.language.Create;
+import com.rockwellcollins.spear.optional.Optional;
+import com.rockwellcollins.spear.optional.Some;
 import com.rockwellcollins.spear.translate.actions.SpearRuntimeOptions;
-import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
-import com.rockwellcollins.spear.translate.intermediate.TypeDocument;
+import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.translate.master.SProgram;
+import com.rockwellcollins.spear.translate.utilities.EmitPredicateProperties;
 import com.rockwellcollins.spear.translate.views.SpearConsistencyResultsView;
 import com.rockwellcollins.spear.ui.preferences.PreferencesUtil;
 import com.rockwellcollins.ui.internal.SpearActivator;
@@ -87,9 +95,26 @@ public class AnalyzeType extends AbstractHandler {
 		return false;
 	}
 	
+	private Pattern createPattern(TypeDef td) {
+		Pattern p = Create.createPattern(td.getName() + "_tcc");
+		Variable in = Create.createVariable("in", Create.createUserType(td));
+		p.getInputs().add(in);
+		Variable vacuous = Create.createBoolVariable(td.getName() + "_valid");
+		p.getOutputs().add(vacuous);
+		Optional<Expr> oe = EmitPredicateProperties.crunch(in);
+		if (oe instanceof Some) {
+			Some<Expr> some = (Some<Expr>) oe;
+			p.getEquations().add(Create.createLustreEquation(Collections.singletonList(vacuous),Create.createNot(some.value)));
+		} else {
+			p.getEquations().add(Create.createLustreEquation(Collections.singletonList(vacuous),Create.createFalse()));
+		}
+		p.getProperties().add(Create.createLustreProperty(vacuous));
+		return p;
+	}
+	
 	private void analyzeType(TypeDef td) {
 		
-		TypeDocument document = new TypeDocument(td);
+		Document document = new Document(td);
 
 		try {
 			document.transform();
@@ -98,11 +123,8 @@ public class AnalyzeType extends AbstractHandler {
 			e1.printStackTrace();
 		}
 		//this *must* occur after the transforms for operators to be correctly normalized.
-		document.populatePattern();
-		
-		PatternDocument pd = document.toPatternDocument();
-		
-		SProgram p = SProgram.build(pd);
+		document.main=createPattern(td);		
+		SProgram p = SProgram.build(document);
 		Program lp = p.patternToLustre();
 		
 		JKindApi api = PreferencesUtil.getJKindApi();

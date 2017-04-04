@@ -33,7 +33,7 @@ import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.handlers.TerminateHandler;
-import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
+import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.translate.layout.SpearRegularLayout;
 import com.rockwellcollins.spear.translate.master.SProgram;
 import com.rockwellcollins.spear.translate.views.SpearEntailmentResultsView;
@@ -100,7 +100,7 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 				// Set the runtime options
 				SpearRuntimeOptions.setRuntimeOptions();
 
-				SpearDocument workingCopy = new SpearDocument(specification);
+				Document workingCopy = new Document(specification);
 				workingCopy.transform();
 
 				SProgram program = SProgram.build(workingCopy);
@@ -126,9 +126,9 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 				JKindApi api = PreferencesUtil.getJKindApi();
 				setApiOptions(api);
 
-				Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.getMain()), Mode.IDENTITY);
+				Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.main), Mode.IDENTITY);
 				List<Boolean> invert = new ArrayList<>();
-				Specification s = workingCopy.specifications.get(workingCopy.mainName);
+				Specification s = (Specification) workingCopy.main;
 				for (Constraint c : s.getBehaviors()) {
 					if (c instanceof FormalConstraint) {
 						FormalConstraint fc = (FormalConstraint) c;

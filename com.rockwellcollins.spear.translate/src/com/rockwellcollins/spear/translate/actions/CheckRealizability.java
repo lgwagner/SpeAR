@@ -26,7 +26,7 @@ import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.handlers.TerminateHandler;
-import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
+import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.translate.layout.SpearRealizabilityLayout;
 import com.rockwellcollins.spear.translate.master.SProgram;
 import com.rockwellcollins.spear.translate.views.SpearRealizabilityResultsView;
@@ -88,7 +88,7 @@ public class CheckRealizability implements IWorkbenchWindowActionDelegate {
 				//Set the runtime options
 				SpearRuntimeOptions.setRuntimeOptions();
 		
-				SpearDocument workingCopy = new SpearDocument(specification);
+				Document workingCopy = new Document(specification);
 				workingCopy.transform();
 				SProgram program = SProgram.build(workingCopy);
 				Program p = program.getRealizability();
@@ -118,7 +118,7 @@ public class CheckRealizability implements IWorkbenchWindowActionDelegate {
 					throw e;
 				}
 
-				Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.getMain()), Mode.IDENTITY);
+				Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.main), Mode.IDENTITY);
 				JRealizabilityResult result = new JRealizabilityResult("SpeAR Realizability Result", renaming);
 				activateTerminateHandler(monitor);
 				showView(result, new SpearRealizabilityLayout(specification));

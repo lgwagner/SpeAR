@@ -29,7 +29,7 @@ import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.handlers.TerminateHandler;
-import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
+import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.translate.layout.SpearRegularLayout;
 import com.rockwellcollins.spear.translate.master.SProgram;
 import com.rockwellcollins.spear.translate.views.SpearConsistencyResultsView;
@@ -90,7 +90,7 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 				//Set the runtime options
 				SpearRuntimeOptions.setRuntimeOptions();
 				
-				SpearDocument workingCopy = new SpearDocument(specification);
+				Document workingCopy = new Document(specification);
 				workingCopy.transform();
 				
 				SProgram program = SProgram.build(workingCopy);
@@ -116,7 +116,7 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 				JKindApi api = PreferencesUtil.getJKindApi();
 				setApiOptions(api);
 				
-				Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.getMain()), Mode.IDENTITY);
+				Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.main), Mode.IDENTITY);
 				List<Boolean> invert = p.getMainNode().properties.stream().map(prop -> true).collect(Collectors.toList());
 				JKindResult result = new JKindResult("result",p.getMainNode().properties, invert, renaming);
 				activateTerminateHandler(monitor);

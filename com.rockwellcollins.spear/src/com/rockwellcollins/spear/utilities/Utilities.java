@@ -43,6 +43,18 @@ public class Utilities {
 		return getTopContainer(container);
 	}
 	
+	public static EObject getTopFile(EObject o) {
+		if (o instanceof File) {
+			return o;
+		}
+		
+		EObject container = o.eContainer();
+		if(container instanceof File) {
+			return container;
+		}
+		return getTopContainer(container);		
+	}
+	
 	public static String getName(EObject o) {
 		String name = SimpleAttributeResolver.NAME_RESOLVER.apply(o);
 		if(name == null) {

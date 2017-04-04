@@ -1,19 +1,21 @@
 package com.rockwellcollins.spear.translate.transformations;
 
 import java.util.ArrayList;
+import java.util.function.Consumer;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 
 import com.rockwellcollins.spear.ArrayAccessExpr;
 import com.rockwellcollins.spear.ArrayUpdateExpr;
+import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.RecordUpdateExpr;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.language.Create;
-import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
+import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.typing.SpearTypeChecker;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
@@ -21,9 +23,16 @@ public class RemoveCompositeReferences extends SpearSwitch<Integer> {
 	
 	private Integer key = 0;
 	
-	public static void transform(SpearDocument doc) {
+	public static void transform(Document doc) {
 		RemoveCompositeReferences transformer = new RemoveCompositeReferences();
-		doc.specifications.values().stream().forEach(s -> transformer.transform(s));
+		Consumer<File> consume = f -> {
+			if (f instanceof Specification) {
+				Specification spec = (Specification) f;
+				transformer.transform(spec);
+			}
+		};
+		
+		doc.files.stream().forEach(consume);
 	}
 
 	private ArrayList<Macro> generated;

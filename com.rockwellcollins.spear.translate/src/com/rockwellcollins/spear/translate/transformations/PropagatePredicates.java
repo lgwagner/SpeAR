@@ -3,11 +3,13 @@ package com.rockwellcollins.spear.translate.transformations;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 
 import org.eclipse.xtext.util.SimpleAttributeResolver;
 
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Expr;
+import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.LustreAssertion;
@@ -20,19 +22,25 @@ import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.language.Create;
 import com.rockwellcollins.spear.optional.Optional;
 import com.rockwellcollins.spear.optional.Some;
-import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
-import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
+import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.translate.utilities.EmitPredicateProperties;
 
 public class PropagatePredicates {
 	
-	public static void transform(SpearDocument doc) {
-		//doc.patterns.values().stream().forEach(p -> transform(p));
-		doc.specifications.values().stream().forEach(s -> transform(s));
-	}
-	
-	public static void transform(PatternDocument doc) {
-		doc.patterns.values().stream().forEach(p -> transform(p));		
+	public static void transform(Document doc) {
+		Consumer<File> consume = f -> {
+			if (f instanceof Specification) {
+				Specification spec = (Specification) f;
+				transform(spec);
+			}
+		};
+		
+		doc.files.stream().forEach(consume);
+		
+		if (doc.main instanceof Pattern) {
+			Pattern pattern = (Pattern) doc.main;
+			transform(pattern);
+		}
 	}
 	
 	private static void transform(Specification s) {

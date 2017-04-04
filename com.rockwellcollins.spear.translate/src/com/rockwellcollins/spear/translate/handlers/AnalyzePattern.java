@@ -27,7 +27,7 @@ import org.eclipse.xtext.validation.Issue;
 import com.google.inject.Injector;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.translate.actions.SpearRuntimeOptions;
-import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
+import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.translate.master.SProgram;
 import com.rockwellcollins.spear.translate.views.SpearConsistencyResultsView;
 import com.rockwellcollins.spear.ui.preferences.PreferencesUtil;
@@ -87,7 +87,7 @@ public class AnalyzePattern extends AbstractHandler {
 	}
 	
 	private void analyzePattern(Pattern p) {
-		PatternDocument document = new PatternDocument(p);
+		Document document = new Document(p);
 
 		try {
 			document.transform();
