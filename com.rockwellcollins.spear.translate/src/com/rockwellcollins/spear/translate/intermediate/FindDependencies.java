@@ -9,7 +9,6 @@ import org.eclipse.xtext.EcoreUtil2;
 
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Import;
-import com.rockwellcollins.spear.util.SpearSwitch;
 import com.rockwellcollins.spear.utilities.Utilities;
 
 public class FindDependencies {
