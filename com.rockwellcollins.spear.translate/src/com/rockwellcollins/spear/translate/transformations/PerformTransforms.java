@@ -4,15 +4,15 @@ import com.rockwellcollins.spear.translate.intermediate.Document;
 
 public class PerformTransforms {
 
-	public static void apply(Document doc) throws Exception {
-		RemoveLustreKeywords.transform(doc);
-		ReplaceAbstractTypes.transform(doc);
-		PropagatePredicates.transform(doc); //must come after replace Variable array defs
-		RemoveCompositeReferences.transform(doc);
-		ReplaceShortHandRecords.transform(doc);
-		NormalizeOperators.transform(doc);
-		RemoveSugar.transform(doc);
-		ReplaceSpecificationCalls.transform(doc);
-		UniquifyNormalizedCalls.transform(doc);
+	public static void apply(Document d) throws Exception {
+		ReplaceAbstractTypes.transform(d);
+		PropagatePredicates.transform(d);
+		CreateUserNamespace.transform(d);
+		RemoveCompositeReferences.transform(d);
+		ReplaceShortHandRecords.transform(d);
+		NormalizeOperators.transform(d);
+		RemoveSugar.transform(d);
+		ReplaceSpecificationCalls.transform(d);
+		UniquifyNormalizedCalls.transform(d);
 	}
 }
