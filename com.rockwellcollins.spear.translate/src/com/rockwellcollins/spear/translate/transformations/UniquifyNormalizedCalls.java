@@ -20,30 +20,32 @@ public class UniquifyNormalizedCalls {
 	private String getName(String original) {
 		String proposed = original;
 		Integer unique = 1;
-		while(map.containsKey(proposed)) {
+		while(files.containsKey(proposed)) {
 			proposed = original + unique;
 			unique++;
 		}
-		map.put(proposed, original);
 		return proposed;
 	}
 	
 	private Map<String,File> files = new HashMap<>();
-	private Map<String,String> map = new HashMap<>();
 	
 	private void processSpec(Specification s) {
+		Specification toAdd = null;
 		for(NormalizedCall nc : EcoreUtil2.getAllContentsOfType(s, NormalizedCall.class)) {
 			Specification next = nc.getSpec();
 			if(files.containsValue(next)) {
-				Specification newNext = createCopy(next);
-				nc.setSpec(newNext);
-				files.put(newNext.getName(),newNext);
-				processSpec(newNext);
+				toAdd = createCopy(next);
+				nc.setSpec(toAdd);
 			} else {
-				files.put(next.getName(),next);
-				processSpec(next);
+				toAdd = next;
 			}
+			add(toAdd);
+			processSpec(toAdd);
 		}
+	}
+
+	private void add(Specification s) {
+		files.put(s.getName(), s);	
 	}
 
 	private Specification createCopy(Specification next) {
@@ -59,5 +61,9 @@ public class UniquifyNormalizedCalls {
 			files.put(spec.getName(),spec);
 			processSpec(spec);
 		}
+		
+		//clear out the old stuff for the new stuff
+		d.files.clear();
+		d.files.addAll(this.files.values());
 	}
 }
