@@ -42,14 +42,12 @@ import com.rockwellcollins.spear.utilities.Utilities;
  * validation
  */
 
-@ComposedChecks(validators = { 
-							   NamesUnique.class,
-							   SpecificationsAcyclicValidator.class,
-							   VariablesAreUsedValidator.class,
-							   IllegalAnalysisValidations.class,
-							   DataValidator.class,
-							   SpecificationValidator.class
-							 })
+@ComposedChecks(validators = {NamesUnique.class,
+							  SpecificationsAcyclicValidator.class,
+							  VariablesAreUsedValidator.class,
+							  IllegalAnalysisValidations.class,
+							  DataValidator.class,
+							  SpecificationValidator.class})
 
 public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractSpearJavaValidator {
 
