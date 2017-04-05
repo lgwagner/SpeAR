@@ -13,15 +13,14 @@ import com.rockwellcollins.spear.utilities.Utilities;
 
 public class FindDependencies {
 
-	public static Collection<EObject> get(EObject main) {
-		Set<EObject> elements = new HashSet<>();
-		elements.add(main);
-		File root = (File) Utilities.getTopFile(main);
-		get(root,elements);
-		return EcoreUtil2.copyAll(elements);
+	public static Collection<File> get(EObject main) {
+		Set<File> files = new HashSet<>();
+		File mainFile = (File) Utilities.getTopFile(main);
+		get(mainFile,files);
+		return EcoreUtil2.copyAll(files);
 	}
 	
-	private static void get(File root, Set<EObject> elements) {
+	private static void get(File root, Set<File> elements) {
 		elements.add(root);
 		for(Import im : root.getImports()) {
 			File imported = Utilities.getImportedFile(root, im);
