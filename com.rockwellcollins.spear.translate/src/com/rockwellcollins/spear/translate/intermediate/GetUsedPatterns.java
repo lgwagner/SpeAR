@@ -16,6 +16,10 @@ public class GetUsedPatterns extends SpearSwitch<Integer> {
 
 	public static Collection<Pattern> get(EObject main) {
 		GetUsedPatterns get = new GetUsedPatterns();
+		if (main instanceof Pattern) {
+			Pattern p = (Pattern) main;
+			get.map.put(p.getName(), p);
+		}
 		get.doSwitch(main);
 		return get.map.values();
 	}

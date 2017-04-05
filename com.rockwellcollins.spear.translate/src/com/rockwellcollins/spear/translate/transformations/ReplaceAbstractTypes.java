@@ -54,6 +54,7 @@ public class ReplaceAbstractTypes extends SpearSwitch<Integer> {
 			map.put(atd, ntd);
 		}
 		EcoreUtil2.replace(atd, ntd);
+		EcoreUtil2.remove(atd);
 		return 0;
 	}
 	
