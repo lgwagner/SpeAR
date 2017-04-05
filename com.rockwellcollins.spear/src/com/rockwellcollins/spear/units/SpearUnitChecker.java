@@ -136,6 +136,21 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	}
 	
 	@Override
+	public Unit caseFormalConstraint(FormalConstraint fc) {
+		Unit expected = SCALAR;
+		Unit actual = doSwitch(fc.getExpr());
+		
+		if(actual == ERROR) {
+			return ERROR;
+		}
+		
+		if(!expected.equals(actual)) {
+			return error(fc);
+		}
+		return expected;
+	}
+	
+	@Override
 	public Unit caseLustreEquation(LustreEquation eq) {
 		Unit expected = this.processList(new ArrayList<>(eq.getIds()));
 		Unit actual = doSwitch(eq.getRhs());
@@ -185,11 +200,6 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		return SCALAR;
 	}
 	
-	@Override
-	public Unit caseFormalConstraint(FormalConstraint fc) {
-		return doSwitch(fc.getExpr());
-	}
-
 	/***************************************************************************************************/
 	// UnitDefs
 	/***************************************************************************************************/
