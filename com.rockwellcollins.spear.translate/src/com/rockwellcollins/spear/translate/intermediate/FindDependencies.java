@@ -12,7 +12,7 @@ import com.rockwellcollins.spear.Import;
 import com.rockwellcollins.spear.util.SpearSwitch;
 import com.rockwellcollins.spear.utilities.Utilities;
 
-public class FindDependencies extends SpearSwitch<Integer> {
+public class FindDependencies {
 
 	public static Collection<EObject> get(EObject main) {
 		Set<EObject> elements = new HashSet<>();
