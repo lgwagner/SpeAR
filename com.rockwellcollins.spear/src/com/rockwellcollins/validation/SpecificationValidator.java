@@ -57,7 +57,8 @@ public class SpecificationValidator extends SpearJavaValidator {
 	}
 	
 	private boolean unitCheck(EObject o, Set<EObject> errors) {
-		return SpearUnitChecker.unitCheck(o, errors, this.getMessageAcceptor()).equals(Unit.ERROR);
+	  Unit u = SpearUnitChecker.unitCheck(o, errors, this.getMessageAcceptor());
+		return u.equals(Unit.ERROR);
 	}
 	
 	@Check
@@ -106,6 +107,7 @@ public class SpecificationValidator extends SpearJavaValidator {
 	@Check
 	public void validate(Pattern p) {
 		Set<EObject> errors = new HashSet<>();
+
 		
 		//acyclic checks
 		//type check

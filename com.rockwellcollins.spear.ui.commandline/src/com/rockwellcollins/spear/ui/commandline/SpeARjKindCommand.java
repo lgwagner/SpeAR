@@ -1,19 +1,21 @@
 package com.rockwellcollins.spear.ui.commandline;
 
 import java.io.File;
+import java.util.List;
 
 import com.beust.jcommander.IStringConverter;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.converters.FileConverter;
+import com.rockwellcollins.spear.preferences.PreferenceConstants;
 
 enum SolverEnum {
   SMTINTERPOL,
   Z3,
-  YICES,
+//  YICES,
   YICES2,
-  CVC4,
-  MATHSAT;
+  CVC4;
+//  MATHSAT;
   // converter that will be used later
   public static SolverEnum fromString(String code) {
       for(SolverEnum output : SolverEnum.values()) {
@@ -22,6 +24,18 @@ enum SolverEnum {
           }
       }
       return null;
+  }
+  
+  @Override
+  public String toString() {
+    switch(this) {
+    case SMTINTERPOL: return PreferenceConstants.SOLVER_SMTINTERPOL;
+    case Z3: return PreferenceConstants.SOLVER_Z3;
+    case YICES2: return PreferenceConstants.SOLVER_YICES2;
+    case CVC4: return PreferenceConstants.SOLVER_CVC4;
+    default:
+      throw new RuntimeException("This should not happen: Received unknown case.");
+    }
   }
 }
 
@@ -40,21 +54,15 @@ class SolverConverter implements IStringConverter<SolverEnum> {
 }
 
 public class SpeARjKindCommand {
-  @Parameter(description = "[SpeAR specification file]", converter = FileConverter.class)
-  public File spec;
+  
+  @Parameter(description = "file", required = true, converter = FileConverter.class)
+  public List<File> spec;
   
   @Parameter(names = "-induct_cex", description = "Generate inductive counterexamples.")
   public boolean induct_cex = false;
 
   @Parameter(names = "-interval", description = "Generalize counterexamples using interval analysis.")
   public boolean interval = false;
-  
-  @Parameter(names = "-ivc", description = "Find an inductive validity core for valid properties " +
-                    "(based on --%IVC annotated elements).")
-  public boolean ivc = false;
-  
-  @Parameter(names = "-main", description = "Specify main node (overrides --%MAIN).", arity = 1)
-  public String main = null;
   
   @Parameter(names = "-n", description = "Maximum depth for bmc and k-induction.", arity = 1)
   public Integer n = 200;
@@ -85,9 +93,7 @@ public class SpeARjKindCommand {
   @Parameter(names = "-smooth", description = "Smooth counterexamples (minimal changes in input values).")
   public boolean smooth = false;
   
-  @Parameter(names = "-solver", description = "SMT solver (alternatives: z3, yices, yices2, " + 
-      " cvc4, mathsat)", arity = 1,
-      converter = SolverConverter.class)
+  @Parameter(names = "-solver", description = "SMT solver", arity = 1, converter = SolverConverter.class)
   public SolverEnum solver = SolverEnum.SMTINTERPOL;
   
   @Parameter(names = "-timeout", description = "Maximum runtime in seconds.", arity = 1)

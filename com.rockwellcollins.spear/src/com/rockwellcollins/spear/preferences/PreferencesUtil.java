@@ -67,6 +67,15 @@ public class PreferencesUtil {
 	  SolverOption solver = SolverOption.valueOf(solverString);
 	  api.setSolver(solver);
 
+	  if(prefs.getBoolean(PreferenceConstants.PREF_INTERVAL_GENERALIZATION)) {
+	    api.setIntervalGeneralization();
+	  }
+	  if(prefs.getBoolean(PreferenceConstants.PREF_SPEAR_ENABLE_IVC_ON_ENTAILMENT)) {
+	    api.setIvcReduction();
+	  }
+	  if(prefs.getBoolean(PreferenceConstants.PREF_SMOOTH_COUNTEREXAMPLES)) {
+	      api.setSmoothCounterexamples();
+	  }
 	  if (!prefs.getBoolean(PreferenceConstants.PREF_BOUNDED_MODEL_CHECKING)) {
 	    api.disableBoundedModelChecking();
 	  }

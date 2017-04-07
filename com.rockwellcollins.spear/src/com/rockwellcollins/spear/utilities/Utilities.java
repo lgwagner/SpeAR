@@ -21,7 +21,7 @@ public class Utilities {
 			EObject element = contents.get(0);
 			return (File) element;
 		}
-		throw new RuntimeException("A File object should be imported");
+		return null;
 	}
 	
 	public static File getRoot(EObject o) {

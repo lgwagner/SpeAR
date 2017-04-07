@@ -29,6 +29,7 @@ import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FieldExpr;
 import com.rockwellcollins.spear.FieldlessRecordExpr;
+import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.IfThenElseExpr;
 import com.rockwellcollins.spear.IntLiteral;
@@ -134,6 +135,16 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		}
 		return expected;
 	}
+	
+	@Override
+	public Unit caseFormalConstraint(FormalConstraint fc) {
+	  if(doSwitch(fc.getExpr()) != SCALAR) {
+	    error("Formal constraints must be boolean which cannot have units.", fc);
+	    return error(fc);
+	  }
+	  return SCALAR;
+	}
+
 
 	/***************************************************************************************************/
 	// UnitDefs
