@@ -136,7 +136,7 @@ public class NamesUnique extends AbstractSpearJavaValidator {
 	}
 	
 	private Set<File> getImportedFiles(File root, Import im, Set<File> imported) {
-		File f = Utilities.getImportedFile(root, im);
+		File f = Utilities.getImportedFile(im);
 		if(!imported.contains(f)) {
 			imported.add(f);
 			for(Import im2 : f.getImports()) {

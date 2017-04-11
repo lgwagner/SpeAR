@@ -13,8 +13,9 @@ import com.rockwellcollins.spear.Pattern;
 
 public class Utilities {
 
-	public static File getImportedFile(File root, Import im) {
+	public static File getImportedFile(Import im) {
 		String URI = im.getImportURI();
+		File root = getRoot(im);
 		Resource importedResource = EcoreUtil2.getResource(root.eResource(), URI);
 		List<EObject> contents = importedResource.getContents();
 		

@@ -23,7 +23,7 @@ public class FindDependencies {
 	private static void get(File root, Set<File> elements) {
 		elements.add(root);
 		for(Import im : root.getImports()) {
-			File imported = Utilities.getImportedFile(root, im);
+			File imported = Utilities.getImportedFile(im);
 			if(!elements.contains(imported)) {
 				get(imported,elements);
 			}

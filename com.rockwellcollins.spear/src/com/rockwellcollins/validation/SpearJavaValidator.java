@@ -86,7 +86,7 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 	@Check
 	public void checkDefinitionsOnlyImportDefinitions(Definitions d) {
 		for(Import im : d.getImports()) {
-			File f = Utilities.getImportedFile(d, im);
+			File f = Utilities.getImportedFile(im);
 			if (f instanceof Specification) {
 				error("Definitions files cannot import Specifications.", im, SpearPackage.Literals.IMPORT__IMPORT_URI);
 			}

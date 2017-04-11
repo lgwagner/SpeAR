@@ -52,7 +52,7 @@ public class GenerateDot {
 		defined.add(s);
 		
 		for(Import im : s.getImports()) {
-			File imported = Utilities.getImportedFile(s, im);
+			File imported = Utilities.getImportedFile(im);
 			if (imported instanceof Definitions) {
 				Definitions def = (Definitions) imported;
 				if(!defined.contains(def)) {
