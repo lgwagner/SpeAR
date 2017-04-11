@@ -125,9 +125,20 @@
      </command>
      <command categoryId="com.rockwellcollins.spear.translate.commands"
            description="Terminate Analysis"
-           id="com.rockwellcollins.spear.translate.commands.terminateAnalysis"
+           id="com.rockwellcollins.spear.translate.commands.terminateLogicalEntailment"
            name="Cancel Analysis">
      </command>   
+     <command categoryId="com.rockwellcollins.spear.translate.commands"
+           description="Terminate Analysis"
+           id="com.rockwellcollins.spear.translate.commands.terminateLogicalConsistency"
+           name="Cancel Analysis">
+     </command>   
+     <command categoryId="com.rockwellcollins.spear.translate.commands"
+           description="Terminate Analysis"
+           id="com.rockwellcollins.spear.translate.commands.terminateRealizability"
+           name="Cancel Analysis">
+     </command>   
+
         
    </extension>
    <extension
@@ -152,7 +163,7 @@
             allPopups="false"
             locationURI="toolbar:com.rockwellcollins.spear.translate.views.SpearEntailmentResultsView">
          <command
-               commandId="com.rockwellcollins.spear.translate.commands.terminateAnalysis"
+               commandId="com.rockwellcollins.spear.translate.commands.terminateLogicalEntailment"
                icon="icons/terminate.png"
                label="Terminate"
                style="push">
@@ -162,7 +173,7 @@
             allPopups="false"
             locationURI="toolbar:com.rockwellcollins.spear.translate.views.SpearConsistencyResultsView">
          <command
-               commandId="com.rockwellcollins.spear.translate.commands.terminateAnalysis"
+               commandId="com.rockwellcollins.spear.translate.commands.terminateLogicalConsistency"
                icon="icons/terminate.png"
                label="Terminate"
                style="push">
@@ -172,7 +183,7 @@
             allPopups="false"
             locationURI="toolbar:com.rockwellcollins.spear.translate.views.SpearRealizabilityResultsView">
          <command
-               commandId="com.rockwellcollins.spear.translate.commands.terminateAnalysis"
+               commandId="com.rockwellcollins.spear.translate.commands.terminateRealizability"
                icon="icons/terminate.png"
                label="Terminate"
                style="push">

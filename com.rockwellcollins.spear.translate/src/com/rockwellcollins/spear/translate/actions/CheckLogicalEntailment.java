@@ -50,14 +50,13 @@ import jkind.results.layout.Layout;
 
 public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 
-	private static final String TERMINATE_ID = "com.rockwellcollins.spear.translate.commands.terminateAnalysis";
+	private static final String TERMINATE_ID = "com.rockwellcollins.spear.translate.commands..terminateLogicalEntailment";
 
 	private IWorkbenchWindow window;
 
 	@Override
 	public void run(IAction action) {
-		SpearInjectorUtil
-				.setInjector(SpearActivator.getInstance().getInjector(SpearActivator.COM_ROCKWELLCOLLINS_SPEAR));
+		SpearInjectorUtil.setInjector(SpearActivator.getInstance().getInjector(SpearActivator.COM_ROCKWELLCOLLINS_SPEAR));
 
 		IEditorPart editor = window.getActivePage().getActiveEditor();
 		if (!(editor instanceof XtextEditor)) {
@@ -151,8 +150,7 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 
 				JKindResult result = new JKindResult("Spear Result", p.getMainNode().properties, invert, renaming);
 				activateTerminateHandler(monitor);
-				List<String> requirements = specification.getRequirements().stream().map(req -> req.getName())
-						.collect(toList());
+				List<String> requirements = specification.getRequirements().stream().map(req -> req.getName()).collect(toList());
 				List<String> observers = getObservers(specification);
 				showView(result, new SpearRegularLayout(specification), requirements, observers);
 
@@ -202,6 +200,9 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 		window.getShell().getDisplay().syncExec(new Runnable() {
 			@Override
 			public void run() {
+				if (activation != null) {
+					handlerService.deactivateHandler(activation);
+				}
 				activation = handlerService.activateHandler(TERMINATE_ID, new TerminateHandler(monitor));
 			}
 		});
@@ -213,18 +214,17 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 			@Override
 			public void run() {
 				handlerService.deactivateHandler(activation);
+				activation = null;
 			}
 		});
 	}
 
-	private void showView(final JKindResult result, final Layout layout, List<String> requirements,
-			List<String> observers) {
+	private void showView(final JKindResult result, final Layout layout, List<String> requirements, List<String> observers) {
 		window.getShell().getDisplay().asyncExec(new Runnable() {
 			@Override
 			public void run() {
 				try {
-					SpearEntailmentResultsView page = (SpearEntailmentResultsView) window.getActivePage()
-							.showView(SpearEntailmentResultsView.ID);
+					SpearEntailmentResultsView page = (SpearEntailmentResultsView) window.getActivePage().showView(SpearEntailmentResultsView.ID);
 					page.setInput(result, layout, requirements, observers);
 				} catch (PartInitException e) {
 					e.printStackTrace();
