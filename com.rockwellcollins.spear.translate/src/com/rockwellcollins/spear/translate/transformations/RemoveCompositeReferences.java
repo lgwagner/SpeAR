@@ -36,9 +36,10 @@ public class RemoveCompositeReferences extends SpearSwitch<Integer> {
 		doc.files.stream().forEach(consume);
 	}
 
-	private Collection<Macro> generated = new ArrayList<>();
+	private Collection<Macro> generated;
 	
 	public void transform(Specification s) {
+		generated = new ArrayList<>();
 		EcoreUtil2.getAllContentsOfType(s, FormalConstraint.class).stream().forEach(fc -> this.doSwitch(fc));
 		s.getMacros().addAll(generated);
 	}

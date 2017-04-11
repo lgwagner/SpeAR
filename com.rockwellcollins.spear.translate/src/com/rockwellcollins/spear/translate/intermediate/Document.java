@@ -26,6 +26,7 @@ public class Document {
 	public Document(Specification f) {
 		Collection<File> deps = FindDependencies.get(f);
 		
+		//fixme
 		Map<String,File> filemap = new HashMap<>();
 		deps.stream().forEach(file -> filemap.put(file.getName(), file));
 		
