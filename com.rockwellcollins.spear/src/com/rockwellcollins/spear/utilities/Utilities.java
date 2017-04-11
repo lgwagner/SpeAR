@@ -12,7 +12,7 @@ import com.rockwellcollins.spear.Import;
 import com.rockwellcollins.spear.Pattern;
 
 public class Utilities {
-
+	
 	public static File getImportedFile(Import im) {
 		String URI = im.getImportURI();
 		File root = getRoot(im);
