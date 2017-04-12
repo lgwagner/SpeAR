@@ -1,6 +1,7 @@
 package com.rockwellcollins.spear.utilities;
 
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -13,6 +14,18 @@ import com.rockwellcollins.spear.Pattern;
 
 public class Utilities {
 	
+	public static void getImportedFiles(Import im, Set<File> imported) {
+		File importedFile = getImportedFile(im);
+		if(imported.contains(importedFile)) {
+			return;
+		}
+		
+		imported.add(importedFile);
+		for(Import subIm : importedFile.getImports()) {
+			getImportedFiles(subIm,imported);
+		}
+	}
+
 	public static File getImportedFile(Import im) {
 		String URI = im.getImportURI();
 		File root = getRoot(im);

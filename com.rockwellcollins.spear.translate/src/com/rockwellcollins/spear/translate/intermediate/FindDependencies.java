@@ -24,6 +24,7 @@ public class FindDependencies {
 		elements.add(root);
 		for(Import im : root.getImports()) {
 			File imported = Utilities.getImportedFile(im);
+			
 			if(!elements.contains(imported)) {
 				get(imported,elements);
 			}
