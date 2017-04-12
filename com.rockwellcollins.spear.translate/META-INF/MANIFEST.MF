@@ -17,7 +17,8 @@ Bundle-ClassPath: .,
  dependencies/itext/itextpdf-5.5.8.jar,
  dependencies/itext/itextpdf-5.5.8-javadoc.jar,
  dependencies/itext/itextpdf-5.5.8-sources.jar
-Export-Package: com.rockwellcollins.spear.translate.excel;uses:="com.rockwellcollins.spear,com.rockwellcollins.spear.util,jxl.write",
+Export-Package: com.rockwellcollins.spear.analysis,
+ com.rockwellcollins.spear.translate.excel;uses:="com.rockwellcollins.spear,com.rockwellcollins.spear.util,jxl.write",
  com.rockwellcollins.spear.translate.graphical;uses:="com.rockwellcollins.spear",
  com.rockwellcollins.spear.translate.intermediate;uses:="org.eclipse.emf.ecore,com.rockwellcollins.spear,com.rockwellcollins.spear.util",
  com.rockwellcollins.spear.translate.layout;uses:="com.rockwellcollins.spear,jkind.results.layout",
@@ -26,3 +27,4 @@ Export-Package: com.rockwellcollins.spear.translate.excel;uses:="com.rockwellcol
    com.rockwellcollins.spear.translate.intermediate,
    com.rockwellcollins.spear.translate.naming,
    jkind.lustre"
+Import-Package: org.eclipse.core.runtime

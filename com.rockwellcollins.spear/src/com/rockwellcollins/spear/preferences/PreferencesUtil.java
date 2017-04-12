@@ -67,6 +67,9 @@ public class PreferencesUtil {
 	  SolverOption solver = SolverOption.valueOf(solverString);
 	  api.setSolver(solver);
 
+    api.setN(prefs.getInt(PreferenceConstants.PREF_DEPTH));
+    api.setTimeout(prefs.getInt(PreferenceConstants.PREF_TIMEOUT));
+	  
 	  if(prefs.getBoolean(PreferenceConstants.PREF_INTERVAL_GENERALIZATION)) {
 	    api.setIntervalGeneralization();
 	  }
@@ -104,6 +107,21 @@ public class PreferencesUtil {
 	  api.setTimeout(prefs.getInt(PreferenceConstants.PREF_TIMEOUT));
 
 	}
+	
+	public static void configureJRealizabilityApi(JRealizabilityApi api) {
+    IPreferenceStore prefs = getPreferenceStore();
+
+    api.setN(prefs.getInt(PreferenceConstants.PREF_DEPTH));
+    api.setTimeout(prefs.getInt(PreferenceConstants.PREF_TIMEOUT));
+
+    if (prefs.getBoolean(PreferenceConstants.PREF_DEBUG)) {
+      api.setApiDebug();
+    }
+
+    api.setN(prefs.getInt(PreferenceConstants.PREF_DEPTH));
+    api.setTimeout(prefs.getInt(PreferenceConstants.PREF_TIMEOUT));
+
+  }
 	
 	
 	public static JKindApi getJKindApi() {

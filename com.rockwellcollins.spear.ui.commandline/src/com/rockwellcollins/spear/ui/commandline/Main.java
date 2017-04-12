@@ -6,10 +6,9 @@ import java.nio.file.Paths;
 import java.nio.file.Path;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
@@ -27,25 +26,16 @@ import com.beust.jcommander.JCommander;
 import com.beust.jcommander.ParameterException;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
-import com.rockwellcollins.spear.Constraint;
 import com.rockwellcollins.spear.File;
-import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.Import;
 import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.analysis.Analysis;
 import com.rockwellcollins.spear.preferences.PreferenceConstants;
 import com.rockwellcollins.spear.preferences.Preferences;
-import com.rockwellcollins.spear.preferences.PreferencesUtil;
-import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
-import com.rockwellcollins.spear.translate.master.SProgram;
 
-
-import jkind.api.JKindApi;
 import jkind.api.results.JKindResult;
-import jkind.api.results.MapRenaming;
-import jkind.api.results.Renaming;
-import jkind.api.results.MapRenaming.Mode;
+import jkind.api.results.JRealizabilityResult;
 import jkind.api.results.PropertyResult;
-import jkind.lustre.Program;
 
 public class Main {
 
@@ -61,13 +51,14 @@ public class Main {
 
   protected void runGenerator(String[] args) {
 
+    PreferenceStore s = Preferences.store;
     SpeARMainCommand main = new SpeARMainCommand();
     JCommander jcom = new JCommander(main);
     SpeARjKindCommandEntailment entailment = new SpeARjKindCommandEntailment();
     jcom.addCommand("entailment", entailment);
     SpeARjKindCommandConsistency consistency = new SpeARjKindCommandConsistency();
     jcom.addCommand("consistency", consistency);
-    SpeARjRealizabilityCommandRealizability realizability = new SpeARjRealizabilityCommandRealizability();
+    SpeARjRealizabilityCommand realizability = new SpeARjRealizabilityCommand();
     jcom.addCommand("realizability", realizability);
     jcom.setProgramName("java -jar spear.jar");
 
@@ -100,7 +91,6 @@ public class Main {
     
     if(command == "entailment" || command == "consistency") {
       SpeARjKindCommand opts = null;
-      PreferenceStore s = Preferences.store;
       if(command == "entailment") {
         opts = entailment;
         s.setValue(PreferenceConstants.PREF_SPEAR_ENABLE_IVC_ON_ENTAILMENT, entailment.ivc);
@@ -125,7 +115,11 @@ public class Main {
       /*s.setDefault(PreferenceConstants.PREF_SPEAR_RECURSIVE_GRAPH, false);*
       /*s.setDefault(PreferenceConstants.PREF_SPEAR_WARN_ON_UNUSED_VARS, false);*/
     } else if (command == "realizability") {
-      throw new RuntimeException("This should not happen: unimplemented.");
+      SpeARjRealizabilityCommand opts = null;
+      
+      opts = realizability;
+      s.setValue(PreferenceConstants.PREF_DEPTH, opts.n.intValue());
+      s.setValue(PreferenceConstants.PREF_TIMEOUT, opts.timeout.intValue());
     }
     
     java.io.File spec = specs.get(0);
@@ -140,17 +134,24 @@ public class Main {
     List<String> visited = new LinkedList<String>();
 
     validateRecursively(resourceSet,resource,list,visited);
+    //XXX: It seems to me we should not be receiving duplicate error messages but I 
+    //do not have time to investigate why this is happening.
+    List<String> alreadyseen = new LinkedList<String>();
     boolean analysis = true;
     if (!list.isEmpty()) {
       for (Issue issue : list) {
+        if(alreadyseen.contains(issue.toString())) {
+          continue;
+        }
         if(issue.getSeverity() == Severity.ERROR) {
           analysis = false;
         }
+        alreadyseen.add(issue.toString());
         System.err.println(issue);
       }
     }
     if(!analysis) {
-      System.err.println("Errors during validation analysis is not possible.");
+      System.err.println("Errors during validation, " + command + " analysis not possible.");
       return;
     }
 
@@ -162,54 +163,45 @@ public class Main {
     } catch (IOException e1) {
       throw new RuntimeException("This should not happen: Problem exporting 'jkind.jar'.");
     }
-
-    JKindApi api = new JKindApi();
-    api.setJKindJar(jkindjarpth.toString());
-    PreferencesUtil.configureJKindApi(api);
-    
-    SpearDocument workingCopy = new SpearDocument((Specification) resource.getContents().get(0));
-    workingCopy.transform();
-
-    SProgram program = SProgram.build(workingCopy);
-    Program p = program.getLogicalEntailment();
-
     
     if(command == "entailment") {
+      try {
+        JKindResult result = Analysis.entailment((Specification) resource.getContents().get(0)
+              , jkindjarpth.toString()
+              , new NullProgressMonitor());
+        for( PropertyResult pr : result.getPropertyResults()) {
+          System.out.println(pr.toString());
+        }
+      } catch (Exception e) {
+        throw e;
+      }
       
     } else if (command == "consistency") {
-      throw new RuntimeException("This should not happen: unimplemented.");
+      try {
+        JKindResult result = Analysis.consistency((Specification) resource.getContents().get(0)
+              , jkindjarpth.toString()
+              , new NullProgressMonitor());
+        for( PropertyResult pr : result.getPropertyResults()) {
+          System.out.println(pr.toString());
+        }
+      } catch (Exception e) {
+        throw e;
+      }
     } else if (command == "realizability") {
-      throw new RuntimeException("This should not happen: unimplemented.");
+      try {
+        JRealizabilityResult result = Analysis.realizability((Specification) resource.getContents().get(0)
+            , jkindjarpth.toString()
+            , new NullProgressMonitor());
+        for( PropertyResult pr : result.getPropertyResults()) {
+          System.out.println(pr.toString());
+        }
+      } catch(Exception e) {
+        System.err.println(e);
+      }
+
     } else {
       throw new RuntimeException("This should not happen: unknown command.");
     }
-    
-    Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.getMain()), Mode.IDENTITY);
-    List<Boolean> invert = new ArrayList<>();
-    Specification s = workingCopy.specifications.get(workingCopy.mainName);
-    for (Constraint c : s.getBehaviors()) {
-      if (c instanceof FormalConstraint) {
-        FormalConstraint fc = (FormalConstraint) c;
-        if (fc.getFlagAsWitness() != null) {
-          invert.add(true);
-        } else {
-          invert.add(false);
-        }
-      } else {
-        invert.add(false);
-      }
-    }
-    JKindResult result = new JKindResult("result", p.getMainNode().properties, invert, renaming);
-    try {
-      api.execute(p, result, new NullProgressMonitor());
-      for( PropertyResult pr : result.getPropertyResults()) {
-        System.out.println(pr.toString());
-      }
-    } catch (Exception e) {
-      System.err.println(result.getText());
-      throw e;
-    }
-
   }
 
   private void validateRecursively(XtextResourceSet resourceSet, Resource resource, List<Issue> list, List<String> visited) {

@@ -76,19 +76,19 @@ public class SpeARjKindCommand {
   @Parameter(names = "-no_k_induction", description = "Disable k-induction.")
   public boolean no_k_induction = false;
   
-  @Parameter(names = "-no_slicing", description = "Disable slicing.")
-  public boolean no_slicing = false;
+  //@Parameter(names = "-no_slicing", description = "Disable slicing.")
+  //public boolean no_slicing = false;
   
   @Parameter(names = "-pdr_max", description = "Maximum number of PDR parallel instances " +
     "(0 to disable PDR).", arity = 1)
   public Integer pdr_max = 1;
 
-  @Parameter(names = "-read_advice", description = "Read advice from specified file.", arity = 1,
-      converter = FileConverter.class)
-  public File read_advice = null;
+  //@Parameter(names = "-read_advice", description = "Read advice from specified file.", arity = 1,
+  //    converter = FileConverter.class)
+  //public File read_advice = null;
   
-  @Parameter(names = "-scratch", description = "Produce files for debugging purposes.")
-  public boolean scratch = false;
+  //@Parameter(names = "-scratch", description = "Produce files for debugging purposes.")
+  //public boolean scratch = false;
   
   @Parameter(names = "-smooth", description = "Smooth counterexamples (minimal changes in input values).")
   public boolean smooth = false;
@@ -99,9 +99,9 @@ public class SpeARjKindCommand {
   @Parameter(names = "-timeout", description = "Maximum runtime in seconds.", arity = 1)
   public Integer timeout = 100;
   
-  @Parameter(names = "-write_advice", description = "Write advice to specified file.", arity = 1,
-      converter = FileConverter.class)
-  public File write_advice = null;
+  //@Parameter(names = "-write_advice", description = "Write advice to specified file.", arity = 1,
+  //    converter = FileConverter.class)
+  //public File write_advice = null;
 
   
 }

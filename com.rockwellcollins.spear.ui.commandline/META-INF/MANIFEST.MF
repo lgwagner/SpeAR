@@ -7,7 +7,8 @@ Bundle-SymbolicName: com.rockwellcollins.spear.tests; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: com.rockwellcollins.spear,
  org.eclipse.core.runtime;bundle-version="3.12.0"
-Import-Package: com.rockwellcollins.spear.translate.intermediate,
+Import-Package: com.rockwellcollins.spear.analysis,
+ com.rockwellcollins.spear.translate.intermediate,
  com.rockwellcollins.spear.translate.master,
  org.eclipse.jface.preference
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

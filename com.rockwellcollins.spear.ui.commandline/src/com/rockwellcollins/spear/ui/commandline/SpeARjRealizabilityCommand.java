@@ -20,22 +20,22 @@ import com.beust.jcommander.converters.FileConverter;
 */
 @Parameters(commandDescription = "Attempts to prove that an implementation can be given for the requirements under " +
                                  "the assumptions.")
-class SpeARjRealizabilityCommandRealizability {
+class SpeARjRealizabilityCommand {
   
   @Parameter(description = "file", required = true, converter = FileConverter.class)
   public List<File> spec;
   
-  @Parameter(names = "-extend_cex", description = "Report extend counterexample.")
-  public boolean extend_cex = false;
+  //@Parameter(names = "-extend_cex", description = "Report extend counterexample.")
+  //public boolean extend_cex = false;
   
   @Parameter(names = "-n", description = "Maximum depth for bmc and k-induction.", arity = 1)
   public Integer n = 200;
   
-  @Parameter(names = "-reduce", description = "Reduce conflicting properties in case of unrealizable.")
-  public boolean reduce = false;
+  //@Parameter(names = "-reduce", description = "Reduce conflicting properties in case of unrealizable.")
+  //public boolean reduce = false;
   
-  @Parameter(names = "-scratch", description = "Produce files for debugging purposes.")
-  public boolean scratch = false;
+  //@Parameter(names = "-scratch", description = "Produce files for debugging purposes.")
+  //public boolean scratch = false;
   
   @Parameter(names = "-timeout", description = "Maximum runtime in seconds.", arity = 1)
   public Integer timeout = 100;
