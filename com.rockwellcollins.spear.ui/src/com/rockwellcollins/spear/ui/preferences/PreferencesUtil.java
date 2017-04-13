@@ -109,7 +109,7 @@ public class PreferencesUtil {
 
 	public static String getJKindJar() {
 		Bundle bundle = Platform.getBundle("com.rockwellcollins.spear");
-		URL url = bundle.getEntry("dependencies/jkind.jar");
+		URL url = bundle.getEntry("dependencies/jkind/jkind.jar");
 		try {
 			URL fileUrl = FileLocator.toFileURL(url);
 			return new File(fileUrl.getPath()).toString();
