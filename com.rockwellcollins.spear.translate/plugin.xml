@@ -124,6 +124,11 @@
            name="Check Type Validity">
      </command>
      <command categoryId="com.rockwellcollins.spear.translate.commands"
+           description="Normalize Section Headers"
+           id="com.rockwellcollins.spear.translate.commands.normalizeSectionHeaders"
+           name="Normalize Section Headers">
+     </command>
+     <command categoryId="com.rockwellcollins.spear.translate.commands"
            description="Terminate Analysis"
            id="com.rockwellcollins.spear.translate.commands.terminateLogicalEntailment"
            name="Cancel Analysis">
@@ -142,10 +147,11 @@
         
    </extension>
    <extension
-         point="org.eclipse.ui.menus">
+         point="org.eclipse.ui.menus">   
       <menuContribution
             allPopups="false"
             locationURI="popup:#TextEditorContext?after=additions">
+          <separator name="spear-seperator" visible="true"> </separator>
           <command
                 commandId="com.rockwellcollins.spear.translate.commands.analyzePattern"
                 icon="icons/logical_entailment.png"
@@ -158,6 +164,12 @@
                 id="com.rockwellcollins.spear.translate.commands.analyzeType"
                 style="push">
           </command>
+          <command
+                commandId="com.rockwellcollins.spear.translate.commands.normalizeSectionHeaders"
+                icon="icons/spear_icon.png"
+                id="com.rockwellcollins.spear.translate.commands.normalizeSectionHeaders"
+                style="push">
+          </command>          
       </menuContribution> 
       <menuContribution
             allPopups="false"
@@ -201,6 +213,9 @@
             commandId="com.rockwellcollins.spear.translate.commands.analyzeType"
             class="com.rockwellcollins.spear.translate.handlers.AnalyzeType">
       </handler>
+      <handler
+            commandId="com.rockwellcollins.spear.translate.commands.normalizeSectionHeaders"
+            class="com.rockwellcollins.spear.translate.handlers.NormalizeSectionHeaders">
+      </handler>      
    </extension>
-  
 </plugin>
