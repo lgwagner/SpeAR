@@ -58,10 +58,7 @@ public class GenerateGraph implements IWorkbenchWindowActionDelegate {
 					specification = (Specification) f;
 				}
 
-				if (ActionUtilities.hasErrors(specification.eResource())) {
-					MessageDialog.openError(window.getShell(), "Error", "Specification contains errors.");
-					return null;
-				}
+				ActionUtilities.hasErrors(specification, window);
 				
 				if (!ActionUtilities.checkForDot()) {
 					MessageDialog.openError(window.getShell(), "Error", "Unable to find GraphViz installation. \n"
