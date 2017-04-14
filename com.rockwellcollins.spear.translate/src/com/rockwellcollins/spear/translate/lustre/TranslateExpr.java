@@ -213,7 +213,8 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	
 	@Override
 	public Expr caseMacro(Macro m) {
-		return new IdExpr(this.module.map.lookupOriginalModule(m.getName()));
+		String x = this.module.map.lookupOriginalModule(m.getName());
+		return new IdExpr(x);
 	}
 
 	@Override

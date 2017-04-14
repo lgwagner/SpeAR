@@ -4,22 +4,19 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.util.SimpleAttributeResolver;
 import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.validation.EValidatorRegistrar;
 
 import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.EnumTypeDef;
-import com.rockwellcollins.spear.File;
-import com.rockwellcollins.spear.Import;
 import com.rockwellcollins.spear.Pattern;
-import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.util.SpearSwitch;
-import com.rockwellcollins.spear.utilities.Utilities;
+import com.rockwellcollins.spear.utilities.LiteralMapper;
 
 public class NamesUnique extends AbstractSpearJavaValidator {
 
@@ -48,7 +45,7 @@ public class NamesUnique extends AbstractSpearJavaValidator {
 		for(String key : map.keySet()) {
 			Set<EObject> set = map.get(key);
 			if(set.size() > 1) {
-				set.stream().forEach(e -> error("Name " + key + " used in multiple places.", e, null));
+				set.stream().forEach(e -> error("Name " + key + " used in multiple places.", e, LiteralMapper.crunch(e)));
 			}
 		}
 	}
@@ -58,12 +55,7 @@ public class NamesUnique extends AbstractSpearJavaValidator {
 		Map<String,Set<EObject>> map = new HashMap<>();
 		SimpleAttributeResolver<EObject, String> resolver = SimpleAttributeResolver.newResolver(String.class,"name");
 		
-		for(Import im : d.getImports()) {
-			Set<String> importedNames = getImportedNames(d,im);
-			if(importedNames.contains(d.getName())) {
-				error("Import URI references a Specification/Definitions file with same ID (" + d.getName() + ") as current specification", im, SpearPackage.Literals.IMPORT__IMPORT_URI);
-			}
-		}
+		insert(map,resolver.apply(d),d);
 		
 		/* 
 		 * s.getUnits().stream().forEach(d -> insert(map,resolver.apply(d),d)); 
@@ -79,7 +71,7 @@ public class NamesUnique extends AbstractSpearJavaValidator {
 		for(String key : map.keySet()) {
 			Set<EObject> set = map.get(key);
 			if(set.size() > 1) {
-				set.stream().forEach(e -> error("Name " + key + " used in multiple places.", e, null));
+				set.stream().forEach(e -> error("Name " + key + " used in multiple places.", e, LiteralMapper.crunch(e)));
 			}
 		}
 	}
@@ -89,12 +81,7 @@ public class NamesUnique extends AbstractSpearJavaValidator {
 		Map<String,Set<EObject>> map = new HashMap<>();
 		SimpleAttributeResolver<EObject, String> resolver = SimpleAttributeResolver.newResolver(String.class,"name");
 		
-		for(Import im : s.getImports()) {
-			Set<String> importedNames = getImportedNames(s,im);
-			if(importedNames.contains(s.getName())) {
-				error("Import URI references a Specification/Definitions file with same ID (" + s.getName() + ") as current specification", im, SpearPackage.Literals.IMPORT__IMPORT_URI);
-			}
-		}
+		insert(map,resolver.apply(s),s);
 		
 		/* 
 		 * s.getUnits().stream().forEach(d -> insert(map,resolver.apply(d),d)); 
@@ -118,26 +105,9 @@ public class NamesUnique extends AbstractSpearJavaValidator {
 		for(String key : map.keySet()) {
 			Set<EObject> set = map.get(key);
 			if(set.size() > 1) {
-				set.stream().forEach(e -> error("Name " + key + " used in multiple places.", e, null));
+				set.stream().forEach(e -> error("Name " + key + " used in multiple places.", e, LiteralMapper.crunch(e)));
 			}
 		}
-	}
-	
-	private Set<String> getImportedNames(File root, Import im) {
-		Set<File> imported = new HashSet<>();
-		imported = getImportedFiles(root, im, imported);
-		return imported.stream().map(f -> f.getName()).collect(Collectors.toSet());
-	}
-	
-	private Set<File> getImportedFiles(File root, Import im, Set<File> imported) {
-		File f = Utilities.getImportedFile(root, im);
-		if(!imported.contains(f)) {
-			imported.add(f);
-			for(Import im2 : f.getImports()) {
-				getImportedFiles(f,im2,imported);
-			}
-		}
-		return imported;
 	}
 	
 	private static class InsertTypeDef extends SpearSwitch<Integer> {
@@ -166,4 +136,7 @@ public class NamesUnique extends AbstractSpearJavaValidator {
 			return 0;
 		}
 	}
+	
+	@Override
+	public void register(EValidatorRegistrar registrar) {}
 }

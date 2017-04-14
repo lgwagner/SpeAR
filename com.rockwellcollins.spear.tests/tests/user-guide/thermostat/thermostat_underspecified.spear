@@ -1,0 +1,41 @@
+Specification thermostat_underspecified
+
+Types:
+	heater_operating_state: enum {ON, OFF, ERROR}
+
+Constants:
+	TIMEOUT : int = 10
+  
+Inputs:
+  ambient is a real
+  target  is a real
+  
+Outputs:
+  heater_command is a heater_operating_state
+  
+State:
+ timer : int
+ 
+Assumptions:
+ a0: previous heater_command equal to ON implies
+		ambient greater than or equal to previous ambient
+			
+Requirements:
+ r0: if ambient less than target and
+			timer less than or equal to TIMEOUT then
+		heater_command equal to ON
+ r1: if ambient greater than or equal to target and
+			timer less than or equal to TIMEOUT then
+		heater_command equal to OFF
+ r2: if timer greater than TIMEOUT then
+			heater_command equal to ERROR
+ 
+Properties:
+ p_heat: if heater_command equal to ON then
+			ambient less than target
+ p_off: 	if heater_command equal to OFF then
+			ambient greater than or equal to target
+ p_error: if heater_command equal to ERROR then
+			timer greater than TIMEOUT
+ p_elatch: once heater_command equal to ERROR
+			implies heater_command equal to ERROR

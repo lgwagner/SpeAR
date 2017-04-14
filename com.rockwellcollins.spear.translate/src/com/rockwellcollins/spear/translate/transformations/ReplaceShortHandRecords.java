@@ -9,22 +9,14 @@ import com.rockwellcollins.spear.FieldType;
 import com.rockwellcollins.spear.FieldlessRecordExpr;
 import com.rockwellcollins.spear.RecordExpr;
 import com.rockwellcollins.spear.SpearFactory;
-import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
-import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
+import com.rockwellcollins.spear.translate.intermediate.Document;
 
 public class ReplaceShortHandRecords {
 	
 	public static SpearFactory factory = SpearFactory.eINSTANCE;
 	
-	public static void transform(SpearDocument doc) {
-		doc.constants.values().stream().forEach(c -> transform(c));
-		doc.patterns.values().stream().forEach(p -> transform(p));
-		doc.specifications.values().stream().forEach(s -> transform(s));
-	}
-	
-	public static void transform(PatternDocument doc) {
-		doc.constants.values().stream().forEach(c -> transform(c));
-		doc.patterns.values().stream().forEach(p -> transform(p));
+	public static void transform(Document doc) {
+		doc.files.stream().forEach(f -> transform(f));
 	}
 	
 	public static EObject transform(EObject o) {

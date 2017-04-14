@@ -24,6 +24,7 @@ import com.rockwellcollins.spear.BinaryUnitExpr;
 import com.rockwellcollins.spear.BoolLiteral;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.DerivedUnit;
+import com.rockwellcollins.spear.EnglishConstraint;
 import com.rockwellcollins.spear.EnumTypeDef;
 import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.Expr;
@@ -31,10 +32,13 @@ import com.rockwellcollins.spear.FieldExpr;
 import com.rockwellcollins.spear.FieldlessRecordExpr;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
+import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.IfThenElseExpr;
 import com.rockwellcollins.spear.IntLiteral;
 import com.rockwellcollins.spear.IntegerCast;
+import com.rockwellcollins.spear.LustreAssertion;
 import com.rockwellcollins.spear.LustreEquation;
+import com.rockwellcollins.spear.LustreProperty;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.MultipleExpr;
 import com.rockwellcollins.spear.NamedTypeDef;
@@ -55,7 +59,6 @@ import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.UserType;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.WhileExpr;
-import com.rockwellcollins.spear.typing.SpearTypeChecker;
 import com.rockwellcollins.spear.util.SpearSwitch;
 import com.rockwellcollins.spear.utilities.IntConstantFinder;
 
@@ -79,7 +82,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	final private ValidationMessageAcceptor messageAcceptor;
 	private Set<EObject> errors;
 
-	public SpearUnitChecker(Set<EObject> errors, ValidationMessageAcceptor messageAcceptor) {
+	private SpearUnitChecker(Set<EObject> errors, ValidationMessageAcceptor messageAcceptor) {
 		this.errors = errors;
 		this.messageAcceptor = messageAcceptor;
 	}
@@ -103,22 +106,59 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	/***************************************************************************************************/
 	// Declarations
 	/***************************************************************************************************/
+	public Map<IdRef,Unit> map = new HashMap<>();
+	
 	@Override
 	public Unit caseConstant(Constant c) {
-		Unit result = doSwitch(c.getType());
-		return result;
+		if(map.containsKey(c)) {
+			return map.get(c);
+		}
+		Unit expected = this.doSwitch(c.getType());
+		map.put(c, expected);
+		
+		Unit actual = this.doSwitch(c.getExpr());
+		if(expected.equals(actual)) {
+			return expected;
+		}
+		error("Expected units: " + expected.toString() + ", but actual units are: " + actual.toString(), c, SpearPackage.Literals.CONSTANT__EXPR);
+		return error(c);
 	}
 
 	@Override
 	public Unit caseMacro(Macro m) {
-		Unit result = doSwitch(m.getType());
-		return result;
+		if(map.containsKey(m)) {
+			return map.get(m);
+		}
+		Unit expected = this.doSwitch(m.getType());
+		map.put(m, expected);
+		
+		Unit actual = this.doSwitch(m.getExpr());
+		if(expected.equals(actual)) {
+			return expected;
+		}
+		error("Expected units: " + expected.toString() + ", but actual units are: " + actual.toString(), m, SpearPackage.Literals.MACRO__EXPR);
+		return error(m);
 	}
 
 	@Override
 	public Unit caseVariable(Variable v) {
 		Unit result = doSwitch(v.getType());
 		return result;
+	}
+	
+	@Override
+	public Unit caseFormalConstraint(FormalConstraint fc) {
+		Unit expected = SCALAR;
+		Unit actual = doSwitch(fc.getExpr());
+		
+		if(actual == ERROR) {
+			return ERROR;
+		}
+		
+		if(!expected.equals(actual)) {
+			return error(fc);
+		}
+		return expected;
 	}
 	
 	@Override
@@ -135,16 +175,41 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		}
 		return expected;
 	}
+
+	public Unit caseLustreAssertion(LustreAssertion la) {
+		Unit expected = SCALAR;
+		Unit actual = doSwitch(la.getAssertionExpr());
+		
+		if(actual == ERROR) {
+			return ERROR;
+		}	
+		
+		if(!expected.equals(actual)) {
+			return error(la);
+		}
+		return expected;
+	}
 	
 	@Override
-	public Unit caseFormalConstraint(FormalConstraint fc) {
-	  if(doSwitch(fc.getExpr()) != SCALAR) {
-	    error("Formal constraints must be boolean which cannot have units.", fc);
-	    return error(fc);
-	  }
-	  return SCALAR;
+	public Unit caseLustreProperty(LustreProperty lp) {
+		Unit expected = SCALAR;
+		Unit actual = doSwitch(lp.getPropertyId());
+		
+		if(actual == ERROR) {
+			return ERROR;
+		}
+		
+		if(!expected.equals(actual)) {
+			return error(lp);
+		}
+		return expected;
 	}
-
+	
+	@Override
+	public Unit caseEnglishConstraint(EnglishConstraint ec) {
+		return SCALAR;
+	}
+	
 
 	/***************************************************************************************************/
 	// UnitDefs
@@ -276,7 +341,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	public Unit caseType(Type t) {
 		return SCALAR;
 	}
-
+	
 	/***************************************************************************************************/
 	// Expressions
 	/***************************************************************************************************/

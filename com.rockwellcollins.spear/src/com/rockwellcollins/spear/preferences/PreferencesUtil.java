@@ -20,7 +20,7 @@ public class PreferencesUtil {
 		return prefs.getInt(PreferenceConstants.PREF_SPEAR_CONSISTENCY_DEPTH);
 	}
 	
-	public static boolean getFinalLustreFileOption() {
+	public static boolean printFinalLustre() {
 		IPreferenceStore prefs = getPreferenceStore();
 		return prefs.getBoolean(PreferenceConstants.PREF_SPEAR_PRINT_FINAL_LUSTRE);		
 	}
@@ -139,7 +139,7 @@ public class PreferencesUtil {
 
 	public static String getJKindJar() {
 		Bundle bundle = Platform.getBundle("com.rockwellcollins.spear");
-		URL url = bundle.getEntry("dependencies/jkind.jar");
+		URL url = bundle.getEntry("dependencies/jkind/jkind.jar");
 		try {
 			URL fileUrl = FileLocator.toFileURL(url);
 			return new File(fileUrl.getPath()).toString();

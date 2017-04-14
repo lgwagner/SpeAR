@@ -1,11 +1,18 @@
 package com.rockwellcollins.spear.translate.master;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
+import com.rockwellcollins.spear.File;
+import com.rockwellcollins.spear.Pattern;
+import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
-import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
-import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
+import com.rockwellcollins.spear.translate.intermediate.Document;
+import com.rockwellcollins.spear.translate.intermediate.GetUsedConstants;
+import com.rockwellcollins.spear.translate.intermediate.GetUsedPatterns;
+import com.rockwellcollins.spear.translate.intermediate.GetUsedSpecifications;
+import com.rockwellcollins.spear.translate.intermediate.GetUsedTypeDefs;
 import com.rockwellcollins.spear.translate.naming.SpearMap;
 import com.rockwellcollins.spear.utilities.LustreLibrary;
 
@@ -14,12 +21,17 @@ import jkind.lustre.builders.ProgramBuilder;
 
 public class SProgram extends SMapElement {
 
-	public static SProgram build(SpearDocument doc) {
-		return new SProgram(doc);
-	}
-	
-	public static SProgram build(PatternDocument doc) {
-		return new SProgram(doc);
+	public static SProgram build(Document d) {
+		if (d.main instanceof File) {
+			File f = (File) d.main;
+			return new SProgram(d,f);
+		}
+		
+		if (d.main instanceof Pattern) {
+			Pattern p = (Pattern) d.main;
+			return new SProgram(d,p);
+		}
+		throw new RuntimeException("Main element was " + d.main.toString() + ", expected Pattern or Specification.");
 	}
 	
 	public String mainName;
@@ -28,7 +40,7 @@ public class SProgram extends SMapElement {
 	public List<SPattern> patterns = new ArrayList<>();
 	public List<SSpecification> specifications = new ArrayList<>();
 	
-	private SProgram(SpearDocument document) {
+	private SProgram(Document d, File main) {
 		//initialize the program's global map
 		map = SpearMap.getProgramMap();
 		
@@ -36,17 +48,17 @@ public class SProgram extends SMapElement {
 		SpearMap.addLibraries(map);
 
 		//get the names of the typedefs, constants and process them
-		typedefs.addAll(STypeDef.build(document.typedefs.values(), this));
-		constants.addAll(SConstant.build(document.constants.values(), this));
+		typedefs.addAll(STypeDef.build(GetUsedTypeDefs.get(d.main), this));
+		constants.addAll(SConstant.build(GetUsedConstants.get(d.main), this));
 		
 		//just get the names of these because we need to have them in the namespace before we process them.
-		@SuppressWarnings("unused")
-		List<String> renamedPatterns = SPattern.addNames(document.patterns.values(), this);
-		@SuppressWarnings("unused")
-		List<String> renamedSpecifications = SSpecification.addNames(document.specifications.values(), map);
+		@SuppressWarnings("unused") List<String> renamedPatterns = SPattern.addNames(GetUsedPatterns.get(d.main), this);
+		
+		Collection<Specification> usedSpecs = GetUsedSpecifications.get(d);
+		@SuppressWarnings("unused") List<String> renamedSpecifications = SSpecification.addNames(usedSpecs, map);
 
 		//process the patterns. Nothing special to do here.
-		patterns.addAll(SPattern.build(document.patterns.values(), this));
+		patterns.addAll(SPattern.build(GetUsedPatterns.get(d.main), this));
 		
 		/* 
 		 * process the specifications in three steps
@@ -54,15 +66,15 @@ public class SProgram extends SMapElement {
 		 * 2. resolve the calls among them
 		 * 3. resolve the call variables
 		 */
-		specifications.addAll(SSpecification.build(document.specifications.values(), map));
+		specifications.addAll(SSpecification.build(usedSpecs, map));
 		specifications.stream().forEach(s -> s.resolveCalls(specifications));
 		specifications.stream().forEach(s -> s.resolveCallVars());
 		
 		//identify the main node.
-		this.mainName = map.lookupOriginalProgram(document.mainName);
+		this.mainName = map.lookupOriginalProgram(d.getMainName());
 	}
 	
-	private SProgram(PatternDocument document) {
+	private SProgram(Document d, Pattern main) {
 		//create the map
 		map = SpearMap.getProgramMap();
 		
@@ -70,17 +82,17 @@ public class SProgram extends SMapElement {
 		SpearMap.addLibraries(map);
 		
 		//not going to rename the main name. it will be first in, no conflicts.
-		this.mainName = document.mainName;
+		this.mainName = main.getName();
 		
 		//add the definitions first
-		typedefs = STypeDef.build(document.typedefs.values(), this);
-		constants = SConstant.build(document.constants.values(), this);
+		typedefs = STypeDef.build(GetUsedTypeDefs.get(d.main), this);
+		constants = SConstant.build(GetUsedConstants.get(d.main), this);
 		
-		@SuppressWarnings("unused")
-		List<String> renamed = SPattern.addNames(document.patterns.values(), this);
+		Collection<Pattern> usedPatterns = GetUsedPatterns.get(d.main);
+		@SuppressWarnings("unused") List<String> renamed = SPattern.addNames(usedPatterns, this);
 		
 		//then add the patterns (because they have local scope that could conflict with global scope)
-		patterns = SPattern.build(document.patterns.values(), this);		
+		patterns = SPattern.build(usedPatterns, this);		
 	}
 	
 	public Program patternToLustre() {
@@ -100,7 +112,6 @@ public class SProgram extends SMapElement {
 	public Program getBaseProgram() {
 		ProgramBuilder program = new ProgramBuilder();
 		addNodes(program);
-		
 		program.addConstants(SConstant.toLustre(constants, this));
 		program.addTypes(STypeDef.toLustre(typedefs, this));
 		program.addNodes(SPattern.toLustre(patterns));

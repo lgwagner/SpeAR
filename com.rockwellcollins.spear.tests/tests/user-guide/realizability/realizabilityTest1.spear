@@ -1,0 +1,16 @@
+Specification realizabilityTest1
+
+Inputs:
+a : int
+
+Outputs:
+b : int
+
+Assumptions:
+
+Requirements:
+r1: a <= 3 implies b==2
+r2: a >= 3 implies b==4
+
+Properties:
+bad_prop: not (a==3)

@@ -27,13 +27,16 @@ import org.eclipse.xtext.validation.Issue;
 import com.google.inject.Injector;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
-import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
+import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.translate.master.SProgram;
 import com.rockwellcollins.spear.ui.views.SpearConsistencyResultsView;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
 import jkind.api.JKindApi;
 import jkind.api.results.JKindResult;
+import jkind.api.results.MapRenaming;
+import jkind.api.results.MapRenaming.Mode;
+import jkind.api.results.Renaming;
 import jkind.lustre.Program;
 import jkind.results.layout.Layout;
 import jkind.results.layout.NodeLayout;
@@ -83,21 +86,22 @@ public class AnalyzePattern extends AbstractHandler {
 	}
 	
 	private void analyzePattern(Pattern p) {
-		PatternDocument document = new PatternDocument(p);
+		Document d = new Document(p);
 
 		try {
-			document.transform();
+			d.transform();
 		} catch (Exception e1) {
 			System.err.println("Unexpected error transforming PatternDocument for analysis.");
 			e1.printStackTrace();
 		} 
 		
-		SProgram pprogram = SProgram.build(document);
-		Program program = pprogram.patternToLustre();
+		SProgram IR = SProgram.build(d);
+		Program program = IR.patternToLustre();
 		
 		JKindApi api = PreferencesUtil.getJKindApi();
-		JKindResult result = new JKindResult("result");
-		program.getMainNode().properties.stream().forEach(prop -> result.addProperty(prop));
+		
+		Renaming renaming = new MapRenaming(d.renamed.get(d.main), Mode.IDENTITY);
+		JKindResult result = new JKindResult("result",program.getMainNode().properties, renaming);
 		IProgressMonitor monitor = new NullProgressMonitor();
 		String nicename = "Pattern Analysis: " + p.getName();
 		

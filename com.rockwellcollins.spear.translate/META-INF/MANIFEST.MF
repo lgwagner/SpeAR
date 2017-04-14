@@ -10,10 +10,6 @@ Require-Bundle: org.eclipse.ui.workbench,
  com.rockwellcollins.spear,
  org.eclipse.emf.ecore
 Bundle-ClassPath: .,
- dependencies/commons/commons-collections4-4.1-javadoc.jar,
- dependencies/commons/commons-collections4-4.1.jar,
- dependencies/commons/commons-lang3-3.4-javadoc.jar,
- dependencies/commons/commons-lang3-3.4.jar,
  dependencies/itext/itextpdf-5.5.8.jar,
  dependencies/itext/itextpdf-5.5.8-javadoc.jar,
  dependencies/itext/itextpdf-5.5.8-sources.jar
@@ -26,5 +22,6 @@ Export-Package: com.rockwellcollins.spear.analysis,
   uses:="com.rockwellcollins.spear,
    com.rockwellcollins.spear.translate.intermediate,
    com.rockwellcollins.spear.translate.naming,
-   jkind.lustre"
+   jkind.lustre",
+ com.rockwellcollins.spear.translate.utilities
 Import-Package: org.eclipse.core.runtime

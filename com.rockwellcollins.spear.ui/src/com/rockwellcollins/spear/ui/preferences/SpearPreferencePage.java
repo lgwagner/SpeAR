@@ -50,7 +50,7 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 			{ PreferenceConstants.SOLVER_CVC4, PreferenceConstants.SOLVER_CVC4 }};
 
 	private ComboFieldEditor solverFieldEditor;
-	@SuppressWarnings("unused") private String selectedSolver;
+	private String selectedSolver;
 
 	private BooleanFieldEditor bmcFieldEditor;
 	private BooleanFieldEditor kInductionFieldEditor;

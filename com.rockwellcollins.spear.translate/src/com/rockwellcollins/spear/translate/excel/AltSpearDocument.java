@@ -35,7 +35,7 @@ public class AltSpearDocument {
 		
 		used.add(f);
 		for(Import im : f.getImports()) {
-			File importedFile = Utilities.getImportedFile(f, im);
+			File importedFile = Utilities.getImportedFile(im);
 			processFile(importedFile);
 		}
 	}

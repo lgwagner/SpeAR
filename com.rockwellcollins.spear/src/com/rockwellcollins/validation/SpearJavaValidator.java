@@ -42,24 +42,16 @@ import com.rockwellcollins.spear.utilities.Utilities;
  * validation
  */
 
-@ComposedChecks(validators = { NamesUnique.class,
-							   SpecificationsAcyclicValidator.class,
-							   VariablesAreUsedValidator.class,
-							   IllegalAnalysisValidations.class,
-							   DataValidator.class,
-							   SpecificationValidator.class})
+@ComposedChecks(validators = {NamesUnique.class,
+							  SpecificationValidator.class,
+							  VariablesAreUsedValidator.class,
+							  IllegalAnalysisValidations.class,
+							  DataValidator.class})
 
 public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractSpearJavaValidator {
 
 	public static final String INVALID_ASSUMPTION_REF = "INVALID_ASSUMPTION_REF";
 
-	/**
-	 * @param s
-	 *            - a Spear specification
-	 * 
-	 *            This validation will check that assumptions only reference
-	 *            input variables and not computed variables.
-	 */
 	@Check
 	public void checkAssumptions(Specification s) {
 		Set<String> valids = s.getInputs().stream().map(in -> in.getName()).collect(Collectors.toSet());
@@ -80,10 +72,20 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 		}
 	}
 	
+	public static final String MISMATCHED_FILENAME = "MISMATCHED_FILENAME";
+	
+	@Check
+	public void checkSpecNameMatchesFilename(File f) {
+		String filename = f.eResource().getURI().trimFileExtension().lastSegment();
+		if(!filename.equals(f.getName())) {
+			error("File ID name must be " + filename,f,SpearPackage.Literals.FILE__NAME,MISMATCHED_FILENAME,filename);
+		}
+	}
+	
 	@Check
 	public void checkDefinitionsOnlyImportDefinitions(Definitions d) {
 		for(Import im : d.getImports()) {
-			File f = Utilities.getImportedFile(d, im);
+			File f = Utilities.getImportedFile(im);
 			if (f instanceof Specification) {
 				error("Definitions files cannot import Specifications.", im, SpearPackage.Literals.IMPORT__IMPORT_URI);
 			}

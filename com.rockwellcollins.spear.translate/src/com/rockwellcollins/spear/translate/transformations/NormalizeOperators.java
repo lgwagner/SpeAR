@@ -6,9 +6,7 @@ import org.eclipse.xtext.EcoreUtil2;
 import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.language.Create;
-import com.rockwellcollins.spear.translate.intermediate.PatternDocument;
-import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
-import com.rockwellcollins.spear.translate.intermediate.TypeDocument;
+import com.rockwellcollins.spear.translate.intermediate.Document;
 
 public class NormalizeOperators {
 
@@ -16,21 +14,8 @@ public class NormalizeOperators {
 		return s.replaceAll("\\s+", " ");
 	}
 	
-	public static void transform(SpearDocument doc) {
-		doc.typedefs.values().stream().forEach(td -> transform(td));
-		doc.constants.values().stream().forEach(c -> transform(c));
-		doc.patterns.values().stream().forEach(p -> transform(p));
-		doc.specifications.values().stream().forEach(s -> transform(s));
-	}
-	
-	public static void transform(PatternDocument doc) {
-		doc.typedefs.values().stream().forEach(td -> transform(td));
-		doc.constants.values().stream().forEach(c -> transform(c));
-		doc.patterns.values().stream().forEach(p -> transform(p));
-	}
-	
-	public static void transform(TypeDocument doc) {
-		doc.typedefs.values().stream().forEach(td -> transform(td));
+	public static void transform(Document doc) {
+		doc.files.forEach(f -> transform(f));
 	}
 	
 	private static EObject transform(EObject o) {

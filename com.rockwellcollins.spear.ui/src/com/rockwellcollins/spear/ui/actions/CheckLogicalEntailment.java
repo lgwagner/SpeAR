@@ -33,7 +33,7 @@ import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
-import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
+import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.translate.layout.SpearRegularLayout;
 import com.rockwellcollins.spear.translate.master.SProgram;
 import com.rockwellcollins.spear.ui.handlers.TerminateHandler;
@@ -50,14 +50,13 @@ import jkind.results.layout.Layout;
 
 public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 
-	private static final String TERMINATE_ID = "com.rockwellcollins.spear.translate.commands.terminateAnalysis";
+	private static final String TERMINATE_ID = "com.rockwellcollins.spear.translate.commands..terminateLogicalEntailment";
 
 	private IWorkbenchWindow window;
 
 	@Override
 	public void run(IAction action) {
-		SpearInjectorUtil
-				.setInjector(SpearActivator.getInstance().getInjector(SpearActivator.COM_ROCKWELLCOLLINS_SPEAR));
+		SpearInjectorUtil.setInjector(SpearActivator.getInstance().getInjector(SpearActivator.COM_ROCKWELLCOLLINS_SPEAR));
 
 		IEditorPart editor = window.getActivePage().getActiveEditor();
 		if (!(editor instanceof XtextEditor)) {
@@ -86,8 +85,8 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 					specification = (Specification) f;
 				}
 
-				if (ActionUtilities.hasErrors(specification.eResource())) {
-					MessageDialog.openError(window.getShell(), "Error", "Specification contains errors.");
+				// check the spec and imported files for errors
+				if(ActionUtilities.hasErrors(specification, window)) {
 					return null;
 				}
 
@@ -97,13 +96,13 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 					return null;
 				}
 
-				SpearDocument workingCopy = new SpearDocument(specification);
+				Document workingCopy = new Document(specification);
 				workingCopy.transform();
 
 				SProgram program = SProgram.build(workingCopy);
 				Program p = program.getLogicalEntailment();
 
-				if (PreferencesUtil.getFinalLustreFileOption()) {
+				if (PreferencesUtil.printFinalLustre()) {
 					IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 
 					// create the generated folder
@@ -123,9 +122,9 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 				JKindApi api = PreferencesUtil.getJKindApi();
 				setApiOptions(api);
 
-				Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.getMain()), Mode.IDENTITY);
+				Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.main), Mode.IDENTITY);
 				List<Boolean> invert = new ArrayList<>();
-				Specification s = workingCopy.specifications.get(workingCopy.mainName);
+				Specification s = (Specification) workingCopy.main;
 				for (Constraint c : s.getBehaviors()) {
 					if (c instanceof FormalConstraint) {
 						FormalConstraint fc = (FormalConstraint) c;
@@ -148,8 +147,7 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 
 				JKindResult result = new JKindResult("Spear Result", p.getMainNode().properties, invert, renaming);
 				activateTerminateHandler(monitor);
-				List<String> requirements = specification.getRequirements().stream().map(req -> req.getName())
-						.collect(toList());
+				List<String> requirements = specification.getRequirements().stream().map(req -> req.getName()).collect(toList());
 				List<String> observers = getObservers(specification);
 				showView(result, new SpearRegularLayout(specification), requirements, observers);
 
@@ -162,7 +160,6 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 					} finally {
 						deactivateTerminateHandler();
 					}
-
 				}).start();
 
 				return null;
@@ -200,6 +197,9 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 		window.getShell().getDisplay().syncExec(new Runnable() {
 			@Override
 			public void run() {
+				if (activation != null) {
+					handlerService.deactivateHandler(activation);
+				}
 				activation = handlerService.activateHandler(TERMINATE_ID, new TerminateHandler(monitor));
 			}
 		});
@@ -211,18 +211,17 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 			@Override
 			public void run() {
 				handlerService.deactivateHandler(activation);
+				activation = null;
 			}
 		});
 	}
 
-	private void showView(final JKindResult result, final Layout layout, List<String> requirements,
-			List<String> observers) {
+	private void showView(final JKindResult result, final Layout layout, List<String> requirements, List<String> observers) {
 		window.getShell().getDisplay().asyncExec(new Runnable() {
 			@Override
 			public void run() {
 				try {
-					SpearEntailmentResultsView page = (SpearEntailmentResultsView) window.getActivePage()
-							.showView(SpearEntailmentResultsView.ID);
+					SpearEntailmentResultsView page = (SpearEntailmentResultsView) window.getActivePage().showView(SpearEntailmentResultsView.ID);
 					page.setInput(result, layout, requirements, observers);
 				} catch (PartInitException e) {
 					e.printStackTrace();

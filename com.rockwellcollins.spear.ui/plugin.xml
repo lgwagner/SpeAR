@@ -672,4 +672,118 @@
             class="com.rockwellcollins.spear.ui.handlers.AnalyzeType">
       </handler>
    </extension>
+   
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            name="SpeAR Commands"
+            id="com.rockwellcollins.spear.ui.commands">
+      </category>
+     <command categoryId="com.rockwellcollins.spear.ui.commands"
+           description="Translate a Pattern to Lustre and Analyze"
+           id="com.rockwellcollins.spear.ui.commands.analyzePattern"
+           name="Analyze SpeAR Pattern">
+     </command>  
+     <command categoryId="com.rockwellcollins.spear.ui.commands"
+           description="Analyze Type"
+           id="com.rockwellcollins.spear.ui.commands.analyzeType"
+           name="Check Type Validity">
+     </command>
+     <command categoryId="com.rockwellcollins.spear.ui.commands"
+           description="Normalize Section Headers"
+           id="com.rockwellcollins.spear.ui.commands.normalizeSectionHeaders"
+           name="Normalize Section Headers">
+     </command>
+     <command categoryId="com.rockwellcollins.spear.ui.commands"
+           description="Terminate Analysis"
+           id="com.rockwellcollins.spear.ui.commands.terminateLogicalEntailment"
+           name="Cancel Analysis">
+     </command>   
+     <command categoryId="com.rockwellcollins.spear.ui.commands"
+           description="Terminate Analysis"
+           id="com.rockwellcollins.spear.ui.commands.terminateLogicalConsistency"
+           name="Cancel Analysis">
+     </command>   
+     <command categoryId="com.rockwellcollins.spear.ui.commands"
+           description="Terminate Analysis"
+           id="com.rockwellcollins.spear.ui.commands.terminateRealizability"
+           name="Cancel Analysis">
+     </command>   
+
+        
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">   
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:#TextEditorContext?after=additions">
+          <separator name="spear-seperator" visible="true"> </separator>
+          <command
+                commandId="com.rockwellcollins.spear.ui.commands.analyzePattern"
+                icon="icons/logical_entailment.png"
+                id="com.rockwellcollins.spear.ui.commands.analyzePattern"
+                style="push">
+          </command>
+          <command
+                commandId="com.rockwellcollins.spear.ui.commands.analyzeType"
+                icon="icons/fire.png"
+                id="com.rockwellcollins.spear.ui.commands.analyzeType"
+                style="push">
+          </command>
+          <command
+                commandId="com.rockwellcollins.spear.ui.commands.normalizeSectionHeaders"
+                icon="icons/spear_icon.png"
+                id="com.rockwellcollins.spear.ui.commands.normalizeSectionHeaders"
+                style="push">
+          </command>          
+      </menuContribution> 
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:com.rockwellcollins.spear.ui.views.SpearEntailmentResultsView">
+         <command
+               commandId="com.rockwellcollins.spear.ui.commands.terminateLogicalEntailment"
+               icon="icons/terminate.png"
+               label="Terminate"
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:com.rockwellcollins.spear.ui.views.SpearConsistencyResultsView">
+         <command
+               commandId="com.rockwellcollins.spear.ui.commands.terminateLogicalConsistency"
+               icon="icons/terminate.png"
+               label="Terminate"
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:com.rockwellcollins.spear.ui.views.SpearRealizabilityResultsView">
+         <command
+               commandId="com.rockwellcollins.spear.ui.commands.terminateRealizability"
+               icon="icons/terminate.png"
+               label="Terminate"
+               style="push">
+         </command>
+      </menuContribution>      
+            
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            commandId="com.rockwellcollins.spear.ui.commands.analyzePattern"
+            class="com.rockwellcollins.spear.ui.handlers.AnalyzePattern">
+      </handler>
+      <handler
+            commandId="com.rockwellcollins.spear.ui.commands.analyzeType"
+            class="com.rockwellcollins.spear.ui.handlers.AnalyzeType">
+      </handler>
+      <handler
+            commandId="com.rockwellcollins.spear.ui.commands.normalizeSectionHeaders"
+            class="com.rockwellcollins.spear.ui.handlers.NormalizeSectionHeaders">
+      </handler>      
+   </extension>
+   
 </plugin>

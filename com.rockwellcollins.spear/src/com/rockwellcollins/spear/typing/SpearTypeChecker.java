@@ -3,6 +3,7 @@ package com.rockwellcollins.spear.typing;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -32,6 +33,7 @@ import com.rockwellcollins.spear.FieldExpr;
 import com.rockwellcollins.spear.FieldlessRecordExpr;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
+import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.IfThenElseExpr;
 import com.rockwellcollins.spear.IntLiteral;
 import com.rockwellcollins.spear.IntType;
@@ -78,12 +80,12 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	final private ValidationMessageAcceptor messageAcceptor;
 	final private Set<EObject> errors;
 
-	public SpearTypeChecker(Set<EObject> errors, ValidationMessageAcceptor acceptor) {
+	private SpearTypeChecker(Set<EObject> errors, ValidationMessageAcceptor acceptor) {
 		this.errors = errors;
 		this.messageAcceptor = acceptor;
 	}
 	
-	public SpearTypeChecker() {
+	private SpearTypeChecker() {
 		this.errors = new HashSet<>();
 		this.messageAcceptor = null;
 	}
@@ -206,6 +208,9 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	/***************************************************************************************************/
 	// DECLARATIONS
 	/***************************************************************************************************/
+	
+	public Map<IdRef,Type> map = new HashMap<>();
+	
 	@Override
 	public Type caseVariable(Variable v) {
 		return doSwitch(v.getType());
@@ -213,8 +218,20 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 
 	@Override
 	public Type caseConstant(Constant c) {
+		if(map.containsKey(c)) {
+			return map.get(c);
+		}
+		
 		Type expected = doSwitch(c.getType());
-		if(!expectAssignableType(expected, c.getExpr())) {
+		map.put(c, expected);
+		Type actual = doSwitch(c.getExpr());
+		
+		if(expected == ERROR || actual == ERROR) {
+			return error(c);
+		}
+		
+		if(!expected.equals(actual)) {
+			error("Expected type " + expected + ", but received type " + actual,c,SpearPackage.Literals.CONSTANT__EXPR);
 			return error(c);
 		}
 		return expected;
@@ -222,8 +239,19 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 
 	@Override
 	public Type caseMacro(Macro m) {
+		if(map.containsKey(m)) {
+			return map.get(m);
+		}
 		Type expected = doSwitch(m.getType());
-		if(!expectAssignableType(expected, m.getExpr())) {
+		map.put(m, expected);
+		Type actual = doSwitch(m.getExpr());
+		
+		if(expected == ERROR || actual == ERROR) {
+			return error(m);
+		}
+		
+		if(!expected.equals(actual)) {
+			error("Expected type " + expected + ", but received type " + actual,m,SpearPackage.Literals.MACRO__EXPR);
 			return error(m);
 		}
 		return expected;

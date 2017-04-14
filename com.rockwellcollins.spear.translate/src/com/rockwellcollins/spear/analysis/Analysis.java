@@ -11,7 +11,7 @@ import com.rockwellcollins.spear.Constraint;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
-import com.rockwellcollins.spear.translate.intermediate.SpearDocument;
+import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.translate.master.SProgram;
 
 import jkind.api.JKindApi;
@@ -30,15 +30,15 @@ public class Analysis {
     api.setJKindJar(jkindjarpth.toString());
     PreferencesUtil.configureJKindApi(api);
     
-    SpearDocument workingCopy = new SpearDocument(specification);
+    Document workingCopy = new Document(specification);
     workingCopy.transform();
 
     SProgram program = SProgram.build(workingCopy);
     Program p = program.getLogicalEntailment();
     
-    Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.getMain()), Mode.IDENTITY);
+    Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.main), Mode.IDENTITY);
     List<Boolean> invert = new ArrayList<>();
-    Specification s = workingCopy.specifications.get(workingCopy.mainName);
+    Specification s = (Specification) workingCopy.main;
     for (Constraint c : s.getBehaviors()) {
       if (c instanceof FormalConstraint) {
         FormalConstraint fc = (FormalConstraint) c;
@@ -66,13 +66,13 @@ public class Analysis {
     api.setJKindJar(jkindjarpth.toString());
     PreferencesUtil.configureJKindApi(api);
     
-    SpearDocument workingCopy = new SpearDocument(specification);
+    Document workingCopy = new Document(specification);
     workingCopy.transform();
 
     SProgram program = SProgram.build(workingCopy);
     Program p = program.getLogicalConsistency();
     
-    Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.getMain()), Mode.IDENTITY);
+    Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.main), Mode.IDENTITY);
     List<Boolean> invert = p.getMainNode().properties.stream().map(prop -> true).collect(Collectors.toList());
     JKindResult result = new JKindResult("result", p.getMainNode().properties, invert, renaming);
     
@@ -96,13 +96,13 @@ public class Analysis {
     }
     PreferencesUtil.configureJRealizabilityApi(api);
     
-    SpearDocument workingCopy = new SpearDocument(specification);
+    Document workingCopy = new Document(specification);
     workingCopy.transform();
 
     SProgram program = SProgram.build(workingCopy);
     Program p = program.getRealizability();
     
-    Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.getMain()), Mode.IDENTITY);
+    Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.main), Mode.IDENTITY);
     JRealizabilityResult result = new JRealizabilityResult("result", renaming);
     
     try {

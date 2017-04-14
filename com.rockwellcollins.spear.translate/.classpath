@@ -3,10 +3,6 @@
 	<classpathentry exported="true" kind="lib" path="dependencies/itext/itextpdf-5.5.8-javadoc.jar"/>
 	<classpathentry exported="true" kind="lib" path="dependencies/itext/itextpdf-5.5.8-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="dependencies/itext/itextpdf-5.5.8.jar"/>
-	<classpathentry exported="true" kind="lib" path="dependencies/commons/commons-collections4-4.1-javadoc.jar"/>
-	<classpathentry exported="true" kind="lib" path="dependencies/commons/commons-collections4-4.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="dependencies/commons/commons-lang3-3.4-javadoc.jar"/>
-	<classpathentry exported="true" kind="lib" path="dependencies/commons/commons-lang3-3.4.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="src" path="src"/>

@@ -55,9 +55,13 @@ Export-Package: com.rockwellcollins;uses:="com.google.inject,org.eclipse.xtext,o
  jxl.format,
  jxl.write,
  jxl.write.biff,
- com.rockwellcollins.generator
+ com.rockwellcollins.generator,
+ org.apache.commons.collections4,
+ org.apache.commons.collections4.bidimap
 Bundle-ClassPath: .,
- dependencies/jkind-api.jar,
+ dependencies/jkind/jkind-api.jar,
+ dependencies/jkind/jkind.jar,
+ dependencies/commons/commons-collections4-4.1.jar,
+ dependencies/commons/commons-lang3-3.4.jar,
  dependencies/jaxb-api-2.2.3.jar,
- dependencies/jxl.jar,
- dependencies/jkind.jar
+ dependencies/jxl.jar

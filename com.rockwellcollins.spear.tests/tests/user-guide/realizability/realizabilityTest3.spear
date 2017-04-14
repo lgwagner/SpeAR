@@ -1,0 +1,18 @@
+Specification realizabilityTest3
+
+Inputs:
+input : int
+
+Outputs:
+output : int
+
+Assumptions:
+//a1 should reference 'input' instead of 'output'. Realizability analysis produces a counterexample.
+a1: output not equal to 0 
+
+Requirements:
+r1: output == input
+
+Properties:
+p1: output not equal to 0 
+

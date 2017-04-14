@@ -1,7 +1,7 @@
 package com.rockwellcollins.spear.typing;
 
-import com.rockwellcollins.spear.ArrayTypeDef;
 import com.rockwellcollins.spear.SpearFactory;
+import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.UserType;
 
 public class ArrayType extends Type {
@@ -9,12 +9,13 @@ public class ArrayType extends Type {
 	public final String id;
 	public final Type base;
 	public final int size;
-	private ArrayTypeDef typedef;
+	private TypeDef typedef;
 
-	public ArrayType(String id, Type base, int size, ArrayTypeDef atd) {
+	public ArrayType(String id, Type base, int size, TypeDef atd) {
 		this.id=id;
 		this.base=base;
 		this.size=size;
+		//this *must* be an ArrayTypeDef or a ConcreteArrayTypeDef
 		this.typedef=atd;
 	}
 	
