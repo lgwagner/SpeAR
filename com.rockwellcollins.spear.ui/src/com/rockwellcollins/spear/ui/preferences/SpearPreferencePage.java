@@ -9,6 +9,7 @@ import org.eclipse.jface.preference.ComboFieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.IntegerFieldEditor;
+import org.eclipse.jface.preference.PreferenceStore;
 import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
@@ -19,6 +20,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
 import com.rockwellcollins.spear.preferences.PreferenceConstants;
+import com.rockwellcollins.spear.preferences.Preferences;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
@@ -171,9 +173,12 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 	@Override
 	protected void performDefaults() {
 		super.performDefaults();
+		PreferenceStore dprefs = Preferences.getInitialPreferences();
 		IPreferenceStore prefs = getPreferenceStore();
-		selectedSolver = prefs.getDefaultString(PreferenceConstants.PREF_SOLVER);
-		configureEnabledFieldEditors();
+		for ( String name : dprefs.preferenceNames()) {
+		  prefs.setValue(name,dprefs.getString(name));
+		}
+		initialize();
 	}
 
 	private void configureEnabledFieldEditors() {
@@ -199,7 +204,7 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 	}
 
 	private void initializeStateVariables() {
-		IPreferenceStore prefs = getPreferenceStore();
+		IPreferenceStore prefs = Preferences.getInitialPreferences();
 		selectedSolver = prefs.getString(PreferenceConstants.PREF_SOLVER);
 	}
 
@@ -212,5 +217,6 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 	}
 
 	@Override
-	public void init(IWorkbench workbench) {}
+	public void init(IWorkbench workbench) {
+	}
 }
