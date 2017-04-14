@@ -88,7 +88,7 @@ public class CheckRealizability implements IWorkbenchWindowActionDelegate {
 				SpearRuntimeOptions.setRuntimeOptions();
 
 				Document workingCopy = new Document(specification);
-				workingCopy.transform();
+				workingCopy.transform(true);
 				SProgram program = SProgram.build(workingCopy);
 				Program p = program.getRealizability();
 

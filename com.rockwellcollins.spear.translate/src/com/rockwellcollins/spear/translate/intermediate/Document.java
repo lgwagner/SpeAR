@@ -64,9 +64,9 @@ public class Document {
 		this.main=typedefmap.get(td.getName());		
 	}
 
-	public void transform() {
+	public void transform(boolean rename) {
 		try {
-			PerformTransforms.apply(this);
+			PerformTransforms.apply(this,rename);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
