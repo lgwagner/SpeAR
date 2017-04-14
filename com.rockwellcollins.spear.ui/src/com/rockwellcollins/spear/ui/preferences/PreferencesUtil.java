@@ -13,6 +13,7 @@ import com.rockwellcollins.ui.internal.SpearActivator;
 import jkind.JKindException;
 import jkind.SolverOption;
 import jkind.api.JKindApi;
+import jkind.api.JLustre2ExcelApi;
 import jkind.api.JRealizabilityApi;
 
 public class PreferencesUtil {
@@ -103,6 +104,12 @@ public class PreferencesUtil {
 	
 	public static JRealizabilityApi getJRealizabilityApi() {
 		JRealizabilityApi api = new JRealizabilityApi();
+		api.setJKindJar(getJKindJar());
+		return api;
+	}
+	
+	public static JLustre2ExcelApi getJLustre2ExcelApi() {
+		JLustre2ExcelApi api = new JLustre2ExcelApi();
 		api.setJKindJar(getJKindJar());
 		return api;
 	}

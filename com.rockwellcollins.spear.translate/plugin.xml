@@ -117,7 +117,12 @@
            description="Translate a Pattern to Lustre and Analyze"
            id="com.rockwellcollins.spear.translate.commands.analyzePattern"
            name="Analyze SpeAR Pattern">
-     </command>  
+     </command>
+     <command categoryId="com.rockwellcollins.spear.translate.commands"
+           description="Simulate a Pattern in Excel"
+           id="com.rockwellcollins.spear.translate.commands.simulatePattern"
+           name="Simulate SpeAR Pattern">
+     </command>        
      <command categoryId="com.rockwellcollins.spear.translate.commands"
            description="Analyze Type"
            id="com.rockwellcollins.spear.translate.commands.analyzeType"
@@ -158,6 +163,12 @@
                 id="com.rockwellcollins.spear.translate.commands.analyzePattern"
                 style="push">
           </command>
+          <command
+                commandId="com.rockwellcollins.spear.translate.commands.simulatePattern"
+                icon="icons/spreadsheet.png"
+                id="com.rockwellcollins.spear.translate.commands.simulatePattern"
+                style="push">
+          </command>          
           <command
                 commandId="com.rockwellcollins.spear.translate.commands.analyzeType"
                 icon="icons/fire.png"
@@ -209,6 +220,10 @@
             commandId="com.rockwellcollins.spear.translate.commands.analyzePattern"
             class="com.rockwellcollins.spear.translate.handlers.AnalyzePattern">
       </handler>
+      <handler
+            commandId="com.rockwellcollins.spear.translate.commands.simulatePattern"
+            class="com.rockwellcollins.spear.translate.handlers.SimulatePattern">
+      </handler>      
       <handler
             commandId="com.rockwellcollins.spear.translate.commands.analyzeType"
             class="com.rockwellcollins.spear.translate.handlers.AnalyzeType">
