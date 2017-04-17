@@ -28,6 +28,7 @@ import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.analysis.Analysis;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
 import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.translate.layout.SpearRegularLayout;
@@ -86,11 +87,10 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 					return null;
 				}
 
-				Document workingCopy = new Document(specification);
-				workingCopy.transform();
-
-				SProgram program = SProgram.build(workingCopy);
-				Program p = program.getLogicalConsistency();
+		    Document workingCopy = new Document(specification);
+        workingCopy.transform(true);
+		    Program p = workingCopy.getLogicalConsistency(true);
+		    Renaming renaming = workingCopy.getRenaming(Mode.IDENTITY);
 
 				if (PreferencesUtil.printFinalLustre()) {
 					IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
@@ -112,7 +112,6 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 				JKindApi api = PreferencesUtil.getJKindApi();
 				setApiOptions(api);
 
-				Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.main), Mode.IDENTITY);
 				List<Boolean> invert = p.getMainNode().properties.stream().map(prop -> true).collect(Collectors.toList());
 				JKindResult result = new JKindResult("result", p.getMainNode().properties, invert, renaming);
 				activateTerminateHandler(monitor);

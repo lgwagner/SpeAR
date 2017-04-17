@@ -31,12 +31,8 @@ public class Analysis {
     PreferencesUtil.configureJKindApi(api);
     
     Document workingCopy = new Document(specification);
-    workingCopy.transform();
-
-    SProgram program = SProgram.build(workingCopy);
-    Program p = program.getLogicalEntailment();
-    
-    Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.main), Mode.IDENTITY);
+    Program p = workingCopy.getLogicalConsistency(true);
+    Renaming renaming = workingCopy.getRenaming(Mode.IDENTITY);
     List<Boolean> invert = new ArrayList<>();
     Specification s = (Specification) workingCopy.main;
     for (Constraint c : s.getBehaviors()) {
@@ -63,19 +59,15 @@ public class Analysis {
 
   public static JKindResult consistency(Specification specification, String jkindjarpth, IProgressMonitor progmon) {
     JKindApi api = new JKindApi();
-    api.setJKindJar(jkindjarpth.toString());
+    api.setJKindJar(jkindjarpth);
     PreferencesUtil.configureJKindApi(api);
     
     Document workingCopy = new Document(specification);
-    workingCopy.transform();
-
-    SProgram program = SProgram.build(workingCopy);
-    Program p = program.getLogicalConsistency();
-    
-    Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.main), Mode.IDENTITY);
+    Program p = workingCopy.getLogicalConsistency(true);
+    Renaming renaming = workingCopy.getRenaming(Mode.IDENTITY);
     List<Boolean> invert = p.getMainNode().properties.stream().map(prop -> true).collect(Collectors.toList());
     JKindResult result = new JKindResult("result", p.getMainNode().properties, invert, renaming);
-    
+
     try {
       api.execute(p, result, progmon);
     } catch (Exception e) {
@@ -97,12 +89,8 @@ public class Analysis {
     PreferencesUtil.configureJRealizabilityApi(api);
     
     Document workingCopy = new Document(specification);
-    workingCopy.transform();
-
-    SProgram program = SProgram.build(workingCopy);
-    Program p = program.getRealizability();
-    
-    Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.main), Mode.IDENTITY);
+    Program p = workingCopy.getLogicalConsistency(true);
+    Renaming renaming = workingCopy.getRenaming(Mode.IDENTITY);
     JRealizabilityResult result = new JRealizabilityResult("result", renaming);
     
     try {

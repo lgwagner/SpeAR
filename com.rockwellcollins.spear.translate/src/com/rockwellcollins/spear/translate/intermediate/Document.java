@@ -12,18 +12,26 @@ import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.TypeDef;
+import com.rockwellcollins.spear.translate.master.SProgram;
 import com.rockwellcollins.spear.translate.transformations.PerformTransforms;
 import com.rockwellcollins.spear.utilities.Utilities;
+
+import jkind.api.results.MapRenaming;
+import jkind.api.results.MapRenaming.Mode;
+import jkind.api.results.Renaming;
+import jkind.lustre.Program;
 
 public class Document {
 
 	public EObject main;
 	public Collection<File> files = new HashSet<>();
 	public Map<EObject,Map<String,String>> renamed = new HashMap<>();
+	private Specification spec;
 	
 	private SimpleAttributeResolver<EObject, String> resolver = SimpleAttributeResolver.newResolver(String.class,"name");
 	
 	public Document(Specification f) {
+	  spec = f;
 		Collection<File> deps = FindDependencies.get(f);
 		
 		//fixme
@@ -31,7 +39,7 @@ public class Document {
 		deps.stream().forEach(file -> filemap.put(file.getName(), file));
 		
 		files.addAll(deps);
-		this.main=filemap.get(f.getName());
+		main=filemap.get(spec.getName());
 	}
 	
 	public Document(Pattern p) {
@@ -64,9 +72,9 @@ public class Document {
 		this.main=typedefmap.get(td.getName());		
 	}
 
-	public void transform() {
+	public void transform(boolean rename) {
 		try {
-			PerformTransforms.apply(this);
+			PerformTransforms.apply(this,rename);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -76,4 +84,27 @@ public class Document {
 	public String getMainName() {
 		return resolver.apply(this.main);
 	}
+	
+	private SProgram copyTransformBuild(boolean flag) {
+    Document nd = new Document(spec);
+    nd.transform(flag);
+    return SProgram.build(nd);
+	}
+	
+	public Program getLogicalConsistency(boolean flag) {
+    return copyTransformBuild(flag).getLogicalConsistency();
+	}
+	
+	public Program getLogicalEntailment(boolean flag) {
+    return copyTransformBuild(flag).getLogicalEntailment();
+	}
+	
+	public Program getRealizability(boolean flag) {
+    return copyTransformBuild(flag).getRealizability();
+  }
+
+	public Renaming getRenaming(Mode mode) {
+	  return new MapRenaming(renamed.get(main),mode);
+	}
+	
 }

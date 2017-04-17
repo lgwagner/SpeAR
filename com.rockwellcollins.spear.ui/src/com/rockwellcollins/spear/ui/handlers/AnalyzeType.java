@@ -113,7 +113,7 @@ public class AnalyzeType extends AbstractHandler {
 		Document document = new Document(td);
 
 		try {
-			document.transform();
+			document.transform(true);
 		} catch (Exception e1) {
 			System.err.println("Unexpected error transforming PatternDocument for analysis.");
 			e1.printStackTrace();

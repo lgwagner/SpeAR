@@ -35,14 +35,12 @@ import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
 import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.translate.layout.SpearRegularLayout;
-import com.rockwellcollins.spear.translate.master.SProgram;
 import com.rockwellcollins.spear.ui.handlers.TerminateHandler;
 import com.rockwellcollins.spear.ui.views.SpearEntailmentResultsView;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
 import jkind.api.JKindApi;
 import jkind.api.results.JKindResult;
-import jkind.api.results.MapRenaming;
 import jkind.api.results.MapRenaming.Mode;
 import jkind.api.results.Renaming;
 import jkind.lustre.Program;
@@ -96,11 +94,10 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 					return null;
 				}
 
-				Document workingCopy = new Document(specification);
-				workingCopy.transform();
-
-				SProgram program = SProgram.build(workingCopy);
-				Program p = program.getLogicalEntailment();
+        Document workingCopy = new Document(specification);
+        workingCopy.transform(true);
+        Program p = workingCopy.getLogicalEntailment(true);
+        Renaming renaming = workingCopy.getRenaming(Mode.IDENTITY);
 
 				if (PreferencesUtil.printFinalLustre()) {
 					IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
@@ -122,7 +119,6 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 				JKindApi api = PreferencesUtil.getJKindApi();
 				setApiOptions(api);
 
-				Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.main), Mode.IDENTITY);
 				List<Boolean> invert = new ArrayList<>();
 				Specification s = (Specification) workingCopy.main;
 				for (Constraint c : s.getBehaviors()) {

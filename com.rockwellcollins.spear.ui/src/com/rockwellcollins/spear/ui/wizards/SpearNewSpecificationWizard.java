@@ -165,35 +165,20 @@ public class SpearNewSpecificationWizard extends Wizard implements INewWizard {
 	private InputStream openContentStream(String base) {
 		String newLine = "\n";
 		String doubleNewline = newLine + newLine;
-		String commentBegin = "//";
-		String optionalComment = commentBegin + "this section is optional";
-		String mandatoryComment = commentBegin + "this section is mandatory";
 		String contents =
 			"Specification " + base + doubleNewline +
-			optionalComment + newLine +
 			"Imports:" + doubleNewline +
-			optionalComment + newLine +
 			"Units:" + doubleNewline +
-			optionalComment + newLine +
 			"Types:" + doubleNewline +
-			optionalComment + newLine +
 			"Constants:" + doubleNewline +
-			optionalComment + newLine +
 			"Patterns:" + doubleNewline +
-			mandatoryComment + newLine + 
 			"Inputs:" + doubleNewline +
-			mandatoryComment + newLine +
 			"Outputs:" + doubleNewline + 
-			optionalComment + newLine +
 			"State:" + doubleNewline +
-			optionalComment + newLine +
 			"Macros:" + doubleNewline +
-			optionalComment + newLine +
 			"Assumptions:" + doubleNewline +
-			mandatoryComment + newLine +
-			"DerivedRequirements:" + doubleNewline +
-			mandatoryComment + newLine +
-			"Requirements:" + doubleNewline;
+			"Requirements:" + doubleNewline +
+			"Properties:" + doubleNewline;
 		return new ByteArrayInputStream(contents.getBytes());
 	}
 

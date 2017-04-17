@@ -165,17 +165,11 @@ public class SpearNewDefinitionsWizard extends Wizard implements INewWizard {
 	private InputStream openContentStream(String base) {
 		String newLine = "\n";
 		String doubleNewline = newLine + newLine;
-		String commentBegin = "//";
-		String optionalComment = commentBegin + "this section is optional";
 		String contents =
 			"Definitions " + base + doubleNewline +
-			optionalComment + newLine +
 			"Units:" + doubleNewline +
-			optionalComment + newLine +
 			"Types:" + doubleNewline +
-			optionalComment + newLine +
 			"Constants:" + doubleNewline +
-			optionalComment + newLine +
 			"Patterns:" + doubleNewline;
 		return new ByteArrayInputStream(contents.getBytes());
 	}

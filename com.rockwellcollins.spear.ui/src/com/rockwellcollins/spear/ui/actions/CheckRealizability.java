@@ -84,10 +84,10 @@ public class CheckRealizability implements IWorkbenchWindowActionDelegate {
 					return null;
 				}
 
-				Document workingCopy = new Document(specification);
-				workingCopy.transform();
-				SProgram program = SProgram.build(workingCopy);
-				Program p = program.getRealizability();
+        Document workingCopy = new Document(specification);
+        workingCopy.transform(true);
+        Program p = workingCopy.getRealizability(true);
+        Renaming renaming = workingCopy.getRenaming(Mode.IDENTITY);
 				if (PreferencesUtil.printFinalLustre()) {
 					IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 
@@ -112,8 +112,6 @@ public class CheckRealizability implements IWorkbenchWindowActionDelegate {
 					System.err.println("Error executing JRealizability");
 					throw e;
 				}
-
-				Renaming renaming = new MapRenaming(workingCopy.renamed.get(workingCopy.main), Mode.IDENTITY);
 				JRealizabilityResult result = new JRealizabilityResult("SpeAR Realizability Result", renaming);
 				activateTerminateHandler(monitor);
 				showView(result, new SpearRealizabilityLayout(specification));
