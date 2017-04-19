@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry exported="true" kind="lib" path="dependencies/javatuples-1.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="dependencies/itext/itextpdf-5.5.8-javadoc.jar"/>
 	<classpathentry exported="true" kind="lib" path="dependencies/itext/itextpdf-5.5.8-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="dependencies/itext/itextpdf-5.5.8.jar"/>

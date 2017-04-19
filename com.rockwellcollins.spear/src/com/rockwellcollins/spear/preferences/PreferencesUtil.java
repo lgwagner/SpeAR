@@ -109,7 +109,7 @@ public class PreferencesUtil {
 
 	}
 	
-	public static void configureJRealizabilityApi(JRealizabilityApi api) {
+	public static void configureRealizabilityApi(JRealizabilityApi api) {
     IPreferenceStore prefs = getPreferenceStore();
 
     api.setN(prefs.getInt(PreferenceConstants.PREF_DEPTH));

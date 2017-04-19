@@ -10,7 +10,8 @@ Require-Bundle: com.rockwellcollins.spear,
 Import-Package: com.rockwellcollins.spear.analysis,
  com.rockwellcollins.spear.translate.intermediate,
  com.rockwellcollins.spear.translate.master,
- org.eclipse.jface.preference
+ org.eclipse.jface.preference,
+ org.javatuples
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ClassPath: .,
  dependencies/jcommander-1.64.jar

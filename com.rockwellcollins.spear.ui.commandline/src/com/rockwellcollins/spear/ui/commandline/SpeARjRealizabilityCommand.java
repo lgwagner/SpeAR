@@ -34,8 +34,8 @@ class SpeARjRealizabilityCommand {
   //@Parameter(names = "-reduce", description = "Reduce conflicting properties in case of unrealizable.")
   //public boolean reduce = false;
   
-  //@Parameter(names = "-scratch", description = "Produce files for debugging purposes.")
-  //public boolean scratch = false;
+  @Parameter(names = "-lustre", description = "Produce lustre file corresponding to the input model in the same directory of the model.")
+  public boolean lustre = false;
   
   @Parameter(names = "-timeout", description = "Maximum runtime in seconds.", arity = 1)
   public Integer timeout = 100;

@@ -87,8 +87,8 @@ public class SpeARjKindCommand {
   //    converter = FileConverter.class)
   //public File read_advice = null;
   
-  //@Parameter(names = "-scratch", description = "Produce files for debugging purposes.")
-  //public boolean scratch = false;
+  @Parameter(names = "-lustre", description = "Produce lustre file corresponding to the input model in the same directory of the model.")
+  public boolean lustre = false;
   
   @Parameter(names = "-smooth", description = "Smooth counterexamples (minimal changes in input values).")
   public boolean smooth = false;

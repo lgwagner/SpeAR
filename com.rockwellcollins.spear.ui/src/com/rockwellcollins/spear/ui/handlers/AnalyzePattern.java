@@ -86,10 +86,9 @@ public class AnalyzePattern extends AbstractHandler {
 	}
 	
 	private void analyzePattern(Pattern p) {
-		Document d = new Document(p);
-
+	  Document d = null;
 		try {
-			d.transform(true);
+		  d = new Document(p);
 		} catch (Exception e1) {
 			System.err.println("Unexpected error transforming PatternDocument for analysis.");
 			e1.printStackTrace();

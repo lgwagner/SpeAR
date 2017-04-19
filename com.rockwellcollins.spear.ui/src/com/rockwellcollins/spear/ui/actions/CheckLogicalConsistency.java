@@ -1,15 +1,9 @@
 package com.rockwellcollins.spear.ui.actions;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
@@ -23,6 +17,7 @@ import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
+import org.javatuples.Pair;
 
 import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Definitions;
@@ -30,19 +25,12 @@ import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.analysis.Analysis;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
-import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.translate.layout.SpearRegularLayout;
-import com.rockwellcollins.spear.translate.master.SProgram;
 import com.rockwellcollins.spear.ui.handlers.TerminateHandler;
 import com.rockwellcollins.spear.ui.views.SpearConsistencyResultsView;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
-import jkind.api.JKindApi;
 import jkind.api.results.JKindResult;
-import jkind.api.results.MapRenaming;
-import jkind.api.results.MapRenaming.Mode;
-import jkind.api.results.Renaming;
-import jkind.lustre.Program;
 import jkind.results.layout.Layout;
 
 public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
@@ -86,43 +74,19 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 				if(ActionUtilities.hasErrors(specification, window)) {
 					return null;
 				}
+		    
+		    Pair<Analysis, JKindResult> pair = Analysis.consistency(specification, PreferencesUtil.getJKindJar(), "result");
+		    ResourcesPlugin.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_INFINITE, null);
 
-		    Document workingCopy = new Document(specification);
-        workingCopy.transform(true);
-		    Program p = workingCopy.getLogicalConsistency(true);
-		    Renaming renaming = workingCopy.getRenaming(Mode.IDENTITY);
-
-				if (PreferencesUtil.printFinalLustre()) {
-					IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-
-					// create the generated folder
-					URI folderURI = ActionUtilities.createFolder(state.getURI(), "generated");
-					ActionUtilities.makeFolder(root.getFolder(new Path(folderURI.toPlatformString(true))));
-
-					// create the lustre file
-					String filename = ActionUtilities.getGeneratedFile(state.getURI(), "lus");
-					URI lustreURI = ActionUtilities.createURI(folderURI, filename);
-					IResource finalResource = root.getFile(new Path(lustreURI.toPlatformString(true)));
-					ActionUtilities.printResource(finalResource, p.toString());
-
-					// refresh the workspace
-					root.refreshLocal(IResource.DEPTH_INFINITE, null);
-				}
-
-				JKindApi api = PreferencesUtil.getJKindApi();
-				setApiOptions(api);
-
-				List<Boolean> invert = p.getMainNode().properties.stream().map(prop -> true).collect(Collectors.toList());
-				JKindResult result = new JKindResult("result", p.getMainNode().properties, invert, renaming);
 				activateTerminateHandler(monitor);
-				showView(result, new SpearRegularLayout(specification));
+				showView(pair.getValue1(), new SpearRegularLayout(specification));
 
 				new Thread() {
 					public void run() {
 						try {
-							api.execute(p, result, monitor);
+							pair.getValue0().analyze(monitor);
 						} catch (Exception e) {
-							System.err.println(result.getText());
+							System.err.println(pair.getValue1().getText());
 							throw e;
 						} finally {
 							deactivateTerminateHandler();
@@ -133,16 +97,6 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 				return null;
 			}
 
-			private void setApiOptions(JKindApi api) {
-				api.setIvcReduction();
-				if (PreferencesUtil.generalizeCEX()) {
-					api.setIntervalGeneralization();
-				}
-
-				if (PreferencesUtil.smoothCEX()) {
-					api.setSmoothCounterexamples();
-				}
-			}
 		});
 	}
 

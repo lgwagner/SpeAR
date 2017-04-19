@@ -21,6 +21,7 @@ import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
+import org.javatuples.Pair;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.ParameterException;
@@ -34,12 +35,11 @@ import com.rockwellcollins.spear.preferences.PreferenceConstants;
 import com.rockwellcollins.spear.preferences.Preferences;
 
 import jkind.api.results.JKindResult;
-import jkind.api.results.JRealizabilityResult;
 import jkind.api.results.PropertyResult;
 
 public class Main {
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
 
     Injector injector = new com.rockwellcollins.SpearStandaloneSetup().createInjectorAndDoEMFRegistration();
     Main main = injector.getInstance(Main.class);
@@ -49,7 +49,7 @@ public class Main {
   @Inject
   private IResourceValidator    validator;
 
-  protected void runGenerator(String[] args) {
+  protected void runGenerator(String[] args) throws Exception {
 
     PreferenceStore s = Preferences.store;
     SpeARMainCommand main = new SpeARMainCommand();
@@ -110,6 +110,7 @@ public class Main {
       s.setValue(PreferenceConstants.PREF_INTERVAL_GENERALIZATION, opts.interval);
       s.setValue(PreferenceConstants.PREF_DEPTH, opts.n.intValue());
       s.setValue(PreferenceConstants.PREF_TIMEOUT, opts.timeout.intValue());
+      s.setValue(PreferenceConstants.PREF_SPEAR_PRINT_FINAL_LUSTRE, opts.lustre);
 
       /*s.setValue(PreferenceConstants.PREF_SPEAR_PRINT_FINAL_LUSTRE, false);*/
       /*s.setDefault(PreferenceConstants.PREF_SPEAR_RECURSIVE_GRAPH, false);*
@@ -120,6 +121,8 @@ public class Main {
       opts = realizability;
       s.setValue(PreferenceConstants.PREF_DEPTH, opts.n.intValue());
       s.setValue(PreferenceConstants.PREF_TIMEOUT, opts.timeout.intValue());
+      s.setValue(PreferenceConstants.PREF_SPEAR_PRINT_FINAL_LUSTRE, opts.lustre);
+
     }
     
     java.io.File spec = specs.get(0);
@@ -163,44 +166,41 @@ public class Main {
     } catch (IOException e1) {
       throw new RuntimeException("This should not happen: Problem exporting 'jkind.jar'.");
     }
-    
+    Pair<Analysis, JKindResult> pair = null;
     if(command == "entailment") {
       try {
-        JKindResult result = Analysis.entailment((Specification) resource.getContents().get(0)
-              , jkindjarpth.toString()
-              , new NullProgressMonitor());
-        for( PropertyResult pr : result.getPropertyResults()) {
-          System.out.println(pr.toString());
-        }
+        pair = 
+            Analysis.entailment((Specification) resource.getContents().get(0),
+                jkindjarpth.toString(),
+                "result");
       } catch (Exception e) {
         throw e;
       }
       
     } else if (command == "consistency") {
       try {
-        JKindResult result = Analysis.consistency((Specification) resource.getContents().get(0)
-              , jkindjarpth.toString()
-              , new NullProgressMonitor());
-        for( PropertyResult pr : result.getPropertyResults()) {
-          System.out.println(pr.toString());
-        }
+        pair = 
+            Analysis.consistency((Specification) resource.getContents().get(0),
+                jkindjarpth.toString(),
+                "result");
       } catch (Exception e) {
         throw e;
       }
     } else if (command == "realizability") {
       try {
-        JRealizabilityResult result = Analysis.realizability((Specification) resource.getContents().get(0)
-            , jkindjarpth.toString()
-            , new NullProgressMonitor());
-        for( PropertyResult pr : result.getPropertyResults()) {
-          System.out.println(pr.toString());
-        }
+        pair = 
+            Analysis.realizability((Specification) resource.getContents().get(0),
+                jkindjarpth.toString(),
+                "result");
       } catch(Exception e) {
-        System.err.println(e);
+        throw e;
       }
-
     } else {
       throw new RuntimeException("This should not happen: unknown command.");
+    }
+    pair.getValue0().analyze(new NullProgressMonitor());
+    for( PropertyResult pr : pair.getValue1().getPropertyResults()) {
+      System.out.println(pr.toString());
     }
   }
 

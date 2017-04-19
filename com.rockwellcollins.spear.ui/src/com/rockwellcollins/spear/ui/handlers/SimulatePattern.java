@@ -1,4 +1,4 @@
-package com.rockwellcollins.spear.translate.handlers;
+package com.rockwellcollins.spear.ui.handlers;
 
 import java.io.File;
 
@@ -23,10 +23,9 @@ import org.eclipse.xtext.validation.Issue;
 
 import com.google.inject.Injector;
 import com.rockwellcollins.spear.Pattern;
-import com.rockwellcollins.spear.translate.actions.SpearRuntimeOptions;
+import com.rockwellcollins.spear.preferences.PreferencesUtil;
 import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.translate.master.SProgram;
-import com.rockwellcollins.spear.ui.preferences.PreferencesUtil;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
 import jkind.api.JLustre2ExcelApi;
@@ -55,9 +54,6 @@ public class SimulatePattern extends AbstractHandler {
 				MessageDialog.openError(window.getShell(), "Error", "Pattern contains errors.");
 				return null;
 			}
-			
-			//Set the runtime options
-			SpearRuntimeOptions.setRuntimeOptions();
 			
 			simulatePattern(p);
 			return null;
