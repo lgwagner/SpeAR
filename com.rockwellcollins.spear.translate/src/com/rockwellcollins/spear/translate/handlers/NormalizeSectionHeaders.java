@@ -36,7 +36,8 @@ public class NormalizeSectionHeaders extends AbstractHandler {
 			
 			String set1 = "Assumptions/Requirements/Properties";
 			String set2 = "Assumptions/DerivedRequirements/Requirements";
-			String set3 = "Assumptions/Requirements/Guarantees";
+			String set3 = "Assumptions/Implementation/Guarantees";
+			
 			MessageDialog dialog = new MessageDialog(window.getShell(), "Choose Heading Set", null,
 				    "Please Choose a Set of Section Headings for your specification.", MessageDialog.QUESTION, new String[] {set1,set2,set3}, 0);
 			
