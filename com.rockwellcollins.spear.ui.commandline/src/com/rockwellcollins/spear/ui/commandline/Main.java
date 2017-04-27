@@ -200,7 +200,10 @@ public class Main {
     }
     pair.getValue0().analyze(new NullProgressMonitor());
     for( PropertyResult pr : pair.getValue1().getPropertyResults()) {
-      System.out.println(pr.toString());
+      System.out.println(
+          pr.getProperty().getName() + ", "
+          + pr.getStatus() +", "
+          + pr.getProperty().getRuntime()); 
     }
   }
 

@@ -604,111 +604,6 @@
       </handler>      
    </extension>
    
-      <extension
-         point="org.eclipse.ui.actionSets">
-      <actionSet
-            label="Analysis"
-            visible="true"
-            id="com.rockwellcollins.spear.translate.actionSet">
-         <menu
-               label="SpeAR"
-               id="translateMenu">
-            <separator name="translateGroup">
-            </separator>
-         </menu>
-         <action
-               label="&amp;Generate Excel"
-               icon="icons/spreadsheet.png"
-               class="com.rockwellcollins.spear.translate.actions.GenerateExcel"
-               tooltip="Generate Excel"
-               menubarPath="translateMenu/translateGroup"
-               toolbarPath="translateGroup"
-               id="com.rockwellcollins.spear.translate.GenerateExcel">
-         </action>
-         <action
-               label="&amp;Generate PDF"
-               icon="icons/document.png"
-               class="com.rockwellcollins.spear.translate.actions.GeneratePDF"
-               tooltip="Generate PDF"
-               menubarPath="translateMenu/translateGroup"
-               toolbarPath="translateGroup"
-               id="com.rockwellcollins.spear.translate.GeneratePDF">
-         </action>
-         <action
-               label="&amp;Graphical View"
-               icon="icons/graphical.png"
-               class="com.rockwellcollins.spear.translate.actions.GenerateGraph"
-               tooltip="Generate Graphical View"
-               menubarPath="translateMenu/translateGroup"
-               toolbarPath="translateGroup"
-               id="com.rockwellcollins.spear.translate.GenerateGraph">
-         </action>       
-         <action
-               label="&amp;Check Realizability"
-               icon="icons/realizability.png"
-               class="com.rockwellcollins.spear.translate.actions.CheckRealizability"
-               tooltip="Check Realizability"
-               menubarPath="translateMenu/translateGroup"
-               toolbarPath="translateGroup"
-               id="com.rockwellcollins.spear.translate.CheckLogicalEntailment">
-         </action>
-         <action
-               label="&amp;Check Logical Consistency"
-               icon="icons/logical_consistency.png"
-               class="com.rockwellcollins.spear.translate.actions.CheckLogicalConsistency"
-               tooltip="Check for Logical Consistency"
-               menubarPath="translateMenu/translateGroup"
-               toolbarPath="translateGroup"
-               id="com.rockwellcollins.spear.translate.CheckConsistency">
-         </action>
-         <action
-               label="&amp;Check Logical Entailment"
-               icon="icons/logical_entailment.png"
-               class="com.rockwellcollins.spear.translate.actions.CheckLogicalEntailment"
-               tooltip="Check for Logical Entailment"
-               menubarPath="translateMenu/translateGroup"
-               toolbarPath="translateGroup"
-               id="com.rockwellcollins.spear.translate.CheckLogicalEntailment">
-         </action>
-      </actionSet>
-   </extension>
-    <extension point="org.eclipse.ui.views">
-      <category
-            id="com.rockwellcollins.spear.translate"
-            name="SpeAR View">
-      </category>
-        <view
-              category="com.rockwellcollins.spear.translate"
-              class="com.rockwellcollins.spear.translate.views.SpearEntailmentResultsView"
-              icon="icons/logical_entailment.png"
-              id="com.rockwellcollins.spear.translate.views.SpearEntailmentResultsView"
-              name="Entailment Analysis Results"/>
-        <view
-              category="com.rockwellcollins.spear.translate"
-              class="com.rockwellcollins.spear.translate.views.SpearConsistencyResultsView"
-              icon="icons/logical_consistency.png"
-              id="com.rockwellcollins.spear.translate.views.SpearConsistencyResultsView"
-              name="Consistency Analysis Results"/>
-        <view
-              category="com.rockwellcollins.spear.translate"
-              class="com.rockwellcollins.spear.translate.views.SpearRealizabilityResultsView"
-              icon="icons/realizability.png"
-              id="com.rockwellcollins.spear.translate.views.SpearRealizabilityResultsView"
-              name="Realizability Analysis Results"/>              
-    <view
-              category="com.rockwellcollins.spear.translate.lustre"
-              class="com.rockwellcollins.spear.translate.views.SpearCounterexampleView"
-              icon="icons/counterexample.png"
-              id="com.rockwellcollins.spear.translate.views.SpearCounterexampleView"
-              name="Counterexample"/>
-        <view
-              category="com.rockwellcollins.spear.translate.lustre"
-              class="com.rockwellcollins.spear.translate.views.SpearTraceabilityMatrixView"
-              icon="icons/spreadsheet.png"
-              id="com.rockwellcollins.spear.translate.views.SpearTraceabilityMatrixView"
-              name="Traceability Matrix"/>            
-   </extension>
-   
    <extension
          point="org.eclipse.ui.commands">
       <category
@@ -816,24 +711,42 @@
       </menuContribution>      
             
    </extension>
+   
+    <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+         locationURI=
+         "popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu?after=additions">
+         <command
+               commandId="com.rockwellcollins.spear.translate.commands.batchAnalysis"
+               label="Batch Analysis"
+               tooltip="Run Analysis on all '.spear' files found recursively in the selected documents.">
+         </command>
+      </menuContribution>
+    </extension>
+
    <extension
          point="org.eclipse.ui.handlers">
       <handler
             commandId="com.rockwellcollins.spear.translate.commands.analyzePattern"
-            class="com.rockwellcollins.spear.translate.handlers.AnalyzePattern">
+            class="com.rockwellcollins.spear.ui.handlers.AnalyzePattern">
       </handler>
       <handler
             commandId="com.rockwellcollins.spear.translate.commands.simulatePattern"
-            class="com.rockwellcollins.spear.translate.handlers.SimulatePattern">
+            class="com.rockwellcollins.spear.ui.handlers.SimulatePattern">
       </handler>      
       <handler
             commandId="com.rockwellcollins.spear.translate.commands.analyzeType"
-            class="com.rockwellcollins.spear.translate.handlers.AnalyzeType">
+            class="com.rockwellcollins.spear.ui.handlers.AnalyzeType">
       </handler>
       <handler
             commandId="com.rockwellcollins.spear.translate.commands.normalizeSectionHeaders"
-            class="com.rockwellcollins.spear.translate.handlers.NormalizeSectionHeaders">
-      </handler>      
+            class="com.rockwellcollins.spear.ui.handlers.NormalizeSectionHeaders">
+      </handler>
+      <handler
+            commandId="com.rockwellcollins.spear.translate.commands.batchAnalysis"
+            class="com.rockwellcollins.spear.ui.handlers.BatchAnalysis">
+      </handler>
+      
    </extension>
-   
 </plugin>

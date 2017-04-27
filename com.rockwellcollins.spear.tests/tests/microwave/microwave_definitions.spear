@@ -1,7 +1,5 @@
-Definitions microwave_defs
+Definitions microwave_definitions
 
-Imports:
-	import "../demo/demo.spear"
 
 Types:
 	mode_type : enum {SETUP, COOKING, SUSPENDED}

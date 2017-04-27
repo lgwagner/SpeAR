@@ -56,7 +56,7 @@ public class ActionUtilities {
 		}
 	}
 	
-	private static boolean hasErrors(Resource res) {
+	public static boolean hasErrors(Resource res) {
 		Injector injector = SpearActivator.getInstance().getInjector(SpearActivator.COM_ROCKWELLCOLLINS_SPEAR);
 		IResourceValidator resourceValidator = injector.getInstance(IResourceValidator.class);
 
