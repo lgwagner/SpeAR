@@ -580,6 +580,12 @@
               icon="icons/counterexample.png"
               id="com.rockwellcollins.spear.ui.views.SpearCounterexampleView"
               name="Counterexample"/>
+                  <view
+              category="com.rockwellcollins.spear.ui"
+              class="com.rockwellcollins.spear.ui.views.LightweightConsoleView"
+              icon="icons/counterexample.png"
+              id="com.rockwellcollins.spear.ui.views.LightweightConsoleView"
+              name="Batch Analysis"/>
         <view
               category="com.rockwellcollins.spear.ui.lustre"
               class="com.rockwellcollins.spear.ui.views.SpearTraceabilityMatrixView"

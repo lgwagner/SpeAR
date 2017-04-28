@@ -1,5 +1,7 @@
 package com.rockwellcollins.spear.ui.handlers;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,8 +19,12 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.console.ConsolePlugin;
 import org.eclipse.ui.console.IConsole;
 import org.eclipse.ui.console.MessageConsole;
@@ -37,6 +43,8 @@ import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.analysis.Analysis;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
 import com.rockwellcollins.spear.ui.actions.ActionUtilities;
+import com.rockwellcollins.spear.ui.views.LightweightConsoleView;
+import com.rockwellcollins.spear.ui.views.SpearConsistencyResultsView;
 
 import jkind.api.results.JKindResult;
 import jkind.api.results.PropertyResult;
@@ -45,22 +53,27 @@ import jkind.api.results.Status;
 public class BatchAnalysis extends AbstractHandler {
 
   private XtextResourceSet resourceSet;
-  private MessageConsole console;
-  private MessageConsoleStream consoleOutput;
+  private org.eclipse.swt.widgets.List list;
   private Thread ba = null;
-  public BatchAnalysis() {
+  private LightweightConsoleView view;
+  public BatchAnalysis() throws PartInitException {
     Injector injector = Guice.createInjector(new SpearRuntimeModule());
     resourceSet = injector.getInstance(XtextResourceSet.class);
     resourceSet.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
-    console = new MessageConsole("Batch Analysis", null);
-    consoleOutput = console.newMessageStream();
-    ConsolePlugin.getDefault().getConsoleManager().addConsoles(new IConsole[] { console });
-    ConsolePlugin.getDefault().getConsoleManager().showConsoleView(console);
+    
+    view = (LightweightConsoleView) 
+        PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(LightweightConsoleView.ID);
+    
+    list = view.list;
   }
   
-  private void message(IFile ifile, String msg) {
-    consoleOutput.println(ifile.getFullPath().toString() + " : " + msg);
-  }
+  private void message(IFile ifile, String msg) throws IOException {
+    list.getDisplay().asyncExec(new Runnable () {
+      public void run() {
+        list.add(ifile.getFullPath().toString() + " : " + msg);
+      }
+    });
+    }
   
   @Override
   public Object execute(ExecutionEvent event) {
@@ -70,9 +83,10 @@ public class BatchAnalysis extends AbstractHandler {
       int result = dialog.open();
       return null;
     }
+
     ba = new Thread(() -> { try {
       work(event);
-    } catch (ExecutionException e) {
+    } catch (Exception e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
     } });
@@ -80,7 +94,7 @@ public class BatchAnalysis extends AbstractHandler {
     return null;
   }
 
-  private Object work(ExecutionEvent event) throws ExecutionException {
+  private Object work(ExecutionEvent event) throws ExecutionException, IOException {
     
     IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
     IWorkbenchPage activePage = window.getActivePage();
