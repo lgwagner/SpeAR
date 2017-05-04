@@ -53,7 +53,7 @@ public class Document {
 	  transform(flag);
 	}
 	
-	public Document(Pattern p) {
+	public Document(Pattern p, boolean flag) {
 		Collection<File> deps = FindDependencies.get(p);
 		
 		File mainFile = (File) Utilities.getTopFile(p);
@@ -66,9 +66,10 @@ public class Document {
 		
 		files.addAll(filemap.values());
 		this.main=patternmap.get(p.getName());
+		transform(flag);
 	}
 	
-	public Document(TypeDef td) {
+	public Document(TypeDef td, boolean flag) {
 		Collection<File> deps = FindDependencies.get(td);
 		
 		File mainFile = (File) Utilities.getTopFile(td);
@@ -80,7 +81,8 @@ public class Document {
 		newMainFile.getTypedefs().stream().forEach(tydef -> typedefmap.put(tydef.getName(),tydef));
 		
 		files.addAll(filemap.values());
-		this.main=typedefmap.get(td.getName());		
+		this.main=typedefmap.get(td.getName());	
+		transform(flag);
 	}
 
 	public void transform(boolean rename) {

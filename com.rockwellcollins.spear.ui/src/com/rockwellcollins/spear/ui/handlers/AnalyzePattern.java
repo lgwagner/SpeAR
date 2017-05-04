@@ -1,5 +1,7 @@
 package com.rockwellcollins.spear.ui.handlers;
 
+import java.util.Map;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -88,18 +90,21 @@ public class AnalyzePattern extends AbstractHandler {
 	private void analyzePattern(Pattern p) {
 	  Document d = null;
 		try {
-		  d = new Document(p);
+		  d = new Document(p,true);
 		} catch (Exception e1) {
 			System.err.println("Unexpected error transforming PatternDocument for analysis.");
 			e1.printStackTrace();
 		} 
+		
+		
 		
 		SProgram IR = SProgram.build(d);
 		Program program = IR.patternToLustre();
 		
 		JKindApi api = PreferencesUtil.getJKindApi();
 		
-		Renaming renaming = new MapRenaming(d.renamed.get(d.main), Mode.IDENTITY);
+		Map<String, String> map = d.renamed.get(d.main);
+		Renaming renaming = new MapRenaming(map, Mode.IDENTITY);
 		JKindResult result = new JKindResult("result",program.getMainNode().properties, renaming);
 		IProgressMonitor monitor = new NullProgressMonitor();
 		String nicename = "Pattern Analysis: " + p.getName();

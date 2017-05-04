@@ -74,7 +74,7 @@ public class SimulatePattern extends AbstractHandler {
 	}
 	
 	private void simulatePattern(Pattern p) {
-		Document d = new Document(p);
+		Document d = new Document(p,false);
 
 		try {
 			d.transform(false);
