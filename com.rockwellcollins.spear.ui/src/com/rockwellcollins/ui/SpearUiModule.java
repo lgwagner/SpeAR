@@ -6,10 +6,12 @@ package com.rockwellcollins.ui;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.documentation.IEObjectDocumentationProvider;
 import org.eclipse.xtext.ui.editor.hover.IEObjectHoverProvider;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
 
 import com.rockwellcollins.spear.ui.validation.PreferenceBasedValidatorAdvisor;
 import com.rockwellcollins.ui.contentassist.SpearEObjectDocumentationProvider;
 import com.rockwellcollins.ui.contentassist.SpearEObjectHoverProvider;
+import com.rockwellcollins.ui.syntaxcoloring.SpearAntlrTokenToAttributeIdMapper;
 import com.rockwellcollins.validation.IValidatorAdvisor;
 
 /**
@@ -23,6 +25,10 @@ public class SpearUiModule extends com.rockwellcollins.ui.AbstractSpearUiModule 
 
 	public Class<? extends IEObjectHoverProvider> bindIEObjectHoverProvider() {
 		return SpearEObjectHoverProvider.class;
+	}
+	
+	public Class<? extends AbstractAntlrTokenToAttributeIdMapper> bindAbstractAntlrTokenToAttributeIdMapper() {
+		return SpearAntlrTokenToAttributeIdMapper.class;
 	}
 
 	public Class<? extends IEObjectDocumentationProvider> bindIEObjectDocumentationProvider() {
