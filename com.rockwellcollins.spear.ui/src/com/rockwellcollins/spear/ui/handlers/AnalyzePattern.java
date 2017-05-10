@@ -43,6 +43,7 @@ import jkind.results.layout.NodeLayout;
 
 public class AnalyzePattern extends AbstractHandler {
 
+
   private static final String TERMINATE_ID = "com.rockwellcollins.spear.translate.commands.terminateAnalysis";
 
   private IWorkbenchWindow    window;
