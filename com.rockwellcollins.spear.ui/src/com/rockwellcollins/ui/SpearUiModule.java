@@ -20,21 +20,21 @@ import com.rockwellcollins.validation.IValidatorAdvisor;
  */
 public class SpearUiModule extends com.rockwellcollins.ui.AbstractSpearUiModule {
 
-	public SpearUiModule(AbstractUIPlugin plugin) {
-		super(plugin);
-		SpearPreferencePage.initStore(SpearActivator.getInstance().getPreferenceStore(),Preferences.store);
-	}
+  public SpearUiModule(AbstractUIPlugin plugin) {
+    super(plugin);
+    SpearPreferencePage.initStore(SpearActivator.getInstance().getPreferenceStore(), Preferences.store);
+  }
 
-	public Class<? extends IEObjectHoverProvider> bindIEObjectHoverProvider() {
-		return SpearEObjectHoverProvider.class;
-	}
+  public Class<? extends IEObjectHoverProvider> bindIEObjectHoverProvider() {
+    return SpearEObjectHoverProvider.class;
+  }
 
-	public Class<? extends IEObjectDocumentationProvider> bindIEObjectDocumentationProvider() {
-		return SpearEObjectDocumentationProvider.class;
-		// return MultiLineCommentDocumentationProvider.class;
-	}
+  public Class<? extends IEObjectDocumentationProvider> bindIEObjectDocumentationProvider() {
+    return SpearEObjectDocumentationProvider.class;
+    // return MultiLineCommentDocumentationProvider.class;
+  }
 
-	public Class<? extends IValidatorAdvisor> bindIValidatorAdvisor() {
-		return PreferenceBasedValidatorAdvisor.class;
-	}
+  public Class<? extends IValidatorAdvisor> bindIValidatorAdvisor() {
+    return PreferenceBasedValidatorAdvisor.class;
+  }
 }

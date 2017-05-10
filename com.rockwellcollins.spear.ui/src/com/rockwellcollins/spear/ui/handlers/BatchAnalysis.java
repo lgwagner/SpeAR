@@ -47,11 +47,13 @@ import jkind.api.results.Status;
 
 public class BatchAnalysis extends AbstractHandler {
 
-  static public String ID = "com.rockwellcollins.spear.translate.commands.batchAnalysis";
+  static public String     ID   = "com.rockwellcollins.spear.translate.commands.batchAnalysis";
   private XtextResourceSet resourceSet;
-  //XXX: Terrible hack because the registering the same class for two different handl
-  private static Thread ba = null;
-  private boolean stop = false;
+  // XXX: Terrible hack because the registering the same class for two different
+  // handl
+  private static Thread    ba   = null;
+  private boolean          stop = false;
+
   public BatchAnalysis() throws PartInitException {
     Injector injector = Guice.createInjector(new SpearRuntimeModule());
     resourceSet = injector.getInstance(XtextResourceSet.class);
@@ -60,14 +62,14 @@ public class BatchAnalysis extends AbstractHandler {
   }
 
   private BatchAnalysisView getBatchAnalysisView() throws PartInitException {
-    BatchAnalysisView bav = (BatchAnalysisView) 
-        PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(BatchAnalysisView.ID);
+    BatchAnalysisView bav = (BatchAnalysisView) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+        .showView(BatchAnalysisView.ID);
     return bav;
   }
 
   private void message(String msg) throws IOException, PartInitException {
 
-    Display.getDefault().asyncExec(new Runnable () {
+    Display.getDefault().asyncExec(new Runnable() {
       public void run() {
         try {
           getBatchAnalysisView().list.add(msg);
@@ -78,19 +80,19 @@ public class BatchAnalysis extends AbstractHandler {
       }
     });
   }
-  
+
   private void message(IFile ifile, String msg) throws IOException, PartInitException {
     message(ifile.getFullPath().toString() + " : " + msg);
   }
-  
+
   @Override
   public Object execute(ExecutionEvent event) {
     String comID = event.getCommand().getId();
-    if(comID.compareTo("com.rockwellcollins.spear.ui.commands.terminateBatchAnalysis") == 0) {
+    if (comID.compareTo("com.rockwellcollins.spear.ui.commands.terminateBatchAnalysis") == 0) {
       System.out.println(this);
-      if(ba != null && ba.getState() != Thread.State.TERMINATED) {
+      if (ba != null && ba.getState() != Thread.State.TERMINATED) {
         System.out.println("there");
-        stop = true; 
+        stop = true;
         try {
           message("Batch analysis terminated.");
         } catch (Exception e) {
@@ -101,33 +103,34 @@ public class BatchAnalysis extends AbstractHandler {
       return null;
     } else if (comID.compareTo("com.rockwellcollins.spear.ui.commands.startBatchAnalysis") == 0) {
       System.out.println(this);
-      if(ba != null && ba.getState() != Thread.State.TERMINATED) {
-        MessageDialog dialog = new MessageDialog(null, "Batch Analysis Error", null,
-            "Batch Analysis already running!", MessageDialog.ERROR, new String[] { "ok" }, 0);
+      if (ba != null && ba.getState() != Thread.State.TERMINATED) {
+        MessageDialog dialog = new MessageDialog(null, "Batch Analysis Error", null, "Batch Analysis already running!",
+            MessageDialog.ERROR, new String[] { "ok" }, 0);
         dialog.open();
         return null;
       }
       stop = false;
-      ba = new Thread(
-          () -> { 
-            try {
-              work(event);
-            } catch (Exception e) {
-              // TODO Auto-generated catch block
-              e.printStackTrace();
-            }
-          });
+      ba = new Thread(() -> {
+        try {
+          work(event);
+        } catch (Exception e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+      });
       ba.start();
       return null;
     } else {
       throw new RuntimeException("BatchAnalysis handler received unfamiliar command : " + comID + ".");
     }
   }
-  
-  public void terminate() { ba.interrupt(); }
+
+  public void terminate() {
+    ba.interrupt();
+  }
 
   private Object work(ExecutionEvent event) throws ExecutionException, IOException, PartInitException {
-    
+
     IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
     IWorkbenchPage activePage = window.getActivePage();
     ISelection selection = activePage.getSelection();
@@ -135,11 +138,13 @@ public class BatchAnalysis extends AbstractHandler {
       if (selection instanceof IStructuredSelection) {
         IStructuredSelection sselection = (IStructuredSelection) selection;
         List<Object> models = new LinkedList<>();
-        for( Object o : sselection.toArray()) {
-          findSpearModels(o,models);
+        for (Object o : sselection.toArray()) {
+          findSpearModels(o, models);
         }
-        for(Object o : models) {
-          if(stop) {return null;}
+        for (Object o : models) {
+          if (stop) {
+            return null;
+          }
           IFile ifile = (IFile) o;
           URI uri = URI.createPlatformResourceURI(ifile.getFullPath().toString(), true);
           Resource resource = resourceSet.getResource(uri, true);
@@ -150,8 +155,8 @@ public class BatchAnalysis extends AbstractHandler {
           }
           Specification specification = (Specification) file;
           // check the spec and imported files for errors
-          if(ActionUtilities.hasErrors(specification.eResource())) {
-            message(ifile,"Errors detected, skipping analysis.");
+          if (ActionUtilities.hasErrors(specification.eResource())) {
+            message(ifile, "Errors detected, skipping analysis.");
             continue;
           }
 
@@ -160,72 +165,72 @@ public class BatchAnalysis extends AbstractHandler {
             try {
               pair = Analysis.entailment(specification, PreferencesUtil.getJKindJar(), "result");
               pair.getValue0().analyze(new NullProgressMonitor());
-              for( PropertyResult result : pair.getValue1().getPropertyResults()) {
-                if(Status.VALID != result.getStatus()) {
-                  message(ifile,"The property " + result.getName() + " failed during entailment analysis.");
+              for (PropertyResult result : pair.getValue1().getPropertyResults()) {
+                if (Status.VALID != result.getStatus()) {
+                  message(ifile, "The property " + result.getName() + " failed during entailment analysis.");
                 }
               }
             } catch (Exception e) {
-              message(ifile,"Entailment analysis failed.");
+              message(ifile, "Entailment analysis failed.");
             }
           } else {
-            message(ifile,"No behaviors found, skipping entailment analysis.");
+            message(ifile, "No behaviors found, skipping entailment analysis.");
           }
-          
-          if (true){ 
+
+          if (true) {
             Pair<Analysis, JKindResult> pair;
             try {
-            pair = Analysis.consistency(specification, PreferencesUtil.getJKindJar(), "result");
-            pair.getValue0().analyze(new NullProgressMonitor());
-            for( PropertyResult result : pair.getValue1().getPropertyResults()) {
-              if(Status.VALID != result.getStatus()) {
-                message(ifile,"The property " + result.getName() + " failed during consistency analysis.");
+              pair = Analysis.consistency(specification, PreferencesUtil.getJKindJar(), "result");
+              pair.getValue0().analyze(new NullProgressMonitor());
+              for (PropertyResult result : pair.getValue1().getPropertyResults()) {
+                if (Status.VALID != result.getStatus()) {
+                  message(ifile, "The property " + result.getName() + " failed during consistency analysis.");
+                }
               }
-            }
             } catch (Exception e) {
-              message(ifile,"Consistency analysis failed.");
+              message(ifile, "Consistency analysis failed.");
             }
           }
-          
+
           if (specification.getBehaviors().size() > 0) {
             Pair<Analysis, JKindResult> pair;
             try {
-            pair = Analysis.realizability(specification, PreferencesUtil.getJKindJar(), "result");
-            pair.getValue0().analyze(new NullProgressMonitor());
-           
-              for( PropertyResult result : pair.getValue1().getPropertyResults()) {
-                if(Status.VALID != result.getStatus()) {
-                  message(ifile,"The property " + result.getName() + " failed during realizability analysis.");
+              pair = Analysis.realizability(specification, PreferencesUtil.getJKindJar(), "result");
+              pair.getValue0().analyze(new NullProgressMonitor());
+
+              for (PropertyResult result : pair.getValue1().getPropertyResults()) {
+                if (Status.VALID != result.getStatus()) {
+                  message(ifile, "The property " + result.getName() + " failed during realizability analysis.");
                 }
               }
             } catch (Exception e) {
-              message(ifile,"Realizability analysis failed.");
+              message(ifile, "Realizability analysis failed.");
             }
           } else {
-            message(ifile,"No behaviors found, skipping realizability analysis.");
+            message(ifile, "No behaviors found, skipping realizability analysis.");
           }
-          
+
         }
       }
       try {
         ResourcesPlugin.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_INFINITE, null);
-      } catch (Exception e){
+      } catch (Exception e) {
         throw new ExecutionException("Error while refreshing workspace : " + e.toString());
       }
     }
     return null;
   }
-  
+
   private void findSpearModels(Object o, List<Object> models) {
-    if(o != null && o instanceof IContainer) {
+    if (o != null && o instanceof IContainer) {
       try {
-        for(IResource r: ((IContainer)o).members()) {
-          if(r instanceof IFile) {
-            if(((IFile)r).getFileExtension().compareTo("spear") == 0) {
+        for (IResource r : ((IContainer) o).members()) {
+          if (r instanceof IFile) {
+            if (((IFile) r).getFileExtension().compareTo("spear") == 0) {
               models.add(r);
             }
           } else {
-            findSpearModels(r,models);
+            findSpearModels(r, models);
           }
         }
       } catch (CoreException e) {
@@ -234,9 +239,9 @@ public class BatchAnalysis extends AbstractHandler {
       }
     } else if (o instanceof IFile) {
       System.out.println(o);
-      if(((IFile)o).getFileExtension().compareTo("spear") == 0)
+      if (((IFile) o).getFileExtension().compareTo("spear") == 0)
         models.add(o);
-      }
     }
+  }
 
 }

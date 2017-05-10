@@ -27,88 +27,88 @@ import com.rockwellcollins.spear.util.SpearSwitch;
 import com.rockwellcollins.spear.utilities.IntConstantFinder;
 
 public class EmitPredicateProperties extends SpearSwitch<Integer> {
-	
-	public static Optional<Expr> crunch(IdRef ref) {
-		EmitPredicateProperties emit = new EmitPredicateProperties();
-		emit.doSwitch(ref);
-		if(emit.exprs.isEmpty()) {
-			return new None<Expr>();
-		} else {
-			Expr result = Create.createAnd(emit.exprs.iterator());
-			return new Some<Expr>(result);
-		}
-	}
-	
-	private Reference current;
-	private List<Expr> exprs = new ArrayList<>();
 
-	@Override
-	public Integer caseConstant(Constant c) {
-		Reference prev = current;
-		current = new IdReference(c);
-		doSwitch(c.getType());
-		current = prev;
-		return 0;
-	}
-	
-	@Override
-	public Integer caseVariable(Variable v) {
-		Reference prev = current;
-		current = new IdReference(v);
-		this.doSwitch(v.getType());
-		current = prev;
-		return 0;
-	}
-	
-	@Override
-	public Integer caseMacro(Macro m) {
-		Reference prev = current;
-		current = new IdReference(m);
-		this.doSwitch(m.getType());
-		current = prev;
-		return 0;
-	}
-	
-	@Override
-	public Integer casePredicateSubTypeDef(PredicateSubTypeDef pstd) {
-		exprs.add(ExprReplacement.replace(current, pstd));
-		doSwitch(pstd.getPredVar().getType());
-		return 0;
-	}
-	
-	@Override
-	public Integer caseRecordTypeDef(RecordTypeDef rt) {
-		Reference base = current;
-		for(FieldType ft : rt.getFields()) {
-			current = new FieldReference(base,ft);
-			doSwitch(ft.getType());
-		}
-		current = base;
-		return 0;
-	}
-	
-	@Override
-	public Integer caseArrayTypeDef(ArrayTypeDef at) {
-		Reference base = current;
-		Integer size = IntConstantFinder.fetch(at);
-		for(int i=0; i<size; i++) {
-			current = new IndexReference(base,i);
-			doSwitch(at.getBase());
-		}
-		current = base;
-		return 0;
-	}
-	
-	@Override
-	public Integer caseUserType(UserType ut) {
-		this.doSwitch(ut.getDef());
-		return 0;
-	}
-	
-	@Override
-	public Integer defaultCase(EObject e) {
-		e.eContents().stream().forEach(o -> this.doSwitch(o));
-		e.eCrossReferences().stream().forEach(ref -> this.doSwitch(ref));
-		return 0;
-	}
+  public static Optional<Expr> crunch(IdRef ref) {
+    EmitPredicateProperties emit = new EmitPredicateProperties();
+    emit.doSwitch(ref);
+    if (emit.exprs.isEmpty()) {
+      return new None<Expr>();
+    } else {
+      Expr result = Create.createAnd(emit.exprs.iterator());
+      return new Some<Expr>(result);
+    }
+  }
+
+  private Reference  current;
+  private List<Expr> exprs = new ArrayList<>();
+
+  @Override
+  public Integer caseConstant(Constant c) {
+    Reference prev = current;
+    current = new IdReference(c);
+    doSwitch(c.getType());
+    current = prev;
+    return 0;
+  }
+
+  @Override
+  public Integer caseVariable(Variable v) {
+    Reference prev = current;
+    current = new IdReference(v);
+    this.doSwitch(v.getType());
+    current = prev;
+    return 0;
+  }
+
+  @Override
+  public Integer caseMacro(Macro m) {
+    Reference prev = current;
+    current = new IdReference(m);
+    this.doSwitch(m.getType());
+    current = prev;
+    return 0;
+  }
+
+  @Override
+  public Integer casePredicateSubTypeDef(PredicateSubTypeDef pstd) {
+    exprs.add(ExprReplacement.replace(current, pstd));
+    doSwitch(pstd.getPredVar().getType());
+    return 0;
+  }
+
+  @Override
+  public Integer caseRecordTypeDef(RecordTypeDef rt) {
+    Reference base = current;
+    for (FieldType ft : rt.getFields()) {
+      current = new FieldReference(base, ft);
+      doSwitch(ft.getType());
+    }
+    current = base;
+    return 0;
+  }
+
+  @Override
+  public Integer caseArrayTypeDef(ArrayTypeDef at) {
+    Reference base = current;
+    Integer size = IntConstantFinder.fetch(at);
+    for (int i = 0; i < size; i++) {
+      current = new IndexReference(base, i);
+      doSwitch(at.getBase());
+    }
+    current = base;
+    return 0;
+  }
+
+  @Override
+  public Integer caseUserType(UserType ut) {
+    this.doSwitch(ut.getDef());
+    return 0;
+  }
+
+  @Override
+  public Integer defaultCase(EObject e) {
+    e.eContents().stream().forEach(o -> this.doSwitch(o));
+    e.eCrossReferences().stream().forEach(ref -> this.doSwitch(ref));
+    return 0;
+  }
 }

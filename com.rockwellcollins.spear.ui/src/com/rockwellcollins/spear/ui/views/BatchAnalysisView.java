@@ -24,12 +24,12 @@ public class BatchAnalysisView extends ViewPart {
 
   public static final String ID = "com.rockwellcollins.spear.ui.views.BatchAnalysisView";
 
-  public List list;
-  
-  private Action stopAnalysisAction;
-  
+  public List                list;
+
+  private Action             stopAnalysisAction;
+
   public void createPartControl(Composite parent) {
-    
+
     parent.setLayout(new GridLayout());
 
     list = new List(parent, SWT.SINGLE | SWT.V_SCROLL | SWT.BORDER);
@@ -40,40 +40,34 @@ public class BatchAnalysisView extends ViewPart {
     container.setLayout(new FillLayout());
     createActions();
     createToolbar();
-  
+
   }
-  
 
   /**
    * Create toolbar.
    */
   private void createToolbar() {
-          //IToolBarManager mgr = getViewSite().getActionBars().getToolBarManager();
-          //mgr.add(stopAnalysisAction);
+    // IToolBarManager mgr = getViewSite().getActionBars().getToolBarManager();
+    // mgr.add(stopAnalysisAction);
   }
-  
+
   public void createActions() {
-     /*stopAnalysisAction = new Action("Stop Analysis") {
-            public void run() {
-              IHandlerService handlerService = (IHandlerService) PlatformUI
-                  .getWorkbench().getActiveWorkbenchWindow().getService(IHandlerService.class);
-              try {
-                Event e = new Event();
-                e.data="String";
-                handlerService.executeCommand("com.rockwellcollins.spear.ui.commands.startBatchAnalysis",e);
-              } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-              }
-             }
-       };
-       Bundle bundle = FrameworkUtil.getBundle(BatchAnalysisView.class);
-       URL url = FileLocator.find(bundle, new Path("icons/terminate.png"), null);
-       ImageDescriptor imageDcr = ImageDescriptor.createFromURL(url);
-       stopAnalysisAction.setImageDescriptor(imageDcr);*/
+    /*
+     * stopAnalysisAction = new Action("Stop Analysis") { public void run() {
+     * IHandlerService handlerService = (IHandlerService) PlatformUI
+     * .getWorkbench().getActiveWorkbenchWindow().getService(IHandlerService.
+     * class); try { Event e = new Event(); e.data="String";
+     * handlerService.executeCommand(
+     * "com.rockwellcollins.spear.ui.commands.startBatchAnalysis",e); } catch
+     * (Exception e) { // TODO Auto-generated catch block e.printStackTrace(); }
+     * } }; Bundle bundle = FrameworkUtil.getBundle(BatchAnalysisView.class);
+     * URL url = FileLocator.find(bundle, new Path("icons/terminate.png"),
+     * null); ImageDescriptor imageDcr = ImageDescriptor.createFromURL(url);
+     * stopAnalysisAction.setImageDescriptor(imageDcr);
+     */
   }
-  
+
   public void setFocus() {
-   list.setFocus();
+    list.setFocus();
   }
- }
+}

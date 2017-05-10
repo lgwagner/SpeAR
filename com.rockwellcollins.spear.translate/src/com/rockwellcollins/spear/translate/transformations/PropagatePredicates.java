@@ -26,124 +26,124 @@ import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.translate.utilities.EmitPredicateProperties;
 
 public class PropagatePredicates {
-	
-	public static void transform(Document doc) {
-		Consumer<File> consume = f -> {
-			if (f instanceof Specification) {
-				Specification spec = (Specification) f;
-				transform(spec);
-			}
-		};
-		
-		doc.files.stream().forEach(consume);
-		
-		if (doc.main instanceof Pattern) {
-			Pattern pattern = (Pattern) doc.main;
-			transform(pattern);
-		}
-	}
-	
-	private static void transform(Specification s) {
-		List<FormalConstraint> assumptions = new ArrayList<>();
-		List<FormalConstraint> properties = new ArrayList<>();
-		
-		for(Constant c : s.getConstants()) {
-			Optional<Expr> oe = EmitPredicateProperties.crunch(c);
-			if (oe instanceof Some) {
-				Some<Expr> some = (Some<Expr>) oe;
-				properties.add(makeConstraint(c,some.value));	
-			}
-		}
-		
-		for(Macro m : s.getMacros()) {
-			Optional<Expr> oe = EmitPredicateProperties.crunch(m);
-			if (oe instanceof Some) {
-				Some<Expr> some = (Some<Expr>) oe;
-				properties.add(makeConstraint(m,some.value));	
-			}
-		}
 
-		for(Variable v : s.getInputs()) {
-			Optional<Expr> oe = EmitPredicateProperties.crunch(v);
-			if (oe instanceof Some) {
-				Some<Expr> some = (Some<Expr>) oe;
-				assumptions.add(makeConstraint(v,some.value));	
-			}
-		}
+  public static void transform(Document doc) {
+    Consumer<File> consume = f -> {
+      if (f instanceof Specification) {
+        Specification spec = (Specification) f;
+        transform(spec);
+      }
+    };
 
-		for(Variable v : s.getOutputs()) {
-			Optional<Expr> oe = EmitPredicateProperties.crunch(v);
-			if (oe instanceof Some) {
-				Some<Expr> some = (Some<Expr>) oe;
-				properties.add(makeConstraint(v,some.value));
-			}
-		}
-		
-		for(Variable v : s.getState()) {
-			Optional<Expr> oe = EmitPredicateProperties.crunch(v);
-			if (oe instanceof Some) {
-				Some<Expr> some = (Some<Expr>) oe;
-				properties.add(makeConstraint(v,some.value));
-			}
-		}
-		s.getAssumptions().addAll(assumptions);
-		s.getBehaviors().addAll(properties);
-	}
-	
-	private static void transform(Pattern p) {
-		List<LustreAssertion> assertions = new ArrayList<>();
-		List<LustreProperty> properties = new ArrayList<>();
-		List<Variable> locals = new ArrayList<>();
-		List<LustreEquation> equations = new ArrayList<>();
-		
-		for(Variable v : p.getInputs()) {
-			Optional<Expr> oe = EmitPredicateProperties.crunch(v);
-			if (oe instanceof Some) {
-				Some<Expr> some = (Some<Expr>) oe;
-				Variable prop = createPropertyVariable(v);
-				locals.add(prop);
-				equations.add(Create.createLustreEquation(Collections.singletonList(prop), some.value));
-				assertions.add(Create.createLustreAssertion(prop));
-			}
-		}
-		
-		for(Variable v : p.getOutputs()) {
-			Optional<Expr> oe = EmitPredicateProperties.crunch(v);
-			if (oe instanceof Some) {
-				Some<Expr> some = (Some<Expr>) oe;
-				Variable prop = createPropertyVariable(v);
-				locals.add(prop);
-				equations.add(Create.createLustreEquation(Collections.singletonList(prop), some.value));
-				properties.add(Create.createLustreProperty(prop));
-			}
-		}
-		
-		for(Variable v : p.getLocals()) {
-			Optional<Expr> oe = EmitPredicateProperties.crunch(v);
-			if (oe instanceof Some) {
-				Some<Expr> some = (Some<Expr>) oe;
-				Variable prop = createPropertyVariable(v);
-				locals.add(prop);
-				equations.add(Create.createLustreEquation(Collections.singletonList(prop), some.value));
-				properties.add(Create.createLustreProperty(prop));
-			}
-		}
-		
-		p.getAssertions().addAll(assertions);
-		p.getEquations().addAll(equations);
-		p.getProperties().addAll(properties);
-		p.getLocals().addAll(locals);
-	}
-	
-	private static FormalConstraint makeConstraint(IdRef idr, Expr e) {
-		String original = SimpleAttributeResolver.NAME_RESOLVER.apply(idr);
-		String name = original + "_satisfies_predicate";
-		return Create.createFormalConstraint(name, e);
-	}
-	
-	private static Variable createPropertyVariable(Variable v) {
-		String original = v.getName();
-		String name = original + "_satisfies_predicate";
-		return Create.createBoolVariable(name);
-	}
+    doc.files.stream().forEach(consume);
+
+    if (doc.main instanceof Pattern) {
+      Pattern pattern = (Pattern) doc.main;
+      transform(pattern);
+    }
+  }
+
+  private static void transform(Specification s) {
+    List<FormalConstraint> assumptions = new ArrayList<>();
+    List<FormalConstraint> properties = new ArrayList<>();
+
+    for (Constant c : s.getConstants()) {
+      Optional<Expr> oe = EmitPredicateProperties.crunch(c);
+      if (oe instanceof Some) {
+        Some<Expr> some = (Some<Expr>) oe;
+        properties.add(makeConstraint(c, some.value));
+      }
+    }
+
+    for (Macro m : s.getMacros()) {
+      Optional<Expr> oe = EmitPredicateProperties.crunch(m);
+      if (oe instanceof Some) {
+        Some<Expr> some = (Some<Expr>) oe;
+        properties.add(makeConstraint(m, some.value));
+      }
+    }
+
+    for (Variable v : s.getInputs()) {
+      Optional<Expr> oe = EmitPredicateProperties.crunch(v);
+      if (oe instanceof Some) {
+        Some<Expr> some = (Some<Expr>) oe;
+        assumptions.add(makeConstraint(v, some.value));
+      }
+    }
+
+    for (Variable v : s.getOutputs()) {
+      Optional<Expr> oe = EmitPredicateProperties.crunch(v);
+      if (oe instanceof Some) {
+        Some<Expr> some = (Some<Expr>) oe;
+        properties.add(makeConstraint(v, some.value));
+      }
+    }
+
+    for (Variable v : s.getState()) {
+      Optional<Expr> oe = EmitPredicateProperties.crunch(v);
+      if (oe instanceof Some) {
+        Some<Expr> some = (Some<Expr>) oe;
+        properties.add(makeConstraint(v, some.value));
+      }
+    }
+    s.getAssumptions().addAll(assumptions);
+    s.getBehaviors().addAll(properties);
+  }
+
+  private static void transform(Pattern p) {
+    List<LustreAssertion> assertions = new ArrayList<>();
+    List<LustreProperty> properties = new ArrayList<>();
+    List<Variable> locals = new ArrayList<>();
+    List<LustreEquation> equations = new ArrayList<>();
+
+    for (Variable v : p.getInputs()) {
+      Optional<Expr> oe = EmitPredicateProperties.crunch(v);
+      if (oe instanceof Some) {
+        Some<Expr> some = (Some<Expr>) oe;
+        Variable prop = createPropertyVariable(v);
+        locals.add(prop);
+        equations.add(Create.createLustreEquation(Collections.singletonList(prop), some.value));
+        assertions.add(Create.createLustreAssertion(prop));
+      }
+    }
+
+    for (Variable v : p.getOutputs()) {
+      Optional<Expr> oe = EmitPredicateProperties.crunch(v);
+      if (oe instanceof Some) {
+        Some<Expr> some = (Some<Expr>) oe;
+        Variable prop = createPropertyVariable(v);
+        locals.add(prop);
+        equations.add(Create.createLustreEquation(Collections.singletonList(prop), some.value));
+        properties.add(Create.createLustreProperty(prop));
+      }
+    }
+
+    for (Variable v : p.getLocals()) {
+      Optional<Expr> oe = EmitPredicateProperties.crunch(v);
+      if (oe instanceof Some) {
+        Some<Expr> some = (Some<Expr>) oe;
+        Variable prop = createPropertyVariable(v);
+        locals.add(prop);
+        equations.add(Create.createLustreEquation(Collections.singletonList(prop), some.value));
+        properties.add(Create.createLustreProperty(prop));
+      }
+    }
+
+    p.getAssertions().addAll(assertions);
+    p.getEquations().addAll(equations);
+    p.getProperties().addAll(properties);
+    p.getLocals().addAll(locals);
+  }
+
+  private static FormalConstraint makeConstraint(IdRef idr, Expr e) {
+    String original = SimpleAttributeResolver.NAME_RESOLVER.apply(idr);
+    String name = original + "_satisfies_predicate";
+    return Create.createFormalConstraint(name, e);
+  }
+
+  private static Variable createPropertyVariable(Variable v) {
+    String original = v.getName();
+    String name = original + "_satisfies_predicate";
+    return Create.createBoolVariable(name);
+  }
 }

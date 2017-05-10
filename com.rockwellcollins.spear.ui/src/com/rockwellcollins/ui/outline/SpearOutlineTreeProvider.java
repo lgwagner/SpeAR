@@ -9,5 +9,5 @@ package com.rockwellcollins.ui.outline;
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#outline
  */
 public class SpearOutlineTreeProvider extends org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider {
-	
+
 }

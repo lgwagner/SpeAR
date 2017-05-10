@@ -35,54 +35,54 @@ import com.rockwellcollins.spear.utilities.Utilities;
  */
 public class SpearScopeProvider extends org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider {
 
-	IScope scope_FieldExpr_field(RecordExpr re, EReference reference) {
-		return Scopes.scopeFor(re.getType().getFields());
-	}
-	
-	IScope scope_RecordAccessExpr_field(RecordAccessExpr e, EReference reference) {
-		return getRecordScope(e.getRecord());
-	}
+  IScope scope_FieldExpr_field(RecordExpr re, EReference reference) {
+    return Scopes.scopeFor(re.getType().getFields());
+  }
 
-	IScope scope_RecordUpdateExpr_field(RecordUpdateExpr e, EReference reference) {
-		return getRecordScope(e.getRecord());
-	}
+  IScope scope_RecordAccessExpr_field(RecordAccessExpr e, EReference reference) {
+    return getRecordScope(e.getRecord());
+  }
 
-	private IScope getRecordScope(Expr expr) {
-		RecordTypeDef record = CompositeTypeLookup.getRecordType(expr);
-		if (record != null) {
-			return Scopes.scopeFor(record.getFields());
-		} else {
-			return IScope.NULLSCOPE;
-		}
-	}
+  IScope scope_RecordUpdateExpr_field(RecordUpdateExpr e, EReference reference) {
+    return getRecordScope(e.getRecord());
+  }
 
-	IScope scope_Variable(Pattern p, EReference ref) {
-		return getPatternScope(p,ref);
-	}
-	
-	IScope scope_IdRef(Pattern p, EReference ref) {
-		return getPatternScope(p,ref);
-	}
+  private IScope getRecordScope(Expr expr) {
+    RecordTypeDef record = CompositeTypeLookup.getRecordType(expr);
+    if (record != null) {
+      return Scopes.scopeFor(record.getFields());
+    } else {
+      return IScope.NULLSCOPE;
+    }
+  }
 
-	private IScope getFileScopeForPattern(File f, IScope scope) {
-		scope = Scopes.scopeFor(EcoreUtil2.getAllContentsOfType(f, EnumValue.class), scope);
-		scope = Scopes.scopeFor(EcoreUtil2.getAllContentsOfType(f, Constant.class), scope);
-		return scope;
-	}
-	
-	private IScope getScopeForImportChain(File root, IScope scope) {
-		scope = getFileScopeForPattern(root,scope);
-		for(Import im : root.getImports()) {
-			File importedFile = Utilities.getImportedFile(im);
-			scope = getScopeForImportChain(importedFile,scope);
-		}
-		return scope;
-	}
-	
-	private IScope getPatternScope(Pattern p, EReference ref) {
-		File f = Utilities.getRoot(p);
-		IScope scope = IScope.NULLSCOPE;
-		scope = Scopes.scopeFor(EcoreUtil2.getAllContentsOfType(p, Variable.class), getScopeForImportChain(f,scope));
-		return scope;
-	}
+  IScope scope_Variable(Pattern p, EReference ref) {
+    return getPatternScope(p, ref);
+  }
+
+  IScope scope_IdRef(Pattern p, EReference ref) {
+    return getPatternScope(p, ref);
+  }
+
+  private IScope getFileScopeForPattern(File f, IScope scope) {
+    scope = Scopes.scopeFor(EcoreUtil2.getAllContentsOfType(f, EnumValue.class), scope);
+    scope = Scopes.scopeFor(EcoreUtil2.getAllContentsOfType(f, Constant.class), scope);
+    return scope;
+  }
+
+  private IScope getScopeForImportChain(File root, IScope scope) {
+    scope = getFileScopeForPattern(root, scope);
+    for (Import im : root.getImports()) {
+      File importedFile = Utilities.getImportedFile(im);
+      scope = getScopeForImportChain(importedFile, scope);
+    }
+    return scope;
+  }
+
+  private IScope getPatternScope(Pattern p, EReference ref) {
+    File f = Utilities.getRoot(p);
+    IScope scope = IScope.NULLSCOPE;
+    scope = Scopes.scopeFor(EcoreUtil2.getAllContentsOfType(p, Variable.class), getScopeForImportChain(f, scope));
+    return scope;
+  }
 }

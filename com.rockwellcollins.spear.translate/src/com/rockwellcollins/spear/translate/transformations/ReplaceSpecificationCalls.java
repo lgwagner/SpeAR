@@ -18,55 +18,55 @@ import com.rockwellcollins.spear.utilities.GetAllIdRefs;
 
 public class ReplaceSpecificationCalls extends SpearSwitch<EObject> {
 
-	public static void transform(Document doc) {
-		Consumer<File> consume = f -> {
-			if (f instanceof Specification) {
-				Specification spec = (Specification) f;
-				transform(spec);
-			}
-		};
-		doc.files.forEach(consume);
-	}
-	
-	private static File transform(Specification s) {
-		Specification updated = (Specification) new ReplaceSpecificationCalls().doSwitch(s);
-		return updated;
-	}
+  public static void transform(Document doc) {
+    Consumer<File> consume = f -> {
+      if (f instanceof Specification) {
+        Specification spec = (Specification) f;
+        transform(spec);
+      }
+    };
+    doc.files.forEach(consume);
+  }
 
-	private SpearFactory f = SpearFactory.eINSTANCE;
-	
-	private NormalizedCall getReplacement(Expr ids, SpecificationCall call) {
-		NormalizedCall replacement = f.createNormalizedCall();
-		replacement.setSpec(call.getSpec());
-		replacement.getArgs().addAll(call.getArgs());
-		replacement.getIds().addAll(GetAllIdRefs.getReferences(ids));
-		return replacement;
-	}
+  private static File transform(Specification s) {
+    Specification updated = (Specification) new ReplaceSpecificationCalls().doSwitch(s);
+    return updated;
+  }
 
-	@Override
-	public Expr caseBinaryExpr(BinaryExpr be) {
-		Expr left = (Expr) this.doSwitch(be.getLeft());
-		Expr right = (Expr) this.doSwitch(be.getRight());
+  private SpearFactory f = SpearFactory.eINSTANCE;
 
-		//Validations should enforce the following two scenarios. One MUST be true.
-		if (right instanceof SpecificationCall) {
-			SpecificationCall specificationCall = (SpecificationCall) right;
-			this.doSwitch(specificationCall.getSpec());
-			EcoreUtil2.replace(be, getReplacement(left,specificationCall));
-		}
-		
-		if (left instanceof SpecificationCall) {
-			SpecificationCall specificationCall = (SpecificationCall) left;
-			this.doSwitch(specificationCall.getSpec());
-			EcoreUtil2.replace(be, getReplacement(right,specificationCall));
-		}
-	
-		return be;
-	}
-	
-	@Override
-	public EObject defaultCase(EObject o) {
-		o.eContents().stream().forEach(sub -> this.doSwitch(sub));
-		return o;
-	}
+  private NormalizedCall getReplacement(Expr ids, SpecificationCall call) {
+    NormalizedCall replacement = f.createNormalizedCall();
+    replacement.setSpec(call.getSpec());
+    replacement.getArgs().addAll(call.getArgs());
+    replacement.getIds().addAll(GetAllIdRefs.getReferences(ids));
+    return replacement;
+  }
+
+  @Override
+  public Expr caseBinaryExpr(BinaryExpr be) {
+    Expr left = (Expr) this.doSwitch(be.getLeft());
+    Expr right = (Expr) this.doSwitch(be.getRight());
+
+    // Validations should enforce the following two scenarios. One MUST be true.
+    if (right instanceof SpecificationCall) {
+      SpecificationCall specificationCall = (SpecificationCall) right;
+      this.doSwitch(specificationCall.getSpec());
+      EcoreUtil2.replace(be, getReplacement(left, specificationCall));
+    }
+
+    if (left instanceof SpecificationCall) {
+      SpecificationCall specificationCall = (SpecificationCall) left;
+      this.doSwitch(specificationCall.getSpec());
+      EcoreUtil2.replace(be, getReplacement(right, specificationCall));
+    }
+
+    return be;
+  }
+
+  @Override
+  public EObject defaultCase(EObject o) {
+    o.eContents().stream().forEach(sub -> this.doSwitch(sub));
+    return o;
+  }
 }

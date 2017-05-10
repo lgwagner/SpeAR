@@ -29,81 +29,83 @@ import com.rockwellcollins.spear.translate.excel.AltSpearDocument;
 import com.rockwellcollins.spear.translate.excel.MakeExcel;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
-public class GenerateExcel implements IWorkbenchWindowActionDelegate {
+public class GenerateExcel
+    implements IWorkbenchWindowActionDelegate {
 
-	private IWorkbenchWindow window;
+  private IWorkbenchWindow window;
 
-	@Override
-	public void run(IAction action) {
-		SpearInjectorUtil
-				.setInjector(SpearActivator.getInstance().getInjector(SpearActivator.COM_ROCKWELLCOLLINS_SPEAR));
+  @Override
+  public void run(IAction action) {
+    SpearInjectorUtil.setInjector(SpearActivator.getInstance().getInjector(SpearActivator.COM_ROCKWELLCOLLINS_SPEAR));
 
-		IEditorPart editor = window.getActivePage().getActiveEditor();
-		if (!(editor instanceof XtextEditor)) {
-			MessageDialog.openError(window.getShell(), "Error", "Only SpeAR files can be analyzed.");
-			return;
-		}
+    IEditorPart editor = window.getActivePage().getActiveEditor();
+    if (!(editor instanceof XtextEditor)) {
+      MessageDialog.openError(window.getShell(), "Error", "Only SpeAR files can be analyzed.");
+      return;
+    }
 
-		XtextEditor xte = (XtextEditor) editor;
-		IXtextDocument doc = xte.getDocument();
+    XtextEditor xte = (XtextEditor) editor;
+    IXtextDocument doc = xte.getDocument();
 
-		doc.readOnly(new IUnitOfWork<Void, XtextResource>() {
+    doc.readOnly(new IUnitOfWork<Void, XtextResource>() {
 
-			@Override
-			public java.lang.Void exec(XtextResource state) throws Exception {
-				Specification specification = (Specification) state.getContents().get(0);
+      @Override
+      public java.lang.Void exec(XtextResource state) throws Exception {
+        Specification specification = (Specification) state.getContents().get(0);
 
-				if (hasErrors(specification.eResource())) {
-					MessageDialog.openError(window.getShell(), "Error", "Specification contains errors.");
-					return null;
-				}
+        if (hasErrors(specification.eResource())) {
+          MessageDialog.openError(window.getShell(), "Error", "Specification contains errors.");
+          return null;
+        }
 
-				AltSpearDocument spearDoc = AltSpearDocument.create(specification);
-				
-				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-				
-				//create the generated folder
-				URI folderURI = ActionUtilities.createFolder(state.getURI(), "generated");
-				ActionUtilities.makeFolder(root.getFolder(new Path(folderURI.toPlatformString(true))));
-				
-				//create the lustre file
-				String filename = ActionUtilities.getGeneratedFile(state.getURI(), "xls");
-				URI excelURI = ActionUtilities.createURI(folderURI, filename);					
-				IResource finalResource = root.getFile(new Path(excelURI.toPlatformString(true)));
-				
-				try {
-					MakeExcel.toExcel(spearDoc, finalResource.getLocation().toFile());
-				} catch (Exception e) {
-					MessageDialog.openError(window.getShell(), "Unable to export to spreadsheet.", e.getMessage());
-					e.printStackTrace();
-				}
+        AltSpearDocument spearDoc = AltSpearDocument.create(specification);
 
-				// refresh the workspace
-				root.refreshLocal(IResource.DEPTH_INFINITE, null);
-				return null;
-			}
-		});
-	}
+        IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 
-	protected boolean hasErrors(Resource res) {
-		Injector injector = SpearActivator.getInstance().getInjector(SpearActivator.COM_ROCKWELLCOLLINS_SPEAR);
-		IResourceValidator resourceValidator = injector.getInstance(IResourceValidator.class);
-		for (Issue issue : resourceValidator.validate(res, CheckMode.ALL, CancelIndicator.NullImpl)) {
-			if (issue.getSeverity() == Severity.ERROR) {
-				return true;
-			}
-		}
-		return false;
-	}
+        // create the generated folder
+        URI folderURI = ActionUtilities.createFolder(state.getURI(), "generated");
+        ActionUtilities.makeFolder(root.getFolder(new Path(folderURI.toPlatformString(true))));
 
-	@Override
-	public void selectionChanged(IAction arg0, ISelection arg1) {}
+        // create the lustre file
+        String filename = ActionUtilities.getGeneratedFile(state.getURI(), "xls");
+        URI excelURI = ActionUtilities.createURI(folderURI, filename);
+        IResource finalResource = root.getFile(new Path(excelURI.toPlatformString(true)));
 
-	@Override
-	public void dispose() {}
+        try {
+          MakeExcel.toExcel(spearDoc, finalResource.getLocation().toFile());
+        } catch (Exception e) {
+          MessageDialog.openError(window.getShell(), "Unable to export to spreadsheet.", e.getMessage());
+          e.printStackTrace();
+        }
 
-	@Override
-	public void init(IWorkbenchWindow arg0) {
-		this.window = arg0;
-	}
+        // refresh the workspace
+        root.refreshLocal(IResource.DEPTH_INFINITE, null);
+        return null;
+      }
+    });
+  }
+
+  protected boolean hasErrors(Resource res) {
+    Injector injector = SpearActivator.getInstance().getInjector(SpearActivator.COM_ROCKWELLCOLLINS_SPEAR);
+    IResourceValidator resourceValidator = injector.getInstance(IResourceValidator.class);
+    for (Issue issue : resourceValidator.validate(res, CheckMode.ALL, CancelIndicator.NullImpl)) {
+      if (issue.getSeverity() == Severity.ERROR) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  @Override
+  public void selectionChanged(IAction arg0, ISelection arg1) {
+  }
+
+  @Override
+  public void dispose() {
+  }
+
+  @Override
+  public void init(IWorkbenchWindow arg0) {
+    this.window = arg0;
+  }
 }

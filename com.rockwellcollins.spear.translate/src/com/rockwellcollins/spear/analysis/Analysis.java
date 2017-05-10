@@ -24,15 +24,15 @@ import jkind.api.results.MapRenaming.Mode;
 import jkind.lustre.Program;
 
 public class Analysis {
-  
-  private JKindApi jKindApi;
-  private JKindResult jKindResult;
-  private JRealizabilityApi jRealizabilityApi;
-  private JRealizabilityResult jRealizabilityResult;
-  private boolean isJKindApi;
 
-  private Program p;
-  
+  private JKindApi             jKindApi;
+  private JKindResult          jKindResult;
+  private JRealizabilityApi    jRealizabilityApi;
+  private JRealizabilityResult jRealizabilityResult;
+  private boolean              isJKindApi;
+
+  private Program              p;
+
   private Analysis(JKindApi api, Program p, JKindResult r) {
     this.jKindApi = api;
     isJKindApi = true;
@@ -48,29 +48,27 @@ public class Analysis {
   }
 
   public void analyze(IProgressMonitor m) throws JKindException {
-    if(isJKindApi) {
-      jKindApi.execute(p,jKindResult,m);
+    if (isJKindApi) {
+      jKindApi.execute(p, jKindResult, m);
     } else {
-      jRealizabilityApi.execute(p,jRealizabilityResult,m);
+      jRealizabilityApi.execute(p, jRealizabilityResult, m);
     }
   }
-  
-  private static Pair<JKindApi,Document> commonJKindAnalysisSetup(Specification specification, String jkindjarpth) {
+
+  private static Pair<JKindApi, Document> commonJKindAnalysisSetup(Specification specification, String jkindjarpth) {
     JKindApi api = new JKindApi();
     api.setJKindJar(jkindjarpth.toString());
     PreferencesUtil.configureJKindApi(api);
     Document document = new Document(specification);
     return Pair.with(api, document);
   }
-  
-  public static Pair<Analysis,JKindResult> entailment
-  (Specification specification,
-   String jkindjarpth,
-   String resultname) throws IOException {
-    
-    Pair<JKindApi,Document> pair = commonJKindAnalysisSetup(specification,jkindjarpth);
+
+  public static Pair<Analysis, JKindResult> entailment(Specification specification, String jkindjarpth,
+      String resultname) throws IOException {
+
+    Pair<JKindApi, Document> pair = commonJKindAnalysisSetup(specification, jkindjarpth);
     Program p = null;
-    if(PreferencesUtil.printFinalLustre()) {
+    if (PreferencesUtil.printFinalLustre()) {
       try {
         p = pair.getValue1().getLogicalEntailmentWithLustre();
       } catch (Exception e) {
@@ -96,26 +94,24 @@ public class Analysis {
         invert.add(false);
       }
     }
-    
+
     // this is a hack to ensure the invert list accounts for the
     // additional property that captures all properties.
     if (PreferencesUtil.getEnableIVCDuringEntailment()) {
       pair.getValue0().setIvcReduction();
       invert.add(false);
     }
-    
+
     JKindResult result = new JKindResult(resultname, p.getMainNode().properties, invert, renaming);
-    return Pair.with(new Analysis(pair.getValue0(),p,result), result);
+    return Pair.with(new Analysis(pair.getValue0(), p, result), result);
   }
 
-  public static Pair<Analysis,JKindResult> consistency
-  (Specification specification,
-   String jkindjarpth,
-   String resultname) throws IOException {
-    
-    Pair<JKindApi,Document> pair = commonJKindAnalysisSetup(specification,jkindjarpth);
+  public static Pair<Analysis, JKindResult> consistency(Specification specification, String jkindjarpth,
+      String resultname) throws IOException {
+
+    Pair<JKindApi, Document> pair = commonJKindAnalysisSetup(specification, jkindjarpth);
     Program p = null;
-    if(PreferencesUtil.printFinalLustre()) {
+    if (PreferencesUtil.printFinalLustre()) {
       try {
         p = pair.getValue1().getLogicalConsistencyWithLustre();
       } catch (Exception e) {
@@ -129,16 +125,17 @@ public class Analysis {
 
     List<Boolean> invert = p.getMainNode().properties.stream().map(prop -> true).collect(Collectors.toList());
     JKindResult result = new JKindResult(resultname, p.getMainNode().properties, invert, renaming);
-    return Pair.with(new Analysis(pair.getValue0(),p,result), result);
+    return Pair.with(new Analysis(pair.getValue0(), p, result), result);
   }
-  
-  public static Pair<Analysis,JKindResult> realizability(Specification specification, String jkindjarpth, String resultname) throws Exception {
+
+  public static Pair<Analysis, JKindResult> realizability(Specification specification, String jkindjarpth,
+      String resultname) throws Exception {
     JRealizabilityApi api = new JRealizabilityApi();
     api.setJKindJar(jkindjarpth.toString());
     PreferencesUtil.configureRealizabilityApi(api);
     Document doc = new Document(specification);
     Program p = null;
-    if(PreferencesUtil.printFinalLustre()) {
+    if (PreferencesUtil.printFinalLustre()) {
       try {
         p = doc.getRealizabilityWithLustre();
       } catch (Exception e) {
@@ -158,8 +155,7 @@ public class Analysis {
     PreferencesUtil.configureRealizabilityApi(api);
     JRealizabilityResult result = new JRealizabilityResult("result", doc.getRenaming(Mode.IDENTITY));
 
-    return Pair.with(new Analysis(api,p,result), result);
+    return Pair.with(new Analysis(api, p, result), result);
   }
-
 
 }

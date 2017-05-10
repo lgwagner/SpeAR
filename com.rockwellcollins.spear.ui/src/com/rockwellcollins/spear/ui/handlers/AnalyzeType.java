@@ -49,135 +49,139 @@ import jkind.results.layout.NodeLayout;
 
 public class AnalyzeType extends AbstractHandler {
 
-	private static final String TERMINATE_ID = "com.rockwellcollins.spear.translate.commands.terminateAnalysis";
-	
-	private IWorkbenchWindow window;
+  private static final String TERMINATE_ID = "com.rockwellcollins.spear.translate.commands.terminateAnalysis";
 
-	@Override
-	public Object execute(ExecutionEvent event) throws ExecutionException {
-		XtextEditor xtextEditor = EditorUtils.getActiveXtextEditor();
-		this.window = HandlerUtil.getActiveWorkbenchWindow(event);
-		TextSelection ts = (TextSelection) xtextEditor.getSelectionProvider().getSelection();
+  private IWorkbenchWindow    window;
 
-		xtextEditor.getDocument().readOnly(resource -> {
-			EObject e = new EObjectAtOffsetHelper().resolveContainedElementAt(resource, ts.getOffset());
-			
-			TypeDef td = EcoreUtil2.getContainerOfType(e, TypeDef.class);
-			if(td == null) {
-				MessageDialog.openError(window.getShell(), "Type definition not found", "Please place the cursor inside a valid type definition.");
-				return null;
-			}
-			
-			if(hasErrors(resource)) {
-				MessageDialog.openError(window.getShell(), "Error", "Type definition has errors.");
-				return null;
-			}
-			
-			analyzeType(td);
-			return null;
-		});
-		return null;
-	}
+  @Override
+  public Object execute(ExecutionEvent event) throws ExecutionException {
+    XtextEditor xtextEditor = EditorUtils.getActiveXtextEditor();
+    this.window = HandlerUtil.getActiveWorkbenchWindow(event);
+    TextSelection ts = (TextSelection) xtextEditor.getSelectionProvider().getSelection();
 
-	protected boolean hasErrors(Resource res) {
-		Injector injector = SpearActivator.getInstance().getInjector(SpearActivator.COM_ROCKWELLCOLLINS_SPEAR);
-		IResourceValidator resourceValidator = injector.getInstance(IResourceValidator.class);
+    xtextEditor.getDocument().readOnly(resource -> {
+      EObject e = new EObjectAtOffsetHelper().resolveContainedElementAt(resource, ts.getOffset());
 
-		for (Issue issue : resourceValidator.validate(res, CheckMode.ALL, CancelIndicator.NullImpl)) {
-			if (issue.getSeverity() == Severity.ERROR) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	private Pattern createPattern(TypeDef td) {
-		Pattern p = Create.createPattern(td.getName() + "_tcc");
-		Variable in = Create.createVariable("in", Create.createUserType(td));
-		p.getInputs().add(in);
-		Variable vacuous = Create.createBoolVariable(td.getName() + "_valid");
-		p.getOutputs().add(vacuous);
-		Optional<Expr> oe = EmitPredicateProperties.crunch(in);
-		if (oe instanceof Some) {
-			Some<Expr> some = (Some<Expr>) oe;
-			p.getEquations().add(Create.createLustreEquation(Collections.singletonList(vacuous),Create.createNot(some.value)));
-		} else {
-			p.getEquations().add(Create.createLustreEquation(Collections.singletonList(vacuous),Create.createFalse()));
-		}
-		p.getProperties().add(Create.createLustreProperty(vacuous));
-		return p;
-	}
-	
-	private void analyzeType(TypeDef td) {
-		
-		Document document = null;
-		try {
-		  document = new Document(td);
-		} catch (Exception e1) {
-			System.err.println("Unexpected error transforming PatternDocument for analysis.");
-			e1.printStackTrace();
-		}
-		//this *must* occur after the transforms for operators to be correctly normalized.
-		document.main=createPattern(td);		
-		SProgram p = SProgram.build(document);
-		Program lp = p.patternToLustre();
-		
-		JKindApi api = PreferencesUtil.getJKindApi();
-		JKindResult result = new JKindResult("result");
-		lp.getMainNode().properties.stream().forEach(prop -> result.addProperty(prop, true));
-		IProgressMonitor monitor = new NullProgressMonitor();
-		String nicename = "Pattern Analysis: " + td.getName();
-		
-		activateTerminateHandler(monitor);
-		showView(result, new NodeLayout(lp.getMainNode()), nicename);
-		
-		new Thread() {
-			public void run() {
-				try {
-					api.execute(lp, result, monitor);
-				} catch (Exception e) {
-					System.out.println(result.getText());
-					throw e;
-				} finally {
-					deactivateTerminateHandler();
-				}
-			}
-		}.start();
-	}
-	
-	private void showView(final JKindResult result, final Layout layout, String title) {
-		window.getShell().getDisplay().syncExec(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					SpearConsistencyResultsView page = (SpearConsistencyResultsView) window.getActivePage().showView(SpearConsistencyResultsView.ID);
-					page.setInput(result, layout, title);
-				} catch (PartInitException e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
-	private IHandlerActivation activation;
-	
-	private void activateTerminateHandler(final IProgressMonitor monitor) {
-		final IHandlerService handlerService = (IHandlerService) window.getService(IHandlerService.class);
-		window.getShell().getDisplay().syncExec(new Runnable() {
-			@Override
-			public void run() {
-				activation = handlerService.activateHandler(TERMINATE_ID,new TerminateHandler(monitor));
-			}
-		});
-	}
-	
-	private void deactivateTerminateHandler() {
-		final IHandlerService handlerService = (IHandlerService) window.getService(IHandlerService.class);
-		window.getShell().getDisplay().syncExec(new Runnable() {
-			@Override
-			public void run() {
-				handlerService.deactivateHandler(activation);
-			}
-		});
-	}
+      TypeDef td = EcoreUtil2.getContainerOfType(e, TypeDef.class);
+      if (td == null) {
+        MessageDialog.openError(window.getShell(), "Type definition not found",
+            "Please place the cursor inside a valid type definition.");
+        return null;
+      }
+
+      if (hasErrors(resource)) {
+        MessageDialog.openError(window.getShell(), "Error", "Type definition has errors.");
+        return null;
+      }
+
+      analyzeType(td);
+      return null;
+    });
+    return null;
+  }
+
+  protected boolean hasErrors(Resource res) {
+    Injector injector = SpearActivator.getInstance().getInjector(SpearActivator.COM_ROCKWELLCOLLINS_SPEAR);
+    IResourceValidator resourceValidator = injector.getInstance(IResourceValidator.class);
+
+    for (Issue issue : resourceValidator.validate(res, CheckMode.ALL, CancelIndicator.NullImpl)) {
+      if (issue.getSeverity() == Severity.ERROR) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  private Pattern createPattern(TypeDef td) {
+    Pattern p = Create.createPattern(td.getName() + "_tcc");
+    Variable in = Create.createVariable("in", Create.createUserType(td));
+    p.getInputs().add(in);
+    Variable vacuous = Create.createBoolVariable(td.getName() + "_valid");
+    p.getOutputs().add(vacuous);
+    Optional<Expr> oe = EmitPredicateProperties.crunch(in);
+    if (oe instanceof Some) {
+      Some<Expr> some = (Some<Expr>) oe;
+      p.getEquations()
+          .add(Create.createLustreEquation(Collections.singletonList(vacuous), Create.createNot(some.value)));
+    } else {
+      p.getEquations().add(Create.createLustreEquation(Collections.singletonList(vacuous), Create.createFalse()));
+    }
+    p.getProperties().add(Create.createLustreProperty(vacuous));
+    return p;
+  }
+
+  private void analyzeType(TypeDef td) {
+
+    Document document = null;
+    try {
+      document = new Document(td);
+    } catch (Exception e1) {
+      System.err.println("Unexpected error transforming PatternDocument for analysis.");
+      e1.printStackTrace();
+    }
+    // this *must* occur after the transforms for operators to be correctly
+    // normalized.
+    document.main = createPattern(td);
+    SProgram p = SProgram.build(document);
+    Program lp = p.patternToLustre();
+
+    JKindApi api = PreferencesUtil.getJKindApi();
+    JKindResult result = new JKindResult("result");
+    lp.getMainNode().properties.stream().forEach(prop -> result.addProperty(prop, true));
+    IProgressMonitor monitor = new NullProgressMonitor();
+    String nicename = "Pattern Analysis: " + td.getName();
+
+    activateTerminateHandler(monitor);
+    showView(result, new NodeLayout(lp.getMainNode()), nicename);
+
+    new Thread() {
+      public void run() {
+        try {
+          api.execute(lp, result, monitor);
+        } catch (Exception e) {
+          System.out.println(result.getText());
+          throw e;
+        } finally {
+          deactivateTerminateHandler();
+        }
+      }
+    }.start();
+  }
+
+  private void showView(final JKindResult result, final Layout layout, String title) {
+    window.getShell().getDisplay().syncExec(new Runnable() {
+      @Override
+      public void run() {
+        try {
+          SpearConsistencyResultsView page = (SpearConsistencyResultsView) window.getActivePage()
+              .showView(SpearConsistencyResultsView.ID);
+          page.setInput(result, layout, title);
+        } catch (PartInitException e) {
+          e.printStackTrace();
+        }
+      }
+    });
+  }
+
+  private IHandlerActivation activation;
+
+  private void activateTerminateHandler(final IProgressMonitor monitor) {
+    final IHandlerService handlerService = (IHandlerService) window.getService(IHandlerService.class);
+    window.getShell().getDisplay().syncExec(new Runnable() {
+      @Override
+      public void run() {
+        activation = handlerService.activateHandler(TERMINATE_ID, new TerminateHandler(monitor));
+      }
+    });
+  }
+
+  private void deactivateTerminateHandler() {
+    final IHandlerService handlerService = (IHandlerService) window.getService(IHandlerService.class);
+    window.getShell().getDisplay().syncExec(new Runnable() {
+      @Override
+      public void run() {
+        handlerService.deactivateHandler(activation);
+      }
+    });
+  }
 }

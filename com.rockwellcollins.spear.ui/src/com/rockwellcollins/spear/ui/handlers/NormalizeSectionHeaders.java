@@ -17,48 +17,50 @@ import com.rockwellcollins.spear.Specification;
 
 public class NormalizeSectionHeaders extends AbstractHandler {
 
-	private IWorkbenchWindow window;
+  private IWorkbenchWindow window;
 
-	@Override
-	public Object execute(ExecutionEvent event) throws ExecutionException {
-		XtextEditor xtextEditor = EditorUtils.getActiveXtextEditor();
-		this.window = HandlerUtil.getActiveWorkbenchWindow(event);
-		TextSelection ts = (TextSelection) xtextEditor.getSelectionProvider().getSelection();
-		
-		xtextEditor.getDocument().modify(resource -> {
-			EObject e = new EObjectAtOffsetHelper().resolveContainedElementAt(resource, ts.getOffset());
-			
-			Specification s = EcoreUtil2.getContainerOfType(e, Specification.class);
-			if(s == null) {
-				MessageDialog.openError(window.getShell(), "Specification Not Found", "Please place the cursor inside a valid specification.");
-				return null;
-			}
-			
-			String set1 = "Assumptions/Requirements/Properties";
-			String set2 = "Assumptions/DerivedRequirements/Requirements";
-			String set3 = "Assumptions/Implementation/Guarantees";
-			
-			MessageDialog dialog = new MessageDialog(window.getShell(), "Choose Heading Set", null,
-				    "Please Choose a Set of Section Headings for your specification.", MessageDialog.QUESTION, new String[] {set1,set2,set3}, 0);
-			
-			int result = dialog.open();
-			
-			if (result == 1) {
-				s.setAssumptionsKeyword("Assumptions");
-				s.setRequirementsKeyword("DerivedRequirements");
-				s.setBehaviorsKeyword("Requirements");	
-			} else if (result == 2) {
-				s.setAssumptionsKeyword("Assumptions");
-				s.setRequirementsKeyword("Implementation");
-				s.setBehaviorsKeyword("Guarantees");	
-			} else {
-				s.setAssumptionsKeyword("Assumptions");
-				s.setRequirementsKeyword("Requirements");
-				s.setBehaviorsKeyword("Properties");				
-			}
-			
-			return null;
-		});
-		return null;
-	}
+  @Override
+  public Object execute(ExecutionEvent event) throws ExecutionException {
+    XtextEditor xtextEditor = EditorUtils.getActiveXtextEditor();
+    this.window = HandlerUtil.getActiveWorkbenchWindow(event);
+    TextSelection ts = (TextSelection) xtextEditor.getSelectionProvider().getSelection();
+
+    xtextEditor.getDocument().modify(resource -> {
+      EObject e = new EObjectAtOffsetHelper().resolveContainedElementAt(resource, ts.getOffset());
+
+      Specification s = EcoreUtil2.getContainerOfType(e, Specification.class);
+      if (s == null) {
+        MessageDialog.openError(window.getShell(), "Specification Not Found",
+            "Please place the cursor inside a valid specification.");
+        return null;
+      }
+
+      String set1 = "Assumptions/Requirements/Properties";
+      String set2 = "Assumptions/DerivedRequirements/Requirements";
+      String set3 = "Assumptions/Implementation/Guarantees";
+
+      MessageDialog dialog = new MessageDialog(window.getShell(), "Choose Heading Set", null,
+          "Please Choose a Set of Section Headings for your specification.", MessageDialog.QUESTION,
+          new String[] { set1, set2, set3 }, 0);
+
+      int result = dialog.open();
+
+      if (result == 1) {
+        s.setAssumptionsKeyword("Assumptions");
+        s.setRequirementsKeyword("DerivedRequirements");
+        s.setBehaviorsKeyword("Requirements");
+      } else if (result == 2) {
+        s.setAssumptionsKeyword("Assumptions");
+        s.setRequirementsKeyword("Implementation");
+        s.setBehaviorsKeyword("Guarantees");
+      } else {
+        s.setAssumptionsKeyword("Assumptions");
+        s.setRequirementsKeyword("Requirements");
+        s.setBehaviorsKeyword("Properties");
+      }
+
+      return null;
+    });
+    return null;
+  }
 }

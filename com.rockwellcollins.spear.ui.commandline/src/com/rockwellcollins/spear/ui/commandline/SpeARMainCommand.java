@@ -1,6 +1,5 @@
 package com.rockwellcollins.spear.ui.commandline;
 
-
 import java.io.File;
 
 import com.beust.jcommander.JCommander;

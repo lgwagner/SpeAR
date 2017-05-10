@@ -47,237 +47,238 @@ import jkind.lustre.UnaryOp;
 
 public class TranslateExpr extends SpearSwitch<Expr> {
 
-	public static Expr translate(EObject e, SMapElement spec) {
-		return new TranslateExpr(spec).doSwitch(e);
-	}
-	
-	private SMapElement module;
+  public static Expr translate(EObject e, SMapElement spec) {
+    return new TranslateExpr(spec).doSwitch(e);
+  }
 
-	private TranslateExpr(SMapElement s) {
-		this.module=s;
-	}
-	
-	@Override
-	public Expr casePatternCall(com.rockwellcollins.spear.PatternCall call) {
-		List<Expr> args = new ArrayList<>();
-		args.addAll(call.getArgs().stream().map(e -> this.doSwitch(e)).collect(Collectors.toList()));
-		return new NodeCallExpr(call.getPattern().getName(), args);
-	}
-	
-	@Override
-	public Expr caseNormalizedCall(com.rockwellcollins.spear.NormalizedCall call) {
-		if(!(module instanceof SSpecification)) {
-			throw new RuntimeException("Unexpected element encountered.");
-		}
-		SSpecification s = (SSpecification) module;
-		List<Expr> args = new ArrayList<>();
-		args.addAll(call.getArgs().stream().map(e -> this.doSwitch(e)).collect(Collectors.toList()));
-		args.addAll(call.getIds().stream().map(idr -> this.doSwitch(idr)).collect(Collectors.toList()));
+  private SMapElement module;
 
-		String nodeName = s.map.lookupOriginalProgram(call.getSpec().getName());
-		SCall scall = SCall.get(call,s.calls);
-		args.addAll(scall.getCallArgs());
-		return new NodeCallExpr(nodeName,args);
-	}
-	
-	@Override
-	public Expr caseUnaryExpr(com.rockwellcollins.spear.UnaryExpr unary) {
-		Expr sub = doSwitch(unary.getExpr());
-		switch (unary.getOp()) {
-			case "not":
-			case "-":
-				return new UnaryExpr(UnaryOp.fromString(unary.getOp()), sub);
+  private TranslateExpr(SMapElement s) {
+    this.module = s;
+  }
 
-			case "once":
-			case "historically":
-			case "initially":
-				List<Expr> args = new ArrayList<>();
-				args.add(sub);
-				return new NodeCallExpr(unary.getOp(),args);
-				
-			default:
-				throw new RuntimeException("Unsupported unary operator " + unary.getOp() + " provided.");
-		}
-	}
-	
-	@Override
-	public Expr caseRecordAccessExpr(com.rockwellcollins.spear.RecordAccessExpr rae) {
-		return new RecordAccessExpr(doSwitch(rae.getRecord()),rae.getField().getName());
-	}
-	
-	@Override
-	public Expr caseRecordUpdateExpr(com.rockwellcollins.spear.RecordUpdateExpr rue) {
-		return new RecordUpdateExpr(doSwitch(rue.getRecord()),rue.getField().getName(),doSwitch(rue.getValue()));
-	}
-	
-	@Override
-	public Expr caseArrayAccessExpr(com.rockwellcollins.spear.ArrayAccessExpr aae) {
-		return new ArrayAccessExpr(doSwitch(aae.getArray()), doSwitch(aae.getIndex()));
-	}
-	
-	@Override
-	public Expr caseArrayUpdateExpr(com.rockwellcollins.spear.ArrayUpdateExpr aue) {
-		return new ArrayUpdateExpr(doSwitch(aue.getAccess().getArray()),doSwitch(aue.getAccess().getIndex()),doSwitch(aue.getValue()));
-	}
-	
-	@Override
-	public Expr casePreviousExpr(com.rockwellcollins.spear.PreviousExpr prev) {
-		Expr pre = new UnaryExpr(UnaryOp.PRE, doSwitch(prev.getVar()));
-		if(prev.getInit() == null) {
-			return pre;
-		} else {
-			return new BinaryExpr(doSwitch(prev.getInit()), BinaryOp.ARROW, pre);	
-		}
-	}
-	
-	@Override
-	public Expr caseBinaryExpr(com.rockwellcollins.spear.BinaryExpr binary) {
-		Type leftType = SpearTypeChecker.typeCheck(binary.getLeft());
-		Expr left = doSwitch(binary.getLeft());
-		Expr right = doSwitch(binary.getRight());
-		
-		switch (binary.getOp()) {
-			case "->":
-			case "and":
-			case "or":
-			case "xor":
-			case ">":
-			case ">=":
-			case "<":
-			case "<=":
-			case "<>":
-			case "+":
-			case "-":
-			case "*":
-				BinaryOp op = BinaryOp.fromString(binary.getOp());
-				return new BinaryExpr(left, op, right);	
-				
-			case "mod":
-				if(leftType.equals(SpearTypeChecker.REAL)) {
-					return new NodeCallExpr(LustreLibrary.fmod().id, left, right);
-				}
-				return new BinaryExpr(left, BinaryOp.MODULUS, right);
+  @Override
+  public Expr casePatternCall(com.rockwellcollins.spear.PatternCall call) {
+    List<Expr> args = new ArrayList<>();
+    args.addAll(call.getArgs().stream().map(e -> this.doSwitch(e)).collect(Collectors.toList()));
+    return new NodeCallExpr(call.getPattern().getName(), args);
+  }
 
-			case "/":
-				if(leftType.equals(SpearTypeChecker.INT)) {
-					return new BinaryExpr(left, BinaryOp.INT_DIVIDE, right);
-				}
-				return new BinaryExpr(left, BinaryOp.DIVIDE, right);
-				
-			case "implies":
-				return new BinaryExpr(left, BinaryOp.IMPLIES, right);
-				
-			case "==":
-				return new BinaryExpr(left, BinaryOp.EQUAL, right);
-				
-			case "since":
-			case "triggers":
-				List<Expr> args = new ArrayList<>();
-				args.add(left);
-				args.add(right);
-				return new NodeCallExpr(binary.getOp(),args);
-				
-			default:
-				throw new RuntimeException("Unsupported binary operator " + binary.getOp() + " provided.");
-		}
-	}
-	
-	@Override
-	public Expr caseIfThenElseExpr(com.rockwellcollins.spear.IfThenElseExpr ite) {
-		Expr condExpr = this.doSwitch(ite.getCond());
-		Expr thenExpr = this.doSwitch(ite.getThen());
-		Expr elseExpr = this.doSwitch(ite.getElse());
-		return new IfThenElseExpr(condExpr,thenExpr,elseExpr);
-	}
-	
-	@Override
-	public Expr caseBoolLiteral(com.rockwellcollins.spear.BoolLiteral bl) {
-		switch(bl.getValue()) {
-			case "TRUE":
-			case "true":
-				return new BoolExpr(true);
-				
-			case "FALSE":
-			case "false":
-				return new BoolExpr(false);
-				
-			default:
-				throw new RuntimeException("Unexpected boolean literal encountered.");
-		}
-	}
-	
-	@Override
-	public Expr caseIdExpr(com.rockwellcollins.spear.IdExpr ide) {
-		return doSwitch(ide.getId());
-	}
-	
-	@Override
-	public Expr caseMacro(Macro m) {
-		String x = this.module.map.lookupOriginalModule(m.getName());
-		return new IdExpr(x);
-	}
+  @Override
+  public Expr caseNormalizedCall(com.rockwellcollins.spear.NormalizedCall call) {
+    if (!(module instanceof SSpecification)) {
+      throw new RuntimeException("Unexpected element encountered.");
+    }
+    SSpecification s = (SSpecification) module;
+    List<Expr> args = new ArrayList<>();
+    args.addAll(call.getArgs().stream().map(e -> this.doSwitch(e)).collect(Collectors.toList()));
+    args.addAll(call.getIds().stream().map(idr -> this.doSwitch(idr)).collect(Collectors.toList()));
 
-	@Override
-	public Expr caseIntegerCast(IntegerCast cast) {
-		return new CastExpr(NamedType.INT,doSwitch(cast.getExpr()));
-	}
-	
-	@Override
-	public Expr caseRealCast(RealCast cast) {
-		return new CastExpr(NamedType.REAL,doSwitch(cast.getExpr()));
-	}
-	
-	@Override
-	public Expr caseIntLiteral(com.rockwellcollins.spear.IntLiteral il) {
-		return new IntExpr(il.getValue());
-	}
-	
-	@Override
-	public Expr caseRealLiteral(com.rockwellcollins.spear.RealLiteral rl) {
-		return new RealExpr(new BigDecimal(rl.getValue()));
-	}
-	
-	@Override
-	public Expr caseConstant(Constant c) {
-		return new IdExpr(this.module.map.lookupOriginalProgram(c.getName()));
-	}
-	
-	@Override
-	public Expr caseEnumValue(EnumValue ev) {
-		return new IdExpr(this.module.map.lookupOriginalProgram(ev.getName()));
-	}
-	
-	@Override
-	public Expr caseRecordExpr(com.rockwellcollins.spear.RecordExpr re) {
-		Map<String,Expr> fields = new LinkedHashMap<>();
-		for(com.rockwellcollins.spear.FieldExpr fe : re.getFieldExprs()) {
-			fields.put(fe.getField().getName(), doSwitch(fe.getExpr()));
-		}
-		return new RecordExpr(this.module.map.lookupOriginalProgram(re.getType().getName()),fields);
-	}
-	
-	@Override
-	public Expr caseArrayExpr(com.rockwellcollins.spear.ArrayExpr ae) {
-		List<Expr> list = new ArrayList<>();
-		list.addAll(ae.getExprs().stream().map(e -> this.doSwitch(e)).collect(Collectors.toList()));
-		return new ArrayExpr(list);
-	}
-	
-	@Override
-	public Expr caseVariable(Variable v) {
-		String name = this.module.map.lookupOriginalModule(v.getName());
-		return new IdExpr(name);
-	}
-	
-	@Override
-	public Expr caseMultipleExpr(MultipleExpr me) {
-		List<Expr> list = new ArrayList<>();
-		list.addAll(me.getExprs().stream().map(e -> this.doSwitch(e)).collect(Collectors.toList()));
-		return new TupleExpr(list);
-	}
-	
-	@Override
-	public Expr defaultCase(EObject o) {
-		throw new RuntimeException("Unexpected element provided: " + o.toString());
-	}
+    String nodeName = s.map.lookupOriginalProgram(call.getSpec().getName());
+    SCall scall = SCall.get(call, s.calls);
+    args.addAll(scall.getCallArgs());
+    return new NodeCallExpr(nodeName, args);
+  }
+
+  @Override
+  public Expr caseUnaryExpr(com.rockwellcollins.spear.UnaryExpr unary) {
+    Expr sub = doSwitch(unary.getExpr());
+    switch (unary.getOp()) {
+    case "not":
+    case "-":
+      return new UnaryExpr(UnaryOp.fromString(unary.getOp()), sub);
+
+    case "once":
+    case "historically":
+    case "initially":
+      List<Expr> args = new ArrayList<>();
+      args.add(sub);
+      return new NodeCallExpr(unary.getOp(), args);
+
+    default:
+      throw new RuntimeException("Unsupported unary operator " + unary.getOp() + " provided.");
+    }
+  }
+
+  @Override
+  public Expr caseRecordAccessExpr(com.rockwellcollins.spear.RecordAccessExpr rae) {
+    return new RecordAccessExpr(doSwitch(rae.getRecord()), rae.getField().getName());
+  }
+
+  @Override
+  public Expr caseRecordUpdateExpr(com.rockwellcollins.spear.RecordUpdateExpr rue) {
+    return new RecordUpdateExpr(doSwitch(rue.getRecord()), rue.getField().getName(), doSwitch(rue.getValue()));
+  }
+
+  @Override
+  public Expr caseArrayAccessExpr(com.rockwellcollins.spear.ArrayAccessExpr aae) {
+    return new ArrayAccessExpr(doSwitch(aae.getArray()), doSwitch(aae.getIndex()));
+  }
+
+  @Override
+  public Expr caseArrayUpdateExpr(com.rockwellcollins.spear.ArrayUpdateExpr aue) {
+    return new ArrayUpdateExpr(doSwitch(aue.getAccess().getArray()), doSwitch(aue.getAccess().getIndex()),
+        doSwitch(aue.getValue()));
+  }
+
+  @Override
+  public Expr casePreviousExpr(com.rockwellcollins.spear.PreviousExpr prev) {
+    Expr pre = new UnaryExpr(UnaryOp.PRE, doSwitch(prev.getVar()));
+    if (prev.getInit() == null) {
+      return pre;
+    } else {
+      return new BinaryExpr(doSwitch(prev.getInit()), BinaryOp.ARROW, pre);
+    }
+  }
+
+  @Override
+  public Expr caseBinaryExpr(com.rockwellcollins.spear.BinaryExpr binary) {
+    Type leftType = SpearTypeChecker.typeCheck(binary.getLeft());
+    Expr left = doSwitch(binary.getLeft());
+    Expr right = doSwitch(binary.getRight());
+
+    switch (binary.getOp()) {
+    case "->":
+    case "and":
+    case "or":
+    case "xor":
+    case ">":
+    case ">=":
+    case "<":
+    case "<=":
+    case "<>":
+    case "+":
+    case "-":
+    case "*":
+      BinaryOp op = BinaryOp.fromString(binary.getOp());
+      return new BinaryExpr(left, op, right);
+
+    case "mod":
+      if (leftType.equals(SpearTypeChecker.REAL)) {
+        return new NodeCallExpr(LustreLibrary.fmod().id, left, right);
+      }
+      return new BinaryExpr(left, BinaryOp.MODULUS, right);
+
+    case "/":
+      if (leftType.equals(SpearTypeChecker.INT)) {
+        return new BinaryExpr(left, BinaryOp.INT_DIVIDE, right);
+      }
+      return new BinaryExpr(left, BinaryOp.DIVIDE, right);
+
+    case "implies":
+      return new BinaryExpr(left, BinaryOp.IMPLIES, right);
+
+    case "==":
+      return new BinaryExpr(left, BinaryOp.EQUAL, right);
+
+    case "since":
+    case "triggers":
+      List<Expr> args = new ArrayList<>();
+      args.add(left);
+      args.add(right);
+      return new NodeCallExpr(binary.getOp(), args);
+
+    default:
+      throw new RuntimeException("Unsupported binary operator " + binary.getOp() + " provided.");
+    }
+  }
+
+  @Override
+  public Expr caseIfThenElseExpr(com.rockwellcollins.spear.IfThenElseExpr ite) {
+    Expr condExpr = this.doSwitch(ite.getCond());
+    Expr thenExpr = this.doSwitch(ite.getThen());
+    Expr elseExpr = this.doSwitch(ite.getElse());
+    return new IfThenElseExpr(condExpr, thenExpr, elseExpr);
+  }
+
+  @Override
+  public Expr caseBoolLiteral(com.rockwellcollins.spear.BoolLiteral bl) {
+    switch (bl.getValue()) {
+    case "TRUE":
+    case "true":
+      return new BoolExpr(true);
+
+    case "FALSE":
+    case "false":
+      return new BoolExpr(false);
+
+    default:
+      throw new RuntimeException("Unexpected boolean literal encountered.");
+    }
+  }
+
+  @Override
+  public Expr caseIdExpr(com.rockwellcollins.spear.IdExpr ide) {
+    return doSwitch(ide.getId());
+  }
+
+  @Override
+  public Expr caseMacro(Macro m) {
+    String x = this.module.map.lookupOriginalModule(m.getName());
+    return new IdExpr(x);
+  }
+
+  @Override
+  public Expr caseIntegerCast(IntegerCast cast) {
+    return new CastExpr(NamedType.INT, doSwitch(cast.getExpr()));
+  }
+
+  @Override
+  public Expr caseRealCast(RealCast cast) {
+    return new CastExpr(NamedType.REAL, doSwitch(cast.getExpr()));
+  }
+
+  @Override
+  public Expr caseIntLiteral(com.rockwellcollins.spear.IntLiteral il) {
+    return new IntExpr(il.getValue());
+  }
+
+  @Override
+  public Expr caseRealLiteral(com.rockwellcollins.spear.RealLiteral rl) {
+    return new RealExpr(new BigDecimal(rl.getValue()));
+  }
+
+  @Override
+  public Expr caseConstant(Constant c) {
+    return new IdExpr(this.module.map.lookupOriginalProgram(c.getName()));
+  }
+
+  @Override
+  public Expr caseEnumValue(EnumValue ev) {
+    return new IdExpr(this.module.map.lookupOriginalProgram(ev.getName()));
+  }
+
+  @Override
+  public Expr caseRecordExpr(com.rockwellcollins.spear.RecordExpr re) {
+    Map<String, Expr> fields = new LinkedHashMap<>();
+    for (com.rockwellcollins.spear.FieldExpr fe : re.getFieldExprs()) {
+      fields.put(fe.getField().getName(), doSwitch(fe.getExpr()));
+    }
+    return new RecordExpr(this.module.map.lookupOriginalProgram(re.getType().getName()), fields);
+  }
+
+  @Override
+  public Expr caseArrayExpr(com.rockwellcollins.spear.ArrayExpr ae) {
+    List<Expr> list = new ArrayList<>();
+    list.addAll(ae.getExprs().stream().map(e -> this.doSwitch(e)).collect(Collectors.toList()));
+    return new ArrayExpr(list);
+  }
+
+  @Override
+  public Expr caseVariable(Variable v) {
+    String name = this.module.map.lookupOriginalModule(v.getName());
+    return new IdExpr(name);
+  }
+
+  @Override
+  public Expr caseMultipleExpr(MultipleExpr me) {
+    List<Expr> list = new ArrayList<>();
+    list.addAll(me.getExprs().stream().map(e -> this.doSwitch(e)).collect(Collectors.toList()));
+    return new TupleExpr(list);
+  }
+
+  @Override
+  public Expr defaultCase(EObject o) {
+    throw new RuntimeException("Unexpected element provided: " + o.toString());
+  }
 }

@@ -4,5 +4,5 @@ import com.rockwellcollins.spear.translate.naming.SpearMap;
 
 public class SMapElement {
 
-	public SpearMap map;
+  public SpearMap map;
 }

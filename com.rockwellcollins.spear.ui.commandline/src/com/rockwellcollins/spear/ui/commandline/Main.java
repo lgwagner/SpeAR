@@ -9,7 +9,6 @@ import java.nio.file.Files;
 import java.util.LinkedList;
 import java.util.List;
 
-
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -47,7 +46,7 @@ public class Main {
   }
 
   @Inject
-  private IResourceValidator    validator;
+  private IResourceValidator validator;
 
   protected void runGenerator(String[] args) throws Exception {
 
@@ -64,7 +63,7 @@ public class Main {
 
     try {
       jcom.parse(args);
-      if(jcom.getParsedCommand() == null) {
+      if (jcom.getParsedCommand() == null) {
         throw new ParameterException("A command must be given.");
       }
     } catch (ParameterException pe) {
@@ -72,26 +71,26 @@ public class Main {
       jcom.usage();
       return;
     }
-    
+
     String command = jcom.getParsedCommand();
     List<java.io.File> specs = null;
-    if(command == "entailment") {
+    if (command == "entailment") {
       specs = entailment.spec;
     } else if (command == "consistency") {
       specs = consistency.spec;
     } else if (command == "realizability") {
       specs = realizability.spec;
     }
-    
-    if(specs.size() != 1) {
+
+    if (specs.size() != 1) {
       System.err.println("Exactly one specification file required for all commands.");
       jcom.usage();
       return;
     }
-    
-    if(command == "entailment" || command == "consistency") {
+
+    if (command == "entailment" || command == "consistency") {
       SpeARjKindCommand opts = null;
-      if(command == "entailment") {
+      if (command == "entailment") {
         opts = entailment;
         s.setValue(PreferenceConstants.PREF_SPEAR_ENABLE_IVC_ON_ENTAILMENT.toString(), entailment.ivc);
       } else if (command == "consistency") {
@@ -104,56 +103,63 @@ public class Main {
       s.setValue(PreferenceConstants.PREF_BOUNDED_MODEL_CHECKING.toString(), opts.no_bmc);
       s.setValue(PreferenceConstants.PREF_K_INDUCTION.toString(), opts.no_k_induction);
       s.setValue(PreferenceConstants.PREF_INVARIANT_GENERATION.toString(), opts.no_inv_gen);
-      /*s.setValue(PreferenceConstants.PREF_PDR_MAX, opts.pdr_max);*/
+      /* s.setValue(PreferenceConstants.PREF_PDR_MAX, opts.pdr_max); */
       s.setValue(PreferenceConstants.PREF_INDUCTIVE_COUNTEREXAMPLES.toString(), opts.induct_cex);
-      s.setValue(PreferenceConstants.PREF_SMOOTH_COUNTEREXAMPLES.toString(),opts.smooth);
+      s.setValue(PreferenceConstants.PREF_SMOOTH_COUNTEREXAMPLES.toString(), opts.smooth);
       s.setValue(PreferenceConstants.PREF_INTERVAL_GENERALIZATION.toString(), opts.interval);
       s.setValue(PreferenceConstants.PREF_DEPTH.toString(), opts.n.intValue());
       s.setValue(PreferenceConstants.PREF_TIMEOUT.toString(), opts.timeout.intValue());
       s.setValue(PreferenceConstants.PREF_SPEAR_PRINT_FINAL_LUSTRE.toString(), opts.lustre);
 
-      /*s.setValue(PreferenceConstants.PREF_SPEAR_PRINT_FINAL_LUSTRE, false);*/
-      /*s.setDefault(PreferenceConstants.PREF_SPEAR_RECURSIVE_GRAPH, false);*
-      /*s.setDefault(PreferenceConstants.PREF_SPEAR_WARN_ON_UNUSED_VARS, false);*/
+      /*
+       * s.setValue(PreferenceConstants.PREF_SPEAR_PRINT_FINAL_LUSTRE, false);
+       */
+      /*
+       * s.setDefault(PreferenceConstants.PREF_SPEAR_RECURSIVE_GRAPH, false);*
+       * /*s.setDefault(PreferenceConstants.PREF_SPEAR_WARN_ON_UNUSED_VARS,
+       * false);
+       */
     } else if (command == "realizability") {
       SpeARjRealizabilityCommand opts = null;
-      
+
       opts = realizability;
       s.setValue(PreferenceConstants.PREF_DEPTH.toString(), opts.n.intValue());
       s.setValue(PreferenceConstants.PREF_TIMEOUT.toString(), opts.timeout.intValue());
       s.setValue(PreferenceConstants.PREF_SPEAR_PRINT_FINAL_LUSTRE.toString(), opts.lustre);
 
     }
-    
+
     java.io.File spec = specs.get(0);
-    
-    // XXX: If an absolute path is not used calls to Utilities.getImportedFile may fail.
+
+    // XXX: If an absolute path is not used calls to Utilities.getImportedFile
+    // may fail.
     Injector injector = new com.rockwellcollins.SpearStandaloneSetup().createInjectorAndDoEMFRegistration();
     XtextResourceSet resourceSet = injector.getInstance(XtextResourceSet.class);
     resourceSet.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
     Resource resource = resourceSet.getResource(URI.createFileURI(spec.getAbsolutePath()), true);
-    
+
     List<Issue> list = new LinkedList<Issue>();
     List<String> visited = new LinkedList<String>();
 
-    validateRecursively(resourceSet,resource,list,visited);
-    //XXX: It seems to me we should not be receiving duplicate error messages but I 
-    //do not have time to investigate why this is happening.
+    validateRecursively(resourceSet, resource, list, visited);
+    // XXX: It seems to me we should not be receiving duplicate error messages
+    // but I
+    // do not have time to investigate why this is happening.
     List<String> alreadyseen = new LinkedList<String>();
     boolean analysis = true;
     if (!list.isEmpty()) {
       for (Issue issue : list) {
-        if(alreadyseen.contains(issue.toString())) {
+        if (alreadyseen.contains(issue.toString())) {
           continue;
         }
-        if(issue.getSeverity() == Severity.ERROR) {
+        if (issue.getSeverity() == Severity.ERROR) {
           analysis = false;
         }
         alreadyseen.add(issue.toString());
         System.err.println(issue);
       }
     }
-    if(!analysis) {
+    if (!analysis) {
       System.err.println("Errors during validation, " + command + " analysis not possible.");
       return;
     }
@@ -167,60 +173,49 @@ public class Main {
       throw new RuntimeException("This should not happen: Problem exporting 'jkind.jar'.");
     }
     Pair<Analysis, JKindResult> pair = null;
-    if(command == "entailment") {
+    if (command == "entailment") {
       try {
-        pair = 
-            Analysis.entailment((Specification) resource.getContents().get(0),
-                jkindjarpth.toString(),
-                "result");
+        pair = Analysis.entailment((Specification) resource.getContents().get(0), jkindjarpth.toString(), "result");
       } catch (Exception e) {
         throw e;
       }
-      
+
     } else if (command == "consistency") {
       try {
-        pair = 
-            Analysis.consistency((Specification) resource.getContents().get(0),
-                jkindjarpth.toString(),
-                "result");
+        pair = Analysis.consistency((Specification) resource.getContents().get(0), jkindjarpth.toString(), "result");
       } catch (Exception e) {
         throw e;
       }
     } else if (command == "realizability") {
       try {
-        pair = 
-            Analysis.realizability((Specification) resource.getContents().get(0),
-                jkindjarpth.toString(),
-                "result");
-      } catch(Exception e) {
+        pair = Analysis.realizability((Specification) resource.getContents().get(0), jkindjarpth.toString(), "result");
+      } catch (Exception e) {
         throw e;
       }
     } else {
       throw new RuntimeException("This should not happen: unknown command.");
     }
     pair.getValue0().analyze(new NullProgressMonitor());
-    for( PropertyResult pr : pair.getValue1().getPropertyResults()) {
-      System.out.println(
-          pr.getProperty().getName() + ", "
-          + pr.getStatus() +", "
-          + pr.getProperty().getRuntime()); 
+    for (PropertyResult pr : pair.getValue1().getPropertyResults()) {
+      System.out.println(pr.getProperty().getName() + ", " + pr.getStatus() + ", " + pr.getProperty().getRuntime());
     }
   }
 
-  private void validateRecursively(XtextResourceSet resourceSet, Resource resource, List<Issue> list, List<String> visited) {
-    if(visited.contains(resource.getURI().toString())){
+  private void validateRecursively(XtextResourceSet resourceSet, Resource resource, List<Issue> list,
+      List<String> visited) {
+    if (visited.contains(resource.getURI().toString())) {
       return;
     }
     visited.add(resource.getURI().toString());
-    if(resource.getContents().size()!=1) {
-      
-      for(org.eclipse.emf.ecore.resource.Resource.Diagnostic d : resource.getErrors()) {
-        System.err.println("ERROR:" + d.getMessage() + ". (" + resource.getURI().toString() + " Line : " 
-            + d.getLine() +" column : " + d.getColumn() + ")");
+    if (resource.getContents().size() != 1) {
+
+      for (org.eclipse.emf.ecore.resource.Resource.Diagnostic d : resource.getErrors()) {
+        System.err.println("ERROR:" + d.getMessage() + ". (" + resource.getURI().toString() + " Line : " + d.getLine()
+            + " column : " + d.getColumn() + ")");
       }
       return;
     }
-    for ( Import relfilepath : ((File) resource.getContents().get(0)).getImports()) {
+    for (Import relfilepath : ((File) resource.getContents().get(0)).getImports()) {
       Path path = Paths.get(resource.getURI().devicePath()).getParent().resolve(relfilepath.getImportURI());
       Resource r = null;
       try {
@@ -234,6 +229,5 @@ public class Main {
     extension = validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
     list.addAll(extension);
   }
-
 
 }

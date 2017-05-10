@@ -29,171 +29,154 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 
 /**
- * This is a sample new wizard. Its role is to create a new file 
- * resource in the provided container. If the container resource
- * (a folder or a project) is selected in the workspace 
- * when the wizard is opened, it will accept it as the target
- * container. The wizard creates one file with the extension
- * "spear". If a sample multi-page editor (also available
- * as a template) is registered for the same extension, it will
- * be able to open it.
+ * This is a sample new wizard. Its role is to create a new file resource in the
+ * provided container. If the container resource (a folder or a project) is
+ * selected in the workspace when the wizard is opened, it will accept it as the
+ * target container. The wizard creates one file with the extension "spear". If
+ * a sample multi-page editor (also available as a template) is registered for
+ * the same extension, it will be able to open it.
  */
 
-public class SpearNewSpecificationWizard extends Wizard implements INewWizard {
-	private SpearNewSpecificationWizardPage page;
-	private ISelection selection;
+public class SpearNewSpecificationWizard extends Wizard
+    implements INewWizard {
+  private SpearNewSpecificationWizardPage page;
+  private ISelection                      selection;
 
-	/**
-	 * Constructor for SpearNewFileWizard.
-	 */
-	public SpearNewSpecificationWizard() {
-		super();
-		setNeedsProgressMonitor(true);
-	}
-	
-	/**
-	 * Adding the page to the wizard.
-	 */
+  /**
+   * Constructor for SpearNewFileWizard.
+   */
+  public SpearNewSpecificationWizard() {
+    super();
+    setNeedsProgressMonitor(true);
+  }
 
-	public void addPages() {
-		page = new SpearNewSpecificationWizardPage(selection);
-		addPage(page);
-	}
+  /**
+   * Adding the page to the wizard.
+   */
 
-	/**
-	 * This method is called when 'Finish' button is pressed in
-	 * the wizard. We will create an operation and run it
-	 * using wizard as execution context.
-	 */
-	public boolean performFinish() {
-		final String containerName = page.getContainerName();
-		final String fileName = page.getFileName();
-		IRunnableWithProgress op = new IRunnableWithProgress() {
-			public void run(IProgressMonitor monitor) throws InvocationTargetException {
-				try {
-					doFinish(containerName, fileName, monitor);
-				} catch (CoreException e) {
-					throw new InvocationTargetException(e);
-				} finally {
-					monitor.done();
-				}
-			}
-		};
-		try {
-			getContainer().run(true, false, op);
-		} catch (InterruptedException e) {
-			return false;
-		} catch (InvocationTargetException e) {
-			Throwable realException = e.getTargetException();
-			MessageDialog.openError(getShell(), "Error", realException.getMessage());
-			return false;
-		}
-		return true;
-	}
-	
-	public static String removeExtension(String s) {
+  public void addPages() {
+    page = new SpearNewSpecificationWizardPage(selection);
+    addPage(page);
+  }
 
-	    String separator = System.getProperty("file.separator");
-	    String filename;
+  /**
+   * This method is called when 'Finish' button is pressed in the wizard. We
+   * will create an operation and run it using wizard as execution context.
+   */
+  public boolean performFinish() {
+    final String containerName = page.getContainerName();
+    final String fileName = page.getFileName();
+    IRunnableWithProgress op = new IRunnableWithProgress() {
+      public void run(IProgressMonitor monitor) throws InvocationTargetException {
+        try {
+          doFinish(containerName, fileName, monitor);
+        } catch (CoreException e) {
+          throw new InvocationTargetException(e);
+        } finally {
+          monitor.done();
+        }
+      }
+    };
+    try {
+      getContainer().run(true, false, op);
+    } catch (InterruptedException e) {
+      return false;
+    } catch (InvocationTargetException e) {
+      Throwable realException = e.getTargetException();
+      MessageDialog.openError(getShell(), "Error", realException.getMessage());
+      return false;
+    }
+    return true;
+  }
 
-	    // Remove the path upto the filename.
-	    int lastSeparatorIndex = s.lastIndexOf(separator);
-	    if (lastSeparatorIndex == -1) {
-	        filename = s;
-	    } else {
-	        filename = s.substring(lastSeparatorIndex + 1);
-	    }
+  public static String removeExtension(String s) {
 
-	    // Remove the extension.
-	    int extensionIndex = filename.lastIndexOf(".");
-	    if (extensionIndex == -1)
-	        return filename;
+    String separator = System.getProperty("file.separator");
+    String filename;
 
-	    return filename.substring(0, extensionIndex);
-	}
-	
-	/**
-	 * The worker method. It will find the container, create the
-	 * file if missing or just replace its contents, and open
-	 * the editor on the newly created file.
-	 */
+    // Remove the path upto the filename.
+    int lastSeparatorIndex = s.lastIndexOf(separator);
+    if (lastSeparatorIndex == -1) {
+      filename = s;
+    } else {
+      filename = s.substring(lastSeparatorIndex + 1);
+    }
 
-	private void doFinish(
-		String containerName,
-		String fileName,
-		IProgressMonitor monitor)
-		throws CoreException {
-		// create a sample file
-		monitor.beginTask("Creating " + fileName, 2);
-		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-		IResource resource = root.findMember(new Path(containerName));
-		if (!resource.exists() || !(resource instanceof IContainer)) {
-			throwCoreException("Container \"" + containerName + "\" does not exist.");
-		}
-		IContainer container = (IContainer) resource;
-		final IFile file = container.getFile(new Path(fileName));
-		try {
-			String base = removeExtension(fileName);
-			InputStream stream = openContentStream(base);
-			if (file.exists()) {
-				file.setContents(stream, true, true, monitor);
-			} else {
-				file.create(stream, true, monitor);
-			}
-			stream.close();
-		} catch (IOException e) {
-		}
-		monitor.worked(1);
-		monitor.setTaskName("Opening file for editing...");
-		getShell().getDisplay().asyncExec(new Runnable() {
-			public void run() {
-				IWorkbenchPage page =
-					PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-				try {
-					IDE.openEditor(page, file, true);
-				} catch (PartInitException e) {
-				}
-			}
-		});
-		monitor.worked(1);
-	}
-	
-	/**
-	 * We will initialize file contents with a sample text.
-	 */
+    // Remove the extension.
+    int extensionIndex = filename.lastIndexOf(".");
+    if (extensionIndex == -1)
+      return filename;
 
-	private InputStream openContentStream(String base) {
-		String newLine = "\n";
-		String doubleNewline = newLine + newLine;
-		String contents =
-			"Specification " + base + doubleNewline +
-			"Imports:" + doubleNewline +
-			"Units:" + doubleNewline +
-			"Types:" + doubleNewline +
-			"Constants:" + doubleNewline +
-			"Patterns:" + doubleNewline +
-			"Inputs:" + doubleNewline +
-			"Outputs:" + doubleNewline + 
-			"State:" + doubleNewline +
-			"Macros:" + doubleNewline +
-			"Assumptions:" + doubleNewline +
-			"Requirements:" + doubleNewline +
-			"Properties:" + doubleNewline;
-		return new ByteArrayInputStream(contents.getBytes());
-	}
+    return filename.substring(0, extensionIndex);
+  }
 
-	private void throwCoreException(String message) throws CoreException {
-		IStatus status =
-			new Status(IStatus.ERROR, "com.rockwellcollins.spear.ui", IStatus.OK, message, null);
-		throw new CoreException(status);
-	}
+  /**
+   * The worker method. It will find the container, create the file if missing
+   * or just replace its contents, and open the editor on the newly created
+   * file.
+   */
 
-	/**
-	 * We will accept the selection in the workbench to see if
-	 * we can initialize from it.
-	 * @see IWorkbenchWizard#init(IWorkbench, IStructuredSelection)
-	 */
-	public void init(IWorkbench workbench, IStructuredSelection selection) {
-		this.selection = selection;
-	}
+  private void doFinish(String containerName, String fileName, IProgressMonitor monitor) throws CoreException {
+    // create a sample file
+    monitor.beginTask("Creating " + fileName, 2);
+    IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+    IResource resource = root.findMember(new Path(containerName));
+    if (!resource.exists() || !(resource instanceof IContainer)) {
+      throwCoreException("Container \"" + containerName + "\" does not exist.");
+    }
+    IContainer container = (IContainer) resource;
+    final IFile file = container.getFile(new Path(fileName));
+    try {
+      String base = removeExtension(fileName);
+      InputStream stream = openContentStream(base);
+      if (file.exists()) {
+        file.setContents(stream, true, true, monitor);
+      } else {
+        file.create(stream, true, monitor);
+      }
+      stream.close();
+    } catch (IOException e) {
+    }
+    monitor.worked(1);
+    monitor.setTaskName("Opening file for editing...");
+    getShell().getDisplay().asyncExec(new Runnable() {
+      public void run() {
+        IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+        try {
+          IDE.openEditor(page, file, true);
+        } catch (PartInitException e) {
+        }
+      }
+    });
+    monitor.worked(1);
+  }
+
+  /**
+   * We will initialize file contents with a sample text.
+   */
+
+  private InputStream openContentStream(String base) {
+    String newLine = "\n";
+    String doubleNewline = newLine + newLine;
+    String contents = "Specification " + base + doubleNewline + "Imports:" + doubleNewline + "Units:" + doubleNewline
+        + "Types:" + doubleNewline + "Constants:" + doubleNewline + "Patterns:" + doubleNewline + "Inputs:"
+        + doubleNewline + "Outputs:" + doubleNewline + "State:" + doubleNewline + "Macros:" + doubleNewline
+        + "Assumptions:" + doubleNewline + "Requirements:" + doubleNewline + "Properties:" + doubleNewline;
+    return new ByteArrayInputStream(contents.getBytes());
+  }
+
+  private void throwCoreException(String message) throws CoreException {
+    IStatus status = new Status(IStatus.ERROR, "com.rockwellcollins.spear.ui", IStatus.OK, message, null);
+    throw new CoreException(status);
+  }
+
+  /**
+   * We will accept the selection in the workbench to see if we can initialize
+   * from it.
+   * 
+   * @see IWorkbenchWizard#init(IWorkbench, IStructuredSelection)
+   */
+  public void init(IWorkbench workbench, IStructuredSelection selection) {
+    this.selection = selection;
+  }
 }
