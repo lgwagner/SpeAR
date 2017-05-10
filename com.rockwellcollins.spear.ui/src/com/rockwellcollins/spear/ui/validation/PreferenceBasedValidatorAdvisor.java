@@ -16,12 +16,12 @@ public class PreferenceBasedValidatorAdvisor implements IValidatorAdvisor {
 
 	@Override
 	public boolean isUnusedValidationsDisabled() {
-		return preferencesStore.getBoolean(PreferenceConstants.PREF_SPEAR_WARN_ON_UNUSED_VARS);
+		return preferencesStore.getBoolean(PreferenceConstants.PREF_SPEAR_WARN_ON_UNUSED_VARS.toString());
 	}
 	
 	@Override
 	public boolean isSolverNonlinear() {
-		String solver = preferencesStore.getString(PreferenceConstants.PREF_SOLVER);
+		String solver = preferencesStore.getString(PreferenceConstants.PREF_SOLVER.toString());
 		return solver.equals(PreferenceConstants.SOLVER_Z3);
 	}
 }

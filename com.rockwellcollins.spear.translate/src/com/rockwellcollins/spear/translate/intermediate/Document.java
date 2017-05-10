@@ -2,14 +2,23 @@ package com.rockwellcollins.spear.translate.intermediate;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.util.SimpleAttributeResolver;
 
 import com.rockwellcollins.spear.File;
@@ -96,47 +105,59 @@ public class Document {
 		return resolver.apply(this.main);
 	}
 	
-	public Program getLogicalConsistency(boolean flag) throws IOException {
+	public Program getLogicalConsistencyWithLustre() throws Exception {
 	  Program p = SProgram.build(this).getLogicalConsistency();
-	  if(flag) {
-	    FileOutputStream out = lustreOutputStream();
-	    out.write(p.toString().getBytes());
-	  }
+	  FileOutputStream out = lustreOutputStream();
+	  out.write(p.toString().getBytes());
 	  return p;
 	}
-	public Program getLogicalEntailment(boolean flag) throws IOException {
+
+	 public Program getLogicalConsistency() {
+	    Program p = SProgram.build(this).getLogicalConsistency();
+	    return p;
+	  }
+
+	public Program getLogicalEntailmentWithLustre() throws Exception {
 	  Program p = SProgram.build(this).getLogicalEntailment();
-	  if(flag) {
-	    FileOutputStream out = lustreOutputStream();
-	    out.write(p.toString().getBytes());
-	  }
+	  FileOutputStream out = lustreOutputStream();
+	  out.write(p.toString().getBytes());
 	  return p;
 	}
-	public Program getRealizability(boolean flag) throws IOException {
+	
+	 public Program getLogicalEntailment() {
+	    Program p = SProgram.build(this).getLogicalEntailment();
+	    return p;
+	  }
+	
+	public Program getRealizabilityWithLustre() throws Exception {
 	  Program p = SProgram.build(this).getRealizability();
-	  if(flag) {
-	    FileOutputStream out = lustreOutputStream();
-	    out.write(p.toString().getBytes());
-	  }
+	  FileOutputStream out = lustreOutputStream();
+	  out.write(p.toString().getBytes());
 	  return p;
 	}
+	
+	 public Program getRealizability() {
+	    Program p = SProgram.build(this).getRealizability();
+	    return p;
+	  }
 
 	public Renaming getRenaming(Mode mode) {
 	  return new MapRenaming(renamed.get(main),mode);
 	}
 	
 	private FileOutputStream lustreOutputStream() {
-	  Resource r = spec.eResource();
-    java.nio.file.Path p = Paths.get(r.getURI().devicePath()).getParent().resolve(spec.getName()+".lus");
-
-    FileOutputStream out = null;
-    try {
-      out = new FileOutputStream(p.toString());
-    } catch (Exception e) {
-      System.err.println("Could not create file " + p + ", lustre file will not be generated : " + e);
-      Preferences.store.setValue(PreferenceConstants.PREF_SPEAR_PRINT_FINAL_LUSTRE, !PreferencesUtil.printFinalLustre());
+	  URI extLessURI = spec.eResource().getURI().trimFileExtension();
+	  IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+	  Path p = new Path(extLessURI.toPlatformString(true));
+    IFolder f = root.getFolder(p);
+    IPath r = f.getRawLocation();
+    String stem = r.toString();
+	  try {
+      FileOutputStream out = new FileOutputStream(stem+".lus");
       return out;
+    } catch (Exception e) {
+      System.err.println("Could not create file " + stem + ", lustre file will not be generated : " + e);
+      return null;
     }
-    return out;
 	}
 }

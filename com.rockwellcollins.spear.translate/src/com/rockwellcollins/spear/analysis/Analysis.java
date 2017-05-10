@@ -69,7 +69,17 @@ public class Analysis {
    String resultname) throws IOException {
     
     Pair<JKindApi,Document> pair = commonJKindAnalysisSetup(specification,jkindjarpth);
-    Program p = pair.getValue1().getLogicalEntailment(PreferencesUtil.printFinalLustre());
+    Program p = null;
+    if(PreferencesUtil.printFinalLustre()) {
+      try {
+        p = pair.getValue1().getLogicalEntailmentWithLustre();
+      } catch (Exception e) {
+        System.out.println("Failed to generate lustre intermediate files, skipping.");
+        p = pair.getValue1().getLogicalEntailment();
+      }
+    } else {
+      p = pair.getValue1().getLogicalEntailment();
+    }
     Renaming renaming = pair.getValue1().getRenaming(Mode.IDENTITY);
 
     List<Boolean> invert = new ArrayList<>();
@@ -104,7 +114,17 @@ public class Analysis {
    String resultname) throws IOException {
     
     Pair<JKindApi,Document> pair = commonJKindAnalysisSetup(specification,jkindjarpth);
-    Program p = pair.getValue1().getLogicalConsistency(PreferencesUtil.printFinalLustre());
+    Program p = null;
+    if(PreferencesUtil.printFinalLustre()) {
+      try {
+        p = pair.getValue1().getLogicalConsistencyWithLustre();
+      } catch (Exception e) {
+        System.out.println("Failed to generate lustre intermediate files, skipping.");
+        p = pair.getValue1().getLogicalConsistency();
+      }
+    } else {
+      p = pair.getValue1().getLogicalConsistency();
+    }
     Renaming renaming = pair.getValue1().getRenaming(Mode.IDENTITY);
 
     List<Boolean> invert = p.getMainNode().properties.stream().map(prop -> true).collect(Collectors.toList());
@@ -116,8 +136,18 @@ public class Analysis {
     JRealizabilityApi api = new JRealizabilityApi();
     api.setJKindJar(jkindjarpth.toString());
     PreferencesUtil.configureRealizabilityApi(api);
-    Document workingCopy = new Document(specification);
-    Program p = workingCopy.getRealizability(PreferencesUtil.printFinalLustre());
+    Document doc = new Document(specification);
+    Program p = null;
+    if(PreferencesUtil.printFinalLustre()) {
+      try {
+        p = doc.getRealizabilityWithLustre();
+      } catch (Exception e) {
+        System.out.println("Failed to generate lustre intermediate files, skipping.");
+        p = doc.getRealizability();
+      }
+    } else {
+      p = doc.getRealizability();
+    }
 
     try {
       api.checkAvailable();
@@ -126,7 +156,7 @@ public class Analysis {
       throw e;
     }
     PreferencesUtil.configureRealizabilityApi(api);
-    JRealizabilityResult result = new JRealizabilityResult("result", workingCopy.getRenaming(Mode.IDENTITY));
+    JRealizabilityResult result = new JRealizabilityResult("result", doc.getRenaming(Mode.IDENTITY));
 
     return Pair.with(new Analysis(api,p,result), result);
   }

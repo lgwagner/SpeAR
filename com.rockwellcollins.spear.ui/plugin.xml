@@ -556,6 +556,7 @@
             id="com.rockwellcollins.spear.ui"
             name="SpeAR View">
       </category>
+      
         <view
               category="com.rockwellcollins.spear.ui"
               class="com.rockwellcollins.spear.ui.views.SpearEntailmentResultsView"
@@ -582,9 +583,9 @@
               name="Counterexample"/>
         <view
               category="com.rockwellcollins.spear.ui"
-              class="com.rockwellcollins.spear.ui.views.LightweightConsoleView"
+              class="com.rockwellcollins.spear.ui.views.BatchAnalysisView"
               icon="icons/batchanalysis.png"
-              id="com.rockwellcollins.spear.ui.views.LightweightConsoleView"
+              id="com.rockwellcollins.spear.ui.views.BatchAnalysisView"
               name="Batch Analysis"/>
         <view
               category="com.rockwellcollins.spear.ui.lustre"
@@ -705,26 +706,21 @@
                style="push">
          </command>
       </menuContribution>
-      <menuContribution
+            <menuContribution
             allPopups="false"
-            locationURI="toolbar:com.rockwellcollins.spear.translate.views.SpearRealizabilityResultsView">
+            locationURI="toolbar:com.rockwellcollins.spear.ui.views.BatchAnalysisView">
          <command
-               commandId="com.rockwellcollins.spear.translate.commands.terminateRealizability"
+               commandId="com.rockwellcollins.spear.ui.commands.terminateBatchAnalysis"
                icon="icons/terminate.png"
                label="Terminate"
                style="push">
          </command>
-      </menuContribution>      
-            
-   </extension>
-   
-    <extension
-         point="org.eclipse.ui.menus">
+      </menuContribution>
       <menuContribution
          locationURI=
          "popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu?after=additions">
          <command
-               commandId="com.rockwellcollins.spear.translate.commands.batchAnalysis"
+               commandId="com.rockwellcollins.spear.ui.commands.startBatchAnalysis"
                label="Batch Analysis"
                tooltip="Run Analysis on all '.spear' files found recursively in the selected documents.">
          </command>
@@ -750,9 +746,14 @@
             class="com.rockwellcollins.spear.ui.handlers.NormalizeSectionHeaders">
       </handler>
       <handler
-            commandId="com.rockwellcollins.spear.translate.commands.batchAnalysis"
+            commandId="com.rockwellcollins.spear.ui.commands.startBatchAnalysis"
             class="com.rockwellcollins.spear.ui.handlers.BatchAnalysis">
       </handler>
-      
+       <handler
+            commandId="com.rockwellcollins.spear.ui.commands.terminateBatchAnalysis"
+            class="com.rockwellcollins.spear.ui.handlers.BatchAnalysis">
+      </handler>
    </extension>
+   
+
 </plugin>

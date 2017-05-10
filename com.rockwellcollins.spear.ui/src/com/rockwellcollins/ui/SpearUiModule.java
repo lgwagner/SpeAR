@@ -7,9 +7,12 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.documentation.IEObjectDocumentationProvider;
 import org.eclipse.xtext.ui.editor.hover.IEObjectHoverProvider;
 
+import com.rockwellcollins.spear.preferences.Preferences;
+import com.rockwellcollins.spear.ui.preferences.SpearPreferencePage;
 import com.rockwellcollins.spear.ui.validation.PreferenceBasedValidatorAdvisor;
 import com.rockwellcollins.ui.contentassist.SpearEObjectDocumentationProvider;
 import com.rockwellcollins.ui.contentassist.SpearEObjectHoverProvider;
+import com.rockwellcollins.ui.internal.SpearActivator;
 import com.rockwellcollins.validation.IValidatorAdvisor;
 
 /**
@@ -19,6 +22,7 @@ public class SpearUiModule extends com.rockwellcollins.ui.AbstractSpearUiModule 
 
 	public SpearUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
+		SpearPreferencePage.initStore(SpearActivator.getInstance().getPreferenceStore(),Preferences.store);
 	}
 
 	public Class<? extends IEObjectHoverProvider> bindIEObjectHoverProvider() {

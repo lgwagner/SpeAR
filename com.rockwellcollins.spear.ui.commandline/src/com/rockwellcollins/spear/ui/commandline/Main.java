@@ -93,24 +93,24 @@ public class Main {
       SpeARjKindCommand opts = null;
       if(command == "entailment") {
         opts = entailment;
-        s.setValue(PreferenceConstants.PREF_SPEAR_ENABLE_IVC_ON_ENTAILMENT, entailment.ivc);
+        s.setValue(PreferenceConstants.PREF_SPEAR_ENABLE_IVC_ON_ENTAILMENT.toString(), entailment.ivc);
       } else if (command == "consistency") {
         opts = consistency;
-        s.setValue(PreferenceConstants.PREF_SPEAR_CONSISTENCY_DEPTH, consistency.con_depth.intValue());
+        s.setValue(PreferenceConstants.PREF_SPEAR_CONSISTENCY_DEPTH.toString(), consistency.con_depth.intValue());
       } else {
         throw new RuntimeException("This should not happen: unknown command.");
       }
-      s.setValue(PreferenceConstants.PREF_MODEL_CHECKER, opts.solver.toString());
-      s.setValue(PreferenceConstants.PREF_BOUNDED_MODEL_CHECKING, opts.no_bmc);
-      s.setValue(PreferenceConstants.PREF_K_INDUCTION, opts.no_k_induction);
-      s.setValue(PreferenceConstants.PREF_INVARIANT_GENERATION, opts.no_inv_gen);
+      s.setValue(PreferenceConstants.PREF_MODEL_CHECKER.toString(), opts.solver.toString());
+      s.setValue(PreferenceConstants.PREF_BOUNDED_MODEL_CHECKING.toString(), opts.no_bmc);
+      s.setValue(PreferenceConstants.PREF_K_INDUCTION.toString(), opts.no_k_induction);
+      s.setValue(PreferenceConstants.PREF_INVARIANT_GENERATION.toString(), opts.no_inv_gen);
       /*s.setValue(PreferenceConstants.PREF_PDR_MAX, opts.pdr_max);*/
-      s.setValue(PreferenceConstants.PREF_INDUCTIVE_COUNTEREXAMPLES, opts.induct_cex);
-      s.setValue(PreferenceConstants.PREF_SMOOTH_COUNTEREXAMPLES,opts.smooth);
-      s.setValue(PreferenceConstants.PREF_INTERVAL_GENERALIZATION, opts.interval);
-      s.setValue(PreferenceConstants.PREF_DEPTH, opts.n.intValue());
-      s.setValue(PreferenceConstants.PREF_TIMEOUT, opts.timeout.intValue());
-      s.setValue(PreferenceConstants.PREF_SPEAR_PRINT_FINAL_LUSTRE, opts.lustre);
+      s.setValue(PreferenceConstants.PREF_INDUCTIVE_COUNTEREXAMPLES.toString(), opts.induct_cex);
+      s.setValue(PreferenceConstants.PREF_SMOOTH_COUNTEREXAMPLES.toString(),opts.smooth);
+      s.setValue(PreferenceConstants.PREF_INTERVAL_GENERALIZATION.toString(), opts.interval);
+      s.setValue(PreferenceConstants.PREF_DEPTH.toString(), opts.n.intValue());
+      s.setValue(PreferenceConstants.PREF_TIMEOUT.toString(), opts.timeout.intValue());
+      s.setValue(PreferenceConstants.PREF_SPEAR_PRINT_FINAL_LUSTRE.toString(), opts.lustre);
 
       /*s.setValue(PreferenceConstants.PREF_SPEAR_PRINT_FINAL_LUSTRE, false);*/
       /*s.setDefault(PreferenceConstants.PREF_SPEAR_RECURSIVE_GRAPH, false);*
@@ -119,9 +119,9 @@ public class Main {
       SpeARjRealizabilityCommand opts = null;
       
       opts = realizability;
-      s.setValue(PreferenceConstants.PREF_DEPTH, opts.n.intValue());
-      s.setValue(PreferenceConstants.PREF_TIMEOUT, opts.timeout.intValue());
-      s.setValue(PreferenceConstants.PREF_SPEAR_PRINT_FINAL_LUSTRE, opts.lustre);
+      s.setValue(PreferenceConstants.PREF_DEPTH.toString(), opts.n.intValue());
+      s.setValue(PreferenceConstants.PREF_TIMEOUT.toString(), opts.timeout.intValue());
+      s.setValue(PreferenceConstants.PREF_SPEAR_PRINT_FINAL_LUSTRE.toString(), opts.lustre);
 
     }
     

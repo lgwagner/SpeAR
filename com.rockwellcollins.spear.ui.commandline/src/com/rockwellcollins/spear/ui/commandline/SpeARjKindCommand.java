@@ -29,10 +29,10 @@ enum SolverEnum {
   @Override
   public String toString() {
     switch(this) {
-    case SMTINTERPOL: return PreferenceConstants.SOLVER_SMTINTERPOL;
-    case Z3: return PreferenceConstants.SOLVER_Z3;
-    case YICES2: return PreferenceConstants.SOLVER_YICES2;
-    case CVC4: return PreferenceConstants.SOLVER_CVC4;
+    case SMTINTERPOL: return PreferenceConstants.SOLVER_SMTINTERPOL.toString();
+    case Z3: return PreferenceConstants.SOLVER_Z3.toString();
+    case YICES2: return PreferenceConstants.SOLVER_YICES2.toString();
+    case CVC4: return PreferenceConstants.SOLVER_CVC4.toString();
     default:
       throw new RuntimeException("This should not happen: Received unknown case.");
     }
