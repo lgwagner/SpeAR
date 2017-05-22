@@ -28,197 +28,200 @@ import jkind.lustre.builders.NodeBuilder;
  */
 public class LustreLibrary {
 
-  /**
-   * Initially
-   */
-  public static Node initially() {
-    NodeBuilder initially = new NodeBuilder("initially");
+	/**
+	 * Initially
+	 */
+	public static Node initially() {
+		NodeBuilder initially = new NodeBuilder("initially");
 
-    VarDecl signal = new VarDecl("signal", NamedType.BOOL);
-    initially.addInput(signal);
+		VarDecl signal = new VarDecl("signal", NamedType.BOOL);
+		initially.addInput(signal);
 
-    VarDecl holds = new VarDecl("holds", NamedType.BOOL);
-    initially.addOutput(holds);
+		VarDecl holds = new VarDecl("holds", NamedType.BOOL);
+		initially.addOutput(holds);
 
-    // equations: holds = signal -> true
-    Equation equation = LustreUtil.eq(new IdExpr(holds.id),
-        new BinaryExpr(new IdExpr(signal.id), BinaryOp.ARROW, new BoolExpr(true)));
-    initially.addEquation(equation);
+		// equations: holds = signal -> true
+		Equation equation = LustreUtil.eq(new IdExpr(holds.id),
+				new BinaryExpr(new IdExpr(signal.id), BinaryOp.ARROW, new BoolExpr(true)));
+		initially.addEquation(equation);
 
-    return initially.build();
-  }
+		return initially.build();
+	}
 
-  /**
-   * Historically EXPR must be true on the current step and every previous step.
-   */
-  public static Node historically() {
-    NodeBuilder historically = new NodeBuilder("historically");
+	/**
+	 * Historically EXPR must be true on the current step and every previous
+	 * step.
+	 */
+	public static Node historically() {
+		NodeBuilder historically = new NodeBuilder("historically");
 
-    VarDecl signal = new VarDecl("signal", NamedType.BOOL);
-    historically.addInput(signal);
+		VarDecl signal = new VarDecl("signal", NamedType.BOOL);
+		historically.addInput(signal);
 
-    VarDecl holds = new VarDecl("holds", NamedType.BOOL);
-    historically.addOutput(holds);
+		VarDecl holds = new VarDecl("holds", NamedType.BOOL);
+		historically.addOutput(holds);
 
-    // equations: holds = signal and (true -> pre holds);
-    Equation equation = LustreUtil.eq(new IdExpr(holds.id), new BinaryExpr(new IdExpr(signal.id), BinaryOp.AND,
-        new BinaryExpr(new BoolExpr(true), BinaryOp.ARROW, new UnaryExpr(UnaryOp.PRE, new IdExpr(holds.id)))));
-    historically.addEquation(equation);
+		// equations: holds = signal and (true -> pre holds);
+		Equation equation = LustreUtil.eq(new IdExpr(holds.id), new BinaryExpr(new IdExpr(signal.id), BinaryOp.AND,
+				new BinaryExpr(new BoolExpr(true), BinaryOp.ARROW, new UnaryExpr(UnaryOp.PRE, new IdExpr(holds.id)))));
+		historically.addEquation(equation);
 
-    return historically.build();
-  }
+		return historically.build();
+	}
 
-  /**
-   * O is the node that implements Once. Once EXPR must be true at least once on
-   * the current step and every previous step.
-   */
-  public static Node once() {
-    NodeBuilder once = new NodeBuilder("once");
+	/**
+	 * O is the node that implements Once. Once EXPR must be true at least once
+	 * on the current step and every previous step.
+	 */
+	public static Node once() {
+		NodeBuilder once = new NodeBuilder("once");
 
-    VarDecl signal = new VarDecl("signal", NamedType.BOOL);
-    once.addInput(signal);
+		VarDecl signal = new VarDecl("signal", NamedType.BOOL);
+		once.addInput(signal);
 
-    VarDecl holds = new VarDecl("holds", NamedType.BOOL);
-    once.addOutput(holds);
+		VarDecl holds = new VarDecl("holds", NamedType.BOOL);
+		once.addOutput(holds);
 
-    // equations: holds = signal or (false -> pre holds);
-    Equation equation = LustreUtil.eq(new IdExpr(holds.id), new BinaryExpr(new IdExpr(signal.id), BinaryOp.OR,
-        new BinaryExpr(new BoolExpr(false), BinaryOp.ARROW, new UnaryExpr(UnaryOp.PRE, new IdExpr(holds.id)))));
+		// equations: holds = signal or (false -> pre holds);
+		Equation equation = LustreUtil.eq(new IdExpr(holds.id), new BinaryExpr(new IdExpr(signal.id), BinaryOp.OR,
+				new BinaryExpr(new BoolExpr(false), BinaryOp.ARROW, new UnaryExpr(UnaryOp.PRE, new IdExpr(holds.id)))));
 
-    once.addEquation(equation);
-    return once.build();
-  }
+		once.addEquation(equation);
+		return once.build();
+	}
 
-  /**
-   * S is the node that implements Since.
-   */
-  public static Node since() {
-    NodeBuilder since = new NodeBuilder("since");
+	/**
+	 * S is the node that implements Since.
+	 */
+	public static Node since() {
+		NodeBuilder since = new NodeBuilder("since");
 
-    VarDecl a = new VarDecl("a", NamedType.BOOL);
-    VarDecl b = new VarDecl("b", NamedType.BOOL);
-    since.addInput(a);
-    since.addInput(b);
+		VarDecl a = new VarDecl("a", NamedType.BOOL);
+		VarDecl b = new VarDecl("b", NamedType.BOOL);
+		since.addInput(a);
+		since.addInput(b);
 
-    VarDecl holds = new VarDecl("holds", NamedType.BOOL);
-    since.addOutput(holds);
+		VarDecl holds = new VarDecl("holds", NamedType.BOOL);
+		since.addOutput(holds);
 
-    // equations: holds = b or (a and (false -> pre holds))
-    Equation equation = LustreUtil.eq(new IdExpr(holds.id),
-        new BinaryExpr(new IdExpr(b.id), BinaryOp.OR, new BinaryExpr(new IdExpr(a.id), BinaryOp.AND,
-            new BinaryExpr(new BoolExpr(false), BinaryOp.ARROW, new UnaryExpr(UnaryOp.PRE, new IdExpr(holds.id))))));
+		// equations: holds = b or (a and (false -> pre holds))
+		Equation equation = LustreUtil.eq(new IdExpr(holds.id),
+				new BinaryExpr(new IdExpr(b.id), BinaryOp.OR,
+						new BinaryExpr(new IdExpr(a.id), BinaryOp.AND, new BinaryExpr(new BoolExpr(false),
+								BinaryOp.ARROW, new UnaryExpr(UnaryOp.PRE, new IdExpr(holds.id))))));
 
-    since.addEquation(equation);
-    return since.build();
-  }
+		since.addEquation(equation);
+		return since.build();
+	}
 
-  /**
-   * T is the node that implements Trigger (an alternate version that is false
-   * on the initial step.
-   */
-  public static Node triggers() {
-    NodeBuilder triggers = new NodeBuilder("triggers");
+	/**
+	 * T is the node that implements Trigger (an alternate version that is false
+	 * on the initial step.
+	 */
+	public static Node triggers() {
+		NodeBuilder triggers = new NodeBuilder("triggers");
 
-    VarDecl a = new VarDecl("a", NamedType.BOOL);
-    VarDecl b = new VarDecl("b", NamedType.BOOL);
-    triggers.addInput(a);
-    triggers.addInput(b);
+		VarDecl a = new VarDecl("a", NamedType.BOOL);
+		VarDecl b = new VarDecl("b", NamedType.BOOL);
+		triggers.addInput(a);
+		triggers.addInput(b);
 
-    VarDecl holds = new VarDecl("holds", NamedType.BOOL);
-    triggers.addOutput(holds);
+		VarDecl holds = new VarDecl("holds", NamedType.BOOL);
+		triggers.addOutput(holds);
 
-    // equations: holds = b and (a or (false -> pre holds))
-    Equation equation = new Equation(new IdExpr(holds.id),
-        new BinaryExpr(new IdExpr(b.id), BinaryOp.AND, new BinaryExpr(new IdExpr(a.id), BinaryOp.OR,
-            new BinaryExpr(new BoolExpr(false), BinaryOp.ARROW, new UnaryExpr(UnaryOp.PRE, new IdExpr(holds.id))))));
-    triggers.addEquation(equation);
-    return triggers.build();
-  }
+		// equations: holds = b and (a or (false -> pre holds))
+		Equation equation = new Equation(new IdExpr(holds.id),
+				new BinaryExpr(new IdExpr(b.id), BinaryOp.AND,
+						new BinaryExpr(new IdExpr(a.id), BinaryOp.OR, new BinaryExpr(new BoolExpr(false),
+								BinaryOp.ARROW, new UnaryExpr(UnaryOp.PRE, new IdExpr(holds.id))))));
+		triggers.addEquation(equation);
+		return triggers.build();
+	}
 
-  /**
-   * Responds within shows causation of two variables a,b where A causes B to
-   * happen.
-   */
-  public static Node responds_within() {
-    NodeBuilder responds_within = new NodeBuilder("responds_within");
+	/**
+	 * Responds within shows causation of two variables a,b where A causes B to
+	 * happen.
+	 */
+	public static Node responds_within() {
+		NodeBuilder responds_within = new NodeBuilder("responds_within");
 
-    VarDecl a = new VarDecl("a", NamedType.BOOL);
-    VarDecl b = new VarDecl("b", NamedType.BOOL);
-    VarDecl n = new VarDecl("n", NamedType.INT);
-    responds_within.addInput(a);
-    responds_within.addInput(b);
-    responds_within.addInput(n);
+		VarDecl a = new VarDecl("a", NamedType.BOOL);
+		VarDecl b = new VarDecl("b", NamedType.BOOL);
+		VarDecl n = new VarDecl("n", NamedType.INT);
+		responds_within.addInput(a);
+		responds_within.addInput(b);
+		responds_within.addInput(n);
 
-    VarDecl holds = new VarDecl("holds", NamedType.BOOL);
-    responds_within.addOutput(holds);
+		VarDecl holds = new VarDecl("holds", NamedType.BOOL);
+		responds_within.addOutput(holds);
 
-    VarDecl scope = new VarDecl("scope", NamedType.BOOL);
-    VarDecl scope_time = new VarDecl("scope_time", NamedType.INT);
-    responds_within.addLocal(scope);
-    responds_within.addLocal(scope_time);
+		VarDecl scope = new VarDecl("scope", NamedType.BOOL);
+		VarDecl scope_time = new VarDecl("scope_time", NamedType.INT);
+		responds_within.addLocal(scope);
+		responds_within.addLocal(scope_time);
 
-    Equation scope_eq = new Equation(new IdExpr(scope.id),
-        new BinaryExpr(new UnaryExpr(UnaryOp.NOT, new IdExpr(a.id)), BinaryOp.AND, new BinaryExpr(new IdExpr(b.id),
-            BinaryOp.OR, new BinaryExpr(new BoolExpr(false), BinaryOp.ARROW,
-                new UnaryExpr(UnaryOp.PRE, new IdExpr(scope.id))))));
+		Equation scope_eq = new Equation(new IdExpr(scope.id),
+				new BinaryExpr(new UnaryExpr(UnaryOp.NOT, new IdExpr(a.id)), BinaryOp.AND,
+						new BinaryExpr(new IdExpr(b.id), BinaryOp.OR, new BinaryExpr(new BoolExpr(false),
+								BinaryOp.ARROW, new UnaryExpr(UnaryOp.PRE, new IdExpr(scope.id))))));
 
-    Equation scope_time_eq = new Equation(new IdExpr(scope_time.id),
-        new IfThenElseExpr(new IdExpr(scope.id),
-            new BinaryExpr(new IntExpr(0), BinaryOp.ARROW,
-                new BinaryExpr(new UnaryExpr(UnaryOp.PRE, new IdExpr(scope_time.id)), BinaryOp.PLUS, new IntExpr(1))),
-            new IntExpr(0)));
+		Equation scope_time_eq = new Equation(new IdExpr(scope_time.id),
+				new IfThenElseExpr(new IdExpr(scope.id),
+						new BinaryExpr(new IntExpr(0), BinaryOp.ARROW, new BinaryExpr(
+								new UnaryExpr(UnaryOp.PRE, new IdExpr(scope_time.id)), BinaryOp.PLUS, new IntExpr(1))),
+						new IntExpr(0)));
 
-    Equation holds_eq = new Equation(new IdExpr(holds.id), new BinaryExpr(new IdExpr(scope.id), BinaryOp.IMPLIES,
-        new BinaryExpr(new IdExpr(scope_time.id), BinaryOp.LESSEQUAL, new IdExpr(n.id))));
-    responds_within.addEquation(scope_eq);
-    responds_within.addEquation(scope_time_eq);
-    responds_within.addEquation(holds_eq);
-    return responds_within.build();
-  }
+		Equation holds_eq = new Equation(new IdExpr(holds.id), new BinaryExpr(new IdExpr(scope.id), BinaryOp.IMPLIES,
+				new BinaryExpr(new IdExpr(scope_time.id), BinaryOp.LESSEQUAL, new IdExpr(n.id))));
+		responds_within.addEquation(scope_eq);
+		responds_within.addEquation(scope_time_eq);
+		responds_within.addEquation(holds_eq);
+		return responds_within.build();
+	}
 
-  public static Node fmod() {
-    /*
-     * node fmod(a : real; b : real) returns (x : real); let x = (a - (b *
-     * real(floor(a / b)))); tel;
-     */
-    NodeBuilder fmod = new NodeBuilder("fmod");
+	public static Node fmod() {
+		/*
+		 * node fmod(a : real; b : real) returns (x : real); let x = (a - (b *
+		 * real(floor(a / b)))); tel;
+		 */
+		NodeBuilder fmod = new NodeBuilder("fmod");
 
-    VarDecl a = new VarDecl("a", NamedType.REAL);
-    VarDecl b = new VarDecl("b", NamedType.REAL);
-    VarDecl x = new VarDecl("x", NamedType.REAL);
-    fmod.addInput(a);
-    fmod.addInput(b);
-    fmod.addOutput(x);
+		VarDecl a = new VarDecl("a", NamedType.REAL);
+		VarDecl b = new VarDecl("b", NamedType.REAL);
+		VarDecl x = new VarDecl("x", NamedType.REAL);
+		fmod.addInput(a);
+		fmod.addInput(b);
+		fmod.addOutput(x);
 
-    /* this is a bit gross, but easier to read this way */
-    Expr inner_div = new BinaryExpr(new IdExpr(a.id), BinaryOp.DIVIDE, new IdExpr(b.id));
-    Expr innercast = new CastExpr(NamedType.INT, inner_div);
-    Expr outercast = new CastExpr(NamedType.REAL, innercast);
-    Expr mult = new BinaryExpr(new IdExpr(b.id), BinaryOp.MULTIPLY, outercast);
-    Expr finalExpr = new BinaryExpr(new IdExpr(a.id), BinaryOp.MINUS, mult);
-    EquationBuilder eq = new EquationBuilder();
-    eq.addLhs(x.id);
-    eq.setExpr(finalExpr);
+		/* this is a bit gross, but easier to read this way */
+		Expr inner_div = new BinaryExpr(new IdExpr(a.id), BinaryOp.DIVIDE, new IdExpr(b.id));
+		Expr innercast = new CastExpr(NamedType.INT, inner_div);
+		Expr outercast = new CastExpr(NamedType.REAL, innercast);
+		Expr mult = new BinaryExpr(new IdExpr(b.id), BinaryOp.MULTIPLY, outercast);
+		Expr finalExpr = new BinaryExpr(new IdExpr(a.id), BinaryOp.MINUS, mult);
+		EquationBuilder eq = new EquationBuilder();
+		eq.addLhs(x.id);
+		eq.setExpr(finalExpr);
 
-    fmod.addEquation(eq.build());
+		fmod.addEquation(eq.build());
 
-    return fmod.build();
-  }
+		return fmod.build();
+	}
 
-  public static Set<Node> getLibraries() {
-    Set<Node> nodes = new LinkedHashSet<>();
-    nodes.add(initially());
-    nodes.add(historically());
-    nodes.add(once());
-    nodes.add(since());
-    nodes.add(triggers());
-    nodes.add(responds_within());
-    return nodes;
-  }
+	public static Set<Node> getLibraries() {
+		Set<Node> nodes = new LinkedHashSet<>();
+		nodes.add(initially());
+		nodes.add(historically());
+		nodes.add(once());
+		nodes.add(since());
+		nodes.add(triggers());
+		nodes.add(responds_within());
+		return nodes;
+	}
 
-  public static Set<Node> getNonlinearLibraries() {
-    Set<Node> nodes = new LinkedHashSet<>();
-    nodes.add(fmod());
-    return nodes;
-  }
+	public static Set<Node> getNonlinearLibraries() {
+		Set<Node> nodes = new LinkedHashSet<>();
+		nodes.add(fmod());
+		return nodes;
+	}
 }

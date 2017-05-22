@@ -9,7 +9,7 @@ package com.rockwellcollins;
  */
 public class SpearStandaloneSetup extends SpearStandaloneSetupGenerated {
 
-  public static void doSetup() {
-    new SpearStandaloneSetup().createInjectorAndDoEMFRegistration();
-  }
+	public static void doSetup() {
+		new SpearStandaloneSetup().createInjectorAndDoEMFRegistration();
+	}
 }

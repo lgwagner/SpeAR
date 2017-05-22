@@ -33,62 +33,62 @@ import jkind.lustre.Program;
 
 public class SimulatePattern extends AbstractHandler {
 
-  private IWorkbenchWindow window;
+	private IWorkbenchWindow window;
 
-  @Override
-  public Object execute(ExecutionEvent event) throws ExecutionException {
-    XtextEditor xtextEditor = EditorUtils.getActiveXtextEditor();
-    this.window = HandlerUtil.getActiveWorkbenchWindow(event);
-    TextSelection ts = (TextSelection) xtextEditor.getSelectionProvider().getSelection();
+	@Override
+	public Object execute(ExecutionEvent event) throws ExecutionException {
+		XtextEditor xtextEditor = EditorUtils.getActiveXtextEditor();
+		this.window = HandlerUtil.getActiveWorkbenchWindow(event);
+		TextSelection ts = (TextSelection) xtextEditor.getSelectionProvider().getSelection();
 
-    xtextEditor.getDocument().readOnly(resource -> {
-      EObject e = new EObjectAtOffsetHelper().resolveContainedElementAt(resource, ts.getOffset());
+		xtextEditor.getDocument().readOnly(resource -> {
+			EObject e = new EObjectAtOffsetHelper().resolveContainedElementAt(resource, ts.getOffset());
 
-      Pattern p = EcoreUtil2.getContainerOfType(e, Pattern.class);
-      if (p == null) {
-        MessageDialog.openError(window.getShell(), "Pattern Not Found",
-            "Please place the cursor inside a valid pattern.");
-        return null;
-      }
+			Pattern p = EcoreUtil2.getContainerOfType(e, Pattern.class);
+			if (p == null) {
+				MessageDialog.openError(window.getShell(), "Pattern Not Found",
+						"Please place the cursor inside a valid pattern.");
+				return null;
+			}
 
-      if (hasErrors(resource)) {
-        MessageDialog.openError(window.getShell(), "Error", "Pattern contains errors.");
-        return null;
-      }
+			if (hasErrors(resource)) {
+				MessageDialog.openError(window.getShell(), "Error", "Pattern contains errors.");
+				return null;
+			}
 
-      simulatePattern(p);
-      return null;
-    });
-    return null;
-  }
+			simulatePattern(p);
+			return null;
+		});
+		return null;
+	}
 
-  protected boolean hasErrors(Resource res) {
-    Injector injector = SpearActivator.getInstance().getInjector(SpearActivator.COM_ROCKWELLCOLLINS_SPEAR);
-    IResourceValidator resourceValidator = injector.getInstance(IResourceValidator.class);
+	protected boolean hasErrors(Resource res) {
+		Injector injector = SpearActivator.getInstance().getInjector(SpearActivator.COM_ROCKWELLCOLLINS_SPEAR);
+		IResourceValidator resourceValidator = injector.getInstance(IResourceValidator.class);
 
-    for (Issue issue : resourceValidator.validate(res, CheckMode.ALL, CancelIndicator.NullImpl)) {
-      if (issue.getSeverity() == Severity.ERROR) {
-        return true;
-      }
-    }
-    return false;
-  }
+		for (Issue issue : resourceValidator.validate(res, CheckMode.ALL, CancelIndicator.NullImpl)) {
+			if (issue.getSeverity() == Severity.ERROR) {
+				return true;
+			}
+		}
+		return false;
+	}
 
-  private void simulatePattern(Pattern p) {
-    Document d = new Document(p);
+	private void simulatePattern(Pattern p) {
+		Document d = new Document(p, false);
 
-    try {
-      d.transform(false);
-    } catch (Exception e1) {
-      System.err.println("Unexpected error transforming PatternDocument for analysis.");
-      e1.printStackTrace();
-    }
+		try {
+			d.transform(false);
+		} catch (Exception e1) {
+			System.err.println("Unexpected error transforming PatternDocument for analysis.");
+			e1.printStackTrace();
+		}
 
-    SProgram IR = SProgram.build(d);
-    Program program = IR.patternToLustre();
+		SProgram IR = SProgram.build(d);
+		Program program = IR.patternToLustre();
 
-    JLustre2ExcelApi api = PreferencesUtil.getJLustre2ExcelApi();
-    File f = api.execute(program);
-    org.eclipse.swt.program.Program.launch(f.toString());
-  }
+		JLustre2ExcelApi api = PreferencesUtil.getJLustre2ExcelApi();
+		File f = api.execute(program);
+		org.eclipse.swt.program.Program.launch(f.toString());
+	}
 }

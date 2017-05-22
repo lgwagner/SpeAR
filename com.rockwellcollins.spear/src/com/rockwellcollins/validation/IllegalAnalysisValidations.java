@@ -22,49 +22,49 @@ import com.rockwellcollins.spear.SpecificationCall;
  */
 public class IllegalAnalysisValidations extends AbstractSpearJavaValidator {
 
-  @Check
-  public void flagIllegalExpressionsInPatterns(Pattern p) {
-    for (SpecificationCall call : EcoreUtil2.getAllContentsOfType(p, SpecificationCall.class)) {
-      error("Specification calls are unsupported inside of patterns.", call, null);
-    }
-  }
+	@Check
+	public void flagIllegalExpressionsInPatterns(Pattern p) {
+		for (SpecificationCall call : EcoreUtil2.getAllContentsOfType(p, SpecificationCall.class)) {
+			error("Specification calls are unsupported inside of patterns.", call, null);
+		}
+	}
 
-  @Check
-  public void flagSpecCallsInMacros(Macro m) {
-    for (SpecificationCall call : EcoreUtil2.getAllContentsOfType(m, SpecificationCall.class)) {
-      error("Specification calls are not supported inside of macros.", call, null);
-    }
-  }
+	@Check
+	public void flagSpecCallsInMacros(Macro m) {
+		for (SpecificationCall call : EcoreUtil2.getAllContentsOfType(m, SpecificationCall.class)) {
+			error("Specification calls are not supported inside of macros.", call, null);
+		}
+	}
 
-  @Check
-  public void flagImproperSpecificationCalls(SpecificationCall call) {
-    EObject container = call.eContainer();
+	@Check
+	public void flagImproperSpecificationCalls(SpecificationCall call) {
+		EObject container = call.eContainer();
 
-    if (container instanceof Macro) {
-      return;
-    }
+		if (container instanceof Macro) {
+			return;
+		}
 
-    if (container instanceof BinaryExpr) {
-      BinaryExpr be = (BinaryExpr) container;
-      Set<String> ops = getEqualBinaryOperators();
+		if (container instanceof BinaryExpr) {
+			BinaryExpr be = (BinaryExpr) container;
+			Set<String> ops = getEqualBinaryOperators();
 
-      if (!ops.contains(be.getOp())) {
-        error("Specification call results must be equated to local specification variables.", call, null);
-      }
-    } else {
-      error("Specification call results must be equated to local specification variables.", call, null);
-    }
-  }
+			if (!ops.contains(be.getOp())) {
+				error("Specification call results must be equated to local specification variables.", call, null);
+			}
+		} else {
+			error("Specification call results must be equated to local specification variables.", call, null);
+		}
+	}
 
-  private Set<String> getEqualBinaryOperators() {
-    Set<String> acceptable = new HashSet<>();
-    acceptable.add("==");
-    acceptable.add("equal to");
-    acceptable.add("is equal to");
-    return acceptable;
-  }
+	private Set<String> getEqualBinaryOperators() {
+		Set<String> acceptable = new HashSet<>();
+		acceptable.add("==");
+		acceptable.add("equal to");
+		acceptable.add("is equal to");
+		return acceptable;
+	}
 
-  @Override
-  public void register(EValidatorRegistrar registrar) {
-  }
+	@Override
+	public void register(EValidatorRegistrar registrar) {
+	}
 }

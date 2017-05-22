@@ -6,14 +6,14 @@ import com.rockwellcollins.spear.language.Create;
 
 public class IdReference extends Reference {
 
-  public IdRef idref;
+	public IdRef idref;
 
-  public IdReference(IdRef ref) {
-    this.idref = ref;
-  }
+	public IdReference(IdRef ref) {
+		this.idref = ref;
+	}
 
-  @Override
-  public Expr toExpr() {
-    return Create.createIdExpr(idref);
-  }
+	@Override
+	public Expr toExpr() {
+		return Create.createIdExpr(idref);
+	}
 }

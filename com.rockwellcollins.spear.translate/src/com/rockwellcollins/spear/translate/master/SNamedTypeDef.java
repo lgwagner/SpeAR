@@ -8,16 +8,16 @@ import jkind.lustre.TypeDef;
 
 public class SNamedTypeDef extends STypeDef {
 
-  public Type type;
+	public Type type;
 
-  public SNamedTypeDef(NamedTypeDef ntd, SProgram program) {
-    this.name = program.map.getProgramName(ntd.getName());
-    this.type = ntd.getType();
-  }
+	public SNamedTypeDef(NamedTypeDef ntd, SProgram program) {
+		this.name = program.map.getProgramName(ntd.getName());
+		this.type = ntd.getType();
+	}
 
-  @Override
-  public TypeDef toLustre(SProgram program) {
-    jkind.lustre.Type t = TranslateType.translate(type, program.map);
-    return new TypeDef(this.name, t);
-  }
+	@Override
+	public TypeDef toLustre(SProgram program) {
+		jkind.lustre.Type t = TranslateType.translate(type, program.map);
+		return new TypeDef(this.name, t);
+	}
 }

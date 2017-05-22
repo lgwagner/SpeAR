@@ -11,23 +11,23 @@ import jkind.lustre.VarDecl;
 
 public class SPVariable {
 
-  public static List<SPVariable> build(List<Variable> list, SPattern p) {
-    return list.stream().map(v -> new SPVariable(v, p)).collect(Collectors.toList());
-  }
+	public static List<SPVariable> build(List<Variable> list, SPattern p) {
+		return list.stream().map(v -> new SPVariable(v, p)).collect(Collectors.toList());
+	}
 
-  public static List<VarDecl> toVarDecl(List<SPVariable> list, SPattern p) {
-    return list.stream().map(v -> v.toLustre(p)).collect(Collectors.toList());
-  }
+	public static List<VarDecl> toVarDecl(List<SPVariable> list, SPattern p) {
+		return list.stream().map(v -> v.toLustre(p)).collect(Collectors.toList());
+	}
 
-  public String name;
-  public Type   type;
+	public String name;
+	public Type type;
 
-  public SPVariable(Variable v, SPattern pattern) {
-    this.name = pattern.map.getModuleName(v.getName());
-    this.type = v.getType();
-  }
+	public SPVariable(Variable v, SPattern pattern) {
+		this.name = pattern.map.getModuleName(v.getName());
+		this.type = v.getType();
+	}
 
-  public VarDecl toLustre(SPattern pattern) {
-    return new jkind.lustre.VarDecl(this.name, TranslateType.translate(this.type, pattern.map));
-  }
+	public VarDecl toLustre(SPattern pattern) {
+		return new jkind.lustre.VarDecl(this.name, TranslateType.translate(this.type, pattern.map));
+	}
 }

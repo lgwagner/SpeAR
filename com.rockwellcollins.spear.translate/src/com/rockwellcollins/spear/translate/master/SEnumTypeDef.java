@@ -11,22 +11,22 @@ import jkind.lustre.TypeDef;
 
 public class SEnumTypeDef extends STypeDef {
 
-  public String       definitionName;
-  public List<String> values = new ArrayList<>();
+	public String definitionName;
+	public List<String> values = new ArrayList<>();
 
-  public SEnumTypeDef(EnumTypeDef etd, SProgram program) {
-    this.name = program.map.getProgramName(etd.getName());
-    this.definitionName = program.map.getProgramName(etd.getName() + "_definition");
+	public SEnumTypeDef(EnumTypeDef etd, SProgram program) {
+		this.name = program.map.getProgramName(etd.getName());
+		this.definitionName = program.map.getProgramName(etd.getName() + "_definition");
 
-    for (EnumValue ev : etd.getValues()) {
-      String value = program.map.getProgramName(ev.getName());
-      this.values.add(value);
-    }
-  }
+		for (EnumValue ev : etd.getValues()) {
+			String value = program.map.getProgramName(ev.getName());
+			this.values.add(value);
+		}
+	}
 
-  @Override
-  public TypeDef toLustre(SProgram program) {
-    jkind.lustre.EnumType type = new EnumType(this.definitionName, values);
-    return new TypeDef(this.name, type);
-  }
+	@Override
+	public TypeDef toLustre(SProgram program) {
+		jkind.lustre.EnumType type = new EnumType(this.definitionName, values);
+		return new TypeDef(this.name, type);
+	}
 }
