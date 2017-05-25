@@ -26,6 +26,7 @@ import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.BoolLiteral;
 import com.rockwellcollins.spear.BoolType;
 import com.rockwellcollins.spear.Constant;
+import com.rockwellcollins.spear.EnglishConstraint;
 import com.rockwellcollins.spear.EnumTypeDef;
 import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.Expr;
@@ -264,6 +265,11 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 			return error(fc);
 		}
 		return expected;
+	}
+	
+	@Override
+	public Type caseEnglishConstraint(EnglishConstraint ec) {
+		return BOOL;
 	}
 
 	/***************************************************************************************************/
