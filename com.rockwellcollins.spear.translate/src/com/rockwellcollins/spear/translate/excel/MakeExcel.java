@@ -24,162 +24,166 @@ import com.rockwellcollins.spear.util.SpearSwitch;
 
 public class MakeExcel extends SpearSwitch<Integer> {
 
-  public static HashMap<String, Requirement> reqIDMap        = new HashMap<String, Requirement>();
-  public static List<String>                 topLevelReqList = new ArrayList<>();
+	public static HashMap<String, Requirement> reqIDMap = new HashMap<String, Requirement>();
+	public static List<String> topLevelReqList = new ArrayList<>();
 
-  /**
-   * Export all requirements from the selected SpeAR file and all SpeAR files it
-   * depends on (through hierarchical imports) to an Excel spreadsheet
-   * 
-   * @param spearDoc
-   * @param f
-   * @throws Exception
-   */
-  public static void toExcel(AltSpearDocument spearDoc, File f) throws Exception {
-    // clear existing list
-    reqIDMap.clear();
-    topLevelReqList.clear();
-    try (ExcelFormatter formatter = new ExcelFormatter(f)) {
-      for (Specification spec : spearDoc.getSpecifications()) {
-        exportReqList(spec);
-      }
-      extractChildLists();
-      // need to connect writeRequirements with file
-      formatter.writeSpecification(topLevelReqList, reqIDMap);
-      // need to handle the situation when the file is already open - then it
-      // cannot be launched
-      org.eclipse.swt.program.Program.launch(f.toString());
-    }
-  }
+	/**
+	 * Export all requirements from the selected SpeAR file and all SpeAR files
+	 * it depends on (through hierarchical imports) to an Excel spreadsheet
+	 * 
+	 * @param spearDoc
+	 * @param f
+	 * @throws Exception
+	 */
+	public static void toExcel(AltSpearDocument spearDoc, File f) throws Exception {
+		// clear existing list
+		reqIDMap.clear();
+		topLevelReqList.clear();
+		try (ExcelFormatter formatter = new ExcelFormatter(f)) {
+			for (Specification spec : spearDoc.getSpecifications()) {
+				exportReqList(spec);
+			}
+			extractChildLists();
+			// need to connect writeRequirements with file
+			formatter.writeSpecification(topLevelReqList, reqIDMap);
+			// need to handle the situation when the file is already open - then
+			// it
+			// cannot be launched
+			org.eclipse.swt.program.Program.launch(f.toString());
+		}
+	}
 
-  private static void exportRequirement(Iterator<Constraint> constraintIterator, String type, String compName)
-      throws Exception {
+	private static void exportRequirement(Iterator<Constraint> constraintIterator, String type, String compName)
+			throws Exception {
 
-    while (constraintIterator.hasNext()) {
-      // get current constraint
-      Constraint curConstraint = constraintIterator.next();
-      // set flag for export
-      boolean export = false;
+		while (constraintIterator.hasNext()) {
+			// get current constraint
+			Constraint curConstraint = constraintIterator.next();
+			// set flag for export
+			boolean export = false;
 
-      // initialize the attributes
-      String id = curConstraint.getName();
-      String component = compName;
+			// initialize the attributes
+			String id = curConstraint.getName();
+			String component = compName;
 
-      String text = "";
-      String owner = "";
-      String reviewDate = "";
-      String source = "";
-      String rationale = "";
-      String comments = "";
-      List<String> parentList = new ArrayList<>();
+			String text = "";
+			String owner = "";
+			String reviewDate = "";
+			String source = "";
+			String rationale = "";
+			String comments = "";
+			List<String> parentList = new ArrayList<>();
 
-      // extract data from the current constraint and update the attributes
+			// extract data from the current constraint and update the
+			// attributes
 
-      // if EnglishConstraint
-      if (curConstraint instanceof EnglishConstraint) {
-        text = ((EnglishConstraint) curConstraint).getText();
-        export = true;
-      }
+			// if EnglishConstraint
+			if (curConstraint instanceof EnglishConstraint) {
+				text = ((EnglishConstraint) curConstraint).getText();
+				export = true;
+			}
 
-      EList<Data> dataList = curConstraint.getData();
-      for (Data curData : dataList) {
-        String newText = "";
-        if (curData instanceof DescriptionData) {
-          newText = ((DescriptionData) curData).getString();
-          text = detectDuplicates(id, type, "text", text, newText);
-        } else if (curData instanceof OwnerData) {
-          newText = ((OwnerData) curData).getString();
-          owner = detectDuplicates(id, type, "owner", owner, newText);
-        } else if (curData instanceof ReviewData) {
-          newText = ((ReviewData) curData).getString();
-          reviewDate = detectDuplicates(id, type, "reviewDate", reviewDate, newText);
-        } else if (curData instanceof SourceData) {
-          newText = ((SourceData) curData).getString();
-          source = detectDuplicates(id, type, "source", source, newText);
-        } else if (curData instanceof RationaleData) {
-          newText = ((RationaleData) curData).getString();
-          rationale = detectDuplicates(id, type, "rationale", rationale, newText);
-        } else if (curData instanceof CommentsData) {
-          newText = ((CommentsData) curData).getString();
-          comments = detectDuplicates(id, type, "comments", comments, newText);
-        } else if (curData instanceof TraceData) {
-          // if parentList is not empty, there is a duplicate
-          if (!parentList.isEmpty()) {
-            throw new Exception("Duplicate parents for " + type + " ID " + id);
-          }
-          parentList = ((TraceData) curData).getIds();
-        }
-      }
+			EList<Data> dataList = curConstraint.getData();
+			for (Data curData : dataList) {
+				String newText = "";
+				if (curData instanceof DescriptionData) {
+					newText = ((DescriptionData) curData).getString();
+					text = detectDuplicates(id, type, "text", text, newText);
+				} else if (curData instanceof OwnerData) {
+					newText = ((OwnerData) curData).getString();
+					owner = detectDuplicates(id, type, "owner", owner, newText);
+				} else if (curData instanceof ReviewData) {
+					newText = ((ReviewData) curData).getString();
+					reviewDate = detectDuplicates(id, type, "reviewDate", reviewDate, newText);
+				} else if (curData instanceof SourceData) {
+					newText = ((SourceData) curData).getString();
+					source = detectDuplicates(id, type, "source", source, newText);
+				} else if (curData instanceof RationaleData) {
+					newText = ((RationaleData) curData).getString();
+					rationale = detectDuplicates(id, type, "rationale", rationale, newText);
+				} else if (curData instanceof CommentsData) {
+					newText = ((CommentsData) curData).getString();
+					comments = detectDuplicates(id, type, "comments", comments, newText);
+				} else if (curData instanceof TraceData) {
+					// if parentList is not empty, there is a duplicate
+					if (!parentList.isEmpty()) {
+						throw new Exception("Duplicate parents for " + type + " ID " + id);
+					}
+					parentList = ((TraceData) curData).getIds();
+				}
+			}
 
-      // if FormalConstraint and empty text, no export
-      if (curConstraint instanceof FormalConstraint) {
-        if ("".equals(text)) {
-          export = false;
-        } else {
-          export = true;
-        }
-      }
+			// if FormalConstraint and empty text, no export
+			if (curConstraint instanceof FormalConstraint) {
+				if ("".equals(text)) {
+					export = false;
+				} else {
+					export = true;
+				}
+			}
 
-      if (export) {
-        // create requirement instance
-        Requirement curRequirement = new Requirement(id, text, type, owner, component, parentList, reviewDate, source,
-            rationale, comments);
-        // add to requirement id map
-        reqIDMap.put(id, curRequirement);
-      }
-    }
-  }
+			if (export) {
+				// create requirement instance
+				Requirement curRequirement = new Requirement(id, text, type, owner, component, parentList, reviewDate,
+						source, rationale, comments);
+				// add to requirement id map
+				reqIDMap.put(id, curRequirement);
+			}
+		}
+	}
 
-  private static void exportReqList(Specification s) throws Exception {
-    String compName = s.getName();
-    // get the assumptions
-    Iterator<Constraint> asIterator = s.getAssumptions().iterator();
-    exportRequirement(asIterator, "ASSUMPTION", compName);
-    // get the requirements
-    Iterator<Constraint> reqIterator = s.getRequirements().iterator();
-    exportRequirement(reqIterator, "REQT", compName);
-    // get the properties
-    Iterator<Constraint> propIterator = s.getBehaviors().iterator();
-    exportRequirement(propIterator, "PROP", compName);
-  }
+	private static void exportReqList(Specification s) throws Exception {
+		String compName = s.getName();
+		// get the assumptions
+		Iterator<Constraint> asIterator = s.getAssumptions().iterator();
+		exportRequirement(asIterator, "ASSUMPTION", compName);
+		// get the requirements
+		Iterator<Constraint> reqIterator = s.getRequirements().iterator();
+		exportRequirement(reqIterator, "REQT", compName);
+		// get the properties
+		Iterator<Constraint> propIterator = s.getBehaviors().iterator();
+		exportRequirement(propIterator, "PROP", compName);
+	}
 
-  private static void extractChildLists() {
-    // get the IDs for all existing requirements listed
-    List<String> reqIDList = new ArrayList<>(reqIDMap.keySet());
+	private static void extractChildLists() {
+		// get the IDs for all existing requirements listed
+		List<String> reqIDList = new ArrayList<>(reqIDMap.keySet());
 
-    // extract the child list for each requirement
-    for (HashMap.Entry<String, Requirement> reqEntry : reqIDMap.entrySet()) {
-      // for each requirement, go through its parentList
-      Requirement req = reqEntry.getValue();
-      // for each requirement
-      // go through its parentList
-      Boolean topLevelReq = true;
-      for (String parentID : req.getParentList()) {
-        // check if parentID exists in requirementList
-        // if yes, mark it as non top level requirement and add child ID to
-        // parent req
-        if (reqIDList.contains(parentID)) {
-          topLevelReq = false;
-          // if yes, add the requirement ID to the parentID requirement's
-          // childList
-          reqIDMap.get(parentID).addChild(req.getID());
-        }
-      }
-      // add to topLevelList if the topLevelReq flag is true
-      if (topLevelReq) {
-        topLevelReqList.add(req.getID());
-      }
-    }
-  }
+		// extract the child list for each requirement
+		for (HashMap.Entry<String, Requirement> reqEntry : reqIDMap.entrySet()) {
+			// for each requirement, go through its parentList
+			Requirement req = reqEntry.getValue();
+			// for each requirement
+			// go through its parentList
+			Boolean topLevelReq = true;
+			for (String parentID : req.getParentList()) {
+				// check if parentID exists in requirementList
+				// if yes, mark it as non top level requirement and add child ID
+				// to
+				// parent req
+				if (reqIDList.contains(parentID)) {
+					topLevelReq = false;
+					// if yes, add the requirement ID to the parentID
+					// requirement's
+					// childList
+					reqIDMap.get(parentID).addChild(req.getID());
+				}
+			}
+			// add to topLevelList if the topLevelReq flag is true
+			if (topLevelReq) {
+				topLevelReqList.add(req.getID());
+			}
+		}
+	}
 
-  private static String detectDuplicates(String id, String type, String attributeName, String text, String newText)
-      throws Exception {
-    if ("".equals(text)) {
-      text = newText;
-    } else {
-      throw new Exception("Duplicate " + attributeName + " for " + type + " ID " + id);
-    }
-    return text;
-  }
+	private static String detectDuplicates(String id, String type, String attributeName, String text, String newText)
+			throws Exception {
+		if ("".equals(text)) {
+			text = newText;
+		} else {
+			throw new Exception("Duplicate " + attributeName + " for " + type + " ID " + id);
+		}
+		return text;
+	}
 
 }

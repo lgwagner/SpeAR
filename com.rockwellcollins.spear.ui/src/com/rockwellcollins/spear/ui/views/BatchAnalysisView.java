@@ -22,52 +22,54 @@ import org.osgi.framework.FrameworkUtil;
 
 public class BatchAnalysisView extends ViewPart {
 
-  public static final String ID = "com.rockwellcollins.spear.ui.views.BatchAnalysisView";
+	public static final String ID = "com.rockwellcollins.spear.ui.views.BatchAnalysisView";
 
-  public List                list;
+	public List list;
 
-  private Action             stopAnalysisAction;
+	private Action stopAnalysisAction;
 
-  public void createPartControl(Composite parent) {
+	public void createPartControl(Composite parent) {
 
-    parent.setLayout(new GridLayout());
+		parent.setLayout(new GridLayout());
 
-    list = new List(parent, SWT.SINGLE | SWT.V_SCROLL | SWT.BORDER);
+		list = new List(parent, SWT.SINGLE | SWT.V_SCROLL | SWT.BORDER);
 
-    list.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		list.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-    Composite container = new Composite(parent, SWT.NONE);
-    container.setLayout(new FillLayout());
-    createActions();
-    createToolbar();
+		Composite container = new Composite(parent, SWT.NONE);
+		container.setLayout(new FillLayout());
+		createActions();
+		createToolbar();
 
-  }
+	}
 
-  /**
-   * Create toolbar.
-   */
-  private void createToolbar() {
-    // IToolBarManager mgr = getViewSite().getActionBars().getToolBarManager();
-    // mgr.add(stopAnalysisAction);
-  }
+	/**
+	 * Create toolbar.
+	 */
+	private void createToolbar() {
+		// IToolBarManager mgr =
+		// getViewSite().getActionBars().getToolBarManager();
+		// mgr.add(stopAnalysisAction);
+	}
 
-  public void createActions() {
-    /*
-     * stopAnalysisAction = new Action("Stop Analysis") { public void run() {
-     * IHandlerService handlerService = (IHandlerService) PlatformUI
-     * .getWorkbench().getActiveWorkbenchWindow().getService(IHandlerService.
-     * class); try { Event e = new Event(); e.data="String";
-     * handlerService.executeCommand(
-     * "com.rockwellcollins.spear.ui.commands.startBatchAnalysis",e); } catch
-     * (Exception e) { // TODO Auto-generated catch block e.printStackTrace(); }
-     * } }; Bundle bundle = FrameworkUtil.getBundle(BatchAnalysisView.class);
-     * URL url = FileLocator.find(bundle, new Path("icons/terminate.png"),
-     * null); ImageDescriptor imageDcr = ImageDescriptor.createFromURL(url);
-     * stopAnalysisAction.setImageDescriptor(imageDcr);
-     */
-  }
+	public void createActions() {
+		/*
+		 * stopAnalysisAction = new Action("Stop Analysis") { public void run()
+		 * { IHandlerService handlerService = (IHandlerService) PlatformUI
+		 * .getWorkbench().getActiveWorkbenchWindow().getService(
+		 * IHandlerService. class); try { Event e = new Event();
+		 * e.data="String"; handlerService.executeCommand(
+		 * "com.rockwellcollins.spear.ui.commands.startBatchAnalysis",e); }
+		 * catch (Exception e) { // TODO Auto-generated catch block
+		 * e.printStackTrace(); } } }; Bundle bundle =
+		 * FrameworkUtil.getBundle(BatchAnalysisView.class); URL url =
+		 * FileLocator.find(bundle, new Path("icons/terminate.png"), null);
+		 * ImageDescriptor imageDcr = ImageDescriptor.createFromURL(url);
+		 * stopAnalysisAction.setImageDescriptor(imageDcr);
+		 */
+	}
 
-  public void setFocus() {
-    list.setFocus();
-  }
+	public void setFocus() {
+		list.setFocus();
+	}
 }

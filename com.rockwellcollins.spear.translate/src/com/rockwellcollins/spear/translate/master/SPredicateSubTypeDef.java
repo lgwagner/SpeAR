@@ -8,16 +8,16 @@ import jkind.lustre.TypeDef;
 
 public class SPredicateSubTypeDef extends STypeDef {
 
-  public Type type;
+	public Type type;
 
-  public SPredicateSubTypeDef(PredicateSubTypeDef pstd, SProgram program) {
-    this.name = program.map.getProgramName(pstd.getName());
-    this.type = pstd.getPredVar().getType();
-  }
+	public SPredicateSubTypeDef(PredicateSubTypeDef pstd, SProgram program) {
+		this.name = program.map.getProgramName(pstd.getName());
+		this.type = pstd.getPredVar().getType();
+	}
 
-  @Override
-  public TypeDef toLustre(SProgram program) {
-    jkind.lustre.Type t = TranslateType.translate(type, program.map);
-    return new TypeDef(this.name, t);
-  }
+	@Override
+	public TypeDef toLustre(SProgram program) {
+		jkind.lustre.Type t = TranslateType.translate(type, program.map);
+		return new TypeDef(this.name, t);
+	}
 }

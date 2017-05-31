@@ -4,5 +4,5 @@ import com.rockwellcollins.spear.Expr;
 
 public abstract class Reference {
 
-  public abstract Expr toExpr();
+	public abstract Expr toExpr();
 }

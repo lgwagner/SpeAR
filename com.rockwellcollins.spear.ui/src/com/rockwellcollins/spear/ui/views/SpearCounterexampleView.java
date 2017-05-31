@@ -10,21 +10,21 @@ import jkind.results.layout.Layout;
  * JKindCounterexampleView is a view.
  */
 public class SpearCounterexampleView extends ViewPart {
-  public static final String ID = "com.rockwellcollins.spear.ui.views.SpearCounterexampleView";
+	public static final String ID = "com.rockwellcollins.spear.ui.views.SpearCounterexampleView";
 
-  private SpearCEXTreeView   tree;
+	private SpearCEXTreeView tree;
 
-  @Override
-  public void createPartControl(Composite parent) {
-    tree = new SpearCEXTreeView(parent);
-  }
+	@Override
+	public void createPartControl(Composite parent) {
+		tree = new SpearCEXTreeView(parent);
+	}
 
-  @Override
-  public void setFocus() {
-    tree.setFocus();
-  }
+	@Override
+	public void setFocus() {
+		tree.setFocus();
+	}
 
-  public void setInput(Counterexample cex, Layout layout) {
-    tree.setInput(cex, layout);
-  }
+	public void setInput(Counterexample cex, Layout layout) {
+		tree.setInput(cex, layout);
+	}
 }

@@ -5,19 +5,19 @@ import org.eclipse.xtext.documentation.impl.MultiLineCommentDocumentationProvide
 
 public class SpearEObjectDocumentationProvider extends MultiLineCommentDocumentationProvider {
 
-  @Override
-  public String getDocumentation(EObject o) {
+	@Override
+	public String getDocumentation(EObject o) {
 
-    SpearDescriptionFetcher fetcher = new SpearDescriptionFetcher();
+		SpearDescriptionFetcher fetcher = new SpearDescriptionFetcher();
 
-    String val = fetcher.doSwitch(o);
-    if (val == null) {
-      val = super.getDocumentation(o);
-    }
+		String val = fetcher.doSwitch(o);
+		if (val == null) {
+			val = super.getDocumentation(o);
+		}
 
-    if (val == null) {
-      return null;
-    }
-    return val.replaceAll("\r?\n", "<br>").replaceAll("\t", "&nbsp&nbsp&nbsp&nbsp");
-  }
+		if (val == null) {
+			return null;
+		}
+		return val.replaceAll("\r?\n", "<br>").replaceAll("\t", "&nbsp&nbsp&nbsp&nbsp");
+	}
 }

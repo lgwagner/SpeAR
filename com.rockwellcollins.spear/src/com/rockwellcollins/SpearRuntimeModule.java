@@ -16,17 +16,17 @@ import com.rockwellcollins.validation.IValidatorAdvisor;
  */
 public class SpearRuntimeModule extends com.rockwellcollins.AbstractSpearRuntimeModule {
 
-  @Override
-  public Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
-    return ImportUriGlobalScopeProvider.class;
-  }
+	@Override
+	public Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
+		return ImportUriGlobalScopeProvider.class;
+	}
 
-  @Override
-  public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
-    return SpearDeclarativeQualifiedNameProvider.class;
-  }
+	@Override
+	public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
+		return SpearDeclarativeQualifiedNameProvider.class;
+	}
 
-  public Class<? extends IValidatorAdvisor> bindIValidatorAdvisor() {
-    return VacuousValidator.class;
-  }
+	public Class<? extends IValidatorAdvisor> bindIValidatorAdvisor() {
+		return VacuousValidator.class;
+	}
 }

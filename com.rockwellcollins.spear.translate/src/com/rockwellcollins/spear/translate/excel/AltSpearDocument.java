@@ -15,40 +15,40 @@ import com.rockwellcollins.spear.utilities.Utilities;
 
 public class AltSpearDocument {
 
-  public static AltSpearDocument create(Specification main) {
-    return new AltSpearDocument(main);
-  }
+	public static AltSpearDocument create(Specification main) {
+		return new AltSpearDocument(main);
+	}
 
-  public String    mainName;
-  public Set<File> used;
+	public String mainName;
+	public Set<File> used;
 
-  private AltSpearDocument(Specification main) {
-    this.mainName = main.getName();
-    used = new HashSet<>();
-    this.processFile(main);
-  }
+	private AltSpearDocument(Specification main) {
+		this.mainName = main.getName();
+		used = new HashSet<>();
+		this.processFile(main);
+	}
 
-  private void processFile(File f) {
-    if (used.contains(f)) {
-      return;
-    }
+	private void processFile(File f) {
+		if (used.contains(f)) {
+			return;
+		}
 
-    used.add(f);
-    for (Import im : f.getImports()) {
-      File importedFile = Utilities.getImportedFile(im);
-      processFile(importedFile);
-    }
-  }
+		used.add(f);
+		for (Import im : f.getImports()) {
+			File importedFile = Utilities.getImportedFile(im);
+			processFile(importedFile);
+		}
+	}
 
-  public Collection<Specification> getSpecifications() {
-    List<Specification> list = new ArrayList<>();
-    for (File f : used) {
-      if (f instanceof Specification) {
-        Specification s = (Specification) f;
-        list.add(s);
-      }
-    }
-    // this copy needs to happen.
-    return EcoreUtil2.copyAll(list);
-  }
+	public Collection<Specification> getSpecifications() {
+		List<Specification> list = new ArrayList<>();
+		for (File f : used) {
+			if (f instanceof Specification) {
+				Specification s = (Specification) f;
+				list.add(s);
+			}
+		}
+		// this copy needs to happen.
+		return EcoreUtil2.copyAll(list);
+	}
 }

@@ -18,3 +18,5 @@ Roadmap:
 - Autogeneration of the frame condition
 - Incorporation of real-time patterns
 - Infrastructure/support to integrate better with the AGREE framework
+
+Approved for Public Release. Distribution Unlimited. CASE NUMBER: 88ABW-2016-1658

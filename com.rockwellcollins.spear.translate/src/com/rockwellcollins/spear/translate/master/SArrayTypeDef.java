@@ -10,19 +10,19 @@ import jkind.lustre.TypeDef;
 
 public class SArrayTypeDef extends STypeDef {
 
-  public Type    base;
-  public Integer size;
+	public Type base;
+	public Integer size;
 
-  public SArrayTypeDef(ArrayTypeDef atd, SProgram program) {
-    this.name = program.map.getProgramName(atd.getName());
-    this.base = atd.getBase();
-    this.size = IntConstantFinder.fetch(atd);
-  }
+	public SArrayTypeDef(ArrayTypeDef atd, SProgram program) {
+		this.name = program.map.getProgramName(atd.getName());
+		this.base = atd.getBase();
+		this.size = IntConstantFinder.fetch(atd);
+	}
 
-  @Override
-  public TypeDef toLustre(SProgram program) {
-    jkind.lustre.Type baseType = TranslateType.translate(base, program.map);
-    jkind.lustre.Type arrayType = new ArrayType(baseType, size);
-    return new TypeDef(name, arrayType);
-  }
+	@Override
+	public TypeDef toLustre(SProgram program) {
+		jkind.lustre.Type baseType = TranslateType.translate(base, program.map);
+		jkind.lustre.Type arrayType = new ArrayType(baseType, size);
+		return new TypeDef(name, arrayType);
+	}
 }
