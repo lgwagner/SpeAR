@@ -1,4 +1,4 @@
-package com.rockwellcollins.spear.translate.naming;
+package com.rockwellcollins.spear.translate.naming.backend;
 
 import org.apache.commons.collections4.bidimap.DualHashBidiMap;
 

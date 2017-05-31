@@ -1,4 +1,4 @@
-package com.rockwellcollins.spear.translate.naming;
+package com.rockwellcollins.spear.translate.naming.backend;
 
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
 import com.rockwellcollins.spear.utilities.LustreLibrary;

@@ -6,7 +6,7 @@ import com.rockwellcollins.spear.BoolType;
 import com.rockwellcollins.spear.IntType;
 import com.rockwellcollins.spear.RealType;
 import com.rockwellcollins.spear.UserType;
-import com.rockwellcollins.spear.translate.naming.SpearMap;
+import com.rockwellcollins.spear.translate.naming.backend.SpearMap;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 import jkind.lustre.Type;

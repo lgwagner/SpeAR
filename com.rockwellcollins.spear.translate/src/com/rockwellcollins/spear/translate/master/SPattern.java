@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.rockwellcollins.spear.Pattern;
-import com.rockwellcollins.spear.translate.naming.SpearMap;
+import com.rockwellcollins.spear.translate.naming.backend.SpearMap;
 
 import jkind.lustre.Node;
 import jkind.lustre.builders.NodeBuilder;

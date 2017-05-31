@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.translate.lustre.TranslateType;
-import com.rockwellcollins.spear.translate.naming.SpearMap;
+import com.rockwellcollins.spear.translate.naming.backend.SpearMap;
 import com.rockwellcollins.spear.utilities.Utilities;
 
 import jkind.lustre.IdExpr;

@@ -13,7 +13,7 @@ import com.rockwellcollins.spear.translate.intermediate.GetUsedConstants;
 import com.rockwellcollins.spear.translate.intermediate.GetUsedPatterns;
 import com.rockwellcollins.spear.translate.intermediate.GetUsedSpecifications;
 import com.rockwellcollins.spear.translate.intermediate.GetUsedTypeDefs;
-import com.rockwellcollins.spear.translate.naming.SpearMap;
+import com.rockwellcollins.spear.translate.naming.backend.SpearMap;
 import com.rockwellcollins.spear.utilities.LustreLibrary;
 
 import jkind.lustre.Program;

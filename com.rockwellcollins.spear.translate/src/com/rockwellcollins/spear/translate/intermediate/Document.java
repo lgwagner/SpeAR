@@ -35,8 +35,7 @@ public class Document {
 	public Map<EObject, Map<String, String>> renamed = new HashMap<>();
 	private Specification spec;
 
-	private SimpleAttributeResolver<EObject, String> resolver = SimpleAttributeResolver.newResolver(String.class,
-			"name");
+	private SimpleAttributeResolver<EObject, String> resolver = SimpleAttributeResolver.newResolver(String.class,"name");
 
 	public Document(Specification f) {
 		this(f, true);
@@ -46,7 +45,6 @@ public class Document {
 		spec = f;
 		Collection<File> deps = FindDependencies.get(f);
 
-		// fixme
 		Map<String, File> filemap = new HashMap<>();
 		deps.stream().forEach(file -> filemap.put(file.getName(), file));
 		files.addAll(deps);
