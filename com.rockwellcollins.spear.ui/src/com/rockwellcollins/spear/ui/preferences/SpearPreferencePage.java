@@ -73,7 +73,7 @@ public class SpearPreferencePage extends FieldEditorPreferencePage
     }
 
     String intkeys[] = { PreferenceConstants.PREF_PDR_MAX, PreferenceConstants.PREF_DEPTH,
-        PreferenceConstants.PREF_SPEAR_CONSISTENCY_DEPTH };
+        PreferenceConstants.PREF_SPEAR_CONSISTENCY_DEPTH, PreferenceConstants.PREF_TIMEOUT};
     for (String key : intkeys) {
       initInt(sstore, dstore, key);
     }

@@ -90,11 +90,10 @@ public class BatchAnalysis extends AbstractHandler {
     String comID = event.getCommand().getId();
     if (comID.compareTo("com.rockwellcollins.spear.ui.commands.terminateBatchAnalysis") == 0) {
       System.out.println(this);
-      if (ba != null && ba.getState() != Thread.State.TERMINATED) {
-        System.out.println("there");
+      if (ba != null && ba.getState() != Thread.State.TERMINATED && stop == false) {
         stop = true;
         try {
-          message("Batch analysis terminated.");
+          message("Initiating batch analysis termination ...");
         } catch (Exception e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -217,6 +216,9 @@ public class BatchAnalysis extends AbstractHandler {
       } catch (Exception e) {
         throw new ExecutionException("Error while refreshing workspace : " + e.toString());
       }
+    }
+    if(stop) {
+      message(" ... batch analysis terminated.");
     }
     return null;
   }

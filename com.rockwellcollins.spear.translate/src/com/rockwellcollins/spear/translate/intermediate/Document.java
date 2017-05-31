@@ -1,11 +1,16 @@
 package com.rockwellcollins.spear.translate.intermediate;
 
 import java.io.FileOutputStream;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+import org.apache.commons.io.FilenameUtils;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -140,17 +145,20 @@ public class Document {
   }
 
   private FileOutputStream lustreOutputStream() {
-    URI extLessURI = spec.eResource().getURI().trimFileExtension();
     IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-    Path p = new Path(extLessURI.toPlatformString(true));
-    IFolder f = root.getFolder(p);
-    IPath r = f.getRawLocation();
-    String stem = r.toString();
+    IFile ifile = root.getFile(new Path(spec.eResource().getURI().toPlatformString(true)));
+    String fullpath = ifile.getRawLocation().toString();
+    String prefix = FilenameUtils.getPrefix(fullpath);
+    String filename = FilenameUtils.getBaseName(fullpath);
+    String filenamenoext = FilenameUtils.removeExtension(filename);
+    String filepath = prefix + FilenameUtils.getPath(fullpath);
     try {
-      FileOutputStream out = new FileOutputStream(stem + ".lus");
+      java.io.File pathfile = new java.io.File(Paths.get(filepath,"generated").toString());
+      pathfile.mkdirs();
+      FileOutputStream out = new FileOutputStream(Paths.get(filepath,"generated",filenamenoext).toString() + ".lus");
       return out;
     } catch (Exception e) {
-      System.err.println("Could not create file " + stem + ", lustre file will not be generated : " + e);
+      System.err.println("Could not create file " + Paths.get(filepath,"generated",filenamenoext).toString() + ".lus, lustre file will not be generated : " + e);
       return null;
     }
   }
