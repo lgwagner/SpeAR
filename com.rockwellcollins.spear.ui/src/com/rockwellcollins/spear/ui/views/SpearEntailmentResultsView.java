@@ -26,6 +26,7 @@ public class SpearEntailmentResultsView extends ViewPart {
 		manager.setRemoveAllWhenShown(true);
 		manager.addMenuListener(menuListener);
 		table.getControl().setMenu(manager.createContextMenu(table.getViewer().getTable()));
+		table.getViewer().addDoubleClickListener(event -> menuListener.viewCexEclipse(event.getSelection()));
 	}
 
 	@Override

@@ -9,6 +9,7 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.program.Program;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -67,14 +68,14 @@ public class SpearEntailmentMenuListener implements IMenuListener {
 		manager.add(new Action(text + "spreadsheet") {
 			@Override
 			public void run() {
-				viewCexSpreadsheet(cex, layout);
+				viewCexSpreadsheet(cex);
 			}
 		});
 
 		manager.add(new Action(text + "Eclipse") {
 			@Override
 			public void run() {
-				viewCexEclipse(cex, layout);
+				viewCexEclipse(cex);
 			}
 		});
 	}
@@ -93,7 +94,18 @@ public class SpearEntailmentMenuListener implements IMenuListener {
 		});
 	}
 
-	private void viewCexEclipse(Counterexample cex, Layout layout) {
+	public void viewCexEclipse(ISelection selection) {
+		if (!selection.isEmpty()) {
+			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
+			PropertyResult result = (PropertyResult) structuredSelection.getFirstElement();
+			Counterexample cex = SpearEntailmentMenuListener.getCounterexample(result);
+			if (cex != null) {
+				viewCexEclipse(cex);
+			}
+		}
+	}
+
+	private void viewCexEclipse(Counterexample cex) {
 		try {
 			SpearCounterexampleView cexView = (SpearCounterexampleView) window.getActivePage()
 					.showView(SpearCounterexampleView.ID);
@@ -104,7 +116,7 @@ public class SpearEntailmentMenuListener implements IMenuListener {
 		}
 	}
 
-	private void viewCexSpreadsheet(Counterexample cex, Layout layout) {
+	private void viewCexSpreadsheet(Counterexample cex) {
 		try {
 			File file = File.createTempFile("cex", ".xls");
 			cex.toExcel(file, layout);
