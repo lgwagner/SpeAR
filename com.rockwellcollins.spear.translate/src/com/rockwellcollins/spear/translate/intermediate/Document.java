@@ -19,6 +19,7 @@ import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.TypeDef;
+import com.rockwellcollins.spear.translate.layout.SpearRenaming;
 import com.rockwellcollins.spear.translate.master.SProgram;
 import com.rockwellcollins.spear.translate.transformations.PerformTransforms;
 import com.rockwellcollins.spear.utilities.Utilities;
@@ -132,8 +133,8 @@ public class Document {
 		return p;
 	}
 
-	public Renaming getRenaming(Mode mode) {
-		return new MapRenaming(renamed.get(main), mode);
+	public Renaming getRenaming() {
+		return new SpearRenaming(renamed.get(main));
 	}
 
   private FileOutputStream lustreOutputStream() {

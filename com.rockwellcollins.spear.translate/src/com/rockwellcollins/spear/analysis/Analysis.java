@@ -78,7 +78,7 @@ public class Analysis {
 		} else {
 			p = pair.getValue1().getLogicalEntailment();
 		}
-		Renaming renaming = pair.getValue1().getRenaming(Mode.IDENTITY);
+		Renaming renaming = pair.getValue1().getRenaming();
 
 		List<Boolean> invert = new ArrayList<>();
 		Specification s = (Specification) pair.getValue1().main;
@@ -121,7 +121,7 @@ public class Analysis {
 		} else {
 			p = pair.getValue1().getLogicalConsistency();
 		}
-		Renaming renaming = pair.getValue1().getRenaming(Mode.IDENTITY);
+		Renaming renaming = pair.getValue1().getRenaming();
 
 		List<Boolean> invert = p.getMainNode().properties.stream().map(prop -> true).collect(Collectors.toList());
 		JKindResult result = new JKindResult(resultname, p.getMainNode().properties, invert, renaming);
@@ -153,7 +153,7 @@ public class Analysis {
 			throw e;
 		}
 		PreferencesUtil.configureRealizabilityApi(api);
-		JRealizabilityResult result = new JRealizabilityResult("result", doc.getRenaming(Mode.IDENTITY));
+		JRealizabilityResult result = new JRealizabilityResult("result", doc.getRenaming());
 
 		return Pair.with(new Analysis(api, p, result), result);
 	}

@@ -28,6 +28,7 @@ import com.google.inject.Injector;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
 import com.rockwellcollins.spear.translate.intermediate.Document;
+import com.rockwellcollins.spear.translate.layout.SpearRenaming;
 import com.rockwellcollins.spear.translate.master.SProgram;
 import com.rockwellcollins.spear.ui.views.SpearConsistencyResultsView;
 import com.rockwellcollins.ui.internal.SpearActivator;
@@ -100,7 +101,7 @@ public class AnalyzePattern extends AbstractHandler {
 
 		JKindApi api = PreferencesUtil.getJKindApi();
 
-		Renaming renaming = new MapRenaming(d.renamed.get(d.main), Mode.IDENTITY);
+		Renaming renaming = new SpearRenaming(d.renamed.get(d.main));
 		JKindResult result = new JKindResult("result", program.getMainNode().properties, renaming);
 		IProgressMonitor monitor = new NullProgressMonitor();
 		String nicename = "Pattern Analysis: " + p.getName();
