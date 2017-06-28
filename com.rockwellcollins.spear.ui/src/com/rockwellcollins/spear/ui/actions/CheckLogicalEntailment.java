@@ -42,7 +42,7 @@ import jkind.results.layout.Layout;
 
 public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 
-	private static final String TERMINATE_ID = "com.rockwellcollins.spear.translate.commands..terminateLogicalEntailment";
+	private static final String TERMINATE_ID = "com.rockwellcollins.spear.ui.commands.terminateLogicalEntailment";
 
 	private IWorkbenchWindow window;
 

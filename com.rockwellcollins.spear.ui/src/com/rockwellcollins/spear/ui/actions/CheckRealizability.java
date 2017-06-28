@@ -35,7 +35,7 @@ import jkind.results.layout.Layout;
 
 public class CheckRealizability implements IWorkbenchWindowActionDelegate {
 
-	private static final String TERMINATE_ID = "com.rockwellcollins.spear.translate.commands.terminateRealizability";
+	private static final String TERMINATE_ID = "com.rockwellcollins.spear.ui.commands.terminateRealizability";
 
 	private IWorkbenchWindow window;
 

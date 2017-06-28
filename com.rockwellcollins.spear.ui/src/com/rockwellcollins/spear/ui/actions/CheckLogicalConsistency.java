@@ -35,7 +35,7 @@ import jkind.results.layout.Layout;
 
 public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 
-	private static final String TERMINATE_ID = "com.rockwellcollins.spear.translate.commands.terminateLogicalConsistency";
+	private static final String TERMINATE_ID = "com.rockwellcollins.spear.ui.commands.terminateLogicalConsistency";
 
 	private IWorkbenchWindow window;
 
