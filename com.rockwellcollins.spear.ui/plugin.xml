@@ -593,23 +593,7 @@
               id="com.rockwellcollins.spear.ui.views.SpearTraceabilityMatrixView"
               name="Traceability Matrix"/>            
    </extension>
-   
-   <extension
-         point="org.eclipse.ui.handlers">
-      <handler
-            commandId="com.rockwellcollins.spear.ui.commands.analyzePattern"
-            class="com.rockwellcollins.spear.ui.handlers.AnalyzePattern">
-      </handler>
-      <handler
-            commandId="com.rockwellcollins.spear.ui.commands.analyzeType"
-            class="com.rockwellcollins.spear.ui.handlers.AnalyzeType">
-      </handler>
-      <handler
-            commandId="com.rockwellcollins.spear.ui.commands.normalizeSectionHeaders"
-            class="com.rockwellcollins.spear.ui.handlers.NormalizeSectionHeaders">
-      </handler>      
-   </extension>
-   
+
    <extension
          point="org.eclipse.ui.commands">
       <category
