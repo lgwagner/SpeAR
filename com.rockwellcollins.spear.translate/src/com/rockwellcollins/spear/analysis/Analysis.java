@@ -20,7 +20,6 @@ import jkind.api.JRealizabilityApi;
 import jkind.api.results.JKindResult;
 import jkind.api.results.JRealizabilityResult;
 import jkind.api.results.Renaming;
-import jkind.api.results.MapRenaming.Mode;
 import jkind.lustre.Program;
 
 public class Analysis {
