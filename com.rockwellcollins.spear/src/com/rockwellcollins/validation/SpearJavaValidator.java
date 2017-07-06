@@ -149,16 +149,15 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 
 	@Check
 	public void checkPropertiesOnlyHaveWitnessFlags(Specification s) {
-		List<Constraint> constraints = new ArrayList<>(s.getAssumptions());
+		List<Constraint> constraints = new ArrayList<>();
+		constraints.addAll(s.getAssumptions());
 		constraints.addAll(s.getRequirements());
 
 		for (Constraint c : constraints) {
 			if (c instanceof FormalConstraint) {
 				FormalConstraint fc = (FormalConstraint) c;
-				if (fc.getFlagAsWitness() != null) {
-					String type = fc.getFlagAsWitness().equals("witness") ? "a witness" : "an observer";
-					error("Only " + s.getBehaviorsKeyword() + " may be flagged as " + type + ".", c,
-							SpearPackage.Literals.FORMAL_CONSTRAINT__FLAG_AS_WITNESS);
+				if (fc.getFlag() != null) {
+					error("Only " + s.getBehaviorsKeyword() + " may be flagged.", c, SpearPackage.Literals.FORMAL_CONSTRAINT__FLAG);
 				}
 			}
 		}

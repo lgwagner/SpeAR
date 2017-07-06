@@ -29,6 +29,7 @@ import com.rockwellcollins.spear.Constraint;
 import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.FormalConstraint;
+import com.rockwellcollins.spear.Observe;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.analysis.Analysis;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
@@ -120,7 +121,7 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 		for (Constraint c : specification.getBehaviors()) {
 			if (c instanceof FormalConstraint) {
 				FormalConstraint fc = (FormalConstraint) c;
-				if ("observe".equals(fc.getFlagAsWitness())) {
+				if(fc.getFlag() != null && (fc.getFlag() instanceof Observe)) {
 					result.add(c.getName());
 				}
 			}

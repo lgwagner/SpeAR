@@ -151,7 +151,12 @@ Constraint:
 ;
 
 FormalConstraint:
-   name=ID (flagAsWitness='observe')? ':' expr=Expr (data+=Data)*
+   name=ID (flag=FormalConstraintFlag)? ':' expr=Expr (data+=Data)*
+;
+
+FormalConstraintFlag:
+	{Observe}	'observe'
+|	{UFC}	'ufc'
 ;
 
 EnglishConstraint:

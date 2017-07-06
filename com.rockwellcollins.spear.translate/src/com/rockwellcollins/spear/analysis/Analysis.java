@@ -10,6 +10,7 @@ import org.javatuples.Pair;
 
 import com.rockwellcollins.spear.Constraint;
 import com.rockwellcollins.spear.FormalConstraint;
+import com.rockwellcollins.spear.Observe;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
 import com.rockwellcollins.spear.translate.intermediate.Document;
@@ -84,7 +85,7 @@ public class Analysis {
 		for (Constraint c : s.getBehaviors()) {
 			if (c instanceof FormalConstraint) {
 				FormalConstraint fc = (FormalConstraint) c;
-				if (fc.getFlagAsWitness() != null) {
+				if (fc.getFlag() != null && (fc.getFlag() instanceof Observe)) {
 					invert.add(true);
 				} else {
 					invert.add(false);

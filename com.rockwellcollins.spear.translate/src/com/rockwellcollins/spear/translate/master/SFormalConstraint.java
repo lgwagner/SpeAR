@@ -2,6 +2,7 @@ package com.rockwellcollins.spear.translate.master;
 
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FormalConstraint;
+import com.rockwellcollins.spear.Observe;
 import com.rockwellcollins.spear.translate.lustre.TranslateExpr;
 
 import jkind.lustre.BinaryExpr;
@@ -22,7 +23,7 @@ public class SFormalConstraint extends SConstraint {
 	public SFormalConstraint(FormalConstraint fc, SSpecification s) {
 		this.name = s.map.getModuleName(fc.getName());
 		this.expression = fc.getExpr();
-		this.isObserver = fc.getFlagAsWitness() != null && fc.getFlagAsWitness().equals("observe");
+		this.isObserver = fc.getFlag() != null && (fc.getFlag() instanceof Observe);
 	}
 
 	@Override
