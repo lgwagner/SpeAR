@@ -22,7 +22,7 @@ import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
-import org.javatuples.Pair;
+import org.javatuples.Triplet;
 
 import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Constraint;
@@ -33,6 +33,7 @@ import com.rockwellcollins.spear.Observe;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.analysis.Analysis;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
+import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.translate.layout.SpearRegularLayout;
 import com.rockwellcollins.spear.ui.handlers.TerminateHandler;
 import com.rockwellcollins.spear.ui.views.SpearEntailmentResultsView;
@@ -90,21 +91,19 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 					return null;
 				}
 
-				Pair<Analysis, JKindResult> pair = Analysis.entailment(specification, PreferencesUtil.getJKindJar(),
-						"result");
+				Triplet<Analysis, Document, JKindResult> triple = Analysis.entailment(specification, PreferencesUtil.getJKindJar(),"result");
 				ResourcesPlugin.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_INFINITE, null);
 
 				activateTerminateHandler(monitor);
-				List<String> requirements = specification.getRequirements().stream().map(req -> req.getName())
-						.collect(toList());
-				List<String> observers = getObservers(specification);
-				showView(pair.getValue1(), new SpearRegularLayout(specification), requirements, observers);
+				List<String> requirements = specification.getRequirements().stream().map(req -> req.getName()).collect(toList());
+				List<String> observers = getObservers(triple.getValue1());
+				showView(triple.getValue2(), new SpearRegularLayout(specification), requirements, observers);
 
 				new Thread(() -> {
 					try {
-						pair.getValue0().analyze(monitor);
+						triple.getValue0().analyze(monitor);
 					} catch (Exception e) {
-						System.err.println(pair.getValue1().getText());
+						System.err.println(triple.getValue2().getText());
 						throw e;
 					} finally {
 						deactivateTerminateHandler();
@@ -116,12 +115,13 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 		});
 	}
 
-	private List<String> getObservers(Specification specification) {
+	private List<String> getObservers(Document d) {
+		Specification specification = (Specification) d.main;
 		List<String> result = new ArrayList<>();
 		for (Constraint c : specification.getBehaviors()) {
 			if (c instanceof FormalConstraint) {
 				FormalConstraint fc = (FormalConstraint) c;
-				if(fc.getFlag() != null && (fc.getFlag() instanceof Observe)) {
+				if (fc.getFlag() != null && (fc.getFlag() instanceof Observe)) {
 					result.add(c.getName());
 				}
 			}

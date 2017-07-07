@@ -9,6 +9,7 @@ import com.rockwellcollins.spear.BoolLiteral;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FieldType;
 import com.rockwellcollins.spear.FormalConstraint;
+import com.rockwellcollins.spear.FormalConstraintFlag;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.IntLiteral;
@@ -17,6 +18,7 @@ import com.rockwellcollins.spear.LustreEquation;
 import com.rockwellcollins.spear.LustreProperty;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.MultipleExpr;
+import com.rockwellcollins.spear.Observe;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.SpearFactory;
@@ -154,7 +156,7 @@ public class Create {
 		return fc;
 	}
 
-	private static Expr createAnd(Expr left, Expr right) {
+	public static Expr createAnd(Expr left, Expr right) {
 		return createBinaryExpr(left, "and", right);
 	}
 
@@ -170,6 +172,10 @@ public class Create {
 		return createTrue();
 	}
 
+	public static Expr createOr(Expr left, Expr right) {
+		return createBinaryExpr(left, "or", right);
+	}
+	
 	public static Expr createIdExpr(IdRef c) {
 		IdExpr ide = f.createIdExpr();
 		ide.setId(c);
@@ -235,5 +241,10 @@ public class Create {
 		UserType ut = f.createUserType();
 		ut.setDef(td);
 		return ut;
+	}
+
+	public static FormalConstraintFlag Observe() {
+		Observe ob = f.createObserve();
+		return ob;
 	}
 }

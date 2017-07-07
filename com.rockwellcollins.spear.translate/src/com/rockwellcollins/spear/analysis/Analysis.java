@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.javatuples.Pair;
+import org.javatuples.Triplet;
 
 import com.rockwellcollins.spear.Constraint;
 import com.rockwellcollins.spear.FormalConstraint;
@@ -63,7 +64,7 @@ public class Analysis {
 		return Pair.with(api, document);
 	}
 
-	public static Pair<Analysis, JKindResult> entailment(Specification specification, String jkindjarpth,
+	public static Triplet<Analysis, Document, JKindResult> entailment(Specification specification, String jkindjarpth,
 			String resultname) throws IOException {
 
 		Pair<JKindApi, Document> pair = commonJKindAnalysisSetup(specification, jkindjarpth);
@@ -103,10 +104,10 @@ public class Analysis {
 		}
 
 		JKindResult result = new JKindResult(resultname, p.getMainNode().properties, invert, renaming);
-		return Pair.with(new Analysis(pair.getValue0(), p, result), result);
+		return Triplet.with(new Analysis(pair.getValue0(), p, result), pair.getValue1(), result);
 	}
 
-	public static Pair<Analysis, JKindResult> consistency(Specification specification, String jkindjarpth,
+	public static Triplet<Analysis, Document, JKindResult> consistency(Specification specification, String jkindjarpth,
 			String resultname) throws IOException {
 
 		Pair<JKindApi, Document> pair = commonJKindAnalysisSetup(specification, jkindjarpth);
@@ -125,11 +126,11 @@ public class Analysis {
 
 		List<Boolean> invert = p.getMainNode().properties.stream().map(prop -> true).collect(Collectors.toList());
 		JKindResult result = new JKindResult(resultname, p.getMainNode().properties, invert, renaming);
-		return Pair.with(new Analysis(pair.getValue0(), p, result), result);
+		return Triplet.with(new Analysis(pair.getValue0(), p, result), pair.getValue1(), result);
 	}
 
-	public static Pair<Analysis, JKindResult> realizability(Specification specification, String jkindjarpth,
-			String resultname) throws Exception {
+	public static Triplet<Analysis, Document, JKindResult> realizability(Specification specification,
+			String jkindjarpth, String resultname) throws Exception {
 		JRealizabilityApi api = new JRealizabilityApi();
 		api.setJKindJar(jkindjarpth.toString());
 		PreferencesUtil.configureRealizabilityApi(api);
@@ -155,7 +156,6 @@ public class Analysis {
 		PreferencesUtil.configureRealizabilityApi(api);
 		JRealizabilityResult result = new JRealizabilityResult("result", doc.getRenaming());
 
-		return Pair.with(new Analysis(api, p, result), result);
+		return Triplet.with(new Analysis(api, p, result), doc, result);
 	}
-
 }
