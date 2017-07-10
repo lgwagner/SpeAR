@@ -20,6 +20,7 @@ import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.MultipleExpr;
 import com.rockwellcollins.spear.Observe;
 import com.rockwellcollins.spear.Pattern;
+import com.rockwellcollins.spear.PreviousExpr;
 import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.SpearFactory;
 import com.rockwellcollins.spear.Type;
@@ -156,10 +157,18 @@ public class Create {
 		return fc;
 	}
 
-	public static Expr createAnd(Expr left, Expr right) {
-		return createBinaryExpr(left, "and", right);
-	}
+//	public static Expr createAnd(Expr left, Expr right) {
+//		return createBinaryExpr(left, "and", right);
+//	}
 
+	public static Expr createAnd(Expr first, Expr... rest) {
+		Expr result = first;
+		for(Expr e : rest) {
+			result = createBinaryExpr(result, "and", e);
+		}
+		return result;
+	}
+	
 	public static Expr createAnd(Iterator<Expr> exprs) {
 		if (exprs.hasNext()) {
 			Expr next = exprs.next();
@@ -182,6 +191,15 @@ public class Create {
 		return ide;
 	}
 
+	public static Expr createPrevious(Expr previous, Expr init) {
+		PreviousExpr prev = f.createPreviousExpr();
+		prev.setVar(previous);
+		if(init != null) {
+			prev.setInit(init);
+		}
+		return prev;
+	}
+	
 	public static Expr createRecordAccessExpr(Expr record, FieldType ft) {
 		RecordAccessExpr rae = f.createRecordAccessExpr();
 		rae.setRecord(record);

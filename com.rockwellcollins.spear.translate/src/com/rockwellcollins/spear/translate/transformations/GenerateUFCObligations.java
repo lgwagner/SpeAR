@@ -1,11 +1,16 @@
 package com.rockwellcollins.spear.translate.transformations;
 
+import static com.rockwellcollins.spear.language.Create.createAnd;
+import static com.rockwellcollins.spear.language.Create.createFalse;
+import static com.rockwellcollins.spear.language.Create.createNot;
+import static com.rockwellcollins.spear.language.Create.createOr;
+import static com.rockwellcollins.spear.language.Create.createPrevious;
+import static org.eclipse.emf.ecore.util.EcoreUtil.copy;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-
-import org.eclipse.xtext.EcoreUtil2;
 
 import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.Constraint;
@@ -25,12 +30,12 @@ public class GenerateUFCObligations extends SpearSwitch<List<Expr>> {
 	public static void crunch(Document d) {
 		if (d.main instanceof Specification) {
 			Specification s = (Specification) d.main;
-			Map<String,String> renaming = d.renamed.get(s);
+			Map<String, String> renaming = d.renamed.get(s);
 			GenerateUFCObligations obs = new GenerateUFCObligations();
 			List<Constraint> newConstraints = new ArrayList<>();
 
 			for (Constraint c : s.getBehaviors()) {
-				newConstraints.add(EcoreUtil2.copy(c));
+				newConstraints.add(copy(c));
 				if (c instanceof FormalConstraint) {
 					FormalConstraint fc = (FormalConstraint) c;
 					if (fc.getFlag() instanceof UFC) {
@@ -68,27 +73,44 @@ public class GenerateUFCObligations extends SpearSwitch<List<Expr>> {
 
 		case "and":
 			for (Expr e : doSwitch(be.getLeft())) {
-				result.add(Create.createAnd(e, EcoreUtil2.copy(be.getRight())));
+				result.add(createAnd(e, copy(be.getRight())));
 			}
 			for (Expr e : doSwitch(be.getRight())) {
-				result.add(Create.createAnd(EcoreUtil2.copy(be.getLeft()), e));
+				result.add(createAnd(copy(be.getLeft()), e));
 			}
 			break;
 
-		case "or":
-		case "xor": //not a complete handling, but for now, it'll do
+		case "or": // not a complete handling, but for now, it'll do
 			for (Expr e : doSwitch(be.getLeft())) {
-				result.add(Create.createAnd(e, Create.createNot(EcoreUtil2.copy(be.getRight()))));
+				result.add(createAnd(e, createNot(copy(be.getRight()))));
 			}
 			for (Expr e : doSwitch(be.getRight())) {
-				result.add(Create.createAnd(Create.createNot(EcoreUtil2.copy(be.getLeft())), e));
+				result.add(createAnd(createNot(copy(be.getLeft())), e));
 			}
 			break;
-			
+
+		case "xor":
+			for (Expr e : doSwitch(be.getLeft())) {
+				result.add(createAnd(e, createNot(copy(be.getRight()))));
+			}
+			for (Expr e : doSwitch(be.getRight())) {
+				result.add(createAnd(createNot(copy(be.getLeft())), e));
+			}
+			flip();
+			for (Expr e : doSwitch(be.getLeft())) {
+				result.add(createAnd(e, copy(be.getRight())));
+			}
+			for (Expr e : doSwitch(be.getRight())) {
+				result.add(createAnd(copy(be.getLeft()), e));
+			}
+			// lets see where the game flips.
+			flip();
+			break;
+
 		case "implies":
-			Expr left = EcoreUtil2.copy(be.getLeft());
-			Expr right = EcoreUtil2.copy(be.getRight());
-			return doSwitch(Create.createOr(Create.createNot(left),right));
+			Expr left = copy(be.getLeft());
+			Expr right = copy(be.getRight());
+			return doSwitch(createOr(createNot(left), right));
 
 		// atomic
 		case ">":
@@ -102,10 +124,8 @@ public class GenerateUFCObligations extends SpearSwitch<List<Expr>> {
 		// not sure
 		case "triggers":
 		case "since":
-		case "once":
-		case "historically":
 		default:
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Should not be reached.");
 		}
 		return result;
 	}
@@ -118,31 +138,62 @@ public class GenerateUFCObligations extends SpearSwitch<List<Expr>> {
 			List<Expr> result = doSwitch(ue.getExpr());
 			flip();
 			return result;
-			
+
+		case "once":
+		case "historically":
 		default:
-			throw new IllegalArgumentException("TODO");
+			throw new IllegalArgumentException("Should not be reached.");
 		}
 	}
 
 	@Override
 	public List<Expr> casePreviousExpr(PreviousExpr pre) {
-		throw new IllegalArgumentException("TODO");
+		List<Expr> result = new ArrayList<>();
+		for (Expr e : doSwitch(pre.getVar())) {
+			result.add(createPrevious(e, createFalse()));
+		}
+
+		if (pre.getInit() != null) {
+			for (Expr e : doSwitch(pre.getInit())) {
+				result.add(createPrevious(createFalse(), e));
+			}
+		}
+		return result;
 	}
 
 	@Override
 	public List<Expr> caseIfThenElseExpr(IfThenElseExpr ite) {
-		doSwitch(ite.getCond());
-		doSwitch(ite.getThen());
-		doSwitch(ite.getElse());
-		throw new IllegalArgumentException("TODO");
+		List<Expr> result = new ArrayList<>();
+
+		// cond
+		for (Expr e : doSwitch(ite.getCond())) {
+			result.add(createAnd(e, copy(ite.getThen()), createNot(copy(ite.getElse()))));
+		}
+
+		flip();
+		for (Expr e : doSwitch(ite.getCond())) {
+			result.add(createAnd(e, createNot(copy(ite.getThen())), copy(ite.getElse())));
+		}
+		flip();
+
+		// then
+		for (Expr e : doSwitch(ite.getThen())) {
+			result.add(createAnd(copy(ite.getCond()), e));
+		}
+
+		// else
+		for (Expr e : doSwitch(ite.getElse())) {
+			result.add(createAnd(createNot(copy(ite.getCond())), e));
+		}
+		return result;
 	}
 
 	@Override
 	public List<Expr> caseExpr(Expr e) {
 		if (positive) {
-			return Collections.singletonList(EcoreUtil2.copy(e));
+			return Collections.singletonList(copy(e));
 		} else {
-			return Collections.singletonList(Create.createNot(EcoreUtil2.copy(e)));
+			return Collections.singletonList(createNot(copy(e)));
 		}
 	}
 }
