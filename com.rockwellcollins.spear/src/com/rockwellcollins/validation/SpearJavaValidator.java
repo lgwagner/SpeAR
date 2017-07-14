@@ -3,8 +3,6 @@
  */
 package com.rockwellcollins.validation;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -24,9 +22,11 @@ import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.Import;
 import com.rockwellcollins.spear.NamedTypeDef;
+import com.rockwellcollins.spear.Observe;
 import com.rockwellcollins.spear.PreviousExpr;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.UFC;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.typing.PrimitiveType;
@@ -147,18 +147,33 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 		}
 	}
 
+	private boolean checkForObserveFlag(Constraint c) {
+		if (c instanceof FormalConstraint) {
+			FormalConstraint fc = (FormalConstraint) c;
+			return (fc.getFlag() != null) && (fc.getFlag() instanceof Observe);
+		}
+		return false;
+	}
+
+	private boolean checkForUFCFlag(Constraint c) {
+		if (c instanceof FormalConstraint) {
+			FormalConstraint fc = (FormalConstraint) c;
+			return (fc.getFlag() != null) && (fc.getFlag() instanceof UFC);
+		}
+		return false;
+	}
+	
 	@Check
 	public void checkPropertiesOnlyHaveWitnessFlags(Specification s) {
-		List<Constraint> constraints = new ArrayList<>();
-		constraints.addAll(s.getAssumptions());
-		constraints.addAll(s.getRequirements());
+		for(Constraint c : s.getAssumptions()) {
+			if (checkForObserveFlag(c) || checkForUFCFlag(c)) {
+				error("Flag is invalid for assumptions.",c,SpearPackage.Literals.FORMAL_CONSTRAINT__FLAG);
+			}
+		}
 
-		for (Constraint c : constraints) {
-			if (c instanceof FormalConstraint) {
-				FormalConstraint fc = (FormalConstraint) c;
-				if (fc.getFlag() != null) {
-					error("Only " + s.getBehaviorsKeyword() + " may be flagged.", c, SpearPackage.Literals.FORMAL_CONSTRAINT__FLAG);
-				}
+		for(Constraint c : s.getRequirements()) {
+			if (checkForObserveFlag(c) || checkForUFCFlag(c)) {
+				error("Flag is invalid for requirements.",c,SpearPackage.Literals.FORMAL_CONSTRAINT__FLAG);
 			}
 		}
 	}

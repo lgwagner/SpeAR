@@ -34,6 +34,20 @@ public class GenerateUFCObligations extends SpearSwitch<List<Expr>> {
 			GenerateUFCObligations obs = new GenerateUFCObligations();
 			List<Constraint> newConstraints = new ArrayList<>();
 
+			for (Constraint c : s.getRequirements()) {
+				if (c instanceof FormalConstraint) {
+					FormalConstraint fc = (FormalConstraint) c;
+					if (fc.getFlag() instanceof UFC) {
+						int counter = 0;
+						for (Expr e : obs.doSwitch(fc.getExpr())) {
+							String original = renaming.get(fc.getName());
+							newConstraints.add(createTestObligation(original + "_ufc_c" + counter, e));
+							counter++;							
+						}
+					}
+				}
+			}
+			
 			for (Constraint c : s.getBehaviors()) {
 				newConstraints.add(copy(c));
 				if (c instanceof FormalConstraint) {
