@@ -26,6 +26,7 @@ import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.BoolLiteral;
 import com.rockwellcollins.spear.BoolType;
 import com.rockwellcollins.spear.Constant;
+import com.rockwellcollins.spear.CounterExpr;
 import com.rockwellcollins.spear.EnglishConstraint;
 import com.rockwellcollins.spear.EnumTypeDef;
 import com.rockwellcollins.spear.EnumValue;
@@ -631,6 +632,11 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	@Override
 	public Type caseIdExpr(IdExpr ide) {
 		return doSwitch(ide.getId());
+	}
+	
+	@Override
+	public Type caseCounterExpr(CounterExpr ce) {
+		return INT;
 	}
 
 	@Override

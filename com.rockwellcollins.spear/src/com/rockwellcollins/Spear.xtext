@@ -266,7 +266,8 @@ AtomicExpr returns Expr:
    LiteralExpr 
 |  {IntegerCast} op='floor' '(' expr=Expr ')'
 |  {RealCast} op='real' '(' expr=Expr ')'
-|  {IdExpr} id=[IdRef] 
+|  {IdExpr} id=[IdRef]
+|  {CounterExpr} 'counter'
 |  {MultipleExpr} '|' exprs+=Expr (',' exprs+=Expr)* '|' 
 |  {IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else' else=Expr)? 
 |  {RecordExpr} 'new' type=[RecordTypeDef] '{' fieldExprs+=FieldExpr (',' fieldExprs+=FieldExpr)* '}' 

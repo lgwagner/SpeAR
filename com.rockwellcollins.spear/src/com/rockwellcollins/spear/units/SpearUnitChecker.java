@@ -23,6 +23,7 @@ import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.BinaryUnitExpr;
 import com.rockwellcollins.spear.BoolLiteral;
 import com.rockwellcollins.spear.Constant;
+import com.rockwellcollins.spear.CounterExpr;
 import com.rockwellcollins.spear.DerivedUnit;
 import com.rockwellcollins.spear.EnglishConstraint;
 import com.rockwellcollins.spear.EnumTypeDef;
@@ -592,6 +593,11 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	public Unit caseIdExpr(IdExpr ide) {
 		Unit result = doSwitch(ide.getId());
 		return result;
+	}
+	
+	@Override
+	public Unit caseCounterExpr(CounterExpr ce) {
+		return SCALAR;
 	}
 
 	@Override

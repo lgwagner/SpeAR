@@ -211,6 +211,11 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	public Expr caseIdExpr(com.rockwellcollins.spear.IdExpr ide) {
 		return doSwitch(ide.getId());
 	}
+	
+	@Override
+	public Expr caseCounterExpr(com.rockwellcollins.spear.CounterExpr ce) {
+		return new IdExpr(module.counterName);
+	}
 
 	@Override
 	public Expr caseMacro(Macro m) {
