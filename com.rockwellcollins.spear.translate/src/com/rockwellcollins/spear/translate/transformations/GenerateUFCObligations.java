@@ -42,12 +42,12 @@ public class GenerateUFCObligations extends SpearSwitch<List<Expr>> {
 						for (Expr e : obs.doSwitch(fc.getExpr())) {
 							String original = renaming.get(fc.getName());
 							newConstraints.add(createTestObligation(original + "_ufc_c" + counter, e));
-							counter++;							
+							counter++;
 						}
 					}
 				}
 			}
-			
+
 			for (Constraint c : s.getBehaviors()) {
 				newConstraints.add(copy(c));
 				if (c instanceof FormalConstraint) {
@@ -89,35 +89,42 @@ public class GenerateUFCObligations extends SpearSwitch<List<Expr>> {
 			for (Expr e : doSwitch(be.getLeft())) {
 				result.add(createAnd(e, copy(be.getRight())));
 			}
+			
 			for (Expr e : doSwitch(be.getRight())) {
 				result.add(createAnd(copy(be.getLeft()), e));
 			}
+			
 			break;
 
 		case "or": // not a complete handling, but for now, it'll do
 			for (Expr e : doSwitch(be.getLeft())) {
 				result.add(createAnd(e, createNot(copy(be.getRight()))));
 			}
+			
 			for (Expr e : doSwitch(be.getRight())) {
 				result.add(createAnd(createNot(copy(be.getLeft())), e));
 			}
+			
 			break;
 
 		case "xor":
 			for (Expr e : doSwitch(be.getLeft())) {
 				result.add(createAnd(e, createNot(copy(be.getRight()))));
 			}
+			
 			for (Expr e : doSwitch(be.getRight())) {
 				result.add(createAnd(createNot(copy(be.getLeft())), e));
 			}
+			
 			flip();
 			for (Expr e : doSwitch(be.getLeft())) {
 				result.add(createAnd(e, copy(be.getRight())));
 			}
+			
 			for (Expr e : doSwitch(be.getRight())) {
 				result.add(createAnd(copy(be.getLeft()), e));
 			}
-			// lets see where the game flips.
+
 			flip();
 			break;
 
@@ -153,6 +160,22 @@ public class GenerateUFCObligations extends SpearSwitch<List<Expr>> {
 			flip();
 			return result;
 
+		/*
+		 * Questions:
+		 * 	Do we go inside of PLTL expressions?
+		 * 		H(a or b) implies x
+		 * 			in this case do we need two test cases?
+		 * 			
+		 * 		O(a and b) implies y
+		 * 
+		 *  Do we add a counter variable to have minimum length for expressions that satisfy H,O,S,T?
+		 *  
+		 *  H(x) could be 1 step, 5 steps, 100 steps. 
+		 *  	- one is not very interesting
+		 *  	- 100 is probably prohibitively expensive
+		 *  	- 3-5 is likely the best range
+		 *  
+		 */
 		case "once":
 		case "historically":
 		default:
