@@ -414,7 +414,7 @@ public class LustreLibrary {
 		
 		EquationBuilder cEq = new EquationBuilder();
 		cEq.addLhs(c);
-		cEq.setExpr(ite(id(a),plus(arrow(integer(0),pre(id(c))),integer(1)),arrow(integer(0),pre(id(c)))));
+		cEq.setExpr(plus(arrow(integer(0),pre(id(c))),ite(id(a),integer(1),integer(0))));
 		
 		count.addEquation(cEq.build());
 		return count.build();

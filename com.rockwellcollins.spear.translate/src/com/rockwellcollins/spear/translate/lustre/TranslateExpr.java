@@ -181,7 +181,11 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 			args.add(left);
 			args.add(right);
 			if(binary.getOp().equals("responds")) {
-				args.add(new IntExpr(1));
+				if(binary.getDelay() == 0) {
+					args.add(new IntExpr(1));
+				} else {
+					args.add(new IntExpr(binary.getDelay()));
+				}
 			}
 			return new NodeCallExpr(binary.getOp(), args);
 

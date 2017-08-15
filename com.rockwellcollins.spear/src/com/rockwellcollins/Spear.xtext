@@ -194,11 +194,15 @@ OrExpr returns Expr:
 ;
 
 AndExpr returns Expr:
-   OrderingExpr (=> ({BinaryExpr.left=current} op='and') right=OrderingExpr)*
+   PrecedesExpr (=> ({BinaryExpr.left=current} op='and') right=PrecedesExpr)*
 ;
 
-OrderingExpr returns Expr:
-   AfterUntilExpr (=> ({BinaryExpr.left=current} op=('precedes' | 'responds')) right=AfterUntilExpr)*
+PrecedesExpr returns Expr:
+   RespondsExpr (=> ({BinaryExpr.left=current} op='precedes') right=RespondsExpr)*
+;
+
+RespondsExpr returns Expr:
+   AfterUntilExpr (=> ({BinaryExpr.left=current} op='responds' ('within' delay=INT)?) right=AfterUntilExpr)*
 ;
 
 AfterUntilExpr returns Expr:
