@@ -91,6 +91,8 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 		case "once":
 		case "historically":
 		case "initially":
+		case "count":
+		case "ccount":
 			List<Expr> args = new ArrayList<>();
 			args.add(sub);
 			return new NodeCallExpr(unary.getOp(), args);
@@ -173,9 +175,14 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 
 		case "since":
 		case "triggers":
+		case "precedes":
+		case "responds":
 			List<Expr> args = new ArrayList<>();
 			args.add(left);
 			args.add(right);
+			if(binary.getOp().equals("responds")) {
+				args.add(new IntExpr(1));
+			}
 			return new NodeCallExpr(binary.getOp(), args);
 
 		default:

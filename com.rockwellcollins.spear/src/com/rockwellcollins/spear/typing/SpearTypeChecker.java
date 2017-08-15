@@ -382,6 +382,8 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		case "T":
 		case "since":
 		case "S":
+		case "precedes":
+		case "responds":
 			if (left == BOOL && right == BOOL) {
 				return BOOL;
 			}
@@ -423,8 +425,15 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 				return BOOL;
 			}
 			break;
+		
+		case "count":
+		case "ccount":
+			if(type == BOOL) {
+				return INT;
+			}
+			break;
 		}
-
+		
 		error("Operator '" + ue.getOp() + "' not defined on type " + type, ue);
 		return error(ue);
 	}

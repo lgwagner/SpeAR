@@ -15,7 +15,8 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  org.eclipse.xtext.common.types,
  org.eclipse.equinox.app,
  org.eclipse.ui
-Import-Package: org.apache.log4j,
+Import-Package: jkind.lustre,
+ org.apache.log4j,
  org.eclipse.core.runtime;version="3.5.0",
  org.eclipse.core.runtime.preferences;version="3.3.0",
  org.osgi.framework;version="1.8.0"

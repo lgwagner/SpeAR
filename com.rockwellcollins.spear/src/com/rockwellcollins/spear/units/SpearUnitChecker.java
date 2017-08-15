@@ -450,6 +450,8 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 			// the following ops are syntactic sugar
 		case "never":
 		case "before":
+		case "count":
+		case "ccount":
 			if (unit == SCALAR) {
 				return SCALAR;
 			}
