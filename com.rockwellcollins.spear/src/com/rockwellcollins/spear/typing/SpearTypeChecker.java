@@ -40,11 +40,12 @@ import com.rockwellcollins.spear.IfThenElseExpr;
 import com.rockwellcollins.spear.IntLiteral;
 import com.rockwellcollins.spear.IntType;
 import com.rockwellcollins.spear.IntegerCast;
+import com.rockwellcollins.spear.IntervalExpr;
+import com.rockwellcollins.spear.ListExpr;
 import com.rockwellcollins.spear.LustreAssertion;
 import com.rockwellcollins.spear.LustreEquation;
 import com.rockwellcollins.spear.LustreProperty;
 import com.rockwellcollins.spear.Macro;
-import com.rockwellcollins.spear.MultipleExpr;
 import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.PatternCall;
 import com.rockwellcollins.spear.PredicateSubTypeDef;
@@ -56,6 +57,7 @@ import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.RecordExpr;
 import com.rockwellcollins.spear.RecordTypeDef;
 import com.rockwellcollins.spear.RecordUpdateExpr;
+import com.rockwellcollins.spear.SetExpr;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.SpecificationCall;
 import com.rockwellcollins.spear.TypeDef;
@@ -316,7 +318,6 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	/***************************************************************************************************/
 	// EXPRESSIONS
 	/***************************************************************************************************/
-
 	@Override
 	public Type caseBinaryExpr(BinaryExpr be) {
 		Type left = doSwitch(be.getLeft());
@@ -364,11 +365,23 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		case "greater than or equal to":
 		case "<=":
 		case "less than or equal to":
+		case "in":
+			if (right instanceof ArrayType) {
+				ArrayType array = (ArrayType) right;
+				if(array.base.equals(left)) {
+					return BOOL;
+				}
+			}
+			
 			if (left == REAL && right == REAL) {
 				return BOOL;
 			}
 
 			if (left == INT && right == INT) {
+				return BOOL;
+			}
+			
+			if (left instanceof EnumType && left.equals(right)) {
 				return BOOL;
 			}
 			break;
@@ -624,6 +637,44 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	}
 
 	@Override
+	public Type caseIntervalExpr(IntervalExpr ive) {
+		Type lower = doSwitch(ive.getLow());
+		Type higher = doSwitch(ive.getHigh());
+		
+		if(lower.equals(higher)) {
+			return lower;
+		} else {
+			error("Lower/upper bounds must be of same type.", ive, null);
+			return ERROR;
+		}
+	}
+	
+	@Override
+	public Type caseSetExpr(SetExpr set) {
+		Type first = null;
+		boolean error = false;
+		for(Expr e : set.getExprs()) {
+			Type current = doSwitch(e);
+			int i=0;
+			if(first != null) {
+				if(!current.equals(first)) {
+					error("All set members must be of type " + first.toString() + ".",set,SpearPackage.Literals.SET_EXPR__EXPRS,i);
+					error = true;
+				}
+				i++;
+			} else {
+				first = current;
+			}
+		}
+		
+		if(error) {
+			return ERROR;
+		} else {
+			return first;			
+		}
+	}
+	
+	@Override
 	public Type caseIntLiteral(IntLiteral ile) {
 		return INT;
 	}
@@ -745,7 +796,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	}
 
 	@Override
-	public Type caseMultipleExpr(MultipleExpr mide) {
+	public Type caseListExpr(ListExpr mide) {
 		return this.processList(new ArrayList<>(mide.getExprs()));
 	}
 
@@ -813,6 +864,12 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	private void error(String message, EObject e, EStructuralFeature feature) {
 		if (messageAcceptor != null) {
 			messageAcceptor.acceptError(message, e, feature, 0, null);
+		}
+	}
+	
+	private void error(String message, EObject e, EStructuralFeature feature, int index) {
+		if (messageAcceptor != null) {
+			messageAcceptor.acceptError(message, e, feature, index, null, (String[]) null);
 		}
 	}
 

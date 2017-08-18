@@ -37,11 +37,12 @@ import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.IfThenElseExpr;
 import com.rockwellcollins.spear.IntLiteral;
 import com.rockwellcollins.spear.IntegerCast;
+import com.rockwellcollins.spear.IntervalExpr;
+import com.rockwellcollins.spear.ListExpr;
 import com.rockwellcollins.spear.LustreAssertion;
 import com.rockwellcollins.spear.LustreEquation;
 import com.rockwellcollins.spear.LustreProperty;
 import com.rockwellcollins.spear.Macro;
-import com.rockwellcollins.spear.MultipleExpr;
 import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.NamedUnitExpr;
 import com.rockwellcollins.spear.PatternCall;
@@ -53,6 +54,7 @@ import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.RecordExpr;
 import com.rockwellcollins.spear.RecordTypeDef;
 import com.rockwellcollins.spear.RecordUpdateExpr;
+import com.rockwellcollins.spear.SetExpr;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.SpecificationCall;
 import com.rockwellcollins.spear.Type;
@@ -422,7 +424,20 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 				return SCALAR;
 			}
 			break;
-		}
+		
+		case "in":
+			if (right instanceof ArrayUnit) {
+				ArrayUnit array = (ArrayUnit) right;
+				if(left.equals(array.base)) {
+					return SCALAR;
+				}
+			}
+			
+			if (left.equals(right)) {
+				return SCALAR;
+			}
+			break;			
+		}			
 
 		error("Operator '" + be.getOp() + "' not defined on units " + left + ", " + right, be);
 		return error(be);
@@ -708,8 +723,8 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	}
 
 	@Override
-	public Unit caseMultipleExpr(MultipleExpr mide) {
-		return this.processList(new ArrayList<>(mide.getExprs()));
+	public Unit caseListExpr(ListExpr list) {
+		return this.processList(new ArrayList<>(list.getExprs()));
 	}
 
 	@Override
@@ -762,6 +777,42 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		return doSwitch(cast.getExpr());
 	}
 
+	@Override
+	public Unit caseIntervalExpr(IntervalExpr ive) {
+		Unit low = doSwitch(ive.getLow());
+		Unit high = doSwitch(ive.getHigh());
+		
+		if(low.equals(high)) {
+			return low;
+		}
+		return ERROR;
+	}
+	
+	@Override
+	public Unit caseSetExpr(SetExpr set) {
+		Unit first = null;
+		boolean error = false;
+		for(Expr e : set.getExprs()) {
+			Unit current = doSwitch(e);
+			int i=0;
+			if(first != null) {
+				if(!current.equals(first)) {
+					error("All set members must be of type " + first.toString() + ".",set,SpearPackage.Literals.SET_EXPR__EXPRS,i);
+					error=true;
+				}
+				i++;
+			} else {
+				first = current;
+			}
+		}
+		
+		if(error) {
+			return ERROR;
+		} else {
+			return first;			
+		}
+	}
+	
 	@Override
 	public Unit caseRealLiteral(RealLiteral rle) {
 		if (rle.getUnit() != null) {

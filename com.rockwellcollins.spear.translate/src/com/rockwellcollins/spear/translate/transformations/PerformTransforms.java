@@ -12,6 +12,7 @@ public class PerformTransforms {
 		//these must be in this order
 		NormalizeOperators.transform(d);
 		RemoveSugar.transform(d);
+		ExpandInExpressions.transform(d);
 		GenerateUFCObligations.crunch(d);
 		
 		RemoveCompositeReferences.transform(d);

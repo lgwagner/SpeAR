@@ -13,11 +13,11 @@ import com.rockwellcollins.spear.FormalConstraintFlag;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.IntLiteral;
+import com.rockwellcollins.spear.ListExpr;
 import com.rockwellcollins.spear.LustreAssertion;
 import com.rockwellcollins.spear.LustreEquation;
 import com.rockwellcollins.spear.LustreProperty;
 import com.rockwellcollins.spear.Macro;
-import com.rockwellcollins.spear.MultipleExpr;
 import com.rockwellcollins.spear.Observe;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.PreviousExpr;
@@ -67,14 +67,14 @@ public class Create {
 	public static final String ALT_NOT_EQUAL_TO = "not equal to";
 	public static final String ALT_ARROW = "arrow";
 
-	private static Expr createUnaryExpr(String operator, Expr sub) {
+	public static Expr createUnaryExpr(String operator, Expr sub) {
 		UnaryExpr ue = f.createUnaryExpr();
 		ue.setExpr(sub);
 		ue.setOp(operator);
 		return ue;
 	}
 
-	private static Expr createBinaryExpr(Expr left, String operator, Expr right) {
+	public static Expr createBinaryExpr(Expr left, String operator, Expr right) {
 		BinaryExpr be = f.createBinaryExpr();
 		be.setLeft(left);
 		be.setRight(right);
@@ -96,8 +96,8 @@ public class Create {
 		return ide;
 	}
 
-	public static MultipleExpr createMultipleIdExpr(List<Macro> list) {
-		MultipleExpr mide = f.createMultipleExpr();
+	public static ListExpr createMultipleIdExpr(List<Macro> list) {
+		ListExpr mide = f.createListExpr();
 		for (Macro m : list) {
 			mide.getExprs().add(createIdExpr(m));
 		}
@@ -157,10 +157,6 @@ public class Create {
 		return fc;
 	}
 
-//	public static Expr createAnd(Expr left, Expr right) {
-//		return createBinaryExpr(left, "and", right);
-//	}
-
 	public static Expr createAnd(Expr first, Expr... rest) {
 		Expr result = first;
 		for(Expr e : rest) {
@@ -181,8 +177,28 @@ public class Create {
 		return createTrue();
 	}
 
-	public static Expr createOr(Expr left, Expr right) {
-		return createBinaryExpr(left, "or", right);
+	public static Expr createOr(Expr first, Expr... rest) {
+		Expr result = first;
+		for(Expr e : rest) {
+			result = createBinaryExpr(result, "or", e);
+		}
+		return result;
+	}
+	
+	public static Expr createOr(Iterator<Expr> exprs) {
+		if (exprs.hasNext()) {
+			Expr next = exprs.next();
+			if (exprs.hasNext()) {
+				return createOr(next, createOr(exprs));
+			} else {
+				return next;
+			}
+		}
+		return createTrue();
+	}
+	
+	public static Expr createEquals(Expr left, Expr right) {
+		return createBinaryExpr(left, "==", right);
 	}
 	
 	public static Expr createIdExpr(IdRef c) {

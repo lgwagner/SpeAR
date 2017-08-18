@@ -12,8 +12,8 @@ import org.eclipse.emf.ecore.EObject;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.IntegerCast;
+import com.rockwellcollins.spear.ListExpr;
 import com.rockwellcollins.spear.Macro;
-import com.rockwellcollins.spear.MultipleExpr;
 import com.rockwellcollins.spear.RealCast;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.translate.master.SCall;
@@ -287,10 +287,10 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	}
 
 	@Override
-	public Expr caseMultipleExpr(MultipleExpr me) {
-		List<Expr> list = new ArrayList<>();
-		list.addAll(me.getExprs().stream().map(e -> this.doSwitch(e)).collect(Collectors.toList()));
-		return new TupleExpr(list);
+	public Expr caseListExpr(ListExpr list) {
+		List<Expr> elements = new ArrayList<>();
+		elements.addAll(list.getExprs().stream().map(e -> this.doSwitch(e)).collect(Collectors.toList()));
+		return new TupleExpr(elements);
 	}
 
 	@Override
