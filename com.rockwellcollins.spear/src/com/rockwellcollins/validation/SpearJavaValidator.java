@@ -21,6 +21,7 @@ import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.Import;
+import com.rockwellcollins.spear.IntervalExpr;
 import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.Observe;
 import com.rockwellcollins.spear.PreviousExpr;

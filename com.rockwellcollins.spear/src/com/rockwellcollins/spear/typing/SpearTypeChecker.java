@@ -365,14 +365,6 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		case "greater than or equal to":
 		case "<=":
 		case "less than or equal to":
-		case "in":
-			if (right instanceof ArrayType) {
-				ArrayType array = (ArrayType) right;
-				if(array.base.equals(left)) {
-					return BOOL;
-				}
-			}
-			
 			if (left == REAL && right == REAL) {
 				return BOOL;
 			}
@@ -380,9 +372,18 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 			if (left == INT && right == INT) {
 				return BOOL;
 			}
+			break;
 			
-			if (left instanceof EnumType && left.equals(right)) {
+		case "in":
+			if (left.equals(right)) {
 				return BOOL;
+			}
+			
+			if (right instanceof ArrayType) {
+				ArrayType array = (ArrayType) right;
+				if(array.base.equals(left)) {
+					return BOOL;
+				}
 			}
 			break;
 

@@ -45,8 +45,8 @@ public class ExpandInExpressions {
 			
 			if (right instanceof IntervalExpr) {
 				IntervalExpr ive = (IntervalExpr) right;
-				Expr lower = Create.createBinaryExpr(EcoreUtil2.copy(left), ">=", EcoreUtil2.copy(ive.getLow()));
-				Expr upper = Create.createBinaryExpr(EcoreUtil2.copy(left), "<=", EcoreUtil2.copy(ive.getHigh()));
+				Expr lower = Create.createBinaryExpr(EcoreUtil2.copy(left), getLowerOp(ive), EcoreUtil2.copy(ive.getLow()));
+				Expr upper = Create.createBinaryExpr(EcoreUtil2.copy(left), getUpperOp(ive), EcoreUtil2.copy(ive.getHigh()));
 				Expr replace = Create.createAnd(lower, upper);
 				EcoreUtil2.replace(be,replace);
 				continue;
@@ -60,11 +60,32 @@ public class ExpandInExpressions {
 					Expr index = Create.createInteger(i);
 					list.add(Create.createEquals(EcoreUtil2.copy(left), Create.createArrayAccessExpr(EcoreUtil2.copy(right), index)));
 				}
-				
 				Expr replace = Create.createOr(list.iterator());
 				EcoreUtil2.replace(be, replace);
 				continue;
 			}
+		}
+	}
+
+	private static String getLowerOp(IntervalExpr ive) {
+		switch(ive.getStyle()) {
+			case "<..":
+			case "<..<":
+				return ">";
+				
+			default:
+				return ">=";
+		}
+	}
+
+	private static String getUpperOp(IntervalExpr ive) {
+		switch(ive.getStyle()) {
+		case "..<":
+		case "<..<":
+			return "<";
+			
+		default:
+			return "<=";
 		}
 	}
 }

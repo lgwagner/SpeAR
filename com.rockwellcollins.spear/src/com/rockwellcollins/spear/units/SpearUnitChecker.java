@@ -426,15 +426,15 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 			break;
 		
 		case "in":
+			if (left.equals(right)) {
+				return SCALAR;
+			}
+			
 			if (right instanceof ArrayUnit) {
 				ArrayUnit array = (ArrayUnit) right;
 				if(left.equals(array.base)) {
 					return SCALAR;
 				}
-			}
-			
-			if (left.equals(right)) {
-				return SCALAR;
 			}
 			break;			
 		}			
