@@ -173,7 +173,7 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 		}
 
 		for(Constraint c : s.getRequirements()) {
-			if (checkForObserveFlag(c) || checkForUFCFlag(c)) {
+			if (checkForObserveFlag(c)) {
 				error("Flag is invalid for requirements.",c,SpearPackage.Literals.FORMAL_CONSTRAINT__FLAG);
 			}
 		}

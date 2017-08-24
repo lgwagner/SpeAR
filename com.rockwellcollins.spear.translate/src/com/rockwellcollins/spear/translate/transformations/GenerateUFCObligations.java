@@ -12,11 +12,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.xtext.EcoreUtil2;
+
 import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.Constraint;
 import com.rockwellcollins.spear.Expr;
+import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.FormalConstraint;
+import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.IfThenElseExpr;
+import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.PreviousExpr;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.UFC;
@@ -27,10 +32,30 @@ import com.rockwellcollins.spear.util.SpearSwitch;
 
 public class GenerateUFCObligations extends SpearSwitch<List<Expr>> {
 
+	//copy before using this
+	private static void substituteMacros(File f) {
+		for(IdExpr ide : EcoreUtil2.getAllContentsOfType(f, IdExpr.class)) {
+			if (ide.getId() instanceof Macro) {
+				Macro m = (Macro) ide.getId();
+				if(m.getInline() != null) {
+					EcoreUtil2.replace(ide, EcoreUtil2.copy(m.getExpr()));
+					EcoreUtil2.remove(m);
+				}
+			}
+		}
+	}
+	
 	public static void crunch(Document d) {
 		if (d.main instanceof Specification) {
-			Specification s = (Specification) d.main;
-			Map<String, String> renaming = d.renamed.get(s);
+			//copy this because we are going to make a modification we don't want to keep
+			Specification main = (Specification) d.main;
+			Specification s = EcoreUtil2.copy(main);
+			
+			//substitute macros for better IVC coverage
+			substituteMacros(s);
+			
+			//need the renaming from the original
+			Map<String, String> renaming = d.renamed.get(main);
 			GenerateUFCObligations obs = new GenerateUFCObligations();
 			List<Constraint> newConstraints = new ArrayList<>();
 
@@ -63,8 +88,9 @@ public class GenerateUFCObligations extends SpearSwitch<List<Expr>> {
 				}
 			}
 
-			s.getBehaviors().clear();
-			s.getBehaviors().addAll(newConstraints);
+			//add the new constraints to main so they propgate through
+			main.getBehaviors().clear();
+			main.getBehaviors().addAll(newConstraints);
 		}
 	}
 

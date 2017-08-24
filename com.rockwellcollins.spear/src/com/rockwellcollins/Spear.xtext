@@ -142,7 +142,7 @@ Constant:
 ;
 
 Macro:
-   name=ID IdTypeDelimiter type=Type '=' expr=Expr (data+=Data)*
+   name=ID (inline='inline')? IdTypeDelimiter type=Type '=' expr=Expr (data+=Data)*
 ;
 
 Constraint:
@@ -202,7 +202,8 @@ PrecedesExpr returns Expr:
 ;
 
 RespondsExpr returns Expr:
-   AfterUntilExpr (=> ({BinaryExpr.left=current} op='responds' ('within' delay=INT)?) right=AfterUntilExpr)*
+   {RespondsExpr} (=> ({RespondsExpr.response=current} 'responds') stimulus=AfterUntilExpr (=> 'within' delay=AfterUntilExpr ('steps' | 'ticks'))?)
+|  AfterUntilExpr
 ;
 
 AfterUntilExpr returns Expr:

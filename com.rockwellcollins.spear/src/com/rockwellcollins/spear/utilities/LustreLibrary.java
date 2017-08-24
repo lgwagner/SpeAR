@@ -236,7 +236,7 @@ public class LustreLibrary {
 		tel;		
 	 * 
 	 */
-	public static Node responds_within() {
+	public static Node responds() {
 		NodeBuilder responds = new NodeBuilder("responds");
 		
 		VarDecl a = new VarDecl("a", NamedType.BOOL);
@@ -452,7 +452,7 @@ public class LustreLibrary {
 		nodes.add(once());
 		nodes.add(since());
 		nodes.add(triggers());
-		nodes.add(responds_within());
+		nodes.add(responds());
 		nodes.add(precedes());
 		nodes.add(count());
 		nodes.add(ccount());

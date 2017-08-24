@@ -57,6 +57,7 @@ import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.RecordExpr;
 import com.rockwellcollins.spear.RecordTypeDef;
 import com.rockwellcollins.spear.RecordUpdateExpr;
+import com.rockwellcollins.spear.RespondsExpr;
 import com.rockwellcollins.spear.SetExpr;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.SpecificationCall;
@@ -397,7 +398,6 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		case "since":
 		case "S":
 		case "precedes":
-		case "responds":
 			if (left == BOOL && right == BOOL) {
 				return BOOL;
 			}
@@ -408,6 +408,36 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 		return error(be);
 	}
 
+	@Override
+	public Type caseRespondsExpr(RespondsExpr responds) {
+		Type response = doSwitch(responds.getResponse());
+		Type stimulus = doSwitch(responds.getStimulus());
+		
+		if(response == ERROR || stimulus == ERROR) {
+			return error(responds);
+		}
+		
+		if(responds.getDelay() != null) {
+			Type delay = doSwitch(responds.getDelay());
+			if(delay != INT) {
+				error("Delay must be of type int, found type " + delay, responds, SpearPackage.Literals.RESPONDS_EXPR__DELAY);
+			}
+		}
+		
+		if(response == BOOL && stimulus == BOOL) {
+			return BOOL;
+		}
+		
+		if(response != BOOL) {
+			error("Expecting type bool, found type " + response, SpearPackage.Literals.RESPONDS_EXPR__RESPONSE);
+		}
+		
+		if(stimulus != BOOL) {
+			error("Expecting type bool, found type " + response, SpearPackage.Literals.RESPONDS_EXPR__STIMULUS);
+		}
+		return error(responds);
+	}
+	
 	@Override
 	public Type caseUnaryExpr(UnaryExpr ue) {
 		Type type = doSwitch(ue.getExpr());
