@@ -8,9 +8,13 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.util.SimpleAttributeResolver;
 
+import com.rockwellcollins.spear.Constraint;
 import com.rockwellcollins.spear.File;
+import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.Import;
+import com.rockwellcollins.spear.Observe;
 import com.rockwellcollins.spear.Pattern;
+import com.rockwellcollins.spear.UFC;
 
 public class Utilities {
 
@@ -81,5 +85,21 @@ public class Utilities {
 		String name = getName(o);
 		String filename = Utilities.getRoot(o).getName();
 		return filename + "." + name;
+	}
+	
+	public static boolean checkForObserveFlag(Constraint c) {
+		if (c instanceof FormalConstraint) {
+			FormalConstraint fc = (FormalConstraint) c;
+			return (fc.getFlag() != null) && (fc.getFlag() instanceof Observe);
+		}
+		return false;
+	}
+
+	public static boolean checkForUFCFlag(Constraint c) {
+		if (c instanceof FormalConstraint) {
+			FormalConstraint fc = (FormalConstraint) c;
+			return (fc.getFlag() != null) && (fc.getFlag() instanceof UFC);
+		}
+		return false;
 	}
 }

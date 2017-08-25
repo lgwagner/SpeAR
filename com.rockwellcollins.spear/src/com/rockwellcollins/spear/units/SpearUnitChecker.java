@@ -54,6 +54,7 @@ import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.RecordExpr;
 import com.rockwellcollins.spear.RecordTypeDef;
 import com.rockwellcollins.spear.RecordUpdateExpr;
+import com.rockwellcollins.spear.RespondsExpr;
 import com.rockwellcollins.spear.SetExpr;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.SpecificationCall;
@@ -420,6 +421,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		case "T":
 		case "since":
 		case "S":
+		case "precedes":
 			if (left.equals(right)) {
 				return SCALAR;
 			}
@@ -441,6 +443,29 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 
 		error("Operator '" + be.getOp() + "' not defined on units " + left + ", " + right, be);
 		return error(be);
+	}
+	
+	@Override
+	public Unit caseRespondsExpr(RespondsExpr responds) {
+		Unit stimulus = doSwitch(responds.getStimulus());
+		Unit response = doSwitch(responds.getResponse());
+		
+		if(stimulus == ERROR || response == ERROR) {
+			return error(responds);
+		}
+		
+		if(response == SCALAR && stimulus == SCALAR) {
+			return SCALAR;
+		}
+		
+		if(response != SCALAR) {
+			error("Expected scalar units, found units of " + stimulus, SpearPackage.Literals.RESPONDS_EXPR__STIMULUS);
+		}
+		
+		if(response != SCALAR) {
+			error("Expected scalar units, found units of " + response, SpearPackage.Literals.RESPONDS_EXPR__RESPONSE);
+		}
+		return error(responds);
 	}
 
 	@Override

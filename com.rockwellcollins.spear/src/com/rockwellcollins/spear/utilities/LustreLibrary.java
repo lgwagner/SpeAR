@@ -445,6 +445,29 @@ public class LustreLibrary {
 		return ccount.build();
 	}
 	
+	/**
+	 * node btoi(a : bool) returns (c : int);
+	 * let
+	 * 	   c = if a then 1 else 0;
+	 * tel 
+	 */
+	public static Node btoi() {
+		NodeBuilder btoi = new NodeBuilder("btoi");
+		
+		VarDecl a = new VarDecl("a", NamedType.BOOL);
+		btoi.addInput(a);
+		
+		VarDecl c = new VarDecl("c", NamedType.INT);
+		btoi.addOutput(c);
+		
+		EquationBuilder cEq = new EquationBuilder();
+		cEq.addLhs(c);
+		cEq.setExpr(ite(id(a),integer(1),integer(0)));
+		
+		btoi.addEquation(cEq.build());
+		return btoi.build();
+	}
+	
 	public static Set<Node> getLibraries() {
 		Set<Node> nodes = new LinkedHashSet<>();
 		nodes.add(initially());
@@ -456,6 +479,7 @@ public class LustreLibrary {
 		nodes.add(precedes());
 		nodes.add(count());
 		nodes.add(ccount());
+		nodes.add(btoi());
 		return nodes;
 	}
 

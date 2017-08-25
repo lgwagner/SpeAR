@@ -3,6 +3,9 @@
  */
 package com.rockwellcollins.validation;
 
+import static com.rockwellcollins.spear.utilities.Utilities.checkForObserveFlag;
+import static com.rockwellcollins.spear.utilities.Utilities.checkForUFCFlag;
+
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -18,16 +21,12 @@ import com.rockwellcollins.spear.Constraint;
 import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.File;
-import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.Import;
-import com.rockwellcollins.spear.IntervalExpr;
 import com.rockwellcollins.spear.NamedTypeDef;
-import com.rockwellcollins.spear.Observe;
 import com.rockwellcollins.spear.PreviousExpr;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
-import com.rockwellcollins.spear.UFC;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.typing.PrimitiveType;
@@ -110,24 +109,24 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 	@Check
 	public void checkPreviousExpressionsAreGuarded(PreviousExpr pe) {
 		EObject container = Utilities.getTopContainer(pe);
-		if (container instanceof Specification && pe.getInit() == null) {
+		if (!options.isUnusedValidationsDisabled() && container instanceof Specification && pe.getInit() == null) {
 			warning("No initial value was specified. Analysis will consider all possible values for the initial state.",
 					pe, null);
 		}
 	}
 
-	@Check
-	public void checkForIllegalArrows(Specification s) {
-		for (BinaryExpr be : EcoreUtil2.getAllContentsOfType(s, BinaryExpr.class)) {
-			if (be.getOp().equals("->") || be.getOp().equals("arrow")) {
-				EObject container = Utilities.getTopContainer(be);
-				if (container instanceof Specification) {
-					error("Arrow operators are meant for use inside of patterns only.", be,
-							SpearPackage.Literals.BINARY_EXPR__OP);
-				}
-			}
-		}
-	}
+//	@Check
+//	public void checkForIllegalArrows(Specification s) {
+//		for (BinaryExpr be : EcoreUtil2.getAllContentsOfType(s, BinaryExpr.class)) {
+//			if (be.getOp().equals("->") || be.getOp().equals("arrow")) {
+//				EObject container = Utilities.getTopContainer(be);
+//				if (container instanceof Specification) {
+//					error("Arrow operators are meant for use inside of patterns only.", be,
+//							SpearPackage.Literals.BINARY_EXPR__OP);
+//				}
+//			}
+//		}
+//	}
 
 	@Check
 	public void checkForIllegalSectionheaders(Specification s) {
@@ -148,22 +147,6 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 		}
 	}
 
-	private boolean checkForObserveFlag(Constraint c) {
-		if (c instanceof FormalConstraint) {
-			FormalConstraint fc = (FormalConstraint) c;
-			return (fc.getFlag() != null) && (fc.getFlag() instanceof Observe);
-		}
-		return false;
-	}
-
-	private boolean checkForUFCFlag(Constraint c) {
-		if (c instanceof FormalConstraint) {
-			FormalConstraint fc = (FormalConstraint) c;
-			return (fc.getFlag() != null) && (fc.getFlag() instanceof UFC);
-		}
-		return false;
-	}
-	
 	@Check
 	public void checkPropertiesOnlyHaveWitnessFlags(Specification s) {
 		for(Constraint c : s.getAssumptions()) {

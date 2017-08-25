@@ -5,6 +5,7 @@ import static com.rockwellcollins.spear.language.Create.createFalse;
 import static com.rockwellcollins.spear.language.Create.createNot;
 import static com.rockwellcollins.spear.language.Create.createOr;
 import static com.rockwellcollins.spear.language.Create.createPrevious;
+import static com.rockwellcollins.spear.language.Create.createArrow;
 import static org.eclipse.emf.ecore.util.EcoreUtil.copy;
 
 import java.util.ArrayList;
@@ -159,6 +160,17 @@ public class GenerateUFCObligations extends SpearSwitch<List<Expr>> {
 			Expr right = copy(be.getRight());
 			return doSwitch(createOr(createNot(left), right));
 
+		//TODO: run this by Andrew
+		case "->":
+			for (Expr e : doSwitch(be.getLeft())) {
+				result.add(createArrow(e, createFalse()));
+			}
+
+			for (Expr e : doSwitch(be.getRight())) {
+				result.add(createArrow(createFalse(), e));
+			}
+			return result;
+			
 		// atomic
 		case ">":
 		case ">=":

@@ -157,6 +157,10 @@ public class Create {
 		return fc;
 	}
 
+	public static Expr createArrow(Expr left, Expr right) {
+		return createBinaryExpr(left, "->", right);
+	}
+	
 	public static Expr createAnd(Expr first, Expr... rest) {
 		Expr result = first;
 		for(Expr e : rest) {

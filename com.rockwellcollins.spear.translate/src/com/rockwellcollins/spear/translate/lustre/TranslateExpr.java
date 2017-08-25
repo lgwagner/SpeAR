@@ -2,6 +2,7 @@ package com.rockwellcollins.spear.translate.lustre;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -242,7 +243,13 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 
 	@Override
 	public Expr caseIntegerCast(IntegerCast cast) {
-		return new CastExpr(NamedType.INT, doSwitch(cast.getExpr()));
+		if(cast.getOp().equals("floor")) {
+			return new CastExpr(NamedType.INT, doSwitch(cast.getExpr()));
+		} else if(cast.getOp().equals("btoi")) {
+			return new NodeCallExpr("btoi",Collections.singletonList(doSwitch(cast.getExpr())));
+		} 
+		
+		throw new RuntimeException("Unexpected cast operator provided: " + cast.getOp().toString());
 	}
 
 	@Override

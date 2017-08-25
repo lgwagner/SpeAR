@@ -235,5 +235,4 @@ public class Main {
 		extension = validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
 		list.addAll(extension);
 	}
-
 }

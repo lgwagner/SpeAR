@@ -648,8 +648,14 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	@Override
 	public Type caseIntegerCast(IntegerCast cast) {
 		Type sub = doSwitch(cast.getExpr());
-		if (!sub.equals(REAL)) {
-			error("Integer cast expressions can only be applied to real types.", cast,
+		if (cast.getOp().equals("floor") && !sub.equals(REAL)) {
+			error("Floor cast expressions can only be applied to real types.", cast,
+					SpearPackage.Literals.INTEGER_CAST__EXPR);
+			return ERROR;
+		}
+		
+		if (cast.getOp().equals("btoi") && !sub.equals(BOOL)) {
+			error("Boolean to integer cast expressions can only be applied to boolean types.", cast,
 					SpearPackage.Literals.INTEGER_CAST__EXPR);
 			return ERROR;
 		}

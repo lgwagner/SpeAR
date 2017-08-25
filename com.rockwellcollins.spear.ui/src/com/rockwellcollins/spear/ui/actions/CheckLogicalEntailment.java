@@ -1,9 +1,11 @@
 package com.rockwellcollins.spear.ui.actions;
 
+import static com.rockwellcollins.spear.utilities.Utilities.checkForUFCFlag;
 import static java.util.stream.Collectors.toList;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -85,17 +87,19 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 					return null;
 				}
 
-				if (specification.getBehaviors().size() == 0) {
+				if (getEntailmentPropCount(specification) == 0) {
 					MessageDialog.openError(window.getShell(), "Nothing to analyze",
 							"The user must specify at least one property to check for logical entailment.");
 					return null;
 				}
 
-				Triplet<Analysis, Document, JKindResult> triple = Analysis.entailment(specification, PreferencesUtil.getJKindJar(),"result");
+				Triplet<Analysis, Document, JKindResult> triple = Analysis.entailment(specification,
+						PreferencesUtil.getJKindJar(), "result");
 				ResourcesPlugin.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_INFINITE, null);
 
 				activateTerminateHandler(monitor);
-				List<String> requirements = specification.getRequirements().stream().map(req -> req.getName()).collect(toList());
+				List<String> requirements = specification.getRequirements().stream().map(req -> req.getName())
+						.collect(toList());
 				List<String> observers = getObservers(triple.getValue1());
 				showView(triple.getValue2(), new SpearRegularLayout(specification), requirements, observers);
 
@@ -112,7 +116,14 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 
 				return null;
 			}
+
 		});
+	}
+
+	private Integer getEntailmentPropCount(Specification specification) {
+		List<Constraint> ufcRequirements = specification.getRequirements().stream().filter(c -> checkForUFCFlag(c))
+				.collect(Collectors.toList());
+		return specification.getBehaviors().size() + ufcRequirements.size();
 	}
 
 	private List<String> getObservers(Document d) {
