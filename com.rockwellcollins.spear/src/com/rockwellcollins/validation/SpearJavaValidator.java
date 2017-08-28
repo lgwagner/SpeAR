@@ -115,19 +115,6 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 		}
 	}
 
-//	@Check
-//	public void checkForIllegalArrows(Specification s) {
-//		for (BinaryExpr be : EcoreUtil2.getAllContentsOfType(s, BinaryExpr.class)) {
-//			if (be.getOp().equals("->") || be.getOp().equals("arrow")) {
-//				EObject container = Utilities.getTopContainer(be);
-//				if (container instanceof Specification) {
-//					error("Arrow operators are meant for use inside of patterns only.", be,
-//							SpearPackage.Literals.BINARY_EXPR__OP);
-//				}
-//			}
-//		}
-//	}
-
 	@Check
 	public void checkForIllegalSectionheaders(Specification s) {
 		String requirements = s.getRequirementsKeyword();
@@ -151,13 +138,13 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 	public void checkPropertiesOnlyHaveWitnessFlags(Specification s) {
 		for(Constraint c : s.getAssumptions()) {
 			if (checkForObserveFlag(c) || checkForUFCFlag(c)) {
-				error("Flag is invalid for assumptions.",c,SpearPackage.Literals.FORMAL_CONSTRAINT__FLAG);
+				error("Flag is invalid for " + s.getAssumptionsKeyword() + ".",c,SpearPackage.Literals.FORMAL_CONSTRAINT__FLAG);
 			}
 		}
-
+		
 		for(Constraint c : s.getRequirements()) {
 			if (checkForObserveFlag(c)) {
-				error("Flag is invalid for requirements.",c,SpearPackage.Literals.FORMAL_CONSTRAINT__FLAG);
+				error("Flag is invalid for " + s.getRequirementsKeyword() + ".",c,SpearPackage.Literals.FORMAL_CONSTRAINT__FLAG);
 			}
 		}
 	}

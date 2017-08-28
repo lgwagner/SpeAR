@@ -155,7 +155,7 @@ FormalConstraint:
 ;
 
 FormalConstraintFlag:
-	{Observe}	'observe'
+	{Observe} 'observe'
 |	{UFC}	'ufc'
 ;
 
@@ -202,7 +202,7 @@ PrecedesExpr returns Expr:
 ;
 
 RespondsExpr returns Expr:
-   AfterUntilExpr (=> ({RespondsExpr.response=current} 'responds' stimulus=AfterUntilExpr (=> 'within' delay=AfterUntilExpr ('steps' | 'ticks'))?))*
+   AfterUntilExpr (=> ({RespondsExpr.response=current} 'responds' 'to') stimulus=AfterUntilExpr (=> 'within' delay=Expr 'steps')?)*
 ;
 
 AfterUntilExpr returns Expr:

@@ -1,11 +1,11 @@
 package com.rockwellcollins.spear.translate.transformations;
 
 import static com.rockwellcollins.spear.language.Create.createAnd;
+import static com.rockwellcollins.spear.language.Create.createArrow;
 import static com.rockwellcollins.spear.language.Create.createFalse;
 import static com.rockwellcollins.spear.language.Create.createNot;
 import static com.rockwellcollins.spear.language.Create.createOr;
 import static com.rockwellcollins.spear.language.Create.createPrevious;
-import static com.rockwellcollins.spear.language.Create.createArrow;
 import static org.eclipse.emf.ecore.util.EcoreUtil.copy;
 
 import java.util.ArrayList;
@@ -100,7 +100,7 @@ public class GenerateUFCObligations extends SpearSwitch<List<Expr>> {
 		fc.setFlag(Create.Observe());
 		return fc;
 	}
-
+	
 	public boolean positive = true;
 
 	private void flip() {

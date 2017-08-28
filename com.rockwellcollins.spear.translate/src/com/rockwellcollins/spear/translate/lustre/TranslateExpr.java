@@ -16,7 +16,6 @@ import com.rockwellcollins.spear.IntegerCast;
 import com.rockwellcollins.spear.ListExpr;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.RealCast;
-import com.rockwellcollins.spear.RespondsExpr;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.translate.master.SCall;
 import com.rockwellcollins.spear.translate.master.SMapElement;
@@ -188,18 +187,18 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 		}
 	}
 
-	@Override
-	public Expr caseRespondsExpr(RespondsExpr responds) {
-		Expr response = doSwitch(responds.getResponse());
-		Expr stimulus = doSwitch(responds.getStimulus());
-		Expr delay = doSwitch(responds.getDelay());
-		
-		List<Expr> args = new ArrayList<>();
-		args.add(response);
-		args.add(stimulus);
-		args.add(delay);
-		return new NodeCallExpr("responds",args);
-	}
+//	@Override
+//	public Expr caseRespondsExpr(RespondsExpr responds) {
+//		Expr response = doSwitch(responds.getResponse());
+//		Expr stimulus = doSwitch(responds.getStimulus());
+//		Expr delay = doSwitch(responds.getDelay());
+//		
+//		List<Expr> args = new ArrayList<>();
+//		args.add(response);
+//		args.add(stimulus);
+//		args.add(delay);
+//		return new NodeCallExpr("responds",args);
+//	}
 	
 	@Override
 	public Expr caseIfThenElseExpr(com.rockwellcollins.spear.IfThenElseExpr ite) {
