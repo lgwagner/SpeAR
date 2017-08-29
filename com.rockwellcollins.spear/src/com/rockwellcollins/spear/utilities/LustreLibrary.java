@@ -281,7 +281,7 @@ public class LustreLibrary {
 		iEq.addLhs(i);
 		
 		Expr ite10 = ite(and(id(a),id(b)), integer(0),pre(id(i)));
-		Expr ite9 = ite(not(id(a)),plus(id(i),integer(1)),ite10);
+		Expr ite9 = ite(not(id(a)),plus(pre(id(i)),integer(1)),ite10);
 		Expr ite8 = ite(equal(id(pre_state),integer(1)),ite9,pre(id(i)));
 		Expr ite7 = ite(equal(id(pre_state),integer(0)),integer(0),ite8);
 		iEq.setExpr(ite7);
@@ -341,14 +341,15 @@ public class LustreLibrary {
 	 *	    state =
 	 *	        if pre_state = 0 
 	 *	        then
-	 *	            if (a and b)
+	 *	            if (a and b) or (not a and not b)
 	 *	            then 0
 	 *	            else if (a and not b)
 	 *	            then 1
 	 *	            else 2
 	 *	        else if pre_state = 1 
 	 *	        then
-	 *	            if b then 0
+	 *	            if b 
+	 *				then 0
 	 *	            else 1
 	 *	        else 2;
 	 *
@@ -382,7 +383,7 @@ public class LustreLibrary {
 		Expr ite5 = ite(id(b),integer(0),integer(1));
 		Expr ite4 = ite(equal(id(pre_state),integer(1)),ite5,integer(2));
 		Expr ite3 = ite(and(id(a),not(id(b))),integer(1),integer(2));
-		Expr ite2 = ite(and(id(a),id(b)),integer(0),ite3);
+		Expr ite2 = ite(or(and(id(a),id(b)),and(not(id(a)),not(id(b)))),integer(0),ite3);
 		Expr ite1 = ite(equal(id(pre_state),integer(0)), ite2, ite4);
 		stateEq.setExpr(ite1);
 		precedes.addEquation(stateEq.build());
