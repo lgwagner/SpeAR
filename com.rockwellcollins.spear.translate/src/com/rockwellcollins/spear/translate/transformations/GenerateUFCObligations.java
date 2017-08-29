@@ -89,7 +89,7 @@ public class GenerateUFCObligations extends SpearSwitch<List<Expr>> {
 				}
 			}
 
-			//add the new constraints to main so they propgate through
+			//add the new constraints to main so they propagate
 			main.getBehaviors().clear();
 			main.getBehaviors().addAll(newConstraints);
 		}
@@ -160,7 +160,6 @@ public class GenerateUFCObligations extends SpearSwitch<List<Expr>> {
 			Expr right = copy(be.getRight());
 			return doSwitch(createOr(createNot(left), right));
 
-		//TODO: run this by Andrew
 		case "->":
 			for (Expr e : doSwitch(be.getLeft())) {
 				result.add(createArrow(e, createFalse()));
