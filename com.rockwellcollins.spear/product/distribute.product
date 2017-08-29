@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="SpeAR" uid="spear.product" id="com.rockwellcollins.spear.spear_product" application="org.eclipse.ui.ide.workbench" version="2.0.0" useFeatures="false" includeLaunchers="true">
+<product name="SpeAR" uid="spear.product" id="com.rockwellcollins.spear.spear_product" application="org.eclipse.ui.ide.workbench" version="2.1.0beta" useFeatures="false" includeLaunchers="true">
 
    <aboutInfo>
       <image path="/com.rockwellcollins.spear/branding/1429142344_weapons_spear-128.png"/>
@@ -34,6 +34,7 @@ A tool for prototyping requirements using formal notations.
          <bmp/>
       </win>
    </launcher>
+
 
    <vm>
       <windows include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</windows>
