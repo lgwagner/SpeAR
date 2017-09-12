@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: SpeAR
 Bundle-Vendor: Rockwell Collins
-Bundle-Version: 2.0.0
+Bundle-Version: 2.1.0
 Bundle-SymbolicName: com.rockwellcollins.spear; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext;visibility:=reexport,

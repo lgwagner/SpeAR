@@ -1,8 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: com.rockwellcollins.spear.ui
-Bundle-Vendor: My Company
-Bundle-Version: 1.0.0.qualifier
+Bundle-Name: spear.ui
+Bundle-Version: 2.1.0
 Bundle-SymbolicName: com.rockwellcollins.spear.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: com.rockwellcollins.spear;visibility:=reexport,

@@ -234,7 +234,6 @@ public class LustreLibrary {
 
 		    holds = (state = 0) or (state = 1);
 		tel;		
-	 * 
 	 */
 	public static Node responds() {
 		NodeBuilder responds = new NodeBuilder("responds");

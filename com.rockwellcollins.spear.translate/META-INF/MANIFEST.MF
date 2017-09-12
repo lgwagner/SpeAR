@@ -1,9 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Translate
+Bundle-Name: translate
 Bundle-SymbolicName: com.rockwellcollins.spear.translate;singleton:=true
-Bundle-Version: 1.0.0.qualifier
-Bundle-Vendor: ROCKWELLCOLLINS
+Bundle-Version: 2.1.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.ui.workbench,
  org.eclipse.jface,

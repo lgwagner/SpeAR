@@ -192,12 +192,17 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	public Expr caseRespondsExpr(RespondsExpr responds) {
 		Expr response = doSwitch(responds.getResponse());
 		Expr stimulus = doSwitch(responds.getStimulus());
-		Expr delay = doSwitch(responds.getDelay());
-		
+
 		List<Expr> args = new ArrayList<>();
 		args.add(response);
 		args.add(stimulus);
-		args.add(delay);
+
+		if(responds.getDelay() != null) {
+			Expr delay = doSwitch(responds.getDelay());
+			args.add(delay);	
+		} else {
+			args.add(new IntExpr(1));
+		}
 		return new NodeCallExpr("responds",args);
 	}
 	

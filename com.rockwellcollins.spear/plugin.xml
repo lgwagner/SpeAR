@@ -15,34 +15,22 @@
         point="org.eclipse.core.runtime.products">
      <product
            application="org.eclipse.ui.ide.workbench"
-           name="SpeAR">
+           name="spear">
         <property
               name="windowImages"
-              value="branding/1429142139_weapons_spear-16.png,branding/1429142164_weapons_spear-32.png,branding/1429142171_weapons_spear-48.png,branding/1429142412_weapons_spear-64.png,branding/1429142344_weapons_spear-128.png,branding/1429142348_weapons_spear-256.png">
+              value="branding/1429142139_weapons_spear-16.png,branding/1429142164_weapons_spear-32.png,branding/1429142171_weapons_spear-48.png,branding/1429142171_weapons_spear-48.png,branding/1429142344_weapons_spear-128.png,branding/1429142348_weapons_spear-256.png">
         </property>
         <property
               name="aboutText"
-              value="SpeAR - Specification and Analysis of Requirements&#x0A;&#x0A;A tool for prototyping requirements using formal notations.">
+              value="SpeAR: A Tool for Prototyping and Analyzing Requirements">
         </property>
         <property
               name="aboutImage"
               value="branding/1429142344_weapons_spear-128.png">
         </property>
         <property
-              name="startupForegroundColor"
-              value="FFFFFF">
-        </property>
-        <property
-              name="startupProgressRect"
-              value="2,290,448,10">
-        </property>
-        <property
-              name="startupMessageRect"
-              value="7,265,320,20">
-        </property>
-        <property
               name="appName"
-              value="SpeAR">
+              value="spear">
         </property>
      </product>
   </extension>
