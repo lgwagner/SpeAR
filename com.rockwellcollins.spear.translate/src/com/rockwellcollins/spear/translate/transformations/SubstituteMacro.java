@@ -19,9 +19,12 @@ public class SubstituteMacro extends SpearSwitch<Integer> {
 	public Integer caseIdExpr(IdExpr ide) {
 		if (ide.getId() instanceof Macro) {
 			Macro macro = (Macro) ide.getId();
+			
 			if(macro.getInline() != null) {
 				Expr copy = EcoreUtil2.copy(macro.getExpr());
-				doSwitch(copy);
+				if (macro.getInline().equals("inline_all")) {
+					doSwitch(copy);
+				}
 				EcoreUtil2.replace(ide, copy);
 			}
 		}
