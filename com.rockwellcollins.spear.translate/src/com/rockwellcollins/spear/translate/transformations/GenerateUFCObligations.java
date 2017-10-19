@@ -26,6 +26,7 @@ import com.rockwellcollins.spear.UFC;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.language.Create;
 import com.rockwellcollins.spear.translate.intermediate.Document;
+import com.rockwellcollins.spear.translate.utilities.SubstituteMacro;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 public class GenerateUFCObligations extends SpearSwitch<List<Expr>> {

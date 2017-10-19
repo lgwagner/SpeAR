@@ -1,4 +1,4 @@
-package com.rockwellcollins.spear.translate.transformations;
+package com.rockwellcollins.spear.translate.utilities;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
