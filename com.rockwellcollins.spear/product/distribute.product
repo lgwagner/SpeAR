@@ -29,11 +29,11 @@ A tool for prototyping requirements using formal notations.
       startupMessageRect="7,265,320,20"
       startupForegroundColor="FFFFFF" />
    <launcher name="spear.exe">
-      <solaris/>
       <win useIco="true">
          <bmp/>
       </win>
    </launcher>
+
 
    <vm>
       <windows include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</windows>
@@ -67,8 +67,9 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-THIS SOFTWARE WAS DEVELOPED WITH FUNDING BY AIRFORCE RESEARCH LABORATORIES AND 
-IS APPROVED FOR PUBLIC RELEASE. CASE NUMBER: 88ABW-2016-1658
+THIS SOFTWARE WAS DEVELOPED WITH FUNDING BY THE 
+UNITED STATES AIR FORCE RESEARCH LABORATORIES AND IS APPROVED FOR PUBLIC RELEASE. 
+CASE NUMBER: 88ABW-2016-1658
          </text>
    </license>
 
