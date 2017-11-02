@@ -17,7 +17,7 @@ import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
-import org.javatuples.Pair;
+import org.javatuples.Triplet;
 
 import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Definitions;
@@ -25,6 +25,7 @@ import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.analysis.Analysis;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
+import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.translate.layout.SpearRealizabilityLayout;
 import com.rockwellcollins.spear.ui.handlers.TerminateHandler;
 import com.rockwellcollins.spear.ui.views.SpearRealizabilityResultsView;
@@ -35,7 +36,7 @@ import jkind.results.layout.Layout;
 
 public class CheckRealizability implements IWorkbenchWindowActionDelegate {
 
-	private static final String TERMINATE_ID = "com.rockwellcollins.spear.translate.commands.terminateRealizability";
+	private static final String TERMINATE_ID = "com.rockwellcollins.spear.ui.commands.terminateRealizability";
 
 	private IWorkbenchWindow window;
 
@@ -76,19 +77,18 @@ public class CheckRealizability implements IWorkbenchWindowActionDelegate {
 					return null;
 				}
 
-				Pair<Analysis, JKindResult> pair = Analysis.realizability(specification, PreferencesUtil.getJKindJar(),
-						"result");
+				Triplet<Analysis, Document, JKindResult> triplet = Analysis.realizability(specification, PreferencesUtil.getJKindJar(),"result");
 				ResourcesPlugin.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_INFINITE, null);
 
 				activateTerminateHandler(monitor);
-				showView(pair.getValue1(), new SpearRealizabilityLayout(specification));
+				showView(triplet.getValue2(), new SpearRealizabilityLayout(specification));
 
 				new Thread() {
 					public void run() {
 						try {
-							pair.getValue0().analyze(monitor);
+							triplet.getValue0().analyze(monitor);
 						} catch (Exception e) {
-							System.err.println(pair.getValue1().getText());
+							System.err.println(triplet.getValue2().getText());
 							throw e;
 						} finally {
 							deactivateTerminateHandler();

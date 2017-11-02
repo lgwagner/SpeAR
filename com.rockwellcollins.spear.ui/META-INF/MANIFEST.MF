@@ -1,8 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: com.rockwellcollins.spear.ui
-Bundle-Vendor: My Company
-Bundle-Version: 1.0.0.qualifier
+Bundle-Name: spear.ui
+Bundle-Version: 2.1.0
 Bundle-SymbolicName: com.rockwellcollins.spear.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: com.rockwellcollins.spear;visibility:=reexport,
@@ -22,11 +21,11 @@ Require-Bundle: com.rockwellcollins.spear;visibility:=reexport,
  org.eclipse.xtend,
  org.eclipse.xpand,
  com.rockwellcollins.spear.translate;bundle-version="1.0.0",
- org.eclipse.ui.console;bundle-version="3.6.201",
+ org.eclipse.ui.console,
  org.eclipse.osgi,
  org.eclipse.jface,
- org.eclipse.e4.core.contexts;bundle-version="1.5.0",
- org.eclipse.e4.core.commands;bundle-version="0.11.100"
+ org.eclipse.e4.core.contexts,
+ org.eclipse.e4.core.commands
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: com.rockwellcollins.spear.ui.actions,

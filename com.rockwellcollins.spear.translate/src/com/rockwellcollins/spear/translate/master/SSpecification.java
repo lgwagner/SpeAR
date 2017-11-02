@@ -73,9 +73,6 @@ public class SSpecification extends SMapElement {
 	private String constraintsName;
 	private static final String CONSTRAINTS = "constraints";
 
-	private String counterName;
-	private static final String COUNTER = "counter";
-
 	private String consistencyName;
 	private static final String CONSISTENCY = "consistent";
 
@@ -149,6 +146,11 @@ public class SSpecification extends SMapElement {
 		builder.addLocals(SConstraint.toVarDecl(assumptions, this));
 		builder.addLocals(SConstraint.toVarDecl(requirements, this));
 		builder.addLocals(SConstraint.toVarDecl(behaviors, this));
+		
+		/*
+		 * We add a local for counters to support the "counter" expression in SpeAR
+		 */
+		builder.addLocal(this.getCounterVarDecl());
 
 		/*
 		 * Add assertions as output.
@@ -158,6 +160,7 @@ public class SSpecification extends SMapElement {
 		/*
 		 * For now, we're not allowing Macros to contain specification calls
 		 */
+		builder.addEquation(this.getCounterEquation());
 		builder.addEquations(SMacro.toEquations(macros, this));
 		builder.addEquations(SConstraint.toEquation(assumptions, this));
 		builder.addEquations(SConstraint.toEquation(requirements, this));
@@ -217,10 +220,8 @@ public class SSpecification extends SMapElement {
 	public Node getLogicalConsistencyMain() {
 		NodeBuilder builder = new NodeBuilder(this.toBaseLustre());
 
-		builder.addLocal(this.getCounterVarDecl());
 		builder.addLocal(this.getConsistencyVarDecl());
-
-		builder.addEquation(this.getCounterEquation());
+		
 		builder.addEquation(this.getConsistencyEquation());
 		builder.addEquation(this.getAssertionMainEquation(ListUtils.union(assumptions, requirements)));
 

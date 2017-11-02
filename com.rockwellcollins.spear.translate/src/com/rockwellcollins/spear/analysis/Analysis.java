@@ -7,9 +7,11 @@ import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.javatuples.Pair;
+import org.javatuples.Triplet;
 
 import com.rockwellcollins.spear.Constraint;
 import com.rockwellcollins.spear.FormalConstraint;
+import com.rockwellcollins.spear.Observe;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
 import com.rockwellcollins.spear.translate.intermediate.Document;
@@ -20,7 +22,6 @@ import jkind.api.JRealizabilityApi;
 import jkind.api.results.JKindResult;
 import jkind.api.results.JRealizabilityResult;
 import jkind.api.results.Renaming;
-import jkind.api.results.MapRenaming.Mode;
 import jkind.lustre.Program;
 
 public class Analysis {
@@ -63,7 +64,7 @@ public class Analysis {
 		return Pair.with(api, document);
 	}
 
-	public static Pair<Analysis, JKindResult> entailment(Specification specification, String jkindjarpth,
+	public static Triplet<Analysis, Document, JKindResult> entailment(Specification specification, String jkindjarpth,
 			String resultname) throws IOException {
 
 		Pair<JKindApi, Document> pair = commonJKindAnalysisSetup(specification, jkindjarpth);
@@ -78,14 +79,14 @@ public class Analysis {
 		} else {
 			p = pair.getValue1().getLogicalEntailment();
 		}
-		Renaming renaming = pair.getValue1().getRenaming(Mode.IDENTITY);
+		Renaming renaming = pair.getValue1().getRenaming();
 
 		List<Boolean> invert = new ArrayList<>();
 		Specification s = (Specification) pair.getValue1().main;
 		for (Constraint c : s.getBehaviors()) {
 			if (c instanceof FormalConstraint) {
 				FormalConstraint fc = (FormalConstraint) c;
-				if (fc.getFlagAsWitness() != null) {
+				if (fc.getFlag() != null && (fc.getFlag() instanceof Observe)) {
 					invert.add(true);
 				} else {
 					invert.add(false);
@@ -103,10 +104,10 @@ public class Analysis {
 		}
 
 		JKindResult result = new JKindResult(resultname, p.getMainNode().properties, invert, renaming);
-		return Pair.with(new Analysis(pair.getValue0(), p, result), result);
+		return Triplet.with(new Analysis(pair.getValue0(), p, result), pair.getValue1(), result);
 	}
 
-	public static Pair<Analysis, JKindResult> consistency(Specification specification, String jkindjarpth,
+	public static Triplet<Analysis, Document, JKindResult> consistency(Specification specification, String jkindjarpth,
 			String resultname) throws IOException {
 
 		Pair<JKindApi, Document> pair = commonJKindAnalysisSetup(specification, jkindjarpth);
@@ -121,15 +122,15 @@ public class Analysis {
 		} else {
 			p = pair.getValue1().getLogicalConsistency();
 		}
-		Renaming renaming = pair.getValue1().getRenaming(Mode.IDENTITY);
+		Renaming renaming = pair.getValue1().getRenaming();
 
 		List<Boolean> invert = p.getMainNode().properties.stream().map(prop -> true).collect(Collectors.toList());
 		JKindResult result = new JKindResult(resultname, p.getMainNode().properties, invert, renaming);
-		return Pair.with(new Analysis(pair.getValue0(), p, result), result);
+		return Triplet.with(new Analysis(pair.getValue0(), p, result), pair.getValue1(), result);
 	}
 
-	public static Pair<Analysis, JKindResult> realizability(Specification specification, String jkindjarpth,
-			String resultname) throws Exception {
+	public static Triplet<Analysis, Document, JKindResult> realizability(Specification specification,
+			String jkindjarpth, String resultname) throws Exception {
 		JRealizabilityApi api = new JRealizabilityApi();
 		api.setJKindJar(jkindjarpth.toString());
 		PreferencesUtil.configureRealizabilityApi(api);
@@ -153,9 +154,8 @@ public class Analysis {
 			throw e;
 		}
 		PreferencesUtil.configureRealizabilityApi(api);
-		JRealizabilityResult result = new JRealizabilityResult("result", doc.getRenaming(Mode.IDENTITY));
+		JRealizabilityResult result = new JRealizabilityResult("result", doc.getRenaming());
 
-		return Pair.with(new Analysis(api, p, result), result);
+		return Triplet.with(new Analysis(api, p, result), doc, result);
 	}
-
 }

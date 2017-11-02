@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: SpeAR
 Bundle-Vendor: Rockwell Collins
-Bundle-Version: 2.0.0
+Bundle-Version: 2.1.0
 Bundle-SymbolicName: com.rockwellcollins.spear; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext;visibility:=reexport,
@@ -15,7 +15,8 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  org.eclipse.xtext.common.types,
  org.eclipse.equinox.app,
  org.eclipse.ui
-Import-Package: org.apache.log4j,
+Import-Package: jkind.lustre,
+ org.apache.log4j,
  org.eclipse.core.runtime;version="3.5.0",
  org.eclipse.core.runtime.preferences;version="3.3.0",
  org.osgi.framework;version="1.8.0"
@@ -107,8 +108,10 @@ Bundle-ClassPath: .,
  dependencies/jkind/jkind-api.jar,
  dependencies/jkind/jkind.jar,
  dependencies/commons/commons-collections4-4.1.jar,
- dependencies/commons/commons-lang3-3.4.jar,
- dependencies/jaxb-api-2.2.3.jar,
- dependencies/jxl.jar,
+ dependencies/commons/commons-collections4-4.1-javadoc.jar,
+ dependencies/commons/commons-lang3-3.6.jar,
+ dependencies/commons/commons-lang3-3.6-javadoc.jar,
+ dependencies/commons/commons-io-2.5.jar,
  dependencies/commons/commons-io-2.5-javadoc.jar,
- dependencies/commons/commons-io-2.5.jar
+ dependencies/jaxb-api-2.2.3.jar,
+ dependencies/jxl.jar

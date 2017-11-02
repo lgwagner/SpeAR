@@ -19,12 +19,11 @@ import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.TypeDef;
+import com.rockwellcollins.spear.translate.layout.SpearRenaming;
 import com.rockwellcollins.spear.translate.master.SProgram;
 import com.rockwellcollins.spear.translate.transformations.PerformTransforms;
 import com.rockwellcollins.spear.utilities.Utilities;
 
-import jkind.api.results.MapRenaming;
-import jkind.api.results.MapRenaming.Mode;
 import jkind.api.results.Renaming;
 import jkind.lustre.Program;
 
@@ -132,27 +131,40 @@ public class Document {
 		return p;
 	}
 
-	public Renaming getRenaming(Mode mode) {
-		return new MapRenaming(renamed.get(main), mode);
+	public Renaming getRenaming() {
+		SimpleAttributeResolver<EObject, String> resolver = SimpleAttributeResolver.NAME_RESOLVER;
+		String mainName = resolver.apply(main);
+		//get import list, in order
+		//import maps in order so you have the correct map for the main file.
+		Map<String,String> map = new HashMap<>();
+		for(File f : this.files) {
+			if(!f.getName().equals(mainName)) {
+				map.putAll(renamed.get(f));				
+			}
+		}
+		map.putAll(renamed.get(main));
+		return new SpearRenaming(map);
 	}
 
-  private FileOutputStream lustreOutputStream() {
-    IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-    IFile ifile = root.getFile(new Path(spec.eResource().getURI().toPlatformString(true)));
-    String fullpath = ifile.getRawLocation().toString();
-    String prefix = FilenameUtils.getPrefix(fullpath);
-    String filename = FilenameUtils.getBaseName(fullpath);
-    String filenamenoext = FilenameUtils.removeExtension(filename);
-    String filepath = prefix + FilenameUtils.getPath(fullpath);
-    try {
-      java.io.File pathfile = new java.io.File(Paths.get(filepath,"generated").toString());
-      pathfile.mkdirs();
-      FileOutputStream out = new FileOutputStream(Paths.get(filepath,"generated",filenamenoext).toString() + ".lus");
-      return out;
-    } catch (Exception e) {
-      System.err.println("Could not create file " + Paths.get(filepath,"generated",filenamenoext).toString() + ".lus, lustre file will not be generated : " + e);
-      return null;
-    }
-  }
+	private FileOutputStream lustreOutputStream() {
+		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+		IFile ifile = root.getFile(new Path(spec.eResource().getURI().toPlatformString(true)));
+		String fullpath = ifile.getRawLocation().toString();
+		String prefix = FilenameUtils.getPrefix(fullpath);
+		String filename = FilenameUtils.getBaseName(fullpath);
+		String filenamenoext = FilenameUtils.removeExtension(filename);
+		String filepath = prefix + FilenameUtils.getPath(fullpath);
+		try {
+			java.io.File pathfile = new java.io.File(Paths.get(filepath, "generated").toString());
+			pathfile.mkdirs();
+			FileOutputStream out = new FileOutputStream(
+					Paths.get(filepath, "generated", filenamenoext).toString() + ".lus");
+			return out;
+		} catch (Exception e) {
+			System.err.println("Could not create file " + Paths.get(filepath, "generated", filenamenoext).toString()
+					+ ".lus, lustre file will not be generated : " + e);
+			return null;
+		}
+	}
 
 }

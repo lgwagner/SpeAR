@@ -2,10 +2,10 @@
  */
 package com.rockwellcollins.spear.ui.commandline;
 
-import java.nio.file.Paths;
-import java.nio.file.Path;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,7 +20,7 @@ import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
-import org.javatuples.Pair;
+import org.javatuples.Triplet;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.ParameterException;
@@ -32,6 +32,7 @@ import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.analysis.Analysis;
 import com.rockwellcollins.spear.preferences.PreferenceConstants;
 import com.rockwellcollins.spear.preferences.Preferences;
+import com.rockwellcollins.spear.translate.intermediate.Document;
 
 import jkind.api.results.JKindResult;
 import jkind.api.results.PropertyResult;
@@ -176,34 +177,31 @@ public class Main {
 		} catch (IOException e1) {
 			throw new RuntimeException("This should not happen: Problem exporting 'jkind.jar'.");
 		}
-		Pair<Analysis, JKindResult> pair = null;
+		Triplet<Analysis, Document, JKindResult> triple = null;
 		if (command == "entailment") {
 			try {
-				pair = Analysis.entailment((Specification) resource.getContents().get(0), jkindjarpth.toString(),
-						"result");
+				triple = Analysis.entailment((Specification) resource.getContents().get(0), jkindjarpth.toString(),"result");
 			} catch (Exception e) {
 				throw e;
 			}
 
 		} else if (command == "consistency") {
 			try {
-				pair = Analysis.consistency((Specification) resource.getContents().get(0), jkindjarpth.toString(),
-						"result");
+				triple = Analysis.consistency((Specification) resource.getContents().get(0), jkindjarpth.toString(),"result");
 			} catch (Exception e) {
 				throw e;
 			}
 		} else if (command == "realizability") {
 			try {
-				pair = Analysis.realizability((Specification) resource.getContents().get(0), jkindjarpth.toString(),
-						"result");
+				triple = Analysis.realizability((Specification) resource.getContents().get(0), jkindjarpth.toString(),"result");
 			} catch (Exception e) {
 				throw e;
 			}
 		} else {
 			throw new RuntimeException("This should not happen: unknown command.");
 		}
-		pair.getValue0().analyze(new NullProgressMonitor());
-		for (PropertyResult pr : pair.getValue1().getPropertyResults()) {
+		triple.getValue0().analyze(new NullProgressMonitor());
+		for (PropertyResult pr : triple.getValue2().getPropertyResults()) {
 			System.out
 					.println(pr.getProperty().getName() + ", " + pr.getStatus() + ", " + pr.getProperty().getRuntime());
 		}
@@ -237,5 +235,4 @@ public class Main {
 		extension = validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
 		list.addAll(extension);
 	}
-
 }

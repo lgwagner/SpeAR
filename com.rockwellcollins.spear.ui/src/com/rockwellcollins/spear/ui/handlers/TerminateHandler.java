@@ -7,13 +7,21 @@ import org.eclipse.core.runtime.IProgressMonitor;
 public class TerminateHandler extends AbstractHandler {
 	private final IProgressMonitor monitor;
 
+	// Needed when TerminateHandler is instantiated by plugin.xml instead of
+	// code
+	public TerminateHandler() {
+		this.monitor = null;
+	}
+
 	public TerminateHandler(IProgressMonitor monitor) {
 		this.monitor = monitor;
 	}
 
 	@Override
 	public Object execute(ExecutionEvent event) {
-		monitor.setCanceled(true);
+		if (monitor != null) {
+			monitor.setCanceled(true);
+		}
 		return null;
 	}
 }

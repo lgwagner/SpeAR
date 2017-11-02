@@ -56,10 +56,15 @@ public class UniquifyNormalizedCalls {
 	}
 
 	public void makeUnique(Document d) {
-		if (d.main instanceof Specification) {
-			Specification spec = (Specification) d.main;
-			files.put(spec.getName(), spec);
-			processSpec(spec);
+		
+		for(File f : d.files) {
+			if(f instanceof Specification) {
+				Specification spec = (Specification) f;
+				files.put(f.getName(), spec);
+				processSpec(spec);
+			} else {
+				files.put(f.getName(), f);
+			}
 		}
 
 		// clear out the old stuff for the new stuff

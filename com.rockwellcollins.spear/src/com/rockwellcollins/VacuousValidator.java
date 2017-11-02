@@ -11,5 +11,4 @@ class VacuousValidator implements IValidatorAdvisor {
 	public boolean isSolverNonlinear() {
 		return false;
 	}
-
 }

@@ -142,7 +142,7 @@ Constant:
 ;
 
 Macro:
-   name=ID IdTypeDelimiter type=Type '=' expr=Expr (data+=Data)*
+   name=ID (inline=('inline' | 'inline_all'))? IdTypeDelimiter type=Type '=' expr=Expr (data+=Data)*
 ;
 
 Constraint:
@@ -151,7 +151,12 @@ Constraint:
 ;
 
 FormalConstraint:
-   name=ID (flagAsWitness='observe')? ':' expr=Expr (data+=Data)*
+   name=ID (flag=FormalConstraintFlag)? ':' expr=Expr (data+=Data)*
+;
+
+FormalConstraintFlag:
+	{Observe} 'observe'
+|	{UFC}	'ufc'
 ;
 
 EnglishConstraint:
@@ -189,7 +194,15 @@ OrExpr returns Expr:
 ;
 
 AndExpr returns Expr:
-   AfterUntilExpr (=> ({BinaryExpr.left=current} op='and') right=AfterUntilExpr)*
+   PrecedesExpr (=> ({BinaryExpr.left=current} op='and') right=PrecedesExpr)*
+;
+
+PrecedesExpr returns Expr:
+   RespondsExpr (=> ({BinaryExpr.left=current} op='precedes') right=RespondsExpr)*
+;
+
+RespondsExpr returns Expr:
+   AfterUntilExpr (=> ({RespondsExpr.response=current} 'responds' 'to') stimulus=AfterUntilExpr (=> 'within' delay=Expr 'steps')?)*
 ;
 
 AfterUntilExpr returns Expr:
@@ -205,8 +218,18 @@ SinceExpr returns Expr:
    TemporalPrefixExpr (=> ({BinaryExpr.left=current} op=('S' | 'since')) right=TemporalPrefixExpr)*
 ;
 
+TemporalPrefixUnaryOp:
+  'O' 
+| 'once' 
+| 'H' 
+| 'historically' 
+| 'never' 
+| 'before' 
+| 'initially' 
+;
+
 TemporalPrefixExpr returns Expr:
-   {UnaryExpr} op=('O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'initially') expr=TemporalPrefixExpr 
+   {UnaryExpr} op=TemporalPrefixUnaryOp expr=TemporalPrefixExpr 
 |  EqualsExpr
 ;
 
@@ -240,9 +263,20 @@ MultiplyExpr returns Expr:
    PrefixExpr (=> ({BinaryExpr.left=current} op=('*' | '/' | 'mod')) right=PrefixExpr)*
 ;
 
+PrefixUnaryOp:
+	'-'
+|  'not'
+|  'count'
+|  'ccount'
+;
+
 PrefixExpr returns Expr:
-   {UnaryExpr} op=('-' | 'not') expr=PrefixExpr
-|  PreviousExpr
+   {UnaryExpr} op=PrefixUnaryOp expr=PrefixExpr
+|  InExpr
+;
+
+InExpr returns Expr:
+   PreviousExpr (=> ({BinaryExpr.left=current} op=('in')) right=PreviousExpr)*
 ;
 
 PreviousExpr returns Expr:
@@ -258,11 +292,13 @@ AccessExpr returns Expr:
 ;
 
 AtomicExpr returns Expr:
-   LiteralExpr 
-|  {IntegerCast} op='floor' '(' expr=Expr ')'
+   LiteralExpr
+|  '{' Expr ({IntervalExpr.low=current} style=('..' | '<..' | '<..<' | '..<') high=Expr | {SetExpr.exprs+=current} (',' exprs+=Expr)*) '}'
+|  {IntegerCast} op=('floor' | 'btoi') '(' expr=Expr ')'
 |  {RealCast} op='real' '(' expr=Expr ')'
-|  {IdExpr} id=[IdRef] 
-|  {MultipleExpr} '|' exprs+=Expr (',' exprs+=Expr)* '|' 
+|  {IdExpr} id=[IdRef]
+|  {CounterExpr} 'counter'
+|  {ListExpr} '|' exprs+=Expr (',' exprs+=Expr)* '|' 
 |  {IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else' else=Expr)? 
 |  {RecordExpr} 'new' type=[RecordTypeDef] '{' fieldExprs+=FieldExpr (',' fieldExprs+=FieldExpr)* '}' 
 |  {FieldlessRecordExpr} 'new' type=[RecordTypeDef] '{' exprs+=Expr (',' exprs+=Expr)* '}' 

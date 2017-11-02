@@ -21,17 +21,16 @@ public class PreferenceConstants {
 	public static final String PREF_SMOOTH_COUNTEREXAMPLES = "smoothCounterexamples";
 	public static final String PREF_INTERVAL_GENERALIZATION = "intervalGeneralization";
 	public static final String PREF_DEBUG = "apiDebug";
-
 	public static final String PREF_DEPTH = "inductionDepth";
 	public static final String PREF_TIMEOUT = "timeout";
 	public static final String PREF_SOLVER = "solver";
-
 	public static final String SOLVER_SMTINTERPOL = "SMTInterpol";
 	public static final String SOLVER_Z3 = "Z3";
 	public static final String SOLVER_YICES2 = "Yices 2";
 	public static final String SOLVER_CVC4 = "CVC4";
 
+	/* Model Checker preferences */
+	/* hint...there's only one model checker allowed */
 	public static final String PREF_MODEL_CHECKER = "modelChecker";
-
 	public static final String MODEL_CHECKER_JKIND = "JKind";
 }

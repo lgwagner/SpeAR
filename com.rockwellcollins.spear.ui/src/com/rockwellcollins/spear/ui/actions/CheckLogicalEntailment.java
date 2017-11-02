@@ -1,9 +1,11 @@
 package com.rockwellcollins.spear.ui.actions;
 
+import static com.rockwellcollins.spear.utilities.Utilities.checkForUFCFlag;
 import static java.util.stream.Collectors.toList;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -22,16 +24,18 @@ import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
-import org.javatuples.Pair;
+import org.javatuples.Triplet;
 
 import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Constraint;
 import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.FormalConstraint;
+import com.rockwellcollins.spear.Observe;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.analysis.Analysis;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
+import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.translate.layout.SpearRegularLayout;
 import com.rockwellcollins.spear.ui.handlers.TerminateHandler;
 import com.rockwellcollins.spear.ui.views.SpearEntailmentResultsView;
@@ -42,7 +46,7 @@ import jkind.results.layout.Layout;
 
 public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 
-	private static final String TERMINATE_ID = "com.rockwellcollins.spear.translate.commands..terminateLogicalEntailment";
+	private static final String TERMINATE_ID = "com.rockwellcollins.spear.ui.commands.terminateLogicalEntailment";
 
 	private IWorkbenchWindow window;
 
@@ -83,27 +87,27 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 					return null;
 				}
 
-				if (specification.getBehaviors().size() == 0) {
+				if (getEntailmentPropCount(specification) == 0) {
 					MessageDialog.openError(window.getShell(), "Nothing to analyze",
 							"The user must specify at least one property to check for logical entailment.");
 					return null;
 				}
 
-				Pair<Analysis, JKindResult> pair = Analysis.entailment(specification, PreferencesUtil.getJKindJar(),
-						"result");
+				Triplet<Analysis, Document, JKindResult> triple = Analysis.entailment(specification,
+						PreferencesUtil.getJKindJar(), "result");
 				ResourcesPlugin.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_INFINITE, null);
 
 				activateTerminateHandler(monitor);
 				List<String> requirements = specification.getRequirements().stream().map(req -> req.getName())
 						.collect(toList());
-				List<String> observers = getObservers(specification);
-				showView(pair.getValue1(), new SpearRegularLayout(specification), requirements, observers);
+				List<String> observers = getObservers(triple.getValue1());
+				showView(triple.getValue2(), new SpearRegularLayout(specification), requirements, observers);
 
 				new Thread(() -> {
 					try {
-						pair.getValue0().analyze(monitor);
+						triple.getValue0().analyze(monitor);
 					} catch (Exception e) {
-						System.err.println(pair.getValue1().getText());
+						System.err.println(triple.getValue2().getText());
 						throw e;
 					} finally {
 						deactivateTerminateHandler();
@@ -112,15 +116,23 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 
 				return null;
 			}
+
 		});
 	}
 
-	private List<String> getObservers(Specification specification) {
+	private Integer getEntailmentPropCount(Specification specification) {
+		List<Constraint> ufcRequirements = specification.getRequirements().stream().filter(c -> checkForUFCFlag(c))
+				.collect(Collectors.toList());
+		return specification.getBehaviors().size() + ufcRequirements.size();
+	}
+
+	private List<String> getObservers(Document d) {
+		Specification specification = (Specification) d.main;
 		List<String> result = new ArrayList<>();
 		for (Constraint c : specification.getBehaviors()) {
 			if (c instanceof FormalConstraint) {
 				FormalConstraint fc = (FormalConstraint) c;
-				if ("observe".equals(fc.getFlagAsWitness())) {
+				if (fc.getFlag() != null && (fc.getFlag() instanceof Observe)) {
 					result.add(c.getName());
 				}
 			}

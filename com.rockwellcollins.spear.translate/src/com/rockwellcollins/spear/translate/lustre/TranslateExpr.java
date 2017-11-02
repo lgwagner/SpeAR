@@ -2,6 +2,7 @@ package com.rockwellcollins.spear.translate.lustre;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,9 +13,10 @@ import org.eclipse.emf.ecore.EObject;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.IntegerCast;
+import com.rockwellcollins.spear.ListExpr;
 import com.rockwellcollins.spear.Macro;
-import com.rockwellcollins.spear.MultipleExpr;
 import com.rockwellcollins.spear.RealCast;
+import com.rockwellcollins.spear.RespondsExpr;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.translate.master.SCall;
 import com.rockwellcollins.spear.translate.master.SMapElement;
@@ -91,6 +93,8 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 		case "once":
 		case "historically":
 		case "initially":
+		case "count":
+		case "ccount":
 			List<Expr> args = new ArrayList<>();
 			args.add(sub);
 			return new NodeCallExpr(unary.getOp(), args);
@@ -173,6 +177,7 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 
 		case "since":
 		case "triggers":
+		case "precedes":
 			List<Expr> args = new ArrayList<>();
 			args.add(left);
 			args.add(right);
@@ -183,6 +188,24 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 		}
 	}
 
+	@Override
+	public Expr caseRespondsExpr(RespondsExpr responds) {
+		Expr response = doSwitch(responds.getResponse());
+		Expr stimulus = doSwitch(responds.getStimulus());
+
+		List<Expr> args = new ArrayList<>();
+		args.add(response);
+		args.add(stimulus);
+
+		if(responds.getDelay() != null) {
+			Expr delay = doSwitch(responds.getDelay());
+			args.add(delay);	
+		} else {
+			args.add(new IntExpr(1));
+		}
+		return new NodeCallExpr("responds",args);
+	}
+	
 	@Override
 	public Expr caseIfThenElseExpr(com.rockwellcollins.spear.IfThenElseExpr ite) {
 		Expr condExpr = this.doSwitch(ite.getCond());
@@ -211,6 +234,11 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	public Expr caseIdExpr(com.rockwellcollins.spear.IdExpr ide) {
 		return doSwitch(ide.getId());
 	}
+	
+	@Override
+	public Expr caseCounterExpr(com.rockwellcollins.spear.CounterExpr ce) {
+		return new IdExpr(module.counterName);
+	}
 
 	@Override
 	public Expr caseMacro(Macro m) {
@@ -220,7 +248,13 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 
 	@Override
 	public Expr caseIntegerCast(IntegerCast cast) {
-		return new CastExpr(NamedType.INT, doSwitch(cast.getExpr()));
+		if(cast.getOp().equals("floor")) {
+			return new CastExpr(NamedType.INT, doSwitch(cast.getExpr()));
+		} else if(cast.getOp().equals("btoi")) {
+			return new NodeCallExpr("btoi",Collections.singletonList(doSwitch(cast.getExpr())));
+		} 
+		
+		throw new RuntimeException("Unexpected cast operator provided: " + cast.getOp().toString());
 	}
 
 	@Override
@@ -271,10 +305,10 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	}
 
 	@Override
-	public Expr caseMultipleExpr(MultipleExpr me) {
-		List<Expr> list = new ArrayList<>();
-		list.addAll(me.getExprs().stream().map(e -> this.doSwitch(e)).collect(Collectors.toList()));
-		return new TupleExpr(list);
+	public Expr caseListExpr(ListExpr list) {
+		List<Expr> elements = new ArrayList<>();
+		elements.addAll(list.getExprs().stream().map(e -> this.doSwitch(e)).collect(Collectors.toList()));
+		return new TupleExpr(elements);
 	}
 
 	@Override
