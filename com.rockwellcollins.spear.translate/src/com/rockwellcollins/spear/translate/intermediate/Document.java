@@ -139,7 +139,10 @@ public class Document {
 		Map<String,String> map = new HashMap<>();
 		for(File f : this.files) {
 			if(!f.getName().equals(mainName)) {
-				map.putAll(renamed.get(f));				
+				Map<String, String> fileMap = renamed.get(f);
+				if(fileMap != null) {
+					map.putAll(fileMap);				
+				}
 			}
 		}
 		map.putAll(renamed.get(main));

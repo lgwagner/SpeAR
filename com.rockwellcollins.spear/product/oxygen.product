@@ -20,13 +20,15 @@
       </vmArgsMac>
    </launcherArgs>
 
-   <windowImages i16="branding/1429142139_weapons_spear-16.png" i32="branding/1429142164_weapons_spear-32.png" i48="branding/1429142171_weapons_spear-48.png" i64="branding/1429142171_weapons_spear-48.png" i128="branding/1429142344_weapons_spear-128.png" i256="branding/1429142348_weapons_spear-256.png"/>
+   <windowImages i16="branding/1429142139_weapons_spear-16.png" i32="branding/1429142164_weapons_spear-32.png" i48="branding/1429142171_weapons_spear-48.png" i64="/com.rockwellcollins.spear/branding/1429142412_weapons_spear-64.png" i128="branding/1429142344_weapons_spear-128.png" i256="branding/1429142348_weapons_spear-256.png"/>
+
 
    <launcher name="spear.exe">
       <win useIco="true">
          <bmp/>
       </win>
    </launcher>
+
 
    <vm>
       <linux include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</linux>
@@ -71,6 +73,7 @@ IS APPROVED FOR PUBLIC RELEASE. CASE NUMBER: 88ABW-2016-1658
       <plugin id="com.google.inject"/>
       <plugin id="com.ibm.icu"/>
       <plugin id="com.rockwellcollins.spear"/>
+      <plugin id="com.rockwellcollins.spear.commandline"/>
       <plugin id="com.rockwellcollins.spear.translate"/>
       <plugin id="com.rockwellcollins.spear.ui"/>
       <plugin id="javax.annotation"/>
@@ -210,6 +213,9 @@ IS APPROVED FOR PUBLIC RELEASE. CASE NUMBER: 88ABW-2016-1658
    </plugins>
 
    <configurations>
+      <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.ds" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.equinox.event" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
    </configurations>
