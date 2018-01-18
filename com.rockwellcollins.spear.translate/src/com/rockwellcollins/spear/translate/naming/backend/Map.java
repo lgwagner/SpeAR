@@ -42,6 +42,17 @@ public class Map {
 		map.put(renamed, original);
 		return renamed;
 	}
+	
+	public String getName(Map program, String original) {
+		String renamed = original;
+		Integer unique = 0;
+		while (program.contains(renamed) || map.containsKey(renamed)) {
+			renamed = original + unique;
+			unique++;
+		}
+		map.put(renamed, original);
+		return renamed;
+	}
 
 	/**
 	 * This will take the original name and provide back the renamed name.

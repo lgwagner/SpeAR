@@ -45,7 +45,7 @@ public class SpearMap {
 	}
 
 	public String getModuleName(String original) {
-		return module.getName(original);
+		return module.getName(this.program,original);
 	}
 
 	public String lookupOriginalProgram(String original) {
