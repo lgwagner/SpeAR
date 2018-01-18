@@ -9,8 +9,12 @@ import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.resources.WorkspaceJob;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
@@ -103,16 +107,20 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 				List<String> observers = getObservers(triple.getValue1());
 				showView(triple.getValue2(), new SpearRegularLayout(specification), requirements, observers);
 
-				new Thread(() -> {
-					try {
-						triple.getValue0().analyze(monitor);
-					} catch (Exception e) {
-						System.err.println(triple.getValue2().getText());
-						throw e;
-					} finally {
-						deactivateTerminateHandler();
+				new WorkspaceJob("Entailment") {
+					@Override
+					public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
+						try {
+							triple.getValue0().analyze(monitor);
+						} catch (Exception e) {
+							System.err.println(triple.getValue2().getText());
+							throw e;
+						} finally {
+							deactivateTerminateHandler();
+						}
+						return Status.OK_STATUS;
 					}
-				}).start();
+				}.schedule();
 
 				return null;
 			}

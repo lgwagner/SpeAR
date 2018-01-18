@@ -2,8 +2,12 @@ package com.rockwellcollins.spear.ui.actions;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.resources.WorkspaceJob;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
@@ -83,8 +87,9 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 				activateTerminateHandler(monitor);
 				showView(triplet.getValue2(), new SpearRegularLayout(specification));
 
-				new Thread() {
-					public void run() {
+				new WorkspaceJob("Consistency") {
+					@Override
+					public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
 						try {
 							triplet.getValue0().analyze(monitor);
 						} catch (Exception e) {
@@ -93,8 +98,9 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 						} finally {
 							deactivateTerminateHandler();
 						}
+						return Status.OK_STATUS;
 					}
-				}.start();
+				}.schedule();
 
 				return null;
 			}
@@ -144,12 +150,10 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 	}
 
 	@Override
-	public void selectionChanged(IAction arg0, ISelection arg1) {
-	}
+	public void selectionChanged(IAction arg0, ISelection arg1) {}
 
 	@Override
-	public void dispose() {
-	}
+	public void dispose() {}
 
 	@Override
 	public void init(IWorkbenchWindow arg0) {
