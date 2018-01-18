@@ -35,8 +35,6 @@ import com.rockwellcollins.ui.internal.SpearActivator;
 
 import jkind.api.JKindApi;
 import jkind.api.results.JKindResult;
-import jkind.api.results.MapRenaming;
-import jkind.api.results.MapRenaming.Mode;
 import jkind.api.results.Renaming;
 import jkind.lustre.Program;
 import jkind.results.layout.Layout;

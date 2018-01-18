@@ -13,7 +13,6 @@ import org.eclipse.core.resources.WorkspaceJob;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -68,10 +67,10 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 		XtextEditor xte = (XtextEditor) editor;
 		IXtextDocument doc = xte.getDocument();
 
-		runAnalysis(doc, new NullProgressMonitor());
+		runAnalysis(doc);
 	}
 
-	private void runAnalysis(IXtextDocument doc, IProgressMonitor monitor) {
+	private void runAnalysis(IXtextDocument doc) {
 		doc.readOnly(new IUnitOfWork<Void, XtextResource>() {
 
 			@Override
@@ -101,7 +100,6 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 						PreferencesUtil.getJKindJar(), "result");
 				ResourcesPlugin.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_INFINITE, null);
 
-				activateTerminateHandler(monitor);
 				List<String> requirements = specification.getRequirements().stream().map(req -> req.getName())
 						.collect(toList());
 				List<String> observers = getObservers(triple.getValue1());
@@ -111,6 +109,7 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 					@Override
 					public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
 						try {
+							activateTerminateHandler(monitor);
 							triple.getValue0().analyze(monitor);
 						} catch (Exception e) {
 							System.err.println(triple.getValue2().getText());
@@ -121,10 +120,8 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 						return Status.OK_STATUS;
 					}
 				}.schedule();
-
 				return null;
 			}
-
 		});
 	}
 

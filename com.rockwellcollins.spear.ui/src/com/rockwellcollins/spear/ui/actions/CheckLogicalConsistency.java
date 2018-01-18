@@ -6,7 +6,6 @@ import org.eclipse.core.resources.WorkspaceJob;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -58,10 +57,10 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 		XtextEditor xte = (XtextEditor) editor;
 		IXtextDocument doc = xte.getDocument();
 
-		runAnalysis(doc, new NullProgressMonitor());
+		runAnalysis(doc);
 	}
 
-	private void runAnalysis(IXtextDocument doc, IProgressMonitor monitor) {
+	private void runAnalysis(IXtextDocument doc) {
 		doc.readOnly(new IUnitOfWork<Void, XtextResource>() {
 
 			@Override
@@ -81,16 +80,16 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 					return null;
 				}
 
-				Triplet<Analysis, Document, JKindResult> triplet = Analysis.consistency(specification, PreferencesUtil.getJKindJar(),"result");
+				Triplet<Analysis, Document, JKindResult> triplet = Analysis.consistency(specification,
+						PreferencesUtil.getJKindJar(), "result");
 				ResourcesPlugin.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_INFINITE, null);
-
-				activateTerminateHandler(monitor);
 				showView(triplet.getValue2(), new SpearRegularLayout(specification));
 
 				new WorkspaceJob("Consistency") {
 					@Override
 					public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
 						try {
+							activateTerminateHandler(monitor);
 							triplet.getValue0().analyze(monitor);
 						} catch (Exception e) {
 							System.err.println(triplet.getValue2().getText());
@@ -101,10 +100,8 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 						return Status.OK_STATUS;
 					}
 				}.schedule();
-
 				return null;
 			}
-
 		});
 	}
 
@@ -150,10 +147,12 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 	}
 
 	@Override
-	public void selectionChanged(IAction arg0, ISelection arg1) {}
+	public void selectionChanged(IAction arg0, ISelection arg1) {
+	}
 
 	@Override
-	public void dispose() {}
+	public void dispose() {
+	}
 
 	@Override
 	public void init(IWorkbenchWindow arg0) {

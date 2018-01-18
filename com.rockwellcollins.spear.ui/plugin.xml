@@ -700,8 +700,7 @@
          </command>
       </menuContribution>
       <menuContribution
-         locationURI=
-         "popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu?after=additions">
+         locationURI= "popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu?after=additions">
          <command
                commandId="com.rockwellcollins.spear.ui.commands.startBatchAnalysis"
                label="Batch Analysis"
