@@ -115,13 +115,15 @@ public class AnalyzeType extends AbstractHandler {
 		Document document = null;
 		try {
 			document = new Document(td);
+			document.transform(false);
 		} catch (Exception e1) {
 			System.err.println("Unexpected error transforming PatternDocument for analysis.");
 			e1.printStackTrace();
 		}
+		
 		// this *must* occur after the transforms for operators to be correctly
 		// normalized.
-		document.main = createPattern(td);
+		document.main = createPattern((TypeDef) document.main);
 		SProgram p = SProgram.build(document);
 		Program lp = p.patternToLustre();
 
