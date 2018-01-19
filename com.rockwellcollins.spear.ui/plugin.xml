@@ -758,18 +758,6 @@
             commandId="com.rockwellcollins.spear.ui.commands.terminateBatchAnalysis"
             class="com.rockwellcollins.spear.ui.handlers.BatchAnalysis">
       </handler>
-       <handler
-            commandId="com.rockwellcollins.spear.ui.commands.terminateLogicalConsistency"
-            class="com.rockwellcollins.spear.ui.handlers.TerminateHandler">
-      </handler>
-       <handler
-            commandId="com.rockwellcollins.spear.ui.commands.terminateLogicalEntailment"
-            class="com.rockwellcollins.spear.ui.handlers.TerminateHandler">
-      </handler>
-       <handler
-            commandId="com.rockwellcollins.spear.ui.commands.terminateRealizability"
-            class="com.rockwellcollins.spear.ui.handlers.TerminateHandler">
-      </handler>
    </extension>
 
 </plugin>

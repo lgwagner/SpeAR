@@ -9,8 +9,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.jface.preference.PreferenceStore;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -29,7 +27,6 @@ import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.analysis.Analysis;
-import com.rockwellcollins.spear.preferences.PreferenceConstants;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
 import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.translate.layout.SpearRealizabilityLayout;
@@ -51,9 +48,6 @@ public class CheckRealizability implements IWorkbenchWindowActionDelegate {
 		SpearInjectorUtil
 				.setInjector(SpearActivator.getInstance().getInjector(SpearActivator.COM_ROCKWELLCOLLINS_SPEAR));
 
-		IPreferenceStore prefs = SpearActivator.getInstance().getPreferenceStore();
-		System.out.println(prefs.getInt(PreferenceConstants.PREF_TIMEOUT));
-		
 		IEditorPart editor = window.getActivePage().getActiveEditor();
 		if (!(editor instanceof XtextEditor)) {
 			MessageDialog.openError(window.getShell(), "Error", "Only SpeAR files can be analyzed.");
@@ -62,10 +56,8 @@ public class CheckRealizability implements IWorkbenchWindowActionDelegate {
 
 		XtextEditor xte = (XtextEditor) editor;
 		IXtextDocument doc = xte.getDocument();
-
-
-		
-//		runAnalysis(doc);
+	
+		runAnalysis(doc);
 	}
 
 	private void runAnalysis(IXtextDocument doc) {
