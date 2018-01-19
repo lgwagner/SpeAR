@@ -100,9 +100,9 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 						PreferencesUtil.getJKindJar(), "result");
 				ResourcesPlugin.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_INFINITE, null);
 
-				List<String> requirements = specification.getRequirements().stream().map(req -> req.getName())
-						.collect(toList());
+				List<String> requirements = specification.getRequirements().stream().map(req -> req.getName()).collect(toList());
 				List<String> observers = getObservers(triple.getValue1());
+
 				showView(triple.getValue2(), new SpearRegularLayout(specification), requirements, observers);
 
 				new WorkspaceJob("Entailment") {
@@ -138,7 +138,12 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 			if (c instanceof FormalConstraint) {
 				FormalConstraint fc = (FormalConstraint) c;
 				if (fc.getFlag() != null && (fc.getFlag() instanceof Observe)) {
-					result.add(c.getName());
+					if(d.renamed.get(d.main).containsKey(c.getName())) {
+						result.add(d.renamed.get(d.main).get(c.getName()));
+					} else {
+						result.add(c.getName());	
+					}
+					
 				}
 			}
 		}
