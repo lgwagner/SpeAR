@@ -25,7 +25,7 @@ public class SLustreEquation {
 	public Expr expression;
 
 	public SLustreEquation(LustreEquation eq, SPattern s) {
-		ids.addAll(eq.getIds().stream().map(v -> s.map.lookupOriginalModule(v.getName())).collect(Collectors.toList()));
+		ids.addAll(eq.getIds().stream().map(v -> s.map.lookup(v.getName())).collect(Collectors.toList()));
 		this.expression = eq.getRhs();
 	}
 

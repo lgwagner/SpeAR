@@ -16,7 +16,7 @@ public class SEnglishConstraint extends SConstraint {
 	public String text;
 
 	private SEnglishConstraint(EnglishConstraint ec, SSpecification s) {
-		this.name = s.map.getModuleName(ec.getName());
+		this.name = s.map.addName(ec.getName());
 		this.text = ec.getText();
 	}
 

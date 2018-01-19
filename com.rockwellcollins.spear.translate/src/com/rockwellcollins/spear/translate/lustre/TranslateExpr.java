@@ -76,7 +76,7 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 		args.addAll(call.getArgs().stream().map(e -> this.doSwitch(e)).collect(Collectors.toList()));
 		args.addAll(call.getIds().stream().map(idr -> this.doSwitch(idr)).collect(Collectors.toList()));
 
-		String nodeName = s.map.lookupOriginalProgram(call.getSpec().getName());
+		String nodeName = s.map.lookup(call.getSpec().getName());
 		SCall scall = SCall.get(call, s.calls);
 		args.addAll(scall.getCallArgs());
 		return new NodeCallExpr(nodeName, args);
@@ -242,7 +242,7 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 
 	@Override
 	public Expr caseMacro(Macro m) {
-		String x = this.module.map.lookupOriginalModule(m.getName());
+		String x = this.module.map.lookup(m.getName());
 		return new IdExpr(x);
 	}
 
@@ -274,12 +274,12 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 
 	@Override
 	public Expr caseConstant(Constant c) {
-		return new IdExpr(this.module.map.lookupOriginalProgram(c.getName()));
+		return new IdExpr(this.module.map.lookup(c.getName()));
 	}
 
 	@Override
 	public Expr caseEnumValue(EnumValue ev) {
-		return new IdExpr(this.module.map.lookupOriginalProgram(ev.getName()));
+		return new IdExpr(this.module.map.lookup(ev.getName()));
 	}
 
 	@Override
@@ -288,7 +288,7 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 		for (com.rockwellcollins.spear.FieldExpr fe : re.getFieldExprs()) {
 			fields.put(fe.getField().getName(), doSwitch(fe.getExpr()));
 		}
-		return new RecordExpr(this.module.map.lookupOriginalProgram(re.getType().getName()), fields);
+		return new RecordExpr(this.module.map.lookup(re.getType().getName()), fields);
 	}
 
 	@Override
@@ -300,7 +300,7 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 
 	@Override
 	public Expr caseVariable(Variable v) {
-		String name = this.module.map.lookupOriginalModule(v.getName());
+		String name = this.module.map.lookup(v.getName());
 		return new IdExpr(name);
 	}
 

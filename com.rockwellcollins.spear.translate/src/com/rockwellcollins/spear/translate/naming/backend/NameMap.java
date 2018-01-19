@@ -2,25 +2,25 @@ package com.rockwellcollins.spear.translate.naming.backend;
 
 import org.apache.commons.collections4.bidimap.DualHashBidiMap;
 
-public class Map {
+public class NameMap {
 
-	public static Map newMap() {
-		Map map = new Map();
+	public static NameMap newMap() {
+		NameMap map = new NameMap();
 		return map;
 	}
 
-	public static Map copy(Map map) {
-		Map copied = new Map(map);
+	public static NameMap copy(NameMap map) {
+		NameMap copied = new NameMap(map);
 		return copied;
 	}
 
 	private DualHashBidiMap<String, String> map;
 
-	private Map() {
+	private NameMap() {
 		this.map = new DualHashBidiMap<>();
 	}
 
-	private Map(Map existing) {
+	private NameMap(NameMap existing) {
 		this.map = new DualHashBidiMap<>();
 		this.map.putAll(existing.map);
 	}
@@ -43,7 +43,7 @@ public class Map {
 		return renamed;
 	}
 	
-	public String getName(Map program, String original) {
+	public String getName(NameMap program, String original) {
 		String renamed = original;
 		Integer unique = 0;
 		while (program.contains(renamed) || map.containsKey(renamed)) {

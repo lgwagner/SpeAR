@@ -27,17 +27,17 @@ public class SpearMap {
 		}
 	}
 
-	public Map program;
-	public Map module;
+	public NameMap program;
+	public NameMap module;
 
 	private SpearMap() {
-		this.program = Map.newMap();
+		this.program = NameMap.newMap();
 		this.module = null;
 	}
 
 	private SpearMap(SpearMap programMap) {
-		this.program = Map.copy(programMap.program);
-		this.module = Map.newMap();
+		this.program = NameMap.copy(programMap.program);
+		this.module = NameMap.newMap();
 	}
 
 	public String getProgramName(String original) {

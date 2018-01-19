@@ -18,7 +18,7 @@ public class SLustreProperty {
 	private String propertyId;
 
 	public SLustreProperty(LustreProperty lp, SPattern pattern) {
-		this.propertyId = pattern.map.lookupOriginalModule(lp.getPropertyId().getName());
+		this.propertyId = pattern.map.lookup(lp.getPropertyId().getName());
 	}
 
 	public String toLustre() {

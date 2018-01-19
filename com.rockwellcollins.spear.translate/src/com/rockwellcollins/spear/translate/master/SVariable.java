@@ -25,13 +25,13 @@ public class SVariable {
 
 	public SVariable(Variable v, SSpecification s) {
 		this.original = v.getName();
-		this.name = s.map.getModuleName(original);
+		this.name = s.map.addName(original);
 		this.type = v.getType();
 	}
 
 	public SVariable(String name, Type t, SSpecification s) {
 		this.original = name;
-		this.name = s.map.getModuleName(original);
+		this.name = s.map.addName(original);
 		this.type = t;
 	}
 

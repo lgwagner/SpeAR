@@ -12,6 +12,7 @@ import org.eclipse.xtext.EcoreUtil2;
 import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
+import com.rockwellcollins.spear.translate.naming.backend.Scope;
 import com.rockwellcollins.spear.translate.naming.backend.SpearMap;
 import com.rockwellcollins.spear.utilities.LustreLibrary;
 
@@ -33,19 +34,19 @@ import jkind.lustre.builders.NodeBuilder;
 
 public class SSpecification extends SMapElement {
 
-	public static List<String> addNames(Collection<Specification> list, SpearMap map) {
+	public static List<String> addNames(Collection<Specification> list, Scope map) {
 		return list.stream().map(s -> SSpecification.addName(s, map)).collect(Collectors.toList());
 	}
 
-	public static String addName(Specification s, SpearMap map) {
-		return map.getProgramName(s.getName());
+	public static String addName(Specification s, Scope map) {
+		return map.addName(s.getName());
 	}
 
-	public static List<SSpecification> build(Collection<Specification> list, SpearMap map) {
+	public static List<SSpecification> build(Collection<Specification> list, Scope map) {
 		return list.stream().map(s -> SSpecification.build(s, map)).collect(Collectors.toList());
 	}
 
-	public static SSpecification build(Specification s, SpearMap map) {
+	public static SSpecification build(Specification s, Scope map) {
 		return new SSpecification(s, map);
 	}
 
@@ -91,12 +92,12 @@ public class SSpecification extends SMapElement {
 	private List<NormalizedCall> spearCalls = new ArrayList<>();
 	public List<SCall> calls = new ArrayList<>();
 
-	public SSpecification(Specification s, SpearMap programMap) {
+	public SSpecification(Specification s, Scope programMap) {
 		// get the name from the global map
-		this.name = programMap.lookupOriginalProgram(s.getName());
+		this.name = programMap.lookup(s.getName());
 
 		// copy the global map as the local
-		this.map = SpearMap.getModuleMap(programMap);
+		this.map = programMap.copy();
 
 		// set the name
 		this.inputs.addAll(SVariable.build(s.getInputs(), this));
@@ -108,10 +109,10 @@ public class SSpecification extends SMapElement {
 		this.behaviors.addAll(SConstraint.build(s.getBehaviors(), this));
 		this.spearCalls.addAll(EcoreUtil2.getAllContentsOfType(s, NormalizedCall.class));
 
-		this.constraintsName = map.getModuleName(CONSTRAINTS);
-		this.counterName = map.getModuleName(COUNTER);
-		this.consistencyName = map.getModuleName(CONSISTENCY);
-		this.traceabilityName = map.getModuleName(TRACEABILITY);
+		this.constraintsName = map.addName(CONSTRAINTS);
+		this.counterName = map.addName(COUNTER);
+		this.consistencyName = map.addName(CONSISTENCY);
+		this.traceabilityName = map.addName(TRACEABILITY);
 	}
 
 	public void resolveCalls(List<SSpecification> specs) {

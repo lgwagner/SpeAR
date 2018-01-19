@@ -13,6 +13,7 @@ import com.rockwellcollins.spear.translate.intermediate.GetUsedConstants;
 import com.rockwellcollins.spear.translate.intermediate.GetUsedPatterns;
 import com.rockwellcollins.spear.translate.intermediate.GetUsedSpecifications;
 import com.rockwellcollins.spear.translate.intermediate.GetUsedTypeDefs;
+import com.rockwellcollins.spear.translate.naming.backend.Scope;
 import com.rockwellcollins.spear.translate.naming.backend.SpearMap;
 import com.rockwellcollins.spear.utilities.LustreLibrary;
 
@@ -42,10 +43,10 @@ public class SProgram extends SMapElement {
 
 	private SProgram(Document d, File main) {
 		// initialize the program's global map
-		map = SpearMap.getProgramMap();
+		map = new Scope();	
 
 		// add the PLTL node names to the program namespace
-		SpearMap.addLibraries(map);
+		Scope.addLibraries(map);
 
 		// get the names of the typedefs, constants and process them
 		typedefs.addAll(STypeDef.build(GetUsedTypeDefs.get(d.main), this));
@@ -73,15 +74,15 @@ public class SProgram extends SMapElement {
 		specifications.stream().forEach(s -> s.resolveCallVars());
 
 		// identify the main node.
-		this.mainName = map.lookupOriginalProgram(d.getMainName());
+		this.mainName = map.lookup(d.getMainName());
 	}
 
 	private SProgram(Document d, Pattern main) {
 		// create the map
-		map = SpearMap.getProgramMap();
+		map = new Scope();
 
 		// add the PLTL node names to the program namespace
-		SpearMap.addLibraries(map);
+		Scope.addLibraries(map);
 
 		// not going to rename the main name. it will be first in, no conflicts.
 		this.mainName = main.getName();

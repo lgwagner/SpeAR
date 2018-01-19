@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.translate.lustre.TranslateType;
-import com.rockwellcollins.spear.translate.naming.backend.SpearMap;
+import com.rockwellcollins.spear.translate.naming.backend.Scope;
 import com.rockwellcollins.spear.utilities.Utilities;
 
 import jkind.lustre.IdExpr;
@@ -14,7 +14,7 @@ import jkind.lustre.VarDecl;
 
 public class SCall {
 
-	public static List<SCall> build(List<NormalizedCall> calls, List<SSpecification> specs, SpearMap map) {
+	public static List<SCall> build(List<NormalizedCall> calls, List<SSpecification> specs, Scope map) {
 		return calls.stream().map(call -> new SCall(call, specs, map)).collect(Collectors.toList());
 	}
 
@@ -43,13 +43,13 @@ public class SCall {
 
 	public List<SVariable> variables = new ArrayList<>();
 
-	private SCall(NormalizedCall call, List<SSpecification> specs, SpearMap map) {
+	private SCall(NormalizedCall call, List<SSpecification> specs, Scope map) {
 		this.original = call;
 
-		this.callerName = map.lookupOriginalProgram(Utilities.getRoot(call).getName());
+		this.callerName = map.lookup(Utilities.getRoot(call).getName());
 		this.caller = SSpecification.lookup(callerName, specs);
 
-		this.calledName = map.lookupOriginalProgram(call.getSpec().getName());
+		this.calledName = map.lookup(call.getSpec().getName());
 		this.called = SSpecification.lookup(this.calledName, specs);
 	}
 

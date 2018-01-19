@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.rockwellcollins.spear.Pattern;
+import com.rockwellcollins.spear.translate.naming.backend.Scope;
 import com.rockwellcollins.spear.translate.naming.backend.SpearMap;
 
 import jkind.lustre.Node;
@@ -17,7 +18,7 @@ public class SPattern extends SMapElement {
 	}
 
 	private static String addName(Pattern p, SProgram program) {
-		return program.map.getProgramName(p.getName());
+		return program.map.addName(p.getName());
 	}
 
 	public static List<SPattern> build(Collection<Pattern> list, SProgram program) {
@@ -38,10 +39,10 @@ public class SPattern extends SMapElement {
 
 	public SPattern(Pattern p, SProgram program) {
 		// we already added these names to the global map
-		this.name = program.map.lookupOriginalProgram(p.getName());
+		this.name = program.map.lookup(p.getName());
 
 		// copy the global name map for the basis of the local
-		this.map = SpearMap.getModuleMap(program.map);
+		this.map = program.map.copy();
 
 		// process everything
 		this.inputs = SPVariable.build(p.getInputs(), this);

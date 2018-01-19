@@ -21,7 +21,7 @@ public class SFormalConstraint extends SConstraint {
 	public boolean isObserver;
 
 	public SFormalConstraint(FormalConstraint fc, SSpecification s) {
-		this.name = s.map.getModuleName(fc.getName());
+		this.name = s.map.addName(fc.getName());
 		this.expression = fc.getExpr();
 		this.isObserver = fc.getFlag() != null && (fc.getFlag() instanceof Observe);
 	}
