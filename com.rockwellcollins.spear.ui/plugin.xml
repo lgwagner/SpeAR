@@ -334,6 +334,7 @@
 			</command>
 		</menuContribution>
 	</extension>
+	
     <!-- quickfix marker resolution generator for com.rockwellcollins.Spear -->
     <extension
             point="org.eclipse.ui.ide.markerResolution">
@@ -362,6 +363,7 @@
             </attribute>
         </markerResolutionGenerator>
     </extension>
+    
    	<!-- Rename Refactoring -->
 	<extension point="org.eclipse.ui.handlers">
 		<handler 
@@ -387,6 +389,7 @@
          </command>
       </menuContribution>
    </extension>
+   
    <extension point="org.eclipse.ui.preferencePages">
 	    <page
 	        category="com.rockwellcollins.Spear"
@@ -397,30 +400,34 @@
 	    </page>
 	</extension>
 
-  <extension point="org.eclipse.compare.contentViewers">
-    <viewer id="com.rockwellcollins.Spear.compare.contentViewers"
-            class="com.rockwellcollins.ui.SpearExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
-            extensions="spear">
-    </viewer>
-  </extension>
-  <extension point="org.eclipse.compare.contentMergeViewers">
-    <viewer id="com.rockwellcollins.Spear.compare.contentMergeViewers"
-            class="com.rockwellcollins.ui.SpearExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
-            extensions="spear" label="Spear Compare">
+   <extension point="org.eclipse.compare.contentViewers">
+     <viewer id="com.rockwellcollins.Spear.compare.contentViewers"
+             class="com.rockwellcollins.ui.SpearExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+             extensions="spear">
      </viewer>
-  </extension>
-  <extension point="org.eclipse.ui.editors.documentProviders">
-    <provider id="com.rockwellcollins.Spear.editors.documentProviders"
-            class="com.rockwellcollins.ui.SpearExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
-            extensions="spear">
-    </provider>
-  </extension>
-  <extension point="org.eclipse.team.core.fileTypes">
-    <fileTypes
-            extension="spear"
-            type="text">
-    </fileTypes>
-  </extension>
+   </extension>
+  
+   <extension point="org.eclipse.compare.contentMergeViewers">
+     <viewer id="com.rockwellcollins.Spear.compare.contentMergeViewers"
+             class="com.rockwellcollins.ui.SpearExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+             extensions="spear" label="Spear Compare">
+      </viewer>
+   </extension>
+   
+   <extension point="org.eclipse.ui.editors.documentProviders">
+     <provider id="com.rockwellcollins.Spear.editors.documentProviders"
+             class="com.rockwellcollins.ui.SpearExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
+             extensions="spear">
+     </provider>
+   </extension>
+
+   <extension point="org.eclipse.team.core.fileTypes">
+     <fileTypes
+             extension="spear"
+             type="text">
+     </fileTypes>
+   </extension>
+   
    <extension
             point="org.eclipse.ui.preferencePages">
         <page
@@ -428,15 +435,17 @@
               class="com.rockwellcollins.spear.ui.preferences.SpearPreferencePage"
               id="com.rockwellcollins.spear.ui.preferences.SpearPreferencePage"
               name="Analysis">
-              <keywordReference id="com.rockwellcollins.spear.ui.keyword_SpeAR"/>
+              <keywordReference id="com.rockwellcollins.ui.keyword_Spear"/>
         </page>
-    </extension>
-   <extension
-         point="org.eclipse.core.runtime.preferences">
-      <initializer
-            class="com.rockwellcollins.spear.preferences.PreferenceInitializer">
-      </initializer>
    </extension>
+   
+   <extension
+        point="org.eclipse.core.runtime.preferences">
+     <initializer
+           class="com.rockwellcollins.spear.ui.preferences.PreferenceInitializer">
+     </initializer>
+  </extension>
+   
    <extension
          point="org.eclipse.ui.newWizards">
       <category
@@ -459,99 +468,104 @@
       </wizard>
    </extension>
 
-  <extension point="org.eclipse.compare.contentViewers">
-    <viewer id="com.rockwellcollins.Spear.compare.contentViewers"
-            class="com.rockwellcollins.ui.SpearExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
-            extensions="spear">
-    </viewer>
-  </extension>
-  <extension point="org.eclipse.compare.contentMergeViewers">
-    <viewer id="com.rockwellcollins.Spear.compare.contentMergeViewers"
-            class="com.rockwellcollins.ui.SpearExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
-            extensions="spear" label="Spear Compare">
+   <extension point="org.eclipse.compare.contentViewers">
+     <viewer id="com.rockwellcollins.Spear.compare.contentViewers"
+             class="com.rockwellcollins.ui.SpearExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+             extensions="spear">
      </viewer>
-  </extension>
-  <extension point="org.eclipse.ui.editors.documentProviders">
-    <provider id="com.rockwellcollins.Spear.editors.documentProviders"
-            class="com.rockwellcollins.ui.SpearExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
-            extensions="spear">
-    </provider>
-  </extension>
-  <extension point="org.eclipse.team.core.fileTypes">
-    <fileTypes
-            extension="spear"
-            type="text">
-    </fileTypes>
-  </extension>   
-     <extension
-         point="org.eclipse.ui.actionSets">
-      <actionSet
-            label="Analysis"
-            visible="true"
-            id="com.rockwellcollins.spear.ui.actionSet">
-         <menu
-               label="SpeAR"
-               id="uiMenu">
-            <separator name="uiGroup">
-            </separator>
-         </menu>
-         <action
-               label="&amp;Generate Excel"
-               icon="icons/spreadsheet.png"
-               class="com.rockwellcollins.spear.ui.actions.GenerateExcel"
-               tooltip="Generate Excel"
-               menubarPath="uiMenu/uiGroup"
-               toolbarPath="uiGroup"
-               id="com.rockwellcollins.spear.ui.GenerateExcel">
-         </action>
-         <action
-               label="&amp;Generate PDF"
-               icon="icons/document.png"
-               class="com.rockwellcollins.spear.ui.actions.GeneratePDF"
-               tooltip="Generate PDF"
-               menubarPath="uiMenu/uiGroup"
-               toolbarPath="uiGroup"
-               id="com.rockwellcollins.spear.ui.GeneratePDF">
-         </action>
-         <action
-               label="&amp;Graphical View"
-               icon="icons/graphical.png"
-               class="com.rockwellcollins.spear.ui.actions.GenerateGraph"
-               tooltip="Generate Graphical View"
-               menubarPath="uiMenu/uiGroup"
-               toolbarPath="uiGroup"
-               id="com.rockwellcollins.spear.ui.GenerateGraph">
-         </action>       
-         <action
-               label="&amp;Check Realizability"
-               icon="icons/realizability.png"
-               class="com.rockwellcollins.spear.ui.actions.CheckRealizability"
-               tooltip="Check Realizability"
-               menubarPath="uiMenu/uiGroup"
-               toolbarPath="uiGroup"
-               id="com.rockwellcollins.spear.ui.CheckLogicalEntailment">
-         </action>
-         <action
-               label="&amp;Check Logical Consistency"
-               icon="icons/logical_consistency.png"
-               class="com.rockwellcollins.spear.ui.actions.CheckLogicalConsistency"
-               tooltip="Check for Logical Consistency"
-               menubarPath="uiMenu/uiGroup"
-               toolbarPath="uiGroup"
-               id="com.rockwellcollins.spear.ui.CheckConsistency">
-         </action>
-         <action
-               label="&amp;Check Logical Entailment"
-               icon="icons/logical_entailment.png"
-               class="com.rockwellcollins.spear.ui.actions.CheckLogicalEntailment"
-               tooltip="Check for Logical Entailment"
-               menubarPath="uiMenu/uiGroup"
-               toolbarPath="uiGroup"
-               id="com.rockwellcollins.spear.ui.CheckLogicalEntailment">
-         </action>
-      </actionSet>
    </extension>
-    <extension point="org.eclipse.ui.views">
+   
+   <extension point="org.eclipse.compare.contentMergeViewers">
+     <viewer id="com.rockwellcollins.Spear.compare.contentMergeViewers"
+             class="com.rockwellcollins.ui.SpearExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+             extensions="spear" label="Spear Compare">
+      </viewer>
+   </extension>
+   
+   <extension point="org.eclipse.ui.editors.documentProviders">
+     <provider id="com.rockwellcollins.Spear.editors.documentProviders"
+             class="com.rockwellcollins.ui.SpearExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
+             extensions="spear">
+     </provider>
+   </extension>
+   
+   <extension point="org.eclipse.team.core.fileTypes">
+     <fileTypes
+             extension="spear"
+             type="text">
+     </fileTypes>
+   </extension>
+      
+   <extension
+       point="org.eclipse.ui.actionSets">
+    <actionSet
+          label="Analysis"
+          visible="true"
+          id="com.rockwellcollins.spear.ui.actionSet">
+       <menu
+             label="SpeAR"
+             id="uiMenu">
+          <separator name="uiGroup">
+          </separator>
+       </menu>
+       <action
+             label="&amp;Generate Excel"
+             icon="icons/spreadsheet.png"
+             class="com.rockwellcollins.spear.ui.actions.GenerateExcel"
+             tooltip="Generate Excel"
+             menubarPath="uiMenu/uiGroup"
+             toolbarPath="uiGroup"
+             id="com.rockwellcollins.spear.ui.GenerateExcel">
+       </action>
+       <action
+             label="&amp;Generate PDF"
+             icon="icons/document.png"
+             class="com.rockwellcollins.spear.ui.actions.GeneratePDF"
+             tooltip="Generate PDF"
+             menubarPath="uiMenu/uiGroup"
+             toolbarPath="uiGroup"
+             id="com.rockwellcollins.spear.ui.GeneratePDF">
+       </action>
+       <action
+             label="&amp;Graphical View"
+             icon="icons/graphical.png"
+             class="com.rockwellcollins.spear.ui.actions.GenerateGraph"
+             tooltip="Generate Graphical View"
+             menubarPath="uiMenu/uiGroup"
+             toolbarPath="uiGroup"
+             id="com.rockwellcollins.spear.ui.GenerateGraph">
+       </action>       
+       <action
+             label="&amp;Check Realizability"
+             icon="icons/realizability.png"
+             class="com.rockwellcollins.spear.ui.actions.CheckRealizability"
+             tooltip="Check Realizability"
+             menubarPath="uiMenu/uiGroup"
+             toolbarPath="uiGroup"
+             id="com.rockwellcollins.spear.ui.CheckLogicalEntailment">
+       </action>
+       <action
+             label="&amp;Check Logical Consistency"
+             icon="icons/logical_consistency.png"
+             class="com.rockwellcollins.spear.ui.actions.CheckLogicalConsistency"
+             tooltip="Check for Logical Consistency"
+             menubarPath="uiMenu/uiGroup"
+             toolbarPath="uiGroup"
+             id="com.rockwellcollins.spear.ui.CheckConsistency">
+       </action>
+       <action
+             label="&amp;Check Logical Entailment"
+             icon="icons/logical_entailment.png"
+             class="com.rockwellcollins.spear.ui.actions.CheckLogicalEntailment"
+             tooltip="Check for Logical Entailment"
+             menubarPath="uiMenu/uiGroup"
+             toolbarPath="uiGroup"
+             id="com.rockwellcollins.spear.ui.CheckLogicalEntailment">
+       </action>
+    </actionSet>
+   </extension>
+   
+   <extension point="org.eclipse.ui.views">
       <category
             id="com.rockwellcollins.spear.ui"
             name="SpeAR View">
@@ -575,7 +589,7 @@
               id="com.rockwellcollins.spear.ui.views.SpearRealizabilityResultsView"
               name="Realizability Analysis Results"/>              
         <view
-              category="com.rockwellcollins.spear.ui.lustre"
+              category="com.rockwellcollins.spear.ui"
               class="com.rockwellcollins.spear.ui.views.SpearCounterexampleView"
               icon="icons/counterexample.png"
               id="com.rockwellcollins.spear.ui.views.SpearCounterexampleView"
@@ -587,7 +601,7 @@
               id="com.rockwellcollins.spear.ui.views.BatchAnalysisView"
               name="Batch Analysis"/>
         <view
-              category="com.rockwellcollins.spear.ui.lustre"
+              category="com.rockwellcollins.spear.ui"
               class="com.rockwellcollins.spear.ui.views.SpearTraceabilityMatrixView"
               icon="icons/spreadsheet.png"
               id="com.rockwellcollins.spear.ui.views.SpearTraceabilityMatrixView"
@@ -634,10 +648,19 @@
            description="Terminate Analysis"
            id="com.rockwellcollins.spear.ui.commands.terminateRealizability"
            name="Cancel Analysis">
-     </command>   
-
-        
+     </command>
+     <command categoryId="com.rockwellcollins.spear.ui.commands"
+           description="Start Batch Analysis"
+           id="com.rockwellcollins.spear.ui.commands.startBatchAnalysis"
+           name="Start Batch Analysis">
+     </command>
+     <command categoryId="com.rockwellcollins.spear.ui.commands"
+           description="Terminate Batch Analysis"
+           id="com.rockwellcollins.spear.ui.commands.terminateBatchAnalysis"
+           name="Terminate Batch Analysis">
+     </command>       
    </extension>
+
    <extension
          point="org.eclipse.ui.menus">   
       <menuContribution
@@ -747,8 +770,6 @@
             commandId="com.rockwellcollins.spear.ui.commands.terminateRealizability"
             class="com.rockwellcollins.spear.ui.handlers.TerminateHandler">
       </handler>
-      
    </extension>
-   
 
 </plugin>

@@ -8,8 +8,8 @@
        uri = "http://www.rockwellcollins.com/Spear" 
        class = "com.rockwellcollins.spear.SpearPackage"
        genModel = "model/generated/Spear.genmodel" /> 
-	
   </extension>
+
   <extension
         id="spear_product"
         point="org.eclipse.core.runtime.products">

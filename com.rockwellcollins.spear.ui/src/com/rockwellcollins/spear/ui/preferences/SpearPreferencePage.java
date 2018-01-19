@@ -238,8 +238,6 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 	@Override
 	protected void performDefaults() {
 		super.performDefaults();
-		Preferences.store = Preferences.getInitialPreferences();
-		initStore(Preferences.getInitialPreferences(), getPreferenceStore());
 		initialize();
 	}
 
@@ -261,6 +259,8 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 	@Override
 	protected void initialize() {
 		super.initialize();
+		Preferences.store = Preferences.getInitialPreferences();
+		initStore(Preferences.getInitialPreferences(), getPreferenceStore());
 		initializeStateVariables();
 		configureEnabledFieldEditors();
 	}
