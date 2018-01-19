@@ -11,8 +11,10 @@ import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.resources.WorkspaceJob;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -24,6 +26,8 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
+import org.eclipse.ui.handlers.IHandlerActivation;
+import org.eclipse.ui.handlers.IHandlerService;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.XtextResourceSet;
 import org.javatuples.Triplet;
@@ -46,6 +50,7 @@ import jkind.api.results.Status;
 
 public class BatchAnalysis extends AbstractHandler {
 
+	private static final String TERMINATE_ID = "com.rockwellcollins.spear.ui.commands.terminateBatchAnalysis";
 	static public String ID = "com.rockwellcollins.spear.translate.commands.batchAnalysis";
 	private XtextResourceSet resourceSet;
 	// XXX: Terrible hack because the registering the same class for two
@@ -53,6 +58,7 @@ public class BatchAnalysis extends AbstractHandler {
 	// handl
 	private static Thread ba = null;
 	private boolean stop = false;
+	private IWorkbenchWindow window;
 
 	public BatchAnalysis() throws PartInitException {
 		Injector injector = Guice.createInjector(new SpearRuntimeModule());
@@ -62,13 +68,11 @@ public class BatchAnalysis extends AbstractHandler {
 	}
 
 	private BatchAnalysisView getBatchAnalysisView() throws PartInitException {
-		BatchAnalysisView bav = (BatchAnalysisView) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
-				.showView(BatchAnalysisView.ID);
+		BatchAnalysisView bav = (BatchAnalysisView) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(BatchAnalysisView.ID);
 		return bav;
 	}
 
 	private void message(String msg) throws IOException, PartInitException {
-
 		Display.getDefault().asyncExec(new Runnable() {
 			public void run() {
 				try {
@@ -81,8 +85,12 @@ public class BatchAnalysis extends AbstractHandler {
 		});
 	}
 
-	private void message(IFile ifile, String msg) throws IOException, PartInitException {
-		message(ifile.getFullPath().toString() + " : " + msg);
+	private void message(IFile ifile, String msg) {
+		try {
+			message(ifile.getFullPath().toString() + " : " + msg);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -130,7 +138,7 @@ public class BatchAnalysis extends AbstractHandler {
 
 	private Object work(ExecutionEvent event) throws ExecutionException, IOException, PartInitException {
 
-		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
+		window = HandlerUtil.getActiveWorkbenchWindow(event);
 		IWorkbenchPage activePage = window.getActivePage();
 		ISelection selection = activePage.getSelection();
 		if (selection != null) {
@@ -159,57 +167,63 @@ public class BatchAnalysis extends AbstractHandler {
 						continue;
 					}
 
-					Triplet<Analysis, Document, JKindResult> triple;
-					if (specification.getBehaviors().size() > 0) {
-						try {
-							triple = Analysis.entailment(specification, PreferencesUtil.getJKindJar(), "result");
-							triple.getValue0().analyze(new NullProgressMonitor());
-							for (PropertyResult result : triple.getValue2().getPropertyResults()) {
-								if (Status.VALID != result.getStatus()) {
-									message(ifile,
-											"The property " + result.getName() + " failed during entailment analysis.");
+					
+					new WorkspaceJob("Batch Analysis") {
+						@Override
+						public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
+							activateTerminateHandler(monitor);
+							if (specification.getBehaviors().size() > 0) {
+								try {
+									Triplet<Analysis, Document, JKindResult> triple=Analysis.entailment(specification, PreferencesUtil.getJKindJar(), "result");
+									triple.getValue0().analyze(monitor);
+									for (PropertyResult result : triple.getValue2().getPropertyResults()) {
+										if (Status.VALID != result.getStatus()) {
+											message(ifile,"The property " + result.getName() + " failed during entailment analysis.");
+										}
+									}
+								} catch (Exception e) {
+									message(ifile, "Entailment analysis failed.");
+								}
+							} else {
+								message(ifile, "No behaviors found, skipping entailment analysis.");
+							}
+							
+							if (true) {
+								try {
+									Triplet<Analysis, Document, JKindResult> triple = Analysis.consistency(specification, PreferencesUtil.getJKindJar(), "result");
+									triple.getValue0().analyze(monitor);
+									for (PropertyResult result : triple.getValue2().getPropertyResults()) {
+										if (Status.VALID != result.getStatus()) {
+											message(ifile, "The property " + result.getName() + " failed during consistency analysis.");
+										}
+									}
+								} catch (Exception e) {
+									message(ifile, "Consistency analysis failed.");
 								}
 							}
-						} catch (Exception e) {
-							message(ifile, "Entailment analysis failed.");
-						}
-					} else {
-						message(ifile, "No behaviors found, skipping entailment analysis.");
-					}
+							
+							if (specification.getBehaviors().size() > 0) {
+								try {
+									Triplet<Analysis, Document, JKindResult> triple = Analysis.realizability(specification, PreferencesUtil.getJKindJar(), "result");
+									triple.getValue0().analyze(monitor);
 
-					if (true) {
-						try {
-							triple = Analysis.consistency(specification, PreferencesUtil.getJKindJar(), "result");
-							triple.getValue0().analyze(new NullProgressMonitor());
-							for (PropertyResult result : triple.getValue2().getPropertyResults()) {
-								if (Status.VALID != result.getStatus()) {
-									message(ifile, "The property " + result.getName()
-											+ " failed during consistency analysis.");
+									for (PropertyResult result : triple.getValue2().getPropertyResults()) {
+										if (Status.VALID != result.getStatus()) {
+											message(ifile, "The property " + result.getName()
+													+ " failed during realizability analysis.");
+										}
+									}
+								} catch (Exception e) {
+									message(ifile, "Realizability analysis failed.");
 								}
+							} else {
+								message(ifile, "No behaviors found, skipping realizability analysis.");
 							}
-						} catch (Exception e) {
-							message(ifile, "Consistency analysis failed.");
-						}
-					}
-
-					if (specification.getBehaviors().size() > 0) {
-						try {
-							triple = Analysis.realizability(specification, PreferencesUtil.getJKindJar(), "result");
-							triple.getValue0().analyze(new NullProgressMonitor());
-
-							for (PropertyResult result : triple.getValue2().getPropertyResults()) {
-								if (Status.VALID != result.getStatus()) {
-									message(ifile, "The property " + result.getName()
-											+ " failed during realizability analysis.");
-								}
-							}
-						} catch (Exception e) {
-							message(ifile, "Realizability analysis failed.");
-						}
-					} else {
-						message(ifile, "No behaviors found, skipping realizability analysis.");
-					}
-
+							deactivateTerminateHandler();
+							return org.eclipse.core.runtime.Status.OK_STATUS;
+						}					
+					}.schedule();
+					
 				}
 			}
 			try {
@@ -224,6 +238,26 @@ public class BatchAnalysis extends AbstractHandler {
 		return null;
 	}
 
+	private IHandlerActivation activation;
+
+	private void activateTerminateHandler(final IProgressMonitor monitor) {
+		final IHandlerService handlerService = (IHandlerService) window.getService(IHandlerService.class);
+		window.getShell().getDisplay().syncExec(() -> {
+			if (activation != null) {
+				handlerService.deactivateHandler(activation);
+			}
+			activation = handlerService.activateHandler(TERMINATE_ID, new TerminateHandler(monitor));
+		});
+	}
+
+	private void deactivateTerminateHandler() {
+		final IHandlerService handlerService = (IHandlerService) window.getService(IHandlerService.class);
+		window.getShell().getDisplay().syncExec(() -> {
+			handlerService.deactivateHandler(activation);
+			activation = null;
+		});
+	}
+	
 	private void findSpearModels(Object o, List<Object> models) {
 		if (o != null && o instanceof IContainer) {
 			try {

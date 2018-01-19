@@ -764,10 +764,6 @@
             commandId="com.rockwellcollins.spear.ui.commands.startBatchAnalysis"
             class="com.rockwellcollins.spear.ui.handlers.BatchAnalysis">
       </handler>
-       <handler
-            commandId="com.rockwellcollins.spear.ui.commands.terminateBatchAnalysis"
-            class="com.rockwellcollins.spear.ui.handlers.BatchAnalysis">
-      </handler>
    </extension>
 
 </plugin>
