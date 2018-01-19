@@ -110,25 +110,19 @@ public class CheckRealizability implements IWorkbenchWindowActionDelegate {
 
 	private void activateTerminateHandler(final IProgressMonitor monitor) {
 		final IHandlerService handlerService = (IHandlerService) window.getService(IHandlerService.class);
-		window.getShell().getDisplay().syncExec(new Runnable() {
-			@Override
-			public void run() {
-				if (activation != null) {
-					handlerService.deactivateHandler(activation);
-				}
-				activation = handlerService.activateHandler(TERMINATE_ID, new TerminateHandler(monitor));
+		window.getShell().getDisplay().syncExec(() -> {
+			if (activation != null) {
+				handlerService.deactivateHandler(activation);
 			}
+			activation = handlerService.activateHandler(TERMINATE_ID, new TerminateHandler(monitor));
 		});
 	}
 
 	private void deactivateTerminateHandler() {
 		final IHandlerService handlerService = (IHandlerService) window.getService(IHandlerService.class);
-		window.getShell().getDisplay().syncExec(new Runnable() {
-			@Override
-			public void run() {
-				handlerService.deactivateHandler(activation);
-				activation = null;
-			}
+		window.getShell().getDisplay().syncExec(() -> {
+			handlerService.deactivateHandler(activation);
+			activation = null;
 		});
 	}
 

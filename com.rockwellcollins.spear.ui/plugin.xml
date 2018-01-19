@@ -713,6 +713,16 @@
          </command>
       </menuContribution>
       <menuContribution
+            allPopups="false"
+            locationURI="toolbar:com.rockwellcollins.spear.ui.views.SpearRealizabilityResultsView">
+         <command
+               commandId="com.rockwellcollins.spear.ui.commands.terminateRealizability"
+               icon="icons/terminate.png"
+               label="Terminate"
+               style="push">
+         </command>
+      </menuContribution>      
+      <menuContribution
          allPopups="false"
          locationURI="toolbar:com.rockwellcollins.spear.ui.views.BatchAnalysisView">
          <command
