@@ -60,9 +60,10 @@ public class BatchAnalysis extends AbstractHandler {
 	private static Thread ba = null;
 	private boolean stop = false;
 	private IWorkbenchWindow window;
+	private Injector injector;
 
 	public BatchAnalysis() throws PartInitException {
-		Injector injector = Guice.createInjector(new SpearRuntimeModule());
+		injector = Guice.createInjector(new SpearRuntimeModule());
 		resourceSet = injector.getInstance(XtextResourceSet.class);
 		resourceSet.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
 		stop = false;
@@ -117,6 +118,7 @@ public class BatchAnalysis extends AbstractHandler {
 			stop = false;
 			ba = new Thread(() -> {
 				try {
+					resourceSet = injector.getInstance(XtextResourceSet.class);
 					work(event);
 				} catch (Exception e) {
 					e.printStackTrace();
