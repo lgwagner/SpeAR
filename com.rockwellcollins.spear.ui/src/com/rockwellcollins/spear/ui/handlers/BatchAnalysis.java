@@ -53,9 +53,10 @@ public class BatchAnalysis extends AbstractHandler {
 	private static final String TERMINATE_ID = "com.rockwellcollins.spear.ui.commands.terminateBatchAnalysis";
 	static public String ID = "com.rockwellcollins.spear.translate.commands.batchAnalysis";
 	private XtextResourceSet resourceSet;
-	// XXX: Terrible hack because the registering the same class for two
-	// different
-	// handl
+
+	// FIXME: Terrible hack because the registering the same class for two
+	// different handlers
+
 	private static Thread ba = null;
 	private boolean stop = false;
 	private IWorkbenchWindow window;
@@ -68,7 +69,8 @@ public class BatchAnalysis extends AbstractHandler {
 	}
 
 	private BatchAnalysisView getBatchAnalysisView() throws PartInitException {
-		BatchAnalysisView bav = (BatchAnalysisView) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(BatchAnalysisView.ID);
+		BatchAnalysisView bav = (BatchAnalysisView) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+				.showView(BatchAnalysisView.ID);
 		return bav;
 	}
 
@@ -78,7 +80,6 @@ public class BatchAnalysis extends AbstractHandler {
 				try {
 					getBatchAnalysisView().list.add(msg);
 				} catch (PartInitException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -97,19 +98,16 @@ public class BatchAnalysis extends AbstractHandler {
 	public Object execute(ExecutionEvent event) {
 		String comID = event.getCommand().getId();
 		if (comID.compareTo("com.rockwellcollins.spear.ui.commands.terminateBatchAnalysis") == 0) {
-			System.out.println(this);
 			if (ba != null && ba.getState() != Thread.State.TERMINATED && stop == false) {
 				stop = true;
 				try {
 					message("Initiating batch analysis termination ...");
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 			return null;
 		} else if (comID.compareTo("com.rockwellcollins.spear.ui.commands.startBatchAnalysis") == 0) {
-			System.out.println(this);
 			if (ba != null && ba.getState() != Thread.State.TERMINATED) {
 				MessageDialog dialog = new MessageDialog(null, "Batch Analysis Error", null,
 						"Batch Analysis already running!", MessageDialog.ERROR, new String[] { "ok" }, 0);
@@ -121,7 +119,6 @@ public class BatchAnalysis extends AbstractHandler {
 				try {
 					work(event);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			});
@@ -167,18 +164,20 @@ public class BatchAnalysis extends AbstractHandler {
 						continue;
 					}
 
-					
 					new WorkspaceJob("Batch Analysis") {
 						@Override
 						public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
 							activateTerminateHandler(monitor);
+							
 							if (specification.getBehaviors().size() > 0) {
 								try {
-									Triplet<Analysis, Document, JKindResult> triple=Analysis.entailment(specification, PreferencesUtil.getJKindJar(), "result");
+									Triplet<Analysis, Document, JKindResult> triple = Analysis.entailment(specification,
+											PreferencesUtil.getJKindJar(), "result");
 									triple.getValue0().analyze(monitor);
 									for (PropertyResult result : triple.getValue2().getPropertyResults()) {
 										if (Status.VALID != result.getStatus()) {
-											message(ifile,"The property " + result.getName() + " failed during entailment analysis.");
+											message(ifile, "The property " + result.getName()
+													+ " failed during entailment analysis.");
 										}
 									}
 								} catch (Exception e) {
@@ -187,24 +186,27 @@ public class BatchAnalysis extends AbstractHandler {
 							} else {
 								message(ifile, "No behaviors found, skipping entailment analysis.");
 							}
-							
+
 							if (true) {
 								try {
-									Triplet<Analysis, Document, JKindResult> triple = Analysis.consistency(specification, PreferencesUtil.getJKindJar(), "result");
+									Triplet<Analysis, Document, JKindResult> triple = Analysis
+											.consistency(specification, PreferencesUtil.getJKindJar(), "result");
 									triple.getValue0().analyze(monitor);
 									for (PropertyResult result : triple.getValue2().getPropertyResults()) {
 										if (Status.VALID != result.getStatus()) {
-											message(ifile, "The property " + result.getName() + " failed during consistency analysis.");
+											message(ifile, "The property " + result.getName()
+													+ " failed during consistency analysis.");
 										}
 									}
 								} catch (Exception e) {
 									message(ifile, "Consistency analysis failed.");
 								}
 							}
-							
+
 							if (specification.getBehaviors().size() > 0) {
 								try {
-									Triplet<Analysis, Document, JKindResult> triple = Analysis.realizability(specification, PreferencesUtil.getJKindJar(), "result");
+									Triplet<Analysis, Document, JKindResult> triple = Analysis
+											.realizability(specification, PreferencesUtil.getJKindJar(), "result");
 									triple.getValue0().analyze(monitor);
 
 									for (PropertyResult result : triple.getValue2().getPropertyResults()) {
@@ -219,11 +221,11 @@ public class BatchAnalysis extends AbstractHandler {
 							} else {
 								message(ifile, "No behaviors found, skipping realizability analysis.");
 							}
+							
 							deactivateTerminateHandler();
 							return org.eclipse.core.runtime.Status.OK_STATUS;
-						}					
+						}
 					}.schedule();
-					
 				}
 			}
 			try {
@@ -257,7 +259,7 @@ public class BatchAnalysis extends AbstractHandler {
 			activation = null;
 		});
 	}
-	
+
 	private void findSpearModels(Object o, List<Object> models) {
 		if (o != null && o instanceof IContainer) {
 			try {
@@ -271,7 +273,6 @@ public class BatchAnalysis extends AbstractHandler {
 					}
 				}
 			} catch (CoreException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else if (o instanceof IFile) {
