@@ -11,10 +11,9 @@ import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.resources.WorkspaceJob;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -147,12 +146,12 @@ public class BatchAnalysis extends AbstractHandler {
 					findSpearModels(o, models);
 				}
 
-				new WorkspaceJob("Batch Analysis") {
-					@Override
-					public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
+				new Thread() {
+					public void run() {
+						IProgressMonitor monitor = new NullProgressMonitor();
 						activateTerminateHandler(monitor);
 						for (Object o : models) {
-							if (stop) { return null; }
+							if (stop) { return; }
 							IFile ifile = (IFile) o;
 							URI uri = URI.createPlatformResourceURI(ifile.getFullPath().toString(), true);
 							Resource resource = resourceSet.getResource(uri, true);
@@ -174,13 +173,14 @@ public class BatchAnalysis extends AbstractHandler {
 						
 						try {
 							message("Analysis complete.");
-						} catch (IOException e) {
+						} catch (IOException | PartInitException e) {
 							e.printStackTrace();
+						} finally {
+							deactivateTerminateHandler();	
 						}
-						deactivateTerminateHandler();
-						return org.eclipse.core.runtime.Status.OK_STATUS;
+						
 					}
-				}.schedule();
+				}.start();
 			}
 		}
 		
