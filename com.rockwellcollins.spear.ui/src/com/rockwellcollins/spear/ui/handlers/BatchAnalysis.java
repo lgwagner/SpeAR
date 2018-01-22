@@ -160,6 +160,7 @@ public class BatchAnalysis extends AbstractHandler {
 							File file = (File) xtextResource.getContents().get(0);
 							if (file instanceof Definitions) { continue; }
 							Specification specification = (Specification) file;
+							
 							// check the spec and imported files for errors
 							if (ActionUtilities.hasErrors(specification.eResource())) {
 								message(ifile, "Errors detected, skipping analysis.");
