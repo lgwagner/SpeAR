@@ -86,7 +86,7 @@ public class BatchAnalysis extends AbstractHandler {
 			}
 		});
 	}
-
+	
 	private void message(IFile ifile, String msg) {
 		try {
 			message(ifile.getFullPath().toString() + " : " + msg);
@@ -136,7 +136,6 @@ public class BatchAnalysis extends AbstractHandler {
 	}
 
 	private Object work(ExecutionEvent event) throws ExecutionException, IOException, PartInitException {
-
 		window = HandlerUtil.getActiveWorkbenchWindow(event);
 		IWorkbenchPage activePage = window.getActivePage();
 		ISelection selection = activePage.getSelection();
@@ -147,101 +146,116 @@ public class BatchAnalysis extends AbstractHandler {
 				for (Object o : sselection.toArray()) {
 					findSpearModels(o, models);
 				}
-				for (Object o : models) {
-					if (stop) {
-						return null;
-					}
-					IFile ifile = (IFile) o;
-					URI uri = URI.createPlatformResourceURI(ifile.getFullPath().toString(), true);
-					Resource resource = resourceSet.getResource(uri, true);
-					XtextResource xtextResource = (XtextResource) resource;
-					File file = (File) xtextResource.getContents().get(0);
-					if (file instanceof Definitions) {
-						continue;
-					}
-					Specification specification = (Specification) file;
-					// check the spec and imported files for errors
-					if (ActionUtilities.hasErrors(specification.eResource())) {
-						message(ifile, "Errors detected, skipping analysis.");
-						continue;
-					}
 
-					new WorkspaceJob("Batch Analysis") {
-						@Override
-						public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
-							activateTerminateHandler(monitor);
-							
-							if (specification.getBehaviors().size() > 0) {
-								try {
-									Triplet<Analysis, Document, JKindResult> triple = Analysis.entailment(specification,
-											PreferencesUtil.getJKindJar(), "result");
-									triple.getValue0().analyze(monitor);
-									for (PropertyResult result : triple.getValue2().getPropertyResults()) {
-										if (Status.VALID != result.getStatus()) {
-											message(ifile, "The property " + result.getName()
-													+ " failed during entailment analysis.");
-										}
-									}
-								} catch (Exception e) {
-									message(ifile, "Entailment analysis failed.");
-								}
-							} else {
-								message(ifile, "No behaviors found, skipping entailment analysis.");
+				new WorkspaceJob("Batch Analysis") {
+					@Override
+					public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
+						activateTerminateHandler(monitor);
+						for (Object o : models) {
+							if (stop) { return null; }
+							IFile ifile = (IFile) o;
+							URI uri = URI.createPlatformResourceURI(ifile.getFullPath().toString(), true);
+							Resource resource = resourceSet.getResource(uri, true);
+							XtextResource xtextResource = (XtextResource) resource;
+							File file = (File) xtextResource.getContents().get(0);
+							if (file instanceof Definitions) { continue; }
+							Specification specification = (Specification) file;
+							// check the spec and imported files for errors
+							if (ActionUtilities.hasErrors(specification.eResource())) {
+								message(ifile, "Errors detected, skipping analysis.");
+								continue;
 							}
-
-							if (true) {
-								try {
-									Triplet<Analysis, Document, JKindResult> triple = Analysis
-											.consistency(specification, PreferencesUtil.getJKindJar(), "result");
-									triple.getValue0().analyze(monitor);
-									for (PropertyResult result : triple.getValue2().getPropertyResults()) {
-										if (Status.VALID != result.getStatus()) {
-											message(ifile, "The property " + result.getName()
-													+ " failed during consistency analysis.");
-										}
-									}
-								} catch (Exception e) {
-									message(ifile, "Consistency analysis failed.");
-								}
-							}
-
-							if (specification.getBehaviors().size() > 0) {
-								try {
-									Triplet<Analysis, Document, JKindResult> triple = Analysis
-											.realizability(specification, PreferencesUtil.getJKindJar(), "result");
-									triple.getValue0().analyze(monitor);
-
-									for (PropertyResult result : triple.getValue2().getPropertyResults()) {
-										if (Status.VALID != result.getStatus()) {
-											message(ifile, "The property " + result.getName()
-													+ " failed during realizability analysis.");
-										}
-									}
-								} catch (Exception e) {
-									message(ifile, "Realizability analysis failed.");
-								}
-							} else {
-								message(ifile, "No behaviors found, skipping realizability analysis.");
-							}
-							
-							deactivateTerminateHandler();
-							return org.eclipse.core.runtime.Status.OK_STATUS;
+											
+							runEntailment(ifile, specification, monitor);
+							runConsistency(ifile, specification, monitor);
+							runRealizability(ifile, specification, monitor);
 						}
-					}.schedule();
-				}
-			}
-			try {
-				ResourcesPlugin.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_INFINITE, null);
-			} catch (Exception e) {
-				throw new ExecutionException("Error while refreshing workspace : " + e.toString());
+						
+						try {
+							message("Analysis complete.");
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						deactivateTerminateHandler();
+						return org.eclipse.core.runtime.Status.OK_STATUS;
+					}
+				}.schedule();
 			}
 		}
-		if (stop) {
-			message(" ... batch analysis terminated.");
-		}
+		
+		refreshWorkspace();
 		return null;
 	}
 
+	private void refreshWorkspace() throws ExecutionException {
+		try {
+			ResourcesPlugin.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_INFINITE, null);
+		} catch (Exception e) {
+			throw new ExecutionException("Error while refreshing workspace : " + e.toString());
+		}
+	}
+
+	private void runRealizability(IFile ifile, Specification specification,
+			IProgressMonitor monitor) {
+		if (specification.getBehaviors().size() > 0) {
+			try {
+				Triplet<Analysis, Document, JKindResult> triple = Analysis
+						.realizability(specification, PreferencesUtil.getJKindJar(), "result");
+				triple.getValue0().analyze(monitor);
+
+				for (PropertyResult result : triple.getValue2().getPropertyResults()) {
+					if (Status.VALID != result.getStatus()) {
+						message(ifile, "The property " + result.getName()
+								+ " failed during realizability analysis.");
+					}
+				}
+			} catch (Exception e) {
+				message(ifile, "Realizability analysis failed.");
+			}
+		} else {
+			message(ifile, "No behaviors found, skipping realizability analysis.");
+		}
+	}
+
+	private void runConsistency(IFile ifile, Specification specification,
+			IProgressMonitor monitor) {
+		if (true) {
+			try {
+				Triplet<Analysis, Document, JKindResult> triple = Analysis
+						.consistency(specification, PreferencesUtil.getJKindJar(), "result");
+				triple.getValue0().analyze(monitor);
+				for (PropertyResult result : triple.getValue2().getPropertyResults()) {
+					if (Status.VALID != result.getStatus()) {
+						message(ifile, "The property " + result.getName()
+								+ " failed during consistency analysis.");
+					}
+				}
+			} catch (Exception e) {
+				message(ifile, "Consistency analysis failed.");
+			}
+		}
+	}
+
+	private void runEntailment(IFile ifile, Specification specification, IProgressMonitor monitor) {
+		if (specification.getBehaviors().size() > 0) {
+			try {
+				Triplet<Analysis, Document, JKindResult> triple = Analysis.entailment(specification,
+						PreferencesUtil.getJKindJar(), "result");
+				triple.getValue0().analyze(monitor);
+				for (PropertyResult result : triple.getValue2().getPropertyResults()) {
+					if (Status.VALID != result.getStatus()) {
+						message(ifile, "The property " + result.getName()
+								+ " failed during entailment analysis.");
+					}
+				}
+			} catch (Exception e) {
+				message(ifile, "Entailment analysis failed.");
+			}
+		} else {
+			message(ifile, "No behaviors found, skipping entailment analysis.");
+		}
+	}
+	
 	private IHandlerActivation activation;
 
 	private void activateTerminateHandler(final IProgressMonitor monitor) {
