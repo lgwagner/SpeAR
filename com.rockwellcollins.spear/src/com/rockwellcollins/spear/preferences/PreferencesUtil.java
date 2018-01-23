@@ -47,11 +47,6 @@ public class PreferencesUtil {
 		return solver.equals(PreferenceConstants.SOLVER_Z3);
 	}
 
-	public static boolean generalizeCEX() {
-		IPreferenceStore prefs = getPreferenceStore();
-		return prefs.getBoolean(PreferenceConstants.PREF_INTERVAL_GENERALIZATION);
-	}
-
 	public static boolean smoothCEX() {
 		IPreferenceStore prefs = getPreferenceStore();
 		return prefs.getBoolean(PreferenceConstants.PREF_SMOOTH_COUNTEREXAMPLES);
@@ -65,20 +60,8 @@ public class PreferencesUtil {
 		IPreferenceStore prefs = getPreferenceStore();
 		String solverString = prefs.getString(PreferenceConstants.PREF_SOLVER).toUpperCase().replaceAll(" ", "");
 		SolverOption solver = SolverOption.valueOf(solverString);
+		
 		api.setSolver(solver);
-
-		api.setN(prefs.getInt(PreferenceConstants.PREF_DEPTH));
-		api.setTimeout(prefs.getInt(PreferenceConstants.PREF_TIMEOUT));
-
-		if (prefs.getBoolean(PreferenceConstants.PREF_INTERVAL_GENERALIZATION)) {
-			api.setIntervalGeneralization();
-		}
-		if (prefs.getBoolean(PreferenceConstants.PREF_SPEAR_ENABLE_IVC_ON_ENTAILMENT)) {
-			api.setIvcReduction();
-		}
-		if (prefs.getBoolean(PreferenceConstants.PREF_SMOOTH_COUNTEREXAMPLES)) {
-			api.setSmoothCounterexamples();
-		}
 		if (!prefs.getBoolean(PreferenceConstants.PREF_BOUNDED_MODEL_CHECKING)) {
 			api.disableBoundedModelChecking();
 		}
@@ -89,22 +72,25 @@ public class PreferencesUtil {
 			api.disableInvariantGeneration();
 		}
 		api.setPdrMax(prefs.getInt(PreferenceConstants.PREF_PDR_MAX));
-		if (prefs.getBoolean(PreferenceConstants.PREF_INDUCTIVE_COUNTEREXAMPLES)) {
-			api.setInductiveCounterexamples();
-		}
-		if (prefs.getBoolean(PreferenceConstants.PREF_SMOOTH_COUNTEREXAMPLES) && solver == SolverOption.YICES) {
-			api.setSmoothCounterexamples();
-		}
-		if (prefs.getBoolean(PreferenceConstants.PREF_INTERVAL_GENERALIZATION)) {
-			api.setIntervalGeneralization();
-		}
-		if (prefs.getBoolean(PreferenceConstants.PREF_DEBUG)) {
-			api.setApiDebug();
-		}
-
 		api.setN(prefs.getInt(PreferenceConstants.PREF_DEPTH));
 		api.setTimeout(prefs.getInt(PreferenceConstants.PREF_TIMEOUT));
 
+		boolean smoothPossible = solver.equals(SolverOption.Z3) || solver.equals(SolverOption.YICES);
+		if (prefs.getBoolean(PreferenceConstants.PREF_SMOOTH_COUNTEREXAMPLES) && smoothPossible) {
+			api.setSmoothCounterexamples();
+		}
+		
+		if (prefs.getBoolean(PreferenceConstants.PREF_INDUCTIVE_COUNTEREXAMPLES)) {
+			api.setInductiveCounterexamples();
+		}
+
+		if (prefs.getBoolean(PreferenceConstants.PREF_SPEAR_ENABLE_IVC_ON_ENTAILMENT)) {
+			api.setIvcReduction();
+		}
+		
+		if (prefs.getBoolean(PreferenceConstants.PREF_DEBUG)) {
+			api.setApiDebug();
+		}
 	}
 
 	public static void configureRealizabilityApi(JRealizabilityApi api) {
@@ -116,10 +102,6 @@ public class PreferencesUtil {
 		if (prefs.getBoolean(PreferenceConstants.PREF_DEBUG)) {
 			api.setApiDebug();
 		}
-
-		api.setN(prefs.getInt(PreferenceConstants.PREF_DEPTH));
-		api.setTimeout(prefs.getInt(PreferenceConstants.PREF_TIMEOUT));
-
 	}
 
 	public static JKindApi getJKindApi() {

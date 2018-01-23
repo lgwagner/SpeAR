@@ -22,7 +22,6 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		store.setDefault(PreferenceConstants.PREF_PDR_MAX, 2);
 		store.setDefault(PreferenceConstants.PREF_INDUCTIVE_COUNTEREXAMPLES, true);
 		store.setDefault(PreferenceConstants.PREF_SMOOTH_COUNTEREXAMPLES, false);
-		store.setDefault(PreferenceConstants.PREF_INTERVAL_GENERALIZATION, false);
 		store.setDefault(PreferenceConstants.PREF_DEBUG, false);
 		store.setDefault(PreferenceConstants.PREF_DEPTH, Integer.MAX_VALUE);
 		store.setDefault(PreferenceConstants.PREF_TIMEOUT, Integer.MAX_VALUE);

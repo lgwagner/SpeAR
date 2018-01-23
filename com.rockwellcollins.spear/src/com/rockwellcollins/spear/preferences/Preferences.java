@@ -16,7 +16,6 @@ public class Preferences {
 		s.setDefault(PreferenceConstants.PREF_PDR_MAX, 2);
 		s.setDefault(PreferenceConstants.PREF_INDUCTIVE_COUNTEREXAMPLES, true);
 		s.setDefault(PreferenceConstants.PREF_SMOOTH_COUNTEREXAMPLES, false);
-		s.setDefault(PreferenceConstants.PREF_INTERVAL_GENERALIZATION, false);
 		s.setDefault(PreferenceConstants.PREF_DEBUG, false);
 		s.setDefault(PreferenceConstants.PREF_DEPTH, Integer.MAX_VALUE);
 		s.setDefault(PreferenceConstants.PREF_TIMEOUT, Integer.MAX_VALUE);

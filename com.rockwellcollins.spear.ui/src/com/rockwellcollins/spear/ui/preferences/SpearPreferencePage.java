@@ -98,7 +98,6 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 	private NonNegativeIntegerFieldEditor pdrMaxFieldEditor;
 	private BooleanFieldEditor inductCexFieldEditor;
 	private BooleanFieldEditor smoothCexFieldEditor;
-	private BooleanFieldEditor intervalGenFieldEditor;
 	private BooleanFieldEditor spearUnusedVariableWarningsEditor;
 	private BooleanFieldEditor spearFinalLustreFileFieldEditor;
 	private BooleanFieldEditor spearRecursiveGraphicalDisplayFieldEditor;
@@ -151,10 +150,6 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 		smoothCexFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_SMOOTH_COUNTEREXAMPLES.toString(),
 				"Generate smooth counterexamples (minimal number of input value changes)", this.getFieldEditorParent());
 		addField(smoothCexFieldEditor);
-
-		intervalGenFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_INTERVAL_GENERALIZATION.toString(),
-				"Generalize counterexamples using interval analysis", this.getFieldEditorParent());
-		addField(intervalGenFieldEditor);
 
 		depthFieldEditor = new NonNegativeIntegerFieldEditor(PreferenceConstants.PREF_DEPTH.toString(),
 				"Maximum depth for k-induction", this.getFieldEditorParent());
@@ -251,9 +246,9 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 		pdrMaxFieldEditor.setEnabled(isJKind, getFieldEditorParent());
 		solverFieldEditor.setEnabled(isJKind, getFieldEditorParent());
 		inductCexFieldEditor.setEnabled(isJKind, getFieldEditorParent());
-		smoothCexFieldEditor.setEnabled(isJKind && (isYices || isZ3), getFieldEditorParent());
-		intervalGenFieldEditor.setEnabled(isJKind, getFieldEditorParent());
 		depthFieldEditor.setEnabled(isJKind, getFieldEditorParent());
+		boolean enableSmoothing = isJKind && (isYices || isZ3);
+		smoothCexFieldEditor.setEnabled(enableSmoothing, getFieldEditorParent());
 	}
 
 	@Override

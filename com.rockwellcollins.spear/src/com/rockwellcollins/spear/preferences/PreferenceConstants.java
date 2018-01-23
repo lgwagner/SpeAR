@@ -19,7 +19,6 @@ public class PreferenceConstants {
 	public static final String PREF_PDR_MAX = "pdrMax";
 	public static final String PREF_INDUCTIVE_COUNTEREXAMPLES = "inductiveCounterexamples";
 	public static final String PREF_SMOOTH_COUNTEREXAMPLES = "smoothCounterexamples";
-	public static final String PREF_INTERVAL_GENERALIZATION = "intervalGeneralization";
 	public static final String PREF_DEBUG = "apiDebug";
 	public static final String PREF_DEPTH = "inductionDepth";
 	public static final String PREF_TIMEOUT = "timeout";

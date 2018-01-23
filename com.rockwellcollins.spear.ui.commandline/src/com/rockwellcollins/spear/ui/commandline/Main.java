@@ -108,7 +108,6 @@ public class Main {
 			/* s.setValue(PreferenceConstants.PREF_PDR_MAX, opts.pdr_max); */
 			s.setValue(PreferenceConstants.PREF_INDUCTIVE_COUNTEREXAMPLES.toString(), opts.induct_cex);
 			s.setValue(PreferenceConstants.PREF_SMOOTH_COUNTEREXAMPLES.toString(), opts.smooth);
-			s.setValue(PreferenceConstants.PREF_INTERVAL_GENERALIZATION.toString(), opts.interval);
 			s.setValue(PreferenceConstants.PREF_DEPTH.toString(), opts.n.intValue());
 			s.setValue(PreferenceConstants.PREF_TIMEOUT.toString(), opts.timeout.intValue());
 			s.setValue(PreferenceConstants.PREF_SPEAR_PRINT_FINAL_LUSTRE.toString(), opts.lustre);
