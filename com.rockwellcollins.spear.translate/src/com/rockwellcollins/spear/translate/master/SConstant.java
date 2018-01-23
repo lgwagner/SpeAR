@@ -31,8 +31,7 @@ public class SConstant {
 	}
 
 	public jkind.lustre.Constant toLustre(SProgram program) {
-		jkind.lustre.Type type = TranslateType.translate(this.type, program.map);
-		jkind.lustre.Expr expression = TranslateExpr.translate(this.expr, program);
-		return new jkind.lustre.Constant(this.name, type, expression);
+		return new jkind.lustre.Constant(name, TranslateType.translate(this.type, program.map),
+				TranslateExpr.translate(expr, program));
 	}
 }

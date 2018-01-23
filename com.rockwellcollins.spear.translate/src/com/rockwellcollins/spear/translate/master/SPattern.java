@@ -53,13 +53,13 @@ public class SPattern extends SMapElement {
 	}
 
 	public Node toLustre() {
-		NodeBuilder builder = new NodeBuilder(this.name);
-		builder.addInputs(SPVariable.toVarDecl(this.inputs, this));
-		builder.addOutputs(SPVariable.toVarDecl(this.outputs, this));
-		builder.addLocals(SPVariable.toVarDecl(this.locals, this));
-		builder.addEquations(SLustreEquation.toLustre(this.equations, this));
-		builder.addProperties(SLustreProperty.toLustre(this.properties));
-		builder.addAssertions(SLustreAssertion.toLustre(this.assertions, this));
+		NodeBuilder builder = new NodeBuilder(name);
+		builder.addInputs(SPVariable.toVarDecl(inputs, this));
+		builder.addOutputs(SPVariable.toVarDecl(outputs, this));
+		builder.addLocals(SPVariable.toVarDecl(locals, this));
+		builder.addEquations(SLustreEquation.toLustre(equations, this));
+		builder.addProperties(SLustreProperty.toLustre(properties));
+		builder.addAssertions(SLustreAssertion.toLustre(assertions, this));
 		return builder.build();
 	}
 }

@@ -90,7 +90,6 @@ Export-Package: com.rockwellcollins;uses:="com.google.inject,org.eclipse.xtext,o
    org.eclipse.jface.viewers,
    new jkind.api.ui.results",
  jkind.excel,
- jkind.interval,
  jkind.lustre;uses:="jkind.lustre.visitors",
  jkind.lustre.builders,
  jkind.lustre.values,

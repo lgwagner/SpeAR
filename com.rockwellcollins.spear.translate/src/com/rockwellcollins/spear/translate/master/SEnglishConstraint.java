@@ -1,9 +1,12 @@
 package com.rockwellcollins.spear.translate.master;
 
+import static jkind.lustre.LustreUtil.TRUE;
+import static jkind.lustre.LustreUtil.eq;
+import static jkind.lustre.LustreUtil.id;
+import static jkind.lustre.LustreUtil.implies;
+
 import com.rockwellcollins.spear.EnglishConstraint;
 
-import jkind.lustre.BinaryExpr;
-import jkind.lustre.BinaryOp;
 import jkind.lustre.IdExpr;
 import jkind.lustre.NamedType;
 
@@ -20,10 +23,6 @@ public class SEnglishConstraint extends SConstraint {
 		this.text = ec.getText();
 	}
 
-	private jkind.lustre.BoolExpr getTrue() {
-		return new jkind.lustre.BoolExpr(true);
-	}
-
 	@Override
 	public jkind.lustre.VarDecl toVarDecl(SSpecification s) {
 		return new jkind.lustre.VarDecl(this.name, NamedType.BOOL);
@@ -31,15 +30,13 @@ public class SEnglishConstraint extends SConstraint {
 
 	@Override
 	public jkind.lustre.Equation toEquation(SSpecification s) {
-		jkind.lustre.IdExpr lhs = new jkind.lustre.IdExpr(this.name);
-		jkind.lustre.Expr rhs = getTrue();
-		return new jkind.lustre.Equation(lhs, rhs);
+		return new jkind.lustre.Equation(id(name), TRUE);
 	}
 
 	@Override
 	public jkind.lustre.Equation getPropertyEquation(String assertion, SSpecification s) {
 		IdExpr lhs = new IdExpr(this.name);
-		jkind.lustre.Expr rhs = new BinaryExpr(new IdExpr(assertion), BinaryOp.IMPLIES, getTrue());
-		return new jkind.lustre.Equation(lhs, rhs);
+		jkind.lustre.Expr rhs = implies(id(assertion), TRUE);
+		return eq(lhs, rhs);
 	}
 }

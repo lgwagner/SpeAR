@@ -17,7 +17,6 @@ public class SPredicateSubTypeDef extends STypeDef {
 
 	@Override
 	public TypeDef toLustre(SProgram program) {
-		jkind.lustre.Type t = TranslateType.translate(type, program.map);
-		return new TypeDef(this.name, t);
+		return new TypeDef(name, TranslateType.translate(type, program.map));
 	}
 }

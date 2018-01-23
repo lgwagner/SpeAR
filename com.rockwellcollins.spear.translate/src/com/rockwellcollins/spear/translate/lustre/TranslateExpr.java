@@ -1,6 +1,21 @@
 package com.rockwellcollins.spear.translate.lustre;
 
-import java.math.BigDecimal;
+import static jkind.lustre.LustreUtil.FALSE;
+import static jkind.lustre.LustreUtil.TRUE;
+import static jkind.lustre.LustreUtil.arrow;
+import static jkind.lustre.LustreUtil.divide;
+import static jkind.lustre.LustreUtil.equal;
+import static jkind.lustre.LustreUtil.id;
+import static jkind.lustre.LustreUtil.implies;
+import static jkind.lustre.LustreUtil.intDivide;
+import static jkind.lustre.LustreUtil.integer;
+import static jkind.lustre.LustreUtil.ite;
+import static jkind.lustre.LustreUtil.mod;
+import static jkind.lustre.LustreUtil.negative;
+import static jkind.lustre.LustreUtil.not;
+import static jkind.lustre.LustreUtil.pre;
+import static jkind.lustre.LustreUtil.real;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -31,21 +46,14 @@ import jkind.lustre.ArrayExpr;
 import jkind.lustre.ArrayUpdateExpr;
 import jkind.lustre.BinaryExpr;
 import jkind.lustre.BinaryOp;
-import jkind.lustre.BoolExpr;
 import jkind.lustre.CastExpr;
 import jkind.lustre.Expr;
-import jkind.lustre.IdExpr;
-import jkind.lustre.IfThenElseExpr;
-import jkind.lustre.IntExpr;
 import jkind.lustre.NamedType;
 import jkind.lustre.NodeCallExpr;
-import jkind.lustre.RealExpr;
 import jkind.lustre.RecordAccessExpr;
 import jkind.lustre.RecordExpr;
 import jkind.lustre.RecordUpdateExpr;
 import jkind.lustre.TupleExpr;
-import jkind.lustre.UnaryExpr;
-import jkind.lustre.UnaryOp;
 
 public class TranslateExpr extends SpearSwitch<Expr> {
 
@@ -62,7 +70,7 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	@Override
 	public Expr casePatternCall(com.rockwellcollins.spear.PatternCall call) {
 		List<Expr> args = new ArrayList<>();
-		args.addAll(call.getArgs().stream().map(e -> this.doSwitch(e)).collect(Collectors.toList()));
+		args.addAll(call.getArgs().stream().map(e -> doSwitch(e)).collect(Collectors.toList()));
 		return new NodeCallExpr(call.getPattern().getName(), args);
 	}
 
@@ -73,8 +81,8 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 		}
 		SSpecification s = (SSpecification) module;
 		List<Expr> args = new ArrayList<>();
-		args.addAll(call.getArgs().stream().map(e -> this.doSwitch(e)).collect(Collectors.toList()));
-		args.addAll(call.getIds().stream().map(idr -> this.doSwitch(idr)).collect(Collectors.toList()));
+		args.addAll(call.getArgs().stream().map(e -> doSwitch(e)).collect(Collectors.toList()));
+		args.addAll(call.getIds().stream().map(idr -> doSwitch(idr)).collect(Collectors.toList()));
 
 		String nodeName = s.map.lookup(call.getSpec().getName());
 		SCall scall = SCall.get(call, s.calls);
@@ -87,8 +95,9 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 		Expr sub = doSwitch(unary.getExpr());
 		switch (unary.getOp()) {
 		case "not":
+			return not(sub);
 		case "-":
-			return new UnaryExpr(UnaryOp.fromString(unary.getOp()), sub);
+			return negative(sub);
 
 		case "once":
 		case "historically":
@@ -127,12 +136,8 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 
 	@Override
 	public Expr casePreviousExpr(com.rockwellcollins.spear.PreviousExpr prev) {
-		Expr pre = new UnaryExpr(UnaryOp.PRE, doSwitch(prev.getVar()));
-		if (prev.getInit() == null) {
-			return pre;
-		} else {
-			return new BinaryExpr(doSwitch(prev.getInit()), BinaryOp.ARROW, pre);
-		}
+		Expr sub = pre(doSwitch(prev.getVar()));
+		return prev.getInit() == null ? sub : arrow(doSwitch(prev.getInit()), sub);
 	}
 
 	@Override
@@ -154,26 +159,25 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 		case "+":
 		case "-":
 		case "*":
-			BinaryOp op = BinaryOp.fromString(binary.getOp());
-			return new BinaryExpr(left, op, right);
+			return new BinaryExpr(left, BinaryOp.fromString(binary.getOp()), right);
 
 		case "mod":
 			if (leftType.equals(SpearTypeChecker.REAL)) {
 				return new NodeCallExpr(LustreLibrary.fmod().id, left, right);
 			}
-			return new BinaryExpr(left, BinaryOp.MODULUS, right);
+			return mod(left, right);
 
 		case "/":
 			if (leftType.equals(SpearTypeChecker.INT)) {
-				return new BinaryExpr(left, BinaryOp.INT_DIVIDE, right);
+				return intDivide(left, right);
 			}
-			return new BinaryExpr(left, BinaryOp.DIVIDE, right);
+			return divide(left, right);
 
 		case "implies":
-			return new BinaryExpr(left, BinaryOp.IMPLIES, right);
+			return implies(left, right);
 
 		case "==":
-			return new BinaryExpr(left, BinaryOp.EQUAL, right);
+			return equal(left, right);
 
 		case "since":
 		case "triggers":
@@ -201,17 +205,14 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 			Expr delay = doSwitch(responds.getDelay());
 			args.add(delay);	
 		} else {
-			args.add(new IntExpr(1));
+			args.add(integer(1));
 		}
 		return new NodeCallExpr("responds",args);
 	}
 	
 	@Override
 	public Expr caseIfThenElseExpr(com.rockwellcollins.spear.IfThenElseExpr ite) {
-		Expr condExpr = this.doSwitch(ite.getCond());
-		Expr thenExpr = this.doSwitch(ite.getThen());
-		Expr elseExpr = this.doSwitch(ite.getElse());
-		return new IfThenElseExpr(condExpr, thenExpr, elseExpr);
+		return ite(doSwitch(ite.getCond()), doSwitch(ite.getThen()), doSwitch(ite.getElse()));
 	}
 
 	@Override
@@ -219,11 +220,11 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 		switch (bl.getValue()) {
 		case "TRUE":
 		case "true":
-			return new BoolExpr(true);
+			return TRUE;
 
 		case "FALSE":
 		case "false":
-			return new BoolExpr(false);
+			return FALSE;
 
 		default:
 			throw new RuntimeException("Unexpected boolean literal encountered.");
@@ -237,13 +238,12 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	
 	@Override
 	public Expr caseCounterExpr(com.rockwellcollins.spear.CounterExpr ce) {
-		return new IdExpr(module.counterName);
+		return id(module.counterName);
 	}
 
 	@Override
 	public Expr caseMacro(Macro m) {
-		String x = this.module.map.lookup(m.getName());
-		return new IdExpr(x);
+		return id(module.map.lookup(m.getName()));
 	}
 
 	@Override
@@ -264,22 +264,22 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 
 	@Override
 	public Expr caseIntLiteral(com.rockwellcollins.spear.IntLiteral il) {
-		return new IntExpr(il.getValue());
+		return integer(il.getValue());
 	}
 
 	@Override
 	public Expr caseRealLiteral(com.rockwellcollins.spear.RealLiteral rl) {
-		return new RealExpr(new BigDecimal(rl.getValue()));
+		return real(rl.getValue());
 	}
 
 	@Override
 	public Expr caseConstant(Constant c) {
-		return new IdExpr(this.module.map.lookup(c.getName()));
+		return id(this.module.map.lookup(c.getName()));
 	}
 
 	@Override
 	public Expr caseEnumValue(EnumValue ev) {
-		return new IdExpr(this.module.map.lookup(ev.getName()));
+		return id(module.map.lookup(ev.getName()));
 	}
 
 	@Override
@@ -288,7 +288,7 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 		for (com.rockwellcollins.spear.FieldExpr fe : re.getFieldExprs()) {
 			fields.put(fe.getField().getName(), doSwitch(fe.getExpr()));
 		}
-		return new RecordExpr(this.module.map.lookup(re.getType().getName()), fields);
+		return new RecordExpr(module.map.lookup(re.getType().getName()), fields);
 	}
 
 	@Override
@@ -300,8 +300,8 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 
 	@Override
 	public Expr caseVariable(Variable v) {
-		String name = this.module.map.lookup(v.getName());
-		return new IdExpr(name);
+		String name = module.map.lookup(v.getName());
+		return id(name);
 	}
 
 	@Override

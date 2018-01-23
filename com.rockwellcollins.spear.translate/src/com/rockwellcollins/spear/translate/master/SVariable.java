@@ -1,5 +1,7 @@
 package com.rockwellcollins.spear.translate.master;
 
+import static jkind.lustre.LustreUtil.varDecl;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,11 +38,10 @@ public class SVariable {
 	}
 
 	public jkind.lustre.VarDecl toLustre(SSpecification s) {
-		jkind.lustre.Type type = TranslateType.translate(this.type, s.map);
-		return new jkind.lustre.VarDecl(this.name, type);
+		return varDecl(name, TranslateType.translate(this.type, s.map));
 	}
 
 	public String toString() {
-		return this.name;
+		return name;
 	}
 }

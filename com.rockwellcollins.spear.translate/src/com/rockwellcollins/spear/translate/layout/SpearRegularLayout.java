@@ -42,6 +42,7 @@ public class SpearRegularLayout implements Layout {
 		s.getInputs().stream().forEach(v -> map.put(v.getName(), inputs));
 		s.getOutputs().stream().forEach(v -> map.put(v.getName(), outputs));
 		s.getState().stream().forEach(v -> map.put(v.getName(), state));
+		map.put("counter", macros);
 		s.getMacros().stream().forEach(m -> map.put(m.getName(), macros));
 		s.getBehaviors().stream().forEach(c -> map.put(c.getName(), behaviors));
 	}

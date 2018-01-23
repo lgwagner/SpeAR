@@ -107,7 +107,7 @@ public class SProgram extends SMapElement {
 		program.addNodes(SPattern.toLustre(patterns));
 
 		// set the main name
-		program.setMain(this.mainName);
+		program.setMain(mainName);
 		return program.build();
 	}
 
@@ -129,44 +129,44 @@ public class SProgram extends SMapElement {
 	}
 
 	public Program getLogicalEntailment() {
-		ProgramBuilder program = new ProgramBuilder(this.getBaseProgram());
+		ProgramBuilder program = new ProgramBuilder(getBaseProgram());
 
 		for (SSpecification spec : specifications) {
-			if (spec.name.equals(this.mainName)) {
+			if (spec.name.equals(mainName)) {
 				program.addNode(spec.getLogicalEntailmentMain());
 			} else {
 				program.addNode(spec.getLogicalEntailmentCalled());
 			}
 		}
-		program.setMain(this.mainName);
+		program.setMain(mainName);
 		return program.build();
 	}
 
 	public Program getLogicalConsistency() {
-		ProgramBuilder program = new ProgramBuilder(this.getBaseProgram());
+		ProgramBuilder program = new ProgramBuilder(getBaseProgram());
 
 		for (SSpecification spec : specifications) {
-			if (spec.name.equals(this.mainName)) {
+			if (spec.name.equals(mainName)) {
 				program.addNode(spec.getLogicalConsistencyMain());
 			} else {
 				program.addNode(spec.getLogicalConsistencyCalled());
 			}
 		}
-		program.setMain(this.mainName);
+		program.setMain(mainName);
 		return program.build();
 	}
 
 	public Program getRealizability() {
-		ProgramBuilder program = new ProgramBuilder(this.getBaseProgram());
+		ProgramBuilder program = new ProgramBuilder(getBaseProgram());
 
 		for (SSpecification spec : specifications) {
-			if (spec.name.equals(this.mainName)) {
+			if (spec.name.equals(mainName)) {
 				program.addNode(spec.getRealizabilityMain());
 			} else {
 				program.addNode(spec.getLogicalEntailmentCalled());
 			}
 		}
-		program.setMain(this.mainName);
+		program.setMain(mainName);
 		return program.build();
 	}
 }

@@ -7,5 +7,5 @@ public class SMapElement {
 	public Scope map;
 	
 	public String counterName;
-	public static final String COUNTER = "counter";
+	public static final String COUNTER = "counter";	
 }

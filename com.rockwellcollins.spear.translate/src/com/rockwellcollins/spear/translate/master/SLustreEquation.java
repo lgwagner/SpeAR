@@ -9,7 +9,7 @@ import com.rockwellcollins.spear.LustreEquation;
 import com.rockwellcollins.spear.translate.lustre.TranslateExpr;
 
 import jkind.lustre.Equation;
-import jkind.lustre.IdExpr;
+import jkind.lustre.LustreUtil;
 
 public class SLustreEquation {
 
@@ -30,7 +30,7 @@ public class SLustreEquation {
 	}
 
 	public Equation toLustre(SPattern p) {
-		return new Equation(ids.stream().map(id -> new IdExpr(id)).collect(Collectors.toList()),
+		return new Equation(ids.stream().map(LustreUtil::id).collect(Collectors.toList()),
 				TranslateExpr.translate(expression, p));
 	}
 }

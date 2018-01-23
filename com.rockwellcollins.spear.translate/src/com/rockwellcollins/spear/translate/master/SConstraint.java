@@ -57,12 +57,12 @@ public abstract class SConstraint {
 
 		@Override
 		public SConstraint caseFormalConstraint(FormalConstraint fc) {
-			return SFormalConstraint.build(fc, this.specification);
+			return SFormalConstraint.build(fc, specification);
 		}
 
 		@Override
 		public SConstraint caseEnglishConstraint(EnglishConstraint ec) {
-			return SEnglishConstraint.build(ec, this.specification);
+			return SEnglishConstraint.build(ec, specification);
 		}
 
 		@Override

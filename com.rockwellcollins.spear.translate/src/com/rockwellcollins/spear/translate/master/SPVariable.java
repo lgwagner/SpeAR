@@ -1,5 +1,7 @@
 package com.rockwellcollins.spear.translate.master;
 
+import static jkind.lustre.LustreUtil.varDecl;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,6 +30,6 @@ public class SPVariable {
 	}
 
 	public VarDecl toLustre(SPattern pattern) {
-		return new jkind.lustre.VarDecl(this.name, TranslateType.translate(this.type, pattern.map));
+		return varDecl(name, TranslateType.translate(this.type, pattern.map));
 	}
 }

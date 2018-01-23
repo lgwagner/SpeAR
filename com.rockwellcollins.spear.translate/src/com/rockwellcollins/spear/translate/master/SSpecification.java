@@ -1,5 +1,17 @@
 package com.rockwellcollins.spear.translate.master;
 
+import static jkind.lustre.LustreUtil.TRUE;
+import static jkind.lustre.LustreUtil.and;
+import static jkind.lustre.LustreUtil.arrow;
+import static jkind.lustre.LustreUtil.eq;
+import static jkind.lustre.LustreUtil.greaterEqual;
+import static jkind.lustre.LustreUtil.id;
+import static jkind.lustre.LustreUtil.integer;
+import static jkind.lustre.LustreUtil.not;
+import static jkind.lustre.LustreUtil.plus;
+import static jkind.lustre.LustreUtil.pre;
+import static jkind.lustre.LustreUtil.varDecl;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -15,20 +27,13 @@ import com.rockwellcollins.spear.preferences.PreferencesUtil;
 import com.rockwellcollins.spear.translate.naming.backend.Scope;
 import com.rockwellcollins.spear.utilities.LustreLibrary;
 
-import jkind.lustre.BinaryExpr;
-import jkind.lustre.BinaryOp;
-import jkind.lustre.BoolExpr;
 import jkind.lustre.Equation;
 import jkind.lustre.Expr;
 import jkind.lustre.IdExpr;
-import jkind.lustre.IntExpr;
 import jkind.lustre.NamedType;
 import jkind.lustre.Node;
 import jkind.lustre.NodeCallExpr;
-import jkind.lustre.UnaryExpr;
-import jkind.lustre.UnaryOp;
 import jkind.lustre.VarDecl;
-import jkind.lustre.builders.EquationBuilder;
 import jkind.lustre.builders.NodeBuilder;
 
 public class SSpecification extends SMapElement {
@@ -78,7 +83,7 @@ public class SSpecification extends SMapElement {
 
 	private String traceabilityName;
 	private static final String TRACEABILITY = "all_properties";
-
+	
 	public String name;
 	public List<SMacro> macros = new ArrayList<>();
 	public List<SVariable> inputs = new ArrayList<>();
@@ -161,7 +166,7 @@ public class SSpecification extends SMapElement {
 		/*
 		 * For now, we're not allowing Macros to contain specification calls
 		 */
-		builder.addEquation(this.getCounterEquation());
+		builder.addEquation(getCounterEquation());
 		builder.addEquations(SMacro.toEquations(macros, this));
 		builder.addEquations(SConstraint.toEquation(assumptions, this));
 		builder.addEquations(SConstraint.toEquation(requirements, this));
@@ -170,29 +175,21 @@ public class SSpecification extends SMapElement {
 	}
 
 	public Node getLogicalEntailmentMain() {
-		NodeBuilder builder = new NodeBuilder(this.toBaseLustre());
+		NodeBuilder builder = new NodeBuilder(toBaseLustre());
 
-		builder.addEquation(this.getAssertionMainEquation(requirements));
+		builder.addEquation(getAssertionMainEquation(requirements));
 
 		if (!assumptions.isEmpty()) {
-			builder.addAssertion(this.conjunctify(assumptions.iterator()));
+			builder.addAssertion(conjunctify(assumptions.iterator()));
 		}
 
 		builder.addProperties(SConstraint.toPropertyIds(behaviors, this));
 		if (PreferencesUtil.getEnableIVCDuringEntailment()) {
-			VarDecl vd = new VarDecl(this.traceabilityName, NamedType.BOOL);
+			VarDecl vd = varDecl(traceabilityName, NamedType.BOOL);
 			builder.addLocal(vd);
 
 			List<SConstraint> justProperties = getJustProperties(behaviors);
-			EquationBuilder eq = new EquationBuilder();
-			eq.addLhs(vd.id);
-			if (justProperties.isEmpty()) {
-				// another hack for when there are no properties
-				eq.setExpr(new BoolExpr(true));
-			} else {
-				eq.setExpr(conjunctify(justProperties.iterator()));
-			}
-			builder.addEquation(eq.build());
+			builder.addEquation(eq(id(vd.id),justProperties.isEmpty() ? TRUE :conjunctify(justProperties.iterator())));
 			builder.addProperty(vd.id);
 			builder.addIvcs(SConstraint.toPropertyIds(ListUtils.union(assumptions, requirements), this));
 		}
@@ -214,19 +211,19 @@ public class SSpecification extends SMapElement {
 
 	public Node getLogicalEntailmentCalled() {
 		NodeBuilder builder = new NodeBuilder(this.toBaseLustre());
-		builder.addEquation(this.getAssertionCalledEquation(requirements));
+		builder.addEquation(getAssertionCalledEquation(requirements));
 		return builder.build();
 	}
 
 	public Node getLogicalConsistencyMain() {
 		NodeBuilder builder = new NodeBuilder(this.toBaseLustre());
 
-		builder.addLocal(this.getConsistencyVarDecl());
+		builder.addLocal(getConsistencyVarDecl());
 		
-		builder.addEquation(this.getConsistencyEquation());
-		builder.addEquation(this.getAssertionMainEquation(ListUtils.union(assumptions, requirements)));
+		builder.addEquation(getConsistencyEquation());
+		builder.addEquation(getAssertionMainEquation(ListUtils.union(assumptions, requirements)));
 
-		builder.addProperty(this.consistencyName);
+		builder.addProperty(consistencyName);
 
 		List<SConstraint> list = new ArrayList<>();
 		list.addAll(assumptions);
@@ -237,16 +234,16 @@ public class SSpecification extends SMapElement {
 	}
 
 	public Node getRealizabilityMain() {
-		NodeBuilder builder = new NodeBuilder(this.toBaseLustre());
+		NodeBuilder builder = new NodeBuilder(toBaseLustre());
 
-		builder.addEquation(this.getAssertionMainEquation(requirements));
+		builder.addEquation(getAssertionMainEquation(requirements));
 
 		if (!assumptions.isEmpty()) {
-			builder.addAssertion(this.conjunctify(assumptions.iterator()));
+			builder.addAssertion(conjunctify(assumptions.iterator()));
 		}
 
 		builder.addProperty(constraintsName);
-		builder.setRealizabilityInputs(this.inputs.stream().map(input -> input.name).collect(Collectors.toList()));
+		builder.setRealizabilityInputs(inputs.stream().map(input -> input.name).collect(Collectors.toList()));
 		return builder.build();
 	}
 
@@ -255,62 +252,43 @@ public class SSpecification extends SMapElement {
 	}
 
 	private VarDecl getCounterVarDecl() {
-		return new VarDecl(this.counterName, NamedType.INT);
+		return varDecl(counterName, NamedType.INT);
 	}
 
 	private VarDecl getConsistencyVarDecl() {
-		return new VarDecl(this.consistencyName, NamedType.BOOL);
+		return varDecl(consistencyName, NamedType.BOOL);
 	}
 
 	private Equation getCounterEquation() {
-		IntExpr zero = new IntExpr(0);
-		IntExpr one = new IntExpr(1);
-		UnaryExpr pre_counter = new UnaryExpr(UnaryOp.PRE, new IdExpr(this.counterName));
-		Expr RHS = new BinaryExpr(zero, BinaryOp.ARROW, new BinaryExpr(pre_counter, BinaryOp.PLUS, one));
-		return new Equation(new IdExpr(this.counterName), RHS);
+		return eq(id(counterName), arrow(integer(1), plus(pre(id(counterName)),integer(1))));
 	}
 
 	private Equation getConsistencyEquation() {
 		Integer iv = PreferencesUtil.getConsistencyDepthOption();
-		Expr gt = new BinaryExpr(new IdExpr(this.counterName), BinaryOp.GREATEREQUAL, new IntExpr(iv));
-		Expr and = new BinaryExpr(new IdExpr(this.constraintsName), BinaryOp.AND, gt);
-		Expr rhs = new UnaryExpr(UnaryOp.NOT, and);
-		return new Equation(new IdExpr(this.consistencyName), rhs);
+		return eq(id(consistencyName), not(and(id(constraintsName), greaterEqual(id(counterName), integer(iv)))));
 	}
 
 	private VarDecl getAssertionVarDecl() {
-		return new VarDecl(this.constraintsName, NamedType.BOOL);
+		return varDecl(constraintsName, NamedType.BOOL);
 	}
 
 	private Expr conjunctify(Iterator<SConstraint> it) {
 		SConstraint current = it.next();
-		jkind.lustre.IdExpr expr = new jkind.lustre.IdExpr(current.name);
-
 		if (it.hasNext()) {
-			return new jkind.lustre.BinaryExpr(expr, BinaryOp.AND, conjunctify(it));
+			return and(id(current.name),conjunctify(it));
 		} else {
-			return expr;
+			return id(current.name);
 		}
 	}
 
 	private Equation getAssertionMainEquation(List<SConstraint> conjunct) {
-		Expr RHS;
-		if (conjunct.isEmpty()) {
-			RHS = new BoolExpr(true);
-		} else {
-			RHS = conjunctify(conjunct.iterator());
-		}
-		return new Equation(new IdExpr(this.constraintsName), new NodeCallExpr(LustreLibrary.historically().id, RHS));
+		Expr RHS = conjunct.isEmpty() ? TRUE : conjunctify(conjunct.iterator());
+		return new Equation(id(constraintsName), new NodeCallExpr(LustreLibrary.historically().id, RHS));
 	}
 
 	public Equation getAssertionCalledEquation(List<SConstraint> conjunct) {
-		Expr RHS;
-		if (conjunct.isEmpty()) {
-			RHS = new BoolExpr(true);
-		} else {
-			RHS = conjunctify(conjunct.iterator());
-		}
-		return new Equation(new IdExpr(this.constraintsName), RHS);
+		Expr RHS = conjunct.isEmpty() ? TRUE : conjunctify(conjunct.iterator()); 
+		return new Equation(id(constraintsName), RHS);
 	}
 
 	@Override

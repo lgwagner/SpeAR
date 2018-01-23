@@ -9,6 +9,7 @@ import com.rockwellcollins.spear.UserType;
 import com.rockwellcollins.spear.translate.naming.backend.Scope;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
+import jkind.lustre.NamedType;
 import jkind.lustre.Type;
 
 public class TranslateType extends SpearSwitch<Type> {
@@ -26,22 +27,22 @@ public class TranslateType extends SpearSwitch<Type> {
 	@Override
 	public Type caseUserType(UserType ut) {
 		String name = map.lookup(ut.getDef().getName());
-		return new jkind.lustre.NamedType(name);
+		return new NamedType(name);
 	}
 
 	@Override
 	public Type caseBoolType(BoolType bt) {
-		return jkind.lustre.NamedType.BOOL;
+		return NamedType.BOOL;
 	}
 
 	@Override
 	public Type caseIntType(IntType it) {
-		return jkind.lustre.NamedType.INT;
+		return NamedType.INT;
 	}
 
 	@Override
 	public Type caseRealType(RealType rt) {
-		return jkind.lustre.NamedType.REAL;
+		return NamedType.REAL;
 	}
 
 	@Override

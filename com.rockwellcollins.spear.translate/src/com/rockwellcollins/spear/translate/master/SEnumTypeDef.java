@@ -26,7 +26,6 @@ public class SEnumTypeDef extends STypeDef {
 
 	@Override
 	public TypeDef toLustre(SProgram program) {
-		jkind.lustre.EnumType type = new EnumType(this.definitionName, values);
-		return new TypeDef(this.name, type);
+		return new TypeDef(name, new EnumType(this.definitionName, values));
 	}
 }

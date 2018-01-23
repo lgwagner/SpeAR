@@ -1,5 +1,8 @@
 package com.rockwellcollins.spear.translate.master;
 
+import static jkind.lustre.LustreUtil.id;
+import static jkind.lustre.LustreUtil.varDecl;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,7 +12,6 @@ import com.rockwellcollins.spear.translate.lustre.TranslateType;
 import com.rockwellcollins.spear.translate.naming.backend.Scope;
 import com.rockwellcollins.spear.utilities.Utilities;
 
-import jkind.lustre.IdExpr;
 import jkind.lustre.VarDecl;
 
 public class SCall {
@@ -64,7 +66,7 @@ public class SCall {
 	public List<VarDecl> toVarDecl(SSpecification s) {
 		List<VarDecl> decls = new ArrayList<>();
 		for (SVariable sv : variables) {
-			decls.add(new VarDecl(sv.name, TranslateType.translate(sv.type, caller.map)));
+			decls.add(varDecl(sv.name, TranslateType.translate(sv.type, caller.map)));
 		}
 
 		for (SCall call : called.calls) {
@@ -76,7 +78,7 @@ public class SCall {
 	public List<jkind.lustre.Expr> getCallArgs() {
 		List<jkind.lustre.Expr> args = new ArrayList<>();
 		for (SVariable sv : variables) {
-			args.add(new IdExpr(sv.name));
+			args.add(id(sv.name));
 		}
 
 		for (SCall call : called.calls) {

@@ -1,5 +1,9 @@
 package com.rockwellcollins.spear.translate.master;
 
+import static jkind.lustre.LustreUtil.eq;
+import static jkind.lustre.LustreUtil.id;
+import static jkind.lustre.LustreUtil.varDecl;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,13 +41,10 @@ public class SMacro {
 	}
 
 	public jkind.lustre.VarDecl toVarDecl(SSpecification s) {
-		jkind.lustre.Type type = TranslateType.translate(this.type, s.map);
-		return new jkind.lustre.VarDecl(this.name, type);
+		return varDecl(name, TranslateType.translate(type, s.map));
 	}
 
 	public jkind.lustre.Equation toEquation(SSpecification s) {
-		jkind.lustre.IdExpr LHS = new jkind.lustre.IdExpr(this.name);
-		jkind.lustre.Expr RHS = TranslateExpr.translate(expression, s);
-		return new jkind.lustre.Equation(LHS, RHS);
+		return eq(id(name), TranslateExpr.translate(expression, s));
 	}
 }
