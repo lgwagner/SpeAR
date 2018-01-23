@@ -12,6 +12,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -24,6 +25,8 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
+import org.eclipse.ui.handlers.IHandlerActivation;
+import org.eclipse.ui.handlers.IHandlerService;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.XtextResourceSet;
 import org.javatuples.Triplet;
@@ -46,16 +49,20 @@ import jkind.api.results.Status;
 
 public class BatchAnalysis extends AbstractHandler {
 
+	private static final String TERMINATE_ID = "com.rockwellcollins.spear.ui.commands.terminateBatchAnalysis";
 	static public String ID = "com.rockwellcollins.spear.translate.commands.batchAnalysis";
 	private XtextResourceSet resourceSet;
-	// XXX: Terrible hack because the registering the same class for two
-	// different
-	// handl
+
+	// FIXME: Terrible hack because the registering the same class for two
+	// different handlers
+
 	private static Thread ba = null;
 	private boolean stop = false;
+	private IWorkbenchWindow window;
+	private Injector injector;
 
 	public BatchAnalysis() throws PartInitException {
-		Injector injector = Guice.createInjector(new SpearRuntimeModule());
+		injector = Guice.createInjector(new SpearRuntimeModule());
 		resourceSet = injector.getInstance(XtextResourceSet.class);
 		resourceSet.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
 		stop = false;
@@ -68,40 +75,39 @@ public class BatchAnalysis extends AbstractHandler {
 	}
 
 	private void message(String msg) throws IOException, PartInitException {
-
 		Display.getDefault().asyncExec(new Runnable() {
 			public void run() {
 				try {
 					getBatchAnalysisView().list.add(msg);
 				} catch (PartInitException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		});
 	}
-
-	private void message(IFile ifile, String msg) throws IOException, PartInitException {
-		message(ifile.getFullPath().toString() + " : " + msg);
+	
+	private void message(IFile ifile, String msg) {
+		try {
+			message(ifile.getFullPath().toString() + " : " + msg);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public Object execute(ExecutionEvent event) {
 		String comID = event.getCommand().getId();
 		if (comID.compareTo("com.rockwellcollins.spear.ui.commands.terminateBatchAnalysis") == 0) {
-			System.out.println(this);
 			if (ba != null && ba.getState() != Thread.State.TERMINATED && stop == false) {
 				stop = true;
 				try {
 					message("Initiating batch analysis termination ...");
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 			return null;
 		} else if (comID.compareTo("com.rockwellcollins.spear.ui.commands.startBatchAnalysis") == 0) {
-			System.out.println(this);
 			if (ba != null && ba.getState() != Thread.State.TERMINATED) {
 				MessageDialog dialog = new MessageDialog(null, "Batch Analysis Error", null,
 						"Batch Analysis already running!", MessageDialog.ERROR, new String[] { "ok" }, 0);
@@ -111,9 +117,9 @@ public class BatchAnalysis extends AbstractHandler {
 			stop = false;
 			ba = new Thread(() -> {
 				try {
+					resourceSet = injector.getInstance(XtextResourceSet.class);
 					work(event);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			});
@@ -129,8 +135,7 @@ public class BatchAnalysis extends AbstractHandler {
 	}
 
 	private Object work(ExecutionEvent event) throws ExecutionException, IOException, PartInitException {
-
-		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
+		window = HandlerUtil.getActiveWorkbenchWindow(event);
 		IWorkbenchPage activePage = window.getActivePage();
 		ISelection selection = activePage.getSelection();
 		if (selection != null) {
@@ -140,88 +145,136 @@ public class BatchAnalysis extends AbstractHandler {
 				for (Object o : sselection.toArray()) {
 					findSpearModels(o, models);
 				}
-				for (Object o : models) {
-					if (stop) {
-						return null;
-					}
-					IFile ifile = (IFile) o;
-					URI uri = URI.createPlatformResourceURI(ifile.getFullPath().toString(), true);
-					Resource resource = resourceSet.getResource(uri, true);
-					XtextResource xtextResource = (XtextResource) resource;
-					File file = (File) xtextResource.getContents().get(0);
-					if (file instanceof Definitions) {
-						continue;
-					}
-					Specification specification = (Specification) file;
-					// check the spec and imported files for errors
-					if (ActionUtilities.hasErrors(specification.eResource())) {
-						message(ifile, "Errors detected, skipping analysis.");
-						continue;
-					}
 
-					Triplet<Analysis, Document, JKindResult> triple;
-					if (specification.getBehaviors().size() > 0) {
-						try {
-							triple = Analysis.entailment(specification, PreferencesUtil.getJKindJar(), "result");
-							triple.getValue0().analyze(new NullProgressMonitor());
-							for (PropertyResult result : triple.getValue2().getPropertyResults()) {
-								if (Status.VALID != result.getStatus()) {
-									message(ifile,
-											"The property " + result.getName() + " failed during entailment analysis.");
-								}
+				new Thread() {
+					public void run() {
+						IProgressMonitor monitor = new NullProgressMonitor();
+						activateTerminateHandler(monitor);
+						for (Object o : models) {
+							if (stop) { return; }
+							IFile ifile = (IFile) o;
+							URI uri = URI.createPlatformResourceURI(ifile.getFullPath().toString(), true);
+							Resource resource = resourceSet.getResource(uri, true);
+							XtextResource xtextResource = (XtextResource) resource;
+							File file = (File) xtextResource.getContents().get(0);
+							if (file instanceof Definitions) { continue; }
+							Specification specification = (Specification) file;
+							
+							// check the spec and imported files for errors
+							if (ActionUtilities.hasErrors(specification.eResource())) {
+								message(ifile, "Errors detected, skipping analysis.");
+								continue;
 							}
-						} catch (Exception e) {
-							message(ifile, "Entailment analysis failed.");
+											
+							runEntailment(ifile, specification, monitor);
+							runConsistency(ifile, specification, monitor);
+							runRealizability(ifile, specification, monitor);
 						}
-					} else {
-						message(ifile, "No behaviors found, skipping entailment analysis.");
-					}
-
-					if (true) {
+						
 						try {
-							triple = Analysis.consistency(specification, PreferencesUtil.getJKindJar(), "result");
-							triple.getValue0().analyze(new NullProgressMonitor());
-							for (PropertyResult result : triple.getValue2().getPropertyResults()) {
-								if (Status.VALID != result.getStatus()) {
-									message(ifile, "The property " + result.getName()
-											+ " failed during consistency analysis.");
-								}
-							}
-						} catch (Exception e) {
-							message(ifile, "Consistency analysis failed.");
+							message("Analysis complete.");
+						} catch (IOException | PartInitException e) {
+							e.printStackTrace();
+						} finally {
+							deactivateTerminateHandler();	
 						}
+						
 					}
-
-					if (specification.getBehaviors().size() > 0) {
-						try {
-							triple = Analysis.realizability(specification, PreferencesUtil.getJKindJar(), "result");
-							triple.getValue0().analyze(new NullProgressMonitor());
-
-							for (PropertyResult result : triple.getValue2().getPropertyResults()) {
-								if (Status.VALID != result.getStatus()) {
-									message(ifile, "The property " + result.getName()
-											+ " failed during realizability analysis.");
-								}
-							}
-						} catch (Exception e) {
-							message(ifile, "Realizability analysis failed.");
-						}
-					} else {
-						message(ifile, "No behaviors found, skipping realizability analysis.");
-					}
-
-				}
-			}
-			try {
-				ResourcesPlugin.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_INFINITE, null);
-			} catch (Exception e) {
-				throw new ExecutionException("Error while refreshing workspace : " + e.toString());
+				}.start();
 			}
 		}
-		if (stop) {
-			message(" ... batch analysis terminated.");
-		}
+		
+		refreshWorkspace();
 		return null;
+	}
+
+	private void refreshWorkspace() throws ExecutionException {
+		try {
+			ResourcesPlugin.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_INFINITE, null);
+		} catch (Exception e) {
+			throw new ExecutionException("Error while refreshing workspace : " + e.toString());
+		}
+	}
+
+	private void runRealizability(IFile ifile, Specification specification,
+			IProgressMonitor monitor) {
+		if (specification.getBehaviors().size() > 0) {
+			try {
+				Triplet<Analysis, Document, JKindResult> triple = Analysis
+						.realizability(specification, PreferencesUtil.getJKindJar(), "result");
+				triple.getValue0().analyze(monitor);
+
+				for (PropertyResult result : triple.getValue2().getPropertyResults()) {
+					if (Status.VALID != result.getStatus()) {
+						message(ifile, "The property " + result.getName()
+								+ " failed during realizability analysis.");
+					}
+				}
+			} catch (Exception e) {
+				message(ifile, "Realizability analysis failed.");
+			}
+		} else {
+			message(ifile, "No behaviors found, skipping realizability analysis.");
+		}
+	}
+
+	private void runConsistency(IFile ifile, Specification specification,
+			IProgressMonitor monitor) {
+		if (true) {
+			try {
+				Triplet<Analysis, Document, JKindResult> triple = Analysis
+						.consistency(specification, PreferencesUtil.getJKindJar(), "result");
+				triple.getValue0().analyze(monitor);
+				for (PropertyResult result : triple.getValue2().getPropertyResults()) {
+					if (Status.VALID != result.getStatus()) {
+						message(ifile, "The property " + result.getName()
+								+ " failed during consistency analysis.");
+					}
+				}
+			} catch (Exception e) {
+				message(ifile, "Consistency analysis failed.");
+			}
+		}
+	}
+
+	private void runEntailment(IFile ifile, Specification specification, IProgressMonitor monitor) {
+		if (specification.getBehaviors().size() > 0) {
+			try {
+				Triplet<Analysis, Document, JKindResult> triple = Analysis.entailment(specification,
+						PreferencesUtil.getJKindJar(), "result");
+				triple.getValue0().analyze(monitor);
+				for (PropertyResult result : triple.getValue2().getPropertyResults()) {
+					if (Status.VALID != result.getStatus()) {
+						message(ifile, "The property " + result.getName()
+								+ " failed during entailment analysis.");
+					}
+				}
+			} catch (Exception e) {
+				message(ifile, "Entailment analysis failed.");
+			}
+		} else {
+			message(ifile, "No behaviors found, skipping entailment analysis.");
+		}
+	}
+	
+	private IHandlerActivation activation;
+
+	private void activateTerminateHandler(final IProgressMonitor monitor) {
+		final IHandlerService handlerService = (IHandlerService) window.getService(IHandlerService.class);
+		window.getShell().getDisplay().syncExec(() -> {
+			if (activation != null) {
+				handlerService.deactivateHandler(activation);
+			}
+			activation = handlerService.activateHandler(TERMINATE_ID, new TerminateHandler(monitor));
+		});
+	}
+
+	private void deactivateTerminateHandler() {
+		final IHandlerService handlerService = (IHandlerService) window.getService(IHandlerService.class);
+		window.getShell().getDisplay().syncExec(() -> {
+			handlerService.deactivateHandler(activation);
+			activation = null;
+		});
 	}
 
 	private void findSpearModels(Object o, List<Object> models) {
@@ -237,7 +290,6 @@ public class BatchAnalysis extends AbstractHandler {
 					}
 				}
 			} catch (CoreException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else if (o instanceof IFile) {
