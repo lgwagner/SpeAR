@@ -41,6 +41,7 @@ public class SPattern extends SMapElement {
 
 		// copy the global name map for the basis of the local
 		this.map = program.map.copy();
+		this.map.addScope();
 
 		// process everything
 		this.inputs = SPVariable.build(p.getInputs(), this);

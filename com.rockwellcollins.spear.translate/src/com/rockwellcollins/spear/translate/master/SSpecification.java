@@ -97,6 +97,7 @@ public class SSpecification extends SMapElement {
 
 		// copy the global map as the local
 		this.map = programMap.copy();
+		this.map.addScope();
 
 		// set the name
 		this.inputs.addAll(SVariable.build(s.getInputs(), this));
