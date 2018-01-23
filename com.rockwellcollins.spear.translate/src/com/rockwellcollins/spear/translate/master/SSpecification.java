@@ -13,7 +13,6 @@ import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
 import com.rockwellcollins.spear.translate.naming.backend.Scope;
-import com.rockwellcollins.spear.translate.naming.backend.SpearMap;
 import com.rockwellcollins.spear.utilities.LustreLibrary;
 
 import jkind.lustre.BinaryExpr;
