@@ -17,8 +17,8 @@ public class Preferences {
 		s.setDefault(PreferenceConstants.PREF_INDUCTIVE_COUNTEREXAMPLES, true);
 		s.setDefault(PreferenceConstants.PREF_SMOOTH_COUNTEREXAMPLES, false);
 		s.setDefault(PreferenceConstants.PREF_DEBUG, false);
-		s.setDefault(PreferenceConstants.PREF_DEPTH, Integer.MAX_VALUE);
-		s.setDefault(PreferenceConstants.PREF_TIMEOUT, Integer.MAX_VALUE);
+		s.setDefault(PreferenceConstants.PREF_DEPTH, 0);
+		s.setDefault(PreferenceConstants.PREF_TIMEOUT, 0);
 
 		// Spear
 		s.setDefault(PreferenceConstants.PREF_SPEAR_CONSISTENCY_DEPTH, 10);
@@ -29,5 +29,4 @@ public class Preferences {
 
 		return s;
 	}
-
 }

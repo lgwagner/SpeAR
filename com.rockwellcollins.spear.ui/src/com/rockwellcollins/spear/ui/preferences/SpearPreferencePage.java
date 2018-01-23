@@ -95,16 +95,16 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 	private BooleanFieldEditor bmcFieldEditor;
 	private BooleanFieldEditor kInductionFieldEditor;
 	private BooleanFieldEditor invGenFieldEditor;
-	private NonNegativeIntegerFieldEditor pdrMaxFieldEditor;
+	private NonnegativeIntegerFieldEditor pdrMaxFieldEditor;
 	private BooleanFieldEditor inductCexFieldEditor;
 	private BooleanFieldEditor smoothCexFieldEditor;
 	private BooleanFieldEditor spearUnusedVariableWarningsEditor;
 	private BooleanFieldEditor spearFinalLustreFileFieldEditor;
 	private BooleanFieldEditor spearRecursiveGraphicalDisplayFieldEditor;
 	private BooleanFieldEditor spearEnableIVCDuringEntailment;
-	private NonNegativeIntegerFieldEditor depthFieldEditor;
-	private NonNegativeIntegerFieldEditor timeoutFieldEditor;
-	private NonNegativeIntegerFieldEditor consistencyFieldEditor;
+	private NonnegativeIntegerFieldEditor depthFieldEditor;
+	private NonnegativeIntegerFieldEditor timeoutFieldEditor;
+	private PositiveIntegerFieldEditor consistencyFieldEditor;
 
 	/* Spear specific preferences */
 	private BooleanFieldEditor debugFieldEditor;
@@ -139,7 +139,7 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 				"Use invariant generation", this.getFieldEditorParent());
 		addField(invGenFieldEditor);
 
-		pdrMaxFieldEditor = new NonNegativeIntegerFieldEditor(PreferenceConstants.PREF_PDR_MAX.toString(),
+		pdrMaxFieldEditor = new NonnegativeIntegerFieldEditor(PreferenceConstants.PREF_PDR_MAX.toString(),
 				"Maximum number of PDR instances (0 to disable)", this.getFieldEditorParent());
 		addField(pdrMaxFieldEditor);
 
@@ -151,12 +151,12 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 				"Generate smooth counterexamples (minimal number of input value changes)", this.getFieldEditorParent());
 		addField(smoothCexFieldEditor);
 
-		depthFieldEditor = new NonNegativeIntegerFieldEditor(PreferenceConstants.PREF_DEPTH.toString(),
-				"Maximum depth for k-induction", this.getFieldEditorParent());
+		depthFieldEditor = new NonnegativeIntegerFieldEditor(PreferenceConstants.PREF_DEPTH.toString(),
+				"Maximum depth for k-induction (0 for infinite)", this.getFieldEditorParent());
 		addField(depthFieldEditor);
 
-		timeoutFieldEditor = new NonNegativeIntegerFieldEditor(PreferenceConstants.PREF_TIMEOUT.toString(),
-				"Timeout in seconds", this.getFieldEditorParent());
+		timeoutFieldEditor = new NonnegativeIntegerFieldEditor(PreferenceConstants.PREF_TIMEOUT.toString(),
+				"Timeout in seconds (0 for forever)", this.getFieldEditorParent());
 		addField(timeoutFieldEditor);
 
 		debugFieldEditor = new BooleanButtonFieldEditor(PreferenceConstants.PREF_DEBUG.toString(),
@@ -166,27 +166,27 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 
 		/* END: JKind group, BEGIN: SpeAR group */
 
-		spearFinalLustreFileFieldEditor = new BooleanFieldEditor(
-				PreferenceConstants.PREF_SPEAR_PRINT_FINAL_LUSTRE.toString(), "Generate final Lustre file",
+		spearUnusedVariableWarningsEditor = new BooleanFieldEditor(
+				PreferenceConstants.PREF_SPEAR_WARN_ON_UNUSED_VARS.toString(), "Disable unused variable validations",
 				this.getFieldEditorParent());
-		addField(spearFinalLustreFileFieldEditor);
-
+		addField(spearUnusedVariableWarningsEditor);
+		
+		spearEnableIVCDuringEntailment = new BooleanFieldEditor(
+				PreferenceConstants.PREF_SPEAR_ENABLE_IVC_ON_ENTAILMENT.toString(),
+				"Enable IVC during Logical Entailment Analysis", this.getFieldEditorParent());
+		addField(spearEnableIVCDuringEntailment);
+		
 		spearRecursiveGraphicalDisplayFieldEditor = new BooleanFieldEditor(
 				PreferenceConstants.PREF_SPEAR_RECURSIVE_GRAPH.toString(), "Make graphical display recursive",
 				this.getFieldEditorParent());
 		addField(spearRecursiveGraphicalDisplayFieldEditor);
 
-		spearEnableIVCDuringEntailment = new BooleanFieldEditor(
-				PreferenceConstants.PREF_SPEAR_ENABLE_IVC_ON_ENTAILMENT.toString(),
-				"Enable IVC during Logical Entailment Analysis", this.getFieldEditorParent());
-		addField(spearEnableIVCDuringEntailment);
-
-		spearUnusedVariableWarningsEditor = new BooleanFieldEditor(
-				PreferenceConstants.PREF_SPEAR_WARN_ON_UNUSED_VARS.toString(), "Disable unused variable validations",
+		spearFinalLustreFileFieldEditor = new BooleanFieldEditor(
+				PreferenceConstants.PREF_SPEAR_PRINT_FINAL_LUSTRE.toString(), "Generate final Lustre file",
 				this.getFieldEditorParent());
-		addField(spearUnusedVariableWarningsEditor);
-
-		consistencyFieldEditor = new NonNegativeIntegerFieldEditor(
+		addField(spearFinalLustreFileFieldEditor);
+		
+		consistencyFieldEditor = new PositiveIntegerFieldEditor(
 				PreferenceConstants.PREF_SPEAR_CONSISTENCY_DEPTH.toString(), "Depth of consistency check in steps",
 				this.getFieldEditorParent());
 		addField(consistencyFieldEditor);
@@ -218,6 +218,7 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 	@Override
 	public void propertyChange(PropertyChangeEvent event) {
 		super.propertyChange(event);
+		//set selected solver if that was the source of the change.
 		if (event.getSource().equals(solverFieldEditor)) {
 			selectedSolver = (String) event.getNewValue();
 		}
@@ -247,8 +248,7 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 		solverFieldEditor.setEnabled(isJKind, getFieldEditorParent());
 		inductCexFieldEditor.setEnabled(isJKind, getFieldEditorParent());
 		depthFieldEditor.setEnabled(isJKind, getFieldEditorParent());
-		boolean enableSmoothing = isJKind && (isYices || isZ3);
-		smoothCexFieldEditor.setEnabled(enableSmoothing, getFieldEditorParent());
+		smoothCexFieldEditor.setEnabled(isJKind && (isYices || isZ3), getFieldEditorParent());
 	}
 
 	@Override
@@ -265,11 +265,19 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 		selectedSolver = prefs.getString(PreferenceConstants.PREF_SOLVER.toString());
 	}
 
-	private class NonNegativeIntegerFieldEditor extends IntegerFieldEditor {
-		public NonNegativeIntegerFieldEditor(String name, String labelText, Composite parent) {
+	private class NonnegativeIntegerFieldEditor extends IntegerFieldEditor {
+		public NonnegativeIntegerFieldEditor(String name, String labelText, Composite parent) {
 			super(name, labelText, parent);
 			setValidRange(0, Integer.MAX_VALUE);
-			setErrorMessage("Field must be a non-negative integer");
+			setErrorMessage("Field must be a positive integer");
+		}
+	}
+	
+	private class PositiveIntegerFieldEditor extends IntegerFieldEditor {
+		public PositiveIntegerFieldEditor(String name, String labelText, Composite parent) {
+			super(name, labelText, parent);
+			setValidRange(1, Integer.MAX_VALUE);
+			setErrorMessage("Field must be a positive integer");
 		}
 	}
 
