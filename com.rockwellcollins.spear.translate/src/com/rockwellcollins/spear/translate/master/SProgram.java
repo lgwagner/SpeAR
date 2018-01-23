@@ -52,21 +52,20 @@ public class SProgram extends SMapElement {
 		constants.addAll(SConstant.build(GetUsedConstants.get(d.main), this));
 
 		// just get the names of these because we need to have them in the
-		// namespace
-		// before we process them.
-		@SuppressWarnings("unused")
-		List<String> renamedPatterns = SPattern.addNames(GetUsedPatterns.get(d.main), this);
+		// namespace before we process them.
+		SPattern.addNames(GetUsedPatterns.get(d.main), this);
 
 		Collection<Specification> usedSpecs = GetUsedSpecifications.get(d);
-		@SuppressWarnings("unused")
-		List<String> renamedSpecifications = SSpecification.addNames(usedSpecs, map);
+		SSpecification.addNames(usedSpecs, map);
 
 		// process the patterns. Nothing special to do here.
 		patterns.addAll(SPattern.build(GetUsedPatterns.get(d.main), this));
 
 		/*
-		 * process the specifications in three steps 1. build them 2. resolve
-		 * the calls among them 3. resolve the call variables
+		 * process the specifications in three steps 
+		 * 1. build them 
+		 * 2. resolve the calls among them 
+		 * 3. resolve the call variables
 		 */
 		specifications.addAll(SSpecification.build(usedSpecs, map));
 		specifications.stream().forEach(s -> s.resolveCalls(specifications));
@@ -91,12 +90,10 @@ public class SProgram extends SMapElement {
 		constants = SConstant.build(GetUsedConstants.get(d.main), this);
 
 		Collection<Pattern> usedPatterns = GetUsedPatterns.get(d.main);
-		@SuppressWarnings("unused")
-		List<String> renamed = SPattern.addNames(usedPatterns, this);
+		SPattern.addNames(usedPatterns, this);
 
 		// then add the patterns (because they have local scope that could
-		// conflict
-		// with global scope)
+		// conflict with global scope)
 		patterns = SPattern.build(usedPatterns, this);
 	}
 

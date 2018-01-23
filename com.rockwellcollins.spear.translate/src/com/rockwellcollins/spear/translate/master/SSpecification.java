@@ -33,8 +33,8 @@ import jkind.lustre.builders.NodeBuilder;
 
 public class SSpecification extends SMapElement {
 
-	public static List<String> addNames(Collection<Specification> list, Scope map) {
-		return list.stream().map(s -> SSpecification.addName(s, map)).collect(Collectors.toList());
+	public static void addNames(Collection<Specification> list, Scope map) {
+		list.stream().map(s -> SSpecification.addName(s, map)).collect(Collectors.toList());
 	}
 
 	public static String addName(Specification s, Scope map) {

@@ -11,8 +11,8 @@ import jkind.lustre.builders.NodeBuilder;
 
 public class SPattern extends SMapElement {
 
-	public static List<String> addNames(Collection<Pattern> list, SProgram program) {
-		return list.stream().map(p -> SPattern.addName(p, program)).collect(Collectors.toList());
+	public static void addNames(Collection<Pattern> list, SProgram program) {
+		list.stream().map(p -> SPattern.addName(p, program)).collect(Collectors.toList());
 	}
 
 	private static String addName(Pattern p, SProgram program) {
