@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: com.rockwellcollins.spear.tests
+Bundle-Name: com.rockwellcollins.spear.commandline
 Bundle-Vendor: Rockwell Collins
 Bundle-Version: 2.1.0
 Bundle-SymbolicName: com.rockwellcollins.spear.commandline;singleton:=true

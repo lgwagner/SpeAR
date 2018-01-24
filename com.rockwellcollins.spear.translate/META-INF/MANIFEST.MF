@@ -9,9 +9,6 @@ Require-Bundle: org.eclipse.ui.workbench,
  com.rockwellcollins.spear,
  org.eclipse.emf.ecore
 Bundle-ClassPath: .,
- dependencies/itext/itextpdf-5.5.8.jar,
- dependencies/itext/itextpdf-5.5.8-javadoc.jar,
- dependencies/itext/itextpdf-5.5.8-sources.jar,
  dependencies/javatuples-1.2.jar
 Export-Package: com.rockwellcollins.spear.analysis,
  com.rockwellcollins.spear.translate.excel;uses:="com.rockwellcollins.spear,com.rockwellcollins.spear.util,jxl.write",

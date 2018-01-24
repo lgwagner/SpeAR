@@ -17,8 +17,8 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import org.apache.commons.collections4.ListUtils;
 import org.eclipse.xtext.EcoreUtil2;
 
 import com.rockwellcollins.spear.NormalizedCall;
@@ -29,7 +29,6 @@ import com.rockwellcollins.spear.utilities.LustreLibrary;
 
 import jkind.lustre.Equation;
 import jkind.lustre.Expr;
-import jkind.lustre.IdExpr;
 import jkind.lustre.NamedType;
 import jkind.lustre.Node;
 import jkind.lustre.NodeCallExpr;
@@ -191,7 +190,7 @@ public class SSpecification extends SMapElement {
 			List<SConstraint> justProperties = getJustProperties(behaviors);
 			builder.addEquation(eq(id(vd.id),justProperties.isEmpty() ? TRUE :conjunctify(justProperties.iterator())));
 			builder.addProperty(vd.id);
-			builder.addIvcs(SConstraint.toPropertyIds(ListUtils.union(assumptions, requirements), this));
+			builder.addIvcs(SConstraint.toPropertyIds(Stream.of(assumptions,requirements).flatMap(x -> x.stream()).collect(Collectors.toList()), this));
 		}
 		return builder.build();
 	}
@@ -221,7 +220,7 @@ public class SSpecification extends SMapElement {
 		builder.addLocal(getConsistencyVarDecl());
 		
 		builder.addEquation(getConsistencyEquation());
-		builder.addEquation(getAssertionMainEquation(ListUtils.union(assumptions, requirements)));
+		builder.addEquation(getAssertionMainEquation(Stream.of(assumptions,requirements).flatMap(x -> x.stream()).collect(Collectors.toList())));
 
 		builder.addProperty(consistencyName);
 
