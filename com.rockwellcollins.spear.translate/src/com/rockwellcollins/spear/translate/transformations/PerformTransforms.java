@@ -7,13 +7,14 @@ public class PerformTransforms {
 	public static void apply(Document d, boolean rename) throws Exception {
 		ReplaceAbstractTypes.transform(d);
 		PropagatePredicates.transform(d);
-		
-		if (rename) { CreateUserNamespace.transform(d); }
-		
+
 		//these must be in this order
 		NormalizeOperators.transform(d);
 		RemoveSugar.transform(d);
 		ExpandInExpressions.transform(d);
+		
+		if (rename) { CreateUserNamespace.transform(d); }
+
 		GenerateUFCObligations.crunch(d);
 		
 		RemoveCompositeReferences.transform(d);
