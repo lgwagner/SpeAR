@@ -29,48 +29,57 @@ class SpearFormatter extends AbstractFormatter2 {
 		}
 
 		for (UnitDef unit : s.getUnits()) {
-			unit.append[newLine];
+			unit.append[autowrap; newLine];
 			format(unit, document);
 		}
 		
 		for (TypeDef typedef : s.getTypedefs()) {
-			typedef.append[newLine];
+			typedef.append[autowrap; newLine];
 			format(typedef, document);
 		}
 		
 		for (Constant constants : s.getConstants()) {
+			constants.append[autowrap; newLine];
 			format(constants, document);
 		}
 		
 		for (Pattern patterns : s.getPatterns()) {
+			patterns.append[autowrap; newLine];
 			format(patterns, document);
 		}
 		
 		for (Variable inputs : s.getInputs()) {
+			inputs.append[autowrap; newLine];
 			format(inputs, document);
 		}
 		
 		for (Variable outputs : s.getOutputs()) {
+			outputs.append[autowrap; newLine];
 			format(outputs, document);
 		}
 		
 		for (Variable state : s.getState()) {
+			state.append[autowrap; newLine];
 			format(state, document);
 		}
 		
 		for (Macro macros : s.getMacros()) {
+			macros.append[autowrap; newLine];
 			format(macros, document);
 		}
 		
 		for (Constraint assumptions : s.getAssumptions()) {
+			assumptions.append[autowrap; newLine];
 			format(assumptions, document);
 		}
 		
 		for (Constraint requirements : s.getRequirements()) {
+			requirements.append[autowrap; newLine];
 			format(requirements, document);
 		}
 		
 		for (Constraint behaviors : s.getBehaviors()) {
+			behaviors.append[autowrap; newLine];
 			format(behaviors, document);
 		}
 	}
