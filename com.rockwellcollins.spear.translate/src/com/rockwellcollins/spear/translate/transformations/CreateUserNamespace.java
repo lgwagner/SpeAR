@@ -19,8 +19,7 @@ public class CreateUserNamespace extends SpearSwitch<Integer> {
 		d.renamed = namespace.renamed;
 	}
 
-	private SimpleAttributeResolver<EObject, String> resolver = SimpleAttributeResolver.newResolver(String.class,
-			"name");
+	private SimpleAttributeResolver<EObject, String> resolver = SimpleAttributeResolver.newResolver(String.class,"name");
 	private Map<EObject, Map<String, String>> renamed = new HashMap<>();
 	private Map<String, String> current = new HashMap<>();
 
