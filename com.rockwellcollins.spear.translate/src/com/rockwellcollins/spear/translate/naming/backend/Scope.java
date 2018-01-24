@@ -2,9 +2,7 @@ package com.rockwellcollins.spear.translate.naming.backend;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
 import com.rockwellcollins.spear.utilities.LustreLibrary;
@@ -25,11 +23,7 @@ public class Scope {
 		}
 	}
 	
-	public Deque<Map<String,String>> scopes = new ArrayDeque<>();
-	
-	public Scope() {
-		this.addScope();
-	}
+	public Deque<BiMap<String,String>> scopes = new ArrayDeque<>();
 	
 	public Scope copy() {
 		Scope copy = new Scope();
@@ -38,7 +32,7 @@ public class Scope {
 	}
 	
 	public void addScope() {
-		scopes.push(new HashMap<>());
+		scopes.push(new BiMap<>());
 	}
 	
 	public String addName(String original) {
@@ -54,11 +48,22 @@ public class Scope {
 	}
 	
 	public String lookup(String renamed) {
-		Iterator<Map<String,String>> iterator = scopes.iterator();
+		Iterator<BiMap<String,String>> iterator = scopes.iterator();
 		while(iterator.hasNext()) {
-			Map<String,String> current = iterator.next();
+			BiMap<String,String> current = iterator.next();
 			if(current.containsKey(renamed)) {
 				return current.get(renamed);
+			}
+		}
+		return null;
+	}
+	
+	public String lookUpInv(String original) {
+		Iterator<BiMap<String,String>> iterator = scopes.iterator();
+		while(iterator.hasNext()) {
+			BiMap<String,String> current = iterator.next();
+			if(current.invContainsKey(original)) {
+				return current.invGet(original);
 			}
 		}
 		return null;

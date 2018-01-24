@@ -243,7 +243,7 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 
 	@Override
 	public Expr caseMacro(Macro m) {
-		return id(module.map.lookup(m.getName()));
+		return id(module.map.lookUpInv(m.getName()));
 	}
 
 	@Override
@@ -274,12 +274,12 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 
 	@Override
 	public Expr caseConstant(Constant c) {
-		return id(this.module.map.lookup(c.getName()));
+		return id(this.module.map.lookUpInv(c.getName()));
 	}
 
 	@Override
 	public Expr caseEnumValue(EnumValue ev) {
-		return id(module.map.lookup(ev.getName()));
+		return id(module.map.lookUpInv(ev.getName()));
 	}
 
 	@Override
@@ -288,7 +288,7 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 		for (com.rockwellcollins.spear.FieldExpr fe : re.getFieldExprs()) {
 			fields.put(fe.getField().getName(), doSwitch(fe.getExpr()));
 		}
-		return new RecordExpr(module.map.lookup(re.getType().getName()), fields);
+		return new RecordExpr(module.map.lookUpInv(re.getType().getName()), fields);
 	}
 
 	@Override
@@ -300,7 +300,7 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 
 	@Override
 	public Expr caseVariable(Variable v) {
-		String name = module.map.lookup(v.getName());
+		String name = module.map.lookUpInv(v.getName());
 		return id(name);
 	}
 

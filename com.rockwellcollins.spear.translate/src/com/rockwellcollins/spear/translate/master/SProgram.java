@@ -42,7 +42,8 @@ public class SProgram extends SMapElement {
 
 	private SProgram(Document d, File main) {
 		// initialize the program's global map
-		map = new Scope();	
+		map = new Scope();
+		map.addScope();
 
 		// add the PLTL node names to the program namespace
 		Scope.addLibraries(map);
@@ -78,6 +79,7 @@ public class SProgram extends SMapElement {
 	private SProgram(Document d, Pattern main) {
 		// create the map
 		map = new Scope();
+		map.addScope();
 
 		// add the PLTL node names to the program namespace
 		Scope.addLibraries(map);
