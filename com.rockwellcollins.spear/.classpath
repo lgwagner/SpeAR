@@ -4,8 +4,6 @@
 	<classpathentry kind="src" path="src-gen"/>
 	<classpathentry kind="src" path="xtend-gen"/>
 	<classpathentry exported="true" kind="lib" path="dependencies/commons/commons-io-2.5-javadoc.jar"/>
-	<classpathentry exported="true" kind="lib" path="dependencies/commons/commons-lang3-3.6-javadoc.jar"/>
-	<classpathentry exported="true" kind="lib" path="dependencies/commons/commons-lang3-3.6.jar"/>
 	<classpathentry exported="true" kind="lib" path="dependencies/commons/commons-io-2.5.jar"/>
 	<classpathentry exported="true" kind="lib" path="dependencies/jkind/jkind-api.jar"/>
 	<classpathentry exported="true" kind="lib" path="dependencies/jxl.jar"/>

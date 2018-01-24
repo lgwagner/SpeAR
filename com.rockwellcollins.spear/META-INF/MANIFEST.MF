@@ -149,9 +149,7 @@ Export-Package: com.rockwellcollins;uses:="com.google.inject,org.eclipse.xtext,o
 Bundle-ClassPath: .,
  dependencies/jkind/jkind-api.jar,
  dependencies/jkind/jkind.jar,
- dependencies/commons/commons-lang3-3.6.jar,
- dependencies/commons/commons-lang3-3.6-javadoc.jar,
- dependencies/commons/commons-io-2.5.jar,
- dependencies/commons/commons-io-2.5-javadoc.jar,
  dependencies/jaxb-api-2.2.3.jar,
- dependencies/jxl.jar
+ dependencies/jxl.jar,
+ dependencies/commons/commons-io-2.5-javadoc.jar,
+ dependencies/commons/commons-io-2.5.jar
