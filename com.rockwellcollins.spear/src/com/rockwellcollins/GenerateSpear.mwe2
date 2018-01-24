@@ -12,6 +12,7 @@ var generateXtendStub = false
 var encoding = "UTF-8"
 
 Workflow {
+	
     bean = StandaloneSetup {
     	scanClassPath = true
     	platformUri = "${runtimeProject}/.."
@@ -71,26 +72,25 @@ Workflow {
     
     		// Xtend-based API for validation
     		fragment = validation.JavaValidatorFragment auto-inject {
-    		    composedCheck = "org.eclipse.xtext.validation.ImportUriValidator"
-         // composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
+    			composedCheck = "org.eclipse.xtext.validation.ImportUriValidator"
+         		//composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
     		}
-    
-    		// old scoping and exporting API
-    		//fragment = scoping.ImportURIScopingFragment auto-inject {}
-    		//fragment = exporting.SimpleNamesFragment auto-inject {}
     
     		// scoping and exporting API
 			fragment = scoping.ImportNamespacesScopingFragment auto-inject {}
-       	fragment = exporting.QualifiedNamesFragment auto-inject {}
-       	fragment = builder.BuilderIntegrationFragment auto-inject {}
+	       	fragment = exporting.QualifiedNamesFragment auto-inject {}
+	       	fragment = builder.BuilderIntegrationFragment auto-inject {}
     
     		// generator API
     		fragment = generator.GeneratorFragment auto-inject {
-    		  generateJavaMain = true
+    			generateJavaMain = true
     		}
     
     		// formatter API
-    		fragment = formatting.FormatterFragment auto-inject {}
+//    		fragment = formatting.FormatterFragment auto-inject {}
+    		fragment = formatting2.Formatter2Fragment auto-inject {
+    			
+    		}
     
     		// labeling API
     		fragment = labeling.LabelProviderFragment auto-inject {}

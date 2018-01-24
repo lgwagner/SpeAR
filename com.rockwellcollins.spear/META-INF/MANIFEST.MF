@@ -22,7 +22,7 @@ Import-Package: jkind.lustre,
  org.osgi.framework;version="1.8.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: com.rockwellcollins;uses:="com.google.inject,org.eclipse.xtext,org.eclipse.xtext.service",
- com.rockwellcollins.formatting;uses:="org.eclipse.xtext.formatting.impl",
+ com.rockwellcollins.formatting2;uses:="org.eclipse.xtext.formatting.impl",
  com.rockwellcollins.generator,
  com.rockwellcollins.parser.antlr;uses:="org.eclipse.xtext.parser.antlr,com.rockwellcollins.parser.antlr.internal,com.rockwellcollins.services",
  com.rockwellcollins.parser.antlr.internal;
