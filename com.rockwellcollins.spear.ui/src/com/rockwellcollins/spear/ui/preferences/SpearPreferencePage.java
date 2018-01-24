@@ -3,6 +3,9 @@ package com.rockwellcollins.spear.ui.preferences;
 import java.awt.Desktop;
 import java.io.File;
 
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.preference.ComboFieldEditor;
@@ -229,6 +232,13 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 	public void performApply() {
 		super.performApply();
 		initStore(getPreferenceStore(), Preferences.store);
+
+		//refresh on apply so the non-linear errors are resolved without the user having to struggle with that.
+		try {
+			ResourcesPlugin.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_INFINITE, null);
+		} catch (CoreException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
