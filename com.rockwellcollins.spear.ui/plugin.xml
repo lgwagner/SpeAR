@@ -518,15 +518,6 @@
              id="com.rockwellcollins.spear.ui.GenerateExcel">
        </action>
        <action
-             label="&amp;Generate PDF"
-             icon="icons/document.png"
-             class="com.rockwellcollins.spear.ui.actions.GeneratePDF"
-             tooltip="Generate PDF"
-             menubarPath="uiMenu/uiGroup"
-             toolbarPath="uiGroup"
-             id="com.rockwellcollins.spear.ui.GeneratePDF">
-       </action>
-       <action
              label="&amp;Graphical View"
              icon="icons/graphical.png"
              class="com.rockwellcollins.spear.ui.actions.GenerateGraph"
