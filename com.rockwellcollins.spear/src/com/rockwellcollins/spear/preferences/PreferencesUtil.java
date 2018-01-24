@@ -101,8 +101,11 @@ public class PreferencesUtil {
 	public static void configureRealizabilityApi(JRealizabilityApi api) {
 		IPreferenceStore prefs = getPreferenceStore();
 
-		api.setN(prefs.getInt(PreferenceConstants.PREF_DEPTH));
-		api.setTimeout(prefs.getInt(PreferenceConstants.PREF_TIMEOUT));
+		int k = prefs.getInt(PreferenceConstants.PREF_DEPTH);
+		api.setN(k == 0 ? Integer.MAX_VALUE : k);
+
+		int timeout = prefs.getInt(PreferenceConstants.PREF_TIMEOUT);
+		api.setTimeout(timeout == 0 ? Integer.MAX_VALUE : timeout);
 
 		if (prefs.getBoolean(PreferenceConstants.PREF_DEBUG)) {
 			api.setApiDebug();
