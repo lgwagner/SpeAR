@@ -1,5 +1,9 @@
 package com.rockwellcollins.spear.ui.actions;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.resources.WorkspaceJob;
@@ -7,6 +11,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
@@ -23,6 +28,7 @@ import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 import org.javatuples.Triplet;
 
 import com.rockwellcollins.SpearInjectorUtil;
+import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Specification;
@@ -56,7 +62,7 @@ public class CheckRealizability implements IWorkbenchWindowActionDelegate {
 
 		XtextEditor xte = (XtextEditor) editor;
 		IXtextDocument doc = xte.getDocument();
-	
+
 		runAnalysis(doc);
 	}
 
@@ -77,6 +83,19 @@ public class CheckRealizability implements IWorkbenchWindowActionDelegate {
 
 				// check the spec and imported files for errors
 				if (ActionUtilities.hasErrors(specification, window)) {
+					return null;
+				}
+
+				// check for unspecified constants, since they contain functions.
+				Document d = new Document(specification);
+				List<Constant> constants = d.files.stream().map(file -> file.getConstants())
+						.collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
+				List<Constant> unspecified = constants.stream().filter(c -> c.getExpr() == null)
+						.collect(Collectors.toList());
+
+				if (unspecified.size() > 0) {
+					MessageDialog.openError(window.getShell(), "Unsupported",
+							"Specification uses unspecified constants which are not supported by the realizability engine.");
 					return null;
 				}
 

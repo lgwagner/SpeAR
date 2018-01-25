@@ -9,7 +9,9 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.javatuples.Pair;
 import org.javatuples.Triplet;
 
+import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Constraint;
+import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.Observe;
 import com.rockwellcollins.spear.Specification;
@@ -129,12 +131,12 @@ public class Analysis {
 		return Triplet.with(new Analysis(pair.getValue0(), p, result), pair.getValue1(), result);
 	}
 
-	public static Triplet<Analysis, Document, JKindResult> realizability(Specification specification,
-			String jkindjarpth, String resultname) throws Exception {
+	public static Triplet<Analysis, Document, JKindResult> realizability(Specification specification, String jkindjarpth, String resultname) throws Exception {
 		JRealizabilityApi api = new JRealizabilityApi();
 		api.setJKindJar(jkindjarpth.toString());
 		PreferencesUtil.configureRealizabilityApi(api);
 		Document doc = new Document(specification);
+		
 		Program p = null;
 		if (PreferencesUtil.printFinalLustre()) {
 			try {
