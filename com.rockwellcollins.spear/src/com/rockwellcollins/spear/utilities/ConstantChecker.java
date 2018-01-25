@@ -23,7 +23,10 @@ import com.rockwellcollins.spear.util.SpearSwitch;
 public class ConstantChecker extends SpearSwitch<Boolean> {
 
 	public static Boolean isConstant(Constant c) {
-		return isConstant(c.getExpr());
+		if(c.getExpr() != null) {
+			return isConstant(c.getExpr());	
+		}
+		return true;
 	}
 
 	public static Boolean isConstant(Expr e) {

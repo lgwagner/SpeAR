@@ -119,6 +119,10 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		}
 		Unit expected = this.doSwitch(c.getType());
 		map.put(c, expected);
+		
+		if(c.getExpr() == null) {
+			return expected;
+		}
 
 		Unit actual = this.doSwitch(c.getExpr());
 		if (expected.equals(actual)) {

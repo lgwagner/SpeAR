@@ -20,7 +20,11 @@ public class IntConstantFinder extends SpearSwitch<Integer> {
 
 	@Override
 	public Integer caseConstant(Constant c) {
-		return this.doSwitch(c.getExpr());
+		if(c.getExpr() != null) {
+			return this.doSwitch(c.getExpr());
+		} else {
+			return null;
+		}
 	}
 
 	@Override
