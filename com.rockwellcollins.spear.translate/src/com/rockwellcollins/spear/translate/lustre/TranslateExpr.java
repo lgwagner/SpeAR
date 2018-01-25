@@ -48,6 +48,7 @@ import jkind.lustre.BinaryExpr;
 import jkind.lustre.BinaryOp;
 import jkind.lustre.CastExpr;
 import jkind.lustre.Expr;
+import jkind.lustre.FunctionCallExpr;
 import jkind.lustre.NamedType;
 import jkind.lustre.NodeCallExpr;
 import jkind.lustre.RecordAccessExpr;
@@ -274,7 +275,12 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 
 	@Override
 	public Expr caseConstant(Constant c) {
-		return id(this.module.map.lookUpInv(c.getName()));
+		String name= module.map.lookUpInv(c.getName());
+		if(c.getExpr() != null) {
+			return id(name);	
+		} else {
+			return new FunctionCallExpr(name, Collections.emptyList());
+		}
 	}
 
 	@Override

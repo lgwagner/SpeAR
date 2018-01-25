@@ -232,8 +232,12 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 
 		Type expected = doSwitch(c.getType());
 		map.put(c, expected);
+		
+		if(c.getExpr() == null) {
+			return expected;
+		}
+		
 		Type actual = doSwitch(c.getExpr());
-
 		if (expected == ERROR || actual == ERROR) {
 			return error(c);
 		}

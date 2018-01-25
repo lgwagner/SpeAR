@@ -3,6 +3,7 @@ package com.rockwellcollins.spear.translate.master;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Pattern;
@@ -16,6 +17,8 @@ import com.rockwellcollins.spear.translate.intermediate.GetUsedTypeDefs;
 import com.rockwellcollins.spear.translate.naming.backend.Scope;
 import com.rockwellcollins.spear.utilities.LustreLibrary;
 
+import jkind.lustre.Constant;
+import jkind.lustre.Function;
 import jkind.lustre.Program;
 import jkind.lustre.builders.ProgramBuilder;
 
@@ -99,24 +102,38 @@ public class SProgram extends SMapElement {
 		patterns = SPattern.build(usedPatterns, this);
 	}
 
+	private List<Function> getFunctions(List<SConstant> constants) {
+		List<SConstant> functions = constants.stream().filter(sc -> sc.expr == null).collect(Collectors.toList());
+		return functions.stream().map(lf -> lf.toLustreFunction(this)).collect(Collectors.toList());
+	}
+	
+	private List<Constant> getConstants(List<SConstant> constants) {
+		List<SConstant> lustreFunctions = constants.stream().filter(sc -> sc.expr != null).collect(Collectors.toList());
+		return lustreFunctions.stream().map(lf -> lf.toLustreConstant(this)).collect(Collectors.toList());
+	}
+	
 	public Program patternToLustre() {
 		ProgramBuilder program = new ProgramBuilder();
 		addNodes(program);
 
-		// add the typedefs, constants, and patterns
+		// add the functions, typedefs, constants, and patterns
+		program.addFunctions(getFunctions(constants));
+		program.addConstants(getConstants(constants));
 		program.addTypes(STypeDef.toLustre(typedefs, this));
-		program.addConstants(SConstant.toLustre(constants, this));
 		program.addNodes(SPattern.toLustre(patterns));
 
 		// set the main name
 		program.setMain(mainName);
 		return program.build();
 	}
-
+	
 	public Program getBaseProgram() {
 		ProgramBuilder program = new ProgramBuilder();
 		addNodes(program);
-		program.addConstants(SConstant.toLustre(constants, this));
+
+		// add the functions, typedefs, constants, and patterns
+		program.addFunctions(getFunctions(constants));
+		program.addConstants(getConstants(constants));
 		program.addTypes(STypeDef.toLustre(typedefs, this));
 		program.addNodes(SPattern.toLustre(patterns));
 		return program.build();
