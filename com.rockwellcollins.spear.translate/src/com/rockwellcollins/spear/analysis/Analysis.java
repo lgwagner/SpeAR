@@ -9,9 +9,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.javatuples.Pair;
 import org.javatuples.Triplet;
 
-import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Constraint;
-import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.Observe;
 import com.rockwellcollins.spear.Specification;
