@@ -69,8 +69,7 @@ public class BatchAnalysis extends AbstractHandler {
 	}
 
 	private BatchAnalysisView getBatchAnalysisView() throws PartInitException {
-		BatchAnalysisView bav = (BatchAnalysisView) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
-				.showView(BatchAnalysisView.ID);
+		BatchAnalysisView bav = (BatchAnalysisView) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(BatchAnalysisView.ID);
 		return bav;
 	}
 
@@ -93,6 +92,18 @@ public class BatchAnalysis extends AbstractHandler {
 			e.printStackTrace();
 		}
 	}
+	
+	private void clear() throws IOException, PartInitException {
+		Display.getDefault().asyncExec(new Runnable() {
+			public void run() {
+				try {
+					getBatchAnalysisView().list.removeAll();
+				} catch (PartInitException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}	
 
 	@Override
 	public Object execute(ExecutionEvent event) {
@@ -149,6 +160,14 @@ public class BatchAnalysis extends AbstractHandler {
 				new Thread() {
 					public void run() {
 						IProgressMonitor monitor = new NullProgressMonitor();
+						
+						try {
+							clear();
+						} catch (PartInitException | IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}						
+						
 						activateTerminateHandler(monitor);
 						for (Object o : models) {
 							if (stop) { return; }
@@ -165,7 +184,7 @@ public class BatchAnalysis extends AbstractHandler {
 								message(ifile, "Errors detected, skipping analysis.");
 								continue;
 							}
-											
+							
 							runEntailment(ifile, specification, monitor);
 							runConsistency(ifile, specification, monitor);
 							runRealizability(ifile, specification, monitor);
