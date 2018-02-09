@@ -102,4 +102,14 @@ public class Utilities {
 		}
 		return false;
 	}
+	
+	public static boolean invert(Constraint c) {
+		if (c instanceof FormalConstraint) {
+			FormalConstraint fc = (FormalConstraint) c;
+			if (fc.getFlag() != null && (fc.getFlag() instanceof Observe)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

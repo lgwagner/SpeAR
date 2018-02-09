@@ -1,6 +1,7 @@
 package com.rockwellcollins.spear.translate.intermediate;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.HashMap;
@@ -95,34 +96,23 @@ public class Document {
 		return resolver.apply(this.main);
 	}
 
-	public Program getLogicalConsistencyWithLustre() throws Exception {
-		Program p = SProgram.build(this).getLogicalConsistency();
-		FileOutputStream out = lustreOutputStream();
-		out.write(p.toString().getBytes());
-		return p;
-	}
-
 	public Program getLogicalConsistency() {
 		Program p = SProgram.build(this).getLogicalConsistency();
 		return p;
 	}
 
-	public Program getLogicalEntailmentWithLustre() throws Exception {
-		Program p = SProgram.build(this).getLogicalEntailment();
+	public void print(Program p) {
 		FileOutputStream out = lustreOutputStream();
-		out.write(p.toString().getBytes());
-		return p;
+		try {
+			out.write(p.toString().getBytes());
+		} catch (IOException e) {
+			System.err.println("Error: Unable to write lustre file.");
+			e.printStackTrace();
+		}
 	}
 
 	public Program getLogicalEntailment() {
 		Program p = SProgram.build(this).getLogicalEntailment();
-		return p;
-	}
-
-	public Program getRealizabilityWithLustre() throws Exception {
-		Program p = SProgram.build(this).getRealizability();
-		FileOutputStream out = lustreOutputStream();
-		out.write(p.toString().getBytes());
 		return p;
 	}
 

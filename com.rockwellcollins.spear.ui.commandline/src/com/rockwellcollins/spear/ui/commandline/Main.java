@@ -20,7 +20,6 @@ import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
-import org.javatuples.Triplet;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.ParameterException;
@@ -30,11 +29,12 @@ import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Import;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.analysis.Analysis;
+import com.rockwellcollins.spear.analysis.Consistency;
+import com.rockwellcollins.spear.analysis.Entailment;
+import com.rockwellcollins.spear.analysis.Realizability;
 import com.rockwellcollins.spear.preferences.PreferenceConstants;
 import com.rockwellcollins.spear.preferences.Preferences;
-import com.rockwellcollins.spear.translate.intermediate.Document;
 
-import jkind.api.results.JKindResult;
 import jkind.api.results.PropertyResult;
 
 public class Main {
@@ -176,33 +176,34 @@ public class Main {
 		} catch (IOException e1) {
 			throw new RuntimeException("This should not happen: Problem exporting 'jkind.jar'.");
 		}
-		Triplet<Analysis, Document, JKindResult> triple = null;
+		
+		Specification specification = (Specification) resource.getContents().get(0);
+		Analysis analyzer = null;
 		if (command == "entailment") {
 			try {
-				triple = Analysis.entailment((Specification) resource.getContents().get(0), jkindjarpth.toString(),"result");
+				analyzer = new Entailment(specification, jkindjarpth.toString());
 			} catch (Exception e) {
 				throw e;
 			}
 
 		} else if (command == "consistency") {
 			try {
-				triple = Analysis.consistency((Specification) resource.getContents().get(0), jkindjarpth.toString(),"result");
+				analyzer = new Consistency(specification, jkindjarpth.toString());
 			} catch (Exception e) {
 				throw e;
 			}
 		} else if (command == "realizability") {
 			try {
-				triple = Analysis.realizability((Specification) resource.getContents().get(0), jkindjarpth.toString(),"result");
+				analyzer = new Realizability(specification, jkindjarpth.toString());
 			} catch (Exception e) {
 				throw e;
 			}
 		} else {
 			throw new RuntimeException("This should not happen: unknown command.");
 		}
-		triple.getValue0().analyze(new NullProgressMonitor());
-		for (PropertyResult pr : triple.getValue2().getPropertyResults()) {
-			System.out
-					.println(pr.getProperty().getName() + ", " + pr.getStatus() + ", " + pr.getProperty().getRuntime());
+		analyzer.analyze(new NullProgressMonitor());
+		for (PropertyResult pr : analyzer.getResult().getPropertyResults()) {
+			System.out.println(pr.getProperty().getName() + ", " + pr.getStatus() + ", " + pr.getProperty().getRuntime());
 		}
 	}
 

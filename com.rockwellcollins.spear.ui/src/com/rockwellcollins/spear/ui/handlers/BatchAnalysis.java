@@ -29,7 +29,6 @@ import org.eclipse.ui.handlers.IHandlerActivation;
 import org.eclipse.ui.handlers.IHandlerService;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.XtextResourceSet;
-import org.javatuples.Triplet;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -37,13 +36,13 @@ import com.rockwellcollins.SpearRuntimeModule;
 import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Specification;
-import com.rockwellcollins.spear.analysis.Analysis;
+import com.rockwellcollins.spear.analysis.Consistency;
+import com.rockwellcollins.spear.analysis.Entailment;
+import com.rockwellcollins.spear.analysis.Realizability;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
-import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.ui.actions.ActionUtilities;
 import com.rockwellcollins.spear.ui.views.BatchAnalysisView;
 
-import jkind.api.results.JKindResult;
 import jkind.api.results.PropertyResult;
 import jkind.api.results.Status;
 
@@ -219,11 +218,10 @@ public class BatchAnalysis extends AbstractHandler {
 			IProgressMonitor monitor) {
 		if (specification.getBehaviors().size() > 0) {
 			try {
-				Triplet<Analysis, Document, JKindResult> triple = Analysis
-						.realizability(specification, PreferencesUtil.getJKindJar(), "result");
-				triple.getValue0().analyze(monitor);
+				Realizability realizability = new Realizability(specification, PreferencesUtil.getJKindJar());
+				realizability.analyze(monitor);
 
-				for (PropertyResult result : triple.getValue2().getPropertyResults()) {
+				for (PropertyResult result : realizability.result.getPropertyResults()) {
 					if (Status.VALID != result.getStatus()) {
 						message(ifile, "The property " + result.getName()
 								+ " failed during realizability analysis.");
@@ -237,32 +235,29 @@ public class BatchAnalysis extends AbstractHandler {
 		}
 	}
 
-	private void runConsistency(IFile ifile, Specification specification,
-			IProgressMonitor monitor) {
-		if (true) {
-			try {
-				Triplet<Analysis, Document, JKindResult> triple = Analysis
-						.consistency(specification, PreferencesUtil.getJKindJar(), "result");
-				triple.getValue0().analyze(monitor);
-				for (PropertyResult result : triple.getValue2().getPropertyResults()) {
-					if (Status.VALID != result.getStatus()) {
-						message(ifile, "The property " + result.getName()
-								+ " failed during consistency analysis.");
-					}
+	private void runConsistency(IFile ifile, Specification specification, IProgressMonitor monitor) {
+		try {
+			Consistency consistency = new Consistency(specification, PreferencesUtil.getJKindJar());
+			consistency.analyze(monitor);
+
+			for (PropertyResult result : consistency.result.getPropertyResults()) {
+				if (Status.VALID != result.getStatus()) {
+					message(ifile, "The property " + result.getName()
+							+ " failed during consistency analysis.");
 				}
-			} catch (Exception e) {
-				message(ifile, "Consistency analysis failed.");
 			}
+		} catch (Exception e) {
+			message(ifile, "Consistency analysis failed.");
 		}
 	}
 
 	private void runEntailment(IFile ifile, Specification specification, IProgressMonitor monitor) {
 		if (specification.getBehaviors().size() > 0) {
 			try {
-				Triplet<Analysis, Document, JKindResult> triple = Analysis.entailment(specification,
-						PreferencesUtil.getJKindJar(), "result");
-				triple.getValue0().analyze(monitor);
-				for (PropertyResult result : triple.getValue2().getPropertyResults()) {
+				Entailment entailment = new Entailment(specification, PreferencesUtil.getJKindJar());
+				entailment.analyze(monitor);
+
+				for (PropertyResult result : entailment.result.getPropertyResults()) {
 					if (Status.VALID != result.getStatus()) {
 						message(ifile, "The property " + result.getName()
 								+ " failed during entailment analysis.");

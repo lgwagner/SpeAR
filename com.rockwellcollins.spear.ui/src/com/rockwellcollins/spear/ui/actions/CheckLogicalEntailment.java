@@ -7,10 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.resources.WorkspaceJob;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -27,7 +24,6 @@ import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
-import org.javatuples.Triplet;
 
 import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Constraint;
@@ -36,7 +32,7 @@ import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.Observe;
 import com.rockwellcollins.spear.Specification;
-import com.rockwellcollins.spear.analysis.Analysis;
+import com.rockwellcollins.spear.analysis.Entailment;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
 import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.translate.layout.SpearRegularLayout;
@@ -96,24 +92,23 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 					return null;
 				}
 
-				Triplet<Analysis, Document, JKindResult> triple = Analysis.entailment(specification,
-						PreferencesUtil.getJKindJar(), "result");
-				ResourcesPlugin.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_INFINITE, null);
-
+				Entailment entailment = new Entailment(specification,PreferencesUtil.getJKindJar());
+				ActionUtilities.refresh();
+				
 				List<String> requirements = specification.getRequirements().stream().map(req -> req.getName()).collect(toList());
-				List<String> observers = getObservers(triple.getValue1());
-
-				showView(triple.getValue2(), new SpearRegularLayout(specification), requirements, observers);
+				List<String> observers = getObservers(entailment.document);
+				
+				showView(entailment.result, new SpearRegularLayout(specification), requirements, observers);
 
 				new WorkspaceJob("Entailment") {
 					@Override
-					public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
+					public IStatus runInWorkspace(IProgressMonitor monitor) {
 						try {
 							activateTerminateHandler(monitor);
-							triple.getValue0().analyze(monitor);
+							entailment.analyze(monitor);
 						} catch (Exception e) {
-							System.err.println(triple.getValue2().getText());
-							throw e;
+							System.err.println(entailment.result.getText());
+							e.printStackTrace();
 						} finally {
 							deactivateTerminateHandler();
 						}
@@ -187,12 +182,10 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 	}
 
 	@Override
-	public void selectionChanged(IAction arg0, ISelection arg1) {
-	}
+	public void selectionChanged(IAction arg0, ISelection arg1) {}
 
 	@Override
-	public void dispose() {
-	}
+	public void dispose() {}
 
 	@Override
 	public void init(IWorkbenchWindow arg0) {

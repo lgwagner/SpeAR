@@ -1,17 +1,10 @@
 package com.rockwellcollins.spear.ui.actions;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.resources.WorkspaceJob;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
@@ -25,16 +18,13 @@ import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
-import org.javatuples.Triplet;
 
 import com.rockwellcollins.SpearInjectorUtil;
-import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Specification;
-import com.rockwellcollins.spear.analysis.Analysis;
+import com.rockwellcollins.spear.analysis.Realizability;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
-import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.translate.layout.SpearRealizabilityLayout;
 import com.rockwellcollins.spear.ui.handlers.TerminateHandler;
 import com.rockwellcollins.spear.ui.views.SpearRealizabilityResultsView;
@@ -87,32 +77,25 @@ public class CheckRealizability implements IWorkbenchWindowActionDelegate {
 				}
 
 				// check for unspecified constants, since they contain functions.
-				Document d = new Document(specification);
-				List<Constant> constants = d.files.stream().map(file -> file.getConstants())
-						.collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
-				List<Constant> unspecified = constants.stream().filter(c -> c.getExpr() == null)
-						.collect(Collectors.toList());
-
-				if (unspecified.size() > 0) {
+				Realizability realizability = new Realizability(specification, PreferencesUtil.getJKindJar());
+				ActionUtilities.refresh();
+				
+				if (realizability.containsUnspecifiedConstants()) {
 					MessageDialog.openError(window.getShell(), "Unsupported",
 							"Specification uses unspecified constants which are not supported by the realizability engine.");
 					return null;
 				}
 
-				Triplet<Analysis, Document, JKindResult> triplet = Analysis.realizability(specification,
-						PreferencesUtil.getJKindJar(), "result");
-				ResourcesPlugin.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_INFINITE, null);
-
-				showView(triplet.getValue2(), new SpearRealizabilityLayout(specification));
+				showView(realizability.result, new SpearRealizabilityLayout(specification));
 
 				new WorkspaceJob("Realizability") {
 					@Override
 					public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
 						try {
 							activateTerminateHandler(monitor);
-							triplet.getValue0().analyze(monitor);
+							realizability.analyze(monitor);
 						} catch (Exception e) {
-							System.err.println(triplet.getValue2().getText());
+							System.err.println(realizability.result.getText());
 							throw e;
 						} finally {
 							deactivateTerminateHandler();
@@ -161,12 +144,10 @@ public class CheckRealizability implements IWorkbenchWindowActionDelegate {
 	}
 
 	@Override
-	public void selectionChanged(IAction arg0, ISelection arg1) {
-	}
+	public void selectionChanged(IAction arg0, ISelection arg1) {}
 
 	@Override
-	public void dispose() {
-	}
+	public void dispose() {}
 
 	@Override
 	public void init(IWorkbenchWindow arg0) {

@@ -8,6 +8,8 @@ import java.util.List;
 
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -27,6 +29,15 @@ import com.rockwellcollins.ui.internal.SpearActivator;
 
 public class ActionUtilities {
 
+	public static void refresh() {
+		try {
+			ResourcesPlugin.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_INFINITE, null);
+		} catch (CoreException e) {
+			System.err.println("Error: Unable to refresh workspace.");
+			e.printStackTrace();
+		}
+	}
+	
 	public static boolean hasErrors(Specification f, IWorkbenchWindow window) {
 		List<File> errors = new ArrayList<File>();
 		ActionUtilities.hasErrors(f, errors);
