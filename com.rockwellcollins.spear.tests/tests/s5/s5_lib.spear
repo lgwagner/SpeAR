@@ -1,0 +1,89 @@
+	Definitions s5_lib
+	
+	Units:
+
+	Types:
+		color_type : enum {GREEN, YELLOW, RED}
+		state_type : enum {FLASH, SOLID}
+
+		character : enum {d0, d1, d2, 
+						  d3, d4, d5, 
+						  d6, d7, d8, 
+						  d9, dDASH}
+						  
+		string_type : character[3]
+	
+		display_type : record {color : color_type, 
+							   state : state_type, 
+							   string : string_type}
+
+	Constants:
+	
+	Patterns:
+		pattern low_pass_filter(input : real, 
+				TIMECONST : real, RATE : real) 
+			returns (output : real)
+		var
+			prev : real
+			top : real
+			bottom : real
+		let
+			prev = previous output with initial value 0.0
+			top = ((prev - input) * TIMECONST)
+			bottom = (TIMECONST + RATE)
+			output = (top / bottom) + input
+		tel
+		
+		pattern round(input : real, RESOLUTION : real) returns (rounded : real)
+		var
+			intermediate : real
+		let
+			intermediate = real(floor(abs(input / RESOLUTION) + 0.5)) * RESOLUTION
+			
+			rounded = if input >= 0.0 then intermediate else -intermediate
+		tel
+		
+		pattern value_to_string(processed_value : real) returns (string : string_type)
+		var
+			c0 : character
+			c1 : character
+			c2 : character
+			r1 : real
+			r2 : real
+		let
+			c0 = to_char(floor(processed_value / 100.0))
+			r1 = processed_value mod 100.0
+			c1 = to_char(floor(r1  / 10.0))
+			r2 = r1 mod 10.0
+			c2 = to_char(floor(r2))
+			
+			string = new string_type [c0, c1, c2]
+		tel	
+		
+		pattern to_char(input : int) returns (c : character)
+		let
+			c =
+				if(input == 0) then d0
+				else if (input == 1) then d1
+				else if (input == 2) then d2
+				else if (input == 3) then d3
+				else if (input == 4) then d4
+				else if (input == 5) then d5
+				else if (input == 6) then d6
+				else if (input == 7) then d7
+				else if (input == 8) then d8
+				else if (input == 9) then d9
+				else dDASH
+		tel
+		
+		pattern abs(input : real) returns (output : real)
+		let
+			output = if (input >= 0.0) then input else -input
+		tel
+	
+	
+	
+	
+	
+	
+	

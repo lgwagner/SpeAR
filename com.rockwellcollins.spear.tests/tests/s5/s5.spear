@@ -1,0 +1,73 @@
+	Specification s5
+
+	Imports:
+		import "s5_lib.spear"
+	
+	Inputs:
+		input : real
+		valid : bool
+	
+	Outputs:
+		display : display_type
+	
+	State:
+		filtered : real
+		rounded : real
+		processed : real
+
+	Macros:
+		pre_filtered inline : real = 
+			previous filtered with initial value 0.0
+		
+		m0 : bool = valid
+		m1 inline : bool = (m0 and processed < 75.0)
+	
+	Design:
+		r0: filtered == low_pass_filter(input, 1.0, 0.1)
+		
+		r1: rounded == round(filtered, 5.0)
+		
+		r2: processed == 
+			if rounded > 200.0 then 200.0
+			else if rounded < 0.0 then 0.0
+			else rounded 
+			
+		r3: display.color == 
+			if valid then 
+				if (processed > 100.0 and processed <= 150.0) then GREEN
+				else if processed > 75.0 and processed <= 100.0 then YELLOW
+				else if processed > 150.0 and processed <= 175.0 then YELLOW
+				else RED
+			else RED
+				
+		r4: display.string == 
+			if valid 
+			then value_to_string(processed)
+			else new string_type [dDASH, dDASH, dDASH]
+	
+		r5: display.state ==
+			if valid
+			then SOLID
+			else FLASH
+
+	Requirements:
+		HLR1:  abs(filtered - pre_filtered) == ((0.1/1.1) * abs(input - pre_filtered))
+		HLR2:  rounded mod 5.0 == 0.0
+		HLR3:  processed >= 0.0 and processed <= 200.0
+		HLR4:  not valid implies display.string == new string_type [dDASH, dDASH, dDASH]
+		HLR5:  valid implies display.string == value_to_string(processed)
+		HLR6:  not valid implies display.state == FLASH
+		HLR7:  valid implies display.state == SOLID
+		HLR8  : not valid implies (display.color == RED)
+		HLR9  : m1 implies (display.color == RED) 
+		HLR10 : (valid and processed > 175.0) implies (display.color == RED)
+		HLR11 : (valid and processed > 100.0 and processed < 150.0) implies (display.color == GREEN)
+		HLR12: (valid and processed > 75.0 and processed <= 100.0) implies (display.color == YELLOW)
+		HLR13: (valid and processed > 150.0 and processed <= 175.0) implies (display.color == YELLOW)		
+
+
+	
+	
+
+
+	

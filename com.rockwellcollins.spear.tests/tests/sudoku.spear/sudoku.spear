@@ -1,0 +1,196 @@
+Specification sudoku
+
+	/* d11 d12 d13 d14 d15 d16 d17 d18 d19 */
+	/* d21 d22 d23 d24 d25 d26 d27 d28 d29 */
+	/* d31 d32 d33 d34 d35 d36 d37 d38 d39 */
+	/* d41 d42 d43 d44 d45 d46 d47 d48 d49 */
+	/* d51 d52 d53 d54 d55 d56 d57 d58 d59 */
+	/* d61 d62 d63 d64 d65 d66 d67 d68 d69 */
+	/* d71 d72 d73 d74 d75 d76 d77 d78 d79 */
+	/* d81 d82 d83 d84 d85 d86 d87 d88 d89 */
+	/* d91 d92 d93 d94 d95 d96 d97 d98 d99 */
+
+Imports:
+
+Units:
+
+Types:
+	digit : { i : int | i >= 1 and i <= 9}
+
+Constants:
+
+Patterns:
+	pattern predicate(d1 : digit, d2 : digit, d3 : digit, d4 : digit, d5 : digit, d6 : digit, d7 : digit, d8 : digit, d9 : digit, v : digit) returns (holds : bool) 
+	let
+		holds = 
+			btoi(d1 == v) + btoi(d2 == v) + 
+			btoi(d3 == v) + btoi(d4 == v) +
+			btoi(d5 == v) + btoi(d6 == v) +
+			btoi(d7 == v) + btoi(d8 == v) + 
+			btoi(d9 == v) == 1
+	tel
+
+	pattern set_holds(d1 : digit, d2 : digit, d3 : digit, d4 : digit, d5 : digit, d6 : digit, d7 : digit, d8 : digit, d9 : digit) returns (holds : bool) 
+	let
+		holds = predicate(d1,d2,d3,d4,d5,d6,d7,d8,d9,1) and
+				predicate(d1,d2,d3,d4,d5,d6,d7,d8,d9,2) and
+				predicate(d1,d2,d3,d4,d5,d6,d7,d8,d9,3) and
+				predicate(d1,d2,d3,d4,d5,d6,d7,d8,d9,4) and
+				predicate(d1,d2,d3,d4,d5,d6,d7,d8,d9,5) and
+				predicate(d1,d2,d3,d4,d5,d6,d7,d8,d9,6) and
+				predicate(d1,d2,d3,d4,d5,d6,d7,d8,d9,7) and
+				predicate(d1,d2,d3,d4,d5,d6,d7,d8,d9,8) and
+				predicate(d1,d2,d3,d4,d5,d6,d7,d8,d9,9)
+	tel
+	
+Inputs:
+
+	d11 : digit
+	d12 : digit
+	d13 : digit
+	d14 : digit
+	d15 : digit
+	d16 : digit
+	d17 : digit
+	d18 : digit
+	d19 : digit
+	d21 : digit
+	d22 : digit
+	d23 : digit
+	d24 : digit
+	d25 : digit
+	d26 : digit
+	d27 : digit
+	d28 : digit
+	d29 : digit
+	d31 : digit
+	d32 : digit
+	d33 : digit
+	d34 : digit
+	d35 : digit
+	d36 : digit
+	d37 : digit
+	d38 : digit
+	d39 : digit
+	d41 : digit
+	d42 : digit
+	d43 : digit
+	d44 : digit
+	d45 : digit
+	d46 : digit
+	d47 : digit
+	d48 : digit
+	d49 : digit
+	d51 : digit
+	d52 : digit
+	d53 : digit
+	d54 : digit
+	d55 : digit
+	d56 : digit
+	d57 : digit
+	d58 : digit
+	d59 : digit
+	d61 : digit
+	d62 : digit
+	d63 : digit
+	d64 : digit
+	d65 : digit
+	d66 : digit
+	d67 : digit
+	d68 : digit
+	d69 : digit
+	d71 : digit
+	d72 : digit
+	d73 : digit
+	d74 : digit
+	d75 : digit
+	d76 : digit
+	d77 : digit
+	d78 : digit
+	d79 : digit
+	d81 : digit
+	d82 : digit
+	d83 : digit
+	d84 : digit
+	d85 : digit
+	d86 : digit
+	d87 : digit
+	d88 : digit
+	d89 : digit
+	d91 : digit
+	d92 : digit
+	d93 : digit
+	d94 : digit
+	d95 : digit
+	d96 : digit
+	d97 : digit
+	d98 : digit
+	d99 : digit
+
+Outputs:
+
+State:
+
+Macros:
+
+Assumptions:
+
+Requirements:
+
+	r1: set_holds(d11,d12,d13,d14,d15,d16,d17,d18,d19)
+	r2: set_holds(d21,d22,d23,d24,d25,d26,d27,d28,d29)
+	r3: set_holds(d31,d32,d33,d34,d35,d36,d37,d38,d39)
+	r4: set_holds(d41,d42,d43,d44,d45,d46,d47,d48,d49)
+	r5: set_holds(d51,d52,d53,d54,d55,d56,d57,d58,d59)
+	r6: set_holds(d61,d62,d63,d64,d65,d66,d67,d68,d69)
+	r7: set_holds(d71,d72,d73,d74,d75,d76,d77,d78,d79)
+	r8: set_holds(d81,d82,d83,d84,d85,d86,d87,d88,d89)
+	r9: set_holds(d91,d92,d93,d94,d95,d96,d97,d98,d99)
+	
+	c1: set_holds(d11,d21,d31,d41,d51,d61,d71,d81,d91)
+	c2: set_holds(d12,d22,d32,d42,d52,d62,d72,d82,d92)
+	c3: set_holds(d13,d23,d33,d43,d53,d63,d73,d83,d93)
+	c4: set_holds(d14,d24,d34,d44,d54,d64,d74,d84,d94)
+	c5: set_holds(d15,d25,d35,d45,d55,d65,d75,d85,d95)
+	c6: set_holds(d16,d26,d36,d46,d56,d66,d76,d86,d96)
+	c7: set_holds(d17,d27,d37,d47,d57,d67,d77,d87,d97)
+	c8: set_holds(d18,d28,d38,d48,d58,d68,d78,d88,d98)
+	c9: set_holds(d19,d29,d39,d49,d59,d69,d79,d89,d99)
+
+	ss1: set_holds(d11,d12,d13,d21,d22,d23,d31,d32,d33)
+	ss2: set_holds(d14,d15,d16,d24,d25,d26,d34,d35,d36)
+	ss3: set_holds(d17,d18,d19,d27,d28,d29,d37,d38,d39)
+	
+	ss4: set_holds(d41,d42,d43,d51,d52,d53,d61,d62,d63)
+	ss5: set_holds(d44,d45,d46,d54,d55,d56,d64,d65,d66)
+	ss6: set_holds(d47,d48,d49,d57,d58,d59,d67,d68,d69)
+	
+	ss7: set_holds(d71,d72,d73,d81,d82,d83,d91,d92,d93)
+	ss8: set_holds(d74,d75,d76,d84,d85,d86,d94,d95,d96)
+	ss9: set_holds(d77,d78,d79,d87,d88,d89,d97,d98,d99)
+
+Properties:
+	
+	//hard1 from Norvig's write-up: http://norvig.com/sudoku.html
+	//solved in 4 seconds using Z3
+	//solved in 1 second using Yices2
+	//solved in 13 seconds with SMTInterpol
+	hard1 observe:
+		d16 == 6 and
+		d22 == 5 and d23 == 9 and d29 == 8 and
+		d31 == 2 and d36 == 8 and
+		d42 == 4 and d43 == 5 and
+		d53 == 3 and 
+		d63 == 6 and d66 == 3 and d68 == 5 and d69 == 4 and
+		d74 == 3 and d75 == 2 and d76 == 5 and d79 == 6
+	
+	// Solution to hard1 using Z3, got a different one using Yices2, 
+	// 3 7 8 9 1 6 5 4 2
+	// 1 5 9 4 7 2 6 3 8
+	// 2 6 4 5 3 8 7 9 1
+	// 9 4 5 2 8 1 3 6 7
+	// 7 2 3 6 5 4 1 8 9
+	// 8 1 6 7 9 3 2 5 4
+	// 4 8 7 3 2 5 9 1 6
+	// 5 9 1 8 6 7 4 2 3
+	// 6 3 2 1 4 9 8 7 5	 
