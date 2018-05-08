@@ -22,13 +22,11 @@
 
    <windowImages i16="branding/1429142139_weapons_spear-16.png" i32="branding/1429142164_weapons_spear-32.png" i48="branding/1429142171_weapons_spear-48.png" i64="/com.rockwellcollins.spear/branding/1429142412_weapons_spear-64.png" i128="branding/1429142344_weapons_spear-128.png" i256="branding/1429142348_weapons_spear-256.png"/>
 
-
    <launcher name="spear.exe">
       <win useIco="true">
          <bmp/>
       </win>
    </launcher>
-
 
    <vm>
       <linux include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</linux>
@@ -203,6 +201,7 @@ IS APPROVED FOR PUBLIC RELEASE. CASE NUMBER: 88ABW-2016-1658
       <plugin id="org.eclipse.xtext.smap"/>
       <plugin id="org.eclipse.xtext.ui"/>
       <plugin id="org.eclipse.xtext.ui.codetemplates"/>
+      <plugin id="org.eclipse.xtext.ui.codetemplates.ide"/>
       <plugin id="org.eclipse.xtext.ui.codetemplates.ui"/>
       <plugin id="org.eclipse.xtext.ui.shared"/>
       <plugin id="org.eclipse.xtext.util"/>
