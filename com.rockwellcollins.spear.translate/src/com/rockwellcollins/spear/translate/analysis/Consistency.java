@@ -1,4 +1,4 @@
-package com.rockwellcollins.spear.analysis;
+package com.rockwellcollins.spear.translate.analysis;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 
@@ -40,6 +40,7 @@ public class Consistency implements Analysis {
 		
 		Renaming renaming = document.getRenaming();
 		result = new JKindResult("Consistency", renaming);
+		result.addInvertedProperty(program.getMainNode().properties.get(0));
 	}
 	
 	public void analyze(IProgressMonitor m) {

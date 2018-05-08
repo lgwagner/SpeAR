@@ -7,7 +7,7 @@ Bundle-SymbolicName: com.rockwellcollins.spear.commandline;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: com.rockwellcollins.spear,
  org.eclipse.core.runtime;bundle-version="3.12.0"
-Import-Package: com.rockwellcollins.spear.analysis,
+Import-Package: com.rockwellcollins.spear.translate.analysis,
  com.rockwellcollins.spear.translate.intermediate,
  com.rockwellcollins.spear.translate.master,
  org.eclipse.jface.preference,

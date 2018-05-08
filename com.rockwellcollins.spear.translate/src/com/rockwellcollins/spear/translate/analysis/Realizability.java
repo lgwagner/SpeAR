@@ -1,4 +1,4 @@
-package com.rockwellcollins.spear.analysis;
+package com.rockwellcollins.spear.translate.analysis;
 
 import java.util.List;
 import java.util.stream.Collectors;

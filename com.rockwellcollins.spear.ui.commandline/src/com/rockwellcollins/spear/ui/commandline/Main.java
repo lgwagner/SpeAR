@@ -28,12 +28,12 @@ import com.google.inject.Injector;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Import;
 import com.rockwellcollins.spear.Specification;
-import com.rockwellcollins.spear.analysis.Analysis;
-import com.rockwellcollins.spear.analysis.Consistency;
-import com.rockwellcollins.spear.analysis.Entailment;
-import com.rockwellcollins.spear.analysis.Realizability;
 import com.rockwellcollins.spear.preferences.PreferenceConstants;
 import com.rockwellcollins.spear.preferences.Preferences;
+import com.rockwellcollins.spear.translate.analysis.Analysis;
+import com.rockwellcollins.spear.translate.analysis.Consistency;
+import com.rockwellcollins.spear.translate.analysis.Entailment;
+import com.rockwellcollins.spear.translate.analysis.Realizability;
 
 import jkind.api.results.PropertyResult;
 

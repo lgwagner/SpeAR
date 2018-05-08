@@ -32,8 +32,8 @@ import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.Observe;
 import com.rockwellcollins.spear.Specification;
-import com.rockwellcollins.spear.analysis.Entailment;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
+import com.rockwellcollins.spear.translate.analysis.Entailment;
 import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.translate.layout.SpearRegularLayout;
 import com.rockwellcollins.spear.ui.handlers.TerminateHandler;
@@ -51,8 +51,7 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 
 	@Override
 	public void run(IAction action) {
-		SpearInjectorUtil
-				.setInjector(SpearActivator.getInstance().getInjector(SpearActivator.COM_ROCKWELLCOLLINS_SPEAR));
+		SpearInjectorUtil.setInjector(SpearActivator.getInstance().getInjector(SpearActivator.COM_ROCKWELLCOLLINS_SPEAR));
 
 		IEditorPart editor = window.getActivePage().getActiveEditor();
 		if (!(editor instanceof XtextEditor)) {
@@ -171,8 +170,7 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 			@Override
 			public void run() {
 				try {
-					SpearEntailmentResultsView page = (SpearEntailmentResultsView) window.getActivePage()
-							.showView(SpearEntailmentResultsView.ID);
+					SpearEntailmentResultsView page = (SpearEntailmentResultsView) window.getActivePage().showView(SpearEntailmentResultsView.ID);
 					page.setInput(result, layout, requirements, observers);
 				} catch (PartInitException e) {
 					e.printStackTrace();

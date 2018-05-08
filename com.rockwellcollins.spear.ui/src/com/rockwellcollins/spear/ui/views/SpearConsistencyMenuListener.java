@@ -81,7 +81,6 @@ public class SpearConsistencyMenuListener implements IMenuListener {
 	private void addViewSupport(IMenuManager manager, PropertyResult result) {
 		final Set<String> support = getSupport(result);
 		if (support == null || support.size() == 0) {
-			manager.add(new Action("**Enable IVC to view Conflicting Contraints**") {});
 			return;
 		}
 

@@ -10,7 +10,7 @@ Require-Bundle: org.eclipse.ui.workbench,
  org.eclipse.emf.ecore
 Bundle-ClassPath: .,
  dependencies/javatuples-1.2.jar
-Export-Package: com.rockwellcollins.spear.analysis,
+Export-Package: com.rockwellcollins.spear.translate.analysis,
  com.rockwellcollins.spear.translate.excel;uses:="com.rockwellcollins.spear,com.rockwellcollins.spear.util,jxl.write",
  com.rockwellcollins.spear.translate.graphical;uses:="com.rockwellcollins.spear",
  com.rockwellcollins.spear.translate.intermediate;uses:="org.eclipse.emf.ecore,com.rockwellcollins.spear,com.rockwellcollins.spear.util",

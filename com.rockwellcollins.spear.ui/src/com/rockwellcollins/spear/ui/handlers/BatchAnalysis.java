@@ -36,10 +36,10 @@ import com.rockwellcollins.SpearRuntimeModule;
 import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Specification;
-import com.rockwellcollins.spear.analysis.Consistency;
-import com.rockwellcollins.spear.analysis.Entailment;
-import com.rockwellcollins.spear.analysis.Realizability;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
+import com.rockwellcollins.spear.translate.analysis.Consistency;
+import com.rockwellcollins.spear.translate.analysis.Entailment;
+import com.rockwellcollins.spear.translate.analysis.Realizability;
 import com.rockwellcollins.spear.ui.actions.ActionUtilities;
 import com.rockwellcollins.spear.ui.views.BatchAnalysisView;
 

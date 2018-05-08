@@ -22,8 +22,8 @@ import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Specification;
-import com.rockwellcollins.spear.analysis.Consistency;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
+import com.rockwellcollins.spear.translate.analysis.Consistency;
 import com.rockwellcollins.spear.translate.layout.SpearRegularLayout;
 import com.rockwellcollins.spear.ui.handlers.TerminateHandler;
 import com.rockwellcollins.spear.ui.views.SpearConsistencyResultsView;
@@ -125,8 +125,7 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 			@Override
 			public void run() {
 				try {
-					SpearConsistencyResultsView page = (SpearConsistencyResultsView) window.getActivePage()
-							.showView(SpearConsistencyResultsView.ID);
+					SpearConsistencyResultsView page = (SpearConsistencyResultsView) window.getActivePage().showView(SpearConsistencyResultsView.ID);
 					page.setInput(result, layout, null);
 				} catch (PartInitException e) {
 					e.printStackTrace();
