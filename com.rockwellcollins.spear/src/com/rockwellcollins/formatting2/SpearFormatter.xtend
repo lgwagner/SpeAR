@@ -10,7 +10,6 @@ import com.rockwellcollins.spear.Constraint
 import com.rockwellcollins.spear.Import
 import com.rockwellcollins.spear.Macro
 import com.rockwellcollins.spear.Pattern
-import com.rockwellcollins.spear.SpearPackage
 import com.rockwellcollins.spear.Specification
 import com.rockwellcollins.spear.TypeDef
 import com.rockwellcollins.spear.UnitDef

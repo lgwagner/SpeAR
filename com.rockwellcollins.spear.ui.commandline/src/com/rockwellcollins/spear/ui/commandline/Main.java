@@ -40,7 +40,6 @@ import jkind.api.results.PropertyResult;
 public class Main {
 
 	public static void main(String[] args) throws Exception {
-
 		Injector injector = new com.rockwellcollins.SpearStandaloneSetup().createInjectorAndDoEMFRegistration();
 		Main main = injector.getInstance(Main.class);
 		main.runGenerator(args);
@@ -111,16 +110,6 @@ public class Main {
 			s.setValue(PreferenceConstants.PREF_DEPTH.toString(), opts.n.intValue());
 			s.setValue(PreferenceConstants.PREF_TIMEOUT.toString(), opts.timeout.intValue());
 			s.setValue(PreferenceConstants.PREF_SPEAR_PRINT_FINAL_LUSTRE.toString(), opts.lustre);
-
-			/*
-			 * s.setValue(PreferenceConstants.PREF_SPEAR_PRINT_FINAL_LUSTRE,
-			 * false);
-			 */
-			/*
-			 * s.setDefault(PreferenceConstants.PREF_SPEAR_RECURSIVE_GRAPH,
-			 * false);* /*s.setDefault(PreferenceConstants.
-			 * PREF_SPEAR_WARN_ON_UNUSED_VARS, false);
-			 */
 		} else if (command == "realizability") {
 			SpeARjRealizabilityCommand opts = null;
 
@@ -128,14 +117,11 @@ public class Main {
 			s.setValue(PreferenceConstants.PREF_DEPTH.toString(), opts.n.intValue());
 			s.setValue(PreferenceConstants.PREF_TIMEOUT.toString(), opts.timeout.intValue());
 			s.setValue(PreferenceConstants.PREF_SPEAR_PRINT_FINAL_LUSTRE.toString(), opts.lustre);
-
 		}
 
 		java.io.File spec = specs.get(0);
 
-		// XXX: If an absolute path is not used calls to
-		// Utilities.getImportedFile
-		// may fail.
+		// ChaosApe: If an absolute path is not used calls to Utilities.getImportedFile may fail.
 		Injector injector = new com.rockwellcollins.SpearStandaloneSetup().createInjectorAndDoEMFRegistration();
 		XtextResourceSet resourceSet = injector.getInstance(XtextResourceSet.class);
 		resourceSet.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
@@ -145,10 +131,8 @@ public class Main {
 		List<String> visited = new LinkedList<String>();
 
 		validateRecursively(resourceSet, resource, list, visited);
-		// XXX: It seems to me we should not be receiving duplicate error
-		// messages
-		// but I
-		// do not have time to investigate why this is happening.
+		// ChaosApe: It seems to me we should not be receiving duplicate error messages
+		// but I do not have time to investigate why this is happening.
 		List<String> alreadyseen = new LinkedList<String>();
 		boolean analysis = true;
 		if (!list.isEmpty()) {
