@@ -8,13 +8,13 @@ import java.util.stream.Collectors;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.naming.Scope;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
 import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.translate.intermediate.GetUsedConstants;
 import com.rockwellcollins.spear.translate.intermediate.GetUsedPatterns;
 import com.rockwellcollins.spear.translate.intermediate.GetUsedSpecifications;
 import com.rockwellcollins.spear.translate.intermediate.GetUsedTypeDefs;
-import com.rockwellcollins.spear.translate.naming.backend.Scope;
 import com.rockwellcollins.spear.utilities.LustreLibrary;
 
 import jkind.lustre.Constant;

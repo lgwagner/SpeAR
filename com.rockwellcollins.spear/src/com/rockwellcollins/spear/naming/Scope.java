@@ -1,4 +1,4 @@
-package com.rockwellcollins.spear.translate.naming.backend;
+package com.rockwellcollins.spear.naming;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

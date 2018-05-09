@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.rockwellcollins.spear.NormalizedCall;
+import com.rockwellcollins.spear.naming.Scope;
 import com.rockwellcollins.spear.translate.lustre.TranslateType;
-import com.rockwellcollins.spear.translate.naming.backend.Scope;
 import com.rockwellcollins.spear.utilities.Utilities;
 
 import jkind.lustre.VarDecl;

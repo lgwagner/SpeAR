@@ -1,6 +1,6 @@
 package com.rockwellcollins.spear.translate.master;
 
-import com.rockwellcollins.spear.translate.naming.backend.Scope;
+import com.rockwellcollins.spear.naming.Scope;
 
 public class SMapElement {
 

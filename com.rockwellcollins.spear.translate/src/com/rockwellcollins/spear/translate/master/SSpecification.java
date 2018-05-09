@@ -23,8 +23,8 @@ import org.eclipse.xtext.EcoreUtil2;
 
 import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.naming.Scope;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
-import com.rockwellcollins.spear.translate.naming.backend.Scope;
 import com.rockwellcollins.spear.utilities.LustreLibrary;
 
 import jkind.lustre.Equation;
