@@ -2,9 +2,9 @@ package com.rockwellcollins.spear.utilities;
 
 import org.eclipse.emf.ecore.EObject;
 
-import com.rockwellcollins.spear.ArrayTypeDef;
 import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.Constant;
+import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.IntLiteral;
 import com.rockwellcollins.spear.Macro;
@@ -13,9 +13,9 @@ import com.rockwellcollins.spear.util.SpearSwitch;
 
 public class IntConstantFinder extends SpearSwitch<Integer> {
 
-	public static Integer fetch(ArrayTypeDef atd) {
+	public static Integer fetch(Expr e) {
 		IntConstantFinder finder = new IntConstantFinder();
-		return finder.doSwitch(atd.getSize());
+		return finder.doSwitch(e);
 	}
 
 	@Override

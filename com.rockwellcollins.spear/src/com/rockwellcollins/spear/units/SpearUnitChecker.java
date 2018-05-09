@@ -311,7 +311,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	@Override
 	public Unit caseArrayTypeDef(ArrayTypeDef at) {
 		// this should just work because typechecking has presumably passed.
-		Integer size = IntConstantFinder.fetch(at);
+		Integer size = IntConstantFinder.fetch(at.getSize());
 		if (size == null) {
 			return error(at);
 		}

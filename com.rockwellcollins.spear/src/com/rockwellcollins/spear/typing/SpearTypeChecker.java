@@ -157,7 +157,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 			return error(at);
 		}
 
-		Integer size = IntConstantFinder.fetch(at);
+		Integer size = IntConstantFinder.fetch(at.getSize());
 		if (size == null) {
 			error("A concrete size value cannot be determined for " + at.getName(), at,
 					SpearPackage.Literals.ARRAY_TYPE_DEF__SIZE);

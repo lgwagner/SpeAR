@@ -15,6 +15,7 @@ import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.ComposedChecks;
 
 import com.google.inject.Inject;
+import com.rockwellcollins.spear.ArrayAccessExpr;
 import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Constraint;
@@ -29,10 +30,12 @@ import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.Variable;
+import com.rockwellcollins.spear.typing.ArrayType;
 import com.rockwellcollins.spear.typing.PrimitiveType;
 import com.rockwellcollins.spear.typing.SpearTypeChecker;
 import com.rockwellcollins.spear.typing.Type;
 import com.rockwellcollins.spear.utilities.ConstantChecker;
+import com.rockwellcollins.spear.utilities.IntConstantFinder;
 import com.rockwellcollins.spear.utilities.Utilities;
 
 /**
@@ -95,6 +98,19 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 		if (!ConstantChecker.isConstant(c)) {
 			error("Constant " + c.getName() + " is defined by a non-constant expression.", c.getExpr(), null);
 		}
+	}
+	
+	@Check
+	public void checkArrayIndexAreConstant(ArrayAccessExpr aae) {
+		if(ConstantChecker.isConstant(aae.getIndex())) {
+			Integer index = IntConstantFinder.fetch(aae.getIndex());
+			ArrayType arrayType = (ArrayType) SpearTypeChecker.typeCheck(aae.getArray());
+			
+			if((index < 0) || (index > arrayType.size-1)) {
+				error("Array indexing is out of bounds.", aae, SpearPackage.Literals.ARRAY_ACCESS_EXPR__INDEX);
+			}
+		}
+		return;
 	}
 
 	@Check

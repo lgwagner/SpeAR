@@ -18,9 +18,6 @@ public class GetBaseType extends SpearSwitch<Type> {
 		return get.doSwitch(td);
 	}
 
-	private GetBaseType() {
-	}
-
 	@Override
 	public Type caseIntType(IntType it) {
 		return it;

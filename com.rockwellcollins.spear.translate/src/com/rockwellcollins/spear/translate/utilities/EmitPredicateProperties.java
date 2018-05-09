@@ -90,7 +90,7 @@ public class EmitPredicateProperties extends SpearSwitch<Integer> {
 	@Override
 	public Integer caseArrayTypeDef(ArrayTypeDef at) {
 		Reference base = current;
-		Integer size = IntConstantFinder.fetch(at);
+		Integer size = IntConstantFinder.fetch(at.getSize());
 		for (int i = 0; i < size; i++) {
 			current = new IndexReference(base, i);
 			doSwitch(at.getBase());

@@ -16,7 +16,7 @@ public class SArrayTypeDef extends STypeDef {
 	public SArrayTypeDef(ArrayTypeDef atd, SProgram program) {
 		this.name = program.map.addName(atd.getName());
 		this.base = atd.getBase();
-		this.size = IntConstantFinder.fetch(atd);
+		this.size = IntConstantFinder.fetch(atd.getSize());
 	}
 
 	@Override
