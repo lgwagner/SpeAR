@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="SpeAR" uid="spear.linux.product" id="com.rockwellcollins.spear.spear_product" application="org.eclipse.ui.ide.workbench" version="2.1.0-beta" useFeatures="false" includeLaunchers="true">
+<product name="SpeAR" uid="spear.linux.product" id="com.rockwellcollins.spear.spear_product" application="org.eclipse.ui.ide.workbench" version="2.1.1" useFeatures="false" includeLaunchers="true">
 
    <aboutInfo>
       <image path="/com.rockwellcollins.spear/branding/1429142344_weapons_spear-128.png"/>
@@ -10,7 +10,7 @@
       </text>
    </aboutInfo>
 
-   <configIni>
+   <configIni use="">
    </configIni>
 
    <launcherArgs>
@@ -20,13 +20,11 @@
 
    <windowImages i16="/com.rockwellcollins.spear/branding/1429142139_weapons_spear-16.png" i32="/com.rockwellcollins.spear/branding/1429142164_weapons_spear-32.png" i48="/com.rockwellcollins.spear/branding/1429142171_weapons_spear-48.png" i64="/com.rockwellcollins.spear/branding/1429142412_weapons_spear-64.png" i128="/com.rockwellcollins.spear/branding/1429142344_weapons_spear-128.png" i256="/com.rockwellcollins.spear/branding/1429142348_weapons_spear-256.png"/>
 
-
    <launcher name="SpeAR">
       <win useIco="false">
          <bmp/>
       </win>
    </launcher>
-
 
    <vm>
    </vm>
