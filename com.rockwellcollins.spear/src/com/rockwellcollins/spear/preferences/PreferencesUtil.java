@@ -1,5 +1,6 @@
 package com.rockwellcollins.spear.preferences;
 
+import com.rockwellcollins.atc.z3.Z3Plugin;
 import java.io.File;
 import java.net.URL;
 
@@ -58,8 +59,15 @@ public class PreferencesUtil {
 
 	public static void configureJKindApi(JKindApi api) {
 		IPreferenceStore prefs = getPreferenceStore();
+		
 		String solverString = prefs.getString(PreferenceConstants.PREF_SOLVER).toUpperCase().replaceAll(" ", "");
 		SolverOption solver = SolverOption.valueOf(solverString);
+		
+		try {
+			api.setEnvironment("Z3_HOME", Z3Plugin.getZ3Directory());
+		} catch (NoClassDefFoundError e) {
+			e.printStackTrace();
+		}
 		
 		api.setSolver(solver);
 		if (!prefs.getBoolean(PreferenceConstants.PREF_BOUNDED_MODEL_CHECKING)) {
@@ -101,6 +109,12 @@ public class PreferencesUtil {
 	public static void configureRealizabilityApi(JRealizabilityApi api) {
 		IPreferenceStore prefs = getPreferenceStore();
 
+		try {
+			api.setEnvironment("Z3_HOME", Z3Plugin.getZ3Directory());
+		} catch (NoClassDefFoundError e) {
+			e.printStackTrace();
+		}
+		
 		int k = prefs.getInt(PreferenceConstants.PREF_DEPTH);
 		api.setN(k == 0 ? Integer.MAX_VALUE : k);
 
