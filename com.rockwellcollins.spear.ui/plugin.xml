@@ -151,7 +151,7 @@
                id="com.rockwellcollins.spear.toolbar">
             <command
                   commandId="com.rockwellcollins.spear.ui.commands.generateFuzz"
-                  icon="icons/fire.png"
+                  icon="icons/fuzz.png"
                   label="Generate Fuzz">
             </command>           
          </toolbar>
