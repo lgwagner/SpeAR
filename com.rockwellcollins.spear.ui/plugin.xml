@@ -141,6 +141,8 @@
       </command>
     </extension>
     <extension point="org.eclipse.ui.menus">
+    
+    
         <menuContribution
             locationURI="popup:#TextEditorContext?after=group.edit">
              <command
@@ -649,11 +651,30 @@
            description="Terminate Batch Analysis"
            id="com.rockwellcollins.spear.ui.commands.terminateBatchAnalysis"
            name="Terminate Batch Analysis">
-     </command>       
+     </command> 
+     <command categoryId="com.rockwellcollins.spear.ui.commands"
+           description="Generate Fuzzing Input"
+           id="com.rockwellcollins.spear.ui.commands.generateFuzz"
+           name="Make Fuzzing Input">
+     </command>             
    </extension>
 
    <extension
-         point="org.eclipse.ui.menus">   
+         point="org.eclipse.ui.menus">
+
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.eclipse.ui.main.toolbar">
+         <toolbar
+               id="com.rockwellcollins.spear.toolbar">
+            <command
+                  commandId="com.rockwellcollins.spear.ui.commands.generateFuzz"
+                  icon="icons/fire.png"
+                  label="Generate Fuzz">
+            </command>           
+         </toolbar>
+      </menuContribution>
+                 
       <menuContribution
             allPopups="false"
             locationURI="popup:#TextEditorContext?after=additions">
@@ -755,6 +776,10 @@
             commandId="com.rockwellcollins.spear.ui.commands.startBatchAnalysis"
             class="com.rockwellcollins.spear.ui.handlers.BatchAnalysis">
       </handler>
+      <handler
+            commandId="com.rockwellcollins.spear.ui.commands.generateFuzz"
+            class="com.rockwellcollins.spear.ui.handlers.FuzzHandler">
+      </handler>      
    </extension>
 
 </plugin>

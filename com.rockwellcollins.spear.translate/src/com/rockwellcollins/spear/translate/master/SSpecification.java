@@ -14,8 +14,10 @@ import static jkind.lustre.LustreUtil.varDecl;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -29,6 +31,7 @@ import com.rockwellcollins.spear.utilities.LustreLibrary;
 
 import jkind.lustre.Equation;
 import jkind.lustre.Expr;
+import jkind.lustre.LustreUtil;
 import jkind.lustre.NamedType;
 import jkind.lustre.Node;
 import jkind.lustre.NodeCallExpr;
@@ -194,6 +197,41 @@ public class SSpecification extends SMapElement {
 		}
 		return builder.build();
 	}
+	
+	private List<SConstraint> getConjunctsWithoutOne(List<SConstraint> list, SConstraint skip) {
+		List<SConstraint> conj = new ArrayList<>();
+		for(SConstraint sc : list) {
+			if(sc.equals(skip)) {
+				continue;
+			}
+			conj.add(sc);
+		}
+		
+		return conj;
+	}
+	
+	public Node getFuzzAnalysisMain() {
+		NodeBuilder builder = new NodeBuilder(getLogicalEntailmentMain());
+
+		List<SConstraint> all = new ArrayList<>();
+		assumptions.stream().filter(sc -> !sc.name.startsWith("predicate")).collect(Collectors.toList()).forEach(sc -> all.add(sc));
+		all.addAll(requirements);
+
+		Map<String, List<SConstraint>> fuzzingConjuncts = new HashMap<>();		
+		for(SConstraint sc : all) {
+			fuzzingConjuncts.put("fuzz_" + sc.name, getConjunctsWithoutOne(all, sc));
+		}
+		
+		for(String key : fuzzingConjuncts.keySet()) {
+			Expr lhs = historicallyConjunctify(fuzzingConjuncts.get(key).iterator());
+			for(SConstraint sc : behaviors) {
+				Expr e = LustreUtil.implies(lhs, id(sc.toVarDecl(this).id));
+				builder.addEquation(LustreUtil.eq(id(key + "_" + sc.name), e));
+			}
+		}
+		
+		return builder.build();
+	}	
 
 	private List<SConstraint> getJustProperties(List<SConstraint> behaviors) {
 		List<SConstraint> filtered = new ArrayList<>();
@@ -271,6 +309,10 @@ public class SSpecification extends SMapElement {
 		return varDecl(constraintsName, NamedType.BOOL);
 	}
 
+	private Expr historicallyConjunctify(Iterator<SConstraint> it) {
+		return new NodeCallExpr("historically",conjunctify(it));
+	}
+	
 	private Expr conjunctify(Iterator<SConstraint> it) {
 		SConstraint current = it.next();
 		if (it.hasNext()) {

@@ -116,6 +116,11 @@ public class Document {
 		return p;
 	}
 
+	public Program getFuzzingAnalysis() {
+		Program p = SProgram.build(this).getFuzzingProgram();
+		return p;
+	}
+	
 	public Program getRealizability() {
 		Program p = SProgram.build(this).getRealizability();
 		return p;

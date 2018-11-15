@@ -160,6 +160,20 @@ public class SProgram extends SMapElement {
 		program.setMain(mainName);
 		return program.build();
 	}
+	
+	public Program getFuzzingProgram() {
+		ProgramBuilder program = new ProgramBuilder(getBaseProgram());
+
+		for (SSpecification spec : specifications) {
+			if (spec.name.equals(mainName)) {
+				program.addNode(spec.getFuzzAnalysisMain());
+			} else {
+				program.addNode(spec.getLogicalEntailmentCalled());
+			}
+		}
+		program.setMain(mainName);
+		return program.build();
+	}	
 
 	public Program getLogicalConsistency() {
 		ProgramBuilder program = new ProgramBuilder(getBaseProgram());
@@ -189,3 +203,5 @@ public class SProgram extends SMapElement {
 		return program.build();
 	}
 }
+
+
