@@ -140,6 +140,114 @@
             name="Copy Qualified Name">
       </command>
     </extension>
+
+   <extension
+         point="org.eclipse.ui.menus">
+
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.eclipse.ui.main.toolbar">
+         <toolbar
+               id="com.rockwellcollins.spear.toolbar">
+            <command
+                  commandId="com.rockwellcollins.spear.ui.commands.generateFuzz"
+                  icon="icons/fire.png"
+                  label="Generate Fuzz">
+            </command>           
+         </toolbar>
+      </menuContribution>
+                 
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:#TextEditorContext?after=additions">
+          <separator name="spear-seperator" visible="true"> </separator>
+          <command
+                commandId="com.rockwellcollins.spear.ui.commands.analyzePattern"
+                icon="icons/logical_entailment.png"
+                id="com.rockwellcollins.spear.ui.commands.analyzePattern"
+                style="push">
+          </command>
+          <command
+                commandId="com.rockwellcollins.spear.ui.commands.simulatePattern"
+                icon="icons/spreadsheet.png"
+                id="com.rockwellcollins.spear.ui.commands.simulatePattern"
+                style="push">
+          </command>          
+          <command
+                commandId="com.rockwellcollins.spear.ui.commands.analyzeType"
+                icon="icons/fire.png"
+                id="com.rockwellcollins.spear.ui.commands.analyzeType"
+                style="push">
+          </command>
+          <command
+                commandId="com.rockwellcollins.spear.ui.commands.normalizeSectionHeaders"
+                icon="icons/spear_icon.png"
+                id="com.rockwellcollins.spear.ui.commands.normalizeSectionHeaders"
+                style="push">
+          </command>          
+      </menuContribution> 
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:com.rockwellcollins.spear.ui.views.SpearEntailmentResultsView">
+         <command
+               commandId="com.rockwellcollins.spear.ui.commands.terminateLogicalEntailment"
+               icon="icons/terminate.png"
+               label="Terminate"
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:com.rockwellcollins.spear.ui.views.SpearConsistencyResultsView">
+         <command
+               commandId="com.rockwellcollins.spear.ui.commands.terminateLogicalConsistency"
+               icon="icons/terminate.png"
+               label="Terminate"
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:com.rockwellcollins.spear.ui.views.SpearRealizabilityResultsView">
+         <command
+               commandId="com.rockwellcollins.spear.ui.commands.terminateRealizability"
+               icon="icons/terminate.png"
+               label="Terminate"
+               style="push">
+         </command>
+      </menuContribution>      
+      <menuContribution
+         allPopups="false"
+         locationURI="toolbar:com.rockwellcollins.spear.ui.views.BatchAnalysisView">
+         <command
+               commandId="com.rockwellcollins.spear.ui.commands.terminateBatchAnalysis"
+               icon="icons/terminate.png"
+               label="Terminate"
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+         locationURI= "popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu?after=additions">
+         <command
+               commandId="com.rockwellcollins.spear.ui.commands.startBatchAnalysis"
+               label="Batch Analysis"
+               tooltip="Run Analysis on all '.spear' files found recursively in the selected documents.">
+         </command>
+      </menuContribution>
+    </extension>
+    <extension point="org.eclipse.ui.menus">
+         <menuContribution
+            locationURI="popup:#TextEditorContext?after=group.edit">
+         <command commandId="org.eclipse.xtext.ui.refactoring.RenameElement"
+               style="push">
+            <visibleWhen checkEnabled="false">
+               <reference
+                     definitionId="com.rockwellcollins.Spear.Editor.opened">
+               </reference>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
     <extension point="org.eclipse.ui.menus">
     
     
@@ -324,18 +432,6 @@
 			name="Quick Outline">
 		</command>
 	</extension>
-	<extension point="org.eclipse.ui.menus">
-		<menuContribution
-			locationURI="popup:#TextEditorContext?after=group.open">
-			<command commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline"
-				style="push"
-				tooltip="Open Quick Outline">
-				<visibleWhen checkEnabled="false">
-					<reference definitionId="com.rockwellcollins.Spear.Editor.opened"/>
-				</visibleWhen>
-			</command>
-		</menuContribution>
-	</extension>
 	
     <!-- quickfix marker resolution generator for com.rockwellcollins.Spear -->
     <extension
@@ -378,19 +474,6 @@
 			</activeWhen>
 		</handler>
 	</extension>
-    <extension point="org.eclipse.ui.menus">
-         <menuContribution
-            locationURI="popup:#TextEditorContext?after=group.edit">
-         <command commandId="org.eclipse.xtext.ui.refactoring.RenameElement"
-               style="push">
-            <visibleWhen checkEnabled="false">
-               <reference
-                     definitionId="com.rockwellcollins.Spear.Editor.opened">
-               </reference>
-            </visibleWhen>
-         </command>
-      </menuContribution>
-   </extension>
    
    <extension point="org.eclipse.ui.preferencePages">
 	    <page
@@ -658,101 +741,6 @@
            name="Make Fuzzing Input">
      </command>             
    </extension>
-
-   <extension
-         point="org.eclipse.ui.menus">
-
-      <menuContribution
-            allPopups="false"
-            locationURI="toolbar:org.eclipse.ui.main.toolbar">
-         <toolbar
-               id="com.rockwellcollins.spear.toolbar">
-            <command
-                  commandId="com.rockwellcollins.spear.ui.commands.generateFuzz"
-                  icon="icons/fire.png"
-                  label="Generate Fuzz">
-            </command>           
-         </toolbar>
-      </menuContribution>
-                 
-      <menuContribution
-            allPopups="false"
-            locationURI="popup:#TextEditorContext?after=additions">
-          <separator name="spear-seperator" visible="true"> </separator>
-          <command
-                commandId="com.rockwellcollins.spear.ui.commands.analyzePattern"
-                icon="icons/logical_entailment.png"
-                id="com.rockwellcollins.spear.ui.commands.analyzePattern"
-                style="push">
-          </command>
-          <command
-                commandId="com.rockwellcollins.spear.ui.commands.simulatePattern"
-                icon="icons/spreadsheet.png"
-                id="com.rockwellcollins.spear.ui.commands.simulatePattern"
-                style="push">
-          </command>          
-          <command
-                commandId="com.rockwellcollins.spear.ui.commands.analyzeType"
-                icon="icons/fire.png"
-                id="com.rockwellcollins.spear.ui.commands.analyzeType"
-                style="push">
-          </command>
-          <command
-                commandId="com.rockwellcollins.spear.ui.commands.normalizeSectionHeaders"
-                icon="icons/spear_icon.png"
-                id="com.rockwellcollins.spear.ui.commands.normalizeSectionHeaders"
-                style="push">
-          </command>          
-      </menuContribution> 
-      <menuContribution
-            allPopups="false"
-            locationURI="toolbar:com.rockwellcollins.spear.ui.views.SpearEntailmentResultsView">
-         <command
-               commandId="com.rockwellcollins.spear.ui.commands.terminateLogicalEntailment"
-               icon="icons/terminate.png"
-               label="Terminate"
-               style="push">
-         </command>
-      </menuContribution>
-      <menuContribution
-            allPopups="false"
-            locationURI="toolbar:com.rockwellcollins.spear.ui.views.SpearConsistencyResultsView">
-         <command
-               commandId="com.rockwellcollins.spear.ui.commands.terminateLogicalConsistency"
-               icon="icons/terminate.png"
-               label="Terminate"
-               style="push">
-         </command>
-      </menuContribution>
-      <menuContribution
-            allPopups="false"
-            locationURI="toolbar:com.rockwellcollins.spear.ui.views.SpearRealizabilityResultsView">
-         <command
-               commandId="com.rockwellcollins.spear.ui.commands.terminateRealizability"
-               icon="icons/terminate.png"
-               label="Terminate"
-               style="push">
-         </command>
-      </menuContribution>      
-      <menuContribution
-         allPopups="false"
-         locationURI="toolbar:com.rockwellcollins.spear.ui.views.BatchAnalysisView">
-         <command
-               commandId="com.rockwellcollins.spear.ui.commands.terminateBatchAnalysis"
-               icon="icons/terminate.png"
-               label="Terminate"
-               style="push">
-         </command>
-      </menuContribution>
-      <menuContribution
-         locationURI= "popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu?after=additions">
-         <command
-               commandId="com.rockwellcollins.spear.ui.commands.startBatchAnalysis"
-               label="Batch Analysis"
-               tooltip="Run Analysis on all '.spear' files found recursively in the selected documents.">
-         </command>
-      </menuContribution>
-    </extension>
 
    <extension
          point="org.eclipse.ui.handlers">

@@ -14,8 +14,8 @@ import static jkind.lustre.LustreUtil.varDecl;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -211,13 +211,13 @@ public class SSpecification extends SMapElement {
 	}
 	
 	public Node getFuzzAnalysisMain() {
-		NodeBuilder builder = new NodeBuilder(getLogicalEntailmentMain());
+		NodeBuilder builder = new NodeBuilder(this.getLogicalEntailmentMain());
 
 		List<SConstraint> all = new ArrayList<>();
 		assumptions.stream().filter(sc -> !sc.name.startsWith("predicate")).collect(Collectors.toList()).forEach(sc -> all.add(sc));
 		all.addAll(requirements);
 
-		Map<String, List<SConstraint>> fuzzingConjuncts = new HashMap<>();		
+		Map<String, List<SConstraint>> fuzzingConjuncts = new LinkedHashMap<>();		
 		for(SConstraint sc : all) {
 			fuzzingConjuncts.put("fuzz_" + sc.name, getConjunctsWithoutOne(all, sc));
 		}
@@ -225,8 +225,10 @@ public class SSpecification extends SMapElement {
 		for(String key : fuzzingConjuncts.keySet()) {
 			Expr lhs = historicallyConjunctify(fuzzingConjuncts.get(key).iterator());
 			for(SConstraint sc : behaviors) {
+				VarDecl vd = LustreUtil.varDecl(key + "_" + sc.name, NamedType.BOOL);
+				builder.addLocal(vd);
 				Expr e = LustreUtil.implies(lhs, id(sc.toVarDecl(this).id));
-				builder.addEquation(LustreUtil.eq(id(key + "_" + sc.name), e));
+				builder.addEquation(LustreUtil.eq(id(vd.id), e));
 			}
 		}
 		
