@@ -37,7 +37,7 @@ public class SFormalConstraint extends SConstraint {
 	public jkind.lustre.Equation toEquation(SSpecification s) {
 		return eq(id(name), TranslateExpr.translate(expression, s));
 	}
-
+	
 	@Override
 	public jkind.lustre.Equation getPropertyEquation(String assertion, SSpecification spec) {
 		jkind.lustre.Expr base = TranslateExpr.translate(this.expression, spec);

@@ -163,7 +163,6 @@ public class SSpecification extends SMapElement {
 		/*
 		 * Add assertions as output.
 		 */
-		builder.addOutput(this.getAssertionVarDecl());
 
 		/*
 		 * For now, we're not allowing Macros to contain specification calls
@@ -172,18 +171,18 @@ public class SSpecification extends SMapElement {
 		builder.addEquations(SMacro.toEquations(macros, this));
 		builder.addEquations(SConstraint.toEquation(assumptions, this));
 		builder.addEquations(SConstraint.toEquation(requirements, this));
-		builder.addEquations(SConstraint.toPropertyEquations(behaviors, constraintsName, this));
+
+		//this needs to move
 		return builder.build();
 	}
 
 	public Node getLogicalEntailmentMain() {
 		NodeBuilder builder = new NodeBuilder(toBaseLustre());
-
-		builder.addEquation(getAssertionMainEquation(requirements));
-
-		if (!assumptions.isEmpty()) {
-			builder.addAssertion(conjunctify(assumptions.iterator()));
-		}
+		
+		//add the constraints output and assignment
+		builder.addOutput(this.getAssertionVarDecl());
+		Equation assertionMainEquation = getAssertionMainEquation(Stream.of(assumptions,requirements).flatMap(x -> x.stream()).collect(Collectors.toList()));
+		builder.addEquation(assertionMainEquation);		
 
 		builder.addProperties(SConstraint.toPropertyIds(behaviors, this));
 		if (PreferencesUtil.getEnableIVCDuringEntailment()) {
@@ -195,6 +194,8 @@ public class SSpecification extends SMapElement {
 			builder.addProperty(vd.id);
 			builder.addIvcs(SConstraint.toPropertyIds(Stream.of(assumptions,requirements).flatMap(x -> x.stream()).collect(Collectors.toList()), this));
 		}
+		
+		builder.addEquations(SConstraint.toPropertyEquations(behaviors, constraintsName, this));		
 		return builder.build();
 	}
 	
@@ -211,7 +212,7 @@ public class SSpecification extends SMapElement {
 	}
 	
 	public Node getFuzzAnalysisMain() {
-		NodeBuilder builder = new NodeBuilder(this.getLogicalEntailmentMain());
+		NodeBuilder builder = new NodeBuilder(this.toBaseLustre());
 
 		List<SConstraint> all = new ArrayList<>();
 		assumptions.stream().filter(sc -> !sc.name.startsWith("predicate")).collect(Collectors.toList()).forEach(sc -> all.add(sc));
@@ -221,14 +222,25 @@ public class SSpecification extends SMapElement {
 		for(SConstraint sc : all) {
 			fuzzingConjuncts.put("fuzz_" + sc.name, getConjunctsWithoutOne(all, sc));
 		}
+
+		builder.addEquations(SConstraint.toEquation(behaviors, this));		
 		
 		for(String key : fuzzingConjuncts.keySet()) {
+			
 			Expr lhs = historicallyConjunctify(fuzzingConjuncts.get(key).iterator());
-			for(SConstraint sc : behaviors) {
-				VarDecl vd = LustreUtil.varDecl(key + "_" + sc.name, NamedType.BOOL);
+			for(SConstraint behavior : behaviors) {
+				if(behavior instanceof SFormalConstraint) {
+					SFormalConstraint formal = (SFormalConstraint) behavior;
+					if(!formal.isObserver) {
+						continue;
+					}
+				}
+				
+				VarDecl vd = LustreUtil.varDecl(key + "_" + behavior.name, NamedType.BOOL);
 				builder.addLocal(vd);
-				Expr e = LustreUtil.implies(lhs, id(sc.toVarDecl(this).id));
+				Expr e = LustreUtil.implies(lhs, id(behavior.toVarDecl(this).id));
 				builder.addEquation(LustreUtil.eq(id(vd.id), e));
+				builder.addProperty(vd.id);
 			}
 		}
 		
@@ -250,6 +262,7 @@ public class SSpecification extends SMapElement {
 
 	public Node getLogicalEntailmentCalled() {
 		NodeBuilder builder = new NodeBuilder(this.toBaseLustre());
+		builder.addOutput(this.getAssertionVarDecl());
 		builder.addEquation(getAssertionCalledEquation(requirements));
 		return builder.build();
 	}
@@ -257,11 +270,11 @@ public class SSpecification extends SMapElement {
 	public Node getLogicalConsistencyMain() {
 		NodeBuilder builder = new NodeBuilder(this.toBaseLustre());
 
-		builder.addLocal(getConsistencyVarDecl());
-		
-		builder.addEquation(getConsistencyEquation());
+		builder.addOutput(this.getAssertionVarDecl());
 		builder.addEquation(getAssertionMainEquation(Stream.of(assumptions,requirements).flatMap(x -> x.stream()).collect(Collectors.toList())));
-
+	
+		builder.addLocal(getConsistencyVarDecl());
+		builder.addEquation(getConsistencyEquation());
 		builder.addProperty(consistencyName);
 
 		List<SConstraint> list = new ArrayList<>();
@@ -275,6 +288,7 @@ public class SSpecification extends SMapElement {
 	public Node getRealizabilityMain() {
 		NodeBuilder builder = new NodeBuilder(toBaseLustre());
 
+		builder.addOutput(this.getAssertionVarDecl());
 		builder.addEquation(getAssertionMainEquation(requirements));
 
 		if (!assumptions.isEmpty()) {
