@@ -239,11 +239,12 @@ public class SSpecification extends SMapElement {
 				VarDecl vd = LustreUtil.varDecl(key + "_" + behavior.name, NamedType.BOOL);
 				builder.addLocal(vd);
 				Expr e = LustreUtil.implies(lhs, id(behavior.toVarDecl(this).id));
-				builder.addEquation(LustreUtil.eq(id(vd.id), e));
+				
+				//the not appears in the equation to ensure it is negated.
+				builder.addEquation(LustreUtil.eq(id(vd.id), not(e)));
 				builder.addProperty(vd.id);
 			}
 		}
-		
 		return builder.build();
 	}	
 
