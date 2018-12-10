@@ -238,10 +238,10 @@ public class SSpecification extends SMapElement {
 				
 				VarDecl vd = LustreUtil.varDecl(key + "_" + behavior.name, NamedType.BOOL);
 				builder.addLocal(vd);
-				Expr e = LustreUtil.implies(lhs, id(behavior.toVarDecl(this).id));
+				Expr e = LustreUtil.implies(lhs, not(id(behavior.toVarDecl(this).id)));
 				
 				//the not appears in the equation to ensure it is negated.
-				builder.addEquation(LustreUtil.eq(id(vd.id), not(e)));
+				builder.addEquation(LustreUtil.eq(id(vd.id), e));
 				builder.addProperty(vd.id);
 			}
 		}
@@ -271,13 +271,14 @@ public class SSpecification extends SMapElement {
 	public Node getLogicalConsistencyMain() {
 		NodeBuilder builder = new NodeBuilder(this.toBaseLustre());
 
+		builder.addEquations(SFormalConstraint.toEquation(behaviors, this));
 		builder.addOutput(this.getAssertionVarDecl());
 		builder.addEquation(getAssertionMainEquation(Stream.of(assumptions,requirements).flatMap(x -> x.stream()).collect(Collectors.toList())));
 	
 		builder.addLocal(getConsistencyVarDecl());
 		builder.addEquation(getConsistencyEquation());
 		builder.addProperty(consistencyName);
-
+		
 		List<SConstraint> list = new ArrayList<>();
 		list.addAll(assumptions);
 		list.addAll(requirements);
@@ -288,6 +289,8 @@ public class SSpecification extends SMapElement {
 
 	public Node getRealizabilityMain() {
 		NodeBuilder builder = new NodeBuilder(toBaseLustre());
+		
+		builder.addEquations(SFormalConstraint.toEquation(behaviors, this));
 
 		builder.addOutput(this.getAssertionVarDecl());
 		builder.addEquation(getAssertionMainEquation(requirements));
