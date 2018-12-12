@@ -34,11 +34,11 @@ import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.language.Create;
 import com.rockwellcollins.spear.optional.Optional;
 import com.rockwellcollins.spear.optional.Some;
+import com.rockwellcollins.spear.preferences.PreferencesUtil;
 import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.translate.master.SProgram;
 import com.rockwellcollins.spear.translate.utilities.EmitPredicateProperties;
 import com.rockwellcollins.spear.ui.views.SpearConsistencyResultsView;
-import com.rockwellcollins.spear.preferences.PreferencesUtil;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
 import jkind.api.JKindApi;

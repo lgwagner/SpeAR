@@ -100,6 +100,8 @@ public class Main {
 			} else {
 				throw new RuntimeException("This should not happen: unknown command.");
 			}
+			//FIXME: sometime
+			s.setValue(PreferenceConstants.PREF_VM_ARGS, "");
 			s.setValue(PreferenceConstants.PREF_MODEL_CHECKER.toString(), opts.solver.toString());
 			s.setValue(PreferenceConstants.PREF_BOUNDED_MODEL_CHECKING.toString(), opts.no_bmc);
 			s.setValue(PreferenceConstants.PREF_K_INDUCTION.toString(), opts.no_k_induction);

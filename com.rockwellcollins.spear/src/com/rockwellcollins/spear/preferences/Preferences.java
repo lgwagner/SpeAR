@@ -19,6 +19,7 @@ public class Preferences {
 		s.setDefault(PreferenceConstants.PREF_DEBUG, false);
 		s.setDefault(PreferenceConstants.PREF_DEPTH, 0);
 		s.setDefault(PreferenceConstants.PREF_TIMEOUT, 0);
+		s.setDefault(PreferenceConstants.PREF_VM_ARGS, "");
 
 		// Spear
 		s.setDefault(PreferenceConstants.PREF_SPEAR_CONSISTENCY_DEPTH, 10);

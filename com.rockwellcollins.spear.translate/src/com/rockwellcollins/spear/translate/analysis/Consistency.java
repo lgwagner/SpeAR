@@ -1,8 +1,14 @@
 package com.rockwellcollins.spear.translate.analysis;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 
 import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.preferences.PreferenceConstants;
+import com.rockwellcollins.spear.preferences.Preferences;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
 import com.rockwellcollins.spear.translate.intermediate.Document;
 

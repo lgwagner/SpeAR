@@ -25,6 +25,7 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		store.setDefault(PreferenceConstants.PREF_DEBUG, false);
 		store.setDefault(PreferenceConstants.PREF_DEPTH, 0);
 		store.setDefault(PreferenceConstants.PREF_TIMEOUT, 0);
+		store.setDefault(PreferenceConstants.PREF_VM_ARGS, "");
 
 		// Spear
 		store.setDefault(PreferenceConstants.PREF_SPEAR_CONSISTENCY_DEPTH, 10);

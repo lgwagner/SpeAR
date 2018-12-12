@@ -6,7 +6,6 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-SymbolicName: com.rockwellcollins.spear.tests; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: com.rockwellcollins.spear,
- com.rockwellcollins.spear.ui,
  org.eclipse.core.runtime,
  org.eclipse.xtext.junit4,
  org.eclipse.xtext.xbase.lib,

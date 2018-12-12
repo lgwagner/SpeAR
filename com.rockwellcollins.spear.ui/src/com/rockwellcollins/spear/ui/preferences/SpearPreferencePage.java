@@ -12,6 +12,7 @@ import org.eclipse.jface.preference.ComboFieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.IntegerFieldEditor;
+import org.eclipse.jface.preference.StringFieldEditor;
 import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
@@ -59,7 +60,7 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 
 	public static void initStore(IPreferenceStore sstore, IPreferenceStore dstore) {
 
-		String strkeys[] = { PreferenceConstants.PREF_MODEL_CHECKER, PreferenceConstants.PREF_SOLVER };
+		String strkeys[] = { PreferenceConstants.PREF_VM_ARGS, PreferenceConstants.PREF_MODEL_CHECKER, PreferenceConstants.PREF_SOLVER };
 
 		for (String key : strkeys) {
 			initString(sstore, dstore, key);
@@ -108,6 +109,7 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 	private NonnegativeIntegerFieldEditor depthFieldEditor;
 	private NonnegativeIntegerFieldEditor timeoutFieldEditor;
 	private PositiveIntegerFieldEditor consistencyFieldEditor;
+	private StringFieldEditor vmArgsEditor;
 
 	/* Spear specific preferences */
 	private BooleanFieldEditor debugFieldEditor;
@@ -193,6 +195,10 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 				PreferenceConstants.PREF_SPEAR_CONSISTENCY_DEPTH.toString(), "Depth of consistency check in steps",
 				this.getFieldEditorParent());
 		addField(consistencyFieldEditor);
+		
+		vmArgsEditor = new StringFieldEditor(PreferenceConstants.PREF_VM_ARGS.toString(), "JVM arguments",
+				this.getFieldEditorParent());
+		addField(vmArgsEditor);
 
 		/* END: SpeAR group */
 	}
@@ -259,6 +265,7 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 		inductCexFieldEditor.setEnabled(isJKind, getFieldEditorParent());
 		depthFieldEditor.setEnabled(isJKind, getFieldEditorParent());
 		smoothCexFieldEditor.setEnabled(isJKind && (isYices || isZ3), getFieldEditorParent());
+		vmArgsEditor.setEnabled(true, getFieldEditorParent());
 	}
 
 	@Override

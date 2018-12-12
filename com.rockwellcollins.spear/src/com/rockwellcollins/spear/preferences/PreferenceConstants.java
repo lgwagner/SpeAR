@@ -11,6 +11,7 @@ public class PreferenceConstants {
 	public static final String PREF_SPEAR_RECURSIVE_GRAPH = "recursive graphical display";
 	public static final String PREF_SPEAR_WARN_ON_UNUSED_VARS = "disable unused variable validations";
 	public static final String PREF_SPEAR_ENABLE_IVC_ON_ENTAILMENT = "Enable IVC during logical entailment";
+	public static final String PREF_VM_ARGS = "JVM arguments";
 
 	/* JKIND preferences */
 	public static final String PREF_BOUNDED_MODEL_CHECKING = "boundedModelChecking";

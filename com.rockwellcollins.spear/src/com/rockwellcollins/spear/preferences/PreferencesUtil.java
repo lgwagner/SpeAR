@@ -1,13 +1,16 @@
 package com.rockwellcollins.spear.preferences;
 
-import com.rockwellcollins.atc.z3.Z3Plugin;
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.osgi.framework.Bundle;
+
+import com.rockwellcollins.atc.z3.Z3Plugin;
 
 import jkind.JKindException;
 import jkind.SolverOption;
@@ -60,6 +63,10 @@ public class PreferencesUtil {
 	public static void configureJKindApi(JKindApi api) {
 		IPreferenceStore prefs = getPreferenceStore();
 		
+		String vmArgString = prefs.getString(PreferenceConstants.PREF_VM_ARGS);
+		String[] splitString = vmArgString.split("\\s+");
+		api.setVmArgs(new ArrayList<>(Arrays.asList(splitString)));
+		
 		String solverString = prefs.getString(PreferenceConstants.PREF_SOLVER).toUpperCase().replaceAll(" ", "");
 		SolverOption solver = SolverOption.valueOf(solverString);
 		
@@ -109,6 +116,9 @@ public class PreferencesUtil {
 	public static void configureRealizabilityApi(JRealizabilityApi api) {
 		IPreferenceStore prefs = getPreferenceStore();
 
+		String vmArgString = Preferences.store.getString(PreferenceConstants.PREF_VM_ARGS);
+		api.setVmArgs(new ArrayList<>(Arrays.asList(vmArgString.split(" "))));		
+		
 		try {
 			api.setEnvironment("Z3_HOME", Z3Plugin.getZ3Directory());
 		} catch (NoClassDefFoundError e) {
