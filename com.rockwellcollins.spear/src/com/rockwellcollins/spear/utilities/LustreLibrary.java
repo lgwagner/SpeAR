@@ -76,8 +76,8 @@ public class LustreLibrary {
 		// equations: holds = signal -> true
 		EquationBuilder equation = new EquationBuilder();
 		equation.addLhs(holds);
-		equation.setExpr(arrow(id(signal),TRUE));
-
+		equation.setExpr(arrow(id(signal),pre(id(holds))));
+		
 		initially.addEquation(equation.build());
 		return initially.build();
 	}

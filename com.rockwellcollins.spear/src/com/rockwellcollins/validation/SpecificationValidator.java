@@ -154,6 +154,5 @@ public class SpecificationValidator extends AbstractSpearJavaValidator {
 	}
 
 	@Override
-	public void register(EValidatorRegistrar registrar) {
-	}
+	public void register(EValidatorRegistrar registrar) {}
 }
