@@ -18,7 +18,7 @@ import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.util.SpearSwitch;
 import com.rockwellcollins.spear.utilities.LiteralMapper;
 
-public class NamesUnique extends AbstractSpearJavaValidator {
+public class NamesUnique extends AbstractSpearValidator {
 
 	public static Set<EObject> get(Map<String, Set<EObject>> map, String s) {
 		if (map.containsKey(s)) {

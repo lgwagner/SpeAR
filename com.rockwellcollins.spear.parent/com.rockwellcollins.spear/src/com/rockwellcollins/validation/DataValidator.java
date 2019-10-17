@@ -9,7 +9,7 @@ import org.eclipse.xtext.validation.EValidatorRegistrar;
 import com.rockwellcollins.spear.ReviewData;
 import com.rockwellcollins.spear.SpearPackage;
 
-public class DataValidator extends AbstractSpearJavaValidator {
+public class DataValidator extends AbstractSpearValidator {
 
 	@Check
 	public void checkDates(ReviewData date) {

@@ -32,7 +32,7 @@ import com.rockwellcollins.spear.UserType;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.utilities.Utilities;
 
-public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
+public class VariablesAreUsedValidator extends AbstractSpearValidator {
 
 	@Inject
 	protected IValidatorAdvisor options;

@@ -26,7 +26,7 @@ import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
 import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.translate.master.SProgram;
-import com.rockwellcollins.ui.internal.SpearActivator;
+import com.rockwellcollins.spear.ui.internal.SpearActivator;
 
 import jkind.api.JLustre2ExcelApi;
 import jkind.lustre.Program;

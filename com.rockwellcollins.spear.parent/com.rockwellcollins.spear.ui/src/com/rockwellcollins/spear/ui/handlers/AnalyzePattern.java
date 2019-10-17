@@ -31,7 +31,7 @@ import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.translate.layout.SpearRenaming;
 import com.rockwellcollins.spear.translate.master.SProgram;
 import com.rockwellcollins.spear.ui.views.SpearConsistencyResultsView;
-import com.rockwellcollins.ui.internal.SpearActivator;
+import com.rockwellcollins.spear.ui.internal.SpearActivator;
 
 import jkind.api.JKindApi;
 import jkind.api.results.JKindResult;

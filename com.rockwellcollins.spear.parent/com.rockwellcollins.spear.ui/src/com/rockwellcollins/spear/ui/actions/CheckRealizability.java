@@ -28,7 +28,7 @@ import com.rockwellcollins.spear.translate.analysis.Realizability;
 import com.rockwellcollins.spear.translate.layout.SpearRealizabilityLayout;
 import com.rockwellcollins.spear.ui.handlers.TerminateHandler;
 import com.rockwellcollins.spear.ui.views.SpearRealizabilityResultsView;
-import com.rockwellcollins.ui.internal.SpearActivator;
+import com.rockwellcollins.spear.ui.internal.SpearActivator;
 
 import jkind.api.results.JKindResult;
 import jkind.results.layout.Layout;

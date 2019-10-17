@@ -25,7 +25,7 @@ import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Import;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.utilities.Utilities;
-import com.rockwellcollins.ui.internal.SpearActivator;
+import com.rockwellcollins.spear.ui.internal.SpearActivator;
 
 public class ActionUtilities {
 

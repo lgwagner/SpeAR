@@ -38,7 +38,7 @@ import com.rockwellcollins.spear.translate.intermediate.Document;
 import com.rockwellcollins.spear.translate.layout.SpearRegularLayout;
 import com.rockwellcollins.spear.ui.handlers.TerminateHandler;
 import com.rockwellcollins.spear.ui.views.SpearEntailmentResultsView;
-import com.rockwellcollins.ui.internal.SpearActivator;
+import com.rockwellcollins.spear.ui.internal.SpearActivator;
 
 import jkind.api.results.JKindResult;
 import jkind.results.layout.Layout;

@@ -24,7 +24,7 @@ import com.rockwellcollins.spear.units.SpearUnitChecker;
 import com.rockwellcollins.spear.units.Unit;
 import com.rockwellcollins.spear.utilities.Utilities;
 
-public class SpecificationValidator extends AbstractSpearJavaValidator {
+public class SpecificationValidator extends AbstractSpearValidator {
 
 	private boolean acyclicCheck(Import im, File root) {
 		HashSet<File> imported = new HashSet<>();

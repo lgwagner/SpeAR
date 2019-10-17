@@ -39,7 +39,7 @@ import com.rockwellcollins.spear.translate.master.SProgram;
 import com.rockwellcollins.spear.translate.utilities.EmitPredicateProperties;
 import com.rockwellcollins.spear.ui.views.SpearConsistencyResultsView;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
-import com.rockwellcollins.ui.internal.SpearActivator;
+import com.rockwellcollins.spear.ui.internal.SpearActivator;
 
 import jkind.api.JKindApi;
 import jkind.api.results.JKindResult;

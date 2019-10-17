@@ -3,7 +3,7 @@ package com.rockwellcollins.spear.ui.validation;
 import org.eclipse.jface.preference.IPreferenceStore;
 
 import com.rockwellcollins.spear.preferences.PreferenceConstants;
-import com.rockwellcollins.ui.internal.SpearActivator;
+import com.rockwellcollins.spear.ui.internal.SpearActivator;
 import com.rockwellcollins.validation.IValidatorAdvisor;
 
 public class PreferenceBasedValidatorAdvisor implements IValidatorAdvisor {

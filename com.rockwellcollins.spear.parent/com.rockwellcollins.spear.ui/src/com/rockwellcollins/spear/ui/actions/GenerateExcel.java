@@ -27,7 +27,7 @@ import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.excel.AltSpearDocument;
 import com.rockwellcollins.spear.translate.excel.MakeExcel;
-import com.rockwellcollins.ui.internal.SpearActivator;
+import com.rockwellcollins.spear.ui.internal.SpearActivator;
 
 public class GenerateExcel implements IWorkbenchWindowActionDelegate {
 

@@ -24,7 +24,7 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
 import com.rockwellcollins.spear.preferences.PreferenceConstants;
 import com.rockwellcollins.spear.preferences.Preferences;
 import com.rockwellcollins.spear.preferences.PreferencesUtil;
-import com.rockwellcollins.ui.internal.SpearActivator;
+import com.rockwellcollins.spear.ui.internal.SpearActivator;
 
 import jkind.api.JKindApi;
 

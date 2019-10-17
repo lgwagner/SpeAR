@@ -20,7 +20,7 @@ import com.rockwellcollins.spear.SpecificationCall;
  * @author lgwagner
  *
  */
-public class IllegalAnalysisValidations extends AbstractSpearJavaValidator {
+public class IllegalAnalysisValidations extends AbstractSpearValidator {
 
 	@Check
 	public void flagIllegalExpressionsInPatterns(Pattern p) {
