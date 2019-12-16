@@ -7,7 +7,7 @@
 	<packaging>pom</packaging>
 
 	<properties>
-		<xtextVersion>2.18.0.M3</xtextVersion>
+		<xtextVersion>2.19.0</xtextVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
@@ -104,7 +104,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-clean-plugin</artifactId>
-					<version>2.5</version>
+					<version>3.1.0</version>
 					<configuration>
 						<filesets>
 							<fileset>
