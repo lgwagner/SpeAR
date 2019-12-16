@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: com.rockwellcollins.spear.tests
+Bundle-ManifestVersion: 2
+Bundle-Name: com.rockwellcollins.spear.tests
+Bundle-Version: 2.1.2.qualifier
+Bundle-SymbolicName: com.rockwellcollins.spear.tests; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: com.rockwellcollins.spear,
+ org.junit.jupiter.api;bundle-version="[5.0.0,6.0.0)",
+ org.eclipse.xtext.testing,
+ org.eclipse.xtext.xbase.testing,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: com.rockwellcollins.tests;x-internal=true
