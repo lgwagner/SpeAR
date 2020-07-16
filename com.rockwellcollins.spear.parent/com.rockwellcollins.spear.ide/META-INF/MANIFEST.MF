@@ -2,7 +2,6 @@ Manifest-Version: 1.0
 Automatic-Module-Name: com.rockwellcollins.spear.ide
 Bundle-ManifestVersion: 2
 Bundle-Name: com.rockwellcollins.spear.ide
-Bundle-Vendor: My Company
 Bundle-Version: 2.1.2.qualifier
 Bundle-SymbolicName: com.rockwellcollins.spear.ide; singleton:=true
 Bundle-ActivationPolicy: lazy
@@ -14,3 +13,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: com.rockwellcollins.ide,
  com.rockwellcollins.ide.contentassist.antlr,
  com.rockwellcollins.ide.contentassist.antlr.internal
+Bundle-Vendor: Collins

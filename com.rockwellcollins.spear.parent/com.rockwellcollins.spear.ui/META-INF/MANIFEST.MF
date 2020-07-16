@@ -15,7 +15,8 @@ Require-Bundle: com.rockwellcollins.spear,
  org.eclipse.ui,
  org.eclipse.compare,
  org.eclipse.xtext.builder,
- com.rockwellcollins.spear.translate
+ com.rockwellcollins.spear.translate,
+ com.collins.trustedsystems.jkindapi
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: com.rockwellcollins.spear.ui.actions,
@@ -33,3 +34,4 @@ Export-Package: com.rockwellcollins.spear.ui.actions,
  com.rockwellcollins.ui.syntaxcoloring,
  com.rockwellcollins.validation
 Bundle-Activator: com.rockwellcollins.spear.ui.internal.SpearActivator
+Bundle-Vendor: Collins

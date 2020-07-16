@@ -12,7 +12,8 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<!-- Tycho settings -->
-		<tycho-version>1.4.0</tycho-version>
+		<tycho.version>1.7.0</tycho.version>
+		<tycho.extras.version>1.7.0</tycho.extras.version>
 		<!-- Define overridable properties for tycho-surefire-plugin -->
 		<platformSystemProperties></platformSystemProperties>
 		<moduleProperties></moduleProperties>
@@ -28,6 +29,8 @@
 		<module>com.rockwellcollins.spear.ui.commandline</module>
 		<module>com.rockwellcollins.spear.tests</module>
 		<module>com.rockwellcollins.spear.ui.tests</module>
+		<module>com.rockwellcollins.spear.feature</module>
+		<module>com.rockwellcollins.spear.repository</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>
@@ -45,13 +48,28 @@
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-maven-plugin</artifactId>
-				<version>${tycho-version}</version>
+				<version>${tycho.version}</version>
 				<extensions>true</extensions>
 			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-source-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<executions>
+					<execution>
+						<id>plugin-source</id>
+						<goals>
+							<goal>plugin-source</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+						
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>target-platform-configuration</artifactId>
-				<version>${tycho-version}</version>
+				<version>${tycho.version}</version>
 				<configuration>
 					<target>
 						<artifact>
@@ -217,7 +235,7 @@
 					-->
 					<groupId>org.eclipse.tycho</groupId>
 					<artifactId>tycho-compiler-plugin</artifactId>
-					<version>${tycho-version}</version>
+					<version>${tycho.version}</version>
 					<configuration>
 						<compilerArgument>-err:-forbidden</compilerArgument>
 						<useProjectSettings>false</useProjectSettings>
@@ -230,7 +248,7 @@
 				<plugin>
 					<groupId>org.eclipse.tycho</groupId>
 					<artifactId>tycho-surefire-plugin</artifactId>
-					<version>${tycho-version}</version>
+					<version>${tycho.version}</version>
 					<configuration>
 						<!-- THE FOLLOWING LINE MUST NOT BE BROKEN BY AUTOFORMATTING -->
 						<argLine>${platformSystemProperties} ${systemProperties} ${moduleProperties} ${additionalTestArguments}</argLine>
@@ -253,6 +271,19 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
+
+		<repository>
+			<id>jkind-plugin</id>
+			<url>https://raw.githubusercontent.com/loonwerks/jkind-plugin/master/compositeRepository</url>
+			<layout>p2</layout>
+		</repository>
+
+		<repository>
+			<id>z3-plugin</id>
+			<url>https://raw.githubusercontent.com/loonwerks/z3-plugin/master/com.collins.trustedsystems.z3.updates/target/repository</url>
+			<layout>p2</layout>
+		</repository>
+
 	</repositories>
 	<pluginRepositories>
 		<pluginRepository>

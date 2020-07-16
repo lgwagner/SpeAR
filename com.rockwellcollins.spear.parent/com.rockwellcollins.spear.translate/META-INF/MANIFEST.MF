@@ -13,7 +13,9 @@ Require-Bundle: org.eclipse.ui.workbench,
  org.apache.commons.io,
  org.eclipse.emf.ecore,
  org.eclipse.xtext.util,
- org.eclipse.xtext
+ org.eclipse.xtext,
+ com.collins.trustedsystems.z3;bundle-version="[4.7.0,5.0.0)",
+ com.collins.trustedsystems.jkindapi;bundle-version="[4.0.0,5.0.0)"
 Bundle-ClassPath: .,
  dependencies/jxl.jar
 Export-Package: com.rockwellcollins.spear.translate.analysis,
@@ -28,3 +30,4 @@ Export-Package: com.rockwellcollins.spear.translate.analysis,
  com.rockwellcollins.spear.translate.utilities
 Import-Package: org.eclipse.core.resources,
  org.eclipse.core.runtime
+Bundle-Vendor: Collins

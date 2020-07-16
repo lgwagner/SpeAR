@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature id="com.rockwellcollins.spear.feature">
+      <category name="spear"/>
+   </feature>
+   <feature id="com.collins.trustedsystems.z3.feature" version="4.7.1">  
+     <category name="spear"/>
+   </feature>
+   <feature id="com.collins.trustedsystems.jkindapi.feature" version="4.3.0">  
+     <category name="spear"/>
+   </feature>
+</site>

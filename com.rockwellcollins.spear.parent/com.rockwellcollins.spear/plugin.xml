@@ -34,5 +34,29 @@
         </property>
      </product>
   </extension>
+  <extension
+        id="product"
+        point="org.eclipse.core.runtime.products">
+     <product
+           application="org.eclipse.ui.ide.workbench"
+           name="com.rockwellcollins.spear.product">
+        <property
+              name="windowImages"
+              value="branding/1429142139_weapons_spear-16.png,branding/1429142164_weapons_spear-32.png,branding/1429142171_weapons_spear-48.png,branding/1429142412_weapons_spear-64.png,branding/1429142344_weapons_spear-128.png,branding/1429142348_weapons_spear-256.png">
+        </property>
+        <property
+              name="aboutText"
+              value="SpeAR version 2.1.2">
+        </property>
+        <property
+              name="aboutImage"
+              value="branding/1429142344_weapons_spear-128.png">
+        </property>
+        <property
+              name="appName"
+              value="com.rockwellcollins.spear.product">
+        </property>
+     </product>
+  </extension>
 
 </plugin>
