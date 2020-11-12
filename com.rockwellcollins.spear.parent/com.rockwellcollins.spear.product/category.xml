@@ -3,10 +3,10 @@
    <feature id="com.rockwellcollins.spear.feature">
       <category name="spear"/>
    </feature>
-   <feature id="com.collins.trustedsystems.z3.feature" version="4.7.1">  
+   <feature id="com.collins.trustedsystems.z3.feature" version="4.8.9">  
      <category name="spear"/>
    </feature>
-   <feature id="com.collins.trustedsystems.jkindapi.feature" version="4.3.0">  
+   <feature id="com.collins.trustedsystems.jkindapi.feature" version="4.4.1">  
      <category name="spear"/>
    </feature>
 </site>

@@ -1,5 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.rockwellcollins.spear</groupId>
 	<version>2.1.2-SNAPSHOT</version>
@@ -7,7 +8,7 @@
 	<packaging>pom</packaging>
 
 	<properties>
-		<xtextVersion>2.19.0</xtextVersion>
+		<xtextVersion>2.18.0</xtextVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
@@ -19,6 +20,11 @@
 		<moduleProperties></moduleProperties>
 		<systemProperties></systemProperties>
 		<additionalTestArguments></additionalTestArguments>
+
+		<emf-version>2.18.0</emf-version>
+		<emf-common-version>2.18.0</emf-common-version>
+		<emf-codegen-version>2.18.0</emf-codegen-version>
+
 	</properties>
 	<modules>
 		<module>com.rockwellcollins.spear</module>
@@ -31,6 +37,7 @@
 		<module>com.rockwellcollins.spear.ui.tests</module>
 		<module>com.rockwellcollins.spear.feature</module>
 		<module>com.rockwellcollins.spear.repository</module>
+		<module>com.rockwellcollins.spear.product</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>
@@ -40,7 +47,7 @@
 				<version>${xtextVersion}</version>
 				<type>pom</type>
 				<scope>import</scope>
-			</dependency>
+			</dependency>			
 		</dependencies>
 	</dependencyManagement>
 	<build>
@@ -260,6 +267,7 @@
 		</pluginManagement>
 	</build>
 	<repositories>
+
 		<repository>
 			<id>codehaus-snapshots</id>
 			<name>disable dead 'Codehaus Snapshots' repository, see https://bugs.eclipse.org/bugs/show_bug.cgi?id=481478</name>
@@ -274,13 +282,15 @@
 
 		<repository>
 			<id>jkind-plugin</id>
-			<url>https://raw.githubusercontent.com/loonwerks/jkind-plugin/master/compositeRepository</url>
+			<!--- <url>https://raw.githubusercontent.com/loonwerks/jkind-plugin/master/compositeRepository</url> -->
+			<url>file://home/lgwagner/git/jkind-plugin/compositeRepository</url>
 			<layout>p2</layout>
 		</repository>
 
 		<repository>
 			<id>z3-plugin</id>
-			<url>https://raw.githubusercontent.com/loonwerks/z3-plugin/master/com.collins.trustedsystems.z3.updates/target/repository</url>
+			<!-- <url>https://raw.githubusercontent.com/loonwerks/z3-plugin/master/com.collins.trustedsystems.z3.updates/target/repository</url> -->
+			<url>file://home/lgwagner/git/z3-plugin/com.collins.trustedsystems.z3.repository/target/repository</url>
 			<layout>p2</layout>
 		</repository>
 
