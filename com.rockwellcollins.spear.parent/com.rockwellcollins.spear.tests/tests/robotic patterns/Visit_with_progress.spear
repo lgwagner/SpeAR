@@ -1,0 +1,88 @@
+Specification Visit_with_progress
+//http://roboticpatterns.com/pattern/visit/
+
+Imports:
+
+Units:
+
+Types:
+
+	//This captures all locations in the environment.
+	//It does not include any environmental constraints, such as which locations can be reached from a given location.
+	locationType: enum {L1, L2, L3, L4, L5, L6, L7, L8, L9, L10} 
+
+	//This type is an array, later used (in the Constants section) to capture the set of locations to be visited.
+	//May need to work on this type so that it is a set and not an array 
+	locSetType : locationType[LOC_SEQ_SIZE]
+
+Constants:
+	//These constants would be configured based on the specific locations that are to be visited.	
+	
+	//This is the number of locations that need to be visited.
+	LOC_SEQ_SIZE is an int = 5
+	
+	//These are the locations to visit
+	LOC_SEQ is a locSetType = new locSetType [L2, L4, L6, L8, L10]
+	
+	//This is the maximum number of steps allowed to complete visiting all locations.
+	NUM_STEPS is an int = 10
+
+Patterns:
+
+	pattern visit(loc: locationType, loc_set: locSetType) returns (holds: bool)
+	let
+		holds = 	once (loc == loc_set[0]) 
+				and once (loc == loc_set[1])
+				and once (loc == loc_set[2])
+				and once (loc == loc_set[3])
+				and once (loc == loc_set[4])
+	tel
+	
+Inputs:
+
+Outputs:
+	loc : locationType
+	Visit_Complete : bool
+
+State:
+
+Macros:
+	
+	visited_LOC_SEQ_0 : bool = once(loc ==  LOC_SEQ[0])
+	visited_LOC_SEQ_1 : bool = once(loc ==  LOC_SEQ[1])
+	visited_LOC_SEQ_2 : bool = once(loc ==  LOC_SEQ[2])
+	visited_LOC_SEQ_3 : bool = once(loc ==  LOC_SEQ[3])
+	visited_LOC_SEQ_4 : bool = once(loc ==  LOC_SEQ[4])
+
+	sum_visited : int = btoi(visited_LOC_SEQ_0) + 
+						btoi(visited_LOC_SEQ_1) + 
+						btoi(visited_LOC_SEQ_2) +
+						btoi(visited_LOC_SEQ_3) +
+						btoi(visited_LOC_SEQ_4)
+						
+	steps_remaining : int = 
+		if (NUM_STEPS - counter) >= 0 
+		then (NUM_STEPS - counter)
+		else 0
+	
+	visits_remaining : int = LOC_SEQ_SIZE - sum_visited
+						
+Assumptions:
+
+Requirements:
+	r0 : steps_remaining >= visits_remaining
+
+	// ro_alt allows finite traces of length less than NUM_STEPS that do not visit any of the locations in LOC_SEQ.
+	// This isn't what we want and won't satisfy realizability. 
+//	r0_alt : (counter >= NUM_STEPS) => visit(loc, LOC_SEQ)
+	
+	r1 : Visit_Complete == visit(loc, LOC_SEQ)
+	
+Properties:
+	p_r0_mirror : steps_remaining >= visits_remaining
+//	p_r0_alt_mirror : (counter >= NUM_STEPS) => visit(loc, LOC_SEQ)
+	
+	p0: NUM_STEPS >= sum_visited
+	
+	o1 observe: sum_visited == LOC_SEQ_SIZE and counter == NUM_STEPS
+	
