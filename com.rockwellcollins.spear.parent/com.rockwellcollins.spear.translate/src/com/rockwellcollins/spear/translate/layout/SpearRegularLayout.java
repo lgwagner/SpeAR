@@ -35,8 +35,10 @@ public class SpearRegularLayout implements Layout {
 		categories.add(macros);
 
 		String behaviors = s.getBehaviorsKeyword();
-		categories.add(behaviors);
-
+		if (behaviors != null) {
+			categories.add(behaviors);
+		}
+		
 		this.map = new HashMap<>();
 
 		s.getInputs().stream().forEach(v -> map.put(v.getName(), inputs));
